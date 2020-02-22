@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,7 @@
 		D27F116623FF9488001D175F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D27F116423FF9488001D175F /* LaunchScreen.storyboard */; };
 		D27F117123FF9488001D175F /* qrscannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27F117023FF9488001D175F /* qrscannerTests.swift */; };
 		D27F117C23FF9488001D175F /* qrscannerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27F117B23FF9488001D175F /* qrscannerUITests.swift */; };
+		D2B20ED92400D13C00B5B1A6 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B20ED82400D13C00B5B1A6 /* TestViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		D27F117723FF9488001D175F /* qrscannerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = qrscannerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D27F117B23FF9488001D175F /* qrscannerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = qrscannerUITests.swift; sourceTree = "<group>"; };
 		D27F117D23FF9488001D175F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2B20ED82400D13C00B5B1A6 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		F5F702C08AE56C0D285AC18B /* Pods-qrscannerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-qrscannerTests.debug.xcconfig"; path = "Target Support Files/Pods-qrscannerTests/Pods-qrscannerTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,6 +135,7 @@
 				D27F116423FF9488001D175F /* LaunchScreen.storyboard */,
 				D27F116723FF9488001D175F /* Info.plist */,
 				D27F116123FF9488001D175F /* Preview Content */,
+				D2B20ED82400D13C00B5B1A6 /* TestViewController.swift */,
 			);
 			path = qrscanner;
 			sourceTree = "<group>";
@@ -173,7 +176,6 @@
 				B5E5F65F2955BC93EA053122 /* Pods-qrscannerUITests.debug.xcconfig */,
 				0D1AD5701740C95764490984 /* Pods-qrscannerUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -418,6 +420,7 @@
 			files = (
 				D27F115A23FF9487001D175F /* AppDelegate.swift in Sources */,
 				D27F115C23FF9487001D175F /* SceneDelegate.swift in Sources */,
+				D2B20ED92400D13C00B5B1A6 /* TestViewController.swift in Sources */,
 				D27F115E23FF9487001D175F /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
