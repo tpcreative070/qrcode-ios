@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SQLite
 class TestViewController: UIViewController {
     
     lazy var lbTest : UILabel = {
