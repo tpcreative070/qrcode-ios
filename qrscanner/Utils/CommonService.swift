@@ -37,6 +37,13 @@ class CommonService {
     }
     
     /**
+    getCurrentSessionId
+    */
+    static func getCurrentSessionId() -> String? {
+       return ""
+    }
+       
+    /**
      getCurrentUserId
      */
     static func getCurrentUserId() -> Int {
