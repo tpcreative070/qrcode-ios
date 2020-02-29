@@ -7,7 +7,6 @@ target 'qrscanner' do
   platform :ios, '11.0'
 
   # Pods for ecast
-  pod 'RealmSwift', '~> 3.16.2'
   pod 'Firebase/Analytics'
   pod 'Firebase/Crashlytics'
   pod 'GoogleSignIn' , '~> 4.4.0'
