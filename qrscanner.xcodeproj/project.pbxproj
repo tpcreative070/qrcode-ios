@@ -69,6 +69,19 @@
 		D2BA0AC4240A62110074C7A1 /* SignInResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AC3240A62110074C7A1 /* SignInResponseModel.swift */; };
 		D2BA0AC6240A62270074C7A1 /* SignUpRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AC5240A62270074C7A1 /* SignUpRequestModel.swift */; };
 		D2BA0AC8240A62900074C7A1 /* SignUpResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AC7240A62900074C7A1 /* SignUpResponseModel.swift */; };
+		D2BA0ACA240A68E90074C7A1 /* ShareSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AC9240A68E90074C7A1 /* ShareSingleton.swift */; };
+		D2BA0AD8240A69830074C7A1 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AD0240A69810074C7A1 /* UIViewExtension.swift */; };
+		D2BA0AD9240A69830074C7A1 /* ContentScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AD1240A69810074C7A1 /* ContentScrollView.swift */; };
+		D2BA0ADA240A69830074C7A1 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AD2240A69820074C7A1 /* TabView.swift */; };
+		D2BA0ADB240A69830074C7A1 /* SwipeMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AD3240A69820074C7A1 /* SwipeMenuView.swift */; };
+		D2BA0ADC240A69830074C7A1 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AD4240A69820074C7A1 /* UIColorExtension.swift */; };
+		D2BA0ADD240A69830074C7A1 /* SwipeMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AD5240A69820074C7A1 /* SwipeMenuViewController.swift */; };
+		D2BA0ADE240A69830074C7A1 /* TabItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AD6240A69820074C7A1 /* TabItemView.swift */; };
+		D2BA0ADF240A69830074C7A1 /* UIEdgeInsetsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AD7240A69830074C7A1 /* UIEdgeInsetsExtension.swift */; };
+		D2BA0AE2240A732A0074C7A1 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AE1240A732A0074C7A1 /* MainVC.swift */; };
+		D2BA0AE9240A74540074C7A1 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AE8240A74540074C7A1 /* SettingsVC.swift */; };
+		D2BA0AEB240A745E0074C7A1 /* SaveVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AEA240A745E0074C7A1 /* SaveVC.swift */; };
+		D2BA0AED240A74D70074C7A1 /* Main+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AEC240A74D70074C7A1 /* Main+ViewFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,6 +181,19 @@
 		D2BA0AC3240A62110074C7A1 /* SignInResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInResponseModel.swift; sourceTree = "<group>"; };
 		D2BA0AC5240A62270074C7A1 /* SignUpRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpRequestModel.swift; sourceTree = "<group>"; };
 		D2BA0AC7240A62900074C7A1 /* SignUpResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpResponseModel.swift; sourceTree = "<group>"; };
+		D2BA0AC9240A68E90074C7A1 /* ShareSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareSingleton.swift; sourceTree = "<group>"; };
+		D2BA0AD0240A69810074C7A1 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		D2BA0AD1240A69810074C7A1 /* ContentScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentScrollView.swift; sourceTree = "<group>"; };
+		D2BA0AD2240A69820074C7A1 /* TabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
+		D2BA0AD3240A69820074C7A1 /* SwipeMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeMenuView.swift; sourceTree = "<group>"; };
+		D2BA0AD4240A69820074C7A1 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		D2BA0AD5240A69820074C7A1 /* SwipeMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeMenuViewController.swift; sourceTree = "<group>"; };
+		D2BA0AD6240A69820074C7A1 /* TabItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabItemView.swift; sourceTree = "<group>"; };
+		D2BA0AD7240A69830074C7A1 /* UIEdgeInsetsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIEdgeInsetsExtension.swift; sourceTree = "<group>"; };
+		D2BA0AE1240A732A0074C7A1 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		D2BA0AE8240A74540074C7A1 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		D2BA0AEA240A745E0074C7A1 /* SaveVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveVC.swift; sourceTree = "<group>"; };
+		D2BA0AEC240A74D70074C7A1 /* Main+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Main+ViewFactory.swift"; sourceTree = "<group>"; };
 		FC701953EEF300EEEB988272 /* libPods-qrscanner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-qrscanner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -324,6 +350,7 @@
 		D2BA0A482408DCAD0074C7A1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				D2BA0AC9240A68E90074C7A1 /* ShareSingleton.swift */,
 				D2BA0A8124096A870074C7A1 /* CommonService.swift */,
 				D2BA0A8224096A870074C7A1 /* Utils.swift */,
 				D2BA0A67240967620074C7A1 /* Protocols.swift */,
@@ -409,6 +436,12 @@
 		D2BA0A502408DCF30074C7A1 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				D2BA0AE7240A73E20074C7A1 /* Settings */,
+				D2BA0AE6240A73DC0074C7A1 /* Save */,
+				D2BA0AE5240A73D30074C7A1 /* Scanner */,
+				D2BA0AE4240A73C90074C7A1 /* Generate */,
+				D2BA0AE3240A73B50074C7A1 /* History */,
+				D2BA0AE0240A69E20074C7A1 /* Main */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -472,6 +505,7 @@
 		D2BA0A572408DDAE0074C7A1 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				D2BA0ACF240A69750074C7A1 /* SwipeMenu */,
 				D2BA0A7B24096A5D0074C7A1 /* BaseViewController.swift */,
 				D2BA0A7824096A5D0074C7A1 /* ICBackBlueButton.swift */,
 				D2BA0A7724096A5C0074C7A1 /* ICBackGrayButton.swift */,
@@ -491,6 +525,67 @@
 			children = (
 			);
 			path = Binding;
+			sourceTree = "<group>";
+		};
+		D2BA0ACF240A69750074C7A1 /* SwipeMenu */ = {
+			isa = PBXGroup;
+			children = (
+				D2BA0AD1240A69810074C7A1 /* ContentScrollView.swift */,
+				D2BA0AD3240A69820074C7A1 /* SwipeMenuView.swift */,
+				D2BA0AD5240A69820074C7A1 /* SwipeMenuViewController.swift */,
+				D2BA0AD6240A69820074C7A1 /* TabItemView.swift */,
+				D2BA0AD2240A69820074C7A1 /* TabView.swift */,
+				D2BA0AD4240A69820074C7A1 /* UIColorExtension.swift */,
+				D2BA0AD7240A69830074C7A1 /* UIEdgeInsetsExtension.swift */,
+				D2BA0AD0240A69810074C7A1 /* UIViewExtension.swift */,
+			);
+			path = SwipeMenu;
+			sourceTree = "<group>";
+		};
+		D2BA0AE0240A69E20074C7A1 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				D2BA0AE1240A732A0074C7A1 /* MainVC.swift */,
+				D2BA0AEC240A74D70074C7A1 /* Main+ViewFactory.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		D2BA0AE3240A73B50074C7A1 /* History */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		D2BA0AE4240A73C90074C7A1 /* Generate */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Generate;
+			sourceTree = "<group>";
+		};
+		D2BA0AE5240A73D30074C7A1 /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Scanner;
+			sourceTree = "<group>";
+		};
+		D2BA0AE6240A73DC0074C7A1 /* Save */ = {
+			isa = PBXGroup;
+			children = (
+				D2BA0AEA240A745E0074C7A1 /* SaveVC.swift */,
+			);
+			path = Save;
+			sourceTree = "<group>";
+		};
+		D2BA0AE7240A73E20074C7A1 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				D2BA0AE8240A74540074C7A1 /* SettingsVC.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		F2F16AC23196D1277D272400 /* Pods */ = {
@@ -753,6 +848,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2BA0ADA240A69830074C7A1 /* TabView.swift in Sources */,
+				D2BA0AE2240A732A0074C7A1 /* MainVC.swift in Sources */,
 				D2BA0A9624096C410074C7A1 /* TranslationEntityModel.swift in Sources */,
 				D27F115A23FF9487001D175F /* AppDelegate.swift in Sources */,
 				D2BA0A9A24096E4B0074C7A1 /* DocumentHelper.swift in Sources */,
@@ -768,6 +865,7 @@
 				D2BA0A7424096A1F0074C7A1 /* Bool+ExpressibleByIntegerLiteral.swift in Sources */,
 				D2BA0A9224096ABC0074C7A1 /* DeviceHelper.swift in Sources */,
 				D2BA0A9C2409EC9D0074C7A1 /* ConfigurationStoreModel.swift in Sources */,
+				D2BA0ADF240A69830074C7A1 /* UIEdgeInsetsExtension.swift in Sources */,
 				D2BA0ABC240A61540074C7A1 /* BaseReponseModel.swift in Sources */,
 				D2BA0A68240967620074C7A1 /* Protocols.swift in Sources */,
 				D2BA0A8D24096ABC0074C7A1 /* GlobalVariableHelper.swift in Sources */,
@@ -775,27 +873,36 @@
 				D2BA0A8324096A870074C7A1 /* CommonService.swift in Sources */,
 				D2BA0A6A2409691F0074C7A1 /* ICButton.swift in Sources */,
 				D2BA0A7524096A1F0074C7A1 /* UIColor+HexToRGB.swift in Sources */,
+				D2BA0ADC240A69830074C7A1 /* UIColorExtension.swift in Sources */,
+				D2BA0AD8240A69830074C7A1 /* UIViewExtension.swift in Sources */,
 				D2BA0A70240969DC0074C7A1 /* ICButtonCustom.swift in Sources */,
 				D2BA0A60240966710074C7A1 /* SwiftEventBusHelper.swift in Sources */,
 				D2BA0A9124096ABC0074C7A1 /* KeychainSwiftHelper.swift in Sources */,
+				D2BA0ADD240A69830074C7A1 /* SwipeMenuViewController.swift in Sources */,
 				D2BA0ABA240A61540074C7A1 /* ResponseErrorModel.swift in Sources */,
 				D2BA0AB5240A60DE0074C7A1 /* EndPoint.swift in Sources */,
 				D2BA0AC4240A62110074C7A1 /* SignInResponseModel.swift in Sources */,
 				D2BA0A9324096ABC0074C7A1 /* LanguageHelper.swift in Sources */,
+				D2BA0ADE240A69830074C7A1 /* TabItemView.swift in Sources */,
 				D2BA0A662409671F0074C7A1 /* CollectionViewDataSource.swift in Sources */,
 				D2B20ED92400D13C00B5B1A6 /* TestViewController.swift in Sources */,
 				D2BA0A7624096A1F0074C7A1 /* UIDevice+Extension.swift in Sources */,
+				D2BA0ACA240A68E90074C7A1 /* ShareSingleton.swift in Sources */,
 				D2BA0ABB240A61540074C7A1 /* UserResponseModel.swift in Sources */,
 				D2BA0AC0240A61D70074C7A1 /* UserRequestModel.swift in Sources */,
 				D2BA0AB3240A60DE0074C7A1 /* Result.swift in Sources */,
+				D2BA0ADB240A69830074C7A1 /* SwipeMenuView.swift in Sources */,
 				D2BA0AB6240A60DE0074C7A1 /* APIClient.swift in Sources */,
 				D2BA0A6C240969440074C7A1 /* Constant.swift in Sources */,
+				D2BA0AED240A74D70074C7A1 /* Main+ViewFactory.swift in Sources */,
 				D2BA0A5A2408DE530074C7A1 /* TranslationEntity.swift in Sources */,
 				D2BA0A8F24096ABC0074C7A1 /* JSONHelper.swift in Sources */,
 				D2BA0A9E2409ED300074C7A1 /* String+ConfigKey.swift in Sources */,
 				D2BA0A7F24096A5E0074C7A1 /* ICCloseWhiteButton.swift in Sources */,
 				D27F115E23FF9487001D175F /* ContentView.swift in Sources */,
 				D2BA0A7C24096A5E0074C7A1 /* ICBackGrayButton.swift in Sources */,
+				D2BA0AE9240A74540074C7A1 /* SettingsVC.swift in Sources */,
+				D2BA0AEB240A745E0074C7A1 /* SaveVC.swift in Sources */,
 				D2BA0A9824096E130074C7A1 /* SQLHelper.swift in Sources */,
 				D2BA0AB4240A60DE0074C7A1 /* UserService.swift in Sources */,
 				D2BA0A7D24096A5E0074C7A1 /* ICBackBlueButton.swift in Sources */,
@@ -803,6 +910,7 @@
 				D2BA0A5C2408DEFC0074C7A1 /* Date+timeAgoDisplay.swift in Sources */,
 				D2BA0AC8240A62900074C7A1 /* SignUpResponseModel.swift in Sources */,
 				D2BA0AC6240A62270074C7A1 /* SignUpRequestModel.swift in Sources */,
+				D2BA0AD9240A69830074C7A1 /* ContentScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
