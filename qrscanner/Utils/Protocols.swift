@@ -11,3 +11,8 @@ protocol IntroCellDelegate {
   func onSkip()
   func onStart(isStart : Bool)
 }
+
+protocol TransferCashMultipleViewModelDeletegate {
+    var moneyView : String? {get}
+    var countView : String? {get}
+}
