@@ -54,6 +54,7 @@
 		D2BA0A9A24096E4B0074C7A1 /* DocumentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0A9924096E4B0074C7A1 /* DocumentHelper.swift */; };
 		D2BA0A9C2409EC9D0074C7A1 /* ConfigurationStoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0A9B2409EC9D0074C7A1 /* ConfigurationStoreModel.swift */; };
 		D2BA0A9E2409ED300074C7A1 /* String+ConfigKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0A9D2409ED300074C7A1 /* String+ConfigKey.swift */; };
+		D2BA0AA9240A0A2B0074C7A1 /* languages.json in Resources */ = {isa = PBXBuildFile; fileRef = D2BA0AA8240A0A2B0074C7A1 /* languages.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +139,7 @@
 		D2BA0A9F2409EE5D0074C7A1 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		D2BA0AA12409EE710074C7A1 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		D2BA0AA32409EEAD0074C7A1 /* Develop.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Develop.xcconfig; sourceTree = "<group>"; };
+		D2BA0AA8240A0A2B0074C7A1 /* languages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = languages.json; sourceTree = "<group>"; };
 		FC701953EEF300EEEB988272 /* libPods-qrscanner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-qrscanner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -399,6 +401,7 @@
 		D2BA0A532408DD400074C7A1 /* Jsons */ = {
 			isa = PBXGroup;
 			children = (
+				D2BA0AA8240A0A2B0074C7A1 /* languages.json */,
 			);
 			path = Jsons;
 			sourceTree = "<group>";
@@ -573,6 +576,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D27F116623FF9488001D175F /* LaunchScreen.storyboard in Resources */,
+				D2BA0AA9240A0A2B0074C7A1 /* languages.json in Resources */,
 				D2BA0A5E2408E0850074C7A1 /* qrscanner.db in Resources */,
 				D27F116323FF9488001D175F /* Preview Assets.xcassets in Resources */,
 				D27F116023FF9488001D175F /* Assets.xcassets in Resources */,
