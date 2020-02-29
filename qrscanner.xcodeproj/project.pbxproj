@@ -52,6 +52,8 @@
 		D2BA0A9624096C410074C7A1 /* TranslationEntityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0A9524096C410074C7A1 /* TranslationEntityModel.swift */; };
 		D2BA0A9824096E130074C7A1 /* SQLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0A9724096E130074C7A1 /* SQLHelper.swift */; };
 		D2BA0A9A24096E4B0074C7A1 /* DocumentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0A9924096E4B0074C7A1 /* DocumentHelper.swift */; };
+		D2BA0A9C2409EC9D0074C7A1 /* ConfigurationStoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0A9B2409EC9D0074C7A1 /* ConfigurationStoreModel.swift */; };
+		D2BA0A9E2409ED300074C7A1 /* String+ConfigKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0A9D2409ED300074C7A1 /* String+ConfigKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +130,11 @@
 		D2BA0A9524096C410074C7A1 /* TranslationEntityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationEntityModel.swift; sourceTree = "<group>"; };
 		D2BA0A9724096E130074C7A1 /* SQLHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLHelper.swift; sourceTree = "<group>"; };
 		D2BA0A9924096E4B0074C7A1 /* DocumentHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentHelper.swift; sourceTree = "<group>"; };
+		D2BA0A9B2409EC9D0074C7A1 /* ConfigurationStoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationStoreModel.swift; sourceTree = "<group>"; };
+		D2BA0A9D2409ED300074C7A1 /* String+ConfigKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ConfigKey.swift"; sourceTree = "<group>"; };
+		D2BA0A9F2409EE5D0074C7A1 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		D2BA0AA12409EE710074C7A1 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		D2BA0AA32409EEAD0074C7A1 /* Develop.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Develop.xcconfig; sourceTree = "<group>"; };
 		FC701953EEF300EEEB988272 /* libPods-qrscanner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-qrscanner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -262,6 +269,9 @@
 		D2BA0A462408DC970074C7A1 /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				D2BA0A9F2409EE5D0074C7A1 /* Release.xcconfig */,
+				D2BA0AA12409EE710074C7A1 /* Debug.xcconfig */,
+				D2BA0AA32409EEAD0074C7A1 /* Develop.xcconfig */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -315,6 +325,7 @@
 				D2BA0A552408DD700074C7A1 /* Request */,
 				D2BA0A542408DD680074C7A1 /* Response */,
 				D2BA0A9524096C410074C7A1 /* TranslationEntityModel.swift */,
+				D2BA0A9B2409EC9D0074C7A1 /* ConfigurationStoreModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -326,6 +337,7 @@
 				D2BA0A7224096A1E0074C7A1 /* UIColor+HexToRGB.swift */,
 				D2BA0A7324096A1F0074C7A1 /* UIDevice+Extension.swift */,
 				D2BA0A5B2408DEFC0074C7A1 /* Date+timeAgoDisplay.swift */,
+				D2BA0A9D2409ED300074C7A1 /* String+ConfigKey.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -681,6 +693,7 @@
 				D2BA0A9024096ABC0074C7A1 /* JSONSerializerHelper.swift in Sources */,
 				D2BA0A7424096A1F0074C7A1 /* Bool+ExpressibleByIntegerLiteral.swift in Sources */,
 				D2BA0A9224096ABC0074C7A1 /* DeviceHelper.swift in Sources */,
+				D2BA0A9C2409EC9D0074C7A1 /* ConfigurationStoreModel.swift in Sources */,
 				D2BA0A68240967620074C7A1 /* Protocols.swift in Sources */,
 				D2BA0A8D24096ABC0074C7A1 /* GlobalVariableHelper.swift in Sources */,
 				D2BA0A62240966D20074C7A1 /* TableViewDataSource.swift in Sources */,
@@ -697,6 +710,7 @@
 				D2BA0A6C240969440074C7A1 /* Constant.swift in Sources */,
 				D2BA0A5A2408DE530074C7A1 /* TranslationEntity.swift in Sources */,
 				D2BA0A8F24096ABC0074C7A1 /* JSONHelper.swift in Sources */,
+				D2BA0A9E2409ED300074C7A1 /* String+ConfigKey.swift in Sources */,
 				D2BA0A7F24096A5E0074C7A1 /* ICCloseWhiteButton.swift in Sources */,
 				D27F115E23FF9487001D175F /* ContentView.swift in Sources */,
 				D2BA0A7C24096A5E0074C7A1 /* ICBackGrayButton.swift in Sources */,

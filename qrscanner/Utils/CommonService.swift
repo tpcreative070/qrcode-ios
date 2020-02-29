@@ -15,10 +15,25 @@ class CommonService {
     
    
     /**
-     getBaseUrl
-     */
+    getConfigurationData
+    */
+    static func getConfigurationData() -> ConfigurationStoreModel? {
+        if let saved = StorageHelper.getData(key: StorageKey.configData) {
+            if let loaded = self.dataToObject(ConfigurationStoreModel.self, data: saved) {
+                   return loaded
+            }
+        }
+        return nil
+    }
+       
+    /**
+    getBaseUrl
+    */
     static func getBaseUrl() -> String {
-        return ""
+        if let config = self.getConfigurationData() {
+            return config.serverUrl
+        }
+        return ApiEndPointUrl.BaseUrl.infoForKey() ?? ""
     }
     
     /**
