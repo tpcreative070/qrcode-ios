@@ -54,6 +54,34 @@
 		D2BA0A9A24096E4B0074C7A1 /* DocumentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0A9924096E4B0074C7A1 /* DocumentHelper.swift */; };
 		D2BA0A9C2409EC9D0074C7A1 /* ConfigurationStoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0A9B2409EC9D0074C7A1 /* ConfigurationStoreModel.swift */; };
 		D2BA0A9E2409ED300074C7A1 /* String+ConfigKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0A9D2409ED300074C7A1 /* String+ConfigKey.swift */; };
+		D2BA0AA9240A0A2B0074C7A1 /* languages.json in Resources */ = {isa = PBXBuildFile; fileRef = D2BA0AA8240A0A2B0074C7A1 /* languages.json */; };
+		D2BA0AAC240A592A0074C7A1 /* GoogleService-Info-Develop.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2BA0AAA240A59290074C7A1 /* GoogleService-Info-Develop.plist */; };
+		D2BA0AAD240A592A0074C7A1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2BA0AAB240A592A0074C7A1 /* GoogleService-Info.plist */; };
+		D2BA0AB3240A60DE0074C7A1 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AAF240A60DD0074C7A1 /* Result.swift */; };
+		D2BA0AB4240A60DE0074C7A1 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AB0240A60DE0074C7A1 /* UserService.swift */; };
+		D2BA0AB5240A60DE0074C7A1 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AB1240A60DE0074C7A1 /* EndPoint.swift */; };
+		D2BA0AB6240A60DE0074C7A1 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AB2240A60DE0074C7A1 /* APIClient.swift */; };
+		D2BA0ABA240A61540074C7A1 /* ResponseErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AB7240A61540074C7A1 /* ResponseErrorModel.swift */; };
+		D2BA0ABB240A61540074C7A1 /* UserResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AB8240A61540074C7A1 /* UserResponseModel.swift */; };
+		D2BA0ABC240A61540074C7A1 /* BaseReponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AB9240A61540074C7A1 /* BaseReponseModel.swift */; };
+		D2BA0AC0240A61D70074C7A1 /* UserRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0ABE240A61D70074C7A1 /* UserRequestModel.swift */; };
+		D2BA0AC2240A61F70074C7A1 /* SignInRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AC1240A61F70074C7A1 /* SignInRequestModel.swift */; };
+		D2BA0AC4240A62110074C7A1 /* SignInResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AC3240A62110074C7A1 /* SignInResponseModel.swift */; };
+		D2BA0AC6240A62270074C7A1 /* SignUpRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AC5240A62270074C7A1 /* SignUpRequestModel.swift */; };
+		D2BA0AC8240A62900074C7A1 /* SignUpResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AC7240A62900074C7A1 /* SignUpResponseModel.swift */; };
+		D2BA0ACA240A68E90074C7A1 /* ShareSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AC9240A68E90074C7A1 /* ShareSingleton.swift */; };
+		D2BA0AD8240A69830074C7A1 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AD0240A69810074C7A1 /* UIViewExtension.swift */; };
+		D2BA0AD9240A69830074C7A1 /* ContentScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AD1240A69810074C7A1 /* ContentScrollView.swift */; };
+		D2BA0ADA240A69830074C7A1 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AD2240A69820074C7A1 /* TabView.swift */; };
+		D2BA0ADB240A69830074C7A1 /* SwipeMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AD3240A69820074C7A1 /* SwipeMenuView.swift */; };
+		D2BA0ADC240A69830074C7A1 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AD4240A69820074C7A1 /* UIColorExtension.swift */; };
+		D2BA0ADD240A69830074C7A1 /* SwipeMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AD5240A69820074C7A1 /* SwipeMenuViewController.swift */; };
+		D2BA0ADE240A69830074C7A1 /* TabItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AD6240A69820074C7A1 /* TabItemView.swift */; };
+		D2BA0ADF240A69830074C7A1 /* UIEdgeInsetsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AD7240A69830074C7A1 /* UIEdgeInsetsExtension.swift */; };
+		D2BA0AE2240A732A0074C7A1 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AE1240A732A0074C7A1 /* MainVC.swift */; };
+		D2BA0AE9240A74540074C7A1 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AE8240A74540074C7A1 /* SettingsVC.swift */; };
+		D2BA0AEB240A745E0074C7A1 /* SaveVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AEA240A745E0074C7A1 /* SaveVC.swift */; };
+		D2BA0AED240A74D70074C7A1 /* Main+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0AEC240A74D70074C7A1 /* Main+ViewFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +166,34 @@
 		D2BA0A9F2409EE5D0074C7A1 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		D2BA0AA12409EE710074C7A1 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		D2BA0AA32409EEAD0074C7A1 /* Develop.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Develop.xcconfig; sourceTree = "<group>"; };
+		D2BA0AA8240A0A2B0074C7A1 /* languages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = languages.json; sourceTree = "<group>"; };
+		D2BA0AAA240A59290074C7A1 /* GoogleService-Info-Develop.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Develop.plist"; sourceTree = "<group>"; };
+		D2BA0AAB240A592A0074C7A1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D2BA0AAF240A60DD0074C7A1 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		D2BA0AB0240A60DE0074C7A1 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		D2BA0AB1240A60DE0074C7A1 /* EndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
+		D2BA0AB2240A60DE0074C7A1 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		D2BA0AB7240A61540074C7A1 /* ResponseErrorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseErrorModel.swift; sourceTree = "<group>"; };
+		D2BA0AB8240A61540074C7A1 /* UserResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserResponseModel.swift; sourceTree = "<group>"; };
+		D2BA0AB9240A61540074C7A1 /* BaseReponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseReponseModel.swift; sourceTree = "<group>"; };
+		D2BA0ABE240A61D70074C7A1 /* UserRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRequestModel.swift; sourceTree = "<group>"; };
+		D2BA0AC1240A61F70074C7A1 /* SignInRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInRequestModel.swift; sourceTree = "<group>"; };
+		D2BA0AC3240A62110074C7A1 /* SignInResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInResponseModel.swift; sourceTree = "<group>"; };
+		D2BA0AC5240A62270074C7A1 /* SignUpRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpRequestModel.swift; sourceTree = "<group>"; };
+		D2BA0AC7240A62900074C7A1 /* SignUpResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpResponseModel.swift; sourceTree = "<group>"; };
+		D2BA0AC9240A68E90074C7A1 /* ShareSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareSingleton.swift; sourceTree = "<group>"; };
+		D2BA0AD0240A69810074C7A1 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		D2BA0AD1240A69810074C7A1 /* ContentScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentScrollView.swift; sourceTree = "<group>"; };
+		D2BA0AD2240A69820074C7A1 /* TabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
+		D2BA0AD3240A69820074C7A1 /* SwipeMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeMenuView.swift; sourceTree = "<group>"; };
+		D2BA0AD4240A69820074C7A1 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		D2BA0AD5240A69820074C7A1 /* SwipeMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeMenuViewController.swift; sourceTree = "<group>"; };
+		D2BA0AD6240A69820074C7A1 /* TabItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabItemView.swift; sourceTree = "<group>"; };
+		D2BA0AD7240A69830074C7A1 /* UIEdgeInsetsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIEdgeInsetsExtension.swift; sourceTree = "<group>"; };
+		D2BA0AE1240A732A0074C7A1 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		D2BA0AE8240A74540074C7A1 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		D2BA0AEA240A745E0074C7A1 /* SaveVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveVC.swift; sourceTree = "<group>"; };
+		D2BA0AEC240A74D70074C7A1 /* Main+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Main+ViewFactory.swift"; sourceTree = "<group>"; };
 		FC701953EEF300EEEB988272 /* libPods-qrscanner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-qrscanner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -258,6 +314,8 @@
 		D2BA0A442408DC730074C7A1 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
+				D2BA0AAA240A59290074C7A1 /* GoogleService-Info-Develop.plist */,
+				D2BA0AAB240A592A0074C7A1 /* GoogleService-Info.plist */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -292,6 +350,7 @@
 		D2BA0A482408DCAD0074C7A1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				D2BA0AC9240A68E90074C7A1 /* ShareSingleton.swift */,
 				D2BA0A8124096A870074C7A1 /* CommonService.swift */,
 				D2BA0A8224096A870074C7A1 /* Utils.swift */,
 				D2BA0A67240967620074C7A1 /* Protocols.swift */,
@@ -377,6 +436,12 @@
 		D2BA0A502408DCF30074C7A1 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				D2BA0AE7240A73E20074C7A1 /* Settings */,
+				D2BA0AE6240A73DC0074C7A1 /* Save */,
+				D2BA0AE5240A73D30074C7A1 /* Scanner */,
+				D2BA0AE4240A73C90074C7A1 /* Generate */,
+				D2BA0AE3240A73B50074C7A1 /* History */,
+				D2BA0AE0240A69E20074C7A1 /* Main */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -392,6 +457,10 @@
 		D2BA0A522408DD330074C7A1 /* Requester */ = {
 			isa = PBXGroup;
 			children = (
+				D2BA0AB2240A60DE0074C7A1 /* APIClient.swift */,
+				D2BA0AB1240A60DE0074C7A1 /* EndPoint.swift */,
+				D2BA0AAF240A60DD0074C7A1 /* Result.swift */,
+				D2BA0AB0240A60DE0074C7A1 /* UserService.swift */,
 			);
 			path = Requester;
 			sourceTree = "<group>";
@@ -399,6 +468,7 @@
 		D2BA0A532408DD400074C7A1 /* Jsons */ = {
 			isa = PBXGroup;
 			children = (
+				D2BA0AA8240A0A2B0074C7A1 /* languages.json */,
 			);
 			path = Jsons;
 			sourceTree = "<group>";
@@ -406,6 +476,11 @@
 		D2BA0A542408DD680074C7A1 /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				D2BA0AC7240A62900074C7A1 /* SignUpResponseModel.swift */,
+				D2BA0AC3240A62110074C7A1 /* SignInResponseModel.swift */,
+				D2BA0AB9240A61540074C7A1 /* BaseReponseModel.swift */,
+				D2BA0AB7240A61540074C7A1 /* ResponseErrorModel.swift */,
+				D2BA0AB8240A61540074C7A1 /* UserResponseModel.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -413,6 +488,9 @@
 		D2BA0A552408DD700074C7A1 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				D2BA0AC5240A62270074C7A1 /* SignUpRequestModel.swift */,
+				D2BA0AC1240A61F70074C7A1 /* SignInRequestModel.swift */,
+				D2BA0ABE240A61D70074C7A1 /* UserRequestModel.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -427,6 +505,7 @@
 		D2BA0A572408DDAE0074C7A1 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				D2BA0ACF240A69750074C7A1 /* SwipeMenu */,
 				D2BA0A7B24096A5D0074C7A1 /* BaseViewController.swift */,
 				D2BA0A7824096A5D0074C7A1 /* ICBackBlueButton.swift */,
 				D2BA0A7724096A5C0074C7A1 /* ICBackGrayButton.swift */,
@@ -446,6 +525,67 @@
 			children = (
 			);
 			path = Binding;
+			sourceTree = "<group>";
+		};
+		D2BA0ACF240A69750074C7A1 /* SwipeMenu */ = {
+			isa = PBXGroup;
+			children = (
+				D2BA0AD1240A69810074C7A1 /* ContentScrollView.swift */,
+				D2BA0AD3240A69820074C7A1 /* SwipeMenuView.swift */,
+				D2BA0AD5240A69820074C7A1 /* SwipeMenuViewController.swift */,
+				D2BA0AD6240A69820074C7A1 /* TabItemView.swift */,
+				D2BA0AD2240A69820074C7A1 /* TabView.swift */,
+				D2BA0AD4240A69820074C7A1 /* UIColorExtension.swift */,
+				D2BA0AD7240A69830074C7A1 /* UIEdgeInsetsExtension.swift */,
+				D2BA0AD0240A69810074C7A1 /* UIViewExtension.swift */,
+			);
+			path = SwipeMenu;
+			sourceTree = "<group>";
+		};
+		D2BA0AE0240A69E20074C7A1 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				D2BA0AE1240A732A0074C7A1 /* MainVC.swift */,
+				D2BA0AEC240A74D70074C7A1 /* Main+ViewFactory.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		D2BA0AE3240A73B50074C7A1 /* History */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		D2BA0AE4240A73C90074C7A1 /* Generate */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Generate;
+			sourceTree = "<group>";
+		};
+		D2BA0AE5240A73D30074C7A1 /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Scanner;
+			sourceTree = "<group>";
+		};
+		D2BA0AE6240A73DC0074C7A1 /* Save */ = {
+			isa = PBXGroup;
+			children = (
+				D2BA0AEA240A745E0074C7A1 /* SaveVC.swift */,
+			);
+			path = Save;
+			sourceTree = "<group>";
+		};
+		D2BA0AE7240A73E20074C7A1 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				D2BA0AE8240A74540074C7A1 /* SettingsVC.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		F2F16AC23196D1277D272400 /* Pods */ = {
@@ -476,6 +616,7 @@
 				D27F115323FF9487001D175F /* Frameworks */,
 				D27F115423FF9487001D175F /* Resources */,
 				F2D897F4511E819D66518AAC /* [CP] Copy Pods Resources */,
+				D2BA0AAE240A594F0074C7A1 /* Firebase */,
 			);
 			buildRules = (
 			);
@@ -572,10 +713,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2BA0AAC240A592A0074C7A1 /* GoogleService-Info-Develop.plist in Resources */,
 				D27F116623FF9488001D175F /* LaunchScreen.storyboard in Resources */,
+				D2BA0AA9240A0A2B0074C7A1 /* languages.json in Resources */,
 				D2BA0A5E2408E0850074C7A1 /* qrscanner.db in Resources */,
 				D27F116323FF9488001D175F /* Preview Assets.xcassets in Resources */,
 				D27F116023FF9488001D175F /* Assets.xcassets in Resources */,
+				D2BA0AAD240A592A0074C7A1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,6 +806,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D2BA0AAE240A594F0074C7A1 /* Firebase */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Firebase;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nPATH_TO_GOOGLE_PLISTS=\"${PROJECT_DIR}/qrscanner/Firebase\"\n\ncase \"${CONFIGURATION}\" in\n\n\"Debug\" | \"Release\" )\ncp -r \"$PATH_TO_GOOGLE_PLISTS/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\" ;;\n\n\"Develop\")\ncp -r \"$PATH_TO_GOOGLE_PLISTS/GoogleService-Info-Develop.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\" ;;\n*)\n;;\nesac\n";
+		};
 		F2D897F4511E819D66518AAC /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -686,11 +848,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2BA0ADA240A69830074C7A1 /* TabView.swift in Sources */,
+				D2BA0AE2240A732A0074C7A1 /* MainVC.swift in Sources */,
 				D2BA0A9624096C410074C7A1 /* TranslationEntityModel.swift in Sources */,
 				D27F115A23FF9487001D175F /* AppDelegate.swift in Sources */,
 				D2BA0A9A24096E4B0074C7A1 /* DocumentHelper.swift in Sources */,
 				D2BA0A6E240969A90074C7A1 /* Helper.swift in Sources */,
 				D27F115C23FF9487001D175F /* SceneDelegate.swift in Sources */,
+				D2BA0AC2240A61F70074C7A1 /* SignInRequestModel.swift in Sources */,
 				D2BA0A8024096A5E0074C7A1 /* BaseViewController.swift in Sources */,
 				D2BA0A64240966F10074C7A1 /* TableSection.swift in Sources */,
 				D2BA0A9424096ABC0074C7A1 /* StorageHelper.swift in Sources */,
@@ -700,30 +865,52 @@
 				D2BA0A7424096A1F0074C7A1 /* Bool+ExpressibleByIntegerLiteral.swift in Sources */,
 				D2BA0A9224096ABC0074C7A1 /* DeviceHelper.swift in Sources */,
 				D2BA0A9C2409EC9D0074C7A1 /* ConfigurationStoreModel.swift in Sources */,
+				D2BA0ADF240A69830074C7A1 /* UIEdgeInsetsExtension.swift in Sources */,
+				D2BA0ABC240A61540074C7A1 /* BaseReponseModel.swift in Sources */,
 				D2BA0A68240967620074C7A1 /* Protocols.swift in Sources */,
 				D2BA0A8D24096ABC0074C7A1 /* GlobalVariableHelper.swift in Sources */,
 				D2BA0A62240966D20074C7A1 /* TableViewDataSource.swift in Sources */,
 				D2BA0A8324096A870074C7A1 /* CommonService.swift in Sources */,
 				D2BA0A6A2409691F0074C7A1 /* ICButton.swift in Sources */,
 				D2BA0A7524096A1F0074C7A1 /* UIColor+HexToRGB.swift in Sources */,
+				D2BA0ADC240A69830074C7A1 /* UIColorExtension.swift in Sources */,
+				D2BA0AD8240A69830074C7A1 /* UIViewExtension.swift in Sources */,
 				D2BA0A70240969DC0074C7A1 /* ICButtonCustom.swift in Sources */,
 				D2BA0A60240966710074C7A1 /* SwiftEventBusHelper.swift in Sources */,
 				D2BA0A9124096ABC0074C7A1 /* KeychainSwiftHelper.swift in Sources */,
+				D2BA0ADD240A69830074C7A1 /* SwipeMenuViewController.swift in Sources */,
+				D2BA0ABA240A61540074C7A1 /* ResponseErrorModel.swift in Sources */,
+				D2BA0AB5240A60DE0074C7A1 /* EndPoint.swift in Sources */,
+				D2BA0AC4240A62110074C7A1 /* SignInResponseModel.swift in Sources */,
 				D2BA0A9324096ABC0074C7A1 /* LanguageHelper.swift in Sources */,
+				D2BA0ADE240A69830074C7A1 /* TabItemView.swift in Sources */,
 				D2BA0A662409671F0074C7A1 /* CollectionViewDataSource.swift in Sources */,
 				D2B20ED92400D13C00B5B1A6 /* TestViewController.swift in Sources */,
 				D2BA0A7624096A1F0074C7A1 /* UIDevice+Extension.swift in Sources */,
+				D2BA0ACA240A68E90074C7A1 /* ShareSingleton.swift in Sources */,
+				D2BA0ABB240A61540074C7A1 /* UserResponseModel.swift in Sources */,
+				D2BA0AC0240A61D70074C7A1 /* UserRequestModel.swift in Sources */,
+				D2BA0AB3240A60DE0074C7A1 /* Result.swift in Sources */,
+				D2BA0ADB240A69830074C7A1 /* SwipeMenuView.swift in Sources */,
+				D2BA0AB6240A60DE0074C7A1 /* APIClient.swift in Sources */,
 				D2BA0A6C240969440074C7A1 /* Constant.swift in Sources */,
+				D2BA0AED240A74D70074C7A1 /* Main+ViewFactory.swift in Sources */,
 				D2BA0A5A2408DE530074C7A1 /* TranslationEntity.swift in Sources */,
 				D2BA0A8F24096ABC0074C7A1 /* JSONHelper.swift in Sources */,
 				D2BA0A9E2409ED300074C7A1 /* String+ConfigKey.swift in Sources */,
 				D2BA0A7F24096A5E0074C7A1 /* ICCloseWhiteButton.swift in Sources */,
 				D27F115E23FF9487001D175F /* ContentView.swift in Sources */,
 				D2BA0A7C24096A5E0074C7A1 /* ICBackGrayButton.swift in Sources */,
+				D2BA0AE9240A74540074C7A1 /* SettingsVC.swift in Sources */,
+				D2BA0AEB240A745E0074C7A1 /* SaveVC.swift in Sources */,
 				D2BA0A9824096E130074C7A1 /* SQLHelper.swift in Sources */,
+				D2BA0AB4240A60DE0074C7A1 /* UserService.swift in Sources */,
 				D2BA0A7D24096A5E0074C7A1 /* ICBackBlueButton.swift in Sources */,
 				D2BA0A7E24096A5E0074C7A1 /* ICCloseBlackButton.swift in Sources */,
 				D2BA0A5C2408DEFC0074C7A1 /* Date+timeAgoDisplay.swift in Sources */,
+				D2BA0AC8240A62900074C7A1 /* SignUpResponseModel.swift in Sources */,
+				D2BA0AC6240A62270074C7A1 /* SignUpRequestModel.swift in Sources */,
+				D2BA0AD9240A69830074C7A1 /* ContentScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
