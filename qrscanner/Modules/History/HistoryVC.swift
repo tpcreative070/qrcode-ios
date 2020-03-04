@@ -8,8 +8,30 @@
 
 import UIKit
 class HistoryVC : BaseViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+        var tableView : UITableView!
+        lazy var lbTittle : ICLabel = {
+          let lbTittle = ICLabel()
+          lbTittle.translatesAutoresizingMaskIntoConstraints = false
+          return lbTittle
+        }()
+        var dataSource :TableViewDataSource<TableViewCell,ScannerViewModel,HeaderView>!
+        var sections = [TableSection<String, ScannerViewModel>]()
+        let viewModel = ScannersViewModelList()
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            self.sections = TableSection.group(rowItems: self.viewModel.listHistories, by: { (headline) in
+                return headline.typeCode
+            })
+            initUI()
+            bindViewModel()
+        }
+        
+     
+        
+        override func viewDidAppear(_ animated: Bool) {
+            self.viewModel.doGetListHistories()
+            self.viewModel.isSelected.value = false
+        }
+        
+        
 }
-

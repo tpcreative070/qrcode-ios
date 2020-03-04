@@ -10,13 +10,17 @@ import UIKit
 class MainVC : SwipeMenuViewController {
     var options = SwipeMenuViewOptions()
     var mSave : SaveVC?
+    var mHistory : HistoryVC?
+    var mGenerate : GenerateVC?
+    var mScanner : ScannerVC?
     var mSettings : SettingsVC?
-    var dataCount: Int = 2
+    var dataCount: Int = 5
+    
     override func viewDidLoad() {
+        initUI()
         addedView()
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        initUI()
     }
     
     override func viewDidAppear(_ animated: Bool) {

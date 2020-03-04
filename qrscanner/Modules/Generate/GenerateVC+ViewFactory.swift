@@ -6,4 +6,7 @@
 //  Copyright © 2020 thanhphong070. All rights reserved.
 //
 
-import Foundation
+import UIKit
+extension GenerateVC{
+    
+}

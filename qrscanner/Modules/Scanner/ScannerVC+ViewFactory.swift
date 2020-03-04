@@ -7,6 +7,6 @@
 //
 
 import UIKit
-extension ScannerVC {
-    
-}
+//extension ScannerVC {
+//
+//}

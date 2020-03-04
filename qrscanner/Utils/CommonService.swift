@@ -25,7 +25,14 @@ class CommonService {
         }
         return nil
     }
-       
+       /**
+        setConfigurationData
+        */
+       static func setConfigurationData(configuration: ConfigurationStoreModel) {
+           if let encoded = self.objectToData(configuration) {
+               StorageHelper.setObject(key: StorageKey.configData, value: encoded)
+           }
+       }
     /**
     getBaseUrl
     */

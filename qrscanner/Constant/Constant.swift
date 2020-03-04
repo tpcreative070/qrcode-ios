@@ -85,6 +85,54 @@ struct AppConstants {
     static let HEIGHT_CONSTRAINT_VIEW = CGFloat(50)
     static let HEIGHT_CONSTRAINT_LABLE_PASSENGERS = CGFloat(20)
     static let SOUND_EMPTY = "empty.wav"
+    //Menu
+     static let MENU_FOOTER_SIZE = CGFloat(100)
+     static let MENU_ITEM_IMAGE_DOUBLE_SIZE = CGFloat(40)
+     static let MENU_ITEM_IMAGE_SIZE = CGFloat(30)
+     static let MENU_ITEM_IMAGE_LEADING = CGFloat(12)
+     static let MENU_ITEM_TITLE_TOP = CGFloat(10)
+     static let MENU_ITEM_TITLE_TRAILING = CGFloat(-50)
+     static let MENU_ITEM_TITLE_LEADING = CGFloat(12)
+     static let MENU_ITEM_CONTAINER_BOTTOM = CGFloat(-17)
+     static let MENU_ITEM_DESCRIPTION_BOTTOM = CGFloat(-8)
+     static let MENU_ITEM_BADGE_SIZE = CGFloat(25)
+     static let MENU_ITEM_BADGE_LEADING = CGFloat(12)
+     static let MENU_ITEM_UNDER_LINE_BOTTOM = CGFloat(-24)
+     static let MENU_ITEM_UNDER_LINE_LEADING = CGFloat(50)
+     static let MENU_ITEM_UNDER_LINE_TRAILING = CGFloat(-10)
+     static let IC_SKIP_WIDTH = CFloat(80)
+     static let IC_SKIP_HEIGHT = CFloat(50)
+     static let MENU_BUTTON_MARGIN_LEFT = CGFloat(10)
+     static let MENU_BUTTON_MARGIN_RIGHT = CGFloat(-10)
+     static let MARGIN_BOTTOM_TO_BUTTON = CGFloat(-90)
+     static let MENU_HEADER_TOP_SIZE = CGFloat(40)
+     static let MENU_HEADER_NORMAL_TOP_SIZE = CGFloat(20)
+     static let MENU_HEADER_BOTTOM_SIZE = CGFloat(-40)
+     static let MENU_HEADER_BOTTOM_NORMAL_SIZE = CGFloat(-20)
+     static let MENU_FOOTER_NORMAL_SIZE = CGFloat(85)
+     static let MENU_HEIGHT_CELL_SIZE = CGFloat(80)
+     static let MENU_HEIGHT_CELL_NORMAL_SIZE = CGFloat(60)
+     static let MENU_HEIGHT_CELL_PLUS_SIZE = CGFloat(60)
+     static let MENU_HEIGHT_CELL_MAX_SIZE = CGFloat(60)
+     static let MENU_HEIGHT_CELL_SMALL_SIZE = CGFloat(50)
+     static let MENU_ITEM_TITLE_NORMAL_TOP = CGFloat(9)
+     static let MENU_ITEM_TITLE_PLUS_TOP = CGFloat(12)
+     static let MENU_ITEM_TITLE_MAX_TOP = CGFloat(17)
+     static let MENU_ITEM_TITLE_SMALL_TOP = CGFloat(9)
+     static let MENU_ITEM_DESCRIPTION_NORMAL_BOTTOM = CGFloat(-6)
+     static let MENU_ITEM_DESCRIPTION_PLUS_BOTTOM = CGFloat(-8)
+     static let MENU_ITEM_DESCRIPTION_MAX_BOTTOM = CGFloat(-13)
+     static let MENU_ITEM_DESCRIPTION_SMALL_BOTTOM = CGFloat(-8)
+     static let MENU_ITEM_CONTAINER_NORMAL_BOTTOM = CGFloat(-10)
+     static let MENU_ITEM_IMAGE_DOUBLE_NORMAL_SIZE = CGFloat(40)
+     static let MENU_ITEM_IMAGE_DOUBLE_PLUS_SIZE = CGFloat(40)
+     static let MENU_ITEM_IMAGE_DOUBLE_MAX_SIZE = CGFloat(40)
+     static let MENU_ITEM_IMAGE_DOUBLE_SMALL_SIZE = CGFloat(30)
+     static let MENU_ITEM_IMAGE_NORMAL_SIZE = CGFloat(25)
+     static let MENU_FOOTER_PLUS_SIZE = CGFloat(90)
+     static let MENU_FOOTER_MAX_SIZE = CGFloat(130)
+     static let LOGO_NORMAL_WIDTH = CGFloat(100)
+     static let LOGO_NORMAL_HEIGHT = CGFloat(25)
 }
 
 struct AppFonts {
@@ -126,6 +174,7 @@ struct AppFonts {
         if Helper.isIpad() {
             font =  UIFont(name: fontName, size: (size * 1.2))!
         } else {
+          
             if screenWidth >= guidelineBaseWidth {
                 font =  UIFont(name: fontName, size: (size + (temp - size) * factor))!
             }else{
@@ -386,11 +435,10 @@ struct LanguageKey {
      static let TakeVideo = "TAKEVIDEO"
      //Tab bar
      static let Home = "HOME"
+     static let Generate = "GENERATE"
      static let Scanner = "SCANNER"
-     static let Transaction = "TRANSACTION"
-     static let MyWallet = "MYWALLET"
-     static let MyProfile = "MYPROFILE"
-     static let eCash = "ECASH"
+     static let Save = "SAVE"
+     static let Setting = "SETTING"
      //SignIn
      static let CouldNotSignIn = "COULD_NOT_SIGN_IN"
      static let DoNotHaveAnAccount = "DO_NOT_HAVE_AN_ACCOUNT"
@@ -793,7 +841,7 @@ enum EnumIdentifier : String {
     case PaymentServices = "PaymentServices"
     case TransfereCashToeCash = "transferecashtoecash"
     case WithdrawMultipleeCash = "WithdrawMultipleeCash"
-    case Contact = "contacts"
+    case History = "history"
     case Transactions = "transactions"
     case QRCodeHistory = "qrcodeHistory"
     case ScannerResult = "ScannerResult"

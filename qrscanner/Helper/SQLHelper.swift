@@ -6,7 +6,7 @@
 //  Copyright © 2020 thanhphong070. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import SQLite
 class SQLShareHelper {
     static let shared =  SQLShareHelper()
@@ -39,7 +39,8 @@ class SQLHelper {
     }
     
     class open func initCipher(isDelete : Bool? = nil){
-        guard let mData = DocumentHelper.loadBundle(fileName: "eWalletCipher", mExtension: FolderName.db) else {
+        guard let mData = DocumentHelper.loadBundle(fileName: "qrscanner", mExtension: FolderName.db)
+            else {
             debugPrint("Not found...")
             return
         }
@@ -47,20 +48,20 @@ class SQLHelper {
     }
     
     class open func writeFile(data : Data,isDelete : Bool? = nil){
-        let fileName = "eWalletCipher.db"
+        let fileName = "qrscanner.db"
         if let _ = isDelete {
             DocumentHelper.createdFile(data: data, folderName: FolderName.db,fileName: fileName)
             return
         }
         guard let _ = DocumentHelper.getFilePath(fileName: fileName,folderName: FolderName.db) else {
             DocumentHelper.createdFile(data: data, folderName: FolderName.db,fileName: fileName)
-            debugPrint("eWalletCipher.db was created")
+            debugPrint("qrscanner.db was created")
             return
         }
     }
     
     class open func getPathFile() -> Bool{
-        let fileName = "eWalletCipher.db"
+        let fileName = "qrscanner"
         guard let _ = DocumentHelper.getFilePath(fileName: fileName,folderName: FolderName.db) else {
             return false
         }
@@ -68,7 +69,7 @@ class SQLHelper {
     }
     
     class open func connection() -> Connection?{
-        let fileName = "eWalletCipher.db"
+        let fileName = "qrscanner.db"
         guard let mUrl = DocumentHelper.getFilePath(fileName: fileName,folderName: FolderName.db) else {
             return nil
         }
@@ -101,6 +102,48 @@ class SQLHelper {
         }
         TranslationEntity.instance.insert(db: db, data: data)
      }
+    
+    
+    /*Create contacts*/
+       class open func createScanner(){
+           guard let db = connection() else {
+               return
+           }
+           ScannerEntity.instance.createTable(db: db)
+       }
+       
+       /*Insert contacts*/
+       class open func insertedScanner(data : ScannerEntityModel) -> Bool{
+           guard let db = connection() else {
+               return false
+           }
+           return ScannerEntity.instance.insert(db: db, data: data)
+       }
+       
+       /*Update contacts*/
+       class open func updatedScanner(createDatetime : String, value : String){
+           guard let db = connection() else {
+               return
+           }
+           return ScannerEntity.instance.update(db: db, mcreateDatetime:createDatetime , value: value)
+       }
+       
+       /*Get object contacts*/
+       class open func getHistories(createDatetime : String) -> ScannerEntityModel?{
+           guard let db = connection() else {
+               return nil
+           }
+           return ScannerEntity.instance.getObject(db: db, key: createDatetime)
+       }
+       
+      
+    /*Get list histories*/
+    class open func getListHistories() -> [ScannerEntityModel]?{
+        guard let db = connection() else {
+            return nil
+        }
+        return ScannerEntity.instance.getList(db: db)
+    }
 }
 
 
