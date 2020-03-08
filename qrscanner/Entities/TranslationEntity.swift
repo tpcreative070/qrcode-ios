@@ -26,6 +26,7 @@ class TranslationEntity {
                 t.column(identify)
                 t.column(translations)
             })
+            print("create tranlation success")
         }catch {
             debugPrint(error)
         }

@@ -33,8 +33,9 @@ class ScannerEntity{
                     t.column(updatedDateTime)
                 print("create table")
                     
-                    insert(db: db, data: ScannerEntityModel(createdDateTime: "1224", typeCode: "text", content: "{text:hello}", isHistory: 1, isSave: 0, updateDateTime: "234353"))
-                      insert(db: db, data: ScannerEntityModel(createdDateTime: "346", typeCode: "url", content: "{url:gg.com}", isHistory: 1, isSave: 0, updateDateTime: "1234324"))
+                    insert(db: db, data: ScannerEntityModel(createdDateTime: "111", typeCode: "text", content: "{\"text\":\"hello\"}", isHistory: 1, isSave: 0, updateDateTime: "111"))
+                    insert(db: db, data: ScannerEntityModel(createdDateTime: "222", typeCode: "url", content: "{\"url\":\"gg.com\"}", isHistory: 1, isSave: 0, updateDateTime: "222"))
+                    insert(db: db, data: ScannerEntityModel(createdDateTime: "333", typeCode: "Event", content: "{\"title\":\"event to night\",\"loaction\":\"new york\",\"description\":\"\",\"begin\":\"25 thg 3 2020 15:19\",\"end\":\"25 thg 2 2020 22:00\"}", isHistory: 1, isSave: 0, updateDateTime: "333"))
                 })
             }catch {
                 debugPrint(error)

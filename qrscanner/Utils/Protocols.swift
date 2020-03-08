@@ -33,18 +33,52 @@ protocol TbViewCellViewModelDelegate  {
 }
 protocol ScannersViewModelListDeletegate  : BaseViewModel{
     var navigate: (() -> ())?  { get }
-    var listHistories : [ScannerViewModel] {get}
+    var listHistories : [QRCodeViewModel] {get}
     var responseToView : ((String) ->())? {get set}
     var isSelected : Bindable<Bool> {get}
 }
 
-protocol ScannerViewModelDeletegate {
-    var typeCode : String {get}
-    var createdDateTime : String {get}
-    var updatedDateTime : String{get}
-    var isHistory : Int{get}
-    var isSave : Int {get}
-    var content : String {get}
+protocol QRCodeViewModelDeletegate {
+    var typeCodeView : String {get}
+    var createdDateTimeView : String {get}
+    var updatedDateTimeView : String{get}
+    var isHistoryView : Int{get}
+    var isSaveView : Int {get}
+    var contentView : String {get}
+    
+}
+protocol TypeCodeViewModelDelegate {
+    var nameView : String {get}
+    var imgIconView : String{get}
+}
+protocol ScannerViewModelDelegate : BaseViewModel {
+    var responseToView : ((String) ->())? {get set}
+    var dictionaryList : [Int: ScannerEntityModel] {get}
+    var resultScan : Bindable<String> {get}
+    var transactionIdBinding : Bindable<String> {get}
+    var cameraBinding : Bindable<Bool>{get set}
+}
+protocol GenerateViewModelDelegate  {
+    var navigate: (() -> ())?  { get set }
+    var responseToView : ((String) ->())? {get set}
+    var to: String? { get }
+    var message: String? { get }
+    var url: String? {get}
+    var text: String? {get}
+    var email: String? {get}
+    var objectEmail: String? {get}
+    var messageEmail: String? {get}
+    var phoneTelephone: String? {get}
+      var fullNameContact: String? {get}
+      var addressContact: String? {get}
+      var phoneContact: String? {get}
+    var emailContact: String? {get}
+   
+   
+}
+protocol TypeCodeViewModelListDelegate {
+       var list : [TypeCodeViewModel] {get}
+       var responseToView : ((String) ->())? {get set}   
     
 }
 protocol TableViewCellDelegate {

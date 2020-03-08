@@ -102,9 +102,14 @@ class SQLHelper {
         }
         TranslationEntity.instance.insert(db: db, data: data)
      }
-    
-    
-    /*Create contacts*/
+    /*CreateTranlation*/
+    class open func createTranlation(){
+        guard let db = connection() else {
+            return
+        }
+        TranslationEntity.instance.createTable(db: db)
+    }
+    /*Create Scanner*/
        class open func createScanner(){
            guard let db = connection() else {
                return
@@ -112,7 +117,7 @@ class SQLHelper {
            ScannerEntity.instance.createTable(db: db)
        }
        
-       /*Insert contacts*/
+       /*Insert Scanner*/
        class open func insertedScanner(data : ScannerEntityModel) -> Bool{
            guard let db = connection() else {
                return false
@@ -120,7 +125,7 @@ class SQLHelper {
            return ScannerEntity.instance.insert(db: db, data: data)
        }
        
-       /*Update contacts*/
+       /*Update Scanner*/
        class open func updatedScanner(createDatetime : String, value : String){
            guard let db = connection() else {
                return
@@ -128,7 +133,7 @@ class SQLHelper {
            return ScannerEntity.instance.update(db: db, mcreateDatetime:createDatetime , value: value)
        }
        
-       /*Get object contacts*/
+       /*Get object Scanner*/
        class open func getHistories(createDatetime : String) -> ScannerEntityModel?{
            guard let db = connection() else {
                return nil

@@ -34,14 +34,15 @@ struct ScannerEntityModel : Codable{
     var SSID : String?
     var password : String?
     var networkEncryption : String?
+    var phoneNumber : String?
     var updatedDateTime : String?
     /*Type URL*/
-       init(data : ScannerViewModel) {
+       init(data : QRCodeViewModel) {
          let time = TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSaveContact)
         self.createdDateTime = data.createdDateTime
          self.typeCode = data.typeCode 
          self.url = data.content
-        self.updatedDateTime = data.updateDateView
+        self.updatedDateTime = data.updatedDateTime
      }
     init(createdDateTime : String, typeCode : String, content : String, isHistory : Int, isSave : Int, updateDateTime: String) {
         self.createdDateTime = createdDateTime

@@ -23,7 +23,7 @@ class BaseViewController: UIViewController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         self.view.addGestureRecognizer(tap)
     }
-
+ 
     func registerEventBus(){
         SwiftEventBusHelper.onMainThread(self, name:ConfigKey.DismissView) { result in
             self.closeTransaction()
@@ -283,4 +283,5 @@ class BaseViewController: UIViewController {
     @objc func actionAlertNo(){
 
     }
+  
 }

@@ -92,7 +92,7 @@ class JSONHelper {
     }
     return nil
   }
-    
+   
     /**
      parse data from JSON file
      - Parameter fileName: String

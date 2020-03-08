@@ -49,7 +49,6 @@ extension AppDelegate{
             // Store language to db
             LanguageHelper.storeLanguageByKey(LanguageCode.English, data: JSONHelper.convertDictionaryToJson(enLang) ?? "")
             LanguageHelper.storeLanguageByKey(LanguageCode.Vietnamese, data: JSONHelper.convertDictionaryToJson(viLang) ?? "")
-            print("adasd")
             // store language to global data
             GlobalVariableHelper.languages[LanguageCode.English] = enLang
             GlobalVariableHelper.languages[LanguageCode.Vietnamese] = viLang

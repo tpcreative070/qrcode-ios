@@ -20,7 +20,7 @@ class ICLabel : UILabel {
     }
     func setupView() {
         self.textAlignment = .left
-        self.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.TEXTFIELD_TITLE_FONT_SIZE)
+        self.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
         self.textColor = AppColors.BLACK_COLOR
     }
     

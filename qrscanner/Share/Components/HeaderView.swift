@@ -39,8 +39,8 @@ class HeaderView : UITableViewHeaderFooterView{
     }
     
     // config view with Confirm
-   func configView(view : ScannerViewModelDeletegate){
-        self.lbGroupName.text = view.typeCode
+   func configView(view : QRCodeViewModelDeletegate){
+        self.lbGroupName.text = view.typeCodeView
         self.lbGroupName.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoBold, size: AppFonts.TEXTFIELD_TITLE_FONT_SIZE)
     }
     /*

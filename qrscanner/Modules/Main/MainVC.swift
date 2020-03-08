@@ -11,7 +11,7 @@ class MainVC : SwipeMenuViewController {
     var options = SwipeMenuViewOptions()
     var mSave : SaveVC?
     var mHistory : HistoryVC?
-    var mGenerate : GenerateVC?
+    var mGenerate : TypeCodeVC?
     var mScanner : ScannerVC?
     var mSettings : SettingsVC?
     var dataCount: Int = 5

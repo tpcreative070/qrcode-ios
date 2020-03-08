@@ -17,21 +17,23 @@ extension MainVC  {
         mSettings = SettingsVC()
         let history = UINavigationController(rootViewController: HistoryVC())
         history.tabBarItem.image = UIImage(named: "ic_scan")
-        let genegrate = UINavigationController(rootViewController: GenerateVC())
+        let genegrate = UINavigationController(rootViewController: TypeCodeVC())
         genegrate.tabBarItem.image = UIImage(named: "ic_scan")
         viewController.viewControllers = [history,genegrate]
     }
     
     func addedView(){
+        mScanner = ScannerVC()
+               mScanner?.title = LanguageHelper.getTranslationByKey(LanguageKey.Scanner) ?? "Scanner"
+               addChild(mScanner ?? SettingsVC())
+        
         mHistory = HistoryVC()
         mHistory?.title = LanguageHelper.getTranslationByKey(LanguageKey.History) ?? "History"
         addChild(mHistory ?? HistoryVC())
-        mGenerate = GenerateVC()
+        mGenerate = TypeCodeVC()
         mGenerate?.title = LanguageHelper.getTranslationByKey(LanguageKey.Generate) ?? "Generate"
-        addChild(mGenerate ?? GenerateVC())
-        mScanner = ScannerVC()
-        mScanner?.title = LanguageHelper.getTranslationByKey(LanguageKey.Scanner) ?? "Scanner"
-        addChild(mScanner ?? SettingsVC())
+        addChild(mGenerate ?? TypeCodeVC())
+       
         mSave = SaveVC()
         mSave?.title = LanguageHelper.getTranslationByKey(LanguageKey.Save) ?? "Save"
         addChild(mSave ?? SaveVC())

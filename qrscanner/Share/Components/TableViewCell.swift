@@ -14,7 +14,7 @@ class TableViewCell : UITableViewCell{
     var codable : Codable?
     let backGroundView : UIView = {
         let view = UIView()
-        view.backgroundColor = .clear
+//        view.backgroundColor = .clear
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -25,30 +25,24 @@ class TableViewCell : UITableViewCell{
         return view
     }()
     
-    
-    
-    lazy var control : ICStepper = {
-        let view = ICStepper()
+    lazy var imgIcon : UIImageView = {
+             let view = UIImageView()
+             view.translatesAutoresizingMaskIntoConstraints = false
+             return view
+      }()
+  lazy var lbTitle : ICLabel = {
+           let view = ICLabel()
+           view.translatesAutoresizingMaskIntoConstraints = false
+            
+           return view
+     }()
+  /*history*/
+    lazy var viewRoot : UIView = {
+        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.buttonsBackgroundColor = AppColors.GRAY_LIGHT
-        view.labelBackgroundColor = AppColors.GRAY_LIGHT
-        view.labelTextColor = AppColors.BLACK_COLOR
-        view.rightButton.setTitleColor(AppColors.GRAY, for: .normal)
-        view.leftButton.setTitleColor(AppColors.GRAY, for: .normal)
-        view.minimumValue = 0
-        view.maximumValue = 10
-        view.addTarget(self, action: #selector(controlValueChanged), for: .valueChanged)
         return view
     }()
-  
-  /*history*/
-    lazy var imgIcon : UIImageView = {
-           let view = UIImageView()
-           view.translatesAutoresizingMaskIntoConstraints = false
-           return view
-    }()
-       
-    
+ 
     lazy var lbCreatedDate : ICLabel = {
           let view = ICLabel()
           view.translatesAutoresizingMaskIntoConstraints = false
@@ -78,14 +72,18 @@ class TableViewCell : UITableViewCell{
         return view
     }()
     //config with history
-    func configView(view : ScannerViewModelDeletegate){
-        self.lbTypeCode.text = "\(view.typeCode)"
-        self.lbCreatedDate.text = view.createdDateTime
-        self.lbContent.text = view.content
+    func configView(view : QRCodeViewModelDeletegate){
+        self.lbTypeCode.text = "\(view.typeCodeView)"
+        self.lbCreatedDate.text = view.createdDateTimeView
+        self.lbContent.text = view.contentView
         self.lbContent.textColor = AppColors.GRAY
         
     }
-    
+    //Config with generate
+    func configView(viewModel : TypeCodeViewModelDelegate){
+        self.lbTitle.text = "\(viewModel.nameView)"
+        self.imgIcon.image = UIImage(named: viewModel.imgIconView)
+    }
   func configData(viewModel : Codable){
       self.codable = viewModel
   }
@@ -99,6 +97,9 @@ class TableViewCell : UITableViewCell{
         if reuseIdentifier == EnumIdentifier.History.rawValue {
             identifier = EnumIdentifier.History
         }
+        else if reuseIdentifier == EnumIdentifier.Generate.rawValue {
+            identifier = EnumIdentifier.Generate
+        }
         
         setupView()
     }
@@ -106,6 +107,22 @@ class TableViewCell : UITableViewCell{
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
+    @objc func actionCellViewTap(sender : UITapGestureRecognizer){
+        self.delegate?.cellViewSelected(cell: self)
+        if let data = codable {
+            self.delegate?.cellViewSelected(cell: data)
+        }
+        
+    
+    }
+    
+    @objc func actionCellViewAction(sender : UITapGestureRecognizer){
+        if identifier == EnumIdentifier.Lixi {
+            self.delegate?.cellViewSelected(cell: self, action: EnumResponseToView.ACTION_GIFT)
+        }
+    }
+    
     @objc func controlValueChanged(sender : ICStepper){
               self.delegate?.cellViewSelected(cell: self, countSelected: Int(sender.value))
               self.viewModel.maxBinding.value = Int(sender.value)

@@ -12,14 +12,14 @@ class ScannersViewModelList : ScannersViewModelListDeletegate{
     var onShowError: ((SingleButtonAlert) -> Void)?
     var showLoading: Bindable<Bool> = Bindable(false)
     var responseToView: ((String) -> ())?
-    var listHistories: [ScannerViewModel] = [ScannerViewModel]()
+    var listHistories: [QRCodeViewModel] = [QRCodeViewModel]()
     var navigate: (() -> ())?
     func doGetListHistories(){
            if let mList = SQLHelper.getListHistories(){
                var index = 0
-               self.listHistories = mList.map({ (data) -> ScannerViewModel in
+               self.listHistories = mList.map({ (data) -> QRCodeViewModel in
                    index += 1
-                   return ScannerViewModel(data:  data)
+                   return QRCodeViewModel(data:  data)
                })
            }
         listHistories = listHistories.sorted {$0.updatedDateTime > $1.updatedDateTime}

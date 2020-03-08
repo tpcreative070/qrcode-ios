@@ -39,6 +39,7 @@ extension AppDelegate {
         
         SQLHelper.initCipher()
         SQLHelper.createScanner()
+        SQLHelper.createTranlation()
     
     }
     

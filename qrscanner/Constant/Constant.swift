@@ -133,6 +133,14 @@ struct AppConstants {
      static let MENU_FOOTER_MAX_SIZE = CGFloat(130)
      static let LOGO_NORMAL_WIDTH = CGFloat(100)
      static let LOGO_NORMAL_HEIGHT = CGFloat(25)
+    static let MARGIN_TOP_LOGIN_CENTER = CGFloat(20)
+    static let MARGIN_TOP_BETWEEN_TEXT_FIELD = CGFloat(15)
+    static let IG_INPUT_FIELD_WITH_ERROR_HEIGHT_DEFAULT = CGFloat(100)
+     static let DEFAULT_RIGHT_BUTTON_HEIGHT = CGFloat(32)
+     static let DEFAULT_RIGHT_BUTTON_WIDTH = CGFloat(32)
+     static let MARGIN_TOP_TRIGGER = CGFloat(-80)
+    static let TOOLBAR_HEIGHT = CGFloat(44.0)
+
 }
 
 struct AppFonts {
@@ -313,6 +321,11 @@ struct AppColors {
     static let ORANGE = UIColor.init(red: 241/255.0, green: 89/255.0, blue: 43/255.0, alpha: 1.0)
     static let GRAY_LIGHT_90 = UIColor.init(red: 242/255.0, green: 246/255.0, blue: 249/255.0, alpha: 1.0)
 }
+struct AppViewOptions {
+  static let SPLIT_VIEW = 0
+  static let NAV_VIEW = 1
+  static let NO_VIEW = 2
+}
 
 struct LanguageKey {
     static let RequestFailed = "REQUEST_FAILED"
@@ -333,6 +346,7 @@ struct LanguageKey {
     static let ErrorUserNameInvalid = "ERROR_USERNAME_INVALID"
     static let ErrorPhoneNumberRequired = "ERROR_PHONENUMBER_REQUIRED"
     static let ErrorPhoneNumberInvalid = "ERROR_PHONENUMBER_INVALID"
+    
     static let UsernamePlaceHolder = "USERNAME"
     static let EmailPlaceHolder = "EMAIL"
     static let PasswordPlaceHolder = "PASSWORD"
@@ -388,6 +402,16 @@ struct LanguageKey {
     static let PaySupermarket = "PAYSUPERMARKET"
     static let PayVTVCab = "PAYVTVCAB"
     static let ActiveAccountNow = "ACTIVE_ACCOUNT_NOW"
+    //typeCode
+    static let Email = "EMAIL"
+    static let Message = "MESSAGE"
+    static let Location = "LOCATION"
+    static let Event = "EVENT"
+    static let Contact = "CONTACT"
+    static let Telephone = "TELEPHONE"
+    static let Text = "TEXT"
+    static let Wifi = "WIFI"
+    static let Url = "URL"
 
     
     //Confirm
@@ -424,7 +448,6 @@ struct LanguageKey {
      static let Total = "TOTAL"
      static let Quantity = "QUANTITY"
      static let CreatedDate = "CREATEDDATE"
-     static let Contact = "CONTACT"
      static let Maximum7Passengers = "MAXIMUM7PASSENGERS"
      static let InfantCouldNotMoreThanAdult = "INFANTCOUNTNOTMORETHANADULT"
      //Gallery
@@ -467,7 +490,30 @@ struct LanguageKey {
      static let Active = "ACTIVE"
      static let OTPCode = "OTP_CODE"
      static let IdMustBeDigitNumber = "ID_MUST_BE_DIGIT_NUMBERS"
-    
+    //GenerateQR
+    static let ErrorToRequired = "ERROR_TO_REQUIRED"
+    static let ErrorUrlRequired = "ERROR_URL_REQUIRED"
+    static let ErrorUrlInvalid = "ERROR_URL_INVALID"
+    static let ErrorTextRequired = "ERROR_TEXT_REQUIRED"
+    static let ErrorObjectEmailRequired = "ERROR_OBJECT_EMAIL_REQUIRED"
+    static let ErrorMessageEmailRequired = "ERROR_MESSAGE_EMAIL_REQUIRED"
+    static let ErrorFullNameContactRequired = "ERROR_FULLNAME_CONTACT_REQUIRED"
+    static let ErrorAddressContactRequired = "ERROR_ADDRESS_CONTACT_REQUIRED"
+    static let ErrorPhoneContactRequired = "ERROR_PHONE_CONTACT_REQUIRED"
+    static let ErrorEmailContactRequired = "ERROR_EMAIL_CONTACT_REQUIRED"
+    static let ErrorLatRequired = "ERROR_LAT_REQUIRED"
+    static let ErrorLatInvalid = "ERROR_LAT_INVALID"
+    static let ErrorLonRequired = "ERROR_LON_REQUIRED"
+    static let ErrorLonInvalid = "ERROR_LON_INVALID"
+    static let ErrorQueryRequired = "ERROR_QUERY_REQUIRED"
+    static let ErrorBeginDateGreaterEndDate = "ERROR_BEGINDAY_GREATER_ENDDAY"
+    static let ErrorEndTimeRequired = "ERROR_ENDTIME_REQUIRED"
+    static let ErrorBeginTimeRequired = "ERROR_BEGINTIME_REQUIRED"
+    static let ErrorDescriptionEventRequired = "ERROR_DESCRIPTION_EVENT_REQUIRED"
+    static let ErrorLocationEventRequired = "ERROR_LOCATION_EVENT_REQUIRED"
+    static let ErrorTitleEventRequired = "ERROR_TITLE_EVENT_REQUIRED"
+    static let ErrorSSIDRequired = "ERROR_SSID_REQUIRED"
+       static let ErrorPassWordWifiRequired = "ERROR_PASS_WIFI_REQUIRED"
      //Add eCash
      static let Verify = "VERIFY"
      static let Money = "MONEY"
@@ -693,6 +739,8 @@ struct StorageKey {
   static let channelPublicKey = "channelPublicKey"
   static let isIntro = "isIntro"
   static let isSignOut = "isSignOut"
+    static let valueImageGenerate = "valueImageGenerate"
+
 }
 
 struct FolderName {
@@ -790,6 +838,7 @@ struct Storyboard {
 }
 
 struct Controller {
+    static let email = "Email"
     static let signin = "SignIn"
     static let signup = "SignUp"
     static let settings = "Settings"
@@ -810,7 +859,7 @@ struct Controller {
     static let scannerResult = "ScannerResult"
     static let qrCodeHistory = "QRCodeHistory"
     static let exchangeeCashOptions = "ExchangeeCashOptions"
-    static let addContact  = "AddContact"
+    static let addGenerate  = "AddGenerate"
     static let editContact = "EditContact"
     static let transactionFilter = "TransactionFilter"
     static let transactionLogsDetail = "TransactionLogsDetail"
@@ -842,6 +891,7 @@ enum EnumIdentifier : String {
     case TransfereCashToeCash = "transferecashtoecash"
     case WithdrawMultipleeCash = "WithdrawMultipleeCash"
     case History = "history"
+     case Generate = "generate"
     case Transactions = "transactions"
     case QRCodeHistory = "qrcodeHistory"
     case ScannerResult = "ScannerResult"
@@ -928,6 +978,7 @@ enum EnumChannelName : String {
 
 enum EnumResponseToView : String {
     case ACTIVE_SUCCESS  = "ACTIVE_SUCCESS"
+    case CREATE_SUCCESS  = "CREATE_SUCCESS"
     case SIGN_IN_SUCCESS = "SIGN_IN_SUCCESS"
     case SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS"
     case SIGN_OUT_SUCCESS = "SIGN_OUT_SUCCESS"

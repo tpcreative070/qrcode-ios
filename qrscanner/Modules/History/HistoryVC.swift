@@ -14,8 +14,8 @@ class HistoryVC : BaseViewController {
           lbTittle.translatesAutoresizingMaskIntoConstraints = false
           return lbTittle
         }()
-        var dataSource :TableViewDataSource<TableViewCell,ScannerViewModel,HeaderView>!
-        var sections = [TableSection<String, ScannerViewModel>]()
+        var dataSource :TableViewDataSource<TableViewCell,QRCodeViewModel,HeaderView>!
+        var sections = [TableSection<String, QRCodeViewModel>]()
         let viewModel = ScannersViewModelList()
         override func viewDidLoad() {
             super.viewDidLoad()

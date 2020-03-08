@@ -239,6 +239,27 @@ class CommonService {
     static func setMultipleLanguages(value: String) {
         StorageHelper.setObject(key: StorageKey.multipleLanguages, value: value)
     }
-    
+  
+//    /**
+//     Push data to CreateGenerate
+//     */
+//    static func sendDataToGenerateEntities(data : TypeCodeModel, isResponse : Bool){
+//        ShareSingleton.shared.set(value: PassDataViewModel(identifier: EnumPassdata.CONTACT_ENTITIES,contact: data))
+//        if isResponse {
+//            ShareSingleton.shared.bindData()
+//        }
+//    }
+//    
+//    static func getShareContactEntities() -> ContactsEntityModel?{
+//        if let mData = ShareSingleton.shared.get(value: PassDataViewModel.self){
+//            if mData.identifier == EnumPassdata.CONTACT_ENTITIES.rawValue {
+//                let mContact = mData.contact
+//                if let _ = mContact.walletId {
+//                    return mContact
+//                }
+//            }
+//        }
+//        return nil
+//    }
 }
 

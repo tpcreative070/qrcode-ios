@@ -10,22 +10,14 @@ import UIKit
 extension HistoryVC {
     func initUI(){
         self.navigationController?.isNavigationBarHidden = true
-        setupTableView()
-        setupLabel()
-        bindTableView()
-    }
-    func setupLabel(){
+        /*Lable*/
         view.addSubview(lbTittle)
         NSLayoutConstraint.activate([
             lbTittle.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
             lbTittle.leftAnchor.constraint(equalTo: view.leftAnchor),
             lbTittle.heightAnchor.constraint(equalToConstant: 20),
         ])
-        
-    }
-    
-    //Mark: - setUpTableView()
-    func setupTableView(){
+        /*TableView*/
         tableView = UITableView()
         tableView.allowsSelection = true
         if(DeviceHelper.isSmallScreen()){
@@ -33,8 +25,6 @@ extension HistoryVC {
         }else{
             tableView.isScrollEnabled = false
         }
-        tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.History.rawValue)
-        tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: EnumIdentifier.History.rawValue)
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
         var mHeightCell = AppConstants.MENU_FOOTER_SIZE
@@ -60,6 +50,16 @@ extension HistoryVC {
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.topAnchor.constraint(equalTo: view.topAnchor)
         ])
+        setupTableView()
+        bindTableView()
+    }
+
+    //Mark: - setUpTableView()
+    func setupTableView(){
+        
+        tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.History.rawValue)
+        tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: EnumIdentifier.History.rawValue)
+        
     }
     func bindViewModel() {
         self.viewModel.showLoading.bind { visible in
@@ -88,12 +88,12 @@ extension HistoryVC {
         self.dataSource.sections = self.sections
         self.dataSource.items = self.viewModel.listHistories
         self.tableView.reloadData()
-        log(message: "List available...")
-        log(object: self.viewModel.listHistories)
+//        log(message: "List available...")
+//        log(object: self.viewModel.listHistories)
     }
     
     func bindTableView(){
-        self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.History.rawValue, items: self.viewModel.listHistories,sections: self.sections, height: 30,isSelectionStype: false){ cell, vm in
+        self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.History.rawValue, items: self.viewModel.listHistories,sections: self.sections, height: 40,isSelectionStype: false){ cell, vm in
             cell.configView(view: vm)
             cell.configData(viewModel: vm)
             cell.delegate = self
