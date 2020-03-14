@@ -37,13 +37,13 @@ class ScannerVC: BaseViewController {
     var isFirstApplyOrientation: Bool?
     var captureSizeTransform: CGAffineTransform?
     let viewModel =  ScannerViewModel()
-
+    var flagDirectionCamera = false
     override func viewDidLoad() {
         super.viewDidLoad()
         print("view did load")
         iniUI()
         setup()
-        
+        setupNavItems()
         // view.backgroundColor = .red
     }
     
@@ -69,7 +69,9 @@ class ScannerVC: BaseViewController {
         registerEventBus()
          self.viewModel.askCameraPermission()
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        GalleryHelper.flashlight(isOff: true)
+    }
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.bgView.layer.borderColor = AppColors.BLUE.cgColor
@@ -78,7 +80,8 @@ class ScannerVC: BaseViewController {
         viewModel.openAppSetting()
     }
     
-    func setup() {
+    func setup()
+    {
         isScanning = false
         isFirstApplyOrientation = false
         capture = ZXCapture()

@@ -200,7 +200,7 @@ class BaseViewController: UIViewController {
 
     func addBackgroundStatusBar(){
         let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
-        let statusBarColor = AppColors.BLUE
+        let statusBarColor = AppColors.PRIMARY_COLOR_DARK
         statusBarView.backgroundColor = statusBarColor
         view.addSubview(statusBarView)
     }
@@ -283,5 +283,29 @@ class BaseViewController: UIViewController {
     @objc func actionAlertNo(){
 
     }
-  
+    func setupStatusBar(){
+        if #available(iOS 13.0, *) {
+                  let app = UIApplication.shared
+                  let statusBarHeight: CGFloat = app.statusBarFrame.size.height
+                  
+                  let statusbarView = UIView()
+                  statusbarView.backgroundColor = AppColors.PRIMARY_COLOR_DARK
+                  view.addSubview(statusbarView)
+                
+                  statusbarView.translatesAutoresizingMaskIntoConstraints = false
+                  statusbarView.heightAnchor
+                      .constraint(equalToConstant: statusBarHeight).isActive = true
+                  statusbarView.widthAnchor
+                      .constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
+                  statusbarView.topAnchor
+                      .constraint(equalTo: view.topAnchor).isActive = true
+                  statusbarView.centerXAnchor
+                      .constraint(equalTo: view.centerXAnchor).isActive = true
+                
+              } else {
+                  let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
+                  statusBar?.backgroundColor = AppColors.PRIMARY_COLOR_DARK
+              }
+
+    }
 }

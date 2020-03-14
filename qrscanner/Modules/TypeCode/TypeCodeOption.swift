@@ -51,15 +51,15 @@ enum TypeCodeOption: Int, CustomStringConvertible {
   
   var iconName: String {
     switch self {
-      case .Email: return "ic_read"
-      case .Message: return "ic_scan"
-      case .Location: return "icon_create"
-      case .Event: return "ic_read"
-      case .Contact: return "ic_read"
-      case .Telephone: return "ic_read"
-      case .Text: return "ic_read"
-      case .Wifi: return "ic_read"
-        case .Url: return "ic_read"
+      case .Email: return "ic_email"
+      case .Message: return "ic_textsms"
+      case .Location: return "ic_location"
+      case .Event: return "ic_event"
+      case .Contact: return "ic_contact_calendar"
+      case .Telephone: return "ic_phone"
+      case .Text: return "ic_text"
+      case .Wifi: return "ic_wifi"
+        case .Url: return "ic_language"
     }
   }
   var viewType: Int {

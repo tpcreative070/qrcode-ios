@@ -154,8 +154,8 @@ class GenerateViewModel : GenerateViewModelDelegate {
     var titleEventBinding : Bindable<String> = Bindable("")
     var locationEventBinding : Bindable<String> = Bindable("")
     var descriptionEventBinding : Bindable<String> = Bindable("")
-    var beginTimeEventBinding : Bindable<String> = Bindable("")
-    var endTimeEventBinding : Bindable<String> = Bindable("")
+    var beginTimeEventBinding : Bindable<Date> = Bindable(Date())
+    var endTimeEventBinding : Bindable<Date> = Bindable(Date())
 
     var titleEvent: String?{
         didSet {
@@ -235,7 +235,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
      */
     func validateMessage(){
         if message == nil || !ValidatorHelper.minLength(message,minLength: 1) {
-            errorMessages.value[GenerateViewModelKey.MESSAGE] =  LanguageHelper.getTranslationByKey(LanguageKey.InvalidData) ?? ""
+            errorMessages.value[GenerateViewModelKey.MESSAGE] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorMessageEmailRequired) ?? ""
         }
             
         else {
@@ -251,9 +251,10 @@ class GenerateViewModel : GenerateViewModelDelegate {
         if url == nil || !ValidatorHelper.minLength(url,minLength: 1) {
             errorMessages.value[GenerateViewModelKey.URL] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorUrlRequired) ?? ""
         }
-        else if !(url!.contains("http://")) || !(url!.contains("https://")){
-            errorMessages.value[GenerateViewModelKey.URL] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorUrlInvalid) ?? ""
-        }
+//        else if ((url!.range(of: "http://", options: .caseInsensitive) == nil)) || (((url!.range(of: "https://", options: .caseInsensitive) == nil)))
+//            {
+//            errorMessages.value[GenerateViewModelKey.URL] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorUrlInvalid) ?? ""
+//        }
         else {
             errorMessages.value.removeValue(forKey: GenerateViewModelKey.URL)
         }
@@ -262,7 +263,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
      ValidateText
      */
     func validateText(){
-        if text == nil || !ValidatorHelper.minLength(text,minLength: 3) {
+        if text == nil || !ValidatorHelper.minLength(text,minLength: 1) {
             errorMessages.value[GenerateViewModelKey.TEXT] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorTextRequired ) ?? ""
         }
         else {
@@ -374,7 +375,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
         if  !ValidatorHelper.minLength(String(lat!),minLength: 1) || lon == 0.0{
             errorMessages.value[GenerateViewModelKey.LON] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorLonRequired ) ?? ""
         }
-        else if !ValidatorHelper.isValidLat(lon!){
+        else if !ValidatorHelper.isValidLon(lon!){
             errorMessages.value[GenerateViewModelKey.LON] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorLonInvalid ) ?? ""
         }
         else {
@@ -500,8 +501,8 @@ class GenerateViewModel : GenerateViewModelDelegate {
         self.titleEventBinding = Bindable("")
         self.locationEventBinding = Bindable("")
         self.descriptionEventBinding = Bindable("")
-        self.beginTimeEventBinding = Bindable("")
-        self.endTimeEventBinding = Bindable("")
+        self.beginTimeEventBinding = Bindable(Date())
+        self.endTimeEventBinding = Bindable(Date())
         self.ssidBinding = Bindable("")
         self.passwordBinding = Bindable("")
         self.protectBinding = Bindable("")
@@ -510,6 +511,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
     func doGenerateValue(){
         var value = ""
         print(typeCode)
+        //typeCode = typeCode.uppercased()
         if typeCode == LanguageKey.Url{
             validateUrl()
             if ( errorMessages.value.count > 0 ) {
@@ -577,6 +579,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
         else if typeCode == LanguageKey.Message{
             validateTo()
             validateMessage()
+            print(errorMessages.value)
             if ( errorMessages.value.count > 0 ) {
                 return
             }
@@ -613,7 +616,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
                 return
             }
             else{
-                value = "MECARD:\(fullNameContact!);ADR:\(addressContact!);TEL:\(phoneContact!);EMAIL:\(emailContact!);;"
+                value = "MECARD:N:\(fullNameContact!);ADR:\(addressContact!);TEL:\(phoneContact!);EMAIL:\(emailContact!);;"
             }
         }
         

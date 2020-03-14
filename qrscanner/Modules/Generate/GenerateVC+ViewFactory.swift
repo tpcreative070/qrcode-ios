@@ -32,45 +32,13 @@ extension GenerateVC {
         else if typeCode == LanguageKey.Location{
         }
         else if typeCode == LanguageKey.Email{
-            view.addSubview(emailTxt)
-            NSLayoutConstraint.activate([
-                emailTxt.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
-                emailTxt.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-                emailTxt.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
-            ])
-            view.addSubview(objectEmailTxt)
-            NSLayoutConstraint.activate([
-                objectEmailTxt.topAnchor.constraint(equalTo: emailTxt.bottomAnchor, constant: 50),
-                objectEmailTxt.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-                objectEmailTxt.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
-            ])
-            view.addSubview(messageEmailTxt)
-            NSLayoutConstraint.activate([
-                messageEmailTxt.topAnchor.constraint(equalTo: objectEmailTxt.bottomAnchor, constant: 50),
-                messageEmailTxt.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-                messageEmailTxt.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
-            ])
-            addTarget(emailTxt)
-            addTarget(objectEmailTxt)
-            addTarget(messageEmailTxt)
+          
+       
         }
         else if typeCode == LanguageKey.Event{
         }
         else if typeCode == LanguageKey.Message{
-            view.addSubview(toTxt)
-            NSLayoutConstraint.activate([
-                toTxt.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
-                toTxt.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-                toTxt.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
-            ])
-            view.addSubview(messageTxt)
-            NSLayoutConstraint.activate([
-                messageTxt.topAnchor.constraint(equalTo: toTxt.bottomAnchor, constant: 30),
-                messageTxt.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-                messageTxt.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
-            ])
-            addTarget(toTxt)
-            addTarget(messageTxt)
+        
         }
         else if typeCode == LanguageKey.Wifi{
             view.addSubview(SSIDTxt)
@@ -240,36 +208,12 @@ extension GenerateVC {
                 
             }
             else if self?.typeCode == LanguageKey.Email{
-                if errors.count > 0 {
-                    self?.emailTxt.errorMessage = errors[GenerateViewModelKey.EMAIL] ?? ""
-                    self?.objectEmailTxt.errorMessage = errors[GenerateViewModelKey.OBJECT_EMAIL] ?? ""
-                    self?.messageEmailTxt.errorMessage = errors[GenerateViewModelKey.MESSAGE_EMAIL] ?? ""
-                }
-                    
-                else {
-                    if errors.count == 0{
-                        self?.emailTxt.errorMessage = ""
-                        self?.objectEmailTxt.errorMessage = ""
-                        self?.messageEmailTxt.errorMessage = ""
-                    }
-                }
-                
+             
             }
             else if self?.typeCode == LanguageKey.Event{
             }
             else if self?.typeCode == LanguageKey.Message{
-                if errors.count > 0 {
-                    self?.toTxt.errorMessage = errors[GenerateViewModelKey.TO] ?? ""
-                    self?.messageTxt.errorMessage = errors[GenerateViewModelKey.MESSAGE] ?? ""
-                    
-                }
-                    
-                else {
-                    if errors.count == 0{
-                        self?.toTxt.errorMessage = ""
-                        self?.messageTxt.errorMessage = ""
-                    }
-                }
+                
                 
             }
             else if self?.typeCode == LanguageKey.Wifi{
@@ -345,35 +289,12 @@ extension GenerateVC {
         else if self.typeCode == LanguageKey.Location{
         }
         else if self.typeCode == LanguageKey.Email{
-            viewModel?.emailBinding.bind({ (value) in
-                self.emailTxt.text = value
-            })
-            
-            viewModel?.objectEmailBinding.bind({ (value) in
-                self.objectEmailTxt.text = value
-            })
-            
-            viewModel?.messageEmailBinding.bind({ (value) in
-                self.messageEmailTxt.text = value
-            })
-            self.viewModel?.errorMessages.value[GenerateViewModelKey.EMAIL] = ""
-            self.viewModel?.errorMessages.value[GenerateViewModelKey.OBJECT_EMAIL] = ""
-            self.viewModel?.errorMessages.value[GenerateViewModelKey.MESSAGE_EMAIL] = ""
+           
         }
         else if self.typeCode == LanguageKey.Event{
         }
         else if self.typeCode == LanguageKey.Message{
-            viewModel?.toBinding.bind({ (value) in
-                self.toTxt.text = value
-            })
-            
-            viewModel?.messageBinding.bind({ (value) in
-                self.messageTxt.text = value
-            })
-            
-            self.viewModel?.errorMessages.value[GenerateViewModelKey.MESSAGE] = ""
-            self.viewModel?.errorMessages.value[GenerateViewModelKey.TO] = ""
-            
+           
             
         }
         else if self.typeCode == LanguageKey.Wifi{
@@ -412,12 +333,7 @@ extension GenerateVC {
     
     private func clearDataTextfield() {
         
-        self.toTxt.resignFirstResponder()
-        self.messageTxt.resignFirstResponder()
-        self.toTxt.text = ""
-        self.messageTxt.text = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.TO] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.MESSAGE] = ""
+       
     }
     
 }

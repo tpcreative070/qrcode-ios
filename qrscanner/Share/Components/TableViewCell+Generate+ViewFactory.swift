@@ -13,11 +13,11 @@ extension TableViewCell {
                NSLayoutConstraint.activate([
                    self.viewRoot.leadingAnchor.constraint(equalTo: self.backGroundView.leadingAnchor,constant: 0),
                    self.viewRoot.trailingAnchor.constraint(equalTo: self.backGroundView.trailingAnchor,constant: -0),
-                   self.viewRoot.topAnchor.constraint(equalTo: self.backGroundView.topAnchor,constant: 0),
+                   self.viewRoot.topAnchor.constraint(equalTo: self.backGroundView.safeAreaLayoutGuide.topAnchor,constant: 0),
                    self.viewRoot.bottomAnchor.constraint(equalTo: self.backGroundView.bottomAnchor,constant: -0)
                    ])
                
-               self.viewRoot.backgroundColor = AppColors.GRAY_LIGHT
+//               self.viewRoot.backgroundColor = AppColors.GRAY_LIGHT
            
                self.viewRoot.addSubview(imgIcon)
                NSLayoutConstraint.activate([
@@ -29,14 +29,7 @@ extension TableViewCell {
                    self.imgIcon.centerYAnchor.constraint(equalTo: self.viewRoot.centerYAnchor)
                    ])
                
-               self.viewRoot.addSubview(self.viewSub)
-                          NSLayoutConstraint.activate([
-                       self.viewSub.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor, constant: -30),
-                       self.viewSub.widthAnchor.constraint(equalToConstant: 30),
-                       self.viewSub.topAnchor.constraint(equalTo: self.viewRoot.topAnchor),
-                       self.viewSub.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor)
-               ])
-               
+              
               
                self.viewRoot.addSubview(self.lbTitle)
                NSLayoutConstraint.activate([
@@ -45,7 +38,22 @@ extension TableViewCell {
                    self.lbTitle.topAnchor.constraint(equalTo: self.viewRoot.topAnchor,constant: 15),
                    self.lbTitle.centerYAnchor.constraint(equalTo: self.viewRoot.centerYAnchor)
                ])
-               
+        self.viewRoot.addSubview(self.viewSub)
+                                 NSLayoutConstraint.activate([
+                                    self.viewSub.leadingAnchor.constraint(equalTo: self.lbTitle.trailingAnchor,constant: 20),
+
+                              self.viewSub.trailingAnchor.constraint(equalTo: self.backGroundView.trailingAnchor, constant: 0),
+                              self.viewSub.topAnchor.constraint(equalTo: self.viewRoot.topAnchor),
+                              self.viewSub.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor)
+                      ])
+                      
+               self.viewSub.addSubview(self.imgPlusIcon)
+                            NSLayoutConstraint.activate([
+                                self.imgPlusIcon.leftAnchor.constraint(equalTo: self.viewSub.leftAnchor,constant: 0),
+                                self.imgPlusIcon.rightAnchor.constraint(equalTo: self.viewSub.rightAnchor),
+                                self.imgPlusIcon.topAnchor.constraint(equalTo: self.viewSub.topAnchor,constant: 20),
+                                self.imgPlusIcon.centerYAnchor.constraint(equalTo: self.viewSub.centerYAnchor)
+                            ])
                self.viewRoot.addSubview(self.stackView)
                NSLayoutConstraint.activate([
                    self.stackView.leadingAnchor.constraint(equalTo: self.imgIcon.trailingAnchor,constant: 20),
@@ -65,7 +73,7 @@ extension TableViewCell {
                    self.viewUnderLine.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor),
                    self.viewUnderLine.heightAnchor.constraint(equalToConstant: 1)
                    ])
-               self.viewUnderLine.backgroundColor = .white
+               self.viewUnderLine.backgroundColor = AppColors.GRAY_LIGHT
               
            }
 }

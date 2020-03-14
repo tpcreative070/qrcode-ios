@@ -13,14 +13,14 @@ extension TypeCodeVC {
         /*SetupScrollView*/
         self.view.addSubview(scrollView)
            NSLayoutConstraint.activate([
-             scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
+             scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
              scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
              scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
              scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
              ])
            self.scrollView.addSubview(wrapperView)
            NSLayoutConstraint.activate([
-             wrapperView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+             wrapperView.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor),
              wrapperView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
              wrapperView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
              wrapperView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
@@ -59,7 +59,7 @@ extension TypeCodeVC {
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor)
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
         wrapperView.addSubview(ended)
         NSLayoutConstraint.activate([
@@ -68,7 +68,7 @@ extension TypeCodeVC {
             ended.rightAnchor.constraint(equalTo: wrapperView.rightAnchor),
             ended.topAnchor.constraint(equalTo: tableView.bottomAnchor)
         ])
-        self.view.layoutIfNeeded()
+//        self.view.layoutIfNeeded()
         setupEndedUpScrollView()
         setupTableView()
         bindTableView()
@@ -158,10 +158,42 @@ extension TypeCodeVC : TableViewCellDelegate {
 
     }
     func navigationToAddGenerateVC(typeCode: String){
-        
-      let vc = GenerateVC()
-        vc.typeCode = typeCode
-      self.navigationController?.pushViewController(vc, animated: true)
+        var vc : UIViewController? = UIViewController()
+       let typeCode = typeCode.uppercased()
+        if typeCode == LanguageKey.Url{
+                vc = UrlGenerateVC()
+              }
+              else if typeCode == LanguageKey.Text{
+                  vc = TextGenerateVC()
+
+              }
+              else if typeCode == LanguageKey.Location{
+                  vc = LocationGenerateVC()
+
+              }
+              else if typeCode == LanguageKey.Email{
+                 vc = EmailGenerateVC()
+            print("Email")
+              }
+              else if typeCode == LanguageKey.Event{
+                 vc = EventGenerateVC()
+              }
+              else if typeCode == LanguageKey.Message{
+                vc = MessageGenerateVC()
+
+              }
+              else if typeCode == LanguageKey.Wifi{
+                 vc = WifiGenerateVC()
+              }
+              else if typeCode == LanguageKey.Telephone{
+                  vc = PhoneGenerateVC()
+              }
+              else if typeCode == LanguageKey.Contact{
+              vc = ContactGenerateVC()
+
+              }
+      print(vc)
+      self.navigationController?.pushViewController(vc!, animated: true)
     }
     func setupEndedUpScrollView(){
       wrapperView.addSubview(endedUpScrollViewContainerView)
@@ -171,7 +203,7 @@ extension TypeCodeVC : TableViewCellDelegate {
         endedUpScrollViewContainerView.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor),
         endedUpScrollViewContainerView.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor)
         ])
-       self.view.layoutIfNeeded()
+//       self.view.layoutIfNeeded()
     }
 }
 extension TypeCodeVC : SingleButtonDialogPresenter {

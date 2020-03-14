@@ -34,6 +34,10 @@ class TypeCodeVC : BaseViewController{
   var dataSource :TableViewDataSource<TableViewCell,TypeCodeViewModel,HeaderView>!
     override func viewDidLoad() {
            super.viewDidLoad()
+        print ("view didload typecode")
+        setupStatusBar()
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+
            initUI()
        bindViewModel()
 

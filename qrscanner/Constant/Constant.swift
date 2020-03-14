@@ -49,6 +49,9 @@ public struct KeychainSwiftConstants {
 
 
 struct AppConstants {
+    static let ISSEEN = 1
+    static let ISUPDATE = 2
+
     static let LARGE_SIZE = 200
     static let MEDIUM_SIZE = 50
     static let SMALL_SIZE = 20
@@ -70,7 +73,7 @@ struct AppConstants {
     static let MARGIN_BOTTOM = CGFloat(-10)
     static let ALPHA_DEFAULT = CGFloat(1)
     static let ALPHA_DISBALE = CGFloat(0.5)
-    static let TABLE_ROW_HEIGHT = CGFloat(70)
+    static let TABLE_ROW_HEIGHT = CGFloat(80)
     // switch button default config
     static let SWITCH_ON_TINT_COLOR = UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 1)
     static let SWITCH_OFF_TINT_COLOR = UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 1)
@@ -194,14 +197,19 @@ struct AppFonts {
 }
 
 struct AppImages {
+    static let IC_GENERATE = "ic_generate"
+    static let IC_HISTORY = "ic_history"
+    static let IC_SCAN = "ic_scan"
+    static let IC_SAVE = "ic_save"
+    static let IC_SETTING = "ic_settings_white"
+    
     static let IC_SEARCH = "ic_search"
     static let IC_DELETE = "ic_delete"
     static let IC_HOME = "ic_home"
     static let IC_CONTACT = "ic_contact"
     static let IC_TRANSACTION = "ic_history"
     static let IC_WALLET = "ic_wallet"
-    static let IC_SCANNER = "ic_scanner"
-    static let IC_SCAN = "ic_scan"
+    static let IC_SCANNER = "ic_scan"
     static let IC_SCANNER_BLUE = "ic_scanner_blue"
     static let IC_QRCODE = "ic_qrcode"
     static let IC_LOGO = "ic_logo"
@@ -303,7 +311,11 @@ struct AppColors {
     static let GREEN_LIGHT_COLOR = UIColor.init(red: 137/255.0, green: 176/255.0, blue: 35/255.0, alpha: 1.0) // For UI background color for header
     static let GREEN_DARK_COLOR = UIColor.init(red: 15/255.0, green: 124/255.0, blue: 126/255.0, alpha: 1.0) // For UI background
     static let BLUE_LIGHT_COLOR = UIColor.init(red: 0/255.0, green: 104/255.0, blue: 139/255.0, alpha: 1.0) // For UI search view
-    
+    static let PRIMARY_COLOR = UIColor.init(red: 25/255.0, green: 167/255.0, blue: 167/255.0, alpha: 1.0)
+    static let PRIMARY_COLOR_DARK = UIColor.init(red: 13/255.0, green: 121/255.0, blue: 121/255.0, alpha: 1.0)
+    static let COLOR_ACCENT = UIColor.init(red: 225/255.0, green: 151/255.0, blue: 4/255.0, alpha: 1.0)
+    static let COLOR_ACCENT_DARK = UIColor.init(red: 171/255.0, green: 115/255.0, blue: 4/255.0, alpha: 1.0)
+   
 //    blue: #38BBE9
 //    blue-light: #38BBE9 (50% opacity)
 //    gray: #99A9B3
@@ -328,6 +340,10 @@ struct AppViewOptions {
 }
 
 struct LanguageKey {
+    static let CancelButtonTitle = "CANCEL"
+    static let DoneButtonTitle = "DONE"
+    static let TimeFrame = "TIME_FRAME"
+    
     static let RequestFailed = "REQUEST_FAILED"
     static let InvalidData = "INVALID_DATA"
     static let ResponseUnsuccessful = "RESPONSE_UNSUCCESSFUL"
@@ -514,6 +530,8 @@ struct LanguageKey {
     static let ErrorTitleEventRequired = "ERROR_TITLE_EVENT_REQUIRED"
     static let ErrorSSIDRequired = "ERROR_SSID_REQUIRED"
        static let ErrorPassWordWifiRequired = "ERROR_PASS_WIFI_REQUIRED"
+    static let ErrorMessageRequired = "ERROR_MESSAGE_REQUIRED"
+
      //Add eCash
      static let Verify = "VERIFY"
      static let Money = "MONEY"
@@ -891,6 +909,7 @@ enum EnumIdentifier : String {
     case TransfereCashToeCash = "transferecashtoecash"
     case WithdrawMultipleeCash = "WithdrawMultipleeCash"
     case History = "history"
+    case Save = "save"
      case Generate = "generate"
     case Transactions = "transactions"
     case QRCodeHistory = "qrcodeHistory"

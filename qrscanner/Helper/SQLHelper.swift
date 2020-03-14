@@ -80,7 +80,7 @@ class SQLHelper {
             }
             return db
         }
-        debugPrint("Key to connect db : \(mKey)")
+      //  debugPrint("Key to connect db : \(mKey)")
         guard let db = SQLHelper.connect(mKey: mKey,url: mUrl.path) else {
             return nil
         }
@@ -118,7 +118,7 @@ class SQLHelper {
        }
        
        /*Insert Scanner*/
-       class open func insertedScanner(data : ScannerEntityModel) -> Bool{
+       class open func insertedScanner(data : GenerateModel) -> Bool{
            guard let db = connection() else {
                return false
            }
@@ -126,7 +126,7 @@ class SQLHelper {
        }
        
        /*Update Scanner*/
-       class open func updatedScanner(createDatetime : String, value : String){
+       class open func updatedScanner(createDatetime : Int, value : Int){
            guard let db = connection() else {
                return
            }
@@ -134,7 +134,7 @@ class SQLHelper {
        }
        
        /*Get object Scanner*/
-       class open func getHistories(createDatetime : String) -> ScannerEntityModel?{
+       class open func getHistories(createDatetime : Int) -> GenerateModel?{
            guard let db = connection() else {
                return nil
            }
@@ -143,11 +143,18 @@ class SQLHelper {
        
       
     /*Get list histories*/
-    class open func getListHistories() -> [ScannerEntityModel]?{
+    class open func getListHistories() -> [GenerateModel]?{
         guard let db = connection() else {
             return nil
         }
-        return ScannerEntity.instance.getList(db: db)
+        return ScannerEntity.instance.getListHistory(db: db)
+    }
+    /*Get list save*/
+    class open func getListSave() -> [GenerateModel]?{
+        guard let db = connection() else {
+            return nil
+        }
+        return ScannerEntity.instance.getListSave(db: db)
     }
 }
 

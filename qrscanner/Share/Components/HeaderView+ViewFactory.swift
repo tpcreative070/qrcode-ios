@@ -14,9 +14,13 @@ extension HeaderView{
         case .History:
            self.setupSubView()
            break
+            case .Save:
+                      self.setupQrcodeHistorySubView()
+                      break
         case .Transactions:
            self.setupSubView()
             break
+            
         case .QRCodeHistory:
            self.setupQrcodeHistorySubView()
            break
@@ -40,7 +44,7 @@ extension HeaderView{
         NSLayoutConstraint.activate([
             self.lbGroupName.leadingAnchor.constraint(equalTo: self.backGroundView.leadingAnchor, constant: 10),
             self.lbGroupName.trailingAnchor.constraint(equalTo: self.backGroundView.trailingAnchor, constant: -10),
-            self.lbGroupName.topAnchor.constraint(equalTo: self.backGroundView.topAnchor,constant: 0),
+            self.lbGroupName.topAnchor.constraint(equalTo: self.backGroundView.topAnchor,constant: 20),
             self.lbGroupName.bottomAnchor.constraint(equalTo: self.backGroundView.bottomAnchor,constant: -0)
             ])
     }
@@ -50,7 +54,7 @@ extension HeaderView{
         NSLayoutConstraint.activate([
             self.lbGroupName.leadingAnchor.constraint(equalTo: self.backGroundView.leadingAnchor, constant: 10),
             self.lbGroupName.trailingAnchor.constraint(equalTo: self.backGroundView.trailingAnchor, constant: -10),
-            self.lbGroupName.topAnchor.constraint(equalTo: self.backGroundView.topAnchor,constant: 0),
+            self.lbGroupName.topAnchor.constraint(equalTo: self.backGroundView.topAnchor,constant: 20),
             self.lbGroupName.bottomAnchor.constraint(equalTo: self.backGroundView.bottomAnchor,constant: -0)
             ])
     }

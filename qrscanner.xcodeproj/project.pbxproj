@@ -20,11 +20,48 @@
 		2865AA2C2412A0BD00C1F207 /* ResultGenerateVC+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2865AA2B2412A0BD00C1F207 /* ResultGenerateVC+ViewFactory.swift */; };
 		2865AA2E2412BB5B00C1F207 /* ICTextFieldNoneIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2865AA2D2412BB5B00C1F207 /* ICTextFieldNoneIcon.swift */; };
 		2865AA302412BD1F00C1F207 /* UITextField+fixCaretPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2865AA2F2412BD1F00C1F207 /* UITextField+fixCaretPosition.swift */; };
+		288591CE241A491B0081DB79 /* ContactGenerateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288591CD241A491B0081DB79 /* ContactGenerateVC.swift */; };
+		288591D0241A49330081DB79 /* ContactGenerate+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288591CF241A49330081DB79 /* ContactGenerate+ViewFactory.swift */; };
+		288591D3241A49790081DB79 /* PhoneGenerateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288591D2241A49790081DB79 /* PhoneGenerateVC.swift */; };
+		288591D5241A49890081DB79 /* PhoneGenerate+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288591D4241A49890081DB79 /* PhoneGenerate+ViewFactory.swift */; };
+		288591DD241A49D60081DB79 /* WifiGenerateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288591DC241A49D60081DB79 /* WifiGenerateVC.swift */; };
+		288591DF241A49E50081DB79 /* WifiGenerate+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288591DE241A49E50081DB79 /* WifiGenerate+ViewFactory.swift */; };
+		288591E2241A4A0A0081DB79 /* UrlGenerateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288591E1241A4A0A0081DB79 /* UrlGenerateVC.swift */; };
+		288591E4241A4A190081DB79 /* UrlGenerateVC+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288591E3241A4A190081DB79 /* UrlGenerateVC+ViewFactory.swift */; };
+		2892048B2418C6BF00AD3F49 /* UIViewController+StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2892048A2418C6BF00AD3F49 /* UIViewController+StatusBar.swift */; };
+		289204AE2418F49600AD3F49 /* EmailGenerateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289204AD2418F49600AD3F49 /* EmailGenerateVC.swift */; };
+		289204B02418F4B100AD3F49 /* EmailGenerateVC+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289204AF2418F4B100AD3F49 /* EmailGenerateVC+Factory.swift */; };
+		289204D72419691E00AD3F49 /* TextGenerateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289204D62419691E00AD3F49 /* TextGenerateVC.swift */; };
+		289204D924196B1600AD3F49 /* TextGenerate+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289204D824196B1600AD3F49 /* TextGenerate+Factory.swift */; };
 		28925607240DF6F400D05B17 /* ScannerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28925606240DF6F400D05B17 /* ScannerEntity.swift */; };
 		2892D4F7240F7A8100E84F4A /* TableViewCell+History+ViewFatory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2892D4F6240F7A8100E84F4A /* TableViewCell+History+ViewFatory.swift */; };
+		2893EF232419CE13004D58C6 /* MessageGenerateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2893EF222419CE13004D58C6 /* MessageGenerateVC.swift */; };
+		2893EF252419CE2B004D58C6 /* MessageGenerate+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2893EF242419CE2B004D58C6 /* MessageGenerate+ViewFactory.swift */; };
+		2893EF282419DBCD004D58C6 /* LocationGenerateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2893EF272419DBCD004D58C6 /* LocationGenerateVC.swift */; };
+		2893EF2A2419DC72004D58C6 /* LocationGenerate+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2893EF292419DC72004D58C6 /* LocationGenerate+ViewFactory.swift */; };
+		2893EF2D241A117A004D58C6 /* EventGenerateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2893EF2C241A117A004D58C6 /* EventGenerateVC.swift */; };
+		2893EF2F241A1195004D58C6 /* EventGenerate+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2893EF2E241A1195004D58C6 /* EventGenerate+ViewFactory.swift */; };
+		2893EF31241A19B2004D58C6 /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2893EF30241A19B2004D58C6 /* StackView.swift */; };
+		2893EF33241A28D5004D58C6 /* DateTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2893EF32241A28D5004D58C6 /* DateTimePicker.swift */; };
+		2894D6B5241C8EDE009E1659 /* OpalImagePickerRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894D6B4241C8EDE009E1659 /* OpalImagePickerRootViewController.swift */; };
+		2894D6B7241C8F1D009E1659 /* ImagePickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894D6B6241C8F1D009E1659 /* ImagePickerCollectionViewCell.swift */; };
+		2894D6B9241C8F41009E1659 /* OpalImagePickerCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894D6B8241C8F41009E1659 /* OpalImagePickerCollectionViewLayout.swift */; };
+		2894D6BB241C8F5D009E1659 /* OpalImagePickerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894D6BA241C8F5D009E1659 /* OpalImagePickerConfiguration.swift */; };
+		2894D6BD241C9012009E1659 /* UIView+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894D6BC241C9012009E1659 /* UIView+Helper.swift */; };
+		2894D6BF241C9042009E1659 /* UIViewController+OpalImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894D6BE241C9042009E1659 /* UIViewController+OpalImagePicker.swift */; };
+		2894D6C1241C9097009E1659 /* TimeInterval+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894D6C0241C9097009E1659 /* TimeInterval+String.swift */; };
+		2894D6C4241C9108009E1659 /* GalleryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894D6C3241C9108009E1659 /* GalleryManager.swift */; };
+		2894D6C6241C9280009E1659 /* UIImage+CGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894D6C5241C9280009E1659 /* UIImage+CGImage.swift */; };
+		28969BAE24173DC000070BDC /* qrscanner.db in Resources */ = {isa = PBXBuildFile; fileRef = 28969BAD24173DC000070BDC /* qrscanner.db */; };
+		28969BB02417878400070BDC /* AppDelegate+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28969BAF2417878400070BDC /* AppDelegate+UI.swift */; };
+		28969F98241B6C4400F30A29 /* UIView+Draggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28969F97241B6C4400F30A29 /* UIView+Draggable.swift */; };
+		28969FBC241B8CC300F30A29 /* TableViewCell+Save+ViewFatory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28969FBB241B8CC300F30A29 /* TableViewCell+Save+ViewFatory.swift */; };
+		28969FC0241BDBCE00F30A29 /* Codable+ToObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28969FBF241BDBCE00F30A29 /* Codable+ToObject.swift */; };
+		28969FC2241BF3A700F30A29 /* ICCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28969FC1241BF3A700F30A29 /* ICCheckBox.swift */; };
+		28969FC4241C08F900F30A29 /* GalleryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28969FC3241C08F900F30A29 /* GalleryHelper.swift */; };
+		28969FCA241C0A7100F30A29 /* OpalImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28969FC9241C0A7100F30A29 /* OpalImagePickerController.swift */; };
 		289767542414D4D500AD0D78 /* ScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289767532414D4D500AD0D78 /* ScannerViewModel.swift */; };
 		289767562414D85100AD0D78 /* GrantPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289767552414D85100AD0D78 /* GrantPermission.swift */; };
-		289767622414FDFD00AD0D78 /* qrscanner.db in Resources */ = {isa = PBXBuildFile; fileRef = 289767612414FDFD00AD0D78 /* qrscanner.db */; };
 		289B4B9C24133560005BC714 /* UrlVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289B4B9B24133560005BC714 /* UrlVC.swift */; };
 		289B4B9E24133576005BC714 /* UrlVC+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289B4B9D24133576005BC714 /* UrlVC+Factory.swift */; };
 		289B4BA0241394ED005BC714 /* languages.json in Resources */ = {isa = PBXBuildFile; fileRef = 289B4B9F241394ED005BC714 /* languages.json */; };
@@ -39,6 +76,7 @@
 		28A05735240E499400AD5353 /* SFProText-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 28A05731240E499300AD5353 /* SFProText-Regular.otf */; };
 		28A05736240E499400AD5353 /* SFProText-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 28A05732240E499400AD5353 /* SFProText-Semibold.otf */; };
 		28A05739240E968B00AD5353 /* AppDelegate+Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A05738240E968B00AD5353 /* AppDelegate+Config.swift */; };
+		28AC7432241A66D1002EC698 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AC7431241A66D1002EC698 /* CustomTabBarController.swift */; };
 		28BFA8D8240CDC82002ECD93 /* TableViewCell+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BFA8D4240CDC81002ECD93 /* TableViewCell+ViewFactory.swift */; };
 		28BFA8DA240CDC82002ECD93 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BFA8D6240CDC82002ECD93 /* TableViewCell.swift */; };
 		28BFA8E1240CF938002ECD93 /* TableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BFA8E0240CF938002ECD93 /* TableSection.swift */; };
@@ -51,7 +89,19 @@
 		28BFA8F0240D4A04002ECD93 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BFA8EF240D4A04002ECD93 /* AlertHelper.swift */; };
 		28BFA8F2240D4FCA002ECD93 /* ScannerEntityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BFA8F1240D4FCA002ECD93 /* ScannerEntityModel.swift */; };
 		28BFA8F4240D5119002ECD93 /* TimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BFA8F3240D5119002ECD93 /* TimeHelper.swift */; };
-		28BFA8F6240D5B46002ECD93 /* QRCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BFA8F5240D5B46002ECD93 /* QRCodeViewModel.swift */; };
+		28BFA8F6240D5B46002ECD93 /* ListQRCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BFA8F5240D5B46002ECD93 /* ListQRCodeViewModel.swift */; };
+		28D81D302416211B007834F0 /* EmailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D81D2F2416211B007834F0 /* EmailModel.swift */; };
+		28D81D3224162265007834F0 /* UrlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D81D3124162265007834F0 /* UrlViewModel.swift */; };
+		28D81D342416229C007834F0 /* TextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D81D332416229C007834F0 /* TextModel.swift */; };
+		28D81D36241622D0007834F0 /* PhoneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D81D35241622D0007834F0 /* PhoneModel.swift */; };
+		28D81D3824162368007834F0 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D81D3724162368007834F0 /* MessageModel.swift */; };
+		28D81D3A241623C2007834F0 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D81D39241623C2007834F0 /* ContactModel.swift */; };
+		28D81D3C24162493007834F0 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D81D3B24162493007834F0 /* LocationModel.swift */; };
+		28D81D3E2416267E007834F0 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D81D3D2416267E007834F0 /* EventModel.swift */; };
+		28D81D4024162727007834F0 /* WifiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D81D3F24162727007834F0 /* WifiModel.swift */; };
+		28D81D4224162AC7007834F0 /* GenerateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D81D4124162AC7007834F0 /* GenerateModel.swift */; };
+		28D81D442416308A007834F0 /* String+ToObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D81D432416308A007834F0 /* String+ToObject.swift */; };
+		28D81D46241630D5007834F0 /* String+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D81D45241630D5007834F0 /* String+Data.swift */; };
 		28DD502324113D840080A059 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DD502224113D840080A059 /* Navigator.swift */; };
 		28DD502524113DBD0080A059 /* NavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DD502424113DBD0080A059 /* NavigationModel.swift */; };
 		28DD502724113E080080A059 /* UIStoryboard+List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DD502624113E080080A059 /* UIStoryboard+List.swift */; };
@@ -176,11 +226,48 @@
 		2865AA2B2412A0BD00C1F207 /* ResultGenerateVC+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResultGenerateVC+ViewFactory.swift"; sourceTree = "<group>"; };
 		2865AA2D2412BB5B00C1F207 /* ICTextFieldNoneIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICTextFieldNoneIcon.swift; sourceTree = "<group>"; };
 		2865AA2F2412BD1F00C1F207 /* UITextField+fixCaretPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+fixCaretPosition.swift"; sourceTree = "<group>"; };
+		288591CD241A491B0081DB79 /* ContactGenerateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactGenerateVC.swift; sourceTree = "<group>"; };
+		288591CF241A49330081DB79 /* ContactGenerate+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContactGenerate+ViewFactory.swift"; sourceTree = "<group>"; };
+		288591D2241A49790081DB79 /* PhoneGenerateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneGenerateVC.swift; sourceTree = "<group>"; };
+		288591D4241A49890081DB79 /* PhoneGenerate+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhoneGenerate+ViewFactory.swift"; sourceTree = "<group>"; };
+		288591DC241A49D60081DB79 /* WifiGenerateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiGenerateVC.swift; sourceTree = "<group>"; };
+		288591DE241A49E50081DB79 /* WifiGenerate+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WifiGenerate+ViewFactory.swift"; sourceTree = "<group>"; };
+		288591E1241A4A0A0081DB79 /* UrlGenerateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlGenerateVC.swift; sourceTree = "<group>"; };
+		288591E3241A4A190081DB79 /* UrlGenerateVC+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UrlGenerateVC+ViewFactory.swift"; sourceTree = "<group>"; };
+		2892048A2418C6BF00AD3F49 /* UIViewController+StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+StatusBar.swift"; sourceTree = "<group>"; };
+		289204AD2418F49600AD3F49 /* EmailGenerateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailGenerateVC.swift; sourceTree = "<group>"; };
+		289204AF2418F4B100AD3F49 /* EmailGenerateVC+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmailGenerateVC+Factory.swift"; sourceTree = "<group>"; };
+		289204D62419691E00AD3F49 /* TextGenerateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextGenerateVC.swift; sourceTree = "<group>"; };
+		289204D824196B1600AD3F49 /* TextGenerate+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextGenerate+Factory.swift"; sourceTree = "<group>"; };
 		28925606240DF6F400D05B17 /* ScannerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerEntity.swift; sourceTree = "<group>"; };
 		2892D4F6240F7A8100E84F4A /* TableViewCell+History+ViewFatory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewCell+History+ViewFatory.swift"; sourceTree = "<group>"; };
+		2893EF222419CE13004D58C6 /* MessageGenerateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageGenerateVC.swift; sourceTree = "<group>"; };
+		2893EF242419CE2B004D58C6 /* MessageGenerate+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageGenerate+ViewFactory.swift"; sourceTree = "<group>"; };
+		2893EF272419DBCD004D58C6 /* LocationGenerateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationGenerateVC.swift; sourceTree = "<group>"; };
+		2893EF292419DC72004D58C6 /* LocationGenerate+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationGenerate+ViewFactory.swift"; sourceTree = "<group>"; };
+		2893EF2C241A117A004D58C6 /* EventGenerateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventGenerateVC.swift; sourceTree = "<group>"; };
+		2893EF2E241A1195004D58C6 /* EventGenerate+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventGenerate+ViewFactory.swift"; sourceTree = "<group>"; };
+		2893EF30241A19B2004D58C6 /* StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
+		2893EF32241A28D5004D58C6 /* DateTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePicker.swift; sourceTree = "<group>"; };
+		2894D6B4241C8EDE009E1659 /* OpalImagePickerRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpalImagePickerRootViewController.swift; sourceTree = "<group>"; };
+		2894D6B6241C8F1D009E1659 /* ImagePickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerCollectionViewCell.swift; sourceTree = "<group>"; };
+		2894D6B8241C8F41009E1659 /* OpalImagePickerCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpalImagePickerCollectionViewLayout.swift; sourceTree = "<group>"; };
+		2894D6BA241C8F5D009E1659 /* OpalImagePickerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpalImagePickerConfiguration.swift; sourceTree = "<group>"; };
+		2894D6BC241C9012009E1659 /* UIView+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helper.swift"; sourceTree = "<group>"; };
+		2894D6BE241C9042009E1659 /* UIViewController+OpalImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+OpalImagePicker.swift"; sourceTree = "<group>"; };
+		2894D6C0241C9097009E1659 /* TimeInterval+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+String.swift"; sourceTree = "<group>"; };
+		2894D6C3241C9108009E1659 /* GalleryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryManager.swift; sourceTree = "<group>"; };
+		2894D6C5241C9280009E1659 /* UIImage+CGImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+CGImage.swift"; sourceTree = "<group>"; };
+		28969BAD24173DC000070BDC /* qrscanner.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = qrscanner.db; sourceTree = "<group>"; };
+		28969BAF2417878400070BDC /* AppDelegate+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+UI.swift"; sourceTree = "<group>"; };
+		28969F97241B6C4400F30A29 /* UIView+Draggable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Draggable.swift"; sourceTree = "<group>"; };
+		28969FBB241B8CC300F30A29 /* TableViewCell+Save+ViewFatory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewCell+Save+ViewFatory.swift"; sourceTree = "<group>"; };
+		28969FBF241BDBCE00F30A29 /* Codable+ToObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+ToObject.swift"; sourceTree = "<group>"; };
+		28969FC1241BF3A700F30A29 /* ICCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICCheckBox.swift; sourceTree = "<group>"; };
+		28969FC3241C08F900F30A29 /* GalleryHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryHelper.swift; sourceTree = "<group>"; };
+		28969FC9241C0A7100F30A29 /* OpalImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpalImagePickerController.swift; sourceTree = "<group>"; };
 		289767532414D4D500AD0D78 /* ScannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewModel.swift; sourceTree = "<group>"; };
 		289767552414D85100AD0D78 /* GrantPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrantPermission.swift; sourceTree = "<group>"; };
-		289767612414FDFD00AD0D78 /* qrscanner.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = qrscanner.db; path = ../Requester/qrscanner.db; sourceTree = "<group>"; };
 		289B4B9B24133560005BC714 /* UrlVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlVC.swift; sourceTree = "<group>"; };
 		289B4B9D24133576005BC714 /* UrlVC+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UrlVC+Factory.swift"; sourceTree = "<group>"; };
 		289B4B9F241394ED005BC714 /* languages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = languages.json; sourceTree = "<group>"; };
@@ -195,6 +282,7 @@
 		28A05731240E499300AD5353 /* SFProText-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Regular.otf"; sourceTree = "<group>"; };
 		28A05732240E499400AD5353 /* SFProText-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Semibold.otf"; sourceTree = "<group>"; };
 		28A05738240E968B00AD5353 /* AppDelegate+Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Config.swift"; sourceTree = "<group>"; };
+		28AC7431241A66D1002EC698 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		28BFA8D4240CDC81002ECD93 /* TableViewCell+ViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewCell+ViewFactory.swift"; sourceTree = "<group>"; };
 		28BFA8D6240CDC82002ECD93 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		28BFA8E0240CF938002ECD93 /* TableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSection.swift; sourceTree = "<group>"; };
@@ -207,7 +295,19 @@
 		28BFA8EF240D4A04002ECD93 /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		28BFA8F1240D4FCA002ECD93 /* ScannerEntityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerEntityModel.swift; sourceTree = "<group>"; };
 		28BFA8F3240D5119002ECD93 /* TimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHelper.swift; sourceTree = "<group>"; };
-		28BFA8F5240D5B46002ECD93 /* QRCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewModel.swift; sourceTree = "<group>"; };
+		28BFA8F5240D5B46002ECD93 /* ListQRCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListQRCodeViewModel.swift; sourceTree = "<group>"; };
+		28D81D2F2416211B007834F0 /* EmailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailModel.swift; sourceTree = "<group>"; };
+		28D81D3124162265007834F0 /* UrlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlViewModel.swift; sourceTree = "<group>"; };
+		28D81D332416229C007834F0 /* TextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModel.swift; sourceTree = "<group>"; };
+		28D81D35241622D0007834F0 /* PhoneModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneModel.swift; sourceTree = "<group>"; };
+		28D81D3724162368007834F0 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
+		28D81D39241623C2007834F0 /* ContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
+		28D81D3B24162493007834F0 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		28D81D3D2416267E007834F0 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		28D81D3F24162727007834F0 /* WifiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiModel.swift; sourceTree = "<group>"; };
+		28D81D4124162AC7007834F0 /* GenerateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateModel.swift; sourceTree = "<group>"; };
+		28D81D432416308A007834F0 /* String+ToObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ToObject.swift"; sourceTree = "<group>"; };
+		28D81D45241630D5007834F0 /* String+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Data.swift"; sourceTree = "<group>"; };
 		28DD502224113D840080A059 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		28DD502424113DBD0080A059 /* NavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModel.swift; sourceTree = "<group>"; };
 		28DD502624113E080080A059 /* UIStoryboard+List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+List.swift"; sourceTree = "<group>"; };
@@ -348,6 +448,110 @@
 			path = ResultGenerate;
 			sourceTree = "<group>";
 		};
+		288591CC241A48B30081DB79 /* ContactGenerate */ = {
+			isa = PBXGroup;
+			children = (
+				288591CD241A491B0081DB79 /* ContactGenerateVC.swift */,
+				288591CF241A49330081DB79 /* ContactGenerate+ViewFactory.swift */,
+			);
+			path = ContactGenerate;
+			sourceTree = "<group>";
+		};
+		288591D1241A494E0081DB79 /* PhoneGenerate */ = {
+			isa = PBXGroup;
+			children = (
+				288591D2241A49790081DB79 /* PhoneGenerateVC.swift */,
+				288591D4241A49890081DB79 /* PhoneGenerate+ViewFactory.swift */,
+			);
+			path = PhoneGenerate;
+			sourceTree = "<group>";
+		};
+		288591DB241A49BB0081DB79 /* WifiGenerate */ = {
+			isa = PBXGroup;
+			children = (
+				288591DC241A49D60081DB79 /* WifiGenerateVC.swift */,
+				288591DE241A49E50081DB79 /* WifiGenerate+ViewFactory.swift */,
+			);
+			path = WifiGenerate;
+			sourceTree = "<group>";
+		};
+		288591E0241A49EA0081DB79 /* URLGenerate */ = {
+			isa = PBXGroup;
+			children = (
+				288591E1241A4A0A0081DB79 /* UrlGenerateVC.swift */,
+				288591E3241A4A190081DB79 /* UrlGenerateVC+ViewFactory.swift */,
+			);
+			path = URLGenerate;
+			sourceTree = "<group>";
+		};
+		289204AC2418F46700AD3F49 /* EmailGenerateVC */ = {
+			isa = PBXGroup;
+			children = (
+				289204AD2418F49600AD3F49 /* EmailGenerateVC.swift */,
+				289204AF2418F4B100AD3F49 /* EmailGenerateVC+Factory.swift */,
+			);
+			path = EmailGenerateVC;
+			sourceTree = "<group>";
+		};
+		289204D52419690400AD3F49 /* TextGenerateVC */ = {
+			isa = PBXGroup;
+			children = (
+				289204D62419691E00AD3F49 /* TextGenerateVC.swift */,
+				289204D824196B1600AD3F49 /* TextGenerate+Factory.swift */,
+			);
+			path = TextGenerateVC;
+			sourceTree = "<group>";
+		};
+		2893EF212419CDDE004D58C6 /* MessageGenerate */ = {
+			isa = PBXGroup;
+			children = (
+				2893EF222419CE13004D58C6 /* MessageGenerateVC.swift */,
+				2893EF242419CE2B004D58C6 /* MessageGenerate+ViewFactory.swift */,
+			);
+			path = MessageGenerate;
+			sourceTree = "<group>";
+		};
+		2893EF262419DBAE004D58C6 /* LocationGenerate */ = {
+			isa = PBXGroup;
+			children = (
+				2893EF272419DBCD004D58C6 /* LocationGenerateVC.swift */,
+				2893EF292419DC72004D58C6 /* LocationGenerate+ViewFactory.swift */,
+			);
+			path = LocationGenerate;
+			sourceTree = "<group>";
+		};
+		2893EF2B241A1146004D58C6 /* EventGenerate */ = {
+			isa = PBXGroup;
+			children = (
+				2893EF2C241A117A004D58C6 /* EventGenerateVC.swift */,
+				2893EF2E241A1195004D58C6 /* EventGenerate+ViewFactory.swift */,
+			);
+			path = EventGenerate;
+			sourceTree = "<group>";
+		};
+		2894D6C2241C90E0009E1659 /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				2894D6C3241C9108009E1659 /* GalleryManager.swift */,
+			);
+			path = Gallery;
+			sourceTree = "<group>";
+		};
+		28969FC6241C09DE00F30A29 /* ImagePickerHelper */ = {
+			isa = PBXGroup;
+			children = (
+				28969FC9241C0A7100F30A29 /* OpalImagePickerController.swift */,
+				2894D6B4241C8EDE009E1659 /* OpalImagePickerRootViewController.swift */,
+				2894D6B6241C8F1D009E1659 /* ImagePickerCollectionViewCell.swift */,
+				2894D6B8241C8F41009E1659 /* OpalImagePickerCollectionViewLayout.swift */,
+				2894D6BA241C8F5D009E1659 /* OpalImagePickerConfiguration.swift */,
+				2894D6BC241C9012009E1659 /* UIView+Helper.swift */,
+				2894D6BE241C9042009E1659 /* UIViewController+OpalImagePicker.swift */,
+				2894D6C0241C9097009E1659 /* TimeInterval+String.swift */,
+			);
+			path = ImagePickerHelper;
+			sourceTree = "<group>";
+		};
 		289B4B9A24133542005BC714 /* UrlGenerate */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,6 +573,15 @@
 		28DD502C241156C60080A059 /* Generate */ = {
 			isa = PBXGroup;
 			children = (
+				288591E0241A49EA0081DB79 /* URLGenerate */,
+				288591DB241A49BB0081DB79 /* WifiGenerate */,
+				288591D1241A494E0081DB79 /* PhoneGenerate */,
+				288591CC241A48B30081DB79 /* ContactGenerate */,
+				2893EF2B241A1146004D58C6 /* EventGenerate */,
+				2893EF262419DBAE004D58C6 /* LocationGenerate */,
+				2893EF212419CDDE004D58C6 /* MessageGenerate */,
+				289204D52419690400AD3F49 /* TextGenerateVC */,
+				289204AC2418F46700AD3F49 /* EmailGenerateVC */,
 				28DD503124115E640080A059 /* GenerateVC.swift */,
 				28DD502F2411570B0080A059 /* GenerateVC+ViewFactory.swift */,
 			);
@@ -426,6 +639,7 @@
 				D27F115923FF9487001D175F /* AppDelegate.swift */,
 				28A05738240E968B00AD5353 /* AppDelegate+Config.swift */,
 				D27F115B23FF9487001D175F /* SceneDelegate.swift */,
+				28969BAF2417878400070BDC /* AppDelegate+UI.swift */,
 				D27F115D23FF9487001D175F /* ContentView.swift */,
 				D27F115F23FF9488001D175F /* Assets.xcassets */,
 				D27F116423FF9488001D175F /* LaunchScreen.storyboard */,
@@ -530,7 +744,7 @@
 		D2BA0A4B2408DCD10074C7A1 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				28BFA8F5240D5B46002ECD93 /* QRCodeViewModel.swift */,
+				28BFA8F5240D5B46002ECD93 /* ListQRCodeViewModel.swift */,
 				D2BA0AEE240A7B320074C7A1 /* TransferMultipleViewModel.swift */,
 				28BFA8E9240D40B2002ECD93 /* TableViewCellViewModel.swift */,
 				28BFA8ED240D48EE002ECD93 /* ScannersViewModelList.swift */,
@@ -552,6 +766,16 @@
 				28BFA8F1240D4FCA002ECD93 /* ScannerEntityModel.swift */,
 				283A22742410D8F5006308F4 /* TypeCodeModel.swift */,
 				28DD502424113DBD0080A059 /* NavigationModel.swift */,
+				28D81D2F2416211B007834F0 /* EmailModel.swift */,
+				28D81D3124162265007834F0 /* UrlViewModel.swift */,
+				28D81D332416229C007834F0 /* TextModel.swift */,
+				28D81D35241622D0007834F0 /* PhoneModel.swift */,
+				28D81D3724162368007834F0 /* MessageModel.swift */,
+				28D81D39241623C2007834F0 /* ContactModel.swift */,
+				28D81D3B24162493007834F0 /* LocationModel.swift */,
+				28D81D3D2416267E007834F0 /* EventModel.swift */,
+				28D81D3F24162727007834F0 /* WifiModel.swift */,
+				28D81D4124162AC7007834F0 /* GenerateModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -567,6 +791,13 @@
 				28DD502624113E080080A059 /* UIStoryboard+List.swift */,
 				2865AA20241234D200C1F207 /* UIViewController+Keyboard.swift */,
 				2865AA2F2412BD1F00C1F207 /* UITextField+fixCaretPosition.swift */,
+				28D81D432416308A007834F0 /* String+ToObject.swift */,
+				28D81D45241630D5007834F0 /* String+Data.swift */,
+				2892048A2418C6BF00AD3F49 /* UIViewController+StatusBar.swift */,
+				2893EF30241A19B2004D58C6 /* StackView.swift */,
+				28969F97241B6C4400F30A29 /* UIView+Draggable.swift */,
+				28969FBF241BDBCE00F30A29 /* Codable+ToObject.swift */,
+				2894D6C5241C9280009E1659 /* UIImage+CGImage.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -590,6 +821,7 @@
 				28BFA8F3240D5119002ECD93 /* TimeHelper.swift */,
 				2865AA2624124E4A00C1F207 /* ValidatorHelper.swift */,
 				289767552414D85100AD0D78 /* GrantPermission.swift */,
+				28969FC3241C08F900F30A29 /* GalleryHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -624,7 +856,7 @@
 		D2BA0A512408DD190074C7A1 /* SQLite */ = {
 			isa = PBXGroup;
 			children = (
-				289767612414FDFD00AD0D78 /* qrscanner.db */,
+				28969BAD24173DC000070BDC /* qrscanner.db */,
 			);
 			path = SQLite;
 			sourceTree = "<group>";
@@ -684,12 +916,15 @@
 		D2BA0A572408DDAE0074C7A1 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				2894D6C2241C90E0009E1659 /* Gallery */,
+				28969FC6241C09DE00F30A29 /* ImagePickerHelper */,
 				D2BA0ACF240A69750074C7A1 /* SwipeMenu */,
 				28BFA8E0240CF938002ECD93 /* TableSection.swift */,
 				28BFA8D6240CDC82002ECD93 /* TableViewCell.swift */,
 				28BFA8D4240CDC81002ECD93 /* TableViewCell+ViewFactory.swift */,
 				2892D4F6240F7A8100E84F4A /* TableViewCell+History+ViewFatory.swift */,
 				283A22782410F16E006308F4 /* TableViewCell+Generate+ViewFactory.swift */,
+				28969FBB241B8CC300F30A29 /* TableViewCell+Save+ViewFatory.swift */,
 				D2BA0A7B24096A5D0074C7A1 /* BaseViewController.swift */,
 				D2BA0A7824096A5D0074C7A1 /* ICBackBlueButton.swift */,
 				D2BA0A7724096A5C0074C7A1 /* ICBackGrayButton.swift */,
@@ -710,6 +945,8 @@
 				289B4BA124140B0E005BC714 /* RadioButton.swift */,
 				289B4BA324140C8F005BC714 /* Label.swift */,
 				289B4BA524141CD2005BC714 /* ViewRectangleArea.swift */,
+				2893EF32241A28D5004D58C6 /* DateTimePicker.swift */,
+				28969FC1241BF3A700F30A29 /* ICCheckBox.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -742,6 +979,7 @@
 			children = (
 				D2BA0AE1240A732A0074C7A1 /* MainVC.swift */,
 				D2BA0AEC240A74D70074C7A1 /* Main+ViewFactory.swift */,
+				28AC7431241A66D1002EC698 /* CustomTabBarController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -920,7 +1158,7 @@
 				28A05733240E499400AD5353 /* SFProText-Bold.otf in Resources */,
 				D27F116623FF9488001D175F /* LaunchScreen.storyboard in Resources */,
 				D27F116323FF9488001D175F /* Preview Assets.xcassets in Resources */,
-				289767622414FDFD00AD0D78 /* qrscanner.db in Resources */,
+				28969BAE24173DC000070BDC /* qrscanner.db in Resources */,
 				D27F116023FF9488001D175F /* Assets.xcassets in Resources */,
 				28A05734240E499400AD5353 /* SFProText-Light.otf in Resources */,
 				289B4BA0241394ED005BC714 /* languages.json in Resources */,
@@ -1055,20 +1293,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28969FC0241BDBCE00F30A29 /* Codable+ToObject.swift in Sources */,
+				2894D6BB241C8F5D009E1659 /* OpalImagePickerConfiguration.swift in Sources */,
 				D2BA0ADA240A69830074C7A1 /* TabView.swift in Sources */,
 				D2BA0AE2240A732A0074C7A1 /* MainVC.swift in Sources */,
+				28969BB02417878400070BDC /* AppDelegate+UI.swift in Sources */,
 				D2BA0A9624096C410074C7A1 /* TranslationEntityModel.swift in Sources */,
+				289204AE2418F49600AD3F49 /* EmailGenerateVC.swift in Sources */,
+				28969FCA241C0A7100F30A29 /* OpalImagePickerController.swift in Sources */,
 				D27F115A23FF9487001D175F /* AppDelegate.swift in Sources */,
 				D2BA0A9A24096E4B0074C7A1 /* DocumentHelper.swift in Sources */,
 				283A22752410D8F5006308F4 /* TypeCodeModel.swift in Sources */,
 				D2BA0A6E240969A90074C7A1 /* Helper.swift in Sources */,
 				D27F115C23FF9487001D175F /* SceneDelegate.swift in Sources */,
+				28AC7432241A66D1002EC698 /* CustomTabBarController.swift in Sources */,
+				28D81D46241630D5007834F0 /* String+Data.swift in Sources */,
 				28DD5034241161350080A059 /* ICTextField.swift in Sources */,
+				2894D6B7241C8F1D009E1659 /* ImagePickerCollectionViewCell.swift in Sources */,
 				D2BA0AC2240A61F70074C7A1 /* SignInRequestModel.swift in Sources */,
 				28A0572C240E3B0300AD5353 /* IndefiniteAnimatedView.swift in Sources */,
+				2893EF232419CE13004D58C6 /* MessageGenerateVC.swift in Sources */,
 				D2BA0A8024096A5E0074C7A1 /* BaseViewController.swift in Sources */,
 				D2BA0A9424096ABC0074C7A1 /* StorageHelper.swift in Sources */,
+				2893EF2F241A1195004D58C6 /* EventGenerate+ViewFactory.swift in Sources */,
 				D2BA0AFB240ABD0E0074C7A1 /* TypeCodeVC.swift in Sources */,
+				28D81D302416211B007834F0 /* EmailModel.swift in Sources */,
+				28969FC4241C08F900F30A29 /* GalleryHelper.swift in Sources */,
 				28925607240DF6F400D05B17 /* ScannerEntity.swift in Sources */,
 				2865AA1F24122F1500C1F207 /* NavigationRightButton.swift in Sources */,
 				D2BA0AF1240A9B940074C7A1 /* HistoryVC.swift in Sources */,
@@ -1081,7 +1331,7 @@
 				283A22792410F16E006308F4 /* TableViewCell+Generate+ViewFactory.swift in Sources */,
 				D2BA0A9224096ABC0074C7A1 /* DeviceHelper.swift in Sources */,
 				28DD502324113D840080A059 /* Navigator.swift in Sources */,
-				28BFA8F6240D5B46002ECD93 /* QRCodeViewModel.swift in Sources */,
+				28BFA8F6240D5B46002ECD93 /* ListQRCodeViewModel.swift in Sources */,
 				2865AA2524124D4900C1F207 /* GenerateViewModel.swift in Sources */,
 				2865AA21241234D200C1F207 /* UIViewController+Keyboard.swift in Sources */,
 				D2BA0A9C2409EC9D0074C7A1 /* ConfigurationStoreModel.swift in Sources */,
@@ -1091,9 +1341,14 @@
 				28A0572A240E3AD800AD5353 /* ProgressHUD.swift in Sources */,
 				D2BA0A68240967620074C7A1 /* Protocols.swift in Sources */,
 				D2BA0A8D24096ABC0074C7A1 /* GlobalVariableHelper.swift in Sources */,
+				28D81D3C24162493007834F0 /* LocationModel.swift in Sources */,
 				2865AA2724124E4A00C1F207 /* ValidatorHelper.swift in Sources */,
 				D2BA0A62240966D20074C7A1 /* TableViewDataSource.swift in Sources */,
+				28969F98241B6C4400F30A29 /* UIView+Draggable.swift in Sources */,
 				D2BA0A8324096A870074C7A1 /* CommonService.swift in Sources */,
+				289204D72419691E00AD3F49 /* TextGenerateVC.swift in Sources */,
+				2893EF252419CE2B004D58C6 /* MessageGenerate+ViewFactory.swift in Sources */,
+				2894D6B9241C8F41009E1659 /* OpalImagePickerCollectionViewLayout.swift in Sources */,
 				D2BA0AEF240A7B320074C7A1 /* TransferMultipleViewModel.swift in Sources */,
 				D2BA0A6A2409691F0074C7A1 /* ICButton.swift in Sources */,
 				D2BA0A7524096A1F0074C7A1 /* UIColor+HexToRGB.swift in Sources */,
@@ -1102,24 +1357,36 @@
 				D2BA0A70240969DC0074C7A1 /* ICButtonCustom.swift in Sources */,
 				D2BA0A60240966710074C7A1 /* SwiftEventBusHelper.swift in Sources */,
 				D2BA0A9124096ABC0074C7A1 /* KeychainSwiftHelper.swift in Sources */,
+				2893EF282419DBCD004D58C6 /* LocationGenerateVC.swift in Sources */,
 				D2BA0ADD240A69830074C7A1 /* SwipeMenuViewController.swift in Sources */,
 				D2BA0ABA240A61540074C7A1 /* ResponseErrorModel.swift in Sources */,
+				288591DF241A49E50081DB79 /* WifiGenerate+ViewFactory.swift in Sources */,
 				D2BA0AB5240A60DE0074C7A1 /* EndPoint.swift in Sources */,
+				2893EF33241A28D5004D58C6 /* DateTimePicker.swift in Sources */,
+				2894D6C1241C9097009E1659 /* TimeInterval+String.swift in Sources */,
+				289204B02418F4B100AD3F49 /* EmailGenerateVC+Factory.swift in Sources */,
 				2865AA2C2412A0BD00C1F207 /* ResultGenerateVC+ViewFactory.swift in Sources */,
 				28A05739240E968B00AD5353 /* AppDelegate+Config.swift in Sources */,
+				2892048B2418C6BF00AD3F49 /* UIViewController+StatusBar.swift in Sources */,
 				D2BA0AC4240A62110074C7A1 /* SignInResponseModel.swift in Sources */,
 				D2BA0A9324096ABC0074C7A1 /* LanguageHelper.swift in Sources */,
+				2894D6BD241C9012009E1659 /* UIView+Helper.swift in Sources */,
 				D2BA0ADE240A69830074C7A1 /* TabItemView.swift in Sources */,
 				D2BA0A662409671F0074C7A1 /* CollectionViewDataSource.swift in Sources */,
 				28BFA8E3240D0991002ECD93 /* HeaderView.swift in Sources */,
 				D2BA0AF9240AA5F10074C7A1 /* HistoryVC+ViewFactory.swift in Sources */,
+				2894D6BF241C9042009E1659 /* UIViewController+OpalImagePicker.swift in Sources */,
 				D2BA0AF7240A9D730074C7A1 /* ScannerVC+ViewFactory.swift in Sources */,
+				2894D6B5241C8EDE009E1659 /* OpalImagePickerRootViewController.swift in Sources */,
 				D2B20ED92400D13C00B5B1A6 /* TestViewController.swift in Sources */,
 				D2BA0A7624096A1F0074C7A1 /* UIDevice+Extension.swift in Sources */,
+				28D81D36241622D0007834F0 /* PhoneModel.swift in Sources */,
 				289B4B9E24133576005BC714 /* UrlVC+Factory.swift in Sources */,
 				28BFA8DA240CDC82002ECD93 /* TableViewCell.swift in Sources */,
 				28DD50362411619C0080A059 /* TextField.swift in Sources */,
 				D2BA0ACA240A68E90074C7A1 /* ShareSingleton.swift in Sources */,
+				288591D5241A49890081DB79 /* PhoneGenerate+ViewFactory.swift in Sources */,
+				288591CE241A491B0081DB79 /* ContactGenerateVC.swift in Sources */,
 				28BFA8EE240D48EE002ECD93 /* ScannersViewModelList.swift in Sources */,
 				D2BA0AF5240A9BE70074C7A1 /* ScannerVC.swift in Sources */,
 				289B4BA624141CD2005BC714 /* ViewRectangleArea.swift in Sources */,
@@ -1128,12 +1395,16 @@
 				D2BA0AC0240A61D70074C7A1 /* UserRequestModel.swift in Sources */,
 				28BFA8F2240D4FCA002ECD93 /* ScannerEntityModel.swift in Sources */,
 				2865AA302412BD1F00C1F207 /* UITextField+fixCaretPosition.swift in Sources */,
+				28969FC2241BF3A700F30A29 /* ICCheckBox.swift in Sources */,
 				289B4BA224140B0E005BC714 /* RadioButton.swift in Sources */,
 				D2BA0AB3240A60DE0074C7A1 /* Result.swift in Sources */,
 				D2BA0AF3240A9BCE0074C7A1 /* SaveVC+ViewFactory.swift in Sources */,
+				288591D3241A49790081DB79 /* PhoneGenerateVC.swift in Sources */,
+				288591E4241A4A190081DB79 /* UrlGenerateVC+ViewFactory.swift in Sources */,
 				D2BA0ADB240A69830074C7A1 /* SwipeMenuView.swift in Sources */,
 				D2BA0AB6240A60DE0074C7A1 /* APIClient.swift in Sources */,
 				28A0572E240E413A00AD5353 /* ICStepper.swift in Sources */,
+				28D81D342416229C007834F0 /* TextModel.swift in Sources */,
 				D2BA0A6C240969440074C7A1 /* Constant.swift in Sources */,
 				289767542414D4D500AD0D78 /* ScannerViewModel.swift in Sources */,
 				D2BA0AED240A74D70074C7A1 /* Main+ViewFactory.swift in Sources */,
@@ -1141,34 +1412,51 @@
 				D2BA0A8F24096ABC0074C7A1 /* JSONHelper.swift in Sources */,
 				D2BA0A9E2409ED300074C7A1 /* String+ConfigKey.swift in Sources */,
 				28BFA8EA240D40B2002ECD93 /* TableViewCellViewModel.swift in Sources */,
+				28D81D3E2416267E007834F0 /* EventModel.swift in Sources */,
 				2892D4F7240F7A8100E84F4A /* TableViewCell+History+ViewFatory.swift in Sources */,
 				28BFA8E5240D0A96002ECD93 /* ICLabel.swift in Sources */,
 				D2BA0A7F24096A5E0074C7A1 /* ICCloseWhiteButton.swift in Sources */,
 				289767562414D85100AD0D78 /* GrantPermission.swift in Sources */,
 				2865AA2E2412BB5B00C1F207 /* ICTextFieldNoneIcon.swift in Sources */,
+				2893EF2A2419DC72004D58C6 /* LocationGenerate+ViewFactory.swift in Sources */,
+				28969FBC241B8CC300F30A29 /* TableViewCell+Save+ViewFatory.swift in Sources */,
 				28BFA8E7240D0AF1002ECD93 /* HeaderView+ViewFactory.swift in Sources */,
 				D27F115E23FF9487001D175F /* ContentView.swift in Sources */,
+				2894D6C4241C9108009E1659 /* GalleryManager.swift in Sources */,
 				D2BA0A7C24096A5E0074C7A1 /* ICBackGrayButton.swift in Sources */,
 				D2BA0AE9240A74540074C7A1 /* SettingsVC.swift in Sources */,
 				289B4B9C24133560005BC714 /* UrlVC.swift in Sources */,
+				28D81D442416308A007834F0 /* String+ToObject.swift in Sources */,
+				288591D0241A49330081DB79 /* ContactGenerate+ViewFactory.swift in Sources */,
 				D2BA0AEB240A745E0074C7A1 /* SaveVC.swift in Sources */,
+				28D81D3224162265007834F0 /* UrlViewModel.swift in Sources */,
+				288591DD241A49D60081DB79 /* WifiGenerateVC.swift in Sources */,
 				D2BA0A9824096E130074C7A1 /* SQLHelper.swift in Sources */,
 				2811A1172411089D0003AB9A /* TypeCodeViewModel.swift in Sources */,
 				D2BA0AB4240A60DE0074C7A1 /* UserService.swift in Sources */,
+				28D81D4224162AC7007834F0 /* GenerateModel.swift in Sources */,
 				28BFA8EC240D4384002ECD93 /* Bindable.swift in Sources */,
 				28BFA8D8240CDC82002ECD93 /* TableViewCell+ViewFactory.swift in Sources */,
 				D2BA0A7D24096A5E0074C7A1 /* ICBackBlueButton.swift in Sources */,
+				2893EF31241A19B2004D58C6 /* StackView.swift in Sources */,
 				D2BA0AFD240ABD260074C7A1 /* TypeCodeVC+ViewFactory.swift in Sources */,
+				289204D924196B1600AD3F49 /* TextGenerate+Factory.swift in Sources */,
 				D2BA0A7E24096A5E0074C7A1 /* ICCloseBlackButton.swift in Sources */,
+				2893EF2D241A117A004D58C6 /* EventGenerateVC.swift in Sources */,
 				2865AA2A24128DF000C1F207 /* ResultGenerateVC.swift in Sources */,
+				28D81D3A241623C2007834F0 /* ContactModel.swift in Sources */,
 				D2BA0A5C2408DEFC0074C7A1 /* Date+timeAgoDisplay.swift in Sources */,
 				28DD503224115E640080A059 /* GenerateVC.swift in Sources */,
 				D2BA0AC8240A62900074C7A1 /* SignUpResponseModel.swift in Sources */,
 				28DD50302411570B0080A059 /* GenerateVC+ViewFactory.swift in Sources */,
 				28BFA8F0240D4A04002ECD93 /* AlertHelper.swift in Sources */,
 				283A22772410E573006308F4 /* TypeCodeOption.swift in Sources */,
+				28D81D4024162727007834F0 /* WifiModel.swift in Sources */,
+				288591E2241A4A0A0081DB79 /* UrlGenerateVC.swift in Sources */,
 				D2BA0AC6240A62270074C7A1 /* SignUpRequestModel.swift in Sources */,
+				2894D6C6241C9280009E1659 /* UIImage+CGImage.swift in Sources */,
 				283A22732410D3FA006308F4 /* TypeCodeViewModelList.swift in Sources */,
+				28D81D3824162368007834F0 /* MessageModel.swift in Sources */,
 				28BFA8F4240D5119002ECD93 /* TimeHelper.swift in Sources */,
 				D2BA0AD9240A69830074C7A1 /* ContentScrollView.swift in Sources */,
 			);

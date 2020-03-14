@@ -8,13 +8,25 @@
 
 import UIKit
 class MainVC : SwipeMenuViewController {
+    var imgLogoSave : UIImageView = {
+        let imgSave = UIImageView()
+        imgSave.image = UIImage(named: "ic_read")
+        imgSave.translatesAutoresizingMaskIntoConstraints = false
+        return imgSave
+    }()
+    var imgLogoScan : UIImageView = {
+        let imgScan = UIImageView()
+        imgScan.image = UIImage(named: "ic_email")
+        imgScan.translatesAutoresizingMaskIntoConstraints = false
+        return imgScan
+    }()
     var options = SwipeMenuViewOptions()
     var mSave : SaveVC?
     var mHistory : HistoryVC?
     var mGenerate : TypeCodeVC?
     var mScanner : ScannerVC?
     var mSettings : SettingsVC?
-    var dataCount: Int = 5
+    var dataCount: Int = 4
     
     override func viewDidLoad() {
         initUI()

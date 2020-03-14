@@ -14,7 +14,7 @@ class HeaderView : UITableViewHeaderFooterView{
     
     let backGroundView : UIView = {
         let view = UIView()
-        view.backgroundColor = .clear
+        view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -22,6 +22,7 @@ class HeaderView : UITableViewHeaderFooterView{
     let lbGroupName : ICLabel = {
         let label = ICLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = AppColors.PRIMARY_COLOR
         return label
     }()
     
@@ -35,13 +36,16 @@ class HeaderView : UITableViewHeaderFooterView{
         else if reuseIdentifier == EnumIdentifier.QRCodeHistory.rawValue{
               identifier = EnumIdentifier.QRCodeHistory
         }
+        else if reuseIdentifier == EnumIdentifier.Save.rawValue{
+              identifier = EnumIdentifier.Save
+        }
         setupView()
     }
     
     // config view with Confirm
    func configView(view : QRCodeViewModelDeletegate){
         self.lbGroupName.text = view.typeCodeView
-        self.lbGroupName.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoBold, size: AppFonts.TEXTFIELD_TITLE_FONT_SIZE)
+        self.lbGroupName.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoBold, size: AppFonts.LABEL_FONT_SIZE)
     }
     /*
     func configView(view : TransactionsLogsViewModelDeletegate){

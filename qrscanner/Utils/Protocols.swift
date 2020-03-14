@@ -33,7 +33,7 @@ protocol TbViewCellViewModelDelegate  {
 }
 protocol ScannersViewModelListDeletegate  : BaseViewModel{
     var navigate: (() -> ())?  { get }
-    var listHistories : [QRCodeViewModel] {get}
+    var listHistories : [ListQRCodeViewModel] {get}
     var responseToView : ((String) ->())? {get set}
     var isSelected : Bindable<Bool> {get}
 }
@@ -42,10 +42,11 @@ protocol QRCodeViewModelDeletegate {
     var typeCodeView : String {get}
     var createdDateTimeView : String {get}
     var updatedDateTimeView : String{get}
-    var isHistoryView : Int{get}
-    var isSaveView : Int {get}
+    var isHistoryView : Bool{get}
+    var isSaveView : Bool {get}
+     var bookMark : Bool {get}
     var contentView : String {get}
-    
+    var checkShowView : Bool {get}
 }
 protocol TypeCodeViewModelDelegate {
     var nameView : String {get}
@@ -87,4 +88,8 @@ protocol TableViewCellDelegate {
     func cellViewSelected(cell: TableViewCell,countSelected : Int)
     func cellViewSelected(cell: Codable)
     func cellCodable(codable : Codable)
+}
+protocol DateTimePickerDelegate {
+  func cancelPicker()
+  func donePicker()
 }

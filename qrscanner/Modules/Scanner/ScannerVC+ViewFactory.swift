@@ -34,7 +34,7 @@ extension ScannerVC {
             lbScannerRectangle.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30),
             lbScannerRectangle.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30),
             
-            lbScannerRectangle.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 2/3)
+            lbScannerRectangle.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/2)
         ])
     }
     func applyOrientation() {
@@ -198,10 +198,10 @@ extension ScannerVC {
             self?.presentSingleButtonDialog(alert: alert)
         }
         
-        self.viewModel.responseToView = {[weak self] value in
+       /* self.viewModel.responseToView = {[weak self] value in
            
         }
-        
+        */
         
         
         self.viewModel.resultScan.bind { value in
@@ -218,6 +218,71 @@ extension ScannerVC {
             }
         }
     }
+    func setupNavItems() {
+            
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            //navigationItem.title = LanguageKey.Scanner
+            let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+            navigationController?.navigationBar.titleTextAttributes = textAttributes
+            navigationController?.navigationBar.isTranslucent = true
+    //        navigationController?.navigationBar.prefersLargeTitles = DeviceHelper.isIpad() ? false : true
+    //        navigationItem.largeTitleDisplayMode = DeviceHelper.isIpad() ? .never : .automatic
+            
+            navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
+            self.navigationController?.navigationBar.tintColor = .white
+            self.extendedLayoutIncludesOpaqueBars = true
+        let cameraItem = UIBarButtonItem(image: UIImage(named: "ic_flip_camera"), style: .plain, target: self, action: #selector(chooseCameraItem))
+             let flashItem = UIBarButtonItem(image: UIImage(named: "ic_flash_off"), style: .plain, target: self, action: #selector(chooseFlashItem))
+             navigationItem.leftBarButtonItems = [cameraItem, flashItem]
+        
+        let helpItem = UIBarButtonItem(image: UIImage(named: "ic_help"), style: .plain, target: self, action: #selector(chooseHelpItem))
+        let imageItem = UIBarButtonItem(image: UIImage(named: "ic_image"), style: .plain, target: self, action: #selector(chooseImageItem))
+        navigationItem.rightBarButtonItems = [imageItem,helpItem]
+        }
+    @objc func chooseCameraItem(){
+       var defaultVideoDevice: AVCaptureDevice?
+
+       // Choose the back dual camera if available, otherwise default to a wide angle camera.
+       if let dualCameraDevice = AVCaptureDevice.default(.builtInDualCamera, for: AVMediaType.video, position: .back) {
+           defaultVideoDevice = dualCameraDevice
+       }
+
+       else if let backCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .back) {
+           defaultVideoDevice = backCameraDevice
+       }
+
+       else if let frontCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .front) {
+           defaultVideoDevice = frontCameraDevice
+       }
+        do {
+            let videoDeviceInput = try AVCaptureDeviceInput(device: defaultVideoDevice!)}
+        catch{
+            print(error)
+        }
+        
+    }
+    @objc func chooseFlashItem(){
+        GalleryHelper.flashlight()
+
+    }
+    @objc func chooseHelpItem(){
+        
+    }
+    @objc func chooseImageItem(){
+        onTakeGallery()
+    }
+    func onTakeGallery(){
+       let imagePicker = OpalImagePickerController()
+       imagePicker.imagePickerDelegate = self
+       present(imagePicker, animated: true, completion: nil)
+    }
+}
+extension ScannerVC : OpalImagePickerControllerDelegate {
+    func imagePicker(_ picker: OpalImagePickerController, didFinishPickingImages images: [UIImage]) {
+        self.viewModel.doAsync(list: images)
+    }
+    func imagePicker(_ picker: OpalImagePickerController, didFinishPickingAssets assets: [PHAsset]) {
+    }
 }
 // MARK: ZXCaptureDelegate
 extension ScannerVC: ZXCaptureDelegate {
@@ -230,20 +295,19 @@ extension ScannerVC: ZXCaptureDelegate {
         
         capture?.stop()
         isScanning = false
-        print(_result.barcodeFormat)
-        print(_result.resultMetadata)
-         print(_result.resultPoints)
         let text = _result.text ?? "Unknow"
-        let format = barcodeFormatToString(format: _result.barcodeFormat)
+       // let format = barcodeFormatToString(format: _result.barcodeFormat)
 
-        let displayStr = "Scanned !\nFormat: \(format)\nContents: \(text)"
+     //   let displayStr = "Scanned !\nFormat: \(format)\nContents: \(text)"
 //        print(displayStr)
 //        resultLabel?.text = displayStr
-        print(format)
-        viewModel.scannerResult(mValue: "\(result!)")
+        print(result!)
+
         let alert = UIAlertController(title: "Result", message: text, preferredStyle: .alert)
                    alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
                    self.present(alert,animated: true,completion: nil)
+        viewModel.scannerResult(mValue: "\(result!)")
+
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in

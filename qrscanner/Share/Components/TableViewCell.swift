@@ -28,8 +28,16 @@ class TableViewCell : UITableViewCell{
     lazy var imgIcon : UIImageView = {
              let view = UIImageView()
              view.translatesAutoresizingMaskIntoConstraints = false
+        view.tintColor = AppColors.COLOR_ACCENT
              return view
       }()
+    lazy var imgPlusIcon : UIImageView = {
+           let view = UIImageView()
+           view.translatesAutoresizingMaskIntoConstraints = false
+      view.tintColor = AppColors.COLOR_ACCENT
+        view.image = UIImage(named: "ic_generate")
+           return view
+    }()
   lazy var lbTitle : ICLabel = {
            let view = ICLabel()
            view.translatesAutoresizingMaskIntoConstraints = false
@@ -65,16 +73,25 @@ class TableViewCell : UITableViewCell{
             view.translatesAutoresizingMaskIntoConstraints = false
             return view
       }()
-    
+    lazy var checkBox : ICCheckBox = {
+        let view = ICCheckBox()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     lazy var stackView : UIStackView = {
         let view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    lazy var stackViewVertical : UIStackView = {
+           let view = UIStackView()
+           view.translatesAutoresizingMaskIntoConstraints = false
+           return view
+       }()
     //config with history
     func configView(view : QRCodeViewModelDeletegate){
         self.lbTypeCode.text = "\(view.typeCodeView)"
-        self.lbCreatedDate.text = view.createdDateTimeView
+        self.lbCreatedDate.text = String(view.createdDateTimeView)
         self.lbContent.text = view.contentView
         self.lbContent.textColor = AppColors.GRAY
         
@@ -100,7 +117,9 @@ class TableViewCell : UITableViewCell{
         else if reuseIdentifier == EnumIdentifier.Generate.rawValue {
             identifier = EnumIdentifier.Generate
         }
-        
+        else if reuseIdentifier == EnumIdentifier.Save.rawValue {
+                  identifier = EnumIdentifier.Save
+              }
         setupView()
     }
     
@@ -113,7 +132,9 @@ class TableViewCell : UITableViewCell{
         if let data = codable {
             self.delegate?.cellViewSelected(cell: data)
         }
-        
+        if identifier == EnumIdentifier.QRCodeHistory {
+            self.checkBox.isChecked = !self.checkBox.isChecked
+        }
     
     }
     

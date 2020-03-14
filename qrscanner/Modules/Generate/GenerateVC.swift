@@ -9,21 +9,7 @@
 import UIKit
 
 class GenerateVC: BaseViewController {
-    /*Message*/
-    lazy var toTxt: ICTextFieldNoneIcon = {
-        let view = ICTextFieldNoneIcon()
-        view.placeholder = "To"
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.alpha = AppConstants.ALPHA_DISBALE
-        return view
-    }()
-    lazy var messageTxt: ICTextFieldNoneIcon = {
-        let view = ICTextFieldNoneIcon()
-        view.placeholder = "Message"
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.alpha = AppConstants.ALPHA_DISBALE
-        return view
-    }()
+    
     /*Url*/
     lazy var urlTxt: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
@@ -33,27 +19,12 @@ class GenerateVC: BaseViewController {
         return view
     }()
     /*Email*/
-    lazy var emailTxt: ICTextFieldNoneIcon = {
-        let view = ICTextFieldNoneIcon()
-        view.placeholder = "Email address"
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.alpha = AppConstants.ALPHA_DISBALE
-        return view
-    }()
-    lazy var objectEmailTxt: ICTextFieldNoneIcon = {
-        let view = ICTextFieldNoneIcon()
-        view.placeholder = "Object"
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.alpha = AppConstants.ALPHA_DISBALE
-        return view
-    }()
-    lazy var messageEmailTxt: ICTextFieldNoneIcon = {
-        let view = ICTextFieldNoneIcon()
-        view.placeholder = "Message"
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.alpha = AppConstants.ALPHA_DISBALE
-        return view
-    }()
+    lazy var imageEmail: UIImage = {
+           let view = UIImage()
+        
+           return view
+       }()
+    
     
     /*Contact*/
     lazy var fullNameContactTxt: ICTextFieldNoneIcon = {
@@ -238,16 +209,14 @@ class GenerateVC: BaseViewController {
         else if typeCode == LanguageKey.Location{
         }
         else if typeCode == LanguageKey.Email{
-            self.viewModel?.email = emailTxt.text
-            self.viewModel?.objectEmail = objectEmailTxt.text
-            self.viewModel?.messageEmail = messageEmailTxt.text
+            
             
         }
         else if typeCode == LanguageKey.Event{
         }
         else if typeCode == LanguageKey.Message{
-            self.viewModel?.to = toTxt.text
-            self.viewModel?.message = messageTxt.text
+        //    self.viewModel?.to = toTxt.text
+          //  self.viewModel?.message = messageTxt.text
             
         }
         else if typeCode == LanguageKey.Wifi{
@@ -292,31 +261,13 @@ class GenerateVC: BaseViewController {
             
         }
         else if typeCode == LanguageKey.Email{
-            if textField == emailTxt {
-                viewModel?.text = textField.text ?? ""
-                viewModel?.validateUrl()
-            }
-            if textField == objectEmailTxt {
-                viewModel?.text = textField.text ?? ""
-                viewModel?.validateUrl()
-            }
-            if textField == messageEmailTxt {
-                viewModel?.text = textField.text ?? ""
-                viewModel?.validateUrl()
-            }
+           
         }
         else if typeCode == LanguageKey.Event{
             
         }
         else if typeCode == LanguageKey.Message{
-            if textField == toTxt {
-                viewModel?.to = textField.text ?? ""
-                viewModel?.validateTo()
-            }
-            if textField == messageTxt {
-                viewModel?.message = textField.text ?? ""
-                viewModel?.validateMessage()
-            }
+          
         }
         else if typeCode == LanguageKey.Wifi{
             

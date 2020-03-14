@@ -16,6 +16,8 @@ extension TableViewCell {
             break
         case .Generate:
             setupGenerateSubView()
+            case .Save:
+            setupSaveSubView()
         default :
             break
         }

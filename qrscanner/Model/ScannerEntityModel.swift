@@ -36,21 +36,20 @@ struct ScannerEntityModel : Codable{
     var networkEncryption : String?
     var phoneNumber : String?
     var updatedDateTime : String?
-    /*Type URL*/
-       init(data : QRCodeViewModel) {
+    /*Type URL
+       init(data : ListQRCodeViewModel) {
          let time = TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSaveContact)
         self.createdDateTime = data.createdDateTime
          self.typeCode = data.typeCode 
          self.url = data.content
         self.updatedDateTime = data.updatedDateTime
-     }
-    init(createdDateTime : String, typeCode : String, content : String, isHistory : Int, isSave : Int, updateDateTime: String) {
-        self.createdDateTime = createdDateTime
-         self.typeCode = typeCode
-         self.content = content
-        self.isHistory = isHistory
-        self.isSave = isSave
-        self.updatedDateTime = updateDateTime
+     }*/
+    init(url : UrlModel) {
+        self.url = url.url
+
+    }
+    init() {
+        
     }
 
 }
