@@ -35,6 +35,15 @@ class WifiGenerateVC: BaseViewController {
                 view.translatesAutoresizingMaskIntoConstraints = false
                 return view
          }()
+    var networkBg: UIView = {
+             let view = UIView()
+             view.backgroundColor = AppColors.GRAY_LIGHT_90
+            view.layer.borderColor = UIColor.white.cgColor
+               view.layer.borderWidth = 1
+               view.layer.cornerRadius = 10
+                  view.translatesAutoresizingMaskIntoConstraints = false
+                  return view
+           }()
     var protectBg: UIView = {
            let view = UIView()
            view.backgroundColor = AppColors.GRAY_LIGHT_90
@@ -56,8 +65,18 @@ class WifiGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
-   
+    lazy var networkLbL : UILabel = {
+           let view = UILabel()
+           view.text = "Network Encryption"
+           view.translatesAutoresizingMaskIntoConstraints = false
+           return view
+       }()
+   lazy var hiddenLbL : UILabel = {
+             let view = UILabel()
+             view.text = "Hidden"
+             view.translatesAutoresizingMaskIntoConstraints = false
+             return view
+         }()
     lazy var ssidTxt: ICTextFieldNoneIcon = {
         let ssidTxt = ICTextFieldNoneIcon()
         ssidTxt.translatesAutoresizingMaskIntoConstraints = false
@@ -71,7 +90,18 @@ class WifiGenerateVC: BaseViewController {
         view.alpha = AppConstants.ALPHA_DISBALE
         return view
     }()
-   
+   lazy var networkTxt: ICTextFieldNoneIcon = {
+        let view = ICTextFieldNoneIcon()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.alpha = AppConstants.ALPHA_DISBALE
+        return view
+    }()
+    lazy var hidenTxt: ICTextFieldNoneIcon = {
+           let view = ICTextFieldNoneIcon()
+           view.translatesAutoresizingMaskIntoConstraints = false
+           view.alpha = AppConstants.ALPHA_DISBALE
+           return view
+       }()
     lazy var WPAContainerView : UIView = {
         let smsContainerView = UIView()
         smsContainerView.translatesAutoresizingMaskIntoConstraints = false
@@ -133,6 +163,52 @@ class WifiGenerateVC: BaseViewController {
         radioEmail.addTarget(self, action: #selector(actionRadioNone(sender:)), for: .touchUpInside)
         return radioEmail
     }()
+    
+    var wifiView: UIView = {
+                     let view = UIView()
+                 view.backgroundColor = AppColors.GRAY_LIGHT_90
+                    view.layer.borderColor = UIColor.white.cgColor
+                       view.layer.borderWidth = 1
+                       view.layer.cornerRadius = 10
+                          view.translatesAutoresizingMaskIntoConstraints = false
+                          return view
+                   }()
+       var clipboardView: UIView = {
+           let view = UIView()
+       view.backgroundColor = AppColors.GRAY_LIGHT_90
+          view.layer.borderColor = UIColor.white.cgColor
+             view.layer.borderWidth = 1
+             view.layer.cornerRadius = 10
+                view.translatesAutoresizingMaskIntoConstraints = false
+                return view
+         }()
+    lazy var wifiImg : UIImageView = {
+          let view = UIImageView()
+          view.translatesAutoresizingMaskIntoConstraints = false
+          view.tintColor = AppColors.COLOR_ACCENT
+          view.image = UIImage(named: "ic_wifi")
+          return view
+      }()
+    
+      lazy var wifiLabel : UILabel = {
+                  let view = UILabel()
+                  view.text = "Wifi"
+                  view.translatesAutoresizingMaskIntoConstraints = false
+                  return view
+              }()
+    lazy var clipboardImage : UIImageView = {
+           let view = UIImageView()
+           view.translatesAutoresizingMaskIntoConstraints = false
+           view.tintColor = AppColors.COLOR_ACCENT
+           view.image = UIImage(named: "ic_copy")
+           return view
+       }()
+       lazy var clipboardLabel : UILabel = {
+             let view = UILabel()
+             view.translatesAutoresizingMaskIntoConstraints = false
+             view.text = "Clipboard"
+             return view
+         }()
     @objc func actionRadioNone (sender: RadioButton) {
         radioNone.isSelected = true
         radioWEP.isSelected = false
@@ -155,31 +231,44 @@ class WifiGenerateVC: BaseViewController {
     }
     
     
-    
+    var isSeen : Int = 0
     var typeCode : String = ""
        var viewModel : GenerateViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
         typeCode = typeCode.uppercased()
         viewModel = GenerateViewModel()
-        self.initUI()
+        //checkIsSeenDetail()
      //   self.setupDelegate()
+         detailUI()
         setupStatusBar()
         self.bindViewModel()
                radioWPA.isSelected = true
         viewModel?.protect = "WPA"
         self.addLeftBackButton()
         
+        
     }
-    
+    func checkIsSeenDetail(){
+        if isSeen == AppConstants.ISSEEN {
+           detailUI()
+        }
+        else{
+            initUI()
+        }
+    }
     override func viewWillAppear(_ animated: Bool) {
            super.viewWillAppear(animated)
            keyboardHelper?.registerKeyboardNotification()
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+
        }
        
        override func viewWillDisappear(_ animated: Bool) {
            super.viewWillDisappear(animated)
            keyboardHelper?.deregisterKeyboardNotification()
+        self.navigationController?.isNavigationBarHidden = true
+
        }
   func defineValue(){
     self.viewModel?.typeCode = LanguageKey.Wifi

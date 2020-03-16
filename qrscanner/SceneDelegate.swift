@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Create the SwiftUI view that provides the window contents.
         //        let contentView = TestViewController()
-     /*   let rootVC = UINavigationController(rootViewController: MainVC())
+       let rootVC = UINavigationController(rootViewController: MainVC())
          rootVC.isNavigationBarHidden = true
          // Use a UIHostingController as window root view controller.
          if let windowScene = scene as? UIWindowScene {
@@ -29,9 +29,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
          //            window.rootViewController = UIHostingController(rootView: contentView)
          window.rootViewController = rootVC
          self.window = window
-         window.makeKeyAndVisible()*/
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        let window = UIWindow(windowScene: windowScene)
+         window.makeKeyAndVisible()
+     //   guard let windowScene = (scene as? UIWindowScene) else { return }
+       // let window = UIWindow(windowScene: windowScene)
         /*
          let mHistory = HistoryVC()
           let  mScanner = ScannerVC()
@@ -59,7 +59,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
         */
-        
+        /*
       //Home
             let historyVC = HistoryVC()
             let historyNavi = UINavigationController(rootViewController: historyVC)
@@ -86,7 +86,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        tabbarController.tabBar.tintColor = AppColors.COLOR_ACCENT_DARK
 //        tabbarController.tabBar.backgroundColor = AppColors.PRIMARY_COLOR
         tabbarController.selectedIndex = 2
-        window.rootViewController = tabbarController
+        window.rootViewController = tabbarController*/
+        }
 }
    
 func sceneDidDisconnect(_ scene: UIScene) {

@@ -56,7 +56,6 @@ extension TextGenerateVC {
         func setupNavItems() {
             
             self.view.backgroundColor = .white
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
             navigationItem.title = LanguageKey.Text
             let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
             navigationController?.navigationBar.titleTextAttributes = textAttributes

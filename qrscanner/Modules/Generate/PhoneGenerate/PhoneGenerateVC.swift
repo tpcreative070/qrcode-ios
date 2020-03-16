@@ -58,11 +58,16 @@ class PhoneGenerateVC: BaseViewController {
        override func viewWillAppear(_ animated: Bool) {
               super.viewWillAppear(animated)
               keyboardHelper?.registerKeyboardNotification()
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+
           }
           
           override func viewWillDisappear(_ animated: Bool) {
               super.viewWillDisappear(animated)
               keyboardHelper?.deregisterKeyboardNotification()
+            self.navigationController?.isNavigationBarHidden = true
+
+            
           }
      func defineValue(){
         self.viewModel?.typeCode = LanguageKey.Telephone

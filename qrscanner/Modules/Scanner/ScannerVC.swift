@@ -43,7 +43,7 @@ class ScannerVC: BaseViewController {
         print("view did load")
         iniUI()
         setup()
-        setupNavItems()
+       // setupNavItems()
         // view.backgroundColor = .red
     }
     
@@ -75,6 +75,7 @@ class ScannerVC: BaseViewController {
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.bgView.layer.borderColor = AppColors.BLUE.cgColor
+        setup()
     }
     override func actionAlertYes() {
         viewModel.openAppSetting()

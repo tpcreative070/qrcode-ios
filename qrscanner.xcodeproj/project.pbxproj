@@ -52,6 +52,8 @@
 		2894D6C1241C9097009E1659 /* TimeInterval+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894D6C0241C9097009E1659 /* TimeInterval+String.swift */; };
 		2894D6C4241C9108009E1659 /* GalleryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894D6C3241C9108009E1659 /* GalleryManager.swift */; };
 		2894D6C6241C9280009E1659 /* UIImage+CGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894D6C5241C9280009E1659 /* UIImage+CGImage.swift */; };
+		28961309241F1BBF00C19D6C /* EmailGenerate+Detail+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28961308241F1BBF00C19D6C /* EmailGenerate+Detail+ViewFactory.swift */; };
+		2896132B241F925000C19D6C /* WifiGenerate+Detail+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2896132A241F925000C19D6C /* WifiGenerate+Detail+ViewFactory.swift */; };
 		28969BAE24173DC000070BDC /* qrscanner.db in Resources */ = {isa = PBXBuildFile; fileRef = 28969BAD24173DC000070BDC /* qrscanner.db */; };
 		28969BB02417878400070BDC /* AppDelegate+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28969BAF2417878400070BDC /* AppDelegate+UI.swift */; };
 		28969F98241B6C4400F30A29 /* UIView+Draggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28969F97241B6C4400F30A29 /* UIView+Draggable.swift */; };
@@ -76,7 +78,6 @@
 		28A05735240E499400AD5353 /* SFProText-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 28A05731240E499300AD5353 /* SFProText-Regular.otf */; };
 		28A05736240E499400AD5353 /* SFProText-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 28A05732240E499400AD5353 /* SFProText-Semibold.otf */; };
 		28A05739240E968B00AD5353 /* AppDelegate+Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A05738240E968B00AD5353 /* AppDelegate+Config.swift */; };
-		28AC7432241A66D1002EC698 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AC7431241A66D1002EC698 /* CustomTabBarController.swift */; };
 		28BFA8D8240CDC82002ECD93 /* TableViewCell+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BFA8D4240CDC81002ECD93 /* TableViewCell+ViewFactory.swift */; };
 		28BFA8DA240CDC82002ECD93 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BFA8D6240CDC82002ECD93 /* TableViewCell.swift */; };
 		28BFA8E1240CF938002ECD93 /* TableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BFA8E0240CF938002ECD93 /* TableSection.swift */; };
@@ -258,6 +259,8 @@
 		2894D6C0241C9097009E1659 /* TimeInterval+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+String.swift"; sourceTree = "<group>"; };
 		2894D6C3241C9108009E1659 /* GalleryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryManager.swift; sourceTree = "<group>"; };
 		2894D6C5241C9280009E1659 /* UIImage+CGImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+CGImage.swift"; sourceTree = "<group>"; };
+		28961308241F1BBF00C19D6C /* EmailGenerate+Detail+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmailGenerate+Detail+ViewFactory.swift"; sourceTree = "<group>"; };
+		2896132A241F925000C19D6C /* WifiGenerate+Detail+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WifiGenerate+Detail+ViewFactory.swift"; sourceTree = "<group>"; };
 		28969BAD24173DC000070BDC /* qrscanner.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = qrscanner.db; sourceTree = "<group>"; };
 		28969BAF2417878400070BDC /* AppDelegate+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+UI.swift"; sourceTree = "<group>"; };
 		28969F97241B6C4400F30A29 /* UIView+Draggable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Draggable.swift"; sourceTree = "<group>"; };
@@ -282,7 +285,6 @@
 		28A05731240E499300AD5353 /* SFProText-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Regular.otf"; sourceTree = "<group>"; };
 		28A05732240E499400AD5353 /* SFProText-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Semibold.otf"; sourceTree = "<group>"; };
 		28A05738240E968B00AD5353 /* AppDelegate+Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Config.swift"; sourceTree = "<group>"; };
-		28AC7431241A66D1002EC698 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		28BFA8D4240CDC81002ECD93 /* TableViewCell+ViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewCell+ViewFactory.swift"; sourceTree = "<group>"; };
 		28BFA8D6240CDC82002ECD93 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		28BFA8E0240CF938002ECD93 /* TableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSection.swift; sourceTree = "<group>"; };
@@ -471,6 +473,7 @@
 			children = (
 				288591DC241A49D60081DB79 /* WifiGenerateVC.swift */,
 				288591DE241A49E50081DB79 /* WifiGenerate+ViewFactory.swift */,
+				2896132A241F925000C19D6C /* WifiGenerate+Detail+ViewFactory.swift */,
 			);
 			path = WifiGenerate;
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 			children = (
 				289204AD2418F49600AD3F49 /* EmailGenerateVC.swift */,
 				289204AF2418F4B100AD3F49 /* EmailGenerateVC+Factory.swift */,
+				28961308241F1BBF00C19D6C /* EmailGenerate+Detail+ViewFactory.swift */,
 			);
 			path = EmailGenerateVC;
 			sourceTree = "<group>";
@@ -979,7 +983,6 @@
 			children = (
 				D2BA0AE1240A732A0074C7A1 /* MainVC.swift */,
 				D2BA0AEC240A74D70074C7A1 /* Main+ViewFactory.swift */,
-				28AC7431241A66D1002EC698 /* CustomTabBarController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1306,7 +1309,6 @@
 				283A22752410D8F5006308F4 /* TypeCodeModel.swift in Sources */,
 				D2BA0A6E240969A90074C7A1 /* Helper.swift in Sources */,
 				D27F115C23FF9487001D175F /* SceneDelegate.swift in Sources */,
-				28AC7432241A66D1002EC698 /* CustomTabBarController.swift in Sources */,
 				28D81D46241630D5007834F0 /* String+Data.swift in Sources */,
 				28DD5034241161350080A059 /* ICTextField.swift in Sources */,
 				2894D6B7241C8F1D009E1659 /* ImagePickerCollectionViewCell.swift in Sources */,
@@ -1403,6 +1405,7 @@
 				288591E4241A4A190081DB79 /* UrlGenerateVC+ViewFactory.swift in Sources */,
 				D2BA0ADB240A69830074C7A1 /* SwipeMenuView.swift in Sources */,
 				D2BA0AB6240A60DE0074C7A1 /* APIClient.swift in Sources */,
+				2896132B241F925000C19D6C /* WifiGenerate+Detail+ViewFactory.swift in Sources */,
 				28A0572E240E413A00AD5353 /* ICStepper.swift in Sources */,
 				28D81D342416229C007834F0 /* TextModel.swift in Sources */,
 				D2BA0A6C240969440074C7A1 /* Constant.swift in Sources */,
@@ -1414,6 +1417,7 @@
 				28BFA8EA240D40B2002ECD93 /* TableViewCellViewModel.swift in Sources */,
 				28D81D3E2416267E007834F0 /* EventModel.swift in Sources */,
 				2892D4F7240F7A8100E84F4A /* TableViewCell+History+ViewFatory.swift in Sources */,
+				28961309241F1BBF00C19D6C /* EmailGenerate+Detail+ViewFactory.swift in Sources */,
 				28BFA8E5240D0A96002ECD93 /* ICLabel.swift in Sources */,
 				D2BA0A7F24096A5E0074C7A1 /* ICCloseWhiteButton.swift in Sources */,
 				289767562414D85100AD0D78 /* GrantPermission.swift in Sources */,

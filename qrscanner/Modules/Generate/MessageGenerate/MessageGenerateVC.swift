@@ -86,11 +86,14 @@ class MessageGenerateVC: BaseViewController {
        
        override func viewWillAppear(_ animated: Bool) {
               super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
               keyboardHelper?.registerKeyboardNotification()
           }
           
           override func viewWillDisappear(_ animated: Bool) {
               super.viewWillDisappear(animated)
+            self.navigationController?.isNavigationBarHidden = true
+
               keyboardHelper?.deregisterKeyboardNotification()
           }
      func defineValue(){

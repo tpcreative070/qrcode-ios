@@ -19,7 +19,7 @@ public struct SwipeMenuViewOptions {
 
         public struct ItemView {
             /// ItemView width. Defaults to `100.0`.
-            public var width: CGFloat = 100.0
+            public var width: CGFloat = 100
 
             /// ItemView side margin. Defaults to `5.0`.
             public var margin: CGFloat = 5.0
@@ -31,17 +31,18 @@ public struct SwipeMenuViewOptions {
             public var clipsToBounds: Bool = true
 
             /// ItemView textColor. Defaults to `.lightGray`.
-            public var textColor: UIColor = UIColor(red: 170 / 255, green: 170 / 255, blue: 170 / 255, alpha: 1.0)
+            public var textColor: UIColor = AppColors.WHITE_COLOR
 
             /// ItemView selected textColor. Defaults to `.black`.
-            public var selectedTextColor: UIColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+            public var selectedTextColor: UIColor = AppColors.WHITE_COLOR
         }
 
         public struct AdditionView {
             
             public struct Underline {
                 /// Underline height if addition style select `.underline`. Defaults to `2.0`.
-                public var height: CGFloat = 2.0
+                public var height: CGFloat = 3.0
+              
             }
             
             public struct Circle {
@@ -58,7 +59,7 @@ public struct SwipeMenuViewOptions {
             public var padding: UIEdgeInsets = .zero
             
             /// AdditionView backgroundColor. Defaults to `.black`.
-            public var backgroundColor: UIColor = .black
+            public var backgroundColor: UIColor = AppColors.COLOR_ACCENT
             
             /// AdditionView animating duration. Defaults to `0.3`.
             public var animationDuration: Double = 0.3
@@ -71,19 +72,19 @@ public struct SwipeMenuViewOptions {
         }
 
         /// TabView height. Defaults to `44.0`.
-        public var height: CGFloat = 44.0
+        public var height: CGFloat = 60.0
 
         /// TabView side margin. Defaults to `0.0`.
         public var margin: CGFloat = 0.0
 
         /// TabView background color. Defaults to `.clear`.
-        public var backgroundColor: UIColor = .clear
+        public var backgroundColor: UIColor = AppColors.PRIMARY_COLOR
 
         /// TabView clipsToBounds. Defaults to `true`.
         public var clipsToBounds: Bool = true
 
         /// TabView style. Defaults to `.flexible`. Style type has [`.flexible` , `.segmented`].
-        public var style: Style = .flexible
+        public var style: Style = .segmented
 
         /// TabView addition. Defaults to `.underline`. Addition type has [`.underline`, `.circle`, `.none`].
         public var addition: Addition = .underline
@@ -171,7 +172,7 @@ public protocol SwipeMenuViewDataSource: class {
 
     /// Return strings to be displayed at the tab in `SwipeMenuView`.
     func swipeMenuView(_ swipeMenuView: SwipeMenuView, titleForPageAt index: Int) -> String
-
+   func swipeMenuView(_ swipeMenuView: SwipeMenuView, imageForPageAt index: Int) -> UIImageView
     /// Return a ViewController to be displayed at the page in `SwipeMenuView`.
     func swipeMenuView(_ swipeMenuView: SwipeMenuView, viewControllerForPageAt index: Int) -> UIViewController
 }
@@ -308,7 +309,7 @@ open class SwipeMenuView: UIView {
     }
 
     // MARK: - Setup
-    private func setup(default defaultIndex: Int = 0) {
+    private func setup(default defaultIndex: Int = 2) {
 
         delegate?.swipeMenuView(self, viewWillSetupAt: defaultIndex)
 
@@ -389,6 +390,9 @@ extension SwipeMenuView: TabViewDelegate, TabViewDataSource {
 
     public func tabView(_ tabView: TabView, titleForItemAt index: Int) -> String? {
         return dataSource?.swipeMenuView(self, titleForPageAt: index)
+    }
+    public func tabView(_ tabView: TabView, imageForItemAt index: Int) -> UIImageView? {
+        return dataSource?.swipeMenuView(self, imageForPageAt: index)
     }
 }
 

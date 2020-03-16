@@ -39,6 +39,33 @@ class UrlGenerateVC: BaseViewController {
 
              return view
          }()
+    var searchView: UIView = {
+               let view = UIView()
+           view.backgroundColor = AppColors.GRAY_LIGHT_90
+              view.layer.borderColor = UIColor.white.cgColor
+                 view.layer.borderWidth = 1
+                 view.layer.cornerRadius = 10
+                    view.translatesAutoresizingMaskIntoConstraints = false
+                    return view
+             }()
+    var urlView: UIView = {
+                  let view = UIView()
+              view.backgroundColor = AppColors.GRAY_LIGHT_90
+                 view.layer.borderColor = UIColor.white.cgColor
+                    view.layer.borderWidth = 1
+                    view.layer.cornerRadius = 10
+                       view.translatesAutoresizingMaskIntoConstraints = false
+                       return view
+                }()
+    var clipboardView: UIView = {
+        let view = UIView()
+    view.backgroundColor = AppColors.GRAY_LIGHT_90
+       view.layer.borderColor = UIColor.white.cgColor
+          view.layer.borderWidth = 1
+          view.layer.cornerRadius = 10
+             view.translatesAutoresizingMaskIntoConstraints = false
+             return view
+      }()
     lazy var searchImg : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -56,22 +83,47 @@ class UrlGenerateVC: BaseViewController {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_languages")
+        view.image = UIImage(named: "ic_language")
         return view
     }()
-    lazy var clipboardImg : UIImageView = {
+  
+    lazy var urlLabel : UILabel = {
+                let view = UILabel()
+                view.text = "Url"
+                view.translatesAutoresizingMaskIntoConstraints = false
+                return view
+            }()
+    lazy var clipboardImage : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
         view.image = UIImage(named: "ic_copy")
         return view
     }()
-    lazy var clipboardLbl : UILabel = {
+    lazy var clipboardLabel : UILabel = {
           let view = UILabel()
           view.translatesAutoresizingMaskIntoConstraints = false
           view.text = "Clipboard"
           return view
       }()
+    var stackViewTo : StackView = {
+         let view = StackView()
+         view.backgroundColor = AppColors.GRAY_LIGHT_90
+         view.layer.cornerRadius = 10
+         view.layer.borderWidth = 1
+         view.translatesAutoresizingMaskIntoConstraints = false
+         return view
+     }()
+    lazy var radioChoose : RadioButton = {
+        let radio = RadioButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        radio.innerCircleCircleColor = UIColor.black
+        radio.outerCircleColor = UIColor.gray
+        radio.addTarget(self, action: #selector(actionRadio(sender:)), for: .touchUpInside)
+        return radio
+    }()
+    @objc func actionRadio (sender: RadioButton) {
+           radioChoose.isSelected = true
+       }
     var typeCode : String = ""
     var urlSeen : String = ""
     var isSeen : Int = 0
@@ -82,6 +134,9 @@ class UrlGenerateVC: BaseViewController {
            viewModel = GenerateViewModel()
         //   self.setupDelegate()
          //  setupStatusBar()
+        initUI()
+        setupNavItems()
+
            self.bindViewModel()
            self.addLeftBackButton()
         print("isSeen : \(isSeen)")
@@ -92,39 +147,22 @@ class UrlGenerateVC: BaseViewController {
         if isSeen == AppConstants.ISSEEN {
             urlTxt.text = urlSeen
             urlTxt.isUserInteractionEnabled = false
-             self.view.backgroundColor = .white
-                      self.navigationController?.setNavigationBarHidden(false, animated: true)
-                      navigationItem.title = LanguageKey.Url
-                      let urlAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-                      navigationController?.navigationBar.titleTextAttributes = urlAttributes
-                      navigationController?.navigationBar.isTranslucent = true
-              //        navigationController?.navigationBar.prefersLargeTitles = DeviceHelper.isIpad() ? false : true
-              //        navigationItem.largeTitleDisplayMode = DeviceHelper.isIpad() ? .never : .automatic
-                      
-                      navigationController?.navigationBar.backgroundColor = AppColors.PRIMARY_COLOR
-                      self.navigationController?.navigationBar.tintColor = .white
-              
-                      let menuButtonRight = UIButton(type: .system)
-                      menuButtonRight.setImage(#imageLiteral(resourceName: "ic_help"), for: .normal)
-                    //  menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchUpInside)
-                      navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRight)]
-            self.initUI()
-
-        }
-        else{
-            setupNavItems()
-            self.initUI()
+            
 
         }
     }
        override func viewWillAppear(_ animated: Bool) {
               super.viewWillAppear(animated)
               keyboardHelper?.registerKeyboardNotification()
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+
           }
           
           override func viewWillDisappear(_ animated: Bool) {
               super.viewWillDisappear(animated)
               keyboardHelper?.deregisterKeyboardNotification()
+            self.navigationController?.isNavigationBarHidden = true
+
           }
      func defineValue(){
         self.viewModel?.typeCode = LanguageKey.Url

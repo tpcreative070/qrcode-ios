@@ -7,34 +7,49 @@
 //
 
 import UIKit
+
 class MainVC : SwipeMenuViewController {
-    var imgLogoSave : UIImageView = {
-        let imgSave = UIImageView()
-        imgSave.image = UIImage(named: "ic_read")
-        imgSave.translatesAutoresizingMaskIntoConstraints = false
-        return imgSave
-    }()
-    var imgLogoScan : UIImageView = {
-        let imgScan = UIImageView()
-        imgScan.image = UIImage(named: "ic_email")
-        imgScan.translatesAutoresizingMaskIntoConstraints = false
-        return imgScan
-    }()
+   
     var options = SwipeMenuViewOptions()
     var mSave : SaveVC?
     var mHistory : HistoryVC?
     var mGenerate : TypeCodeVC?
     var mScanner : ScannerVC?
     var mSettings : SettingsVC?
-    var dataCount: Int = 4
+    var dataCount: Int = 5
     
     override func viewDidLoad() {
         initUI()
         addedView()
+        setupStatusBar()
         super.viewDidLoad()
         self.view.backgroundColor = .white
     }
-    
+    func setupStatusBar(){
+           if #available(iOS 13.0, *) {
+                     let app = UIApplication.shared
+                     let statusBarHeight: CGFloat = app.statusBarFrame.size.height
+                     
+                     let statusbarView = UIView()
+                     statusbarView.backgroundColor = AppColors.PRIMARY_COLOR_DARK
+                     view.addSubview(statusbarView)
+                   
+                     statusbarView.translatesAutoresizingMaskIntoConstraints = false
+                     statusbarView.heightAnchor
+                         .constraint(equalToConstant: statusBarHeight).isActive = true
+                     statusbarView.widthAnchor
+                         .constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
+                     statusbarView.topAnchor
+                         .constraint(equalTo: view.topAnchor).isActive = true
+                     statusbarView.centerXAnchor
+                         .constraint(equalTo: view.centerXAnchor).isActive = true
+                   
+                 } else {
+                     let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
+                     statusBar?.backgroundColor = AppColors.PRIMARY_COLOR_DARK
+                 }
+
+       }
     override func viewDidAppear(_ animated: Bool) {
       
     }
@@ -46,6 +61,7 @@ class MainVC : SwipeMenuViewController {
     
     override func swipeMenuView(_ swipeMenuView: SwipeMenuView, viewDidSetupAt currentIndex: Int) {
         super.swipeMenuView(swipeMenuView, viewDidSetupAt: currentIndex)
+        print("currentIndex : \(currentIndex)")
         print("did setup SwipeMenuView")
     }
     
@@ -65,13 +81,17 @@ class MainVC : SwipeMenuViewController {
     }
     
     override func swipeMenuView(_ swipeMenuView: SwipeMenuView, titleForPageAt index: Int) -> String {
-        return children[index].title ?? ""
+        return children[index].navigationItem.title ?? ""
     }
-    
+     override func swipeMenuView(_ swipeMenuView: SwipeMenuView, imageForPageAt index: Int) -> UIImageView {
+          return children[index].navigationItem.titleView as! UIImageView ?? UIImageView.init(image: UIImage(named: "ic_scan"))
+              
+          }
     override func swipeMenuView(_ swipeMenuView: SwipeMenuView, viewControllerForPageAt index: Int) -> UIViewController {
         let vc = children[index]
         vc.didMove(toParent: self)
         return vc
     }
+   
 }
 
