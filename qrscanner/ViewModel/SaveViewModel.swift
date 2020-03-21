@@ -16,10 +16,6 @@ class SaveViewModel  : Codable ,GenerateViewModelDeletegate{
     var contentView: String {
         return ""
     }
-    
-    
-    
-    
     var isHistoryView: Bool
     {
         return isHistory

@@ -432,6 +432,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
      ValidateBeginTime
      */
     func validateBeginTimeEvent(){
+        print(beginTimeEvent)
         if beginTimeEvent == nil {
             errorMessages.value[GenerateViewModelKey.BEGINTIME_EVENT] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorQueryRequired) ?? ""
         }
@@ -446,6 +447,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
      ValidateEndTime
      */
     func validateEndTimeEvent(){
+        print(endTimeEvent)
         if beginTimeEvent == nil {
             errorMessages.value[GenerateViewModelKey.ENDTIME_EVENT] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorEndTimeRequired) ?? ""
         }

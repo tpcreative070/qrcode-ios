@@ -8,13 +8,7 @@
 
 import UIKit
 class TypeCodeViewModelList : TypeCodeViewModelListDelegate {
-    
-    
     var currentCell: TypeCodeViewModel?
-
-    
-
-    
     var responseToView: ((String) -> ())?
     var showLoading: Bindable<Bool> = Bindable(false)
     var onShowError: ((SingleButtonAlert) -> Void)?

@@ -210,9 +210,7 @@ class TableViewCell : UITableViewCell{
                 
                 let activiController = UIActivityViewController(activityItems: [valueShare], applicationActivities: nil)
                 UIApplication.shared.keyWindow?.rootViewController?.present(activiController,animated: true, completion: nil)
-                //               if identifier == EnumIdentifier.History {
-                //                   self.checkBox.isChecked = !self.checkBox.isChecked
-                //               }
+     
             }
         }
     }
@@ -642,6 +640,11 @@ class TableViewCell : UITableViewCell{
                         
                     }
                     catch{
+                        let alert = UIAlertController(title: "Message", message: "Contact already exists", preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "OK", style: .default, handler: {(alert: UIAlertAction!) in })
+                        alert.addAction(okAction)
+                        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+                        
                         print(error)
                     }
                 }
@@ -672,13 +675,13 @@ class TableViewCell : UITableViewCell{
     }
     @objc func wifiAction(sender : UITapGestureRecognizer){
         if let url = URL(string:"App-Prefs:root=WIFI") {
-          if UIApplication.shared.canOpenURL(url) {
-            if #available(iOS 10.0, *) {
-              UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            } else {
-              UIApplication.shared.openURL(url)
+            if UIApplication.shared.canOpenURL(url) {
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                } else {
+                    UIApplication.shared.openURL(url)
+                }
             }
-          }
         }
     }
     @objc func locationAction(sender : UITapGestureRecognizer){
@@ -699,47 +702,44 @@ class TableViewCell : UITableViewCell{
             mapItem.name = "Place here"
             mapItem.openInMaps(launchOptions: options)
         }
-      }
+    }
     @objc func eventAction(sender : UITapGestureRecognizer){
-       if let data = codable {
-        let value_data = JSONHelper.get(value: EventViewModel.self,anyObject: data)
-        let eventStore : EKEventStore = EKEventStore()
-        // 'EKEntityTypeReminder' or 'EKEntityTypeEvent'
-        eventStore.requestAccess(to: .event) { (granted, error) in
-
-            if (granted) && (error == nil) {
-                print("granted \(granted)")
-                print("error \(error)")
-
-                let event:EKEvent = EKEvent(eventStore: eventStore)
-
-                event.title = value_data!.titleView
-                event.startDate = TimeHelper.getTime(timeString: value_data!.beginTime)
-                print(event.startDate)
+        if let data = codable {
+            let value_data = JSONHelper.get(value: EventViewModel.self,anyObject: data)
+            let eventStore : EKEventStore = EKEventStore()
+            // 'EKEntityTypeReminder' or 'EKEntityTypeEvent'
+            eventStore.requestAccess(to: .event) { (granted, error) in
                 
-                event.endDate = TimeHelper.getTime(timeString: value_data!.endTime)
-                print(event.endDate)
-                event.notes = value_data?.descriptionView ?? ""
-                event.location = value_data?.locationView ?? ""
-                event.calendar = eventStore.defaultCalendarForNewEvents
-                do {
-                    try eventStore.save(event, span: .thisEvent)
-                    let alert = UIAlertController(title: "", message: "Saved in calendar", preferredStyle: .alert)
-                                           let okAction = UIAlertAction(title: "OK", style: .default, handler: {(alert: UIAlertAction!) in })
-                                           alert.addAction(okAction)
-                                           self.window?.rootViewController?.present(alert, animated: true, completion: nil)
-                    guard let url = URL(string: "calshow://") else { return }
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                                           
-                } catch let error as NSError {
-                    print("failed to save event with error : \(error)")
+                if (granted) && (error == nil) {
+                    print("granted \(granted)")
+                    
+                    let event:EKEvent = EKEvent(eventStore: eventStore)
+                    
+                    event.title = value_data!.titleView
+                    event.startDate = TimeHelper.getDateTime(timeString: value_data!.beginTime)!
+                   
+                    event.endDate = TimeHelper.getDateTime(timeString: value_data!.endTime)!
+                    event.notes = value_data?.descriptionView ?? ""
+                    event.location = value_data?.locationView ?? ""
+                    event.calendar = eventStore.defaultCalendarForNewEvents
+                    do {
+                        try eventStore.save(event, span: .thisEvent)
+                        
+                        
+                        DispatchQueue.main.async(execute: {
+                            UIApplication.shared.registerForRemoteNotifications()
+                            guard let url = URL(string: "calshow://") else { return }
+                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                        })
+                    } catch let error as NSError {
+                        print("failed to save event with error : \(error)")
+                    }
+                    
                 }
-               
+                else{
+                    
+                }
             }
-            else{
-
-            }
-        }
         }
     }
 }

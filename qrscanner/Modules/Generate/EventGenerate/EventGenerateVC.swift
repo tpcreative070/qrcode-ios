@@ -141,6 +141,10 @@ class EventGenerateVC: BaseViewController {
     }()
     var typeCode : String = ""
     var viewModel : GenerateViewModel?
+    var toolBar = UIToolbar()
+    var datePicker = UIDatePicker()
+    var beginTime : Date?
+    var endTime: Date?
     override func viewDidLoad() {
         super.viewDidLoad()
         typeCode = typeCode.uppercased()
@@ -151,16 +155,22 @@ class EventGenerateVC: BaseViewController {
         self.bindViewModel()
         
         self.addLeftBackButton()
-        
-        datetimePickerView?.datePickerMode = .dateAndTime
-        datetimePickerView?.minimumDate = Date.calculateDate(day: 1, month: 1, year: 2020, hour: 0, minute: 0)
-        datetimePickerView?.maximumDate = Date.calculateDate(day: 31, month: 1, year: 2030, hour: 0, minute: 0)
-        
-        datetimePickerView?.addTarget(self, action: #selector(EventGenerateVC.dateChanged(datePicker:)), for: .valueChanged)
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(EventGenerateVC.viewTapped(gestureRecognizer:)))
-        view.addGestureRecognizer(tapGesture)
+//
+//        datetimePickerView?.datePickerMode = .dateAndTime
+//        datetimePickerView?.minimumDate = Date.calculateDate(day: 1, month: 1, year: 2020, hour: 0, minute: 0)
+//        datetimePickerView?.maximumDate = Date.calculateDate(day: 31, month: 1, year: 2030, hour: 0, minute: 0)
+//
+//        datetimePickerView?.addTarget(self, action: #selector(EventGenerateVC.dateChanged(datePicker:)), for: .valueChanged)
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(EventGenerateVC.viewTapped(gestureRecognizer:)))
+//        view.addGestureRecognizer(tapGesture)
    
-
+        beginTimeTxt.inputView    = datePicker
+         endTimeTxt.inputView      = datePicker
+        toolBar.sizeToFit()
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
+        toolBar.setItems([doneButton], animated: true)
+        beginTimeTxt.inputAccessoryView   = toolBar
+        endTimeTxt.inputAccessoryView     = toolBar
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -181,8 +191,8 @@ class EventGenerateVC: BaseViewController {
         self.viewModel?.titleEvent = titleTxt.text
         self.viewModel?.locationEvent = locationTxt.text
         self.viewModel?.descriptionEvent = descriptionTxt.text
-        self.viewModel?.beginTimeEvent = Date()
-        self.viewModel?.endTimeEvent = Date()
+        self.viewModel?.beginTimeEvent = beginTime
+        self.viewModel?.endTimeEvent = endTime
         
         
     }
@@ -213,24 +223,39 @@ class EventGenerateVC: BaseViewController {
             viewModel?.text = textField.text ?? ""
             viewModel?.validateDescriptionEvent()
         }
-//        if textField == beginTimeTxt {
-//
-//            //    viewModel?.beginTimeEvent =
-//        }
-//        if textField == endTimeTxt {
-//            endTimeTxt.inputView = datetimePickerView
-//
-//        }
-        
+        if textField == beginTimeTxt {
+    datePicker.datePickerMode = .dateAndTime
+       }
+       if textField == endTimeTxt {
+           datePicker.datePickerMode = .dateAndTime
+       }
     }
-    @objc func chooseBeginTime(sender : UITapGestureRecognizer){
-        flagTime = true
-        beginTimeTxt.inputView = datetimePickerView
+    @objc func doneButtonTapped() {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
+    if beginTimeTxt.isFirstResponder {
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .medium
+        beginTimeTxt.text = dateFormatter.string(from: datePicker.date)
+        beginTime = datePicker.date
     }
-    @objc func chooseEndTime(sender : UITapGestureRecognizer){
-        flagTime = false
-        endTimeTxt.inputView = datetimePickerView
+    if endTimeTxt.isFirstResponder {
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .medium
+        endTimeTxt.text = dateFormatter.string(from: datePicker.date)
+        endTime = datePicker.date
     }
+        self.view.endEditing(true)
+
+    }
+//    @objc func chooseBeginTime(sender : UITapGestureRecognizer){
+//        flagTime = true
+//        beginTimeTxt.inputView = datetimePickerView
+//    }
+//    @objc func chooseEndTime(sender : UITapGestureRecognizer){
+//        flagTime = false
+//        endTimeTxt.inputView = datetimePickerView
+//    }
     @objc  func viewTapped(gestureRecognizer : UITapGestureRecognizer){
         view.endEditing(true)
     }

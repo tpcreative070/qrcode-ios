@@ -77,8 +77,6 @@ class SaveVC : UIViewController,UIViewControllerTransitioningDelegate, UINavigat
     
         floaty.addItem(item: item_select)
         floaty.addItem(item: item)
-
-        floaty.paddingY = self.view.frame.height/6 - floaty.frame.height/2
         self.wrapperView.addSubview(floaty)
         
     }
@@ -100,11 +98,7 @@ class SaveVC : UIViewController,UIViewControllerTransitioningDelegate, UINavigat
            }
     
         override func viewDidAppear(_ animated: Bool) {
-            
             self.viewModel.doGetListSave()
             self.viewModel.isSelected.value = false
-            
         }
-        
-        
 }

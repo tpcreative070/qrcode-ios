@@ -135,10 +135,13 @@ extension EventGenerateVC {
 //
 //        addTarget(endTimeTxt)
         setupEndedUpScrollView()
-        beginTimeTxt.addTarget(self, action:  #selector(chooseBeginTime(sender:)), for: .touchUpInside)
-        endTimeTxt.addTarget(self, action:  #selector(chooseEndTime(sender:)), for: .touchUpInside)
- beginTimeBg.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector(chooseBeginTime(sender:))))
-        endTimeBg.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector(chooseEndTime(sender:))))
+//        beginTimeTxt.isEnabled = false
+//        endTimeTxt.isEnabled = false
+//
+//        beginTimeTxt.addTarget(self, action:  #selector(chooseBeginTime(sender:)), for: .touchUpInside)
+//        endTimeTxt.addTarget(self, action:  #selector(chooseEndTime(sender:)), for: .touchUpInside)
+// beginTimeBg.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector(chooseBeginTime(sender:))))
+//        endTimeBg.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector(chooseEndTime(sender:))))
     }
     func setupEndedUpScrollView(){
              backgroundView.addSubview(endedUpScrollViewContainerView)
@@ -276,7 +279,8 @@ extension EventGenerateVC: UITextFieldDelegate {
         self.titleTxt.delegate = self
         self.locationTxt.delegate = self
         self.descriptionTxt.delegate = self
-        
+        self.beginTimeTxt.delegate = self
+        self.endTimeTxt.delegate = self
     }
 }
 

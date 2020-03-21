@@ -31,7 +31,7 @@ class TimeHelper {
         return dateFormatter.date(from: timeString)
     }
     // conver String to Date with format
-   /*   static func getDateTime(timeString: String, dateFormat: String = TimeHelper.FormatHour) -> Date? {
+    static func getDateTime(timeString: String) -> Date? {
         var day : Int?
         var month : Int?
         var year : Int?
@@ -52,9 +52,21 @@ class TimeHelper {
                 minute = Int(time[1])
             }
         }
-      return
+//      // Specify date components
+//        var dateComponents = DateComponents()
+//        dateComponents.year = year
+//        dateComponents.month = month
+//        dateComponents.day = day
+//        dateComponents.timeZone = TimeZone(abbreviation: "THA") // ThaiLand Standard Time
+//        dateComponents.hour = hour
+//        dateComponents.minute = minute
+//        let userCalendar = Calendar.current // user calendar
+//        userCalendar.date(bySettingHour: hour!, minute: minute!, second: 0, of: dateComponents.date!)
+//        let someDateTime = userCalendar.date(from: dateComponents)
+        print(Date.calculateDate(day: day!, month: month!, year: year!, hour: hour!, minute: minute!))
+        return Date.calculateDate(day: day!, month: month!, year: year!, hour: hour!, minute: minute!)
       }
- */
+
     // conver Date to String with format
     static func getString(time : Date, dateFormat: String) -> String {
         let dateFormatter = DateFormatter()
