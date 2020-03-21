@@ -2,7 +2,7 @@
 //  TableSection.swift
 //  qrscanner
 //
-//  Created by phong070 on 2/28/20.
+//  Created by Mac10 on 3/2/20.
 //  Copyright © 2020 thanhphong070. All rights reserved.
 //
 
@@ -23,4 +23,3 @@ struct TableSection<SectionItem : Comparable&Hashable, RowItem> : Comparable {
         return groups.map(TableSection.init(sectionItem:rowItems:)).sorted().reversed()
     }
 }
-

@@ -2,8 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Need to use calendar to add event</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Need to access contact</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -20,6 +22,12 @@
 	<string>$(APP_VERSION_STRING)</string>
 	<key>CFBundleVersion</key>
 	<string>$(APP_VERSION)</string>
+	<key>FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED</key>
+	<string>YES</string>
+	<key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
+	<string>NO</string>
+	<key>FirebaseScreenReportingEnabled</key>
+	<false/>
 	<key>GoogleClientId</key>
 	<string>$(APP_GOOGLE_CLIENT_ID)</string>
 	<key>GoogleReversedClientId</key>
@@ -33,6 +41,21 @@
 		<key>NSExceptionDomains</key>
 		<dict/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Use camera to scanner code</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Access location</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Our application needs permission to write photos..</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app needs to use Photo Library</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SFProText-Bold.otf</string>
+		<string>SFProText-Semibold.otf</string>
+		<string>SFProText-Regular.otf</string>
+		<string>SFProText-Light.otf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -56,6 +79,10 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIStatusBarHidden</key>
+	<false/>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleDarkContent</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -69,5 +96,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

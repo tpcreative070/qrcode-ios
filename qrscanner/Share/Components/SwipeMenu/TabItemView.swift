@@ -3,9 +3,10 @@ import UIKit
 final class TabItemView: UIView {
 
     private(set) var titleLabel: UILabel = UILabel()
+    private(set) var imageIcon: UIImageView = UIImageView()
 
     public var textColor: UIColor = UIColor(red: 140/255, green: 140/255, blue: 140/255, alpha: 1.0)
-    public var selectedTextColor: UIColor = .white
+    public var selectedTextColor: UIColor = AppColors.COLOR_ACCENT
 
     public var isSelected: Bool = false {
         didSet {
@@ -19,10 +20,26 @@ final class TabItemView: UIView {
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
-
+setupImage()
         setupLabel()
     }
+    private func setupImage() {
+              
+          
+              addSubview(imageIcon)
+             layoutImg()
+          }
+       private func layoutImg() {
 
+           imageIcon.translatesAutoresizingMaskIntoConstraints = false
+        imageIcon.tintColor = AppColors.WHITE_COLOR
+           NSLayoutConstraint.activate([
+               imageIcon.topAnchor.constraint(equalTo: self.topAnchor,constant: 5),
+         
+               imageIcon.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+               imageIcon.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: -30)
+           ])
+       }
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -45,7 +62,7 @@ final class TabItemView: UIView {
 
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: self.topAnchor),
+            titleLabel.topAnchor.constraint(equalTo: self.imageIcon.bottomAnchor),
             titleLabel.widthAnchor.constraint(equalTo: self.widthAnchor),
             titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)

@@ -10,7 +10,8 @@ import UIKit
 class DocumentHelper {
     
     open class func loadBundle(fileName : String, mExtension : String) -> Data?{
-        if let path = Bundle.main.path(forResource:fileName, ofType: mExtension) {
+        if let path = Bundle.main.path(forResource:fileName, ofType: mExtension)
+        {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
                 return data

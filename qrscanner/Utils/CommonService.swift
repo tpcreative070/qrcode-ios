@@ -9,26 +9,34 @@
 import UIKit
 import GoogleSignIn
 import Firebase
+import ZXingObjC
 class CommonService {
     
     static let isInput = true
     
-   
+    
     /**
-    getConfigurationData
-    */
+     getConfigurationData
+     */
     static func getConfigurationData() -> ConfigurationStoreModel? {
         if let saved = StorageHelper.getData(key: StorageKey.configData) {
             if let loaded = self.dataToObject(ConfigurationStoreModel.self, data: saved) {
-                   return loaded
+                return loaded
             }
         }
         return nil
     }
-       
     /**
-    getBaseUrl
-    */
+     setConfigurationData
+     */
+    static func setConfigurationData(configuration: ConfigurationStoreModel) {
+        if let encoded = self.objectToData(configuration) {
+            StorageHelper.setObject(key: StorageKey.configData, value: encoded)
+        }
+    }
+    /**
+     getBaseUrl
+     */
     static func getBaseUrl() -> String {
         if let config = self.getConfigurationData() {
             return config.serverUrl
@@ -37,12 +45,12 @@ class CommonService {
     }
     
     /**
-    getCurrentSessionId
-    */
+     getCurrentSessionId
+     */
     static func getCurrentSessionId() -> String? {
-       return ""
+        return ""
     }
-       
+    
     /**
      getCurrentUserId
      */
@@ -92,7 +100,7 @@ class CommonService {
     static func setIsAlreadyStore(value : Bool) {
         StorageHelper.setObject(key: StorageKey.isAlreadyStore, value:value)
     }
- 
+    
     /**
      getMasterKey
      */
@@ -113,25 +121,25 @@ class CommonService {
     }
     
     /**
-    setMasterKey
-    */
+     setMasterKey
+     */
     static func setFirstCreatedKeyChain(data : String){
         let keychain = KeychainSwiftHelper()
         keychain.set(data, forKey: StorageKey.firstCreatedKeyChain)
     }
     
     /**
-    getFirstCreatedKeyChain
-    */
+     getFirstCreatedKeyChain
+     */
     static func getFirstKeyChain() -> String?{
-         let keychain = KeychainSwiftHelper()
-         if let saved = keychain.get(StorageKey.firstCreatedKeyChain){
-             return saved
-         }
-         return nil
-     }
-     
-
+        let keychain = KeychainSwiftHelper()
+        if let saved = keychain.get(StorageKey.firstCreatedKeyChain){
+            return saved
+        }
+        return nil
+    }
+    
+    
     /**
      Fetch device's info
      */
@@ -140,8 +148,8 @@ class CommonService {
         return device.type.rawValue
     }
     
- 
-       
+    
+    
     /*Generate Random Alphanumber String*/
     static func getRandomAlphaNumericString(length: Int) -> String {
         let allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
@@ -168,7 +176,7 @@ class CommonService {
         }
         return randomString
     }
- 
+    
     /*setCipherKey*/
     static func setCipherKey(value : String){
         StorageHelper.setObject(key: StorageKey.cipherKey, value: value)
@@ -213,25 +221,96 @@ class CommonService {
     
     static func getErrorMessageFromSystem(code : String)-> String{
         let message  = String(format: LanguageHelper.getTranslationByKey(LanguageKey.ErrorOccurredFromSystem) ?? "", arguments: [code])
-       return message
+        return message
     }
     
     /**
-        get multiple languages
-        */
+     get multiple languages
+     */
     static func getMultipleLanguages() -> String? {
         if let saved = StorageHelper.getString(key: StorageKey.multipleLanguages) {
             return saved
         }
         return nil
     }
-       
+    
     /**
-    set multiple languages
-    */
+     set multiple languages
+     */
     static func setMultipleLanguages(value: String) {
         StorageHelper.setObject(key: StorageKey.multipleLanguages, value: value)
     }
     
+    //  //reader QRCode
+    static func onReaderQRcode(tempImage : CGImage, completion : @escaping (_ result : String?) -> ()) {
+        
+        // initializers are imported without "initWith"
+        let source: ZXLuminanceSource = ZXCGImageLuminanceSource(cgImage: tempImage)
+        let binazer = ZXHybridBinarizer(source: source)
+        let bitmap = ZXBinaryBitmap(binarizer: binazer)
+        let hints = ZXDecodeHints()
+        hints.tryHarder = true
+        let reader = ZXMultiFormatReader()
+        let readersqrcode = ZXQRCodeMultiReader()
+        let readerbarcode = ZXGenericMultipleBarcodeReader(delegate:reader)
+        do {
+            //Decode multibarcode
+            let array_resultbar = try readerbarcode?.decodeMultiple(bitmap!, hints: hints) as! [ZXResult]
+            if (array_resultbar.count > 0)
+            {
+                for item in array_resultbar {
+                    
+                    print("\(item)  ---  \(item.barcodeFormat)")
+                    let text = item.text ?? "Unknow"
+                    completion(text)
+                }
+                
+            }
+            // 1) you missed the name of the method, "decode", and
+            // 2) use optional binding to make sure you get a value
+            //  let result = try reader.decode(bitmap, hints:hints)
+            //  let text = result.text ?? "Unknow"
+            //   completion(text)
+        }catch {
+            completion(nil)
+        }
+        do{
+            let  array_resultqr =  try readersqrcode.decodeMultiple(bitmap!, hints: hints) as! [ZXResult]
+            if (array_resultqr.count > 0 )
+            {
+                for item in array_resultqr {
+                    print("\(item)  ---  \(item.barcodeFormat)")
+                   let text = item.text ?? "Unknow"
+                     completion(text)
+                }
+                
+            }
+        }
+        catch {
+            completion(nil)
+        }
+        
+        
+        
+    }
+    //reader QRCode
+    static func onReaderMultiQRcode(tempImage : CGImage, completion : @escaping (_ result : String?) -> ()) {
+         do {
+             // initializers are imported without "initWith"
+             let source: ZXLuminanceSource = ZXCGImageLuminanceSource(cgImage: tempImage)
+             let binazer = ZXHybridBinarizer(source: source)
+             let bitmap = ZXBinaryBitmap(binarizer: binazer)
+             let hints = ZXDecodeHints()
+             let reader = ZXMultiFormatReader()
+             // 1) you missed the name of the method, "decode", and
+             // 2) use optional binding to make sure you get a value
+             let result = try reader.decode(bitmap, hints:hints)
+             let text = result.text ?? "Unknow"
+             completion(text)
+         }catch {
+             completion(nil)
+         }
+     }
+    
+    
 }
-

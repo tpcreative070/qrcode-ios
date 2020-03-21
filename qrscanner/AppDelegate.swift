@@ -11,10 +11,21 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+     //   application.statusBarStyle = .lightContent
+      
+        UITabBar.appearance().tintColor = AppColors.PRIMARY_COLOR
+               UITabBar.appearance().barTintColor = AppColors.GRAY_LIGHT
+               UITabBar.appearance().unselectedItemTintColor = AppColors.GRAY
+        
+        self.initLanguage()
+        self.initConfig()
+       // self.initTabBarController(selectedIndex: 2)
+
         return true
     }
 
@@ -35,3 +46,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate{
+    /**
+     Init language when open the app, store language to db, store language to memory
+     */
+    fileprivate func initLanguage() {
+        if let languagesObject = JSONHelper.loadJsonfromLocal("languages") {
+            let enLang = languagesObject[LanguageCode.English] as! Dictionary<String, Any>
+            let viLang = languagesObject[LanguageCode.Vietnamese] as! Dictionary<String, Any>
+            // Store language to db
+            LanguageHelper.storeLanguageByKey(LanguageCode.English, data: JSONHelper.convertDictionaryToJson(enLang) ?? "")
+            LanguageHelper.storeLanguageByKey(LanguageCode.Vietnamese, data: JSONHelper.convertDictionaryToJson(viLang) ?? "")
+            // store language to global data
+            GlobalVariableHelper.languages[LanguageCode.English] = enLang
+            GlobalVariableHelper.languages[LanguageCode.Vietnamese] = viLang
+        }
+    }
+}

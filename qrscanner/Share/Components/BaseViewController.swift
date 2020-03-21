@@ -23,7 +23,7 @@ class BaseViewController: UIViewController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         self.view.addGestureRecognizer(tap)
     }
-
+ 
     func registerEventBus(){
         SwiftEventBusHelper.onMainThread(self, name:ConfigKey.DismissView) { result in
             self.closeTransaction()
@@ -38,7 +38,7 @@ class BaseViewController: UIViewController {
         }
 
         SwiftEventBusHelper.onMainThread(self, name: ConfigKey.RequestSaveToPhotos) { (result) in
-            let mResult = result?.object as! String
+            _ = result?.object as! String
         }
         SwiftEventBusHelper.onMainThread(self, name: ConfigKey.ActionToView) { (result) in
             let mResult = result?.object as! String
@@ -200,7 +200,7 @@ class BaseViewController: UIViewController {
 
     func addBackgroundStatusBar(){
         let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
-        let statusBarColor = AppColors.BLUE
+        let statusBarColor = AppColors.PRIMARY_COLOR_DARK
         statusBarView.backgroundColor = statusBarColor
         view.addSubview(statusBarView)
     }
@@ -283,4 +283,47 @@ class BaseViewController: UIViewController {
     @objc func actionAlertNo(){
 
     }
+    func setupStatusBar(){
+        if #available(iOS 13.0, *) {
+                  let app = UIApplication.shared
+                  let statusBarHeight: CGFloat = app.statusBarFrame.size.height
+                  
+                  let statusbarView = UIView()
+                  statusbarView.backgroundColor = AppColors.PRIMARY_COLOR_DARK
+                  view.addSubview(statusbarView)
+                
+                  statusbarView.translatesAutoresizingMaskIntoConstraints = false
+                  statusbarView.heightAnchor
+                      .constraint(equalToConstant: statusBarHeight).isActive = true
+                  statusbarView.widthAnchor
+                      .constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
+                  statusbarView.topAnchor
+                      .constraint(equalTo: view.topAnchor).isActive = true
+                  statusbarView.centerXAnchor
+                      .constraint(equalTo: view.centerXAnchor).isActive = true
+                
+              } else {
+                  let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
+                  statusBar?.backgroundColor = AppColors.PRIMARY_COLOR_DARK
+              }
+
+    }
+    func showToast(message : String) {
+
+        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height-100, width: 150, height: 35))
+        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        toastLabel.font = UIFont(name: "IranSansMobile", size: 19)
+        toastLabel.textColor = UIColor.white
+        toastLabel.textAlignment = .center;
+        toastLabel.text = message
+        toastLabel.alpha = 1.0
+        toastLabel.layer.cornerRadius = 10;
+        toastLabel.clipsToBounds  =  true
+        self.view.addSubview(toastLabel)
+        UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
+             toastLabel.alpha = 0.0
+        }, completion: {(isCompleted) in
+            toastLabel.removeFromSuperview()
+        })
+    } 
 }

@@ -6,7 +6,7 @@
 //  Copyright © 2020 thanhphong070. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import SQLite
 class SQLShareHelper {
     static let shared =  SQLShareHelper()
@@ -39,6 +39,7 @@ class SQLHelper {
     }
     
     class open func initCipher(isDelete : Bool? = nil){
+      
         guard let mData = DocumentHelper.loadBundle(fileName: "qrscanner", mExtension: FolderName.db) else {
             debugPrint("Not found...")
             return
@@ -60,6 +61,7 @@ class SQLHelper {
     }
     
     class open func getPathFile() -> Bool{
+
         let fileName = "qrscanner.db"
         guard let _ = DocumentHelper.getFilePath(fileName: fileName,folderName: FolderName.db) else {
             return false
@@ -79,7 +81,7 @@ class SQLHelper {
             }
             return db
         }
-        debugPrint("Key to connect db : \(mKey)")
+      //  debugPrint("Key to connect db : \(mKey)")
         guard let db = SQLHelper.connect(mKey: mKey,url: mUrl.path) else {
             return nil
         }
@@ -101,6 +103,74 @@ class SQLHelper {
         }
         TranslationEntity.instance.insert(db: db, data: data)
      }
+    /*CreateTranlation*/
+    class open func createTranlation(){
+        guard let db = connection() else {
+            return
+        }
+        TranslationEntity.instance.createTable(db: db)
+    }
+    /*Create Scanner*/
+       class open func createScanner(){
+           guard let db = connection() else {
+               return
+           }
+           GenerateEntity.instance.createTable(db: db)
+       }
+       
+       /*Insert Scanner*/
+       class open func insertedScanner(data : GenerateEntityModel) -> Bool{
+           guard let db = connection() else {
+               return false
+           }
+           return GenerateEntity.instance.insert(db: db, data: data)
+       }
+       
+       /*Update Scanner*/
+       class open func updatedScanner(createDatetime : Int, value : Int){
+           guard let db = connection() else {
+               return
+           }
+           return GenerateEntity.instance.update(db: db, mcreateDatetime:createDatetime , value: value)
+       }
+       
+       /*Get object Scanner*/
+       class open func getHistories(createDatetime : Int) -> GenerateEntityModel?{
+           guard let db = connection() else {
+               return nil
+           }
+           return GenerateEntity.instance.getObject(db: db, key: createDatetime)
+       }
+       
+      
+    /*Get list histories*/
+    class open func getListHistories() -> [GenerateEntityModel]?{
+        guard let db = connection() else {
+            return nil
+        }
+        return GenerateEntity.instance.getListHistory(db: db)
+    }
+    /*Get list save*/
+    class open func getListSave() -> [GenerateEntityModel]?{
+        guard let db = connection() else {
+            return nil
+        }
+        return GenerateEntity.instance.getListSave(db: db)
+    }
+    /*Delete */
+       class open func deleteScanner(createDateTime : Int) ->Bool{
+           guard let db = connection() else {
+               return false
+           }
+        return GenerateEntity.instance.delete(db: db, value: (createDateTime))
+       }
+    /*Update */
+    class open func updateHistory(createDateTime : Int, value: Bool) ->Bool{
+             guard let db = connection() else {
+                 return false
+             }
+            return GenerateEntity.instance.updateHistory(db: db, mcreateDatetime: createDateTime, value: value)
+         }
 }
 
 
