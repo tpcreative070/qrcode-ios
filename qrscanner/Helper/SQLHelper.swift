@@ -39,8 +39,8 @@ class SQLHelper {
     }
     
     class open func initCipher(isDelete : Bool? = nil){
-        guard let mData = DocumentHelper.loadBundle(fileName: "qrscanner", mExtension: FolderName.db)
-            else {
+      
+        guard let mData = DocumentHelper.loadBundle(fileName: "qrscanner", mExtension: FolderName.db) else {
             debugPrint("Not found...")
             return
         }
@@ -61,7 +61,7 @@ class SQLHelper {
     }
     
     class open func getPathFile() -> Bool{
-        let fileName = "qrscanner"
+        let fileName = "qrscanner.db"
         guard let _ = DocumentHelper.getFilePath(fileName: fileName,folderName: FolderName.db) else {
             return false
         }
