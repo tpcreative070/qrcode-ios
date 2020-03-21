@@ -131,6 +131,14 @@ extension SaveVC  {
     }
 }
 extension SaveVC : TableViewCellDelegate{
+    func cellViewLongSelected(cell: TableViewCell) {
+        
+    }
+    
+    func cellViewLongSelected(cell: Codable) {
+        
+    }
+    
     func cellViewSelected(cell: TableViewCell) {
         
     }
@@ -141,7 +149,7 @@ extension SaveVC : TableViewCellDelegate{
     
     func cellViewSelected(cell: Codable) {
         print(cell)
-        if let data = JSONHelper.get(value: ListQRCodeViewModel.self,anyObject: cell){
+        if let data = JSONHelper.get(value: SaveViewModel.self,anyObject: cell){
             print(data.typeCode)
             print(data.content)
             //    print(data.contents)
@@ -158,7 +166,7 @@ extension SaveVC : TableViewCellDelegate{
         if typeCode == LanguageKey.Url{
             let  vc = UrlGenerateVC()
             vc.isSeen = AppConstants.ISSEEN
-            vc.urlSeen = content
+         //   vc.urlSeen = content.ur
             self.navigationController?.pushViewController(vc, animated: true)
             
         }

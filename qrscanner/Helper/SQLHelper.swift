@@ -114,15 +114,15 @@ class SQLHelper {
            guard let db = connection() else {
                return
            }
-           ScannerEntity.instance.createTable(db: db)
+           GenerateEntity.instance.createTable(db: db)
        }
        
        /*Insert Scanner*/
-       class open func insertedScanner(data : GenerateModel) -> Bool{
+       class open func insertedScanner(data : GenerateEntityModel) -> Bool{
            guard let db = connection() else {
                return false
            }
-           return ScannerEntity.instance.insert(db: db, data: data)
+           return GenerateEntity.instance.insert(db: db, data: data)
        }
        
        /*Update Scanner*/
@@ -130,32 +130,46 @@ class SQLHelper {
            guard let db = connection() else {
                return
            }
-           return ScannerEntity.instance.update(db: db, mcreateDatetime:createDatetime , value: value)
+           return GenerateEntity.instance.update(db: db, mcreateDatetime:createDatetime , value: value)
        }
        
        /*Get object Scanner*/
-       class open func getHistories(createDatetime : Int) -> GenerateModel?{
+       class open func getHistories(createDatetime : Int) -> GenerateEntityModel?{
            guard let db = connection() else {
                return nil
            }
-           return ScannerEntity.instance.getObject(db: db, key: createDatetime)
+           return GenerateEntity.instance.getObject(db: db, key: createDatetime)
        }
        
       
     /*Get list histories*/
-    class open func getListHistories() -> [GenerateModel]?{
+    class open func getListHistories() -> [GenerateEntityModel]?{
         guard let db = connection() else {
             return nil
         }
-        return ScannerEntity.instance.getListHistory(db: db)
+        return GenerateEntity.instance.getListHistory(db: db)
     }
     /*Get list save*/
-    class open func getListSave() -> [GenerateModel]?{
+    class open func getListSave() -> [GenerateEntityModel]?{
         guard let db = connection() else {
             return nil
         }
-        return ScannerEntity.instance.getListSave(db: db)
+        return GenerateEntity.instance.getListSave(db: db)
     }
+    /*Delete */
+       class open func deleteScanner(createDateTime : Int) ->Bool{
+           guard let db = connection() else {
+               return false
+           }
+        return GenerateEntity.instance.delete(db: db, value: (createDateTime))
+       }
+    /*Update */
+    class open func updateHistory(createDateTime : Int, value: Bool) ->Bool{
+             guard let db = connection() else {
+                 return false
+             }
+            return GenerateEntity.instance.updateHistory(db: db, mcreateDatetime: createDateTime, value: value)
+         }
 }
 
 

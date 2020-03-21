@@ -84,62 +84,10 @@ extension EmailGenerateVC {
             messageEmailTxt.leadingAnchor.constraint(equalTo: messageEmailBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             messageEmailTxt.trailingAnchor.constraint(equalTo: messageEmailBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-        //
-        self.view.addSubview(emailView)
-        NSLayoutConstraint.activate([
-            self.emailView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
-            emailView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT),
-            emailView.heightAnchor.constraint(equalToConstant: 50),
-            
-            self.emailView.topAnchor.constraint(equalTo: self.backgroundView.bottomAnchor,constant: 20),
-            
-        ])
-        
-        emailView.addSubview(imgEmail)
-        NSLayoutConstraint.activate([
-            imgEmail.topAnchor.constraint(equalTo: emailView.topAnchor, constant: 10),
-            imgEmail.leadingAnchor.constraint(equalTo: emailView.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            
-        ])
-        emailView.addSubview(emailLabel)
-        NSLayoutConstraint.activate([
-            emailLabel.topAnchor.constraint(equalTo: emailView.topAnchor, constant: 10),
-            emailLabel.leadingAnchor.constraint(equalTo: imgEmail.trailingAnchor, constant: AppConstants.MARGIN_LEFT),
-            emailLabel.trailingAnchor.constraint(equalTo: emailView.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
-        ])
-       self.view.addSubview(clipboardView)
-              NSLayoutConstraint.activate([
-                  self.clipboardView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
-                  clipboardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT),
-                  clipboardView.heightAnchor.constraint(equalToConstant: 50),
-                  
-                  self.clipboardView.topAnchor.constraint(equalTo: self.emailView.bottomAnchor,constant: 10),
-                  
-              ])
-              
-              clipboardView.addSubview(clipboardImage)
-              NSLayoutConstraint.activate([
-                  clipboardImage.topAnchor.constraint(equalTo: clipboardView.topAnchor, constant: 10),
-                  clipboardImage.leadingAnchor.constraint(equalTo: clipboardView.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-                  
-              ])
-              clipboardView.addSubview(clipboardLabel)
-              NSLayoutConstraint.activate([
-                  clipboardLabel.topAnchor.constraint(equalTo: clipboardView.topAnchor, constant: 10),
-                  clipboardLabel.leadingAnchor.constraint(equalTo: clipboardImage.trailingAnchor, constant: AppConstants.MARGIN_LEFT),
-                  clipboardLabel.trailingAnchor.constraint(equalTo: clipboardView.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
-              ])
-        let gesture = UITapGestureRecognizer(target: self, action:  #selector (self.someAction (_:)))
-        self.emailView.addGestureRecognizer(gesture)
-        self.clipboardView.addGestureRecognizer(gesture)
+       
 
     }
-    @objc func someAction(_ sender:UITapGestureRecognizer){
-        print("view was clicked")
-    }
-    func addTarget(_ textField: UITextField) {
-        textField.addTarget(self, action: #selector(inputFieldEditingDidEnd), for: .editingDidEnd)
-    }
+   
     func setupNavItems() {
         
         self.view.backgroundColor = .white

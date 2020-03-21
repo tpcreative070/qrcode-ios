@@ -30,6 +30,31 @@ class TimeHelper {
         dateFormatter.dateFormat = dateFormat
         return dateFormatter.date(from: timeString)
     }
+    // conver String to Date with format
+   /*   static func getDateTime(timeString: String, dateFormat: String = TimeHelper.FormatHour) -> Date? {
+        var day : Int?
+        var month : Int?
+        var year : Int?
+        var hour :Int?
+        var minute :Int?
+        let dateTime = timeString.split(separator: " ")
+        if dateTime.count > 0 {
+            let date = dateTime[0].split(separator: "-")
+            if date.count > 0 {
+                day = Int(date[0])
+                month = Int(date[1])
+                year = Int(date[2])
+                
+            }
+            let time = dateTime[1].split(separator: ":")
+            if time.count > 0{
+                hour = Int(time[0])
+                minute = Int(time[1])
+            }
+        }
+      return
+      }
+ */
     // conver Date to String with format
     static func getString(time : Date, dateFormat: String) -> String {
         let dateFormatter = DateFormatter()
@@ -90,12 +115,12 @@ class TimeHelper {
         
         return runningString.trimmingCharacters(in: .whitespaces)
     }
-    static func getDate(timeString: String) -> Date? {
+    static func getDate(timeString: String) -> String? {
         if timeString.contains("T") {
             let arr_date = timeString.split(separator: "T")
                    let year = arr_date[0].prefix(4)
                    let month_start = arr_date[0].index(arr_date[0].startIndex,offsetBy: 4)
-                   let month_end = arr_date[0].index(arr_date[0].endIndex,offsetBy: -1)
+                   let month_end = arr_date[0].index(arr_date[0].endIndex,offsetBy: -2)
                    let month = arr_date[0][month_start..<month_end]
                    let day = arr_date[0].suffix(2)
                    let hour = arr_date[1].prefix(2)
@@ -104,7 +129,7 @@ class TimeHelper {
                            let minute = arr_date[1][minute_start..<minute_end]
                
                    let date = "\(day)-\(month)-\(year) \(hour):\(minute)"
-                   return getTime(timeString: date)
+                   return date
         }
         else{
             let year = timeString.prefix(4)
@@ -121,7 +146,7 @@ class TimeHelper {
             let hour = 0
             let mini = 0
             let date = "\(day)-\(month)-\(year) \(hour):\(mini)"
-                              return getTime(timeString: date)
+                              return date
         }
        
     }

@@ -11,9 +11,9 @@ class EventModel : Codable {
     var title: String?
     var location: String?
     var description: String?
-    var beginTime: Date?
-    var endTime: Date?
-    init(title: String,location: String,description: String,beginTime: Date,endTime: Date) {
+    var beginTime: String?
+    var endTime: String?
+    init(title: String,location: String,description: String,beginTime: String,endTime: String) {
         self.title = title
          self.location = location
          self.description = description

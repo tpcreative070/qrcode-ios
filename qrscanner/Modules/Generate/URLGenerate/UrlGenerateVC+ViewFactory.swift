@@ -119,12 +119,12 @@ extension UrlGenerateVC {
              
     }
     @objc func urlAction(_ sender:UITapGestureRecognizer){
-       guard let url = URL(string: urlSeen) else { return }
-        UIApplication.shared.open(url)
+//        guard let url = URL(string: urlSeen?.url) else { return }
+//        UIApplication.shared.open(url)
     }
     @objc func searchAction(_ sender:UITapGestureRecognizer){
-         guard let url = URL(string: urlSeen) else { return }
-         UIApplication.shared.open(url)
+//        guard let url = URL(string: urlSeen?.url) else { return }
+//         UIApplication.shared.open(url)
      }
     @objc func clipboardAction(_ sender:UITapGestureRecognizer){
         showAlertController()

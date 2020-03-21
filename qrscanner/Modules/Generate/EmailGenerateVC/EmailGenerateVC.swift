@@ -85,59 +85,10 @@ class EmailGenerateVC: BaseViewController {
         view.alpha = AppConstants.ALPHA_DISBALE
         return view
     }()
-    var emailView: UIView = {
-            let view = UIView()
-        view.backgroundColor = AppColors.GRAY_LIGHT_90
-           view.layer.borderColor = UIColor.white.cgColor
-              view.layer.borderWidth = 1
-              view.layer.cornerRadius = 10
-                 view.translatesAutoresizingMaskIntoConstraints = false
-                 return view
-          }()
-//    lazy var stackViewEmail : StackView = {
-//       let view = StackView()
-//        view.layer.borderColor = AppColors.GRAY_LIGHT.cgColor
-//        view.layer.cornerRadius = 10
-//        view.layer.borderWidth = 1
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        return view
-//    }()
+
+
     
-      lazy var imgEmail : UIImageView = {
-         let view = UIImageView()
-         view.translatesAutoresizingMaskIntoConstraints = false
-         view.tintColor = AppColors.COLOR_ACCENT
-         view.image = UIImage(named: "ic_email")
-         return view
-     }()
-    lazy var emailLabel : UILabel = {
-           let view = UILabel()
-           view.text = "Email"
-           view.translatesAutoresizingMaskIntoConstraints = false
-           return view
-       }()
-    lazy var clipboardView : UIView = {
-        let view = UIView()
-              view.backgroundColor = AppColors.GRAY_LIGHT_90
-                 view.layer.borderColor = UIColor.white.cgColor
-                    view.layer.borderWidth = 1
-                    view.layer.cornerRadius = 10
-                       view.translatesAutoresizingMaskIntoConstraints = false
-                       return view
-    }()
-      lazy var clipboardImage : UIImageView = {
-         let view = UIImageView()
-         view.translatesAutoresizingMaskIntoConstraints = false
-         view.tintColor = AppColors.COLOR_ACCENT
-         view.image = UIImage(named: "ic_copy")
-         return view
-     }()
-    lazy var clipboardLabel : UILabel = {
-           let view = UILabel()
-           view.text = "Clipboard"
-           view.translatesAutoresizingMaskIntoConstraints = false
-           return view
-       }()
+    
     lazy var tableView : UITableView = {
        let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -153,7 +104,7 @@ class EmailGenerateVC: BaseViewController {
         typeCode = typeCode.uppercased()
         viewModel = GenerateViewModel()
         self.initUI()
-        
+        bindViewModel()
         view.backgroundColor = .white
      //   self.setupDelegate()
         addLeftBackButton()

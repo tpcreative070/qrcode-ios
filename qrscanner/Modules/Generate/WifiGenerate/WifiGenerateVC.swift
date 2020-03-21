@@ -231,16 +231,14 @@ class WifiGenerateVC: BaseViewController {
     }
     
     
-    var isSeen : Int = 0
-    var typeCode : String = ""
+    
        var viewModel : GenerateViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
-        typeCode = typeCode.uppercased()
         viewModel = GenerateViewModel()
         //checkIsSeenDetail()
      //   self.setupDelegate()
-         detailUI()
+         initUI()
         setupStatusBar()
         self.bindViewModel()
                radioWPA.isSelected = true
@@ -249,14 +247,7 @@ class WifiGenerateVC: BaseViewController {
         
         
     }
-    func checkIsSeenDetail(){
-        if isSeen == AppConstants.ISSEEN {
-           detailUI()
-        }
-        else{
-            initUI()
-        }
-    }
+    
     override func viewWillAppear(_ animated: Bool) {
            super.viewWillAppear(animated)
            keyboardHelper?.registerKeyboardNotification()

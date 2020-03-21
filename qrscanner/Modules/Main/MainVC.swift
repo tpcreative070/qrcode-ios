@@ -25,6 +25,18 @@ class MainVC : SwipeMenuViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
     }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "popupSegue" {
+//            let vc = segue.destination as! PopupViewController
+//            vc.options = options
+//            vc.dataCount = dataCount
+//            vc.reloadClosure = { self.reload() }
+//        }
+//    }
+
+    private func reload() {
+        swipeMenuView.reloadData(options: options)
+    }
     func setupStatusBar(){
            if #available(iOS 13.0, *) {
                      let app = UIApplication.shared
@@ -63,6 +75,7 @@ class MainVC : SwipeMenuViewController {
         super.swipeMenuView(swipeMenuView, viewDidSetupAt: currentIndex)
         print("currentIndex : \(currentIndex)")
         print("did setup SwipeMenuView")
+      //  reload()
     }
     
     override func swipeMenuView(_ swipeMenuView: SwipeMenuView, willChangeIndexFrom fromIndex: Int, to toIndex: Int) {
@@ -73,6 +86,8 @@ class MainVC : SwipeMenuViewController {
     override func swipeMenuView(_ swipeMenuView: SwipeMenuView, didChangeIndexFrom fromIndex: Int, to toIndex: Int) {
         super.swipeMenuView(swipeMenuView, didChangeIndexFrom: fromIndex, to: toIndex)
         print("did change from section\(fromIndex + 1)  to section\(toIndex + 1)")
+       // tabBarController?.selectedIndex = 1
+     //   swipeMenuView.reloadIndex(options: options, indexcurent: toIndex, isOrientationChange: false)
     }
     
     // MARK - SwipeMenuViewDataSource

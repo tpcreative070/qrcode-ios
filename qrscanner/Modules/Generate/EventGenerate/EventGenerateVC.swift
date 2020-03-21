@@ -223,11 +223,11 @@ class EventGenerateVC: BaseViewController {
 //        }
         
     }
-    @objc func chooseBeginTime(){
+    @objc func chooseBeginTime(sender : UITapGestureRecognizer){
         flagTime = true
         beginTimeTxt.inputView = datetimePickerView
     }
-    @objc func chooseEndTime(){
+    @objc func chooseEndTime(sender : UITapGestureRecognizer){
         flagTime = false
         endTimeTxt.inputView = datetimePickerView
     }

@@ -73,25 +73,9 @@ extension EmailGenerateVC  {
             tableView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.Generate.rawValue)
-        bindViewModelDetail()
         bindTableView()
     }
 
-    func bindViewModelDetail() {
-        self.viewModelTypeCode.showLoading.bind { visible in
-            visible ? ProgressHUD.show(): ProgressHUD.dismiss()
-        }
-        self.viewModelTypeCode.onShowError = { [weak self] alert in
-            self?.presentSingleButtonDialog(alert: alert)
-        }
-        
-        self.viewModelTypeCode.responseToView = {[weak self] value in
-            if value == EnumResponseToView.UPDATE_DATA_SOURCE.rawValue {
-               self?.updateDataSource()
-            }
-        }
-        self.viewModelTypeCode.doIntro()
-    }
     
     func updateDataSource() {
         self.dataSource.items = self.viewModelTypeCode.list
@@ -126,6 +110,14 @@ extension EmailGenerateVC  {
 
 }
 extension EmailGenerateVC : TableViewCellDelegate {
+    func cellViewLongSelected(cell: TableViewCell) {
+        
+    }
+    
+    func cellViewLongSelected(cell: Codable) {
+        
+    }
+    
 func cellViewSelected(cell: TableViewCell) {
     print("\(cell.identifier) -- \(cell.lbTitle)")
     

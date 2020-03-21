@@ -39,11 +39,14 @@ class HeaderView : UITableViewHeaderFooterView{
         else if reuseIdentifier == EnumIdentifier.Save.rawValue{
               identifier = EnumIdentifier.Save
         }
+        else if reuseIdentifier == EnumIdentifier.HistoryChoose.rawValue{
+                     identifier = EnumIdentifier.HistoryChoose
+               }
         setupView()
     }
     
     // config view with Confirm
-   func configView(view : QRCodeViewModelDeletegate){
+   func configView(view : GenerateViewModelDeletegate){
         self.lbGroupName.text = view.typeCodeView
         self.lbGroupName.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoBold, size: AppFonts.LABEL_FONT_SIZE)
     }

@@ -10,66 +10,48 @@ import UIKit
 extension MainVC  {
     
     func initUI(){
-        var viewController = UITabBarController()
-        mHistory = HistoryVC()
-        mScanner = ScannerVC()
-        mSave = SaveVC()
-        mSettings = SettingsVC()
-//        let history = UINavigationController(rootViewController: HistoryVC())
-//        history.tabBarItem.image = UIImage(named: "ic_scan")
-//        let genegrate = UINavigationController(rootViewController: TypeCodeVC())
-//        genegrate.tabBarItem.image = UIImage(named: "ic_scan")
-//        viewController.viewControllers = [history,genegrate]
-//        view.addSubview(imgLogoSave)
-//    NSLayoutConstraint.activate([
-//                  imgLogoSave.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
-//                  imgLogoSave.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-//                  imgLogoSave.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
-//              ])
-//        view.addSubview(imgLogoScan)
-//        NSLayoutConstraint.activate([
-//                      imgLogoScan.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
-//                      imgLogoScan.leadingAnchor.constraint(equalTo: imgLogoSave.trailingAnchor, constant: AppConstants.MARGIN_LEFT),
-//                      imgLogoScan.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
-//                  ])
-        
+//        mHistory = HistoryVC()
+//        self.mHistory?.title.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector (actionScanner(sender:))))
 //        options.tabView.style = .segmented
-//        options.tabView.itemView.selectedTextColor = AppColors.COLOR_ACCENT
-//        options.tabView.itemView.textColor = AppColors.WHITE_COLOR
-//        options.tabView.additionView.backgroundColor = AppColors.PRIMARY_COLOR
-        //swipeMenuView.reloadData(options: options)
-        
+//        options.tabView.itemView.selectedTextColor = AppColors.BLUE
+//        options.tabView.itemView.textColor = AppColors.GRAY
+//        options.tabView.additionView.backgroundColor = AppColors.BLUE
+//        swipeMenuView.reloadData(options: options)
+//        self.navigationController?.isNavigationBarHidden = true
         
     }
-    
+    @objc func actionScanner(sender : UITapGestureRecognizer){
+           debugPrint("Action here....")
+           tabBarController?.selectedIndex = 1
+       }
     func addedView(){
-       
-     
+       mScanner = ScannerVC()
+                     mScanner?.title = LanguageHelper.getTranslationByKey(LanguageKey.Scanner) ?? "Scanner"
+                     mScanner?.navigationItem.titleView = UIImageView.init(image: UIImage(named: "ic_scan"))
+                     
+                     addChild(mScanner ?? ScannerVC())
+        
         mHistory = HistoryVC()
         mHistory?.navigationItem.title = LanguageHelper.getTranslationByKey(LanguageKey.History) ?? "History"
-         mHistory?.navigationItem.titleView = UIImageView.init(image: UIImage(named: "ic_history"))
+        mHistory?.navigationItem.titleView = UIImageView.init(image: UIImage(named: "ic_history"))
         addChild(mHistory ?? HistoryVC())
         mGenerate = TypeCodeVC()
-               mGenerate?.title = LanguageHelper.getTranslationByKey(LanguageKey.Generate) ?? "Generate"
+        mGenerate?.title = LanguageHelper.getTranslationByKey(LanguageKey.Generate) ?? "Generate"
         mGenerate?.navigationItem.titleView = UIImageView.init(image: UIImage(named: "ic_generate"))
-
-               addChild(mGenerate ?? TypeCodeVC())
-        mScanner = ScannerVC()
-                                           mScanner?.title = LanguageHelper.getTranslationByKey(LanguageKey.Scanner) ?? "Scanner"
-                              mScanner?.navigationItem.titleView = UIImageView.init(image: UIImage(named: "ic_scan"))
-
-                                           addChild(mScanner ?? ScannerVC())
-   
-            
+        
+        addChild(mGenerate ?? TypeCodeVC())
+        
+       
+               
         mSave = SaveVC()
         mSave?.title = LanguageHelper.getTranslationByKey(LanguageKey.Save) ?? "Save"
         mSave?.navigationItem.titleView = UIImageView.init(image: UIImage(named: "ic_save"))
-
+        
         addChild(mSave ?? SaveVC())
         mSettings = SettingsVC()
         mSettings?.title = LanguageHelper.getTranslationByKey(LanguageKey.Setting) ?? "Settings"
         mSettings?.navigationItem.titleView = UIImageView.init(image: UIImage(named: "ic_settings_white"))
-
+        
         addChild(mSettings ?? SettingsVC())
     }
     

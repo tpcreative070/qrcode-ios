@@ -160,15 +160,11 @@ extension WifiGenerateVC {
         //        menuButtonLeft.addTarget(self, action: #selector(returnScreen), for: .touchUpInside)
         //        navigationItem.leftBarButtonItems = [UIBarButtonItem(customView: menuButtonLeft)]
         let menuButtonRight = UIButton(type: .system)
-        if isSeen == AppConstants.ISSEEN {
-            menuButtonRight.setImage(#imageLiteral(resourceName: "ic_support"), for: .normal)
-        }
-        else
-        {
+     
             
             menuButtonRight.setImage(#imageLiteral(resourceName: "ic_check"), for: .normal)
             menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchUpInside)
-        }
+        
         navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRight)]
     }
     

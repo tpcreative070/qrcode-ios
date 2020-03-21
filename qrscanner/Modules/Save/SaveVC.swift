@@ -30,9 +30,9 @@ class SaveVC : UIViewController,UIViewControllerTransitioningDelegate, UINavigat
       view.translatesAutoresizingMaskIntoConstraints = false
       return view
     }()
-        var dataSource :TableViewDataSource<TableViewCell,ListQRCodeViewModel,HeaderView>!
-        var sections = [TableSection<String, ListQRCodeViewModel>]()
-        let viewModel = ScannersViewModelList()
+        var dataSource :TableViewDataSource<TableViewCell,SaveViewModel,HeaderView>!
+        var sections = [TableSection<String, SaveViewModel>]()
+        let viewModel = SaveViewModelList()
     var floaty = Floaty()
 
         override func viewDidLoad() {

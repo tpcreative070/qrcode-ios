@@ -36,7 +36,59 @@ extension ScannerVC {
             
             lbScannerRectangle.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/2)
         ])
+        bgView.addSubview(iconView)
+               
+               NSLayoutConstraint.activate([
+                   iconView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                   iconView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+                   iconView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25),
+                   iconView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -25),
+            ])
+        iconView.addSubview(frontCamera)
+               
+               NSLayoutConstraint.activate([
+                frontCamera.topAnchor.constraint(equalTo: iconView.topAnchor, constant: 0),
+                frontCamera.leftAnchor.constraint(equalTo: iconView.leftAnchor, constant: 0),
+                ])
+       iconView.addSubview(flash)
+                    
+                    NSLayoutConstraint.activate([
+                     flash.topAnchor.constraint(equalTo: iconView.topAnchor, constant: 0),
+                                         
+                        flash.leftAnchor.constraint(equalTo: frontCamera.rightAnchor, constant: 30),
+                    ])
+            iconView.addSubview(imgHelp)
+                             
+                             NSLayoutConstraint.activate([
+                              imgHelp.topAnchor.constraint(equalTo: iconView.topAnchor, constant: 0),
+                                                  
+                                 imgHelp.leftAnchor.constraint(equalTo: flash.rightAnchor, constant: 30),
+                             ])
+        bgView.addSubview(imgView)
+                                   
+                                   NSLayoutConstraint.activate([
+                                    imgView.topAnchor.constraint(equalTo: bgView.topAnchor, constant: 50),
+                                    imgView.heightAnchor.constraint(equalToConstant: 30),
+                                    imgView.widthAnchor.constraint(equalToConstant: 30),
+                                       imgView.leftAnchor.constraint(equalTo: bgView.rightAnchor, constant: 30),
+                                   ])
+//        imgView.addSubview(imgScan)
+//
+//                                       NSLayoutConstraint.activate([
+//                                        imgScan.topAnchor.constraint(equalTo: imgView.topAnchor, constant: 0),
+//
+//                                           imgScan.leftAnchor.constraint(equalTo: imgView.leftAnchor, constant: 30),
+//                                       ])
+        
+        imgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector (self.urlAction (_:))))
+
     }
+   @objc func urlAction(_ sender:UITapGestureRecognizer){
+       print("hello")
+   //        guard let url = URL(string: urlSeen?.url) else { return }
+   //        UIApplication.shared.open(url)
+       }
+  
     func applyOrientation() {
         let orientation = UIApplication.shared.statusBarOrientation
         var captureRotation: Double
@@ -198,10 +250,10 @@ extension ScannerVC {
             self?.presentSingleButtonDialog(alert: alert)
         }
         
-       /* self.viewModel.responseToView = {[weak self] value in
+        self.viewModel.responseToView = {[weak self] value in
            
         }
-        */
+        
         
         
         self.viewModel.resultScan.bind { value in
@@ -213,7 +265,7 @@ extension ScannerVC {
         viewModel.cameraBinding.bind {[weak self] value in
             DispatchQueue.main.async {
                 if !value {
-                    self?.doAlertMessage(permission: "Camera")
+                  //  self?.doAlertMessage(permission: "Camera")
                 }
             }
         }

@@ -12,7 +12,7 @@ extension EventGenerateVC {
         //  view.backgroundColor = .white
         setupNavItems()
         print(view.frame.height)
-        let gety = view.frame.height * 5.5/7
+        let gety = view.frame.height * 5.7/7
         let value_item = view.frame.height/7
         self.view.addSubview(scrollView)
                   NSLayoutConstraint.activate([
@@ -110,7 +110,7 @@ extension EventGenerateVC {
         ])
         backgroundView.addSubview(endTimeBg)
         NSLayoutConstraint.activate([
-            endTimeBg.topAnchor.constraint(equalTo: locationBg.bottomAnchor, constant: 10),
+            endTimeBg.topAnchor.constraint(equalTo: beginTimeBg.bottomAnchor, constant: 10),
             endTimeBg.leftAnchor.constraint(equalTo: backgroundView.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             endTimeBg.rightAnchor.constraint(equalTo: backgroundView.rightAnchor, constant: -20),
             endTimeBg.heightAnchor.constraint(equalToConstant: value_item)
@@ -127,17 +127,18 @@ extension EventGenerateVC {
             endTimeTxt.leadingAnchor.constraint(equalTo: endTimeBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             endTimeTxt.trailingAnchor.constraint(equalTo: endTimeBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-      
+
 //        addTarget(titleTxt)
 //        addTarget(locationTxt)
 //        addTarget(descriptionTxt)
 //        addTarget(beginTimeTxt)
-//        
+//
 //        addTarget(endTimeTxt)
         setupEndedUpScrollView()
-        beginTimeTxt.addTarget(self, action:  #selector(chooseBeginTime), for: .touchUpInside)
-        endTimeTxt.addTarget(self, action:  #selector(chooseEndTime), for: .touchUpInside)
-
+        beginTimeTxt.addTarget(self, action:  #selector(chooseBeginTime(sender:)), for: .touchUpInside)
+        endTimeTxt.addTarget(self, action:  #selector(chooseEndTime(sender:)), for: .touchUpInside)
+ beginTimeBg.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector(chooseBeginTime(sender:))))
+        endTimeBg.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector(chooseEndTime(sender:))))
     }
     func setupEndedUpScrollView(){
              backgroundView.addSubview(endedUpScrollViewContainerView)
@@ -147,7 +148,7 @@ extension EventGenerateVC {
                endedUpScrollViewContainerView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
                endedUpScrollViewContainerView.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor)
                ])
-    //          self.view.layoutIfNeeded()
+              self.view.layoutIfNeeded()
            }
     func addTarget(_ textField: UITextField) {
         textField.addTarget(self, action: #selector(inputFieldEditingDidEnd), for: .editingDidEnd)
@@ -211,6 +212,7 @@ extension EventGenerateVC {
         viewModel?.responseToView = { [weak self] value in
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
                 let resVC = ResultGenerateVC()
+                resVC.typeCode = LanguageKey.Event
                 resVC.imgCode = (self?.viewModel?.result)!
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }

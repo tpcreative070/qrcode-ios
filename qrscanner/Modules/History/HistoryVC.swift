@@ -14,6 +14,7 @@ class HistoryVC : UIViewController,UIViewControllerTransitioningDelegate, UINavi
        scrollView.translatesAutoresizingMaskIntoConstraints = false
        return scrollView
      }()
+  
     let wrapperView: UIView = {
       let parentView = UIView()
       parentView.translatesAutoresizingMaskIntoConstraints = false
@@ -30,13 +31,14 @@ class HistoryVC : UIViewController,UIViewControllerTransitioningDelegate, UINavi
       view.translatesAutoresizingMaskIntoConstraints = false
       return view
     }()
-        var dataSource :TableViewDataSource<TableViewCell,ListQRCodeViewModel,HeaderView>!
-        var sections = [TableSection<String, ListQRCodeViewModel>]()
-        let viewModel = ScannersViewModelList()
+        var dataSource :TableViewDataSource<TableViewCell,HistoryViewModel,HeaderView>!
+        var sections = [TableSection<String, HistoryViewModel>]()
+        let viewModel = HistoryViewModelList()
     var floaty = Floaty()
-
+    var flagselectItem = false
         override func viewDidLoad() {
             super.viewDidLoad()
+            print("into ViewDidLoad History")
 
             initUI()
             setupFloatButton()
@@ -44,7 +46,6 @@ class HistoryVC : UIViewController,UIViewControllerTransitioningDelegate, UINavi
                 return headline.typeCode
             })
             bindViewModel()
-            
     }
     
     func setupFloatButton(){
@@ -71,17 +72,22 @@ class HistoryVC : UIViewController,UIViewControllerTransitioningDelegate, UINavi
             item_select.icon = UIImage(named: "ic_select_all")
             item_select.title = "Select"
             item_select.handler = { item in
-               
+                self.navigationController?.pushViewController(ChooseHistoryVC(), animated: false)
+                //self.tableView.isEditing =  true
+                //self.tableView.allowsMultipleSelectionDuringEditing = true
             }
         floaty.tintColor = .white
     
         floaty.addItem(item: item_select)
         floaty.addItem(item: item)
 
-        floaty.paddingY = self.view.frame.height/6 - floaty.frame.height/2
         self.wrapperView.addSubview(floaty)
         
     }
+    @objc func doShare(sender: UITapGestureRecognizer){
+        
+    }
+   
     // MARK: - Floaty Delegate Methods
        func floatyWillOpen(_ floaty: Floaty) {
            print("Floaty Will Open")
@@ -103,8 +109,11 @@ class HistoryVC : UIViewController,UIViewControllerTransitioningDelegate, UINavi
             
             self.viewModel.doGetListHistories()
             self.viewModel.isSelected.value = false
-            
+            print("into ViewDidAppear History")
         }
-        
+    override func viewWillAppear(_ animated: Bool) {
+        print("into viewWillAppear History")
+
+    }
         
 }

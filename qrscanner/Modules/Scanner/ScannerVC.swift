@@ -8,8 +8,13 @@
 
 import UIKit
 import ZXingObjC
-class ScannerVC: BaseViewController {
+class ScannerVC: UIViewController {
     var bgView : UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    var iconView : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -29,6 +34,42 @@ class ScannerVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    var imgView : UIView! = {
+        let view = UIView()
+        view.backgroundColor = .red
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    var imgScan : UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.image = UIImage(named: "ic_image")
+        view.tintColor = AppColors.WHITE_COLOR
+        return view
+    }()
+    var frontCamera : UIImageView = {
+          let view = UIImageView()
+          view.translatesAutoresizingMaskIntoConstraints = false
+          view.image = UIImage(named: "ic_flip_camera")
+        view.tintColor = AppColors.WHITE_COLOR
+
+          return view
+      }()
+    var imgHelp : UIImageView = {
+             let view = UIImageView()
+             view.translatesAutoresizingMaskIntoConstraints = false
+             view.image = UIImage(named: "ic_help")
+        view.tintColor = AppColors.WHITE_COLOR
+
+             return view
+         }()
+    var flash : UIImageView = {
+               let view = UIImageView()
+               view.translatesAutoresizingMaskIntoConstraints = false
+               view.image = UIImage(named: "ic_flash_off")
+        view.tintColor = AppColors.WHITE_COLOR
+               return view
+           }()
     var video = AVCaptureVideoPreviewLayer()
     var capture: ZXCapture?
     private let regionCornerRadius = CGFloat(10.0)
@@ -43,6 +84,7 @@ class ScannerVC: BaseViewController {
         print("view did load")
         iniUI()
         setup()
+         
        // setupNavItems()
         // view.backgroundColor = .red
     }
@@ -64,10 +106,13 @@ class ScannerVC: BaseViewController {
         }
     }
     override func viewDidAppear(_ animated: Bool) {
-        log(message: "viewDidAppear")
+      //  log(message: "viewDidAppear")
         //self.viewModel.defaultValue()
-        registerEventBus()
+      //  registerEventBus()
          self.viewModel.askCameraPermission()
+        iniUI()
+        setup()
+        
     }
     override func viewWillDisappear(_ animated: Bool) {
         GalleryHelper.flashlight(isOff: true)
@@ -77,9 +122,9 @@ class ScannerVC: BaseViewController {
         self.bgView.layer.borderColor = AppColors.BLUE.cgColor
         setup()
     }
-    override func actionAlertYes() {
-        viewModel.openAppSetting()
-    }
+//    override func actionAlertYes() {
+//        viewModel.openAppSetting()
+//    }
     
     func setup()
     {
@@ -91,6 +136,8 @@ class ScannerVC: BaseViewController {
         _capture.focusMode =  .continuousAutoFocus
         _capture.delegate = self
         self.bgView.layer.addSublayer(_capture.layer)
+        self.bgView.bringSubviewToFront(imgView)
+
         lbScannerRectangle.layer.masksToBounds = true
         lbScannerRectangle.layer.cornerRadius = self.regionCornerRadius
         lbScannerRectangle.layer.borderColor = UIColor.white.cgColor
@@ -101,8 +148,10 @@ class ScannerVC: BaseViewController {
         
         self.bgView.bringSubviewToFront(scanView)
         self.bgView.bringSubviewToFront(lbScannerRectangle)
+
         //  self.view.bringSubviewToFront(_resultLabel)
     }
+   
 }
 
 

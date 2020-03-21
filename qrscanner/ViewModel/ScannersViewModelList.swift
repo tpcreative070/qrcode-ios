@@ -12,32 +12,32 @@ class ScannersViewModelList : ScannersViewModelListDeletegate{
     var onShowError: ((SingleButtonAlert) -> Void)?
     var showLoading: Bindable<Bool> = Bindable(false)
     var responseToView: ((String) -> ())?
-    var listHistories: [ListQRCodeViewModel] = [ListQRCodeViewModel]()
-    var listSave: [ListQRCodeViewModel] = [ListQRCodeViewModel]()
+    var listHistories: [HistoryViewModelList] = [HistoryViewModelList]()
+    var listSave: [HistoryViewModelList] = [HistoryViewModelList]()
 
     var navigate: (() -> ())?
-    func doGetListHistories(){
-           if let mList = SQLHelper.getListHistories(){
-               var index = 0
-               self.listHistories = mList.map({ (data) -> ListQRCodeViewModel in
-                   index += 1
-                   return ListQRCodeViewModel(data:  data)
-               })
-           }
-        listHistories = listHistories.sorted {$0.updatedDateTime > $1.updatedDateTime}
-           responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
-       }
-    func doGetListSave(){
-              if let mList = SQLHelper.getListSave(){
-                  var index = 0
-                  self.listSave = mList.map({ (data) -> ListQRCodeViewModel in
-                      index += 1
-                      return ListQRCodeViewModel(data:  data)
-                  })
-              }
-           listSave = listSave.sorted {$0.updatedDateTime > $1.updatedDateTime}
-              responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
-          }
+//    func doGetListHistories(){
+//           if let mList = SQLHelper.getListHistories(){
+//               var index = 0
+//               self.listHistories = mList.map({ (data) -> HistoryViewModelList in
+//                   index += 1
+//                   return HistoryViewModelList(data:  data)
+//               })
+//           }
+//        listHistories = listHistories.sorted {$0.updatedDateTime > $1.updatedDateTime}
+//           responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
+//       }
+//    func doGetListSave(){
+//              if let mList = SQLHelper.getListSave(){
+//                  var index = 0
+//                  self.listSave = mList.map({ (data) -> HistoryViewModelList in
+//                      index += 1
+//                      return HistoryViewModelList(data:  data)
+//                  })
+//              }
+//           listSave = listSave.sorted {$0.updatedDateTime > $1.updatedDateTime}
+//              responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
+//          }
 //     func doSelectItem(coable : Codable){
 //           if let value = coable.get(value: QRCodeViewModel.self){
 //               Utils.logMessage(object: listHistories)

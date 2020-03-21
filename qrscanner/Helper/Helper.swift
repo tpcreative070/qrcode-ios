@@ -285,7 +285,141 @@ struct Helper {
   static func getData(from externalUrl: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
     URLSession.shared.dataTask(with: externalUrl, completionHandler: completion).resume()
   }
-  
+    static func getValueContent(typeCode : String, contentData: String) -> String{
+        var valueShowContent = ""
+        if typeCode == LanguageKey.Url{
+              
+                  let content = ContentModel(data :(contentData.toObject(value: UrlModel.self))!)
+                  let stringContent = content.content?.data(using: .utf8 )
+                  let urlModel : UrlModel = try! JSONDecoder().decode(UrlModel.self, from: stringContent!)
+                  valueShowContent = urlModel.url ?? ""
+                  
+              }
+                  //
+              else if typeCode == LanguageKey.Text{
+                  let content = ContentModel(data: (contentData.toObject(value: TextModel.self))!)
+                  let stringContent = content.content?.data(using: .utf8 )
+                  let textModel : TextModel = try! JSONDecoder().decode(TextModel.self, from: stringContent!)
+                  valueShowContent = textModel.text ?? ""
+              }
+              else if typeCode == LanguageKey.Location{
+                  let content = ContentModel(data: (contentData.toObject(value: LocationModel.self))!)
+                  let stringContent = content.content?.data(using: .utf8 )
+                  let locationModel : LocationModel = try! JSONDecoder().decode(LocationModel.self, from: stringContent!)
+                  valueShowContent = "\(locationModel.latitude ?? 0),\(locationModel.longtitude ?? 0),(\(locationModel.query ?? ""))"
+              }
+              else if typeCode == LanguageKey.Email{
+                  let content = ContentModel(data: (contentData.toObject(value: EmailModel.self))!)
+                  let stringContent = content.content?.data(using: .utf8 )
+                  let emailModel : EmailModel = try! JSONDecoder().decode(EmailModel.self, from: stringContent!)
+                  valueShowContent = emailModel.email ?? ""
+              }
+              else if typeCode == LanguageKey.Event{
+                  
+                  let content = ContentModel(data: (contentData.toObject(value: EventModel.self))!)
+                  let stringContent = content.content?.data(using: .utf8 )
+                  let eventModel : EventModel = try! JSONDecoder().decode(EventModel.self, from: stringContent!)
+                  valueShowContent = eventModel.title ?? ""
+                  
+              }
+              else if typeCode == LanguageKey.Message{
+                  
+                  let content = ContentModel(data: (contentData.toObject(value: MessageModel.self))!)
+                  let stringContent = content.content?.data(using: .utf8 )
+                  let messageModel : MessageModel = try! JSONDecoder().decode(MessageModel.self, from: stringContent!)
+                  valueShowContent = messageModel.message ?? ""
+              }
+              else if typeCode == LanguageKey.Wifi{
+                  
+                  let content = ContentModel(data: (contentData.toObject(value: WifiModel.self))!)
+                  let stringContent = content.content?.data(using: .utf8 )
+                  let wifiModel : WifiModel = try! JSONDecoder().decode(WifiModel.self, from: stringContent!)
+                  valueShowContent = wifiModel.ssid ?? ""
+              }
+              else if typeCode == LanguageKey.Telephone{
+                  
+                  let content = ContentModel(data: (contentData.toObject(value: PhoneModel.self))!)
+                  let stringContent = content.content?.data(using: .utf8 )
+                  let phoneModel : PhoneModel = try! JSONDecoder().decode(PhoneModel.self, from: stringContent!)
+                  valueShowContent = phoneModel.phone
+              }
+              else if typeCode == LanguageKey.Contact{
+                  
+                  let content = ContentModel(data: (contentData.toObject(value: ContactModel.self))!)
+                  let stringContent = content.content?.data(using: .utf8 )
+                  let contactModel : ContactModel = try! JSONDecoder().decode(ContactModel.self, from: stringContent!)
+                  valueShowContent = contactModel.fullNameContact ?? ""
+              }
+        return valueShowContent
+    }
+    static func getValueShareContent(typeCode : String, contentData: String) -> String{
+           var valueShowContent = ""
+           if typeCode == LanguageKey.Url{
+                 
+                     let content = ContentModel(data :(contentData.toObject(value: UrlModel.self))!)
+                     let stringContent = content.content?.data(using: .utf8 )
+                     let urlModel : UrlModel = try! JSONDecoder().decode(UrlModel.self, from: stringContent!)
+                     valueShowContent = "Url: \(urlModel.url ?? "")"
+                     
+                 }
+                     //
+                 else if typeCode == LanguageKey.Text{
+                     let content = ContentModel(data: (contentData.toObject(value: TextModel.self))!)
+                     let stringContent = content.content?.data(using: .utf8 )
+                     let textModel : TextModel = try! JSONDecoder().decode(TextModel.self, from: stringContent!)
+                     valueShowContent = "Text: \(textModel.text ?? "")"
+                 }
+                 else if typeCode == LanguageKey.Location{
+                     let content = ContentModel(data: (contentData.toObject(value: LocationModel.self))!)
+                     let stringContent = content.content?.data(using: .utf8 )
+                     let locationModel : LocationModel = try! JSONDecoder().decode(LocationModel.self, from: stringContent!)
+                     valueShowContent = "Latitude: \(locationModel.latitude ?? 0)\nLongtitude: \(locationModel.longtitude ?? 0)\nQuery: \(locationModel.query ?? "")"
+                 }
+                 else if typeCode == LanguageKey.Email{
+                     let content = ContentModel(data: (contentData.toObject(value: EmailModel.self))!)
+                     let stringContent = content.content?.data(using: .utf8 )
+                     let emailModel : EmailModel = try! JSONDecoder().decode(EmailModel.self, from: stringContent!)
+            valueShowContent = "Email: \(emailModel.email ?? "")\nSubject: \(emailModel.objectEmail ?? "")\nMessage:\(emailModel.messageEmail ?? "")"
+                 }
+                 else if typeCode == LanguageKey.Event{
+                     
+                     let content = ContentModel(data: (contentData.toObject(value: EventModel.self))!)
+                     let stringContent = content.content?.data(using: .utf8 )
+                     let eventModel : EventModel = try! JSONDecoder().decode(EventModel.self, from: stringContent!)
+            valueShowContent = "Title: \(eventModel.title ?? "")\nDescription: \(eventModel.description ?? "")\nLocation: \(eventModel.location ?? "")\nStart event: \(eventModel.beginTime ?? "")\nEnd event: \(eventModel.endTime ?? "")"
+                     
+                 }
+                 else if typeCode == LanguageKey.Message{
+                     
+                     let content = ContentModel(data: (contentData.toObject(value: MessageModel.self))!)
+                     let stringContent = content.content?.data(using: .utf8 )
+                     let messageModel : MessageModel = try! JSONDecoder().decode(MessageModel.self, from: stringContent!)
+            valueShowContent = "Phone: \(messageModel.to ?? "")\nMessage: \(messageModel.message ?? "")"
+                 }
+                 else if typeCode == LanguageKey.Wifi{
+                     
+                     let content = ContentModel(data: (contentData.toObject(value: WifiModel.self))!)
+                     let stringContent = content.content?.data(using: .utf8 )
+                     let wifiModel : WifiModel = try! JSONDecoder().decode(WifiModel.self, from: stringContent!)
+            valueShowContent = "SSID: \(wifiModel.ssid ?? "")\nPassword: \(wifiModel.password ?? "")\nNetwork encryption: \(wifiModel.protect ?? "")\nHidden: \(wifiModel.hidden)"
+                 }
+                 else if typeCode == LanguageKey.Telephone{
+                     
+                     let content = ContentModel(data: (contentData.toObject(value: PhoneModel.self))!)
+                     let stringContent = content.content?.data(using: .utf8 )
+                     let phoneModel : PhoneModel = try! JSONDecoder().decode(PhoneModel.self, from: stringContent!)
+                     valueShowContent = "Phone: \(phoneModel.phone)"
+                 }
+                 else if typeCode == LanguageKey.Contact{
+                     
+                     let content = ContentModel(data: (contentData.toObject(value: ContactModel.self))!)
+                     let stringContent = content.content?.data(using: .utf8 )
+                     let contactModel : ContactModel = try! JSONDecoder().decode(ContactModel.self, from: stringContent!)
+            valueShowContent = "Address: \(contactModel.addressContact ?? "")\nFullname: \(contactModel.fullNameContact ?? "")\nEmail: \(contactModel.emailContact ?? "")\nPhone: \(contactModel.phoneContact ?? "")"
+                 }
+           return valueShowContent
+       }
+    
 }
 
 

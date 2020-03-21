@@ -14,10 +14,31 @@ extension TableViewCell {
         case .History:
             setupHistorySubView()
             break
+            case .HistoryChoose:
+                      setupChooseHistorySubView()
+                      break
         case .Generate:
             setupGenerateSubView()
             case .Save:
             setupSaveSubView()
+            case .Url:
+            setupUrlView()
+            case .Text:
+            setupTextView()
+            case .Phone:
+            setupPhoneView()
+            case .Email:
+            setupEmailView()
+            case .Wifi:
+            setupWifiView()
+            case .Contact:
+            setupContactView()
+            case .Location:
+            setupLocationView()
+            case .Message:
+            setupMessageView()
+            case .Event:
+            setupEventView()
         default :
             break
         }
@@ -34,6 +55,7 @@ extension TableViewCell {
         //add gesture to leftView
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(actionCellViewTap))
         self.backGroundView.addGestureRecognizer(tapGesture)
+    
     }
     
    

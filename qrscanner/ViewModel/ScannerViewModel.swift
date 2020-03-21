@@ -16,7 +16,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
     
     var onShowError: ((SingleButtonAlert) -> Void)?
     
-    var dictionaryList: [Int : ScannerEntityModel] = [Int : ScannerEntityModel]()
+    var dictionaryList: [Int : ContentModel] = [Int : ContentModel]()
     var resultScan: Bindable<String> = Bindable("")
     
     private let userService : UserService
@@ -85,7 +85,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
             var email : String = ""
             var sub : String = ""
             var body : String = ""
-            if ((mValue.range(of: "MATSMG", options: .caseInsensitive)) != nil) {
+            if ((mValue.range(of: "MATMSG", options: .caseInsensitive)) != nil) {
                 let arr_semi_colon = mValue.split(separator: ";")
                 let arr_first = arr_semi_colon[0].split(separator: ":")
                 email = String(arr_first[2])
@@ -206,7 +206,69 @@ class ScannerViewModel : ScannerViewModelDelegate {
             print(value_content)
 
         }
-        else if ((mValue.range(of: "TEL", options: .caseInsensitive)) != nil) {
+            else if (mValue.contains("MECARD")) || (mValue.contains("VCARD")) || (mValue.contains("MCARD")) {
+                       typeCode = LanguageKey.Contact
+                      var fullName : String = ""
+                                    var address : String = ""
+                                    var phone : String = ""
+                                    var email : String = ""
+                       
+                       if mValue.contains("MCARD") || mValue.contains("MECARD"){
+                           let start = mValue.index(mValue.startIndex, offsetBy: 6)
+                            let end = mValue.index(mValue.endIndex, offsetBy: 0)
+                           let new_mValue = String(mValue[start..<end])
+                       let arr_semi_colon = new_mValue.split(separator: ";")
+                           for item in arr_semi_colon {
+                               if (item.contains("N"))
+                               {
+                                   fullName = String((item.split(separator: ":"))[1])
+                               }
+                               if (item.contains("TEL"))
+                               {
+                                   phone = String((item.split(separator: ":"))[1])
+
+                               }
+                               if (item.contains("EMAIL"))
+                                             {
+                                                 email = String((item.split(separator: ":"))[1])
+
+                                             }
+                               if (item.contains("ADR"))
+                               {
+                                   address = String((item.split(separator: ":"))[1])
+
+                               }
+                           }
+                       }
+                       if mValue.contains("VCARD"){
+                           let arr_space = mValue.split(separator: "\n")
+                                    if arr_space.count > 0{
+                                        for item in arr_space {
+                                            if(item == "N"){
+                                                fullName = String((item.split(separator: ":"))[1])
+                                            }
+                                            if(item.contains("EMAIL"))
+                                            {
+                                                email = String(item.split(separator: ":")[1])
+                                            }
+                                            if(item.contains("TEL")){
+                                                phone += String(item.split(separator: ":")[1])
+                                            }
+                                            if (item.contains("ADR")){
+                                                address = String((item.split(separator: ":"))[1])
+                                            }
+                                           
+                                        }
+                                    }
+                           
+                       }
+                       let content = ContactModel(fullNameContact: fullName, addressContact: address, phoneContact: phone, emailContact: email)
+                       let jsonData = try! JSONEncoder().encode(content)
+                       value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+                       print(value_content)
+
+                   }
+        else if (mValue.caseInsensitiveCompare("tel") == .orderedSame) {
             typeCode = LanguageKey.Telephone
             let tel = String(mValue.split(separator: ":")[1])
             let content = PhoneModel(phone: tel)
@@ -215,68 +277,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
             print(value_content)
 
         }
-        else if (mValue.contains("MECARD")) || (mValue.contains("VCARD")) || (mValue.contains("MCARD")) {
-            typeCode = LanguageKey.Contact
-           var fullName : String = ""
-                         var address : String = ""
-                         var phone : String = ""
-                         var email : String = ""
-            
-            if mValue.contains("MCARD") || mValue.contains("MECARD"){
-                let start = mValue.index(mValue.startIndex, offsetBy: 6)
-                 let end = mValue.index(mValue.endIndex, offsetBy: 0)
-                let new_mValue = String(mValue[start..<end])
-            let arr_semi_colon = new_mValue.split(separator: ";")
-                for item in arr_semi_colon {
-                    if (item.contains("N"))
-                    {
-                        fullName = String((item.split(separator: ":"))[1])
-                    }
-                    if (item.contains("TEL"))
-                    {
-                        phone = String((item.split(separator: ":"))[1])
-
-                    }
-                    if (item.contains("EMAIL"))
-                                  {
-                                      email = String((item.split(separator: ":"))[1])
-
-                                  }
-                    if (item.contains("ADR"))
-                    {
-                        address = String((item.split(separator: ":"))[1])
-
-                    }
-                }
-            }
-            if mValue.contains("VCARD"){
-                let arr_space = mValue.split(separator: "\n")
-                         if arr_space.count > 0{
-                             for item in arr_space {
-                                 if(item.contains("N")){
-                                     fullName = String((item.split(separator: ":"))[1])
-                                 }
-                                 if(item.contains("EMAIL"))
-                                 {
-                                     email = String(item.split(separator: ":")[1])
-                                 }
-                                 if(item.contains("TEL")){
-                                     phone += String(item.split(separator: ":")[1])
-                                 }
-                                 if (item.contains("ADR")){
-                                     address = String((item.split(separator: ":"))[1])
-                                 }
-                                
-                             }
-                         }
-                
-            }
-            let content = ContactModel(fullNameContact: fullName, addressContact: address, phoneContact: phone, emailContact: email)
-            let jsonData = try! JSONEncoder().encode(content)
-            value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-            print(value_content)
-
-        }
+       
         else
         {
             typeCode = LanguageKey.Text
@@ -299,7 +300,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
         else
         {
             print("value insert: \(value_content)")            
-            SQLHelper.insertedScanner(data: GenerateModel(createdDateTime: Date().millisecondsSince1970, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime: Date().millisecondsSince1970, bookMark: false))
+            SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: Date().millisecondsSince1970, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime: Date().millisecondsSince1970, bookMark: false))
           
     
         }

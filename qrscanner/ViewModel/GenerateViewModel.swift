@@ -387,7 +387,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
         ValidateTitleEvent
         */
        func validateTitleEvent(){
-           if text == nil || !ValidatorHelper.minLength(titleEvent,minLength: 1) {
+           if titleEvent == nil || !ValidatorHelper.minLength(titleEvent,minLength: 1) {
                errorMessages.value[GenerateViewModelKey.TITLE_EVENT] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorTitleEventRequired ) ?? ""
            }
            else {

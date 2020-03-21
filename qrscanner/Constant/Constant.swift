@@ -49,8 +49,11 @@ public struct KeychainSwiftConstants {
 
 
 struct AppConstants {
+    static var ischoose = 0
+
     static let ISSEEN = 1
     static let ISUPDATE = 2
+    static let ISCHOOSE = 1
 
     static let LARGE_SIZE = 200
     static let MEDIUM_SIZE = 50
@@ -909,8 +912,20 @@ enum EnumIdentifier : String {
     case TransfereCashToeCash = "transferecashtoecash"
     case WithdrawMultipleeCash = "WithdrawMultipleeCash"
     case History = "history"
+    case HistoryChoose = "history_choose"
+
     case Save = "save"
      case Generate = "generate"
+    case Url = "url"
+    case Text = "text"
+case Phone = "phone"
+    case Email = "email"
+    case Wifi = "wifi"
+    case Contact = "contact"
+    case Location = "location"
+    case Message = "message"
+    case Event = "event"
+
     case Transactions = "transactions"
     case QRCodeHistory = "qrcodeHistory"
     case ScannerResult = "ScannerResult"

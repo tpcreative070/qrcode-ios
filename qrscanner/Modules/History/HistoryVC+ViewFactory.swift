@@ -27,13 +27,15 @@ extension HistoryVC  {
             wrapperView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             wrapperView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
         ])
-        /*Lable*/
-        wrapperView.addSubview(lbTittle)
-        NSLayoutConstraint.activate([
-            lbTittle.topAnchor.constraint(equalTo: wrapperView.topAnchor, constant: 15),
-            lbTittle.leftAnchor.constraint(equalTo: wrapperView.leftAnchor),
-            lbTittle.heightAnchor.constraint(equalToConstant: 20),
-        ])
+            
+//        /*Lable*/
+//        wrapperView.addSubview(lbTittle)
+//        NSLayoutConstraint.activate([
+//            lbTittle.topAnchor.constraint(equalTo: imgDetele.topAnchor, constant: 15),
+//            lbTittle.leftAnchor.constraint(equalTo: wrapperView.leftAnchor),
+//            lbTittle.heightAnchor.constraint(equalToConstant: 20),
+//        ])
+//
         /*TableView*/
         tableView = UITableView()
         tableView.allowsSelection = true
@@ -49,10 +51,11 @@ extension HistoryVC  {
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0)
         ])
+       
         //        self.view.layoutIfNeeded()
-        
+      
         setupEndedUpScrollView()
         setupTableView()
         bindTableView()
@@ -76,27 +79,27 @@ extension HistoryVC  {
         
         self.viewModel.responseToView = {[weak self] value in
             if value == EnumResponseToView.UPDATE_DATA_SOURCE.rawValue {
-                self?.updateDataSource()
+               self?.updateDataSource()
             }
-            //            else if value == EnumResponseToView.MULTIPLE_SELECTED_DONE.rawValue {
-            //                self?.doMultipleSelected()
-            //            }
         }
-        
+       
+//       
+//        self.viewModel.isSelected.bind { (value) in
+//            self.viewModel.doSelectedAll(isValue: value)
+//        }
         self.viewModel.doGetListHistories()
     }
     func updateDataSource() {
         self.sections = TableSection.group(rowItems: self.viewModel.listHistories, by: { (headline) in
             return headline.typeCode
         })
-        //        self.dataSource.swipeActionRight = swipeActionRight()
         self.dataSource.sections = self.sections
         self.dataSource.items = self.viewModel.listHistories
         self.tableView.reloadData()
         //        log(message: "List available...")
         //        log(object: self.viewModel.listHistories)
     }
-    
+  
     func bindTableView(){
         self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.History.rawValue, items: self.viewModel.listHistories,sections: self.sections, height: 40,isSelectionStype: false){ cell, vm in
             cell.configView(view: vm)
@@ -115,7 +118,6 @@ extension HistoryVC  {
         //            self.log(object: vm)
         //            self.viewModel.currentCell = vm
         //        }
-        //self.dataSource.swipeActionRight = swipeActionRight()
         self.tableView.dataSource = self.dataSource
         self.tableView.delegate = self.dataSource
     }
@@ -129,68 +131,40 @@ extension HistoryVC  {
         ])
         //          self.view.layoutIfNeeded()
     }
+  
 }
 extension HistoryVC : TableViewCellDelegate{
+    func cellViewLongSelected(cell: TableViewCell) {
+        navigationController?.pushViewController(ChooseHistoryVC(), animated: false)
+    }
+    
     func cellViewSelected(cell: TableViewCell) {
         
     }
-    
+    func cellViewLongSelected(cell: Codable) {
+        navigationController?.pushViewController(ChooseHistoryVC(), animated: false)
+    }
     func cellViewSelected(cell: TableViewCell, countSelected: Int) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
               let result = self.viewModel.listHistories[indexPath.row]
-             
+             print("history select: \(result)")
     }
     
     func cellViewSelected(cell: Codable) {
-        if let data = JSONHelper.get(value: ListQRCodeViewModel.self,anyObject: cell){
+
+
+        if let data = JSONHelper.get(value: HistoryViewModel.self,anyObject: cell){
             print(data.typeCode)
-            print(data.content)
-                print(data.contents)
+            print(data.content.content!)
+            let data_content = data.content.content!
+                        let  vc = DetailGenerateVC()
+                        vc.typeCode = data.typeCode
+                        vc.valueContent = data_content
+                        self.navigationController?.pushViewController(vc, animated: true)
         
-            navigationToDetail(typeCode: data.typeCode, content: data.contents)
         }
     }
-    func navigationToDetail(typeCode: String, content: String){
-        let typeCode = typeCode.uppercased()
-        if typeCode == LanguageKey.Url{
-            let  vc = UrlGenerateVC()
-            vc.isSeen = AppConstants.ISSEEN
-            vc.urlSeen = content
-            self.navigationController?.pushViewController(vc, animated: true)
-            
-        }
-        else if typeCode == LanguageKey.Text{
-            //  vc = TextGenerateVC()
-            
-        }
-        else if typeCode == LanguageKey.Location{
-            //  vc = LocationGenerateVC()
-            
-        }
-        else if typeCode == LanguageKey.Email{
-            //   vc = EmailGenerateVC()
-            print("Email")
-        }
-        else if typeCode == LanguageKey.Event{
-            //  vc = EventGenerateVC()
-        }
-        else if typeCode == LanguageKey.Message{
-            // vc = MessageGenerateVC()
-            
-        }
-        else if typeCode == LanguageKey.Wifi{
-            // vc = WifiGenerateVC()
-        }
-        else if typeCode == LanguageKey.Telephone{
-            // vc = PhoneGenerateVC()
-        }
-        else if typeCode == LanguageKey.Contact{
-            // vc = ContactGenerateVC()
-            
-        }
-        // print(vc)
-        
-    }
+
     func cellCodable(codable: Codable) {
         
     }
@@ -198,6 +172,7 @@ extension HistoryVC : TableViewCellDelegate{
         
     }
 }
+
 extension HistoryVC : SingleButtonDialogPresenter{
     
 }

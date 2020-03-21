@@ -271,6 +271,23 @@ open class SwipeMenuView: UIView {
 
         isLayoutingSubviews = false
     }
+    public func reloadIndex(options: SwipeMenuViewOptions? = nil, indexcurent: Int?  , isOrientationChange: Bool = false) {
+
+        if let options = options {
+            self.options = options
+        }
+
+        isLayoutingSubviews = isOrientationChange
+
+        if !isLayoutingSubviews {
+            reset()
+            setup(default: indexcurent!)
+        }
+
+        jump(to: indexcurent ?? currentIndex, animated: false)
+
+        isLayoutingSubviews = false
+    }
 
     /// Jump to the selected page.
     public func jump(to index: Int, animated: Bool) {

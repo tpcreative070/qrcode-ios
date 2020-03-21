@@ -20,6 +20,5 @@ extension String {
         }
         return nil
     }
-   
-   
+
 }

@@ -37,6 +37,7 @@ class TypeCodeVC : BaseViewController{
         print ("view didload typecode")
            initUI()
        bindViewModel()
+        
 
        }
        

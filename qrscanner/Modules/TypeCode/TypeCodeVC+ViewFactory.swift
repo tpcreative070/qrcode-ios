@@ -38,19 +38,6 @@ extension TypeCodeVC {
 
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
-//        var mHeightCell = AppConstants.MENU_FOOTER_SIZE
-//        if DeviceHelper.isMaxScreen() {
-//            mHeightCell = AppConstants.MENU_HEIGHT_CELL_MAX_SIZE
-//        }
-//        else if DeviceHelper.isPlusScreen() {
-//            mHeightCell = AppConstants.MENU_HEIGHT_CELL_PLUS_SIZE
-//        }
-//        if DeviceHelper.isNormalScreen(){
-//            mHeightCell = AppConstants.MENU_HEIGHT_CELL_NORMAL_SIZE
-//        }
-//        else if DeviceHelper.isSmallScreen(){
-//            mHeightCell = AppConstants.MENU_HEIGHT_CELL_SMALL_SIZE
-//        }
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
         tableView.sectionFooterHeight = 0
         wrapperView.addSubview(tableView)
@@ -88,11 +75,11 @@ extension TypeCodeVC {
                self?.updateDataSource()
             }
         }
-        self.viewModel.doIntro()
+        self.viewModel.getList()
     }
     
     func updateDataSource() {
-        self.dataSource.items = self.viewModel.list
+         self.dataSource.items = self.viewModel.list
         self.dataSource.configureSwipeCell = { cell,vm in
             self.log(object: vm)
             self.viewModel.currentCell = vm
@@ -132,6 +119,14 @@ extension TypeCodeVC {
     
   }
 extension TypeCodeVC : TableViewCellDelegate {
+    func cellViewLongSelected(cell: TableViewCell) {
+        
+    }
+    
+    func cellViewLongSelected(cell: Codable) {
+        
+    }
+    
     func cellViewSelected(cell: TableViewCell) {
         print("\(cell.identifier) -- \(cell.lbTitle)")
         
