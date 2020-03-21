@@ -61,6 +61,7 @@ class SQLHelper {
     }
     
     class open func getPathFile() -> Bool{
+
         let fileName = "qrscanner.db"
         guard let _ = DocumentHelper.getFilePath(fileName: fileName,folderName: FolderName.db) else {
             return false
