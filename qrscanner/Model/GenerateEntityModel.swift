@@ -16,23 +16,43 @@ class GenerateEntityModel : Codable {
     var updatedDateTime: Int64?
     var bookMark: Bool?
     init(data: UrlModel) {
-        self.typeCode = "url"
+        self.typeCode = EnumType.URL.rawValue
         self.content = JSONSerializerHelper.toJson(data)
     }
     init(data: TextModel) {
         self.content = JSONSerializerHelper.toJson(data)
-        self.typeCode = "text"
+        self.typeCode = EnumType.URL.rawValue
     }
     init(data: EmailModel) {
    
-        self.typeCode = "email"
+        self.typeCode = EnumType.EMAIL.rawValue
         self.content = JSONSerializerHelper.toJson(data)
     
     }
     init(data: ContactModel) {
-        self.typeCode = "contact"
+        self.typeCode = EnumType.CONTACT.rawValue
         self.content = JSONSerializerHelper.toJson(data)
     }
+    init(data: MessageModel) {
+        self.typeCode = EnumType.MESSAGE.rawValue
+        self.content = JSONSerializerHelper.toJson(data)
+    }
+     init(data: LocationModel) {
+           self.typeCode = EnumType.LOCATION.rawValue
+           self.content = JSONSerializerHelper.toJson(data)
+       }
+     init(data: EventModel) {
+           self.typeCode = EnumType.EVENT.rawValue
+           self.content = JSONSerializerHelper.toJson(data)
+       }
+     init(data: PhoneModel) {
+           self.typeCode = EnumType.PHONE.rawValue
+           self.content = JSONSerializerHelper.toJson(data)
+       }
+     init(data: WifiModel) {
+           self.typeCode = EnumType.WIFI.rawValue
+           self.content = JSONSerializerHelper.toJson(data)
+       }
     init(typeCode : String, content : String, isHistory : Bool, isSave : Bool, bookMark: Bool) {
         let time = TimeHelper.getString(time: Date(), dateFormat: TimeHelper.FormatDateTime)
         self.createdDateTime = Int64(time)

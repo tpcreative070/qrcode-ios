@@ -12,42 +12,42 @@ class ContentModel : Codable {
     var typeCode : String?
     var content: String?
     
-    init(data: UrlModel) {
-        self.typeCode = "url"
-        self.content = JSONSerializerHelper.toJson(data)
-    }
-    init(data: TextModel) {
-        self.content = JSONSerializerHelper.toJson(data)
-        self.typeCode = "text"
-    }
-    init(data: EmailModel) {
-   
-        self.typeCode = "email"
-        self.content = JSONSerializerHelper.toJson(data)
-    
-    }
-    init(data: ContactModel) {
-        self.typeCode = "contact"
-        self.content = JSONSerializerHelper.toJson(data)
-    }
+     init(data: UrlModel) {
+           self.typeCode = EnumType.URL.rawValue
+           self.content = JSONSerializerHelper.toJson(data)
+       }
+       init(data: TextModel) {
+           self.content = JSONSerializerHelper.toJson(data)
+           self.typeCode = EnumType.URL.rawValue
+       }
+       init(data: EmailModel) {
+      
+           self.typeCode = EnumType.EMAIL.rawValue
+           self.content = JSONSerializerHelper.toJson(data)
+       
+       }
+       init(data: ContactModel) {
+           self.typeCode = EnumType.CONTACT.rawValue
+           self.content = JSONSerializerHelper.toJson(data)
+       }
    init(data: MessageModel) {
-       self.typeCode = "message"
+       self.typeCode = EnumType.MESSAGE.rawValue
        self.content = JSONSerializerHelper.toJson(data)
    }
     init(data: LocationModel) {
-          self.typeCode = "location"
+          self.typeCode = EnumType.LOCATION.rawValue
           self.content = JSONSerializerHelper.toJson(data)
       }
     init(data: EventModel) {
-          self.typeCode = "event"
+          self.typeCode = EnumType.EVENT.rawValue
           self.content = JSONSerializerHelper.toJson(data)
       }
     init(data: PhoneModel) {
-          self.typeCode = "phone"
+          self.typeCode = EnumType.PHONE.rawValue
           self.content = JSONSerializerHelper.toJson(data)
       }
     init(data: WifiModel) {
-          self.typeCode = "wifi"
+          self.typeCode = EnumType.WIFI.rawValue
           self.content = JSONSerializerHelper.toJson(data)
       }
     init() {

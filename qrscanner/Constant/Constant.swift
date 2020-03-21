@@ -943,7 +943,17 @@ case Phone = "phone"
     case Lixi = "Lixi"
     case ReceiveLixiOptions = "ReceiveLixiOptions"
 }
-
+enum EnumType : String {
+    case URL = "url"
+        case TEXT = "text"
+    case PHONE = "phone"
+        case EMAIL = "email"
+        case WIFI = "wifi"
+        case CONTACT = "contact"
+        case LOCATION = "location"
+        case MESSAGE = "message"
+        case EVENT = "event"
+}
 enum EnumResponseCode : String {
     case USER_IS_NOT_EXISTED = "3035"
     case NOT_EXISTING_USER = "1004"
