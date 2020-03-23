@@ -9,18 +9,15 @@
 import UIKit
 extension EventGenerateVC {
     func initUI() {
-        //  view.backgroundColor = .white
-        setupNavItems()
-        print(view.frame.height)
         let gety = view.frame.height * 5.7/7
         let value_item = view.frame.height/7
         self.view.addSubview(scrollView)
-                  NSLayoutConstraint.activate([
-                   scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-                    scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-                    scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                    scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                    ])
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+        ])
         scrollView.addSubview(backgroundView)
         NSLayoutConstraint.activate([
             backgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -127,37 +124,23 @@ extension EventGenerateVC {
             endTimeTxt.leadingAnchor.constraint(equalTo: endTimeBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             endTimeTxt.trailingAnchor.constraint(equalTo: endTimeBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-
-//        addTarget(titleTxt)
-//        addTarget(locationTxt)
-//        addTarget(descriptionTxt)
-//        addTarget(beginTimeTxt)
-//
-//        addTarget(endTimeTxt)
+        setupNavItems()
         setupEndedUpScrollView()
-//        beginTimeTxt.isEnabled = false
-//        endTimeTxt.isEnabled = false
-//
-//        beginTimeTxt.addTarget(self, action:  #selector(chooseBeginTime(sender:)), for: .touchUpInside)
-//        endTimeTxt.addTarget(self, action:  #selector(chooseEndTime(sender:)), for: .touchUpInside)
-// beginTimeBg.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector(chooseBeginTime(sender:))))
-//        endTimeBg.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector(chooseEndTime(sender:))))
     }
     func setupEndedUpScrollView(){
-             backgroundView.addSubview(endedUpScrollViewContainerView)
-             NSLayoutConstraint.activate([
-               endedUpScrollViewContainerView.topAnchor.constraint(equalTo: endTimeBg.bottomAnchor),
-               endedUpScrollViewContainerView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor),
-               endedUpScrollViewContainerView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
-               endedUpScrollViewContainerView.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor)
-               ])
-              self.view.layoutIfNeeded()
-           }
+        backgroundView.addSubview(endedUpScrollViewContainerView)
+        NSLayoutConstraint.activate([
+            endedUpScrollViewContainerView.topAnchor.constraint(equalTo: endTimeBg.bottomAnchor),
+            endedUpScrollViewContainerView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor),
+            endedUpScrollViewContainerView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
+            endedUpScrollViewContainerView.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor)
+        ])
+        self.view.layoutIfNeeded()
+    }
     func addTarget(_ textField: UITextField) {
         textField.addTarget(self, action: #selector(inputFieldEditingDidEnd), for: .editingDidEnd)
     }
     func setupNavItems() {
-        
         self.view.backgroundColor = .white
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         navigationItem.title = LanguageKey.Event
@@ -183,17 +166,13 @@ extension EventGenerateVC {
     
     func bindViewModel() {
         viewModel?.errorMessages.bind({ [weak self] errors in
-            
             if errors.count > 0 {
                 self?.titleTxt.errorMessage = errors[GenerateViewModelKey.TITLE_EVENT] ?? ""
                 self?.locationTxt.errorMessage = errors[GenerateViewModelKey.LOCATION_EVENT] ?? ""
                 self?.descriptionTxt.errorMessage = errors[GenerateViewModelKey.DESCRIPTION_EVENT] ?? ""
                 self?.beginTimeTxt.errorMessage = errors[GenerateViewModelKey.BEGINTIME_EVENT] ?? ""
-                
                 self?.endTimeTxt.errorMessage = errors[GenerateViewModelKey.ENDTIME_EVENT] ?? ""
-                
             }
-                
             else {
                 if errors.count == 0{
                     self?.titleTxt.errorMessage = ""
@@ -203,8 +182,7 @@ extension EventGenerateVC {
                     self?.endTimeTxt.errorMessage = ""
                 }
             }
-            
-            
+         
         })
         viewModel?.showLoading.bind { [weak self] visible in
             if self != nil {
@@ -216,7 +194,12 @@ extension EventGenerateVC {
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
                 let resVC = ResultGenerateVC()
                 resVC.typeCode = LanguageKey.Event
+                resVC.createDateTime = self!.createDateTime
+                resVC.contentData = ContentModel(data: EventModel(title: (self?.titleTxt.text)!, location: (self?.locationTxt.text)!, description: (self?.descriptionTxt.text)!, beginTime: (self?.beginTimeTxt.text)!, endTime: (self?.endTimeTxt.text)!))
                 resVC.imgCode = (self?.viewModel?.result)!
+                if self?.isSeen == AppConstants.ISSEEN {
+                    resVC.isUpdate = AppConstants.ISUPDATE
+                }
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }
         }
@@ -246,26 +229,48 @@ extension EventGenerateVC {
         self.viewModel?.errorMessages.value[GenerateViewModelKey.ENDTIME_EVENT] = ""
         
     }
-    
-    
-    private func clearDataTextfield() {
-        
+        private func clearDataTextfield() {
         self.titleTxt.resignFirstResponder()
         self.locationTxt.resignFirstResponder()
         self.descriptionTxt.resignFirstResponder()
-        
         self.titleTxt.text = ""
         self.locationTxt.text = ""
         self.descriptionTxt.text = ""
         self.beginTimeTxt.text = TimeHelper.getString(time: Date(), dateFormat: TimeHelper.FormatDateTime)
         self.endTimeTxt.text = TimeHelper.getString(time: Date(), dateFormat: TimeHelper.FormatDateTime)
-        
         self.viewModel?.errorMessages.value[GenerateViewModelKey.TITLE_EVENT] = ""
         self.viewModel?.errorMessages.value[GenerateViewModelKey.LOCATION_EVENT] = ""
         self.viewModel?.errorMessages.value[GenerateViewModelKey.DESCRIPTION_EVENT] = ""
         self.viewModel?.errorMessages.value[GenerateViewModelKey.BEGINTIME_EVENT] = ""
         self.viewModel?.errorMessages.value[GenerateViewModelKey.ENDTIME_EVENT] = ""
+    }
+    func setupDatePicker(){
+        beginTimeTxt.inputView    = datePicker
+        endTimeTxt.inputView      = datePicker
+        toolBar.sizeToFit()
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
+        toolBar.setItems([doneButton], animated: true)
+        beginTimeTxt.inputAccessoryView   = toolBar
+        endTimeTxt.inputAccessoryView     = toolBar
+    }
+    func defineValue(){
+        self.viewModel?.typeCode = LanguageKey.Event
+        self.viewModel?.titleEvent = titleTxt.text
+        self.viewModel?.locationEvent = locationTxt.text
+        self.viewModel?.descriptionEvent = descriptionTxt.text
+        self.viewModel?.beginTimeEvent = beginTime
+        self.viewModel?.endTimeEvent = endTime
         
+        
+    }
+    func checkIsSeenDetail(){
+        if isSeen == AppConstants.ISSEEN {
+            titleTxt.text = eventValue.title ?? ""
+            locationTxt.text = eventValue.location ?? ""
+            descriptionTxt.text = eventValue.description ?? ""
+            beginTimeTxt.text = eventValue.beginTime ?? ""
+            endTimeTxt.text = eventValue.endTime ?? ""
+        }
     }
     
 }

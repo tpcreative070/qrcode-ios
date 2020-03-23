@@ -10,7 +10,6 @@ import UIKit
 import Floaty
 extension SaveVC  {
     func initUI(){
-        self.navigationController?.isNavigationBarHidden = true
         /*SetupScrollView*/
         self.view.addSubview(scrollView)
         NSLayoutConstraint.activate([
@@ -27,13 +26,7 @@ extension SaveVC  {
             wrapperView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             wrapperView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
         ])
-        /*Lable*/
-        wrapperView.addSubview(lbTittle)
-        NSLayoutConstraint.activate([
-            lbTittle.topAnchor.constraint(equalTo: wrapperView.topAnchor, constant: 15),
-            lbTittle.leftAnchor.constraint(equalTo: wrapperView.leftAnchor),
-            lbTittle.heightAnchor.constraint(equalToConstant: 20),
-        ])
+        
         /*TableView*/
         tableView = UITableView()
         tableView.allowsSelection = true
@@ -49,16 +42,15 @@ extension SaveVC  {
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0)
         ])
-        //        self.view.layoutIfNeeded()
         
         setupEndedUpScrollView()
         setupTableView()
         bindTableView()
-   
+        
     }
-   
+    
     //Mark: - setUpTableView()
     func setupTableView(){
         
@@ -78,18 +70,18 @@ extension SaveVC  {
             if value == EnumResponseToView.UPDATE_DATA_SOURCE.rawValue {
                 self?.updateDataSource()
             }
-            //            else if value == EnumResponseToView.MULTIPLE_SELECTED_DONE.rawValue {
-            //                self?.doMultipleSelected()
-            //            }
         }
         
+        //
+        //        self.viewModel.isSelected.bind { (value) in
+        //            self.viewModel.doSelectedAll(isValue: value)
+        //        }
         self.viewModel.doGetListSave()
     }
     func updateDataSource() {
         self.sections = TableSection.group(rowItems: self.viewModel.listSave, by: { (headline) in
             return headline.typeCode
         })
-        //        self.dataSource.swipeActionRight = swipeActionRight()
         self.dataSource.sections = self.sections
         self.dataSource.items = self.viewModel.listSave
         self.tableView.reloadData()
@@ -99,7 +91,7 @@ extension SaveVC  {
     
     func bindTableView(){
         self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.Save.rawValue, items: self.viewModel.listSave,sections: self.sections, height: 40,isSelectionStype: false){ cell, vm in
-            cell.configView(view: vm)
+            cell.configViewSave(view: vm)
             cell.configData(viewModel: vm)
             cell.delegate = self
         }
@@ -109,13 +101,12 @@ extension SaveVC  {
             section.configView(view: vm)
         }
         self.dataSource.loadMore = {
-         //   self.log(message: "Loading more")
+            //   self.log(message: "Loading more")
         }
         //        self.dataSource.configureSwipeCell = { cell,vm in
         //            self.log(object: vm)
         //            self.viewModel.currentCell = vm
         //        }
-        //self.dataSource.swipeActionRight = swipeActionRight()
         self.tableView.dataSource = self.dataSource
         self.tableView.delegate = self.dataSource
     }
@@ -129,86 +120,151 @@ extension SaveVC  {
         ])
         //          self.view.layoutIfNeeded()
     }
+    func setupFloatButton(){
+        let item = FloatyItem()
+        item.hasShadow = false
+        item.buttonColor = AppColors.PRIMARY_COLOR
+        
+        item.titleLabelPosition = .left
+        item.icon = UIImage(named: "ic_keyboard")
+        item.icon?.withTintColor(.white)
+        item.title = LanguageKey.Csv
+        item.handler = { item in
+            let activiController = UIActivityViewController(activityItems: ["this text"], applicationActivities: nil)
+            self.present(activiController,animated: true, completion: nil)
+        }
+        
+        //    floaty.hasShadow = false
+        
+        let item_select = FloatyItem()
+        item_select.hasShadow = false
+        item_select.buttonColor = AppColors.PRIMARY_COLOR
+        
+        item_select.titleLabelPosition = .left
+        item_select.icon = UIImage(named: "ic_select_all")
+        item_select.title = LanguageKey.Select
+        item_select.handler = { item in
+            self.navigationController?.pushViewController(ChooseSaveVC(), animated: false)
+           
+        }
+        floaty.tintColor = .white
+        floaty.addItem(item: item_select)
+        floaty.addItem(item: item)
+        self.wrapperView.addSubview(floaty)
+    }
 }
 extension SaveVC : TableViewCellDelegate{
     func cellViewLongSelected(cell: TableViewCell) {
-        
-    }
-    
-    func cellViewLongSelected(cell: Codable) {
-        
+        navigationController?.pushViewController(ChooseHistoryVC(), animated: false)
     }
     
     func cellViewSelected(cell: TableViewCell) {
         
     }
-    
+    func cellViewLongSelected(cell: Codable) {
+        navigationController?.pushViewController(ChooseHistoryVC(), animated: false)
+    }
     func cellViewSelected(cell: TableViewCell, countSelected: Int) {
-        
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        let result = self.viewModel.listSave[indexPath.row]
+        print("save select: \(result)")
     }
     
     func cellViewSelected(cell: Codable) {
-        print(cell)
-        if let data = JSONHelper.get(value: SaveViewModel.self,anyObject: cell){
-            print(data.typeCode)
-            print(data.content)
-            //    print(data.contents)
-            // let blogPost: UrlModel = try! JSONDecoder().decode(UrlModel.self, from: data.content)
-            //            self.content = blogPost.url ?? ""
-         //   navigationToDetail(typeCode: data.typeCode, content: data.content)
-        }
-        //       let vc = EmailGenerateVC()
-        //        self.navigationController?.pushViewController(vc, animated: true)
+          if let data = JSONHelper.get(value: SaveViewModel.self,anyObject: cell){
+                  print(data.typeCode)
+                  print(data.content.content!)
+                  let value = data.content
+                  let  vc = DetailVC()
+                  vc.listContent = [ContentViewModel(data: value)]
+                  self.navigationController?.pushViewController(vc, animated: true)
+                  
+              }
     }
-    func navigationToDetail(typeCode: String, content: String){
-        //  var vc : UIViewController? = UIViewController()
-        let typeCode = typeCode.uppercased()
-        if typeCode == LanguageKey.Url{
-            let  vc = UrlGenerateVC()
-            vc.isSeen = AppConstants.ISSEEN
-         //   vc.urlSeen = content.ur
-            self.navigationController?.pushViewController(vc, animated: true)
-            
-        }
-        else if typeCode == LanguageKey.Text{
-            //  vc = TextGenerateVC()
-            
-        }
-        else if typeCode == LanguageKey.Location{
-            //  vc = LocationGenerateVC()
-            
-        }
-        else if typeCode == LanguageKey.Email{
-            //   vc = EmailGenerateVC()
-            print("Email")
-        }
-        else if typeCode == LanguageKey.Event{
-            //  vc = EventGenerateVC()
-        }
-        else if typeCode == LanguageKey.Message{
-            // vc = MessageGenerateVC()
-            
-        }
-        else if typeCode == LanguageKey.Wifi{
-            // vc = WifiGenerateVC()
-        }
-        else if typeCode == LanguageKey.Telephone{
-            // vc = PhoneGenerateVC()
-        }
-        else if typeCode == LanguageKey.Contact{
-            // vc = ContactGenerateVC()
-            
-        }
-        // print(vc)
-        
-    }
+    
     func cellCodable(codable: Codable) {
-        
+        let value_data = JSONHelper.get(value: SaveViewModel.self,anyObject: codable)
+        let typeCode = value_data?.typeCode.uppercased()
+        let content = value_data!.content
+        let stringContent = content.content?.data(using: .utf8 )
+        if typeCode == LanguageKey.Url{
+            let urlModel : UrlModel = try! JSONDecoder().decode(UrlModel.self, from: stringContent!)
+            let  vc = UrlGenerateVC()
+            vc.urlValue = urlModel
+            vc.createDateTime = value_data!.createdDateTime
+            vc.isSeen = AppConstants.ISSEEN
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if typeCode == LanguageKey.Wifi{
+            let wifiModel : WifiModel = try! JSONDecoder().decode(WifiModel.self, from: stringContent!)
+            let  vc = WifiGenerateVC()
+            vc.wifiValue = wifiModel
+            vc.createDateTime = value_data!.createdDateTime
+            vc.isSeen = AppConstants.ISSEEN
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if typeCode == LanguageKey.Telephone{
+            let phoneModel : PhoneModel = try! JSONDecoder().decode(PhoneModel.self, from: stringContent!)
+            let  vc = PhoneGenerateVC()
+            vc.phoneValue = phoneModel
+            vc.createDateTime = value_data!.createdDateTime
+            vc.isSeen = AppConstants.ISSEEN
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if typeCode == LanguageKey.Text{
+                  let textModel : TextModel = try! JSONDecoder().decode(TextModel.self, from: stringContent!)
+                  let  vc = TextGenerateVC()
+                  vc.textValue = textModel
+                  vc.createDateTime = value_data!.createdDateTime
+                  vc.isSeen = AppConstants.ISSEEN
+                  self.navigationController?.pushViewController(vc, animated: true)
+              }
+        if typeCode == LanguageKey.Contact{
+                  let contactModel : ContactModel = try! JSONDecoder().decode(ContactModel.self, from: stringContent!)
+                  let  vc = ContactGenerateVC()
+                  vc.contactValue = contactModel
+                  vc.createDateTime = value_data!.createdDateTime
+                  vc.isSeen = AppConstants.ISSEEN
+                  self.navigationController?.pushViewController(vc, animated: true)
+              }
+        if typeCode == LanguageKey.Event{
+                  let eventModel : EventModel = try! JSONDecoder().decode(EventModel.self, from: stringContent!)
+                  let  vc = EventGenerateVC()
+                  vc.eventValue = eventModel
+                  vc.createDateTime = value_data!.createdDateTime
+                  vc.isSeen = AppConstants.ISSEEN
+                  self.navigationController?.pushViewController(vc, animated: true)
+              }
+        if typeCode == LanguageKey.Location{
+                  let locationModel : LocationModel = try! JSONDecoder().decode(LocationModel.self, from: stringContent!)
+                  let  vc = LocationGenerateVC()
+                  vc.locationValue = locationModel
+                  vc.createDateTime = value_data!.createdDateTime
+                  vc.isSeen = AppConstants.ISSEEN
+                  self.navigationController?.pushViewController(vc, animated: true)
+              }
+        if typeCode == LanguageKey.Message{
+                  let messageModel : MessageModel = try! JSONDecoder().decode(MessageModel.self, from: stringContent!)
+                  let  vc = MessageGenerateVC()
+                  vc.messageValue = messageModel
+                  vc.createDateTime = value_data!.createdDateTime
+                  vc.isSeen = AppConstants.ISSEEN
+                  self.navigationController?.pushViewController(vc, animated: true)
+              }
+        if typeCode == LanguageKey.Email{
+            let emailModel : EmailModel = try! JSONDecoder().decode(EmailModel.self, from: stringContent!)
+            let  vc = EmailGenerateVC()
+            vc.emailValue = emailModel
+            vc.createDateTime = value_data!.createdDateTime
+            vc.isSeen = AppConstants.ISSEEN
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     func cellViewSelected(cell: TableViewCell, action: EnumResponseToView) {
         
     }
 }
+
 extension SaveVC : SingleButtonDialogPresenter{
     
 }

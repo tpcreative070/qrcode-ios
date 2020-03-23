@@ -127,11 +127,11 @@ class SQLHelper {
        }
        
        /*Update Scanner*/
-       class open func updatedScanner(createDatetime : Int, value : Int){
+    class open func updatedScanner(data : GenerateEntityModel){
            guard let db = connection() else {
                return
            }
-           return GenerateEntity.instance.update(db: db, mcreateDatetime:createDatetime , value: value)
+        return GenerateEntity.instance.update(db: db, data : data)
        }
        
        /*Get object Scanner*/
@@ -164,13 +164,28 @@ class SQLHelper {
            }
         return GenerateEntity.instance.delete(db: db, value: (createDateTime))
        }
-    /*Update */
+    /*Update History*/
     class open func updateHistory(createDateTime : Int, value: Bool) ->Bool{
              guard let db = connection() else {
                  return false
              }
             return GenerateEntity.instance.updateHistory(db: db, mcreateDatetime: createDateTime, value: value)
          }
+    /*Update Save*/
+    class open func updateSave(createDateTime : Int, value: Bool) ->Bool{
+             guard let db = connection() else {
+                 return false
+             }
+            return GenerateEntity.instance.updateSave(db: db, mcreateDatetime: createDateTime, value: value)
+         }
+    /*Get list histories*/
+    /*Delete */
+       class open func getItemScanner(createDateTime : Int) -> GenerateEntityModel?{
+           guard let db = connection() else {
+               return nil
+           }
+        return GenerateEntity.instance.getObject(db: db, key: (createDateTime))
+       }
 }
 
 

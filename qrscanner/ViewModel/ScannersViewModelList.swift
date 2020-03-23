@@ -14,7 +14,6 @@ class ScannersViewModelList : ScannersViewModelListDeletegate{
     var responseToView: ((String) -> ())?
     var listHistories: [HistoryViewModelList] = [HistoryViewModelList]()
     var listSave: [HistoryViewModelList] = [HistoryViewModelList]()
-
     var navigate: (() -> ())?
 //    func doGetListHistories(){
 //           if let mList = SQLHelper.getListHistories(){

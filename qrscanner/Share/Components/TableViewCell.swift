@@ -115,12 +115,72 @@ class TableViewCell : UITableViewCell{
         self.checkBox.isEnabled = false
         self.checkBox.isChecked = view.checkShowView ?? false
     }
+    func configView(view : ContentViewModelDeletegate){
+        if view.typeCodeView.uppercased() == LanguageKey.Url{
+            let jsonData = view.contentView.data(using: .utf8)!
+            let urlData = try! JSONDecoder().decode(UrlModel.self, from: jsonData)
+            configView(viewModel: UrlViewModel(url: urlData.url!))
+        }
+        if view.typeCodeView.uppercased() == LanguageKey.Email{
+            let jsonData = view.contentView.data(using: .utf8)!
+            let data = try! JSONDecoder().decode(EmailModel.self, from: jsonData)
+            configView(viewModel: EmailViewModel(data: data))
+        }
+        if view.typeCodeView.uppercased() == LanguageKey.Text{
+            let jsonData = view.contentView.data(using: .utf8)!
+            let urlData = try! JSONDecoder().decode(TextModel.self, from: jsonData)
+            configView(viewModel: TextViewModel(text: urlData.text!))
+        }
+        if view.typeCodeView.uppercased() == LanguageKey.Message{
+            let jsonData = view.contentView.data(using: .utf8)!
+            let data = try! JSONDecoder().decode(MessageModel.self, from: jsonData)
+            configView(viewModel: MessageViewModel(data: MessageModel(to: data.to!, message: data.message!)))
+        }
+        if view.typeCodeView.uppercased() == LanguageKey.Location{
+            let jsonData = view.contentView.data(using: .utf8)!
+            let data = try! JSONDecoder().decode(LocationModel.self, from: jsonData)
+            configView(viewModel: LocationViewModel(data: LocationModel(latitude: data.latitude!, longtitude: data.longtitude!, query: data.query!)))
+        }
+        if view.typeCodeView.uppercased() == LanguageKey.Event{
+            let jsonData = view.contentView.data(using: .utf8)!
+            let data = try! JSONDecoder().decode(EventModel.self, from: jsonData)
+            configView(viewModel: EventViewModel(data: data))
+        }
+        if view.typeCodeView.uppercased() == LanguageKey.Contact{
+            let jsonData = view.contentView.data(using: .utf8)!
+            let data = try! JSONDecoder().decode(ContactModel.self, from: jsonData)
+            configView(viewModel: ContactViewModel(data: data))
+        }
+        if view.typeCodeView.uppercased() == LanguageKey.Telephone{
+            let jsonData = view.contentView.data(using: .utf8)!
+            let data = try! JSONDecoder().decode(PhoneModel.self, from: jsonData)
+            configView(viewModel: PhoneViewModel(phone: data))
+        }
+        if view.typeCodeView.uppercased() == LanguageKey.Wifi{
+                 let jsonData = view.contentView.data(using: .utf8)!
+                 let data = try! JSONDecoder().decode(WifiModel.self, from: jsonData)
+                 configView(viewModel: WifiViewModel(data: data))
+             }
+       }
+    func configViewSave(view : GenerateViewModelDeletegate){
+           self.lbTypeCode.text = "\(view.typeCodeView)"
+           self.lbCreatedDate.text = String(view.updatedDateTimeView)
+           self.lbContent.text = view.contentView
+           self.lbContent.textColor = AppColors.GRAY
+        }
     //Config with generate
     func configView(viewModel : TypeCodeViewModelDelegate){
         self.lbTitle.text = "\(viewModel.nameView)"
         self.imgIcon.image = UIImage(named: viewModel.imgIconView)
     }
-    
+//    func configView(viewModel: ContentModel){
+//        if viewModel.typeCode!.uppercased() == LanguageKey.Url{
+//            configView(viewModel: UrlViewModel(url: "sdfsd"))
+//        }
+//        if viewModel.typeCode!.uppercased() == LanguageKey.Phone{
+//            configView(viewModel: PhoneViewModel(phone: "983248593"))
+//        }
+//    }
     func configData(viewModel : Codable){
         self.codable = viewModel
     }
@@ -146,8 +206,8 @@ class TableViewCell : UITableViewCell{
         else if reuseIdentifier == EnumIdentifier.Text.rawValue {
             identifier = EnumIdentifier.Text
         }
-        else if reuseIdentifier == EnumIdentifier.Phone.rawValue {
-            identifier = EnumIdentifier.Phone
+        else if reuseIdentifier == EnumIdentifier.Telephone.rawValue {
+            identifier = EnumIdentifier.Telephone
         }
         else if reuseIdentifier == EnumIdentifier.Email.rawValue {
             identifier = EnumIdentifier.Email
@@ -170,6 +230,12 @@ class TableViewCell : UITableViewCell{
         else if reuseIdentifier == EnumIdentifier.HistoryChoose.rawValue {
             identifier = EnumIdentifier.HistoryChoose
         }
+        else if reuseIdentifier == EnumIdentifier.SaveChoose.rawValue {
+            identifier = EnumIdentifier.SaveChoose
+        }
+        else if reuseIdentifier == EnumIdentifier.Content.rawValue {
+                   identifier = EnumIdentifier.Content
+               }
         setupView()
     }
     
@@ -185,6 +251,9 @@ class TableViewCell : UITableViewCell{
         if identifier == EnumIdentifier.HistoryChoose {
             self.checkBox.isChecked = !self.checkBox.isChecked
         }
+        if identifier == EnumIdentifier.SaveChoose {
+                   self.checkBox.isChecked = !self.checkBox.isChecked
+               }
         
     }
     @objc func actionCellViewLongPress(sender : UILongPressGestureRecognizer){
@@ -194,6 +263,9 @@ class TableViewCell : UITableViewCell{
             //                          self.delegate?.cellViewSelected(cell: data)
             //                      }
             if identifier == EnumIdentifier.HistoryChoose {
+                self.checkBox.isChecked = !self.checkBox.isChecked
+            }
+            if identifier == EnumIdentifier.SaveChoose {
                 self.checkBox.isChecked = !self.checkBox.isChecked
             }
         }
@@ -428,8 +500,13 @@ class TableViewCell : UITableViewCell{
         self.valueTxt1.text = viewModel.ssidView
         self.valueTxt2.text = viewModel.passwordView
         self.valueTxt3.text = viewModel.networkView
-        self.valueTxt4.text = viewModel.hiddenView
-        
+        if viewModel.hiddenView {
+        self.valueTxt4.text = "true"
+        }
+        if !(viewModel.hiddenView) {
+        self.valueTxt4.text = "false"
+        }
+
     }
     /*contact*/
     lazy var contactImg : UIImageView = {
@@ -525,60 +602,63 @@ class TableViewCell : UITableViewCell{
     @objc func urlAction(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
-            let value_data = JSONHelper.get(value: UrlViewModel.self,anyObject: data)
-            if value_data != nil{
-                let urlValue = value_data?.urlTxt
-                if let url = NSURL(string: urlValue!) {
-                    UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
-                    
-                }
+            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
+            let value_data = valueContentView?.content
+           let jsonData = value_data!.data(using: .utf8)!
+            let urlValue = try! JSONDecoder().decode(UrlModel.self, from: jsonData)
+            if let url = NSURL(string: urlValue.url!) {
+                UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+                
             }
         }
     }
     @objc func searchUrlAction(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
-            print(data.self)
-            let value_data = JSONHelper.get(value: UrlViewModel.self,anyObject: data)
-            let urlValue = value_data?.urlTxt
-            if let url = URL(string: urlValue!) {
+            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
+            let value_data = valueContentView?.content
+           let jsonData = value_data!.data(using: .utf8)!
+            let urlValue = try! JSONDecoder().decode(UrlModel.self, from: jsonData)
+            if let url = URL(string: urlValue.url!) {
                 UIApplication.shared.open(url)
             }
-            
         }
     }
     @objc func searchTextAction(sender : UITapGestureRecognizer){
+        
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
-            print(data.self)
-            let value_data = JSONHelper.get(value: TextViewModel.self,anyObject: data)
-            let urlValue = "\(value_data?.textTxt ?? "")"
-            
-            let   query = urlValue.replacingOccurrences(of: " ", with: "+")
-            let url = "https://www.google.co.in/search?q=" + query
-            UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
-            
+            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
+            let value_data = valueContentView?.content
+           let jsonData = value_data!.data(using: .utf8)!
+            let value = try! JSONDecoder().decode(TextModel.self, from: jsonData)
+            let text = value.text ?? ""
+             let  query = text.replacingOccurrences(of: " ", with: "+")
+                       let url = "https://www.google.co.in/search?q=" + query
+                       UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
         }
     }
     @objc func textAction(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
-            print(data.self)
-            let value_data = JSONHelper.get(value: TextViewModel.self,anyObject: data)
-            let textValue = value_data?.textTxt
-            let activiController = UIActivityViewController(activityItems: [textValue as Any], applicationActivities: nil)
-            self.window?.rootViewController!.present(activiController, animated: true, completion: nil)
-            //UIApplication.shared.keyWindow?.rootViewController?.present(activiController,animated: true, completion: nil)
-            
+            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
+            let value_data = valueContentView?.content
+           let jsonData = value_data!.data(using: .utf8)!
+            let value = try! JSONDecoder().decode(TextModel.self, from: jsonData)
+            let text = value.text ?? ""
+                     let activiController = UIActivityViewController(activityItems: [text as Any], applicationActivities: nil)
+                       self.window?.rootViewController!.present(activiController, animated: true, completion: nil)
         }
     }
     @objc func phoneAction(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
-            print(data.self)
-            let value_data = JSONHelper.get(value: PhoneViewModel.self,anyObject: data)
-            let textValue = value_data?.phoneTxt
-            if let url = URL(string: "tel://\(textValue!)"), UIApplication.shared.canOpenURL(url) {
+            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
+                      let value_data = valueContentView?.content
+                     let jsonData = value_data!.data(using: .utf8)!
+                      let value = try! JSONDecoder().decode(PhoneModel.self, from: jsonData)
+            let textValue = value.phone ?? ""
+            if let url = URL(string: "tel://\(textValue)"), UIApplication.shared.canOpenURL(url) {
                 if #available(iOS 10, *) {
                     UIApplication.shared.open(url)
                 } else {
@@ -591,9 +671,11 @@ class TableViewCell : UITableViewCell{
     @objc func messageAction(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
-            print(data.self)
-            let value_data = JSONHelper.get(value: MessageViewModel.self,anyObject: data)
-            let smsValue = "sms:+\((value_data?.toMessage)!))&body=\((value_data?.message)!))"
+            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
+                      let value_data = valueContentView?.content
+                     let jsonData = value_data!.data(using: .utf8)!
+                      let value = try! JSONDecoder().decode(MessageModel.self, from: jsonData)
+            let smsValue = "sms:+\((value.to ?? ""))&body=\(value.message ?? "")"
             let strURL: String = smsValue.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             UIApplication.shared.open(URL.init(string: strURL)!, options: [:], completionHandler: nil)
             
@@ -605,26 +687,28 @@ class TableViewCell : UITableViewCell{
     @objc func addContactAction(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
-            print(data.self)
-            let value_data = JSONHelper.get(value: ContactViewModel.self,anyObject: data)
+            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
+             let value = valueContentView?.content
+            let jsonData = value!.data(using: .utf8)!
+             let value_data = try! JSONDecoder().decode(ContactModel.self, from: jsonData)
             let store = CNContactStore()
             store.requestAccess(for: .contacts) { (granted, err) in
-                if err == nil{
+                if err != nil{
                     print("Failed request access")
                     return
                 }
                 if granted{
                     // Creating a new contact
                     let newContact = CNMutableContact()
-                    newContact.givenName = value_data!.fullnameView
-                    let email = CNLabeledValue(label: CNLabelHome, value: "\(value_data!.emailView)" as NSString)
+                    newContact.givenName = value_data.fullNameContact!
+                    let email = CNLabeledValue(label: CNLabelHome, value: "\(value_data.emailContact!)" as NSString)
                     newContact.emailAddresses = [email]
                     let homeAddress = CNMutablePostalAddress()
-                    homeAddress.city = value_data!.addressView
+                    homeAddress.city = value_data.addressContact!
                     newContact.postalAddresses = [CNLabeledValue(label:CNLabelHome, value:homeAddress)]
                     newContact.phoneNumbers = [CNLabeledValue(
                         label:CNLabelPhoneNumberiPhone,
-                        value:CNPhoneNumber(stringValue:value_data!.phoneView))]
+                        value:CNPhoneNumber(stringValue:value_data.phoneContact!))]
                     
                     
                     // Saving contact
@@ -658,13 +742,15 @@ class TableViewCell : UITableViewCell{
     }
     @objc func emailAction(sender : UITapGestureRecognizer){
         if let data = codable {
-            print(data.self)
-            let value_data = JSONHelper.get(value: EmailViewModel.self,anyObject: data)
-            let email = value_data?.messageView
-            let objectEmail = value_data?.subjectView
-            let messageEmail = value_data?.messageView
-            let value = "mailto:\(email!)?subject=\(objectEmail!)&body=\(messageEmail!)"
-            if let url = URL(string: value) {
+             let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
+                        let value = valueContentView?.content
+                       let jsonData = value!.data(using: .utf8)!
+                        let value_data = try? JSONDecoder().decode(EmailModel.self, from: jsonData)
+            let email = value_data?.email ?? ""
+            let objectEmail = value_data?.objectEmail ?? ""
+            let messageEmail = value_data?.messageEmail ?? ""
+            let value_email = "mailto:\(email)?subject=\(objectEmail)&body=\(messageEmail)"
+            if let url = URL(string: value_email) {
                 if #available(iOS 10.0, *) {
                     UIApplication.shared.open(url)
                 } else {
@@ -686,10 +772,12 @@ class TableViewCell : UITableViewCell{
     }
     @objc func locationAction(sender : UITapGestureRecognizer){
         if let data = codable {
-            print(data.self)
-            let value_data = JSONHelper.get(value: LocationViewModel.self,anyObject: data)
-            let lat = Float(value_data!.latitude) ?? 0
-            let lng = Float(value_data!.longtitude) ?? 0
+             let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
+                                   let value = valueContentView?.content
+                                  let jsonData = value!.data(using: .utf8)!
+                                   let value_data = try? JSONDecoder().decode(LocationModel.self, from: jsonData)
+            let lat = Float(value_data!.latitude ?? 0)
+            let lng = Float(value_data!.longtitude ?? 0)
             let regionDistance:CLLocationDistance = 10000
             let coordinates = CLLocationCoordinate2DMake(CLLocationDegrees(lat), CLLocationDegrees(lng))
             let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
@@ -705,7 +793,10 @@ class TableViewCell : UITableViewCell{
     }
     @objc func eventAction(sender : UITapGestureRecognizer){
         if let data = codable {
-            let value_data = JSONHelper.get(value: EventViewModel.self,anyObject: data)
+            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
+                                   let value = valueContentView?.content
+                                  let jsonData = value!.data(using: .utf8)!
+                                   let value_data = try? JSONDecoder().decode(EventModel.self, from: jsonData)
             let eventStore : EKEventStore = EKEventStore()
             // 'EKEntityTypeReminder' or 'EKEntityTypeEvent'
             eventStore.requestAccess(to: .event) { (granted, error) in
@@ -715,12 +806,12 @@ class TableViewCell : UITableViewCell{
                     
                     let event:EKEvent = EKEvent(eventStore: eventStore)
                     
-                    event.title = value_data!.titleView
-                    event.startDate = TimeHelper.getDateTime(timeString: value_data!.beginTime)!
+                    event.title = value_data!.title
+                    event.startDate = TimeHelper.getDateTime(timeString: value_data!.beginTime!) ?? Date()
                    
-                    event.endDate = TimeHelper.getDateTime(timeString: value_data!.endTime)!
-                    event.notes = value_data?.descriptionView ?? ""
-                    event.location = value_data?.locationView ?? ""
+                    event.endDate = TimeHelper.getDateTime(timeString: value_data!.endTime!) ?? Date()
+                    event.notes = value_data?.description ?? ""
+                    event.location = value_data?.location ?? ""
                     event.calendar = eventStore.defaultCalendarForNewEvents
                     do {
                         try eventStore.save(event, span: .thisEvent)
@@ -740,6 +831,13 @@ class TableViewCell : UITableViewCell{
                     
                 }
             }
+        }
+    }
+    @objc func actionImgCreateViewTap(sender : UITapGestureRecognizer){
+        if let data = codable {
+          
+            self.delegate?.cellCodable(codable: data)
+
         }
     }
 }

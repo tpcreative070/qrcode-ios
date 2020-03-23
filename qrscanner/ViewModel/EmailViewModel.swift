@@ -11,7 +11,7 @@ class EmailViewModel : Codable , EmailViewModelDelegate{
     
    
     var toTxtView : String {
-        return to
+        return email
     }
     var subjectView : String{
         return subject
@@ -20,13 +20,18 @@ class EmailViewModel : Codable , EmailViewModelDelegate{
         return message
     }
 
-     var to: String
+     var email: String
    var subject: String
      var message: String
     init(to: String, subject: String, message: String) {
-        self.to = to
+        self.email = to
         self.message = message
         self.subject = subject
      }
+    init(data: EmailModel){
+        self.email = data.email ?? ""
+        self.message = data.messageEmail ?? ""
+        self.subject = data.objectEmail ?? ""
+    }
     
 }

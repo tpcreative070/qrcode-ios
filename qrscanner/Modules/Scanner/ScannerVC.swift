@@ -29,14 +29,24 @@ class ScannerVC: UIViewController {
         lbScannerRectangle.translatesAutoresizingMaskIntoConstraints = false
         return lbScannerRectangle
     }()
-    var resultLabel : UILabel? = {
-        let view = UILabel()
+   
+    var imgScanView : UIView! = {
+        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var imgView : UIView! = {
+    var imgHelpView : UIView! = {
         let view = UIView()
-        view.backgroundColor = .red
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    var imgFlashView : UIView! = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    var imgCameraView : UIView! = {
+        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -73,18 +83,18 @@ class ScannerVC: UIViewController {
     var video = AVCaptureVideoPreviewLayer()
     var capture: ZXCapture?
     private let regionCornerRadius = CGFloat(10.0)
-    
     var isScanning: Bool?
     var isFirstApplyOrientation: Bool?
     var captureSizeTransform: CGAffineTransform?
     let viewModel =  ScannerViewModel()
     var flagDirectionCamera = false
+    var isFront : Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         print("view did load")
         iniUI()
-        setup()
-         
+       setup(isFront: false)
+         bindViewModel()
        // setupNavItems()
         // view.backgroundColor = .red
     }
@@ -99,7 +109,6 @@ class ScannerVC: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
         print("viewWillTransition")
         coordinator.animate(alongsideTransition: { (context) in
-            // do nothing
         }) { [weak self] (context) in
             guard let weakSelf = self else { return }
             weakSelf.applyOrientation()
@@ -107,11 +116,11 @@ class ScannerVC: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
       //  log(message: "viewDidAppear")
-        //self.viewModel.defaultValue()
+        self.viewModel.defaultValue()
       //  registerEventBus()
          self.viewModel.askCameraPermission()
-        iniUI()
-        setup()
+      //  iniUI()
+       // setup()
         
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -119,39 +128,79 @@ class ScannerVC: UIViewController {
     }
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.bgView.layer.borderColor = AppColors.BLUE.cgColor
-        setup()
+        self.bgView.layer.backgroundColor = UIColor.white.withAlphaComponent(0.5).cgColor
+        //setup()
     }
 //    override func actionAlertYes() {
 //        viewModel.openAppSetting()
 //    }
-    
-    func setup()
+    func setup(isFront : Bool)
     {
         isScanning = false
         isFirstApplyOrientation = false
         capture = ZXCapture()
         guard let _capture = capture else { return }
-        _capture.camera = _capture.back()
+       
+            _capture.camera = _capture.back()
+       
         _capture.focusMode =  .continuousAutoFocus
         _capture.delegate = self
         self.bgView.layer.addSublayer(_capture.layer)
-        self.bgView.bringSubviewToFront(imgView)
-
         lbScannerRectangle.layer.masksToBounds = true
         lbScannerRectangle.layer.cornerRadius = self.regionCornerRadius
         lbScannerRectangle.layer.borderColor = UIColor.white.cgColor
         lbScannerRectangle.layer.borderWidth = 2.0
+//        bgView.layer.masksToBounds = true
+//        bgView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         scanView.setFrameSize(roi: lbScannerRectangle)
         scanView.drawCorners()
-        self.scanView.isHidden = true
-        
+       // self.scanView.isHidden = true
+        self.bgView.bringSubviewToFront(imgCameraView)
+        self.bgView.bringSubviewToFront(imgHelpView)
+        self.bgView.bringSubviewToFront(imgFlashView)
+
+        self.bgView.bringSubviewToFront(imgScanView)
         self.bgView.bringSubviewToFront(scanView)
         self.bgView.bringSubviewToFront(lbScannerRectangle)
 
         //  self.view.bringSubviewToFront(_resultLabel)
     }
-   
+    @objc func actionFlash(sender : UITapGestureRecognizer){
+        print("actionFlash")
+        GalleryHelper.flashlight()
+    }
+    @objc func actionFrontCamera(sender : UITapGestureRecognizer){
+//        if isFront {
+//            capture = ZXCapture()
+//                        guard let _capture = capture else { return }
+//                        _capture.camera = _capture.back()
+//                       _capture.focusMode =  .continuousAutoFocus
+//            isFront = false
+//        }
+//        else{
+//            capture = ZXCapture()
+//             guard let _capture = capture else { return }
+//             _capture.camera = _capture.front()
+//            _capture.focusMode =  .continuousAutoFocus
+//            _capture.delegate = self
+//            self.bgView.layer.addSublayer(_capture.layer)
+//            isFront = true
+//
+//        }
+//
+//
+    }
+    @objc func actionGallery(sender : UITapGestureRecognizer){
+        print("actionGallery")
+        self.bgView.bringSubviewToFront(iconView)
+        viewModel.defaultValue()
+       onTakeGallery()  
+    }
+    
+    @objc func actionScanQR(sender : UITapGestureRecognizer){
+         print("actionScanQR")
+    }
+  
 }
 
 

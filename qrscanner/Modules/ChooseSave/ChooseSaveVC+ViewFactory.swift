@@ -1,5 +1,5 @@
 //
-//  ChooseHistoryVC+ViewFactory.swift
+//  ChooseSaveVC+ViewFactory.swift
 //  qrscanner
 //
 //  Created by phong070 on 2/29/20.
@@ -8,8 +8,9 @@
 
 import UIKit
 import Floaty
-extension ChooseHistoryVC  {
+extension ChooseSaveVC  {
     func initUI(){
+        setupNavItems()
         
         /*SetupScrollView*/
         self.view.addSubview(scrollView)
@@ -44,7 +45,7 @@ extension ChooseHistoryVC  {
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0)
         ])
-        setupNavItems()
+        
         setupFloatButton()
         setupEndedUpScrollView()
         setupTableView()
@@ -60,8 +61,10 @@ extension ChooseHistoryVC  {
     
     //Mark: - setUpTableView()
     func setupTableView(){
-        tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.HistoryChoose.rawValue)
-        tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: EnumIdentifier.HistoryChoose.rawValue)
+        
+        tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.SaveChoose.rawValue)
+        tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: EnumIdentifier.SaveChoose.rawValue)
+        
     }
     func bindViewModel() {
         self.viewModel.showLoading.bind { visible in
@@ -77,14 +80,14 @@ extension ChooseHistoryVC  {
                 self?.updateDataSource()
             }
         }
-        self.viewModel.doGetListHistories()
+        self.viewModel.doGetListSave()
     }
     func updateDataSource() {
-        self.sections = TableSection.group(rowItems: self.viewModel.listHistories, by: { (headline) in
+        self.sections = TableSection.group(rowItems: self.viewModel.listSave, by: { (headline) in
             return headline.typeCode
         })
         self.dataSource.sections = self.sections
-        self.dataSource.items = self.viewModel.listHistories
+        self.dataSource.items = self.viewModel.listSave
         self.tableView.reloadData()
     }
     func setupNavItems() {
@@ -92,14 +95,9 @@ extension ChooseHistoryVC  {
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
-        
-        
         let menuButtonRightDel = UIButton(type: .system)
         menuButtonRightDel.setImage(#imageLiteral(resourceName: "ic_delete"), for: .normal)
         menuButtonRightDel.addTarget(self, action: #selector(doDeleteItem), for: .touchUpInside)
-        
-        
-        
         let menuButtonRightSelectAll = UIButton(type: .system)
         menuButtonRightSelectAll.setImage(#imageLiteral(resourceName: "ic_select_all"), for: .normal)
         menuButtonRightSelectAll.addTarget(self, action: #selector(doSelectAll), for: .touchUpInside)
@@ -107,7 +105,7 @@ extension ChooseHistoryVC  {
     }
     
     func bindTableView(){
-        self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.HistoryChoose.rawValue, items: self.viewModel.listHistories,sections: self.sections, height: 40,isSelectionStype: .none){ cell, vm in
+        self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.SaveChoose.rawValue, items: self.viewModel.listSave,sections: self.sections, height: 40,isSelectionStype: .none){ cell, vm in
             cell.configView(view: vm)
             cell.configData(viewModel: vm)
             cell.delegate = self
@@ -118,12 +116,8 @@ extension ChooseHistoryVC  {
             section.configView(view: vm)
         }
         self.dataSource.loadMore = {
-            //   self.log(message: "Loading more")
         }
-        //        self.dataSource.configureSwipeCell = { cell,vm in
-        //            self.log(object: vm)
-        //            self.viewModel.currentCell = vm
-        //        }
+        
         self.tableView.dataSource = self.dataSource
         self.tableView.delegate = self.dataSource
     }
@@ -160,8 +154,10 @@ extension ChooseHistoryVC  {
         item_select.handler = { item in
         }
         floaty.tintColor = .white
+        
         floaty.addItem(item: item_select)
         floaty.addItem(item: item)
+        
         self.wrapperView.addSubview(floaty)
         
     }
@@ -183,13 +179,11 @@ extension ChooseHistoryVC  {
     }
     
 }
-extension ChooseHistoryVC : TableViewCellDelegate{
+extension ChooseSaveVC : TableViewCellDelegate{
     func cellViewLongSelected(cell: TableViewCell) {
         
     }
-    
     func cellViewLongSelected(cell: Codable) {
-        //        navigationController?.pushViewController(ChooseHistoryVC, animated: false)
     }
     
     func cellViewSelected(cell: TableViewCell) {
@@ -198,7 +192,7 @@ extension ChooseHistoryVC : TableViewCellDelegate{
     
     func cellViewSelected(cell: TableViewCell, countSelected: Int) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
-        let result = self.viewModel.listHistories[indexPath.row]
+        let result = self.viewModel.listSave[indexPath.row]
         print("history select: \(result)")
     }
     
@@ -213,11 +207,11 @@ extension ChooseHistoryVC : TableViewCellDelegate{
         
     }
 }
-extension ChooseHistoryVC : SingleButtonDialogPresenter{
+extension ChooseSaveVC : SingleButtonDialogPresenter{
     
 }
 
-extension ChooseHistoryVC : HeaderSectionDelegate {
+extension ChooseSaveVC : HeaderSectionDelegate {
     func cellSectionSelected(codable: Codable) {
         print(codable)
     }

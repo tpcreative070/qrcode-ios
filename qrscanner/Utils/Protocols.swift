@@ -44,6 +44,11 @@ protocol HistoryViewModelListDeletegate  : BaseViewModel{
     var responseToView : ((String) ->())? {get set}
     var isSelected : Bindable<Bool> {get}
 }
+protocol ContentViewModelListDeletegate  : BaseViewModel{
+    var navigate: (() -> ())?  { get }
+    var listContent : [ContentViewModel] {get}
+    var responseToView : ((String) ->())? {get set}
+}
 protocol SaveViewModelListDeletegate  : BaseViewModel{
     var navigate: (() -> ())?  { get }
     var listSave : [SaveViewModel] {get}
@@ -60,7 +65,11 @@ protocol GenerateViewModelDeletegate {
     var contentView : String {get}
     var checkShowView : Bool? {get}
 }
-
+protocol ContentViewModelDeletegate {
+    var typeCodeView : String {get}
+    var contentView : String {get}
+    
+}
 protocol TypeCodeViewModelDelegate {
     var nameView : String {get}
     var imgIconView : String{get}
@@ -72,6 +81,7 @@ protocol ScannerViewModelDelegate : BaseViewModel {
     var transactionIdBinding : Bindable<String> {get}
     var cameraBinding : Bindable<Bool>{get set}
 }
+
 protocol GenerateViewModelDelegate  {
     var navigate: (() -> ())?  { get set }
     var responseToView : ((String) ->())? {get set}
@@ -87,6 +97,13 @@ protocol GenerateViewModelDelegate  {
       var addressContact: String? {get}
       var phoneContact: String? {get}
     var emailContact: String? {get}
+   
+   
+}
+protocol ResultViewModelDelegate  {
+    var navigate: (() -> ())?  { get set }
+    var responseToView : ((String) ->())? {get set}
+   
    
    
 }
@@ -146,7 +163,7 @@ protocol WifiViewModelDelegate {
     var ssidView : String{get}
     var passwordView : String{get}
     var networkView : String{get}
-    var hiddenView : String{get}
+    var hiddenView : Bool{get}
 
 }
 /*contact protocol*/

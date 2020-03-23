@@ -1,5 +1,5 @@
 //
-//  GenerateVC+ViewFactory.swift
+//  TypeCodeVC+ViewFactory.swift
 //  qrscanner
 //
 //  Created by phong070 on 2/29/20.
@@ -29,13 +29,7 @@ extension TypeCodeVC {
         /*TableView*/
         tableView = UITableView()
         tableView.allowsSelection = true
-//        if(DeviceHelper.isSmallScreen()){
-//            tableView.isScrollEnabled = true
-//        }else{
-//            tableView.isScrollEnabled = false
-//        }
         tableView.isScrollEnabled = true
-
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
@@ -55,7 +49,6 @@ extension TypeCodeVC {
             ended.rightAnchor.constraint(equalTo: wrapperView.rightAnchor),
             ended.topAnchor.constraint(equalTo: tableView.bottomAnchor)
         ])
-//        self.view.layoutIfNeeded()
         setupEndedUpScrollView()
         setupTableView()
         bindTableView()
@@ -84,7 +77,6 @@ extension TypeCodeVC {
             self.log(object: vm)
             self.viewModel.currentCell = vm
         }
-       // self.dataSource.swipeActionRight = swipeActionRight()
         self.tableView.reloadData()
         log(message: "List typecode available...")
         log(object: self.viewModel.list)
@@ -115,8 +107,6 @@ extension TypeCodeVC {
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
     }
-
-    
   }
 extension TypeCodeVC : TableViewCellDelegate {
     func cellViewLongSelected(cell: TableViewCell) {
@@ -138,8 +128,6 @@ extension TypeCodeVC : TableViewCellDelegate {
     }
     
     func cellViewSelected(cell: Codable) {
-     //  self.viewModel.doSelectItem(coable: cell)
-    //    log(object: cell)
         if let data = JSONHelper.get(value: TypeCodeModel.self,anyObject: cell){
             navigationToAddGenerateVC(typeCode: data.name!)
         }
@@ -150,7 +138,6 @@ extension TypeCodeVC : TableViewCellDelegate {
     }
     func cellViewSelected(cell: TableViewCell, action: EnumResponseToView) {
           print("\(cell.identifier) -- \(cell.lbTitle)")
-
     }
     func navigationToAddGenerateVC(typeCode: String){
         var vc : UIViewController? = UIViewController()
@@ -168,7 +155,6 @@ extension TypeCodeVC : TableViewCellDelegate {
               }
               else if typeCode == LanguageKey.Email{
                  vc = EmailGenerateVC()
-            print("Email")
               }
               else if typeCode == LanguageKey.Event{
                  vc = EventGenerateVC()
@@ -187,7 +173,6 @@ extension TypeCodeVC : TableViewCellDelegate {
               vc = ContactGenerateVC()
 
               }
-      print(vc)
       self.navigationController?.pushViewController(vc!, animated: true)
     }
     func setupEndedUpScrollView(){
@@ -198,7 +183,6 @@ extension TypeCodeVC : TableViewCellDelegate {
         endedUpScrollViewContainerView.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor),
         endedUpScrollViewContainerView.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor)
         ])
-//       self.view.layoutIfNeeded()
     }
 }
 extension TypeCodeVC : SingleButtonDialogPresenter {

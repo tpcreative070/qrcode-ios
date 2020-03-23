@@ -41,7 +41,7 @@ open class TabView: UIScrollView {
 
     fileprivate var additionView: UIView = .init()
 
-    fileprivate var currentIndex: Int = 0
+    fileprivate var currentIndex: Int = 2
 
     fileprivate(set) var options: SwipeMenuViewOptions.TabView = SwipeMenuViewOptions.TabView()
 
@@ -132,7 +132,7 @@ open class TabView: UIScrollView {
     }
 
     func reset() {
-        currentIndex = 0
+        currentIndex = 2
         itemViews.forEach { $0.removeFromSuperview() }
         additionView.removeFromSuperview()
         containerView.removeFromSuperview()

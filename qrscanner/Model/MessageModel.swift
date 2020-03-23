@@ -15,4 +15,7 @@ class MessageModel : Codable {
         self.to = to
         self.message = message
     }
+    init() {
+        
+    }
 }

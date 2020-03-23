@@ -17,6 +17,9 @@ extension TableViewCell {
             case .HistoryChoose:
                       setupChooseHistorySubView()
                       break
+            case .SaveChoose:
+            setupChooseHistorySubView()
+            break
         case .Generate:
             setupGenerateSubView()
             case .Save:
@@ -25,7 +28,7 @@ extension TableViewCell {
             setupUrlView()
             case .Text:
             setupTextView()
-            case .Phone:
+            case .Telephone:
             setupPhoneView()
             case .Email:
             setupEmailView()
@@ -39,12 +42,15 @@ extension TableViewCell {
             setupMessageView()
             case .Event:
             setupEventView()
+            case .Content:
+            setupContentView()
         default :
             break
         }
     }
     
  func setupBackgroud(){
+    backgroundView?.backgroundColor = .red
         self.addSubview(self.backGroundView)
         NSLayoutConstraint.activate([
             self.backGroundView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant:10),

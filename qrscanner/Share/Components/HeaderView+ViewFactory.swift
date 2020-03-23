@@ -12,23 +12,26 @@ extension HeaderView{
         self.setupBackgroud()
         switch identifier {
         case .History:
-           self.setupSubView()
-           break
-            case .Save:
-                      self.setupQrcodeHistorySubView()
-                      break
-            case .HistoryChoose:
+            self.setupSubView()
+            break
+        case .Save:
+            self.setupQrcodeHistorySubView()
+            break
+        case .HistoryChoose:
+            self.setupSubView()
+            break
+        case .SaveChoose:
             self.setupSubView()
             break
         case .Transactions:
-           self.setupSubView()
+            self.setupSubView()
             break
             
         case .QRCodeHistory:
-           self.setupQrcodeHistorySubView()
-           break
+            self.setupQrcodeHistorySubView()
+            break
         default:
-           break
+            break
         }
     }
     
@@ -39,7 +42,7 @@ extension HeaderView{
             self.backGroundView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             self.backGroundView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
             self.backGroundView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -0)
-            ])
+        ])
     }
     
     fileprivate func setupSubView(){
@@ -49,7 +52,7 @@ extension HeaderView{
             self.lbGroupName.trailingAnchor.constraint(equalTo: self.backGroundView.trailingAnchor, constant: -10),
             self.lbGroupName.topAnchor.constraint(equalTo: self.backGroundView.topAnchor,constant: 5),
             self.lbGroupName.bottomAnchor.constraint(equalTo: self.backGroundView.bottomAnchor,constant: -0)
-            ])
+        ])
     }
     
     fileprivate func setupQrcodeHistorySubView(){
@@ -59,6 +62,6 @@ extension HeaderView{
             self.lbGroupName.trailingAnchor.constraint(equalTo: self.backGroundView.trailingAnchor, constant: -10),
             self.lbGroupName.topAnchor.constraint(equalTo: self.backGroundView.topAnchor,constant: 5),
             self.lbGroupName.bottomAnchor.constraint(equalTo: self.backGroundView.bottomAnchor,constant: -0)
-            ])
+        ])
     }
 }

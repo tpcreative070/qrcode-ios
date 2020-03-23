@@ -34,45 +34,48 @@ class HeaderView : UITableViewHeaderFooterView{
             identifier = EnumIdentifier.Transactions
         }
         else if reuseIdentifier == EnumIdentifier.QRCodeHistory.rawValue{
-              identifier = EnumIdentifier.QRCodeHistory
+            identifier = EnumIdentifier.QRCodeHistory
         }
         else if reuseIdentifier == EnumIdentifier.Save.rawValue{
-              identifier = EnumIdentifier.Save
+            identifier = EnumIdentifier.Save
         }
         else if reuseIdentifier == EnumIdentifier.HistoryChoose.rawValue{
-                     identifier = EnumIdentifier.HistoryChoose
-               }
+            identifier = EnumIdentifier.HistoryChoose
+        }
+        else if reuseIdentifier == EnumIdentifier.SaveChoose.rawValue{
+            identifier = EnumIdentifier.SaveChoose
+        }
         setupView()
     }
     
     // config view with Confirm
-   func configView(view : GenerateViewModelDeletegate){
+    func configView(view : GenerateViewModelDeletegate){
         self.lbGroupName.text = view.typeCodeView
         self.lbGroupName.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoBold, size: AppFonts.LABEL_FONT_SIZE)
     }
     /*
-    func configView(view : TransactionsLogsViewModelDeletegate){
-         var index = view.transactionDateView.index(view.transactionDateView.startIndex, offsetBy: 4)
-         let year = String(view.transactionDateView[..<index])
-         let monthdate = String(view.transactionDateView[index...])
-         index = monthdate.index(monthdate.startIndex, offsetBy: 2)
-         let month = String(monthdate[..<index])
-         let headline = String("\(LanguageHelper.getTranslationByKey(LanguageKey.Months) ?? "") " + month + "/" + year)
-         self.lbGroupName.text = headline//view.transactionDateView
-         self.lbGroupName.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.TEXTFIELD_TITLE_FONT_SIZE)
-         self.backGroundView.backgroundColor = AppColors.GRAY_LIGHT
-    }
-
-    // config with with qrcode history
-    func configView(view : QRCodeViewModeDeletegate){
-        
-    }
-    */
+     func configView(view : TransactionsLogsViewModelDeletegate){
+     var index = view.transactionDateView.index(view.transactionDateView.startIndex, offsetBy: 4)
+     let year = String(view.transactionDateView[..<index])
+     let monthdate = String(view.transactionDateView[index...])
+     index = monthdate.index(monthdate.startIndex, offsetBy: 2)
+     let month = String(monthdate[..<index])
+     let headline = String("\(LanguageHelper.getTranslationByKey(LanguageKey.Months) ?? "") " + month + "/" + year)
+     self.lbGroupName.text = headline//view.transactionDateView
+     self.lbGroupName.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.TEXTFIELD_TITLE_FONT_SIZE)
+     self.backGroundView.backgroundColor = AppColors.GRAY_LIGHT
+     }
+     
+     // config with with qrcode history
+     func configView(view : QRCodeViewModeDeletegate){
+     
+     }
+     */
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         fatalError("init(coder:) has not been implemented")
     }
-        
+    
     @objc func actionCellViewTap(sender : UITapGestureRecognizer){
         if let mDelegate = delegate{
             if let mViewModel = codable{

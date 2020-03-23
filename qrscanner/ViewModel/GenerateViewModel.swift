@@ -47,6 +47,8 @@ class GenerateViewModel : GenerateViewModelDelegate {
     var focusTextField: UITextField?
     var result : UIImage = UIImage()
     var typeCode : String = ""
+    var generateValue : GenerateEntityModel?
+    var stringResult: String = ""
     /*Url*/
     var urlBinding : Bindable<String> = Bindable("")
     var url: String?{
@@ -432,7 +434,6 @@ class GenerateViewModel : GenerateViewModelDelegate {
      ValidateBeginTime
      */
     func validateBeginTimeEvent(){
-        print(beginTimeEvent)
         if beginTimeEvent == nil {
             errorMessages.value[GenerateViewModelKey.BEGINTIME_EVENT] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorQueryRequired) ?? ""
         }
@@ -624,6 +625,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
         
         result = generateDataQRCode(from: value)!
         if (result != nil) {
+            stringResult = value
             responseToView!(EnumResponseToView.CREATE_SUCCESS.rawValue)
         }
         

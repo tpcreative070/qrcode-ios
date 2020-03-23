@@ -28,7 +28,7 @@ class UrlGenerateVC: BaseViewController {
     }()
     lazy var urlLbl : UILabel = {
         let view = UILabel()
-        view.text = "Url"
+        view.text = LanguageKey.Url
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -39,118 +39,24 @@ class UrlGenerateVC: BaseViewController {
         
         return view
     }()
-    var searchView: UIView = {
-        let view = UIView()
-        view.backgroundColor = AppColors.GRAY_LIGHT_90
-        view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    var urlView: UIView = {
-        let view = UIView()
-        view.backgroundColor = AppColors.GRAY_LIGHT_90
-        view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    var clipboardView: UIView = {
-        let view = UIView()
-        view.backgroundColor = AppColors.GRAY_LIGHT_90
-        view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    lazy var searchImg : UIImageView = {
-        let view = UIImageView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_search")
-        return view
-    }()
-    lazy var searchLbl : UILabel = {
-        let view = UILabel()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.text = "Search"
-        return view
-    }()
-    lazy var urlImg : UIImageView = {
-        let view = UIImageView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_language")
-        return view
-    }()
-    
-    lazy var urlLabel : UILabel = {
-        let view = UILabel()
-        view.text = "Url"
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    lazy var clipboardImage : UIImageView = {
-        let view = UIImageView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_copy")
-        return view
-    }()
-    lazy var clipboardLabel : UILabel = {
-        let view = UILabel()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.text = "Clipboard"
-        return view
-    }()
-    var stackViewTo : StackView = {
-        let view = StackView()
-        view.backgroundColor = AppColors.GRAY_LIGHT_90
-        view.layer.cornerRadius = 10
-        view.layer.borderWidth = 1
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    lazy var radioChoose : RadioButton = {
-        let radio = RadioButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-        radio.innerCircleCircleColor = UIColor.black
-        radio.outerCircleColor = UIColor.gray
-        radio.addTarget(self, action: #selector(actionRadio(sender:)), for: .touchUpInside)
-        return radio
-    }()
-    @objc func actionRadio (sender: RadioButton) {
-        radioChoose.isSelected = true
-    }
+  
+    var createDateTime : Int = 0
     var typeCode : String = ""
-    var urlSeen = UrlModel()
+    var urlValue = UrlModel()
     var isSeen : Int = 0
     var viewModel : GenerateViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
         typeCode = typeCode.uppercased()
         viewModel = GenerateViewModel()
-        //   self.setupDelegate()
-        //  setupStatusBar()
         initUI()
-        setupNavItems()
-        
         self.bindViewModel()
         self.addLeftBackButton()
         print("isSeen : \(isSeen)")
-        checkIsSeenDetail()
+        self.checkIsSeenDetail()
         
     }
-    func checkIsSeenDetail(){
-        if isSeen == AppConstants.ISSEEN {
-            urlTxt.text = urlSeen.url
-            urlTxt.isUserInteractionEnabled = false
-            
-            
-        }
-    }
+   
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardHelper?.registerKeyboardNotification()
@@ -164,13 +70,7 @@ class UrlGenerateVC: BaseViewController {
         self.navigationController?.isNavigationBarHidden = true
         
     }
-    func defineValue(){
-        self.viewModel?.typeCode = LanguageKey.Url
-        self.viewModel?.url = urlTxt.text
-        
-        
-        
-    }
+    
     override func dismissKeyboard() {
         doDismiss()
     }

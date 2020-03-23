@@ -343,6 +343,37 @@ struct AppViewOptions {
 }
 
 struct LanguageKey {
+    //Floaty Button
+    static let Csv = "CSV"
+    static let Select = "SELECT"
+    //Wifi
+    static let SSID = "SSID"
+    static let NetworkEncryption = "NETWORK_ENCRYPTION"
+    static let Hidden = "HIDDEN"
+    static let WPA = "WPA_WPA2"
+    static let WEP = "WEP"
+    static let None = "NONE"
+    //Phone
+    static let Phone = "PHONE"
+    //Contact
+      static let Fullname = "FULLNAME"
+      static let Address = "ADDRESS"
+   //Event
+    static let Title = "TITLE"
+    static let Description = "DESCRIPTION"
+    static let TimeBegin = "TIME_BEGIN"
+    static let TimeEnd = "TIME_END"
+    //Location
+    static let Latitude = "LATITUDE"
+    static let Longtitude = "LONGTITUDE"
+    static let Query = "QUERY"
+    //Message
+    static let To = "TO"
+    //Text
+    //Email
+    static let EmailAddress = "EMAIL_ADDRESS"
+    static let Object = "OBJECT"
+    static let SaveSuccess = "SAVE_SUCCESS"
     static let CancelButtonTitle = "CANCEL"
     static let DoneButtonTitle = "DONE"
     static let TimeFrame = "TIME_FRAME"
@@ -391,7 +422,6 @@ struct LanguageKey {
     static let Time_Seconds = "SECONDS"
     
     //Home
-    static let To = "TO"
     static let FROM = "FROM"
     static let Passengers = "PASSENGERS"
     static let SeatClass = "SEATCLASS"
@@ -591,7 +621,6 @@ struct LanguageKey {
      static let DoYouWantExitThisSession = "DO_YOU_WANT_EXIT_THIS_SESSION"
      
      //My Profile
-     static let Address = "ADDRESS"
      static let PhoneNumber = "PHONE_NUMBER"
      static let Change = "CHANGE"
      static let SessionExpried = "SESSION_EXPIRED"
@@ -913,7 +942,7 @@ enum EnumIdentifier : String {
     case WithdrawMultipleeCash = "WithdrawMultipleeCash"
     case History = "history"
     case HistoryChoose = "history_choose"
-
+case SaveChoose = "save_choose"
     case Save = "save"
      case Generate = "generate"
     case Url = "url"
@@ -925,7 +954,9 @@ case Phone = "phone"
     case Location = "location"
     case Message = "message"
     case Event = "event"
-
+ case Detail = "detail"
+    case Content = "content"
+case Telephone = "telephone"
     case Transactions = "transactions"
     case QRCodeHistory = "qrcodeHistory"
     case ScannerResult = "ScannerResult"

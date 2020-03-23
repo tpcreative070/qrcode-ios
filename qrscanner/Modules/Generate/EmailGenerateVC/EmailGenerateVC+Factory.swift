@@ -9,9 +9,6 @@
 import UIKit
 extension EmailGenerateVC {
     func initUI() {
-        //  view.backgroundColor = .white
-        //   setupNavItems()
-        print(view.frame.height)
         let gety = view.frame.height * 3.5/7
         let value_item = view.frame.height/7
         view.addSubview(backgroundView)
@@ -22,8 +19,6 @@ extension EmailGenerateVC {
             backgroundView.heightAnchor.constraint(equalToConstant: gety)
             
         ])
-        
-        //
         backgroundView.addSubview(emailBg)
         NSLayoutConstraint.activate([
             emailBg.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 10),
@@ -31,7 +26,6 @@ extension EmailGenerateVC {
             emailBg.rightAnchor.constraint(equalTo: backgroundView.rightAnchor, constant: -20),
             emailBg.heightAnchor.constraint(equalToConstant: value_item)
         ])
-        //
         emailBg.addSubview(emailLbL)
         NSLayoutConstraint.activate([
             emailLbL.topAnchor.constraint(equalTo: emailBg.topAnchor, constant: 10),
@@ -63,8 +57,7 @@ extension EmailGenerateVC {
             objectEmailTxt.leadingAnchor.constraint(equalTo: objectEmailBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             objectEmailTxt.trailingAnchor.constraint(equalTo: objectEmailBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-        //
-        //
+        
         backgroundView.addSubview(messageEmailBg)
         NSLayoutConstraint.activate([
             messageEmailBg.topAnchor.constraint(equalTo: objectEmailBg.bottomAnchor, constant: 10),
@@ -84,10 +77,9 @@ extension EmailGenerateVC {
             messageEmailTxt.leadingAnchor.constraint(equalTo: messageEmailBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             messageEmailTxt.trailingAnchor.constraint(equalTo: messageEmailBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-       
-
+        setupNavItems()
     }
-   
+    
     func setupNavItems() {
         
         self.view.backgroundColor = .white
@@ -141,12 +133,18 @@ extension EmailGenerateVC {
         viewModel?.responseToView = { [weak self] value in
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
                 let resVC = ResultGenerateVC()
+                resVC.typeCode = LanguageKey.Email
+                resVC.createDateTime = self!.createDateTime
+                resVC.contentData = ContentModel(data: EmailModel(email: (self?.emailTxt.text)!, objectEmail: (self?.objectEmailTxt.text)!, messageEmail: (self?.messageEmailTxt.text)!))
                 resVC.imgCode = (self?.viewModel?.result)!
+                if self?.isSeen == AppConstants.ISSEEN {
+                    resVC.isUpdate = AppConstants.ISUPDATE
+                }
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }
         }
         viewModel?.onShowError = { [weak self] alert in
-            //self?.clearDataTextfield()
+            self?.clearDataTextfield()
             self?.presentSingleButtonDialog(alert: alert)
         }
         viewModel?.emailBinding.bind({ (value) in
@@ -165,10 +163,7 @@ extension EmailGenerateVC {
         self.viewModel?.errorMessages.value[GenerateViewModelKey.MESSAGE_EMAIL] = ""
         
     }
-    
-    
     private func clearDataTextfield() {
-        
         self.emailTxt.resignFirstResponder()
         self.objectEmailTxt.resignFirstResponder()
         self.messageEmailTxt.resignFirstResponder()
@@ -180,6 +175,13 @@ extension EmailGenerateVC {
         self.viewModel?.errorMessages.value[GenerateViewModelKey.OBJECT_EMAIL] = ""
         self.viewModel?.errorMessages.value[GenerateViewModelKey.MESSAGE_EMAIL] = ""
         
+    }
+    func checkIsSeenDetail(){
+        if isSeen == AppConstants.ISSEEN {
+            self.emailTxt.text = emailValue.email ?? ""
+            self.objectEmailTxt.text = emailValue.objectEmail ?? ""
+            self.messageEmailTxt.text = emailValue.messageEmail ?? ""
+        }
     }
     
 }

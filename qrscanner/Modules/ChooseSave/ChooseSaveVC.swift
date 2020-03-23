@@ -1,5 +1,5 @@
 //
-//  HistoryVC.swift
+//  ChooseSaveVC.swift
 //  qrscanner
 //
 //  Created by phong070 on 2/29/20.
@@ -8,13 +8,12 @@
 
 import UIKit
 import Floaty
-class ChooseHistoryVC : UIViewController,UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
+class ChooseSaveVC : UIViewController,UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-    
     let wrapperView: UIView = {
         let parentView = UIView()
         parentView.translatesAutoresizingMaskIntoConstraints = false
@@ -31,15 +30,15 @@ class ChooseHistoryVC : UIViewController,UIViewControllerTransitioningDelegate, 
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var dataSource :TableViewDataSource<TableViewCell,HistoryViewModel,HeaderView>!
-    var sections = [TableSection<String, HistoryViewModel>]()
-    let viewModel = HistoryViewModelList()
+    var dataSource :TableViewDataSource<TableViewCell,SaveViewModel,HeaderView>!
+    var sections = [TableSection<String, SaveViewModel>]()
+    let viewModel = SaveViewModelList()
     var floaty = Floaty()
     var flagselectItem = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("into ViewDidLoad History")
-        self.sections = TableSection.group(rowItems: self.viewModel.listHistories, by: { (headline) in
+        print("into ViewDidLoad Save")
+        self.sections = TableSection.group(rowItems: self.viewModel.listSave, by: { (headline) in
             return headline.typeCode
         })
         initUI()
@@ -54,15 +53,12 @@ class ChooseHistoryVC : UIViewController,UIViewControllerTransitioningDelegate, 
         
     }
     @objc func doDeleteItem() {
-        print("do select")
-        
-        for index in viewModel.listHistories {
-            Utils.logMessage(object: viewModel.listHistories)
+        for index in viewModel.listSave {
+            Utils.logMessage(object: viewModel.listSave)
             if index.check == true {
                 viewModel.countItemSelected += 1
                 print(index.content)
-                self.viewModel.doDeleteHistory(mData: index)
-                
+                self.viewModel.doDeleteSave(mData: index)
             }
         }
         
@@ -76,12 +72,13 @@ class ChooseHistoryVC : UIViewController,UIViewControllerTransitioningDelegate, 
             sender.isSelected = false
             viewModel.doSelectedAll(isValue: false)
         }
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.viewModel.doGetListHistories()
+        
+        self.viewModel.doGetListSave()
         self.viewModel.isSelected.value = false
+        
         print("into ViewDidAppear History")
     }
     

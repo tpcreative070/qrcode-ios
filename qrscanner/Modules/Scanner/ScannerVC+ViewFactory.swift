@@ -12,83 +12,94 @@ import Photos
 extension ScannerVC {
     func iniUI(){
         view.addSubview(bgView)
-        bgView.addSubview(scanView)
-        
         NSLayoutConstraint.activate([
-            scanView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
-            scanView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            
-            scanView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25),
-            scanView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -25),
-            
-            scanView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/2)
+            bgView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            bgView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -0),
+            bgView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
+            bgView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -0),
+            bgView.widthAnchor.constraint(equalToConstant: view.frame.width),
+            bgView.heightAnchor.constraint(equalToConstant: view.frame.height)
+        ])
+        bgView.addSubview(scanView)
+        NSLayoutConstraint.activate([
+            scanView.centerXAnchor.constraint(equalTo: bgView.centerXAnchor),
+            scanView.centerYAnchor.constraint(equalTo: bgView.centerYAnchor),
+            scanView.leftAnchor.constraint(equalTo: bgView.leftAnchor, constant: 25),
+            scanView.rightAnchor.constraint(equalTo: bgView.rightAnchor, constant: -25),
+            scanView.heightAnchor.constraint(equalTo: bgView.heightAnchor, multiplier: 1/2)
         ])
         bgView.addSubview(lbScannerRectangle)
-        
         NSLayoutConstraint.activate([
-            lbScannerRectangle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
-            lbScannerRectangle.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            
-            lbScannerRectangle.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30),
-            lbScannerRectangle.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30),
-            
-            lbScannerRectangle.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/2)
+            lbScannerRectangle.centerXAnchor.constraint(equalTo: bgView.centerXAnchor),
+            lbScannerRectangle.centerYAnchor.constraint(equalTo: bgView.centerYAnchor),
+            lbScannerRectangle.leftAnchor.constraint(equalTo: bgView.leftAnchor, constant: 30),
+            lbScannerRectangle.rightAnchor.constraint(equalTo: bgView.rightAnchor, constant: -30),
+            lbScannerRectangle.heightAnchor.constraint(equalTo: bgView.heightAnchor, multiplier: 1/2)
         ])
-        bgView.addSubview(iconView)
-               
-               NSLayoutConstraint.activate([
-                   iconView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                   iconView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-                   iconView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25),
-                   iconView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -25),
-            ])
-        iconView.addSubview(frontCamera)
-               
-               NSLayoutConstraint.activate([
-                frontCamera.topAnchor.constraint(equalTo: iconView.topAnchor, constant: 0),
-                frontCamera.leftAnchor.constraint(equalTo: iconView.leftAnchor, constant: 0),
-                ])
-       iconView.addSubview(flash)
-                    
-                    NSLayoutConstraint.activate([
-                     flash.topAnchor.constraint(equalTo: iconView.topAnchor, constant: 0),
-                                         
-                        flash.leftAnchor.constraint(equalTo: frontCamera.rightAnchor, constant: 30),
-                    ])
-            iconView.addSubview(imgHelp)
-                             
-                             NSLayoutConstraint.activate([
-                              imgHelp.topAnchor.constraint(equalTo: iconView.topAnchor, constant: 0),
-                                                  
-                                 imgHelp.leftAnchor.constraint(equalTo: flash.rightAnchor, constant: 30),
-                             ])
-        bgView.addSubview(imgView)
-                                   
-                                   NSLayoutConstraint.activate([
-                                    imgView.topAnchor.constraint(equalTo: bgView.topAnchor, constant: 50),
-                                    imgView.heightAnchor.constraint(equalToConstant: 30),
-                                    imgView.widthAnchor.constraint(equalToConstant: 30),
-                                       imgView.leftAnchor.constraint(equalTo: bgView.rightAnchor, constant: 30),
-                                   ])
-//        imgView.addSubview(imgScan)
-//
-//                                       NSLayoutConstraint.activate([
-//                                        imgScan.topAnchor.constraint(equalTo: imgView.topAnchor, constant: 0),
-//
-//                                           imgScan.leftAnchor.constraint(equalTo: imgView.leftAnchor, constant: 30),
-//                                       ])
         
-        imgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector (self.urlAction (_:))))
-
+        bgView.addSubview(imgCameraView)
+        NSLayoutConstraint.activate([
+            
+            imgCameraView.topAnchor.constraint(equalTo: bgView.topAnchor, constant: 10),
+            imgCameraView.leadingAnchor.constraint(equalTo: bgView.leadingAnchor, constant: 50),
+            imgCameraView.widthAnchor.constraint(equalToConstant: 30),
+            
+            imgCameraView.heightAnchor.constraint(equalToConstant: 30)
+        ])
+        imgCameraView.addSubview(frontCamera)
+        NSLayoutConstraint.activate([
+            frontCamera.topAnchor.constraint(equalTo: imgCameraView.topAnchor, constant: 0),
+            frontCamera.leadingAnchor.constraint(equalTo: imgCameraView.leadingAnchor, constant: 0),
+        ])
+        bgView.addSubview(imgFlashView)
+        NSLayoutConstraint.activate([
+            
+            imgFlashView.topAnchor.constraint(equalTo: bgView.topAnchor, constant: 10),
+            imgFlashView.leadingAnchor.constraint(equalTo: imgCameraView.trailingAnchor, constant: 40),
+            imgFlashView.widthAnchor.constraint(equalToConstant: 30),
+            imgFlashView.heightAnchor.constraint(equalToConstant: 30)
+        ])
+        imgFlashView.addSubview(flash)
+        NSLayoutConstraint.activate([
+            flash.topAnchor.constraint(equalTo: imgFlashView.topAnchor, constant: 0),
+            flash.leadingAnchor.constraint(equalTo: imgFlashView.leadingAnchor, constant: 0),
+        ])
+        bgView.addSubview(imgHelpView)
+        NSLayoutConstraint.activate([
+            imgHelpView.topAnchor.constraint(equalTo: bgView.topAnchor, constant: 10),
+            imgHelpView.leadingAnchor.constraint(equalTo: imgFlashView.trailingAnchor, constant: 40),
+            imgHelpView.widthAnchor.constraint(equalToConstant: 30),
+            imgHelpView.heightAnchor.constraint(equalToConstant: 30)
+        ])
+        imgHelpView.addSubview(imgHelp)
+        NSLayoutConstraint.activate([
+            imgHelp.topAnchor.constraint(equalTo: imgHelpView.topAnchor, constant: 0),
+            imgHelp.leadingAnchor.constraint(equalTo: imgHelpView.leadingAnchor, constant: 0),
+        ])
+        bgView.addSubview(imgScanView)
+        NSLayoutConstraint.activate([
+            
+            imgScanView.topAnchor.constraint(equalTo: bgView.topAnchor, constant: 10),
+            imgScanView.leadingAnchor.constraint(equalTo: imgHelpView.trailingAnchor, constant: 40),
+            imgScanView.widthAnchor.constraint(equalToConstant: 30),
+            imgScanView.heightAnchor.constraint(equalToConstant: 30)
+        ])
+        imgScanView.addSubview(imgScan)
+        NSLayoutConstraint.activate([
+            imgScan.topAnchor.constraint(equalTo: imgScanView.topAnchor, constant: 0),
+            imgScan.leadingAnchor.constraint(equalTo: imgScanView.leadingAnchor, constant: 0),
+        ])
+        
+        let tapScan = UITapGestureRecognizer(target: self, action: #selector(actionGallery(sender:)))
+        self.imgScanView.addGestureRecognizer(tapScan)
+                let tapFrontCamera = UITapGestureRecognizer(target: self, action: #selector(actionFrontCamera(sender:)))
+                                 self.imgCameraView.addGestureRecognizer(tapFrontCamera)
+        //        let tapHelp = UITapGestureRecognizer(target: self, action: #selector(actionHelp(sender:)))
+        //                           self.imgHelpView.addGestureRecognizer(tapHelp)
+        let tapFlash = UITapGestureRecognizer(target: self, action: #selector(actionFlash(sender:)))
+        self.imgFlashView.addGestureRecognizer(tapFlash)
     }
-   @objc func urlAction(_ sender:UITapGestureRecognizer){
-       print("hello")
-   //        guard let url = URL(string: urlSeen?.url) else { return }
-   //        UIApplication.shared.open(url)
-       }
-  
+    
     func applyOrientation() {
         let orientation = UIApplication.shared.statusBarOrientation
         var captureRotation: Double
@@ -129,9 +140,12 @@ extension ScannerVC {
         capture?.transform = captureTranform
         capture?.rotation = CGFloat(scanRectRotation)
         capture?.layer.frame = view.frame
+        capture?.layer.backgroundColor = UIColor.white.withAlphaComponent(0.5).cgColor
     }
     
     func applyRectOfInterest(orientation: UIInterfaceOrientation) {
+        print(scanView.frame)
+        
         guard var transformedVideoRect = scanView?.frame,
             let cameraSessionPreset = capture?.sessionPreset
             else { return }
@@ -251,82 +265,45 @@ extension ScannerVC {
         }
         
         self.viewModel.responseToView = {[weak self] value in
-           
+            if value == EnumResponseToView.UPDATE_DATA_SOURCE.rawValue {
+//                print(self?.viewModel.listItemScanner.count)
+//                print(self?.viewModel.listItemScanner)
+//                for item in (self?.viewModel.listItemScanner)!{
+//                    let typeCode = item.typeCode
+//                               let vc = DetailGenerateVC()
+//                               vc.valueContent = (item.content)!
+//                               vc.typeCode = typeCode!
+//                               self?.navigationController?.pushViewController(vc, animated: false)
+//                }
+            }
         }
-        
-        
-        
+        self.viewModel.navigate = { [weak self] in
+            let  vc = DetailVC()
+            vc.listContent = (self?.viewModel.listItemContent)!
+            self?.navigationController?.pushViewController(vc, animated: true)
+            self?.viewModel.defaultValue()
+        }
         self.viewModel.resultScan.bind { value in
-//            let alert = UIAlertController(title: "Result", message: value, preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-//            self.present(alert,animated: true,completion: nil)
+            //            let alert = UIAlertController(title: "Result", message: value, preferredStyle: .alert)
+            //            alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+            //            self.present(alert,animated: true,completion: nil)
         }
         
         viewModel.cameraBinding.bind {[weak self] value in
             DispatchQueue.main.async {
                 if !value {
-                  //  self?.doAlertMessage(permission: "Camera")
+                    //  self?.doAlertMessage(permission: "Camera")
                 }
             }
         }
     }
-    func setupNavItems() {
-            
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
-            //navigationItem.title = LanguageKey.Scanner
-            let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-            navigationController?.navigationBar.titleTextAttributes = textAttributes
-            navigationController?.navigationBar.isTranslucent = true
-    //        navigationController?.navigationBar.prefersLargeTitles = DeviceHelper.isIpad() ? false : true
-    //        navigationItem.largeTitleDisplayMode = DeviceHelper.isIpad() ? .never : .automatic
-            
-            navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
-            self.navigationController?.navigationBar.tintColor = .white
-            self.extendedLayoutIncludesOpaqueBars = true
-        let cameraItem = UIBarButtonItem(image: UIImage(named: "ic_flip_camera"), style: .plain, target: self, action: #selector(chooseCameraItem))
-             let flashItem = UIBarButtonItem(image: UIImage(named: "ic_flash_off"), style: .plain, target: self, action: #selector(chooseFlashItem))
-             navigationItem.leftBarButtonItems = [cameraItem, flashItem]
-        
-        let helpItem = UIBarButtonItem(image: UIImage(named: "ic_help"), style: .plain, target: self, action: #selector(chooseHelpItem))
-        let imageItem = UIBarButtonItem(image: UIImage(named: "ic_image"), style: .plain, target: self, action: #selector(chooseImageItem))
-        navigationItem.rightBarButtonItems = [imageItem,helpItem]
-        }
-    @objc func chooseCameraItem(){
-       var defaultVideoDevice: AVCaptureDevice?
 
-       // Choose the back dual camera if available, otherwise default to a wide angle camera.
-       if let dualCameraDevice = AVCaptureDevice.default(.builtInDualCamera, for: AVMediaType.video, position: .back) {
-           defaultVideoDevice = dualCameraDevice
-       }
-
-       else if let backCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .back) {
-           defaultVideoDevice = backCameraDevice
-       }
-
-       else if let frontCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .front) {
-           defaultVideoDevice = frontCameraDevice
-       }
-        do {
-            let videoDeviceInput = try AVCaptureDeviceInput(device: defaultVideoDevice!)}
-        catch{
-            print(error)
-        }
-        
-    }
-    @objc func chooseFlashItem(){
-        GalleryHelper.flashlight()
-
-    }
-    @objc func chooseHelpItem(){
-        
-    }
-    @objc func chooseImageItem(){
-        onTakeGallery()
-    }
+    
+   
     func onTakeGallery(){
-       let imagePicker = OpalImagePickerController()
-       imagePicker.imagePickerDelegate = self
-       present(imagePicker, animated: true, completion: nil)
+        let imagePicker = OpalImagePickerController()
+        imagePicker.imagePickerDelegate = self
+        present(imagePicker, animated: true, completion: nil)
     }
 }
 extension ScannerVC : OpalImagePickerControllerDelegate {
@@ -348,18 +325,19 @@ extension ScannerVC: ZXCaptureDelegate {
         capture?.stop()
         isScanning = false
         let text = _result.text ?? "Unknow"
-       // let format = barcodeFormatToString(format: _result.barcodeFormat)
-
-     //   let displayStr = "Scanned !\nFormat: \(format)\nContents: \(text)"
-//        print(displayStr)
-//        resultLabel?.text = displayStr
-        print(result!)
-
-        let alert = UIAlertController(title: "Result", message: text, preferredStyle: .alert)
-                   alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-                   self.present(alert,animated: true,completion: nil)
+        // let format = barcodeFormatToString(format: _result.barcodeFormat)
+        
+        //   let displayStr = "Scanned !\nFormat: \(format)\nContents: \(text)"
+        //        print(displayStr)
+        //        resultLabel?.text = displayStr
+        //        print(result!)
+        //
+        //        let alert = UIAlertController(title: "Result", message: text, preferredStyle: .alert)
+        //        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        //        self.present(alert,animated: true,completion: nil)
+        viewModel.isScanner = true
         viewModel.scannerResult(mValue: "\(result!)")
-
+        
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in

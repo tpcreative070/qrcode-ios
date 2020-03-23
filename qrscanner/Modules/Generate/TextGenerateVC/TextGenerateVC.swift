@@ -7,91 +7,85 @@
 //
 
 import UIKit
-
 class TextGenerateVC: BaseViewController {
-   lazy var backgroundView: UIView = {
-                    let view = UIView()
-                 view.layer.borderColor = UIColor.lightGray.cgColor
-                 view.layer.borderWidth = 1
-                 view.layer.cornerRadius = 10
-                    view.translatesAutoresizingMaskIntoConstraints = false
-                    return view
-                }()
-          lazy   var textBg: UIView = {
-               let view = UIView()
-               view.backgroundColor = AppColors.GRAY_LIGHT_90
-              view.layer.borderColor = UIColor.white.cgColor
-                 view.layer.borderWidth = 1
-                 view.layer.cornerRadius = 10
-                    view.translatesAutoresizingMaskIntoConstraints = false
-                    return view
-             }()
-    lazy var textLbl : UILabel = {
-             let view = UILabel()
-             view.text = "Text"
-             view.translatesAutoresizingMaskIntoConstraints = false
-             return view
-         }()
+    lazy var backgroundView: UIView = {
+        let view = UIView()
+        view.layer.borderColor = UIColor.lightGray.cgColor
+        view.layer.borderWidth = 1
+        view.layer.cornerRadius = 10
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    lazy   var textBg: UIView = {
+        let view = UIView()
+        view.backgroundColor = AppColors.GRAY_LIGHT_90
+        view.layer.borderColor = UIColor.white.cgColor
+        view.layer.borderWidth = 1
+        view.layer.cornerRadius = 10
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    lazy var textLbl : ICLabel = {
+        let view = ICLabel()
+        view.text = LanguageKey.Text
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     lazy var textTxt: ICTextFieldNoneIcon = {
-             let view = ICTextFieldNoneIcon()
-             view.translatesAutoresizingMaskIntoConstraints = false
-             view.alpha = AppConstants.ALPHA_DISBALE
-
-             return view
-         }()
+        let view = ICTextFieldNoneIcon()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.alpha = AppConstants.ALPHA_DISBALE
+        
+        return view
+    }()
+    var createDateTime : Int = 0
+    var textValue = TextModel()
+    var isSeen : Int = 0
     var typeCode : String = ""
-          var viewModel : GenerateViewModel?
-       override func viewDidLoad() {
-           super.viewDidLoad()
-           typeCode = typeCode.uppercased()
-           viewModel = GenerateViewModel()
-           self.initUI()
-        //   self.setupDelegate()
-           setupStatusBar()
-           self.bindViewModel()
-           self.addLeftBackButton()
-           
-       }
-       
-       override func viewWillAppear(_ animated: Bool) {
-              super.viewWillAppear(animated)
-              keyboardHelper?.registerKeyboardNotification()
-         self.navigationController?.setNavigationBarHidden(false, animated: true)
-          }
-          
-          override func viewWillDisappear(_ animated: Bool) {
-              super.viewWillDisappear(animated)
-             self.navigationController?.isNavigationBarHidden = true
-              keyboardHelper?.deregisterKeyboardNotification()
-          }
-     func defineValue(){
-        self.viewModel?.typeCode = LanguageKey.Text
-             self.viewModel?.text = textTxt.text
-            
-         
-         
-     }
-     override func dismissKeyboard() {
-         doDismiss()
-     }
-     override func closeButtonPress() {
-         dismiss()
-     }
-     @objc func doGenerate() {
-         print("done")
-         self.defineValue()
-         viewModel?.doGenerateValue();
-     }
-     @objc func inputFieldEditingDidEnd(textField: UITextField){
-         self.viewModel?.focusTextField = textField
-         
-             if textField == textTxt {
-                 viewModel?.text = textField.text ?? ""
-                 viewModel?.validateText()
-             }
-             
-       }
-         
-     }
+    var viewModel : GenerateViewModel?
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        typeCode = typeCode.uppercased()
+        viewModel = GenerateViewModel()
+        self.initUI()
+        self.bindViewModel()
+        self.addLeftBackButton()
+        self.checkIsSeenDetail()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        keyboardHelper?.registerKeyboardNotification()
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+        keyboardHelper?.deregisterKeyboardNotification()
+    }
+    
+    override func dismissKeyboard() {
+        doDismiss()
+    }
+    override func closeButtonPress() {
+        dismiss()
+    }
+    @objc func doGenerate() {
+        print("done")
+        self.defineValue()
+        viewModel?.doGenerateValue();
+    }
+    @objc func inputFieldEditingDidEnd(textField: UITextField){
+        self.viewModel?.focusTextField = textField
+        
+        if textField == textTxt {
+            viewModel?.text = textField.text ?? ""
+            viewModel?.validateText()
+        }
+        
+    }
+    
+}
 
 

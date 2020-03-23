@@ -8,8 +8,7 @@
 
 import UIKit
 class UrlViewModel : Codable , UrlViewModelDelegate{
-    
-   
+
   
     var urlTxtView: String{
         return urlTxt 

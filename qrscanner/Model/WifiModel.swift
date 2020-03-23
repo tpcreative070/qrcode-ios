@@ -18,4 +18,5 @@ class WifiModel : Codable {
          self.password = password
       
     }
+    init(){}
 }

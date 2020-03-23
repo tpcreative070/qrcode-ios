@@ -41,11 +41,9 @@ class MainVC : SwipeMenuViewController {
            if #available(iOS 13.0, *) {
                      let app = UIApplication.shared
                      let statusBarHeight: CGFloat = app.statusBarFrame.size.height
-                     
                      let statusbarView = UIView()
                      statusbarView.backgroundColor = AppColors.PRIMARY_COLOR_DARK
                      view.addSubview(statusbarView)
-                   
                      statusbarView.translatesAutoresizingMaskIntoConstraints = false
                      statusbarView.heightAnchor
                          .constraint(equalToConstant: statusBarHeight).isActive = true
@@ -86,6 +84,7 @@ class MainVC : SwipeMenuViewController {
     override func swipeMenuView(_ swipeMenuView: SwipeMenuView, didChangeIndexFrom fromIndex: Int, to toIndex: Int) {
         super.swipeMenuView(swipeMenuView, didChangeIndexFrom: fromIndex, to: toIndex)
         print("did change from section\(fromIndex + 1)  to section\(toIndex + 1)")
+      //  reload()
        // tabBarController?.selectedIndex = 1
      //   swipeMenuView.reloadIndex(options: options, indexcurent: toIndex, isOrientationChange: false)
     }
@@ -100,7 +99,6 @@ class MainVC : SwipeMenuViewController {
     }
      override func swipeMenuView(_ swipeMenuView: SwipeMenuView, imageForPageAt index: Int) -> UIImageView {
           return children[index].navigationItem.titleView as! UIImageView ?? UIImageView.init(image: UIImage(named: "ic_scan"))
-              
           }
     override func swipeMenuView(_ swipeMenuView: SwipeMenuView, viewControllerForPageAt index: Int) -> UIViewController {
         let vc = children[index]

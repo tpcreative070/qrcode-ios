@@ -72,34 +72,34 @@ class EventGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var titleLbL : UILabel = {
-        let view = UILabel()
-        view.text = "Title"
+    lazy var titleLbL : ICLabel = {
+        let view = ICLabel()
+        view.text = LanguageKey.Title
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var locationLbL : UILabel = {
-        let view = UILabel()
-        view.text = "Location"
+    lazy var locationLbL : ICLabel = {
+        let view = ICLabel()
+        view.text = LanguageKey.Location
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var descriptionLbL : UILabel = {
-        let view = UILabel()
-        view.text = "Description"
+    lazy var descriptionLbL : ICLabel = {
+        let view = ICLabel()
+        view.text = LanguageKey.Description
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var beginTimeLbL : UILabel = {
-        let view = UILabel()
-        view.text = "Time begin"
+    lazy var beginTimeLbL : ICLabel = {
+        let view = ICLabel()
+        view.text = LanguageKey.TimeBegin
         
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var endTimeLbL : UILabel = {
-        let view = UILabel()
-        view.text = "Time end"
+    lazy var endTimeLbL : ICLabel = {
+        let view = ICLabel()
+        view.text = LanguageKey.TimeEnd
         
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -139,7 +139,10 @@ class EventGenerateVC: BaseViewController {
         view.alpha = AppConstants.ALPHA_DISBALE
         return view
     }()
-    var typeCode : String = ""
+    var createDateTime : Int = 0
+       var eventValue = EventModel()
+       var isSeen : Int = 0
+       var typeCode : String = ""
     var viewModel : GenerateViewModel?
     var toolBar = UIToolbar()
     var datePicker = UIDatePicker()
@@ -151,27 +154,12 @@ class EventGenerateVC: BaseViewController {
         viewModel = GenerateViewModel()
         self.initUI()
         self.setupDelegate()
-        setupStatusBar()
         self.bindViewModel()
-        
         self.addLeftBackButton()
-//
-//        datetimePickerView?.datePickerMode = .dateAndTime
-//        datetimePickerView?.minimumDate = Date.calculateDate(day: 1, month: 1, year: 2020, hour: 0, minute: 0)
-//        datetimePickerView?.maximumDate = Date.calculateDate(day: 31, month: 1, year: 2030, hour: 0, minute: 0)
-//
-//        datetimePickerView?.addTarget(self, action: #selector(EventGenerateVC.dateChanged(datePicker:)), for: .valueChanged)
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(EventGenerateVC.viewTapped(gestureRecognizer:)))
-//        view.addGestureRecognizer(tapGesture)
-   
-        beginTimeTxt.inputView    = datePicker
-         endTimeTxt.inputView      = datePicker
-        toolBar.sizeToFit()
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
-        toolBar.setItems([doneButton], animated: true)
-        beginTimeTxt.inputAccessoryView   = toolBar
-        endTimeTxt.inputAccessoryView     = toolBar
+        self.setupDatePicker()
+        self.checkIsSeenDetail()
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -186,16 +174,7 @@ class EventGenerateVC: BaseViewController {
 
         keyboardHelper?.deregisterKeyboardNotification()
     }
-    func defineValue(){
-        self.viewModel?.typeCode = LanguageKey.Event
-        self.viewModel?.titleEvent = titleTxt.text
-        self.viewModel?.locationEvent = locationTxt.text
-        self.viewModel?.descriptionEvent = descriptionTxt.text
-        self.viewModel?.beginTimeEvent = beginTime
-        self.viewModel?.endTimeEvent = endTime
-        
-        
-    }
+ 
     override func dismissKeyboard() {
         doDismiss()
     }
@@ -207,7 +186,6 @@ class EventGenerateVC: BaseViewController {
         self.defineValue()
         viewModel?.doGenerateValue();
     }
-    var flagTime : Bool = false
     @objc func inputFieldEditingDidEnd(textField: UITextField){
         self.viewModel?.focusTextField = textField
         
@@ -232,7 +210,6 @@ class EventGenerateVC: BaseViewController {
     }
     @objc func doneButtonTapped() {
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
     if beginTimeTxt.isFirstResponder {
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .medium
@@ -248,43 +225,7 @@ class EventGenerateVC: BaseViewController {
         self.view.endEditing(true)
 
     }
-//    @objc func chooseBeginTime(sender : UITapGestureRecognizer){
-//        flagTime = true
-//        beginTimeTxt.inputView = datetimePickerView
-//    }
-//    @objc func chooseEndTime(sender : UITapGestureRecognizer){
-//        flagTime = false
-//        endTimeTxt.inputView = datetimePickerView
-//    }
-    @objc  func viewTapped(gestureRecognizer : UITapGestureRecognizer){
-        view.endEditing(true)
-    }
-    @objc  func dateChanged(datePicker : UIDatePicker){
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy HH:mm"
-        
-        if flagTime {
-            beginTimeTxt.text = formatter.string(from: datePicker.date)}
-        else{
-            endTimeTxt.text = formatter.string(from: datePicker.date)
-        }
-        view.endEditing(true)
-    }
-    func show(){
-        let date = Date()
-        let calendar = Calendar.current
-        
-        //    backgroundView.addSubview(datetimePickerView)
-        //    NSLayoutConstraint.activate([
-        //        titleLbL.topAnchor.constraint(equalTo: backgroundView.centerYAnchor, constant: 20),
-        //        titleLbL.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 0),
-        //        titleLbL.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant:  0)
-        //    ])
-    }
-    
-    //func hide(){
-    //    backgroundView.didAddSubview(datetimePickerView)
-    //
-    // }
-    
+
+  
+   
 }

@@ -117,7 +117,7 @@ class HistoryViewModel  : Codable ,GenerateViewModelDeletegate{
             self.content = ContentModel(data: (data.content?.toObject(value: PhoneModel.self))!)
             let stringContent = content.content?.data(using: .utf8 )
             let phoneModel : PhoneModel = try! JSONDecoder().decode(PhoneModel.self, from: stringContent!)
-            valueShowContent = phoneModel.phone
+            valueShowContent = phoneModel.phone ?? ""
         }
         else if typeCode == LanguageKey.Contact{
             

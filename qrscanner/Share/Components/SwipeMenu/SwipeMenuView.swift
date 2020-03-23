@@ -4,19 +4,16 @@ import UIKit
 public struct SwipeMenuViewOptions {
 
     public struct TabView {
-
         public enum Style {
             case flexible
             case segmented
             // TODO: case infinity
         }
-
         public enum Addition {
             case underline
             case circle
             case none
         }
-
         public struct ItemView {
             /// ItemView width. Defaults to `100.0`.
             public var width: CGFloat = 100
@@ -36,7 +33,6 @@ public struct SwipeMenuViewOptions {
             /// ItemView selected textColor. Defaults to `.black`.
             public var selectedTextColor: UIColor = AppColors.WHITE_COLOR
         }
-
         public struct AdditionView {
             
             public struct Underline {
@@ -106,7 +102,6 @@ public struct SwipeMenuViewOptions {
 
         public init() { }
     }
-
     public struct ContentScrollView {
 
         /// ContentScrollView backgroundColor. Defaults to `.clear`.
@@ -162,7 +157,6 @@ extension SwipeMenuViewDelegate {
     public func swipeMenuView(_ swipeMenuView: SwipeMenuView, willChangeIndexFrom fromIndex: Int, to toIndex: Int) { }
     public func swipeMenuView(_ swipeMenuView: SwipeMenuView, didChangeIndexFrom fromIndex: Int, to toIndex: Int) { }
 }
-
 // MARK: - SwipeMenuViewDataSource
 
 public protocol SwipeMenuViewDataSource: class {
@@ -196,7 +190,6 @@ open class SwipeMenuView: UIView {
             layout(tabView: tabView)
         }
     }
-
     open fileprivate(set) var contentScrollView: ContentScrollView? {
         didSet {
             guard let contentScrollView = contentScrollView else { return }
@@ -206,7 +199,6 @@ open class SwipeMenuView: UIView {
             layout(contentScrollView: contentScrollView)
         }
     }
-
     public var options: SwipeMenuViewOptions
 
     fileprivate var isLayoutingSubviews: Bool = false
@@ -214,12 +206,11 @@ open class SwipeMenuView: UIView {
     fileprivate var pageCount: Int {
         return dataSource?.numberOfPages(in: self) ?? 0
     }
-
     fileprivate var isJumping: Bool = false
     fileprivate var isPortrait: Bool = true
 
     /// The index of the front page in `SwipeMenuView` (read only).
-    open private(set) var currentIndex: Int = 0
+    open private(set) var currentIndex: Int = 2
     private var jumpingToIndex: Int?
 
     public init(frame: CGRect, options: SwipeMenuViewOptions? = nil) {
@@ -331,17 +322,14 @@ open class SwipeMenuView: UIView {
         delegate?.swipeMenuView(self, viewWillSetupAt: defaultIndex)
 
         backgroundColor = .clear
-
         tabView = TabView(frame: CGRect(x: 0, y: 0, width: frame.width, height: options.tabView.height), options: options.tabView)
         tabView?.clipsToBounds = options.tabView.clipsToBounds
 
         contentScrollView = ContentScrollView(frame: CGRect(x: 0, y: options.tabView.height, width: frame.width, height: frame.height - options.tabView.height), default: defaultIndex, options: options.contentScrollView)
         contentScrollView?.clipsToBounds = options.contentScrollView.clipsToBounds
-
         tabView?.update(defaultIndex)
         contentScrollView?.update(defaultIndex)
         currentIndex = defaultIndex
-
         delegate?.swipeMenuView(self, viewDidSetupAt: defaultIndex)
     }
 
@@ -358,9 +346,7 @@ open class SwipeMenuView: UIView {
     }
 
     private func layout(contentScrollView: ContentScrollView) {
-
         contentScrollView.translatesAutoresizingMaskIntoConstraints = false
-
         NSLayoutConstraint.activate([
             contentScrollView.topAnchor.constraint(equalTo: self.topAnchor, constant: options.tabView.height),
             contentScrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
@@ -372,7 +358,7 @@ open class SwipeMenuView: UIView {
     private func reset() {
 
         if !isLayoutingSubviews {
-            currentIndex = 0
+            currentIndex = 2
         }
 
         if let tabView = tabView, let contentScrollView = contentScrollView {
@@ -474,11 +460,10 @@ extension SwipeMenuView: UIScrollViewDelegate {
 // MARK: - ContentScrollViewDataSource
 
 extension SwipeMenuView: ContentScrollViewDataSource {
-
+    
     public func numberOfPages(in contentScrollView: ContentScrollView) -> Int {
         return dataSource?.numberOfPages(in: self) ?? 0
     }
-
     public func contentScrollView(_ contentScrollView: ContentScrollView, viewForPageAt index: Int) -> UIView? {
         return dataSource?.swipeMenuView(self, viewControllerForPageAt: index).view
     }

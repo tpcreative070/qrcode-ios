@@ -62,8 +62,6 @@ class HistoryViewModelList : HistoryViewModelListDeletegate{
             if SQLHelper.updateHistory(createDateTime: mData.createdDateTime, value: false){
                 doGetListHistories()
             }
-            
-            
         }
         
         func doSelectedAll(isValue : Bool){

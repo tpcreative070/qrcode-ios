@@ -10,7 +10,6 @@ import UIKit
 import Floaty
 extension HistoryVC  {
     func initUI(){
-        self.navigationController?.isNavigationBarHidden = true
         /*SetupScrollView*/
         self.view.addSubview(scrollView)
         NSLayoutConstraint.activate([
@@ -27,22 +26,11 @@ extension HistoryVC  {
             wrapperView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             wrapperView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
         ])
-            
-//        /*Lable*/
-//        wrapperView.addSubview(lbTittle)
-//        NSLayoutConstraint.activate([
-//            lbTittle.topAnchor.constraint(equalTo: imgDetele.topAnchor, constant: 15),
-//            lbTittle.leftAnchor.constraint(equalTo: wrapperView.leftAnchor),
-//            lbTittle.heightAnchor.constraint(equalToConstant: 20),
-//        ])
-//
         /*TableView*/
         tableView = UITableView()
         tableView.allowsSelection = true
-        
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
-        
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
         tableView.sectionFooterHeight = 0
         wrapperView.addSubview(tableView)
@@ -53,21 +41,17 @@ extension HistoryVC  {
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0)
         ])
-       
-        //        self.view.layoutIfNeeded()
-      
+        setupFloatButton()
         setupEndedUpScrollView()
         setupTableView()
         bindTableView()
-   
     }
-   
+    
     //Mark: - setUpTableView()
     func setupTableView(){
         
         tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.History.rawValue)
         tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: EnumIdentifier.History.rawValue)
-        
     }
     func bindViewModel() {
         self.viewModel.showLoading.bind { visible in
@@ -79,14 +63,9 @@ extension HistoryVC  {
         
         self.viewModel.responseToView = {[weak self] value in
             if value == EnumResponseToView.UPDATE_DATA_SOURCE.rawValue {
-               self?.updateDataSource()
+                self?.updateDataSource()
             }
         }
-       
-//       
-//        self.viewModel.isSelected.bind { (value) in
-//            self.viewModel.doSelectedAll(isValue: value)
-//        }
         self.viewModel.doGetListHistories()
     }
     func updateDataSource() {
@@ -96,10 +75,8 @@ extension HistoryVC  {
         self.dataSource.sections = self.sections
         self.dataSource.items = self.viewModel.listHistories
         self.tableView.reloadData()
-        //        log(message: "List available...")
-        //        log(object: self.viewModel.listHistories)
     }
-  
+    
     func bindTableView(){
         self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.History.rawValue, items: self.viewModel.listHistories,sections: self.sections, height: 40,isSelectionStype: false){ cell, vm in
             cell.configView(view: vm)
@@ -112,12 +89,8 @@ extension HistoryVC  {
             section.configView(view: vm)
         }
         self.dataSource.loadMore = {
-         //   self.log(message: "Loading more")
+            //   self.log(message: "Loading more")
         }
-        //        self.dataSource.configureSwipeCell = { cell,vm in
-        //            self.log(object: vm)
-        //            self.viewModel.currentCell = vm
-        //        }
         self.tableView.dataSource = self.dataSource
         self.tableView.delegate = self.dataSource
     }
@@ -129,9 +102,52 @@ extension HistoryVC  {
             endedUpScrollViewContainerView.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor),
             endedUpScrollViewContainerView.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor)
         ])
-        //          self.view.layoutIfNeeded()
     }
-  
+    func setupFloatButton(){
+        let item = FloatyItem()
+        item.hasShadow = false
+        item.buttonColor = AppColors.PRIMARY_COLOR
+        item.titleLabelPosition = .left
+        item.icon = UIImage(named: "ic_keyboard")
+        item.icon?.withTintColor(.white)
+        item.title = LanguageKey.Csv
+        item.handler = { item in
+            let activiController = UIActivityViewController(activityItems: ["this text"], applicationActivities: nil)
+            self.present(activiController,animated: true, completion: nil)
+        }
+        let item_select = FloatyItem()
+        item_select.hasShadow = false
+        item_select.buttonColor = AppColors.PRIMARY_COLOR
+        item_select.titleLabelPosition = .left
+        item_select.icon = UIImage(named: "ic_select_all")
+        item_select.title = LanguageKey.Select
+        item_select.handler = { item in
+            self.navigationController?.pushViewController(ChooseHistoryVC(), animated: false)
+        }
+        floaty.tintColor = .white
+        floaty.addItem(item: item_select)
+        floaty.addItem(item: item)
+        self.wrapperView.addSubview(floaty)
+        
+    }
+    // MARK: - Floaty Delegate Methods
+    func floatyWillOpen(_ floaty: Floaty) {
+        print("Floaty Will Open")
+    }
+    
+    func floatyDidOpen(_ floaty: Floaty) {
+        print("Floaty Did Open")
+    }
+    
+    func floatyWillClose(_ floaty: Floaty) {
+        print("Floaty Will Close")
+    }
+    
+    func floatyDidClose(_ floaty: Floaty) {
+        print("Foaty Did Close")
+    }
+    
+    
 }
 extension HistoryVC : TableViewCellDelegate{
     func cellViewLongSelected(cell: TableViewCell) {
@@ -146,25 +162,20 @@ extension HistoryVC : TableViewCellDelegate{
     }
     func cellViewSelected(cell: TableViewCell, countSelected: Int) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
-              let result = self.viewModel.listHistories[indexPath.row]
-             print("history select: \(result)")
+        let result = self.viewModel.listHistories[indexPath.row]
+        print("history select: \(result)")
     }
     
     func cellViewSelected(cell: Codable) {
-
-
         if let data = JSONHelper.get(value: HistoryViewModel.self,anyObject: cell){
-            print(data.typeCode)
-            print(data.content.content!)
-            let data_content = data.content.content!
-                        let  vc = DetailGenerateVC()
-                        vc.typeCode = data.typeCode
-                        vc.valueContent = data_content
-                        self.navigationController?.pushViewController(vc, animated: true)
-        
+            let value = data.content
+            let  vc = DetailVC()
+            vc.listContent = [ContentViewModel(data: value)]
+            self.navigationController?.pushViewController(vc, animated: true)
+            
         }
     }
-
+    
     func cellCodable(codable: Codable) {
         
     }

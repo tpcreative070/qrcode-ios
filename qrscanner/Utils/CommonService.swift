@@ -256,7 +256,7 @@ class CommonService {
         do {
             //Decode multibarcode
             let array_resultbar = try readerbarcode?.decodeMultiple(bitmap!, hints: hints) as! [ZXResult]
-            if (array_resultbar.count > 0)
+            if (array_resultbar.count > 1)
             {
                 for item in array_resultbar {
                     
@@ -266,11 +266,13 @@ class CommonService {
                 }
                 
             }
-            // 1) you missed the name of the method, "decode", and
-            // 2) use optional binding to make sure you get a value
-            //  let result = try reader.decode(bitmap, hints:hints)
-            //  let text = result.text ?? "Unknow"
-            //   completion(text)
+            if array_resultbar.count == 1 {
+                print("\(array_resultbar[0].text)  ---  \(array_resultbar[0].barcodeFormat)")
+                                   let text = array_resultbar[0].text ?? "Unknow"
+                                   completion(text)
+                return
+            }
+           
         }catch {
             completion(nil)
         }

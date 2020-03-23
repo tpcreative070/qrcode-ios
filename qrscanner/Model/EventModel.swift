@@ -20,4 +20,7 @@ class EventModel : Codable {
          self.beginTime = beginTime
       self.endTime = endTime
     }
+    init() {
+        
+    }
 }
