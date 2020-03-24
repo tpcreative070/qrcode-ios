@@ -23,11 +23,6 @@ class TypeCodeVC : BaseViewController{
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var ended: UIView = {
-        let ended = UIView()
-        ended.translatesAutoresizingMaskIntoConstraints = false
-        return ended
-    }()
     var tableView : UITableView!
     var lbTitle : ICLabel!
     var viewModel = TypeCodeViewModelList()

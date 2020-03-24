@@ -11,13 +11,16 @@ class PhoneViewModel : Codable , PhoneViewModelDelegate{
     
    
   var phoneTxtView: String{
-         return phoneTxt
+         return phone ?? ""
      }
 
-     var phoneTxt: String
+     var phone: String?
   
      init(phone: PhoneModel) {
-        phoneTxt = phone.phone ?? ""
+        self.phone = phone.phone ?? ""
      }
+    init() {
+        
+    }
     
 }

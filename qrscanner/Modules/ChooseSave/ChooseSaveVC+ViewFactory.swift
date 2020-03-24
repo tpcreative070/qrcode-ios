@@ -20,13 +20,13 @@ extension ChooseSaveVC  {
             scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
         ])
-        self.scrollView.addSubview(wrapperView)
+        self.scrollView.addSubview(viewWrapper)
         NSLayoutConstraint.activate([
-            wrapperView.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor),
-            wrapperView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -30),
-            wrapperView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            wrapperView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            wrapperView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            viewWrapper.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor),
+            viewWrapper.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -30),
+            viewWrapper.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            viewWrapper.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            viewWrapper.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
         ])
         /*TableView*/
         tableView = UITableView()
@@ -37,7 +37,7 @@ extension ChooseSaveVC  {
         
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
         tableView.sectionFooterHeight = 0
-        wrapperView.addSubview(tableView)
+        viewWrapper.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -122,12 +122,12 @@ extension ChooseSaveVC  {
         self.tableView.delegate = self.dataSource
     }
     func setupEndedUpScrollView(){
-        wrapperView.addSubview(endedUpScrollViewContainerView)
+        viewWrapper.addSubview(endedUpScrollViewContainerView)
         NSLayoutConstraint.activate([
             endedUpScrollViewContainerView.topAnchor.constraint(equalTo: tableView.bottomAnchor),
-            endedUpScrollViewContainerView.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor),
-            endedUpScrollViewContainerView.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor),
-            endedUpScrollViewContainerView.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor)
+            endedUpScrollViewContainerView.leadingAnchor.constraint(equalTo: viewWrapper.leadingAnchor),
+            endedUpScrollViewContainerView.trailingAnchor.constraint(equalTo: viewWrapper.trailingAnchor),
+            endedUpScrollViewContainerView.bottomAnchor.constraint(equalTo: viewWrapper.bottomAnchor)
         ])
     }
     func setupFloatButton(){
@@ -136,7 +136,7 @@ extension ChooseSaveVC  {
         item.buttonColor = AppColors.PRIMARY_COLOR
         
         item.titleLabelPosition = .left
-        item.icon = UIImage(named: "ic_keyboard")
+        item.icon = UIImage(named: AppImages.IC_KEYBOARD)
         item.icon?.withTintColor(.white)
         item.title = LanguageKey.Csv
         item.handler = { item in
@@ -149,7 +149,7 @@ extension ChooseSaveVC  {
         item_select.buttonColor = AppColors.PRIMARY_COLOR
         
         item_select.titleLabelPosition = .left
-        item_select.icon = UIImage(named: "ic_select_all")
+        item_select.icon = UIImage(named: AppImages.IC_SELECT_ALL)
         item_select.title = LanguageKey.Select
         item_select.handler = { item in
         }
@@ -158,7 +158,7 @@ extension ChooseSaveVC  {
         floaty.addItem(item: item_select)
         floaty.addItem(item: item)
         
-        self.wrapperView.addSubview(floaty)
+        self.viewWrapper.addSubview(floaty)
         
     }
     // MARK: - Floaty Delegate Methods

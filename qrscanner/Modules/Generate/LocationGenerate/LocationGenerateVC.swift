@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 class LocationGenerateVC: BaseViewController {
-    lazy var backgroundView: UIView = {
+    lazy var viewBackground: UIView = {
         let view = UIView()
         view.layer.borderColor = UIColor.lightGray.cgColor
         view.layer.borderWidth = 1
@@ -17,7 +17,7 @@ class LocationGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy   var LatBg: UIView = {
+    lazy   var viewLatBg: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -26,7 +26,7 @@ class LocationGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy  var LonBg: UIView = {
+    lazy  var viewLongBg: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -35,7 +35,7 @@ class LocationGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var queryBg: UIView = {
+    lazy var viewQueryBg: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -44,19 +44,19 @@ class LocationGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var latLbL : ICLabel = {
+    lazy var lbLatitude : ICLabel = {
         let view = ICLabel()
         view.text = LanguageKey.Latitude
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var lonLbL : ICLabel = {
+    lazy var lbLongtitude : ICLabel = {
         let view = ICLabel()
         view.text = LanguageKey.Longtitude
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var queryLbL : ICLabel = {
+    lazy var lbQuery : ICLabel = {
         let view = ICLabel()
         view.text = LanguageKey.Query
         
@@ -64,7 +64,7 @@ class LocationGenerateVC: BaseViewController {
         return view
     }()
     
-    lazy var latTxt: ICTextFieldNoneIcon = {
+    lazy var textFieldLatitude: ICTextFieldNoneIcon = {
         let latTxt = ICTextFieldNoneIcon()
         latTxt.translatesAutoresizingMaskIntoConstraints = false
         latTxt.alpha = AppConstants.ALPHA_DISBALE
@@ -72,26 +72,26 @@ class LocationGenerateVC: BaseViewController {
         
         return latTxt
     }()
-    lazy var lonTxt: ICTextFieldNoneIcon = {
+    lazy var textFieldLongtitude: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
         return view
     }()
     
-    lazy var queryTxt: ICTextFieldNoneIcon = {
+    lazy var textFieldQuery: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
         return view
     }()
-    lazy var mapView: MKMapView = {
+    lazy var viewMap: MKMapView = {
         let view = MKMapView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     var createDateTime : Int = 0
-    var locationValue = LocationModel()
+    var locationValue = LocationViewModel()
     var isSeen : Int = 0
     var typeCode : String = ""
     var viewModel : GenerateViewModel?
@@ -110,23 +110,16 @@ class LocationGenerateVC: BaseViewController {
     }
     @objc func longTap(sender: UIGestureRecognizer){
         if sender.state == .began {
-            let locationInView = sender.location(in: mapView)
-            let locationOnMap = mapView.convert(locationInView, toCoordinateFrom: mapView)
-            let locationCoordinate = mapView.convert(locationInView, toCoordinateFrom: mapView)
+            let locationInView = sender.location(in: viewMap)
+            let locationOnMap = viewMap.convert(locationInView, toCoordinateFrom: viewMap)
+            let locationCoordinate = viewMap.convert(locationInView, toCoordinateFrom: viewMap)
             // print("Tapped at lat: \(locationCoordinate.latitude) long: \(locationCoordinate.longitude)")
-            latTxt.text = String (locationCoordinate.latitude)
-            lonTxt.text = String(locationCoordinate.longitude)
+            textFieldLatitude.text = String (locationCoordinate.latitude)
+            textFieldLongtitude.text = String(locationCoordinate.longitude)
             addAnnotation(location: locationOnMap)
         }
     }
     
-    func addAnnotation(location: CLLocationCoordinate2D){
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = location
-        annotation.title = "Place you press"
-        self.mapView.addAnnotation(annotation)
-        
-    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardHelper?.registerKeyboardNotification()
@@ -140,12 +133,7 @@ class LocationGenerateVC: BaseViewController {
         self.navigationController?.isNavigationBarHidden = true
         
     }
-    func defineValue(){
-        self.viewModel?.typeCode = LanguageKey.Location
-        self.viewModel?.lat = Float(latTxt.text!)
-        self.viewModel?.lon = Float(lonTxt.text!)
-        self.viewModel?.query = queryTxt.text
-    }
+    
     override func dismissKeyboard() {
         doDismiss()
     }

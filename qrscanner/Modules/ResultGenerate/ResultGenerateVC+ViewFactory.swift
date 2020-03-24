@@ -10,66 +10,66 @@ import UIKit
 extension ResultGenerateVC {
     func initUI(){
         
-        view.addSubview(qrcodeImage)
+        view.addSubview(imgQrcode)
         NSLayoutConstraint.activate([
-            qrcodeImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant : 20),
-            qrcodeImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            qrcodeImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: AppConstants.MARGIN_RIGHT),
-            qrcodeImage.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/2),
-            qrcodeImage.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/2)
+            imgQrcode.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant : 20),
+            imgQrcode.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            imgQrcode.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: AppConstants.MARGIN_RIGHT),
+            imgQrcode.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/2),
+            imgQrcode.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/2)
             
         ])
-        self.view.addSubview(shareView)
+        self.view.addSubview(viewShare)
         NSLayoutConstraint.activate([
-            self.shareView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
-            shareView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT),
-            shareView.heightAnchor.constraint(equalToConstant: 50),
-            self.shareView.topAnchor.constraint(equalTo: self.qrcodeImage.bottomAnchor,constant: 20),
-            
-        ])
-        
-        shareView.addSubview(shareImg)
-        NSLayoutConstraint.activate([
-            shareImg.topAnchor.constraint(equalTo: shareView.topAnchor, constant: 10),
-            shareImg.widthAnchor.constraint(equalToConstant: 30),
-            shareImg.heightAnchor.constraint(equalToConstant: 30),
-            shareImg.leadingAnchor.constraint(equalTo: shareView.leadingAnchor, constant: AppConstants.MARGIN_LEFT)
-            
-        ])
-        shareView.addSubview(shareLbl)
-        NSLayoutConstraint.activate([
-            shareLbl.topAnchor.constraint(equalTo: shareView.topAnchor, constant: 10),
-            shareLbl.leadingAnchor.constraint(equalTo: shareImg.trailingAnchor, constant: AppConstants.MARGIN_LEFT),
-            shareLbl.trailingAnchor.constraint(equalTo: shareView.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
-        ])
-        self.view.addSubview(saveView)
-        NSLayoutConstraint.activate([
-            self.saveView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
-            saveView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT),
-            saveView.heightAnchor.constraint(equalToConstant: 50),
-            
-            self.saveView.topAnchor.constraint(equalTo: self.shareView.bottomAnchor,constant: 20),
+            self.viewShare.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
+            viewShare.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT),
+            viewShare.heightAnchor.constraint(equalToConstant: 50),
+            self.viewShare.topAnchor.constraint(equalTo: self.imgQrcode.bottomAnchor,constant: 20),
             
         ])
         
-        saveView.addSubview(saveImg)
+        viewShare.addSubview(imgShare)
         NSLayoutConstraint.activate([
-            saveImg.topAnchor.constraint(equalTo: saveView.topAnchor, constant: 10),
-            saveImg.widthAnchor.constraint(equalToConstant: 30),
-            saveImg.heightAnchor.constraint(equalToConstant: 30),
-            saveImg.leadingAnchor.constraint(equalTo: saveView.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            imgShare.topAnchor.constraint(equalTo: viewShare.topAnchor, constant: 10),
+            imgShare.widthAnchor.constraint(equalToConstant: 30),
+            imgShare.heightAnchor.constraint(equalToConstant: 30),
+            imgShare.leadingAnchor.constraint(equalTo: viewShare.leadingAnchor, constant: AppConstants.MARGIN_LEFT)
             
         ])
-        saveView.addSubview(saveLabel)
+        viewShare.addSubview(lbShare)
         NSLayoutConstraint.activate([
-            saveLabel.topAnchor.constraint(equalTo: saveView.topAnchor, constant: 10),
-            saveLabel.leadingAnchor.constraint(equalTo: saveImg.trailingAnchor, constant: AppConstants.MARGIN_LEFT),
-            saveLabel.trailingAnchor.constraint(equalTo: saveView.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            lbShare.topAnchor.constraint(equalTo: viewShare.topAnchor, constant: 10),
+            lbShare.leadingAnchor.constraint(equalTo: imgShare.trailingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbShare.trailingAnchor.constraint(equalTo: viewShare.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+        ])
+        self.view.addSubview(viewSave)
+        NSLayoutConstraint.activate([
+            self.viewSave.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
+            viewSave.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT),
+            viewSave.heightAnchor.constraint(equalToConstant: 50),
+            
+            self.viewSave.topAnchor.constraint(equalTo: self.viewShare.bottomAnchor,constant: 20),
+            
+        ])
+        
+        viewSave.addSubview(imgSave)
+        NSLayoutConstraint.activate([
+            imgSave.topAnchor.constraint(equalTo: viewSave.topAnchor, constant: 10),
+            imgSave.widthAnchor.constraint(equalToConstant: 30),
+            imgSave.heightAnchor.constraint(equalToConstant: 30),
+            imgSave.leadingAnchor.constraint(equalTo: viewSave.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            
+        ])
+        viewSave.addSubview(lbSave)
+        NSLayoutConstraint.activate([
+            lbSave.topAnchor.constraint(equalTo: viewSave.topAnchor, constant: 10),
+            lbSave.leadingAnchor.constraint(equalTo: imgSave.trailingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbSave.trailingAnchor.constraint(equalTo: viewSave.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         
         setupNavItems()
-        shareView.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector(shareView(sender:))))
-        saveView.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector(saveView(sender:))))
+        viewShare.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector(shareView(sender:))))
+        viewSave.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector(saveView(sender:))))
     }
     func setupNavItems() {
         self.view.backgroundColor = .white

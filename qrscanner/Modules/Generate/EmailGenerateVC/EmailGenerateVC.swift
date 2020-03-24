@@ -10,7 +10,7 @@ import UIKit
 
 class EmailGenerateVC: BaseViewController {
     
-    var backgroundView: UIView = {
+    var viewBackground: UIView = {
         let view = UIView()
         view.layer.borderColor = UIColor.lightGray.cgColor
         view.layer.borderWidth = 1
@@ -18,7 +18,7 @@ class EmailGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var emailBg: UIView = {
+    var viewEmailBg: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -27,7 +27,7 @@ class EmailGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var objectEmailBg: UIView = {
+    var viewObjectEmailBg: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -36,7 +36,7 @@ class EmailGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var messageEmailBg: UIView = {
+    var viewMessageBg: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -45,26 +45,26 @@ class EmailGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var emailLbL : ICLabel = {
+    lazy var lbEmail : ICLabel = {
         let view = ICLabel()
         view.text = LanguageKey.EmailAddress
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var objectEmailLbL : ICLabel = {
+    lazy var lbObjectEmail : ICLabel = {
         let view = ICLabel()
         view.text = LanguageKey.Object
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var messageEmailLbL : ICLabel = {
+    lazy var lbMessageEmail : ICLabel = {
         let view = ICLabel()
         view.text = LanguageKey.Message
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    lazy var emailTxt: ICTextFieldNoneIcon = {
+    lazy var textFieldEmail: ICTextFieldNoneIcon = {
         let emailTxt = ICTextFieldNoneIcon()
         emailTxt.translatesAutoresizingMaskIntoConstraints = false
         emailTxt.alpha = AppConstants.ALPHA_DISBALE
@@ -72,13 +72,13 @@ class EmailGenerateVC: BaseViewController {
         
         return emailTxt
     }()
-    lazy var objectEmailTxt: ICTextFieldNoneIcon = {
+    lazy var textFieldObjectEmail: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
         return view
     }()
-    lazy var messageEmailTxt: ICTextFieldNoneIcon = {
+    lazy var textFieldMessageEmail: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
@@ -95,7 +95,7 @@ class EmailGenerateVC: BaseViewController {
     }()
     var viewModelTypeCode = TypeCodeViewModelList()
     var createDateTime : Int = 0
-    var emailValue = EmailModel()
+    var emailValue = EmailViewModel()
     var isSeen : Int = 0
     var typeCode : String = ""
     var viewModel : GenerateViewModel?
@@ -123,9 +123,9 @@ class EmailGenerateVC: BaseViewController {
     }
     func defineValue(){
         self.viewModel?.typeCode = LanguageKey.Email
-        self.viewModel?.email = emailTxt.text
-        self.viewModel?.objectEmail = objectEmailTxt.text
-        self.viewModel?.messageEmail = messageEmailTxt.text
+        self.viewModel?.email = textFieldEmail.text
+        self.viewModel?.objectEmail = textFieldObjectEmail.text
+        self.viewModel?.messageEmail = textFieldMessageEmail.text
     }
     override func dismissKeyboard() {
         doDismiss()
@@ -141,15 +141,15 @@ class EmailGenerateVC: BaseViewController {
     @objc func inputFieldEditingDidEnd(textField: UITextField){
         self.viewModel?.focusTextField = textField
         
-        if textField == emailTxt {
+        if textField == textFieldEmail {
             viewModel?.text = textField.text ?? ""
             viewModel?.validateEmail()
         }
-        if textField == objectEmailTxt {
+        if textField == textFieldObjectEmail {
             viewModel?.text = textField.text ?? ""
             viewModel?.validateObjectEmail()
         }
-        if textField == messageEmailTxt {
+        if textField == textFieldMessageEmail {
             viewModel?.text = textField.text ?? ""
             viewModel?.validateMessageEmail()
         }

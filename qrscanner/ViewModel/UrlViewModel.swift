@@ -11,14 +11,17 @@ class UrlViewModel : Codable , UrlViewModelDelegate{
 
   
     var urlTxtView: String{
-        return urlTxt 
+        return url ?? ""
     }
  
   
-    var urlTxt: String
+    var url: String?
  
     init(url: String) {
-        urlTxt = url
+        self.url = url
+    }
+    init() {
+        
     }
 
     

@@ -9,7 +9,7 @@
 import UIKit
 
 class PhoneGenerateVC: BaseViewController {
-    lazy var backgroundView: UIView = {
+    lazy var viewBackground: UIView = {
         let view = UIView()
         view.layer.borderColor = UIColor.lightGray.cgColor
         view.layer.borderWidth = 1
@@ -17,7 +17,7 @@ class PhoneGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy   var phoneBg: UIView = {
+    lazy   var viewPhoneBg: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -26,13 +26,13 @@ class PhoneGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var phoneLbl : ICLabel = {
+    lazy var lbPhone : ICLabel = {
         let view = ICLabel()
         view.text = LanguageKey.Phone
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var phoneTxt: ICTextFieldNoneIcon = {
+    lazy var textFieldPhone: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
@@ -43,7 +43,7 @@ class PhoneGenerateVC: BaseViewController {
     
     var createDateTime : Int = 0
     var typeCode : String = ""
-    var phoneValue = PhoneModel()
+    var phoneValue = PhoneViewModel()
     var isSeen : Int = 0
     var viewModel : GenerateViewModel?
     override func viewDidLoad() {
@@ -84,7 +84,7 @@ class PhoneGenerateVC: BaseViewController {
     @objc func inputFieldEditingDidEnd(textField: UITextField){
         self.viewModel?.focusTextField = textField
         
-        if textField == phoneTxt {
+        if textField == textFieldPhone {
             viewModel?.text = textField.text ?? ""
             viewModel?.validatePhoneTelephoneNumber()
         }

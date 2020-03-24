@@ -11,13 +11,19 @@ class TextViewModel : Codable , TextViewModelDelegate{
     
    
   var textTxtView: String{
-         return textTxt
+         return text ?? ""
      }
 
-     var textTxt: String
+     var text: String?
   
      init(text: String) {
-         textTxt = text
+        self.text = text
      }
+    init(data : TextModel) {
+        self.text = data.text ?? ""
+    }
+    init() {
+        
+    }
     
 }

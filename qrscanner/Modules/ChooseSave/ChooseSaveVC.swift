@@ -14,13 +14,13 @@ class ChooseSaveVC : UIViewController,UIViewControllerTransitioningDelegate, UIN
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-    let wrapperView: UIView = {
+    let viewWrapper: UIView = {
         let parentView = UIView()
         parentView.translatesAutoresizingMaskIntoConstraints = false
         return parentView
     }()
     var tableView : UITableView!
-    lazy var lbTittle : ICLabel = {
+    lazy var lbTitle : ICLabel = {
         let lbTittle = ICLabel()
         lbTittle.translatesAutoresizingMaskIntoConstraints = false
         return lbTittle

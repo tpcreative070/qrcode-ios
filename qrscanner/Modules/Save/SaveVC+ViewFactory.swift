@@ -126,7 +126,7 @@ extension SaveVC  {
         item.buttonColor = AppColors.PRIMARY_COLOR
         
         item.titleLabelPosition = .left
-        item.icon = UIImage(named: "ic_keyboard")
+        item.icon = UIImage(named: AppImages.IC_KEYBOARD)
         item.icon?.withTintColor(.white)
         item.title = LanguageKey.Csv
         item.handler = { item in
@@ -141,7 +141,7 @@ extension SaveVC  {
         item_select.buttonColor = AppColors.PRIMARY_COLOR
         
         item_select.titleLabelPosition = .left
-        item_select.icon = UIImage(named: "ic_select_all")
+        item_select.icon = UIImage(named: AppImages.IC_SELECT_ALL)
         item_select.title = LanguageKey.Select
         item_select.handler = { item in
             self.navigationController?.pushViewController(ChooseSaveVC(), animated: false)
@@ -188,7 +188,7 @@ extension SaveVC : TableViewCellDelegate{
         let content = value_data!.content
         let stringContent = content.content?.data(using: .utf8 )
         if typeCode == LanguageKey.Url{
-            let urlModel : UrlModel = try! JSONDecoder().decode(UrlModel.self, from: stringContent!)
+            let urlModel : UrlViewModel = try! JSONDecoder().decode(UrlViewModel.self, from: stringContent!)
             let  vc = UrlGenerateVC()
             vc.urlValue = urlModel
             vc.createDateTime = value_data!.createdDateTime
@@ -196,7 +196,7 @@ extension SaveVC : TableViewCellDelegate{
             self.navigationController?.pushViewController(vc, animated: true)
         }
         if typeCode == LanguageKey.Wifi{
-            let wifiModel : WifiModel = try! JSONDecoder().decode(WifiModel.self, from: stringContent!)
+            let wifiModel : WifiViewModel = try! JSONDecoder().decode(WifiViewModel.self, from: stringContent!)
             let  vc = WifiGenerateVC()
             vc.wifiValue = wifiModel
             vc.createDateTime = value_data!.createdDateTime
@@ -204,7 +204,7 @@ extension SaveVC : TableViewCellDelegate{
             self.navigationController?.pushViewController(vc, animated: true)
         }
         if typeCode == LanguageKey.Telephone{
-            let phoneModel : PhoneModel = try! JSONDecoder().decode(PhoneModel.self, from: stringContent!)
+            let phoneModel : PhoneViewModel = try! JSONDecoder().decode(PhoneViewModel.self, from: stringContent!)
             let  vc = PhoneGenerateVC()
             vc.phoneValue = phoneModel
             vc.createDateTime = value_data!.createdDateTime
@@ -212,7 +212,7 @@ extension SaveVC : TableViewCellDelegate{
             self.navigationController?.pushViewController(vc, animated: true)
         }
         if typeCode == LanguageKey.Text{
-                  let textModel : TextModel = try! JSONDecoder().decode(TextModel.self, from: stringContent!)
+                  let textModel : TextViewModel = try! JSONDecoder().decode(TextViewModel.self, from: stringContent!)
                   let  vc = TextGenerateVC()
                   vc.textValue = textModel
                   vc.createDateTime = value_data!.createdDateTime
@@ -220,7 +220,7 @@ extension SaveVC : TableViewCellDelegate{
                   self.navigationController?.pushViewController(vc, animated: true)
               }
         if typeCode == LanguageKey.Contact{
-                  let contactModel : ContactModel = try! JSONDecoder().decode(ContactModel.self, from: stringContent!)
+                  let contactModel : ContactViewModel = try! JSONDecoder().decode(ContactViewModel.self, from: stringContent!)
                   let  vc = ContactGenerateVC()
                   vc.contactValue = contactModel
                   vc.createDateTime = value_data!.createdDateTime
@@ -228,7 +228,7 @@ extension SaveVC : TableViewCellDelegate{
                   self.navigationController?.pushViewController(vc, animated: true)
               }
         if typeCode == LanguageKey.Event{
-                  let eventModel : EventModel = try! JSONDecoder().decode(EventModel.self, from: stringContent!)
+                  let eventModel : EventViewModel = try! JSONDecoder().decode(EventViewModel.self, from: stringContent!)
                   let  vc = EventGenerateVC()
                   vc.eventValue = eventModel
                   vc.createDateTime = value_data!.createdDateTime
@@ -236,7 +236,7 @@ extension SaveVC : TableViewCellDelegate{
                   self.navigationController?.pushViewController(vc, animated: true)
               }
         if typeCode == LanguageKey.Location{
-                  let locationModel : LocationModel = try! JSONDecoder().decode(LocationModel.self, from: stringContent!)
+                  let locationModel : LocationViewModel = try! JSONDecoder().decode(LocationViewModel.self, from: stringContent!)
                   let  vc = LocationGenerateVC()
                   vc.locationValue = locationModel
                   vc.createDateTime = value_data!.createdDateTime
@@ -252,7 +252,7 @@ extension SaveVC : TableViewCellDelegate{
                   self.navigationController?.pushViewController(vc, animated: true)
               }
         if typeCode == LanguageKey.Email{
-            let emailModel : EmailModel = try! JSONDecoder().decode(EmailModel.self, from: stringContent!)
+            let emailModel : EmailViewModel = try! JSONDecoder().decode(EmailViewModel.self, from: stringContent!)
             let  vc = EmailGenerateVC()
             vc.emailValue = emailModel
             vc.createDateTime = value_data!.createdDateTime

@@ -9,7 +9,7 @@
 import UIKit
 
 class ContactGenerateVC: BaseViewController {
-    var backgroundView: UIView = {
+    var viewBackground: UIView = {
         let view = UIView()
         view.layer.borderColor = UIColor.lightGray.cgColor
         view.layer.borderWidth = 1
@@ -17,7 +17,7 @@ class ContactGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var fullNameContactBg: UIView = {
+    var viewFullNameContactBg: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -26,7 +26,7 @@ class ContactGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var AddressContactBg: UIView = {
+    var viewAddressContactBg: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -35,7 +35,7 @@ class ContactGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var PhoneContactBg: UIView = {
+    var viewPhoneContactBg: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -44,7 +44,7 @@ class ContactGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var EmailContactBg: UIView = {
+    var viewEmailContactBg: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -53,26 +53,26 @@ class ContactGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var fullNameContactLbL : ICLabel = {
+    lazy var lbFullNameContact : ICLabel = {
         let view = ICLabel()
         view.text = LanguageKey.Phone
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var addressContactLbL : ICLabel = {
+    lazy var lbAddressContact : ICLabel = {
         let view = ICLabel()
         view.text = LanguageKey.Address
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var phoneContactLbL : ICLabel = {
+    lazy var lbPhoneContact : ICLabel = {
         let view = ICLabel()
         view.text = LanguageKey.Phone
         
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var emailContactLbL : ICLabel = {
+    lazy var lbEmailContact : ICLabel = {
         let view = ICLabel()
         view.text = LanguageKey.Email
         
@@ -80,20 +80,20 @@ class ContactGenerateVC: BaseViewController {
         return view
     }()
     
-    lazy var fullNameContactTxt: ICTextFieldNoneIcon = {
+    lazy var textFieldFullNameContact: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
         
         return view
     }()
-    lazy var addressContactTxt: ICTextFieldNoneIcon = {
+    lazy var textFieldAddressContact: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
         return view
     }()
-    lazy var emailContactTxt: ICTextFieldNoneIcon = {
+    lazy var textFieldEmailContact: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
@@ -101,7 +101,7 @@ class ContactGenerateVC: BaseViewController {
         
         return view
     }()
-    lazy var phoneContactTxt: ICTextFieldNoneIcon = {
+    lazy var textFieldPhoneContact: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
@@ -110,7 +110,7 @@ class ContactGenerateVC: BaseViewController {
         return view
     }()
     var createDateTime : Int = 0
-    var contactValue = ContactModel()
+    var contactValue = ContactViewModel()
     var isSeen : Int = 0
     var typeCode : String = ""
     var viewModel : GenerateViewModel?
@@ -153,19 +153,19 @@ class ContactGenerateVC: BaseViewController {
     @objc func inputFieldEditingDidEnd(textField: UITextField){
         self.viewModel?.focusTextField = textField
         
-        if textField == fullNameContactTxt {
+        if textField == textFieldFullNameContact {
             viewModel?.text = textField.text ?? ""
             viewModel?.validateFullnameContact()
         }
-        if textField == addressContactTxt {
+        if textField == textFieldAddressContact {
             viewModel?.text = textField.text ?? ""
             viewModel?.validateAddressContact()
         }
-        if textField == phoneContactTxt {
+        if textField == textFieldPhoneContact {
             viewModel?.text = textField.text ?? ""
             viewModel?.validatePhoneContact()
         }
-        if textField == emailContactTxt {
+        if textField == textFieldEmailContact {
             viewModel?.text = textField.text ?? ""
             viewModel?.validateEmailContact()
         }

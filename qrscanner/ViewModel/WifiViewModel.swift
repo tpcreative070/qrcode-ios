@@ -9,21 +9,21 @@
 import Foundation
 class WifiViewModel : Codable , WifiViewModelDelegate{
     var networkView: String{
-        return network
+        return network ?? ""
     }
     var ssidView : String {
-        return ssid
+        return ssid ?? ""
     }
     var passwordView : String{
-        return protect
+        return protect ?? ""
     }
     var hiddenView : Bool{
-        return hidden
+        return hidden ?? false
     }
-    var ssid: String
-    var hidden: Bool
-    var protect: String
-    var network: String
+    var ssid: String?
+    var hidden: Bool?
+    var protect: String?
+    var network: String?
     
     init(ssid: String, hidden: Bool, protect: String, network: String) {
         self.ssid = ssid
@@ -37,5 +37,7 @@ class WifiViewModel : Codable , WifiViewModelDelegate{
         self.protect = data.password ?? ""
         self.network = data.protect ?? ""
     }
-    
+    init() {
+        
+    }
 }

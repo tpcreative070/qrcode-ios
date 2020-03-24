@@ -60,7 +60,7 @@ class SwipeMenuViewController: UIViewController, SwipeMenuViewDelegate, SwipeMen
     }
     
     open func swipeMenuView(_ swipeMenuView: SwipeMenuView, imageForPageAt index: Int) -> UIImageView {
-           return children[index].navigationItem.titleView as! UIImageView ?? UIImageView.init(image: UIImage(named: "ic_scan"))
+        return children[index].navigationItem.titleView as! UIImageView ?? UIImageView.init(image: UIImage(named: AppImages.IC_HELP))
           }
 
     

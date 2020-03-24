@@ -9,7 +9,7 @@
 import UIKit
 
 class MessageGenerateVC: BaseViewController {
-    var backgroundView: UIView = {
+    var viewBackground: UIView = {
         let view = UIView()
         view.layer.borderColor = UIColor.lightGray.cgColor
         view.layer.borderWidth = 1
@@ -25,7 +25,7 @@ class MessageGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var toBg: UIView = {
+    var viewToBg: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -34,7 +34,7 @@ class MessageGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var fromBg: UIView = {
+    var viewFromBg: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -43,26 +43,26 @@ class MessageGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var toLbL : ICLabel = {
+    lazy var lbTo : ICLabel = {
         let view = ICLabel()
         view.text = LanguageKey.To
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var fromLbL : ICLabel = {
+    lazy var lbFrom : ICLabel = {
         let view = ICLabel()
         view.text = LanguageKey.Message
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var toTxt: ICTextFieldNoneIcon = {
+    lazy var textFieldTo: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.keyboardType = .numberPad
         view.alpha = AppConstants.ALPHA_DISBALE
         return view
     }()
-    lazy var messageTxt: ICTextFieldNoneIcon = {
+    lazy var textFieldMessage: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
@@ -111,11 +111,11 @@ class MessageGenerateVC: BaseViewController {
     @objc func inputFieldEditingDidEnd(textField: UITextField){
         self.viewModel?.focusTextField = textField
         
-        if textField == toTxt {
+        if textField == textFieldTo {
             viewModel?.text = textField.text ?? ""
             viewModel?.validateTo()
         }
-        if textField == messageTxt {
+        if textField == textFieldMessage {
             viewModel?.text = textField.text ?? ""
             viewModel?.validateMessage()
         }

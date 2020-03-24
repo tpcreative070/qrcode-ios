@@ -51,16 +51,16 @@ extension TableViewCell {
     
  func setupBackgroud(){
     backgroundView?.backgroundColor = .red
-        self.addSubview(self.backGroundView)
+        self.addSubview(self.viewBackground)
         NSLayoutConstraint.activate([
-            self.backGroundView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant:10),
-            self.backGroundView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            self.backGroundView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
-            self.backGroundView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
+            self.viewBackground.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant:10),
+            self.viewBackground.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+            self.viewBackground.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
+            self.viewBackground.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
             ])
         //add gesture to leftView
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(actionCellViewTap))
-        self.backGroundView.addGestureRecognizer(tapGesture)
+        self.viewBackground.addGestureRecognizer(tapGesture)
     
     }
     

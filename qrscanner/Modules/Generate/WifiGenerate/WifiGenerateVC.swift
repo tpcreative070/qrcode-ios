@@ -9,7 +9,7 @@ import UIKit
 
 class WifiGenerateVC: BaseViewController {
     
-    var backgroundView: UIView = {
+    var viewBackground: UIView = {
         let view = UIView()
         view.layer.borderColor = UIColor.lightGray.cgColor
         view.layer.borderWidth = 1
@@ -17,7 +17,7 @@ class WifiGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var ssidBg: UIView = {
+    var viewSsidBg: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -26,7 +26,7 @@ class WifiGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var passBg: UIView = {
+    var viewPassBg: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -35,7 +35,7 @@ class WifiGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var networkBg: UIView = {
+    var viewNetworkBg: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -44,7 +44,7 @@ class WifiGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var protectBg: UIView = {
+    var viewProtectBg: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -53,56 +53,56 @@ class WifiGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var ssidLbL : ICLabel = {
+    lazy var lbSsid : ICLabel = {
         let view = ICLabel()
         view.text = LanguageKey.SSID
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var passLbL : ICLabel = {
+    lazy var lbPass : ICLabel = {
         let view = ICLabel()
         view.text = LanguageKey.Password
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var networkLbL : ICLabel = {
+    lazy var lbNetwork : ICLabel = {
         let view = ICLabel()
         view.text = LanguageKey.NetworkEncryption
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var hiddenLbL : ICLabel = {
+    lazy var lbHidden : ICLabel = {
         let view = ICLabel()
         view.text = LanguageKey.Hidden
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var ssidTxt: ICTextFieldNoneIcon = {
-        let ssidTxt = ICTextFieldNoneIcon()
-        ssidTxt.translatesAutoresizingMaskIntoConstraints = false
-        ssidTxt.alpha = AppConstants.ALPHA_DISBALE
+    lazy var textFieldSsid: ICTextFieldNoneIcon = {
+        let textField = ICTextFieldNoneIcon()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.alpha = AppConstants.ALPHA_DISBALE
         
-        return ssidTxt
+        return textField
     }()
-    lazy var passTxt: ICTextFieldNoneIcon = {
-        let view = ICTextFieldNoneIcon()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.alpha = AppConstants.ALPHA_DISBALE
-        return view
+    lazy var textFieldPass: ICTextFieldNoneIcon = {
+        let textField = ICTextFieldNoneIcon()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.alpha = AppConstants.ALPHA_DISBALE
+        return textField
     }()
-    lazy var networkTxt: ICTextFieldNoneIcon = {
-        let view = ICTextFieldNoneIcon()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.alpha = AppConstants.ALPHA_DISBALE
-        return view
+    lazy var textFieldNetwork: ICTextFieldNoneIcon = {
+        let textField = ICTextFieldNoneIcon()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.alpha = AppConstants.ALPHA_DISBALE
+        return textField
     }()
-    lazy var hidenTxt: ICTextFieldNoneIcon = {
-        let view = ICTextFieldNoneIcon()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.alpha = AppConstants.ALPHA_DISBALE
-        return view
+    lazy var textFieldHiden: ICTextFieldNoneIcon = {
+        let textField = ICTextFieldNoneIcon()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.alpha = AppConstants.ALPHA_DISBALE
+        return textField
     }()
-    lazy var WPAContainerView : UIView = {
+    lazy var viewWPAContainer : UIView = {
         let protect = UIView()
         protect.translatesAutoresizingMaskIntoConstraints = false
         return protect
@@ -116,20 +116,20 @@ class WifiGenerateVC: BaseViewController {
         return radio
     }()
     
-    lazy var WPALabel : ICLabel = {
+    lazy var lbWPA : ICLabel = {
         let label = ICLabel()
         label.text = LanguageKey.WPA
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    lazy var WEPContainerView : UIView = {
+    lazy var viewWEPContainer : UIView = {
         let protect = UIView()
         protect.translatesAutoresizingMaskIntoConstraints = false
         return protect
     }()
     
-    lazy var WEPLabel : ICLabel = {
+    lazy var lbWEP : ICLabel = {
         let label = ICLabel()
         label.text = LanguageKey.WEP
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -143,13 +143,13 @@ class WifiGenerateVC: BaseViewController {
         radio.addTarget(self, action: #selector(actionRadioWEP(sender:)), for: .touchUpInside)
         return radio
     }()
-    lazy var NoneContainerView : UIView = {
+    lazy var viewNoneContainer : UIView = {
         let noneContainerView = UIView()
         noneContainerView.translatesAutoresizingMaskIntoConstraints = false
         return noneContainerView
     }()
     
-    lazy var noneLabel : ICLabel = {
+    lazy var lbNone : ICLabel = {
         let noneLabel = ICLabel()
         noneLabel.text = LanguageKey.None
         noneLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -188,7 +188,7 @@ class WifiGenerateVC: BaseViewController {
     
     var createDateTime : Int = 0
     var typeCode : String = ""
-    var wifiValue = WifiModel()
+    var wifiValue = WifiViewModel()
     var isSeen : Int = 0
     var viewModel : GenerateViewModel?
     override func viewDidLoad() {
@@ -228,11 +228,11 @@ class WifiGenerateVC: BaseViewController {
     @objc func inputFieldEditingDidEnd(textField: UITextField){
         self.viewModel?.focusTextField = textField
         
-        if textField == ssidTxt {
+        if textField == textFieldSsid {
             viewModel?.text = textField.text ?? ""
             viewModel?.validateSSID()
         }
-        if textField == passTxt {
+        if textField == textFieldPass {
             viewModel?.text = textField.text ?? ""
             viewModel?.validatePassword()
         }

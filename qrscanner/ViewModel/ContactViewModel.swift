@@ -10,32 +10,33 @@ import Foundation
 import UIKit
 class ContactViewModel : Codable , ContactViewModelDelegate{
     var fullnameView: String{
-        return fullname
+        return fullNameContact ?? ""
     }
     
     var addressView: String{
-        return address
+        return addressContact ?? ""
     }
     
     var phoneView: String{
-        return phone
+        return phoneContact ?? ""
     }
     
     var emailView: String{
-        return email
+        return emailContact ?? ""
     }
     
     
-     var fullname: String
-   var address: String
-     var phone: String
-    var email: String
+     var fullNameContact: String?
+   var addressContact: String?
+     var phoneContact: String?
+    var emailContact: String?
 
     init(data: ContactModel) {
-        self.fullname = data.fullNameContact!
-        self.address = data.addressContact!
-        self.phone = data.phoneContact!
-        self.email = data.emailContact!
+        self.fullNameContact = data.fullNameContact!
+        self.addressContact = data.addressContact!
+        self.phoneContact = data.phoneContact!
+        self.emailContact = data.emailContact!
      }
+    init() {}
     
 }

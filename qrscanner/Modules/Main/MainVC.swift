@@ -98,7 +98,7 @@ class MainVC : SwipeMenuViewController {
         return children[index].navigationItem.title ?? ""
     }
      override func swipeMenuView(_ swipeMenuView: SwipeMenuView, imageForPageAt index: Int) -> UIImageView {
-          return children[index].navigationItem.titleView as! UIImageView ?? UIImageView.init(image: UIImage(named: "ic_scan"))
+        return children[index].navigationItem.titleView as! UIImageView ?? UIImageView.init(image: UIImage(named: AppImages.IC_HELP))
           }
     override func swipeMenuView(_ swipeMenuView: SwipeMenuView, viewControllerForPageAt index: Int) -> UIViewController {
         let vc = children[index]

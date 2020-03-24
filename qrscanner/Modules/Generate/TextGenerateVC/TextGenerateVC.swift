@@ -8,7 +8,7 @@
 
 import UIKit
 class TextGenerateVC: BaseViewController {
-    lazy var backgroundView: UIView = {
+    lazy var viewBackground: UIView = {
         let view = UIView()
         view.layer.borderColor = UIColor.lightGray.cgColor
         view.layer.borderWidth = 1
@@ -16,7 +16,7 @@ class TextGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy   var textBg: UIView = {
+    lazy   var viewTextBg: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -25,13 +25,13 @@ class TextGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var textLbl : ICLabel = {
+    lazy var lbText : ICLabel = {
         let view = ICLabel()
         view.text = LanguageKey.Text
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var textTxt: ICTextFieldNoneIcon = {
+    lazy var textFieldText: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
@@ -39,7 +39,7 @@ class TextGenerateVC: BaseViewController {
         return view
     }()
     var createDateTime : Int = 0
-    var textValue = TextModel()
+    var textValue = TextViewModel()
     var isSeen : Int = 0
     var typeCode : String = ""
     var viewModel : GenerateViewModel?
@@ -79,7 +79,7 @@ class TextGenerateVC: BaseViewController {
     @objc func inputFieldEditingDidEnd(textField: UITextField){
         self.viewModel?.focusTextField = textField
         
-        if textField == textTxt {
+        if textField == textFieldText {
             viewModel?.text = textField.text ?? ""
             viewModel?.validateText()
         }

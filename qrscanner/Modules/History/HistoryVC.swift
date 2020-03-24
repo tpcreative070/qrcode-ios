@@ -15,7 +15,7 @@ class HistoryVC : UIViewController,UIViewControllerTransitioningDelegate, UINavi
         return scrollView
     }()
     
-    let wrapperView: UIView = {
+    let viewWrapper: UIView = {
         let parentView = UIView()
         parentView.translatesAutoresizingMaskIntoConstraints = false
         return parentView

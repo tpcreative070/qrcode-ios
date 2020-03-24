@@ -11,93 +11,93 @@ import ZXingObjC
 import Photos
 extension ScannerVC {
     func iniUI(){
-        view.addSubview(bgView)
+        view.addSubview(viewBackground)
         NSLayoutConstraint.activate([
-            bgView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            bgView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -0),
-            bgView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
-            bgView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -0),
-            bgView.widthAnchor.constraint(equalToConstant: view.frame.width),
-            bgView.heightAnchor.constraint(equalToConstant: view.frame.height)
+            viewBackground.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            viewBackground.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -0),
+            viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
+            viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -0),
+            viewBackground.widthAnchor.constraint(equalToConstant: view.frame.width),
+            viewBackground.heightAnchor.constraint(equalToConstant: view.frame.height)
         ])
-        bgView.addSubview(scanView)
+        viewBackground.addSubview(viewScan)
         NSLayoutConstraint.activate([
-            scanView.centerXAnchor.constraint(equalTo: bgView.centerXAnchor),
-            scanView.centerYAnchor.constraint(equalTo: bgView.centerYAnchor),
-            scanView.leftAnchor.constraint(equalTo: bgView.leftAnchor, constant: 25),
-            scanView.rightAnchor.constraint(equalTo: bgView.rightAnchor, constant: -25),
-            scanView.heightAnchor.constraint(equalTo: bgView.heightAnchor, multiplier: 1/2)
+            viewScan.centerXAnchor.constraint(equalTo: viewBackground.centerXAnchor),
+            viewScan.centerYAnchor.constraint(equalTo: viewBackground.centerYAnchor),
+            viewScan.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: 25),
+            viewScan.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: -25),
+            viewScan.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2)
         ])
-        bgView.addSubview(lbScannerRectangle)
+        viewBackground.addSubview(lbScannerRectangle)
         NSLayoutConstraint.activate([
-            lbScannerRectangle.centerXAnchor.constraint(equalTo: bgView.centerXAnchor),
-            lbScannerRectangle.centerYAnchor.constraint(equalTo: bgView.centerYAnchor),
-            lbScannerRectangle.leftAnchor.constraint(equalTo: bgView.leftAnchor, constant: 30),
-            lbScannerRectangle.rightAnchor.constraint(equalTo: bgView.rightAnchor, constant: -30),
-            lbScannerRectangle.heightAnchor.constraint(equalTo: bgView.heightAnchor, multiplier: 1/2)
+            lbScannerRectangle.centerXAnchor.constraint(equalTo: viewBackground.centerXAnchor),
+            lbScannerRectangle.centerYAnchor.constraint(equalTo: viewBackground.centerYAnchor),
+            lbScannerRectangle.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: 30),
+            lbScannerRectangle.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: -30),
+            lbScannerRectangle.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2)
         ])
         
-        bgView.addSubview(imgCameraView)
+        viewBackground.addSubview(viewFlipCamera)
         NSLayoutConstraint.activate([
             
-            imgCameraView.topAnchor.constraint(equalTo: bgView.topAnchor, constant: 10),
-            imgCameraView.leadingAnchor.constraint(equalTo: bgView.leadingAnchor, constant: 50),
-            imgCameraView.widthAnchor.constraint(equalToConstant: 30),
+            viewFlipCamera.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: 10),
+            viewFlipCamera.leadingAnchor.constraint(equalTo: viewBackground.leadingAnchor, constant: 50),
+            viewFlipCamera.widthAnchor.constraint(equalToConstant: 30),
             
-            imgCameraView.heightAnchor.constraint(equalToConstant: 30)
+            viewFlipCamera.heightAnchor.constraint(equalToConstant: 30)
         ])
-        imgCameraView.addSubview(frontCamera)
+        viewFlipCamera.addSubview(imgFlipCamera)
         NSLayoutConstraint.activate([
-            frontCamera.topAnchor.constraint(equalTo: imgCameraView.topAnchor, constant: 0),
-            frontCamera.leadingAnchor.constraint(equalTo: imgCameraView.leadingAnchor, constant: 0),
+            imgFlipCamera.topAnchor.constraint(equalTo: viewFlipCamera.topAnchor, constant: 0),
+            imgFlipCamera.leadingAnchor.constraint(equalTo: viewFlipCamera.leadingAnchor, constant: 0),
         ])
-        bgView.addSubview(imgFlashView)
-        NSLayoutConstraint.activate([
-            
-            imgFlashView.topAnchor.constraint(equalTo: bgView.topAnchor, constant: 10),
-            imgFlashView.leadingAnchor.constraint(equalTo: imgCameraView.trailingAnchor, constant: 40),
-            imgFlashView.widthAnchor.constraint(equalToConstant: 30),
-            imgFlashView.heightAnchor.constraint(equalToConstant: 30)
-        ])
-        imgFlashView.addSubview(flash)
-        NSLayoutConstraint.activate([
-            flash.topAnchor.constraint(equalTo: imgFlashView.topAnchor, constant: 0),
-            flash.leadingAnchor.constraint(equalTo: imgFlashView.leadingAnchor, constant: 0),
-        ])
-        bgView.addSubview(imgHelpView)
-        NSLayoutConstraint.activate([
-            imgHelpView.topAnchor.constraint(equalTo: bgView.topAnchor, constant: 10),
-            imgHelpView.leadingAnchor.constraint(equalTo: imgFlashView.trailingAnchor, constant: 40),
-            imgHelpView.widthAnchor.constraint(equalToConstant: 30),
-            imgHelpView.heightAnchor.constraint(equalToConstant: 30)
-        ])
-        imgHelpView.addSubview(imgHelp)
-        NSLayoutConstraint.activate([
-            imgHelp.topAnchor.constraint(equalTo: imgHelpView.topAnchor, constant: 0),
-            imgHelp.leadingAnchor.constraint(equalTo: imgHelpView.leadingAnchor, constant: 0),
-        ])
-        bgView.addSubview(imgScanView)
+        viewBackground.addSubview(viewFlashBg)
         NSLayoutConstraint.activate([
             
-            imgScanView.topAnchor.constraint(equalTo: bgView.topAnchor, constant: 10),
-            imgScanView.leadingAnchor.constraint(equalTo: imgHelpView.trailingAnchor, constant: 40),
-            imgScanView.widthAnchor.constraint(equalToConstant: 30),
-            imgScanView.heightAnchor.constraint(equalToConstant: 30)
+            viewFlashBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: 10),
+            viewFlashBg.leadingAnchor.constraint(equalTo: viewFlipCamera.trailingAnchor, constant: 40),
+            viewFlashBg.widthAnchor.constraint(equalToConstant: 30),
+            viewFlashBg.heightAnchor.constraint(equalToConstant: 30)
         ])
-        imgScanView.addSubview(imgScan)
+        viewFlashBg.addSubview(imgFlash)
         NSLayoutConstraint.activate([
-            imgScan.topAnchor.constraint(equalTo: imgScanView.topAnchor, constant: 0),
-            imgScan.leadingAnchor.constraint(equalTo: imgScanView.leadingAnchor, constant: 0),
+            imgFlash.topAnchor.constraint(equalTo: viewFlashBg.topAnchor, constant: 0),
+            imgFlash.leadingAnchor.constraint(equalTo: viewFlashBg.leadingAnchor, constant: 0),
+        ])
+        viewBackground.addSubview(viewHelpBg)
+        NSLayoutConstraint.activate([
+            viewHelpBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: 10),
+            viewHelpBg.leadingAnchor.constraint(equalTo: viewFlashBg.trailingAnchor, constant: 40),
+            viewHelpBg.widthAnchor.constraint(equalToConstant: 30),
+            viewHelpBg.heightAnchor.constraint(equalToConstant: 30)
+        ])
+        viewHelpBg.addSubview(imgHelp)
+        NSLayoutConstraint.activate([
+            imgHelp.topAnchor.constraint(equalTo: viewHelpBg.topAnchor, constant: 0),
+            imgHelp.leadingAnchor.constraint(equalTo: viewHelpBg.leadingAnchor, constant: 0),
+        ])
+        viewBackground.addSubview(viewScanBg)
+        NSLayoutConstraint.activate([
+            
+            viewScanBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: 10),
+            viewScanBg.leadingAnchor.constraint(equalTo: viewHelpBg.trailingAnchor, constant: 40),
+            viewScanBg.widthAnchor.constraint(equalToConstant: 30),
+            viewScanBg.heightAnchor.constraint(equalToConstant: 30)
+        ])
+        viewScanBg.addSubview(imgScan)
+        NSLayoutConstraint.activate([
+            imgScan.topAnchor.constraint(equalTo: viewScan.topAnchor, constant: 0),
+            imgScan.leadingAnchor.constraint(equalTo: viewScan.leadingAnchor, constant: 0),
         ])
         
         let tapScan = UITapGestureRecognizer(target: self, action: #selector(actionGallery(sender:)))
-        self.imgScanView.addGestureRecognizer(tapScan)
+        self.viewScan.addGestureRecognizer(tapScan)
                 let tapFrontCamera = UITapGestureRecognizer(target: self, action: #selector(actionFrontCamera(sender:)))
-                                 self.imgCameraView.addGestureRecognizer(tapFrontCamera)
+                                 self.viewFlipCamera.addGestureRecognizer(tapFrontCamera)
         //        let tapHelp = UITapGestureRecognizer(target: self, action: #selector(actionHelp(sender:)))
         //                           self.imgHelpView.addGestureRecognizer(tapHelp)
         let tapFlash = UITapGestureRecognizer(target: self, action: #selector(actionFlash(sender:)))
-        self.imgFlashView.addGestureRecognizer(tapFlash)
+        self.viewFlashBg.addGestureRecognizer(tapFlash)
     }
     
     func applyOrientation() {
@@ -144,9 +144,9 @@ extension ScannerVC {
     }
     
     func applyRectOfInterest(orientation: UIInterfaceOrientation) {
-        print(scanView.frame)
+        print(viewScan.frame)
         
-        guard var transformedVideoRect = scanView?.frame,
+        guard var transformedVideoRect = viewScan?.frame,
             let cameraSessionPreset = capture?.sessionPreset
             else { return }
         var scaleVideoX, scaleVideoY: CGFloat

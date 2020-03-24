@@ -9,17 +9,17 @@
 import UIKit
 import ZXingObjC
 class ScannerVC: UIViewController {
-    var bgView : UIView = {
+    var viewBackground : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var iconView : UIView = {
+    var viewIcon : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var scanView : ViewRectangleArea! = {
+    var viewScan : ViewRectangleArea! = {
         let view = ViewRectangleArea()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -30,22 +30,22 @@ class ScannerVC: UIViewController {
         return lbScannerRectangle
     }()
    
-    var imgScanView : UIView! = {
+    var viewScanBg : UIView! = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var imgHelpView : UIView! = {
+    var viewHelpBg : UIView! = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var imgFlashView : UIView! = {
+    var viewFlashBg : UIView! = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var imgCameraView : UIView! = {
+    var viewFlipCamera : UIView! = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -53,14 +53,14 @@ class ScannerVC: UIViewController {
     var imgScan : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.image = UIImage(named: "ic_image")
+        view.image = UIImage(named: AppImages.IC_IMAGE)
         view.tintColor = AppColors.WHITE_COLOR
         return view
     }()
-    var frontCamera : UIImageView = {
+    var imgFlipCamera : UIImageView = {
           let view = UIImageView()
           view.translatesAutoresizingMaskIntoConstraints = false
-          view.image = UIImage(named: "ic_flip_camera")
+        view.image = UIImage(named: AppImages.IC_FLIP_CAMERA)
         view.tintColor = AppColors.WHITE_COLOR
 
           return view
@@ -68,15 +68,15 @@ class ScannerVC: UIViewController {
     var imgHelp : UIImageView = {
              let view = UIImageView()
              view.translatesAutoresizingMaskIntoConstraints = false
-             view.image = UIImage(named: "ic_help")
+        view.image = UIImage(named: AppImages.IC_HELP)
         view.tintColor = AppColors.WHITE_COLOR
 
              return view
          }()
-    var flash : UIImageView = {
+    var imgFlash : UIImageView = {
                let view = UIImageView()
                view.translatesAutoresizingMaskIntoConstraints = false
-               view.image = UIImage(named: "ic_flash_off")
+        view.image = UIImage(named: AppImages.IC_FLASH)
         view.tintColor = AppColors.WHITE_COLOR
                return view
            }()
@@ -128,7 +128,7 @@ class ScannerVC: UIViewController {
     }
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.bgView.layer.backgroundColor = UIColor.white.withAlphaComponent(0.5).cgColor
+        self.viewBackground.layer.backgroundColor = UIColor.white.withAlphaComponent(0.5).cgColor
         //setup()
     }
 //    override func actionAlertYes() {
@@ -145,23 +145,23 @@ class ScannerVC: UIViewController {
        
         _capture.focusMode =  .continuousAutoFocus
         _capture.delegate = self
-        self.bgView.layer.addSublayer(_capture.layer)
+        self.viewBackground.layer.addSublayer(_capture.layer)
         lbScannerRectangle.layer.masksToBounds = true
         lbScannerRectangle.layer.cornerRadius = self.regionCornerRadius
         lbScannerRectangle.layer.borderColor = UIColor.white.cgColor
         lbScannerRectangle.layer.borderWidth = 2.0
 //        bgView.layer.masksToBounds = true
 //        bgView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
-        scanView.setFrameSize(roi: lbScannerRectangle)
-        scanView.drawCorners()
+        viewScan.setFrameSize(roi: lbScannerRectangle)
+        viewScan.drawCorners()
        // self.scanView.isHidden = true
-        self.bgView.bringSubviewToFront(imgCameraView)
-        self.bgView.bringSubviewToFront(imgHelpView)
-        self.bgView.bringSubviewToFront(imgFlashView)
+        self.viewBackground.bringSubviewToFront(viewFlipCamera)
+        self.viewBackground.bringSubviewToFront(viewHelpBg)
+        self.viewBackground.bringSubviewToFront(viewFlashBg)
 
-        self.bgView.bringSubviewToFront(imgScanView)
-        self.bgView.bringSubviewToFront(scanView)
-        self.bgView.bringSubviewToFront(lbScannerRectangle)
+        self.viewBackground.bringSubviewToFront(viewScan)
+        self.viewBackground.bringSubviewToFront(viewScan)
+        self.viewBackground.bringSubviewToFront(lbScannerRectangle)
 
         //  self.view.bringSubviewToFront(_resultLabel)
     }
@@ -192,7 +192,7 @@ class ScannerVC: UIViewController {
     }
     @objc func actionGallery(sender : UITapGestureRecognizer){
         print("actionGallery")
-        self.bgView.bringSubviewToFront(iconView)
+        self.viewBackground.bringSubviewToFront(viewIcon)
         viewModel.defaultValue()
        onTakeGallery()  
     }

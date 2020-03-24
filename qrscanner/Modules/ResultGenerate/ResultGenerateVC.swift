@@ -9,7 +9,7 @@
 import UIKit
 
 class ResultGenerateVC: BaseViewController {
-    var shareView: UIView = {
+    var viewShare: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -18,7 +18,7 @@ class ResultGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var saveView: UIView = {
+    var viewSave: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -28,28 +28,28 @@ class ResultGenerateVC: BaseViewController {
         return view
     }()
     
-    lazy var shareImg : UIImageView = {
+    lazy var imgShare : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_share")
+        view.image = UIImage(named: AppImages.IC_SHARE)
         return view
     }()
-    lazy var shareLbl : ICLabel = {
+    lazy var lbShare : ICLabel = {
         let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.text = LanguageKey.Share
         return view
     }()
-    lazy var saveImg : UIImageView = {
+    lazy var imgSave : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_save")
+        view.image = UIImage(named: AppImages.IC_SAVE)
         return view
     }()
     
-    lazy var saveLabel : ICLabel = {
+    lazy var lbSave : ICLabel = {
         let view = ICLabel()
         view.text = LanguageKey.Save
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -58,10 +58,10 @@ class ResultGenerateVC: BaseViewController {
     var viewModel : ResultViewModel?
     var imgCode : UIImage = UIImage()
     var typeCode = ""
-    var contentData : ContentModel?
+    var contentData : ContentViewModel?
     var createDateTime : Int = 0
     var isUpdate = 0
-    lazy var qrcodeImage: UIImageView = {
+    lazy var imgQrcode: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -72,7 +72,7 @@ class ResultGenerateVC: BaseViewController {
         initUI()
         self.addLeftBackButton()
         viewModel = ResultViewModel()
-        qrcodeImage.image = imgCode
+        imgQrcode.image = imgCode
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -93,7 +93,7 @@ class ResultGenerateVC: BaseViewController {
         self.present(activityViewController, animated: true, completion: nil)
     }
     @objc func saveView(sender : UITapGestureRecognizer){
-        UIImageWriteToSavedPhotosAlbum(qrcodeImage.image!, nil, nil, nil)
+        UIImageWriteToSavedPhotosAlbum(imgQrcode.image!, nil, nil, nil)
         showToast(message: LanguageKey.SaveSuccess)
         print(typeCode)
         viewModel!.typeCode = typeCode

@@ -9,12 +9,12 @@
 import UIKit
 extension TableViewCell {
     func setupGenerateSubView(){
-     self.backGroundView.addSubview(self.viewRoot)
+     self.viewBackground.addSubview(self.viewRoot)
                NSLayoutConstraint.activate([
-                   self.viewRoot.leadingAnchor.constraint(equalTo: self.backGroundView.leadingAnchor,constant: 0),
-                   self.viewRoot.trailingAnchor.constraint(equalTo: self.backGroundView.trailingAnchor,constant: -0),
-                   self.viewRoot.topAnchor.constraint(equalTo: self.backGroundView.safeAreaLayoutGuide.topAnchor,constant: 0),
-                   self.viewRoot.bottomAnchor.constraint(equalTo: self.backGroundView.bottomAnchor,constant: -0)
+                   self.viewRoot.leadingAnchor.constraint(equalTo: self.viewBackground.leadingAnchor,constant: 0),
+                   self.viewRoot.trailingAnchor.constraint(equalTo: self.viewBackground.trailingAnchor,constant: -0),
+                   self.viewRoot.topAnchor.constraint(equalTo: self.viewBackground.safeAreaLayoutGuide.topAnchor,constant: 0),
+                   self.viewRoot.bottomAnchor.constraint(equalTo: self.viewBackground.bottomAnchor,constant: -0)
                    ])
                
 //               self.viewRoot.backgroundColor = AppColors.GRAY_LIGHT
@@ -42,7 +42,7 @@ extension TableViewCell {
                                  NSLayoutConstraint.activate([
                                     self.viewSub.leadingAnchor.constraint(equalTo: self.lbTitle.trailingAnchor,constant: 20),
 
-                              self.viewSub.trailingAnchor.constraint(equalTo: self.backGroundView.trailingAnchor, constant: 0),
+                              self.viewSub.trailingAnchor.constraint(equalTo: self.viewBackground.trailingAnchor, constant: 0),
                               self.viewSub.topAnchor.constraint(equalTo: self.viewRoot.topAnchor),
                               self.viewSub.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor)
                       ])

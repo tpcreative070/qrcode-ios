@@ -9,7 +9,7 @@
 import UIKit
 
 class UrlGenerateVC: BaseViewController {
-    lazy var backgroundView: UIView = {
+    lazy var viewBackground: UIView = {
         let view = UIView()
         view.layer.borderColor = UIColor.lightGray.cgColor
         view.layer.borderWidth = 1
@@ -17,7 +17,7 @@ class UrlGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy   var urlBg: UIView = {
+    lazy   var viewUrlBg: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -26,13 +26,13 @@ class UrlGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var urlLbl : UILabel = {
+    lazy var lbUrl : UILabel = {
         let view = UILabel()
         view.text = LanguageKey.Url
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var urlTxt: ICTextFieldNoneIcon = {
+    lazy var textFieldUrl: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
@@ -42,7 +42,7 @@ class UrlGenerateVC: BaseViewController {
   
     var createDateTime : Int = 0
     var typeCode : String = ""
-    var urlValue = UrlModel()
+    var urlValue = UrlViewModel()
     var isSeen : Int = 0
     var viewModel : GenerateViewModel?
     override func viewDidLoad() {
@@ -85,7 +85,7 @@ class UrlGenerateVC: BaseViewController {
     @objc func inputFieldEditingDidEnd(textField: UITextField){
         self.viewModel?.focusTextField = textField
         
-        if textField == urlTxt {
+        if textField == textFieldUrl {
             viewModel?.url = textField.text ?? ""
             viewModel?.validateUrl()
         }

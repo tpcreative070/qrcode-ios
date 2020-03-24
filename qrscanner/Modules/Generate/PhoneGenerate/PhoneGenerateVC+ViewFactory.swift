@@ -11,32 +11,32 @@ extension PhoneGenerateVC {
     func initUI() {
         let gety = view.frame.height * 1.3/7
         let value_item = view.frame.height/7
-        view.addSubview(backgroundView)
+        view.addSubview(viewBackground)
         NSLayoutConstraint.activate([
-            backgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            backgroundView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            backgroundView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
-            backgroundView.heightAnchor.constraint(equalToConstant: gety)
+            viewBackground.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            viewBackground.heightAnchor.constraint(equalToConstant: gety)
         ])
-        backgroundView.addSubview(phoneBg)
+        viewBackground.addSubview(viewPhoneBg)
         NSLayoutConstraint.activate([
-            phoneBg.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 10),
-            phoneBg.leftAnchor.constraint(equalTo: backgroundView.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            phoneBg.rightAnchor.constraint(equalTo: backgroundView.rightAnchor, constant: -20),
-            phoneBg.heightAnchor.constraint(equalToConstant: value_item)
+            viewPhoneBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: 10),
+            viewPhoneBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewPhoneBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: -20),
+            viewPhoneBg.heightAnchor.constraint(equalToConstant: value_item)
         ])
         
-        phoneBg.addSubview(phoneLbl)
+        viewPhoneBg.addSubview(lbPhone)
         NSLayoutConstraint.activate([
-            phoneLbl.topAnchor.constraint(equalTo: phoneBg.topAnchor, constant: 10),
-            phoneLbl.leadingAnchor.constraint(equalTo: phoneBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            phoneLbl.trailingAnchor.constraint(equalTo: phoneBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            lbPhone.topAnchor.constraint(equalTo: viewPhoneBg.topAnchor, constant: 10),
+            lbPhone.leadingAnchor.constraint(equalTo: viewPhoneBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbPhone.trailingAnchor.constraint(equalTo: viewPhoneBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-        phoneBg.addSubview(phoneTxt)
+        viewPhoneBg.addSubview(textFieldPhone)
         NSLayoutConstraint.activate([
-            phoneTxt.topAnchor.constraint(equalTo: phoneLbl.bottomAnchor, constant: 5),
-            phoneTxt.leadingAnchor.constraint(equalTo: phoneBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            phoneTxt.trailingAnchor.constraint(equalTo: phoneBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            textFieldPhone.topAnchor.constraint(equalTo: lbPhone.bottomAnchor, constant: 5),
+            textFieldPhone.leadingAnchor.constraint(equalTo: viewPhoneBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            textFieldPhone.trailingAnchor.constraint(equalTo: viewPhoneBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         setupNavItems()
     }
@@ -72,11 +72,11 @@ extension PhoneGenerateVC {
         viewModel?.errorMessages.bind({ [weak self] errors in
             
             if errors.count > 0 {
-                self?.phoneTxt.errorMessage = errors[GenerateViewModelKey.PHONE_TELEPHONE] ?? ""
+                self?.textFieldPhone.errorMessage = errors[GenerateViewModelKey.PHONE_TELEPHONE] ?? ""
             }
             else {
                 if errors.count == 0{
-                    self?.phoneTxt.errorMessage = ""
+                    self?.textFieldPhone.errorMessage = ""
                 }
             }
         })
@@ -90,7 +90,7 @@ extension PhoneGenerateVC {
                 let resVC = ResultGenerateVC()
                 resVC.typeCode = LanguageKey.Telephone
                 resVC.createDateTime = self!.createDateTime
-                resVC.contentData = ContentModel(data: PhoneModel(phone: (self?.phoneTxt.text)!))
+                resVC.contentData = ContentViewModel(data: ContentModel(data: PhoneModel(phone: (self?.textFieldPhone.text!)!)))
                 resVC.imgCode = (self?.viewModel?.result)!
                 if self?.isSeen == AppConstants.ISSEEN {
                     resVC.isUpdate = AppConstants.ISUPDATE
@@ -103,23 +103,23 @@ extension PhoneGenerateVC {
             self?.presentSingleButtonDialog(alert: alert)
         }
         viewModel?.phoneTelephoneBinding.bind({ (value) in
-            self.phoneTxt.text = value
+            self.textFieldPhone.text = value
         })
         self.viewModel?.errorMessages.value[GenerateViewModelKey.PHONE_TELEPHONE] = ""
     }
     private func clearDataTextfield() {
-        self.phoneTxt.resignFirstResponder()
-        self.phoneTxt.text = ""
+        self.textFieldPhone.resignFirstResponder()
+        self.textFieldPhone.text = ""
         self.viewModel?.errorMessages.value[GenerateViewModelKey.PHONE_TELEPHONE] = ""
     }
     func checkIsSeenDetail(){
         if isSeen == AppConstants.ISSEEN {
-            phoneTxt.text = phoneValue.phone ?? ""
+            textFieldPhone.text = phoneValue.phone ?? ""
         }
     }
     func defineValue(){
         self.viewModel?.typeCode = LanguageKey.Telephone
-        self.viewModel?.phoneTelephone = phoneTxt.text ?? ""
+        self.viewModel?.phoneTelephone = textFieldPhone.text ?? ""
     }
 }
 extension PhoneGenerateVC: UITextFieldDelegate {
@@ -128,7 +128,7 @@ extension PhoneGenerateVC: UITextFieldDelegate {
         return true
     }
     func setupDelegate() {
-        self.phoneTxt.delegate = self
+        self.textFieldPhone.delegate = self
     }
 }
 extension PhoneGenerateVC : SingleButtonDialogPresenter {

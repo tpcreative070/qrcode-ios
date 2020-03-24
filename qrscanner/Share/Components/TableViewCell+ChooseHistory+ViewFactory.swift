@@ -11,12 +11,12 @@ import UIKit
 extension TableViewCell {
     func setupChooseHistorySubView(){
         
-        self.backGroundView.addSubview(self.viewRoot)
+        self.viewBackground.addSubview(self.viewRoot)
         NSLayoutConstraint.activate([
-            self.viewRoot.leadingAnchor.constraint(equalTo: self.backGroundView.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
-            self.viewRoot.trailingAnchor.constraint(equalTo: self.backGroundView.trailingAnchor,constant:  0),
-            self.viewRoot.topAnchor.constraint(equalTo: self.backGroundView.topAnchor,constant: 0),
-            self.viewRoot.bottomAnchor.constraint(equalTo: self.backGroundView.bottomAnchor,constant: -20)
+            self.viewRoot.leadingAnchor.constraint(equalTo: self.viewBackground.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
+            self.viewRoot.trailingAnchor.constraint(equalTo: self.viewBackground.trailingAnchor,constant:  0),
+            self.viewRoot.topAnchor.constraint(equalTo: self.viewBackground.topAnchor,constant: 0),
+            self.viewRoot.bottomAnchor.constraint(equalTo: self.viewBackground.bottomAnchor,constant: -20)
             
         ])
         //        viewRoot.backgroundColor = .yellow

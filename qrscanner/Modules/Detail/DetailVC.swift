@@ -13,7 +13,7 @@ class DetailVC : BaseViewController{
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-    let wrapperView: UIView = {
+    let viewWrapper: UIView = {
         let parentView = UIView()
         parentView.backgroundColor = .red
         parentView.translatesAutoresizingMaskIntoConstraints = false

@@ -12,65 +12,65 @@ extension MessageGenerateVC {
         setupNavItems()
         let gety = view.frame.height * 2.5/7
         let value_item = view.frame.height/7
-        view.addSubview(backgroundView)
+        view.addSubview(viewBackground)
         NSLayoutConstraint.activate([
-            backgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            backgroundView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            backgroundView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
-            backgroundView.heightAnchor.constraint(equalToConstant: gety)
+            viewBackground.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            viewBackground.heightAnchor.constraint(equalToConstant: gety)
             
         ])
-        backgroundView.addSubview(toBg)
+        viewBackground.addSubview(viewToBg)
         NSLayoutConstraint.activate([
-            toBg.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 10),
-            toBg.leftAnchor.constraint(equalTo: backgroundView.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            toBg.rightAnchor.constraint(equalTo: backgroundView.rightAnchor, constant: -20),
-            toBg.heightAnchor.constraint(equalToConstant: value_item)
+            viewToBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: 10),
+            viewToBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewToBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: -20),
+            viewToBg.heightAnchor.constraint(equalToConstant: value_item)
         ])
-        self.toBg.addSubview(stackViewTo)
+        self.viewToBg.addSubview(stackViewTo)
         NSLayoutConstraint.activate([
-            self.stackViewTo.leadingAnchor.constraint(equalTo: self.toBg.leadingAnchor,constant: 0),
-            self.stackViewTo.widthAnchor.constraint(equalTo: self.toBg.widthAnchor,multiplier: 5/6),
+            self.stackViewTo.leadingAnchor.constraint(equalTo: self.viewToBg.leadingAnchor,constant: 0),
+            self.stackViewTo.widthAnchor.constraint(equalTo: self.viewToBg.widthAnchor,multiplier: 5/6),
             
-            self.stackViewTo.topAnchor.constraint(equalTo: self.toBg.topAnchor,constant: 0),
+            self.stackViewTo.topAnchor.constraint(equalTo: self.viewToBg.topAnchor,constant: 0),
             
         ])
         self.stackViewTo.axis = .vertical
         self.stackViewTo.alignment = .fill
         self.stackViewTo.distribution = UIStackView.Distribution.fillEqually
         self.stackViewTo.spacing = 10
-        self.stackViewTo.addArrangedSubview(toLbL)
-        self.stackViewTo.addArrangedSubview(toTxt)
-        toBg.addSubview(toLbL)
+        self.stackViewTo.addArrangedSubview(lbTo)
+        self.stackViewTo.addArrangedSubview(textFieldTo)
+        viewToBg.addSubview(lbTo)
         NSLayoutConstraint.activate([
-            toLbL.topAnchor.constraint(equalTo: toBg.topAnchor, constant: 10),
-            toLbL.leadingAnchor.constraint(equalTo: toBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            toLbL.trailingAnchor.constraint(equalTo: toBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            lbTo.topAnchor.constraint(equalTo: viewToBg.topAnchor, constant: 10),
+            lbTo.leadingAnchor.constraint(equalTo: viewToBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbTo.trailingAnchor.constraint(equalTo: viewToBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-        toBg.addSubview(toTxt)
+        viewToBg.addSubview(textFieldTo)
         NSLayoutConstraint.activate([
-            toTxt.topAnchor.constraint(equalTo: toLbL.bottomAnchor, constant: 5),
-            toTxt.leadingAnchor.constraint(equalTo: toBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            toTxt.trailingAnchor.constraint(equalTo: toBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            textFieldTo.topAnchor.constraint(equalTo: lbTo.bottomAnchor, constant: 5),
+            textFieldTo.leadingAnchor.constraint(equalTo: viewToBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            textFieldTo.trailingAnchor.constraint(equalTo: viewToBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-        backgroundView.addSubview(fromBg)
+        viewBackground.addSubview(viewFromBg)
         NSLayoutConstraint.activate([
-            fromBg.topAnchor.constraint(equalTo: toBg.bottomAnchor, constant: 10),
-            fromBg.leftAnchor.constraint(equalTo: backgroundView.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            fromBg.rightAnchor.constraint(equalTo: backgroundView.rightAnchor, constant: -20),
-            fromBg.heightAnchor.constraint(equalToConstant: value_item)
+            viewFromBg.topAnchor.constraint(equalTo: viewToBg.bottomAnchor, constant: 10),
+            viewFromBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewFromBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: -20),
+            viewFromBg.heightAnchor.constraint(equalToConstant: value_item)
         ])
-        fromBg.addSubview(fromLbL)
+        viewFromBg.addSubview(lbFrom)
         NSLayoutConstraint.activate([
-            fromLbL.topAnchor.constraint(equalTo: fromBg.topAnchor, constant: 10),
-            fromLbL.leadingAnchor.constraint(equalTo: fromBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            fromLbL.trailingAnchor.constraint(equalTo: fromBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            lbFrom.topAnchor.constraint(equalTo: viewFromBg.topAnchor, constant: 10),
+            lbFrom.leadingAnchor.constraint(equalTo: viewFromBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbFrom.trailingAnchor.constraint(equalTo: viewFromBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-        fromBg.addSubview(messageTxt)
+        viewFromBg.addSubview(textFieldMessage)
         NSLayoutConstraint.activate([
-            messageTxt.topAnchor.constraint(equalTo: fromLbL.bottomAnchor, constant: 5),
-            messageTxt.leadingAnchor.constraint(equalTo: fromBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            messageTxt.trailingAnchor.constraint(equalTo: fromBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            textFieldMessage.topAnchor.constraint(equalTo: lbFrom.bottomAnchor, constant: 5),
+            textFieldMessage.leadingAnchor.constraint(equalTo: viewFromBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            textFieldMessage.trailingAnchor.constraint(equalTo: viewFromBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         
     }
@@ -105,14 +105,14 @@ extension MessageGenerateVC {
         viewModel?.errorMessages.bind({ [weak self] errors in
             
             if errors.count > 0 {
-                self?.toTxt.errorMessage = errors[GenerateViewModelKey.TO] ?? ""
-                self?.messageTxt.errorMessage = errors[GenerateViewModelKey.MESSAGE] ?? ""
+                self?.textFieldTo.errorMessage = errors[GenerateViewModelKey.TO] ?? ""
+                self?.textFieldMessage.errorMessage = errors[GenerateViewModelKey.MESSAGE] ?? ""
             }
                 
             else {
                 if errors.count == 0{
-                    self?.toTxt.errorMessage = ""
-                    self?.messageTxt.errorMessage = ""
+                    self?.textFieldTo.errorMessage = ""
+                    self?.textFieldMessage.errorMessage = ""
                 }
             }
             
@@ -129,7 +129,7 @@ extension MessageGenerateVC {
                 let resVC = ResultGenerateVC()
                 resVC.typeCode = LanguageKey.Message
                 resVC.createDateTime = self!.createDateTime
-                resVC.contentData = ContentModel(data: MessageModel(to: (self?.toTxt.text)!, message: (self?.messageTxt.text)!))
+                resVC.contentData = ContentViewModel(data: MessageModel(to: (self?.textFieldTo.text)!, message: (self?.textFieldMessage.text)!))
                 resVC.imgCode = (self?.viewModel?.result)!
                 if self?.isSeen == AppConstants.ISSEEN {
                     resVC.isUpdate = AppConstants.ISUPDATE
@@ -142,11 +142,11 @@ extension MessageGenerateVC {
             self?.presentSingleButtonDialog(alert: alert)
         }
         viewModel?.toBinding.bind({ (value) in
-            self.toTxt.text = value
+            self.textFieldTo.text = value
         })
         
         viewModel?.messageBinding.bind({ (value) in
-            self.messageTxt.text = value
+            self.textFieldMessage.text = value
         })
         
         
@@ -158,25 +158,25 @@ extension MessageGenerateVC {
     
     private func clearDataTextfield() {
         
-        self.toTxt.resignFirstResponder()
-        self.messageTxt.resignFirstResponder()
+        self.textFieldTo.resignFirstResponder()
+        self.textFieldMessage.resignFirstResponder()
         
-        self.toTxt.text = ""
-        self.messageTxt.text = ""
+        self.textFieldTo.text = ""
+        self.textFieldMessage.text = ""
         self.viewModel?.errorMessages.value[GenerateViewModelKey.TO] = ""
         self.viewModel?.errorMessages.value[GenerateViewModelKey.MESSAGE] = ""
         
     }
     func defineValue(){
         self.viewModel?.typeCode = LanguageKey.Message
-        self.viewModel?.message = messageTxt.text
-        self.viewModel?.to = toTxt.text
+        self.viewModel?.message = textFieldMessage.text
+        self.viewModel?.to = textFieldTo.text
 
     }
   func checkIsSeenDetail(){
        if isSeen == AppConstants.ISSEEN {
-           toTxt.text = messageValue.to ?? ""
-           messageTxt.text = messageValue.message ?? ""
+           textFieldTo.text = messageValue.to ?? ""
+           textFieldMessage.text = messageValue.message ?? ""
            
        }
    }
@@ -189,8 +189,8 @@ extension MessageGenerateVC: UITextFieldDelegate {
     }
     
     func setupDelegate() {
-        self.toTxt.delegate = self
-        self.messageTxt.delegate = self
+        self.textFieldTo.delegate = self
+        self.textFieldMessage.delegate = self
         
     }
 }

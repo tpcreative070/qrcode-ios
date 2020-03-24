@@ -15,13 +15,13 @@ class TableViewCell : UITableViewCell{
     var delegate : TableViewCellDelegate?
     var identifier =  EnumIdentifier.None
     var codable : Codable?
-    let backGroundView : UIView = {
+    let viewBackground : UIView = {
         let view = UIView()
         //        view.backgroundColor = .clear
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    let backGroundView1 : UIView = {
+    let viewBackgroundSecond : UIView = {
         let view = UIView()
         //        view.backgroundColor = .clear
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -43,7 +43,7 @@ class TableViewCell : UITableViewCell{
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_generate")
+        view.image = UIImage(named: AppImages.IC_GENERATE)
         return view
     }()
     lazy var lbTitle : ICLabel = {
@@ -298,7 +298,7 @@ class TableViewCell : UITableViewCell{
         self.viewModel.maxBinding.value = Int(sender.value)
     }
     /*url detail */
-    lazy  var urlBg: UIView = {
+    lazy  var viewUrlBg: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -307,47 +307,47 @@ class TableViewCell : UITableViewCell{
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var titleLbl1 : UILabel = {
-        let view = UILabel()
+    lazy var lbTitleFirst : ICLabel = {
+        let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var valueTxt1: ICTextFieldNoneIcon = {
+    lazy var textFieldValueFirst: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
         
         return view
     }()
-    lazy var valueTxt2: ICTextFieldNoneIcon = {
+    lazy var textFieldValueSecond: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
         
         return view
     }()
-    lazy var valueTxt3: ICTextFieldNoneIcon = {
+    lazy var textFieldValueThird: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
         
         return view
     }()
-    lazy var valueTxt4: ICTextFieldNoneIcon = {
+    lazy var textFieldValueFour: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
         
         return view
     }()
-    lazy var valueTxt5: ICTextFieldNoneIcon = {
+    lazy var textFieldValueFive: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
         
         return view
     }()
-    var bgView1: UIView = {
+    var viewBackgroundThird: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -356,7 +356,7 @@ class TableViewCell : UITableViewCell{
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var bgView2: UIView = {
+    var viewBackgroundFour: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -365,7 +365,7 @@ class TableViewCell : UITableViewCell{
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var clipboardView: UIView = {
+    var viewClipboard: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -374,224 +374,224 @@ class TableViewCell : UITableViewCell{
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var searchImg : UIImageView = {
+    lazy var imgSearch : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_search")
+        view.image = UIImage(named: AppImages.IC_SEARCH)
         return view
     }()
-    lazy var titleLbl2 : UILabel = {
-        let view = UILabel()
+    lazy var lbTitleSecond : ICLabel = {
+        let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var urlImg : UIImageView = {
+    lazy var imgUrl : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_language")
+        view.image = UIImage(named: AppImages.IC_LANGUAGE)
         return view
     }()
     
-    lazy var titleLabel3 : UILabel = {
-        let view = UILabel()
+    lazy var lbTitleThird : ICLabel = {
+        let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var titleLabel4 : UILabel = {
-        let view = UILabel()
+    lazy var lbTitleFour : ICLabel = {
+        let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var titleLabel5 : UILabel = {
-        let view = UILabel()
+    lazy var lbTitleFive : ICLabel = {
+        let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var titleLabel6 : UILabel = {
-        let view = UILabel()
+    lazy var lbTitleSix : ICLabel = {
+        let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var clipboardImage : UIImageView = {
+    lazy var imgClipboard : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_copy")
+        view.image = UIImage(named: AppImages.IC_COPY)
         return view
     }()
-    lazy var clipboardLabel : UILabel = {
-        let view = UILabel()
+    lazy var lbClipboard : ICLabel = {
+        let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.text = "Clipboard"
+        view.text = LanguageKey.Clipboard
         return view
     }()
     func configView(viewModel : UrlViewModelDelegate){
-        self.titleLbl1.text = "Url"
-        self.titleLbl2.text = "Url"
-        self.titleLabel3.text = "Search"
-        self.valueTxt1.text = viewModel.urlTxtView
+        self.lbTitleFirst.text = LanguageKey.Url
+        self.lbTitleSecond.text = LanguageKey.Url
+        self.lbTitleThird.text = LanguageKey.Search
+        self.textFieldValueFirst.text = viewModel.urlTxtView
     }
     /*text*/
-    lazy var textImg : UIImageView = {
+    lazy var imgText : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_textsms")
+        view.image = UIImage(named: AppImages.IC_SMS)
         return view
     }()
     
     func configView(viewModel : TextViewModelDelegate){
-        self.titleLbl1.text = "Text"
-        self.titleLbl2.text = "Text"
-        self.titleLabel3.text = "Search"
-        self.valueTxt1.text = viewModel.textTxtView
+        self.lbTitleFirst.text = LanguageKey.Text
+        self.lbTitleSecond.text = LanguageKey.Text
+        self.lbTitleThird.text = LanguageKey.Search
+        self.textFieldValueFirst.text = viewModel.textTxtView
     }
     /*phone*/
-    lazy var phoneImg : UIImageView = {
+    lazy var imgPhone : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_phone")
+        view.image = UIImage(named: AppImages.IC_PHONE)
         return view
     }()
     
     func configView(viewModel : PhoneViewModelDelegate){
-        self.titleLbl1.text = "Phone"
-        self.titleLbl2.text = "Phone"
-        self.valueTxt1.text = viewModel.phoneTxtView
+        self.lbTitleFirst.text = LanguageKey.Phone
+        self.lbTitleSecond.text = LanguageKey.Phone
+        self.textFieldValueFirst.text = viewModel.phoneTxtView
     }
     /*email*/
-    lazy var emailImg : UIImageView = {
+    lazy var imgEmail : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_email")
+        view.image = UIImage(named: AppImages.IC_EMAIL)
         return view
     }()
     
     func configView(viewModel : EmailViewModelDelegate){
-        self.titleLbl1.text = "To"
-        self.titleLbl2.text = "Subject"
-        self.titleLabel3.text = "Message"
-        self.titleLabel4.text = "Email"
+        self.lbTitleFirst.text = LanguageKey.To
+        self.lbTitleSecond.text = LanguageKey.Subject
+        self.lbTitleThird.text = LanguageKey.Message
+        self.lbTitleFour.text = LanguageKey.Email
         
-        self.valueTxt1.text = viewModel.toTxtView
-        self.valueTxt2.text = viewModel.subjectView
-        self.valueTxt3.text = viewModel.messageView
+        self.textFieldValueFirst.text = viewModel.toTxtView
+        self.textFieldValueSecond.text = viewModel.subjectView
+        self.textFieldValueThird.text = viewModel.messageView
     }
     /*wifi*/
-    lazy var wifiImg : UIImageView = {
+    lazy var imgWifi : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_wifi")
+        view.image = UIImage(named: AppImages.IC_WIFI)
         return view
     }()
     
     func configView(viewModel : WifiViewModelDelegate){
-        self.titleLbl1.text = "SSID"
-        self.titleLbl2.text = "Password"
-        self.titleLabel3.text = "Network Encryption"
-        self.titleLabel4.text = "Hidden"
-        self.titleLabel5.text = "Wifi"
+        self.lbTitleFirst.text = LanguageKey.SSID
+        self.lbTitleSecond.text = LanguageKey.Password
+        self.lbTitleThird.text = LanguageKey.NetworkEncryption
+        self.lbTitleFour.text = LanguageKey.Hidden
+        self.lbTitleFive.text = LanguageKey.Wifi
         
-        self.valueTxt1.text = viewModel.ssidView
-        self.valueTxt2.text = viewModel.passwordView
-        self.valueTxt3.text = viewModel.networkView
+        self.textFieldValueFirst.text = viewModel.ssidView
+        self.textFieldValueSecond.text = viewModel.passwordView
+        self.textFieldValueThird.text = viewModel.networkView
         if viewModel.hiddenView {
-        self.valueTxt4.text = "true"
+            self.textFieldValueFour.text = LanguageKey.True
         }
         if !(viewModel.hiddenView) {
-        self.valueTxt4.text = "false"
+            self.textFieldValueFour.text = LanguageKey.False
         }
 
     }
     /*contact*/
-    lazy var contactImg : UIImageView = {
+    lazy var imgContact : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_contact_calendar")
+        view.image = UIImage(named: AppImages.IC_CONTACT_CALENDAR)
         return view
     }()
     
     func configView(viewModel : ContactViewModel){
-        self.titleLbl1.text = "Fullname "
-        self.titleLbl2.text = "Address"
-        self.titleLabel3.text = "Phone"
-        self.titleLabel4.text = "Email"
-        self.titleLabel5.text = "AddressBook"
+        self.lbTitleFirst.text = LanguageKey.FullName
+        self.lbTitleSecond.text = LanguageKey.Address
+        self.lbTitleThird.text = LanguageKey.Phone
+        self.lbTitleFour.text = LanguageKey.Email
+        self.lbTitleFive.text = LanguageKey.AddressBook
         
-        self.valueTxt1.text = viewModel.fullnameView
-        self.valueTxt2.text = viewModel.addressView
-        self.valueTxt3.text = viewModel.phoneView
-        self.valueTxt4.text = viewModel.emailView
+        self.textFieldValueFirst.text = viewModel.fullnameView
+        self.textFieldValueSecond.text = viewModel.addressView
+        self.textFieldValueThird.text = viewModel.phoneView
+        self.textFieldValueFour.text = viewModel.emailView
         
     }
     /*location*/
-    lazy var locationImg : UIImageView = {
+    lazy var imgLocation : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_location")
+        view.image = UIImage(named: AppImages.IC_LOCATION)
         return view
     }()
     
     func configView(viewModel : LocationViewModel){
-        self.titleLbl1.text = "Latitude "
-        self.titleLbl2.text = "Longtitude"
-        self.titleLabel3.text = "Query"
-        self.titleLabel4.text = "Location"
+        self.lbTitleFirst.text = LanguageKey.Latitude
+        self.lbTitleSecond.text = LanguageKey.Longtitude
+        self.lbTitleThird.text = LanguageKey.Query
+        self.lbTitleFour.text = LanguageKey.Location
         
-        self.valueTxt1.text = viewModel.latView
-        self.valueTxt2.text = viewModel.longView
-        self.valueTxt3.text = viewModel.query
+        self.textFieldValueFirst.text = viewModel.latView
+        self.textFieldValueSecond.text = viewModel.longView
+        self.textFieldValueThird.text = viewModel.query
         
     }
     /*message*/
-    lazy var smsImg : UIImageView = {
+    lazy var imgSms : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_textsms")
+        view.image = UIImage(named: AppImages.IC_SMS)
         return view
     }()
     
     func configView(viewModel : MessageViewModel){
-        self.titleLbl1.text = "To "
-        self.titleLbl2.text = "Message"
-        self.titleLabel3.text = "SMS"
+        self.lbTitleFirst.text = LanguageKey.To
+        self.lbTitleSecond.text = LanguageKey.Message
+        self.lbTitleThird.text = LanguageKey.Sms
         
-        self.valueTxt1.text = viewModel.toView
-        self.valueTxt2.text = viewModel.messageView
+        self.textFieldValueFirst.text = viewModel.toView
+        self.textFieldValueSecond.text = viewModel.messageView
         
     }
     /*calendar*/
-    lazy var eventImg : UIImageView = {
+    lazy var imgEvent : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_event")
+        view.image = UIImage(named: AppImages.IC_EVENT)
         return view
     }()
     
     func configView(viewModel : EventViewModel){
-        self.titleLbl1.text = "Title "
-        self.titleLbl2.text = "Location"
-        self.titleLabel3.text = "Description"
-        self.titleLabel4.text = "Begin Time"
-        self.titleLabel5.text = "End Time"
-        self.titleLabel6.text = "Calendar"
+        self.lbTitleFirst.text = LanguageKey.Title
+        self.lbTitleSecond.text = LanguageKey.Location
+        self.lbTitleThird.text = LanguageKey.Description
+        self.lbTitleFour.text = LanguageKey.TimeBegin
+        self.lbTitleFive.text = LanguageKey.TimeEnd
+        self.lbTitleSix.text = LanguageKey.Calendar
         
         
         
-        self.valueTxt1.text = viewModel.titleView
-        self.valueTxt2.text = viewModel.locationView
-        self.valueTxt3.text = viewModel.descriptionView
-        self.valueTxt4.text = viewModel.beginView
-        self.valueTxt5.text = viewModel.endView
+        self.textFieldValueFirst.text = viewModel.titleView
+        self.textFieldValueSecond.text = viewModel.locationView
+        self.textFieldValueThird.text = viewModel.descriptionView
+        self.textFieldValueFour.text = viewModel.beginView
+        self.textFieldValueFive.text = viewModel.endView
         
         
     }

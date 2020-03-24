@@ -18,13 +18,13 @@ extension DetailVC {
             scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
         ])
-        self.scrollView.addSubview(wrapperView)
+        self.scrollView.addSubview(viewWrapper)
         NSLayoutConstraint.activate([
-            wrapperView.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor),
-            wrapperView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            wrapperView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            wrapperView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            wrapperView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            viewWrapper.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor),
+            viewWrapper.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            viewWrapper.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            viewWrapper.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            viewWrapper.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
         ])
         /*TableView*/
         tableView = UITableView()
@@ -34,7 +34,7 @@ extension DetailVC {
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
         tableView.sectionFooterHeight = 0
-        wrapperView.addSubview(tableView)
+        viewWrapper.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -125,12 +125,12 @@ extension DetailVC {
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
     }
     func setupEndedUpScrollView(){
-        wrapperView.addSubview(endedUpScrollViewContainerView)
+        viewWrapper.addSubview(endedUpScrollViewContainerView)
         NSLayoutConstraint.activate([
             endedUpScrollViewContainerView.topAnchor.constraint(equalTo: tableView.bottomAnchor),
-            endedUpScrollViewContainerView.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor),
-            endedUpScrollViewContainerView.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor),
-            endedUpScrollViewContainerView.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor)
+            endedUpScrollViewContainerView.leadingAnchor.constraint(equalTo: viewWrapper.leadingAnchor),
+            endedUpScrollViewContainerView.trailingAnchor.constraint(equalTo: viewWrapper.trailingAnchor),
+            endedUpScrollViewContainerView.bottomAnchor.constraint(equalTo: viewWrapper.bottomAnchor)
         ])
         //          self.view.layoutIfNeeded()
     }

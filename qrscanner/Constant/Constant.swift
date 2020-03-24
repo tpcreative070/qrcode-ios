@@ -206,8 +206,35 @@ struct AppImages {
     static let IC_SAVE = "ic_save"
     static let IC_SETTING = "ic_settings_white"
     
-    static let IC_SEARCH = "ic_search"
+    static let IC_CONTACT_CALENDAR = "ic_contact_calendar"
+    static let IC_COPY = "ic_copy"
+    static let IC_CREATE = "ic_create"
     static let IC_DELETE = "ic_delete"
+    static let IC_EMAIL = "ic_email"
+    static let IC_EVENT = "ic_event"
+    static let IC_FLASH = "ic_flash"
+    static let IC_FLIP_CAMERA = "ic_flip_camera"
+    static let IC_HELP = "ic_help"
+    static let IC_IMAGE = "ic_image"
+    static let IC_KEYBOARD = "ic_keyboard"
+    static let IC_LABEL = "ic_label"
+    static let IC_LANGUAGE = "ic_language"
+    static let IC_LOCATION = "ic_location"
+    static let IC_MENU = "ic_menu"
+    static let IC_PHONE = "ic_phone"
+    static let IC_SHARE = "ic_share"
+    static let IC_SEARCH = "ic_search"
+    static let IC_SELECT_ALL = "ic_select_all"
+    static let IC_SETTINGS_WHITE = "ic_settings_white"
+    static let IC_SUPPORT = "ic_support"
+    static let IC_TEXT = "ic_text"
+    static let IC_SMS = "ic_textsms"
+    static let IC_VIBRATION = "ic_vibration"
+    static let IC_WIFI = "ic_wifi"
+
+    
+    
+    
     static let IC_HOME = "ic_home"
     static let IC_CONTACT = "ic_contact"
     static let IC_TRANSACTION = "ic_history"
@@ -244,14 +271,12 @@ struct AppImages {
     static let IC_ERROR = "ic_error"
     static let IC_SUCCESS = "ic_success"
     static let IC_SIGN_OUT = "ic_sign_out"
-    static let IC_HELP = "ic_help"
     static let IC_DESTROY = "ic_block"
     static let IC_CHANGE_PASSWORD = "ic_change_password"
     static let IC_NEXT = "ic_next"
     static let IC_NEXT_IOS = "ic_next_ios"
     static let IC_EDIT_PICTURE = "ic_edit_picture"
     static let IC_EXCLAMATION = "ic_exclamation"
-    static let IC_FLASH = "ic_flash"
     static let IC_GALLERY = "ic_gallery"
     static let IC_CONTACT_ACTIVE = "ic_contact_active"
     static let IC_BACK = "ic_back"
@@ -264,11 +289,9 @@ struct AppImages {
     static let IC_CHECK_FAIL = "ic_check_fail"
     static let IC_MORE = "ic_more"
     static let IC_FILTER = "ic_filter"
-    static let IC_SHARE = "ic_share"
     static let IC_DOWNLOAD = "ic_download"
     static let IC_SIGN_OUT_RED = "ic_sign_out_red"
     static let IC_CHECK = "ic_check"
-    static let IC_LANGUAGE = "ic_language"
     static let IC_INTRO_BACKGROUND = "ic_intro_background"
     static let IC_INTRO_1 = "ic_intro_1"
     static let IC_INTRO_2 = "ic_intro_2"
@@ -343,6 +366,7 @@ struct AppViewOptions {
 }
 
 struct LanguageKey {
+     static let Clipboard = "CLIPBOARD"
     //Floaty Button
     static let Csv = "CSV"
     static let Select = "SELECT"
@@ -358,17 +382,22 @@ struct LanguageKey {
     //Contact
       static let Fullname = "FULLNAME"
       static let Address = "ADDRESS"
+    static let AddressBook = "ADDRESS_BOOK"
+
    //Event
     static let Title = "TITLE"
     static let Description = "DESCRIPTION"
     static let TimeBegin = "TIME_BEGIN"
     static let TimeEnd = "TIME_END"
+    static let Calendar = "CALENDAR"
+
     //Location
     static let Latitude = "LATITUDE"
     static let Longtitude = "LONGTITUDE"
     static let Query = "QUERY"
     //Message
     static let To = "TO"
+     static let Subject = "SUBJECT"
     //Text
     //Email
     static let EmailAddress = "EMAIL_ADDRESS"
@@ -452,6 +481,7 @@ struct LanguageKey {
     static let PayVTVCab = "PAYVTVCAB"
     static let ActiveAccountNow = "ACTIVE_ACCOUNT_NOW"
     //typeCode
+    static let Sms = "SMS"
     static let Email = "EMAIL"
     static let Message = "MESSAGE"
     static let Location = "LOCATION"
@@ -461,6 +491,8 @@ struct LanguageKey {
     static let Text = "TEXT"
     static let Wifi = "WIFI"
     static let Url = "URL"
+    static let True = "TRUE"
+    static let False = "FALSE"
 
     
     //Confirm

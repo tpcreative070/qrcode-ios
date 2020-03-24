@@ -23,27 +23,27 @@ extension MainVC  {
     func addedView(){
         mScanner = ScannerVC()
         mScanner?.title = LanguageHelper.getTranslationByKey(LanguageKey.Scanner) ?? "Scanner"
-        mScanner?.navigationItem.titleView = UIImageView.init(image: UIImage(named: "ic_scan"))
+        mScanner?.navigationItem.titleView = UIImageView.init(image: UIImage(named: AppImages.IC_SCAN))
         addChild(mScanner ?? ScannerVC())
              
         mHistory = HistoryVC()
         mHistory?.navigationItem.title = LanguageHelper.getTranslationByKey(LanguageKey.History) ?? "History"
-        mHistory?.navigationItem.titleView = UIImageView.init(image: UIImage(named: "ic_history"))
+        mHistory?.navigationItem.titleView = UIImageView.init(image: UIImage(named: AppImages.IC_HISTORY))
         
         addChild(mHistory ?? HistoryVC())
         mGenerate = TypeCodeVC()
         mGenerate?.title = LanguageHelper.getTranslationByKey(LanguageKey.Generate) ?? "Generate"
-        mGenerate?.navigationItem.titleView = UIImageView.init(image: UIImage(named: "ic_generate"))
+        mGenerate?.navigationItem.titleView = UIImageView.init(image: UIImage(named: AppImages.IC_GENERATE))
         
         addChild(mGenerate ?? TypeCodeVC())
         mSave = SaveVC()
         mSave?.title = LanguageHelper.getTranslationByKey(LanguageKey.Save) ?? "Save"
-        mSave?.navigationItem.titleView = UIImageView.init(image: UIImage(named: "ic_save"))
+        mSave?.navigationItem.titleView = UIImageView.init(image: UIImage(named: AppImages.IC_SAVE))
         
         addChild(mSave ?? SaveVC())
         mSettings = SettingsVC()
         mSettings?.title = LanguageHelper.getTranslationByKey(LanguageKey.Setting) ?? "Settings"
-        mSettings?.navigationItem.titleView = UIImageView.init(image: UIImage(named: "ic_settings_white"))
+        mSettings?.navigationItem.titleView = UIImageView.init(image: UIImage(named: AppImages.IC_SETTINGS_WHITE))
         addChild(mSettings ?? SettingsVC())
     }
     

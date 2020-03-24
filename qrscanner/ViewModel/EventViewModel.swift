@@ -11,30 +11,30 @@ import Foundation
 import UIKit
 class EventViewModel : Codable , EventViewModelDelegate{
     var titleView: String {
-        return title
+        return title ?? ""
     }
     
     var locationView: String{
-        return location
+        return location ?? ""
     }
     
     var descriptionView: String{
-        return description
+        return description ?? ""
     }
     
     var beginView: String{
-        return beginTime
+        return beginTime ?? ""
     }
     
     var endView: String{
-        return endTime
+        return endTime ?? ""
     }
     
-    var title : String
-    var location: String
-    var description: String
-    var beginTime: String
-    var endTime: String
+    var title : String?
+    var location: String?
+    var description: String?
+    var beginTime: String?
+    var endTime: String?
     init(data: EventModel) {
         self.title = data.title!
         self.location = data.location!
@@ -42,5 +42,6 @@ class EventViewModel : Codable , EventViewModelDelegate{
         self.beginTime = data.beginTime!
         self.endTime = data.endTime!
     }
+    init() {    }
  
 }

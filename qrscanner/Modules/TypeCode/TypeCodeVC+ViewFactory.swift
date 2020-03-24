@@ -42,13 +42,6 @@ extension TypeCodeVC {
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
-        wrapperView.addSubview(ended)
-        NSLayoutConstraint.activate([
-            ended.leftAnchor.constraint(equalTo: wrapperView.leftAnchor),
-            ended.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor),
-            ended.rightAnchor.constraint(equalTo: wrapperView.rightAnchor),
-            ended.topAnchor.constraint(equalTo: tableView.bottomAnchor)
-        ])
         setupEndedUpScrollView()
         setupTableView()
         bindTableView()
@@ -147,11 +140,9 @@ extension TypeCodeVC : TableViewCellDelegate {
               }
               else if typeCode == LanguageKey.Text{
                   vc = TextGenerateVC()
-
               }
               else if typeCode == LanguageKey.Location{
                   vc = LocationGenerateVC()
-
               }
               else if typeCode == LanguageKey.Email{
                  vc = EmailGenerateVC()
@@ -178,7 +169,7 @@ extension TypeCodeVC : TableViewCellDelegate {
     func setupEndedUpScrollView(){
       wrapperView.addSubview(endedUpScrollViewContainerView)
       NSLayoutConstraint.activate([
-        endedUpScrollViewContainerView.topAnchor.constraint(equalTo: ended.bottomAnchor),
+        endedUpScrollViewContainerView.topAnchor.constraint(equalTo: tableView.bottomAnchor),
         endedUpScrollViewContainerView.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor),
         endedUpScrollViewContainerView.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor),
         endedUpScrollViewContainerView.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor)

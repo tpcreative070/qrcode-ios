@@ -12,34 +12,34 @@ extension UrlGenerateVC {
         print(view.frame.height)
         let gety = view.frame.height * 1.3/7
         let value_item = view.frame.height/7
-        view.addSubview(backgroundView)
+        view.addSubview(viewBackground)
         NSLayoutConstraint.activate([
-            backgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            backgroundView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            backgroundView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
-            backgroundView.heightAnchor.constraint(equalToConstant: gety)
+            viewBackground.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            viewBackground.heightAnchor.constraint(equalToConstant: gety)
             
         ])
         
-        backgroundView.addSubview(urlBg)
+        viewBackground.addSubview(viewUrlBg)
         NSLayoutConstraint.activate([
-            urlBg.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 10),
-            urlBg.leftAnchor.constraint(equalTo: backgroundView.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            urlBg.rightAnchor.constraint(equalTo: backgroundView.rightAnchor, constant: -20),
-            urlBg.heightAnchor.constraint(equalToConstant: value_item)
+            viewUrlBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: 10),
+            viewUrlBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewUrlBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: -20),
+            viewUrlBg.heightAnchor.constraint(equalToConstant: value_item)
         ])
         
-        urlBg.addSubview(urlLbl)
+        viewUrlBg.addSubview(lbUrl)
         NSLayoutConstraint.activate([
-            urlLbl.topAnchor.constraint(equalTo: urlBg.topAnchor, constant: 10),
-            urlLbl.leadingAnchor.constraint(equalTo: urlBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            urlLbl.trailingAnchor.constraint(equalTo: urlBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            lbUrl.topAnchor.constraint(equalTo: viewUrlBg.topAnchor, constant: 10),
+            lbUrl.leadingAnchor.constraint(equalTo: viewUrlBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbUrl.trailingAnchor.constraint(equalTo: viewUrlBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-        urlBg.addSubview(urlTxt)
+        viewUrlBg.addSubview(textFieldUrl)
         NSLayoutConstraint.activate([
-            urlTxt.topAnchor.constraint(equalTo: urlLbl.bottomAnchor, constant: 5),
-            urlTxt.leadingAnchor.constraint(equalTo: urlBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            urlTxt.trailingAnchor.constraint(equalTo: urlBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            textFieldUrl.topAnchor.constraint(equalTo: lbUrl.bottomAnchor, constant: 5),
+            textFieldUrl.leadingAnchor.constraint(equalTo: viewUrlBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            textFieldUrl.trailingAnchor.constraint(equalTo: viewUrlBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         setupNavItems()
         
@@ -73,11 +73,11 @@ extension UrlGenerateVC {
     func bindViewModel() {
         viewModel?.errorMessages.bind({ [weak self] errors in
             if errors.count > 0 {
-                self?.urlTxt.errorMessage = errors[GenerateViewModelKey.URL] ?? ""
+                self?.textFieldUrl.errorMessage = errors[GenerateViewModelKey.URL] ?? ""
             }
             else {
                 if errors.count == 0{
-                    self?.urlTxt.errorMessage = ""
+                    self?.textFieldUrl.errorMessage = ""
                 }
             }
         })
@@ -91,7 +91,7 @@ extension UrlGenerateVC {
                 let resVC = ResultGenerateVC()
                 resVC.typeCode = LanguageKey.Url
                 resVC.createDateTime = self!.createDateTime
-                resVC.contentData = ContentModel(data: UrlModel(url: (self?.urlTxt.text)!))
+                resVC.contentData = ContentViewModel(data: UrlModel(url: (self?.textFieldUrl.text)!))
                 resVC.imgCode = (self?.viewModel?.result)!
                 if self?.isSeen == AppConstants.ISSEEN {
                     resVC.isUpdate = AppConstants.ISUPDATE
@@ -104,23 +104,23 @@ extension UrlGenerateVC {
             self?.presentSingleButtonDialog(alert: alert)
         }
         viewModel?.urlBinding.bind({ (value) in
-            self.urlTxt.text = value
+            self.textFieldUrl.text = value
         })
         self.viewModel?.errorMessages.value[GenerateViewModelKey.URL] = ""
     }
     private func clearDataurlfield() {
-        self.urlTxt.resignFirstResponder()
-        self.urlTxt.text = ""
+        self.textFieldUrl.resignFirstResponder()
+        self.textFieldUrl.text = ""
         self.viewModel?.errorMessages.value[GenerateViewModelKey.URL] = ""
     }
     func checkIsSeenDetail(){
         if isSeen == AppConstants.ISSEEN {
-            urlTxt.text = urlValue.url ?? ""
+            textFieldUrl.text = urlValue.url ?? ""
         }
     }
     func defineValue(){
         self.viewModel?.typeCode = LanguageKey.Url
-        self.viewModel?.url = urlTxt.text
+        self.viewModel?.url = textFieldUrl.text
     }
     
 }
@@ -131,7 +131,7 @@ extension UrlGenerateVC: UITextFieldDelegate {
     }
     
     func setupDelegate() {
-        self.urlTxt.delegate = self        
+        self.textFieldUrl.delegate = self        
     }
 }
 
