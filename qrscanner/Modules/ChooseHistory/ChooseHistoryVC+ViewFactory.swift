@@ -64,27 +64,27 @@ extension ChooseHistoryVC  {
         tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: EnumIdentifier.HistoryChoose.rawValue)
     }
     func bindViewModel() {
-        self.viewModel.showLoading.bind { visible in
+        self.historyViewModel.showLoading.bind { visible in
             visible ? ProgressHUD.show(): ProgressHUD.dismiss()
         }
-        self.viewModel.onShowError = { [weak self] alert in
+        self.historyViewModel.onShowError = { [weak self] alert in
             self?.presentSingleButtonDialog(alert: alert)
         }
         
-        self.viewModel.responseToView = {[weak self] value in
+        self.historyViewModel.responseToView = {[weak self] value in
             if value == EnumResponseToView.UPDATE_DATA_SOURCE.rawValue {
-                self?.navigationItem.title = "\(String(describing: self!.viewModel.countItemSelected)) selected"
+                self?.navigationItem.title = "\(String(describing: self!.historyViewModel.countItemSelected)) selected"
                 self?.updateDataSource()
             }
         }
-        self.viewModel.doGetListHistories()
+        self.historyViewModel.doGetListHistories()
     }
     func updateDataSource() {
-        self.sections = TableSection.group(rowItems: self.viewModel.listHistories, by: { (headline) in
+        self.sections = TableSection.group(rowItems: self.historyViewModel.listHistories, by: { (headline) in
             return headline.typeCode
         })
         self.dataSource.sections = self.sections
-        self.dataSource.items = self.viewModel.listHistories
+        self.dataSource.items = self.historyViewModel.listHistories
         self.tableView.reloadData()
     }
     func setupNavItems() {
@@ -107,7 +107,7 @@ extension ChooseHistoryVC  {
     }
     
     func bindTableView(){
-        self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.HistoryChoose.rawValue, items: self.viewModel.listHistories,sections: self.sections, height: AppConstants.TABLE_ROW_HEIGHT,isSelectionStype: .none){ cell, vm in
+        self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.HistoryChoose.rawValue, items: self.historyViewModel.listHistories,sections: self.sections, height: AppConstants.TABLE_ROW_HEIGHT,isSelectionStype: .none){ cell, vm in
             cell.configView(view: vm)
             cell.configData(viewModel: vm)
             cell.delegate = self
@@ -198,12 +198,12 @@ extension ChooseHistoryVC : TableViewCellDelegate{
     
     func cellViewSelected(cell: TableViewCell, countSelected: Int) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
-        let result = self.viewModel.listHistories[indexPath.row]
+        let result = self.historyViewModel.listHistories[indexPath.row]
         print("history select: \(result)")
     }
     
     func cellViewSelected(cell: Codable) {
-        self.viewModel.doSelectItem(coable: cell)
+        self.historyViewModel.doSelectItem(coable: cell)
     }
     
     func cellCodable(codable: Codable) {

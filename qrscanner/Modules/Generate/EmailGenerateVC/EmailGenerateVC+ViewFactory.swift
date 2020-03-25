@@ -9,8 +9,7 @@
 import UIKit
 extension EmailGenerateVC {
     func initUI() {
-        let gety = view.frame.height * 3.6/7
-        let value_item = view.frame.height/7
+     
         self.view.addSubview(scrollView)
                   NSLayoutConstraint.activate([
                       scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
@@ -24,14 +23,14 @@ extension EmailGenerateVC {
             viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewBackground.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: AppConstants.MARGIN_BOTTOM),
-            viewBackground.heightAnchor.constraint(equalToConstant: gety)
+            viewBackground.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND * 2.55)
         ])
         viewBackground.addSubview(viewEmailBg)
         NSLayoutConstraint.activate([
             viewEmailBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewEmailBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewEmailBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewEmailBg.heightAnchor.constraint(equalToConstant: value_item)
+            viewEmailBg.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM)
         ])
         viewEmailBg.addSubview(lbEmail)
         NSLayoutConstraint.activate([
@@ -50,7 +49,7 @@ extension EmailGenerateVC {
             viewObjectEmailBg.topAnchor.constraint(equalTo: viewEmailBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             viewObjectEmailBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewObjectEmailBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewObjectEmailBg.heightAnchor.constraint(equalToConstant: value_item)
+            viewObjectEmailBg.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM)
         ])
         viewObjectEmailBg.addSubview(lbObjectEmail)
         NSLayoutConstraint.activate([
@@ -70,7 +69,7 @@ extension EmailGenerateVC {
             viewMessageBg.topAnchor.constraint(equalTo: viewObjectEmailBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             viewMessageBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewMessageBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewMessageBg.heightAnchor.constraint(equalToConstant: value_item)
+            viewMessageBg.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM)
         ])
         viewMessageBg.addSubview(lbMessageEmail)
         NSLayoutConstraint.activate([
@@ -94,8 +93,13 @@ extension EmailGenerateVC {
         self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
         self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
         setupNavItems()
+        addTarget(textFieldEmail)
+        addTarget(textFieldObjectEmail)
+        addTarget(textFieldMessageEmail)
     }
-    
+    func addTarget(_ textField: UITextField) {
+        textField.addTarget(self, action: #selector(inputFieldEditingDidEnd), for: .editingDidEnd)
+    }
     func setupNavItems() {
         
         self.view.backgroundColor = .white
@@ -122,7 +126,7 @@ extension EmailGenerateVC {
     }
     
     func bindViewModel() {
-        viewModel?.errorMessages.bind({ [weak self] errors in
+        generateViewModel?.errorMessages.bind({ [weak self] errors in
             
             if errors.count > 0 {
                 self?.textFieldEmail.errorMessage = errors[GenerateViewModelKey.EMAIL] ?? ""
@@ -140,44 +144,44 @@ extension EmailGenerateVC {
             
             
         })
-        viewModel?.showLoading.bind { [weak self] visible in
+        generateViewModel?.showLoading.bind { [weak self] visible in
             if self != nil {
                 visible ? ProgressHUD.show(): ProgressHUD.dismiss()
             }
         }
         
-        viewModel?.responseToView = { [weak self] value in
+        generateViewModel?.responseToView = { [weak self] value in
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
                 let resVC = ResultGenerateVC()
-                resVC.contentData = ContentViewModel(data: EmailModel(email: (self?.textFieldEmail.text)!, objectEmail: (self?.textFieldObjectEmail.text)!, messageEmail: (self?.textFieldMessageEmail.text)!))
-                resVC.imgCode = (self?.viewModel?.result)!
-                resVC.viewModel.typeCode = EnumType.EMAIL.rawValue
-                if (self?.emailValue.isSeen)! == AppConstants.ISSEEN {
-                    resVC.viewModel.isUpdate = AppConstants.ISUPDATE
-                    resVC.viewModel.createDateTime = (self?.emailValue.createDateTime)!
+                resVC.contentViewModel = ContentViewModel(data: EmailModel(email: (self?.textFieldEmail.text)!, objectEmail: (self?.textFieldObjectEmail.text)!, messageEmail: (self?.textFieldMessageEmail.text)!))
+                resVC.imgCode = (self?.generateViewModel?.result)!
+                resVC.resultViewModel.typeCode = EnumType.EMAIL.rawValue
+                if (self?.emailViewModel.isSeen)! == AppConstants.ISSEEN {
+                    resVC.resultViewModel.isUpdate = AppConstants.ISUPDATE
+                    resVC.resultViewModel.createDateTime = (self?.emailViewModel.createDateTime)!
 
                 }
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }
         }
-        viewModel?.onShowError = { [weak self] alert in
+        generateViewModel?.onShowError = { [weak self] alert in
             self?.clearDataTextfield()
             self?.presentSingleButtonDialog(alert: alert)
         }
-        viewModel?.emailBinding.bind({ (value) in
+        generateViewModel?.emailBinding.bind({ (value) in
             self.textFieldEmail.text = value
         })
         
-        viewModel?.objectEmailBinding.bind({ (value) in
+        generateViewModel?.objectEmailBinding.bind({ (value) in
             self.textFieldObjectEmail.text = value
         })
         
-        viewModel?.messageEmailBinding.bind({ (value) in
+        generateViewModel?.messageEmailBinding.bind({ (value) in
             self.textFieldMessageEmail.text = value
         })
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.EMAIL] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.OBJECT_EMAIL] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.MESSAGE_EMAIL] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.EMAIL] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.OBJECT_EMAIL] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.MESSAGE_EMAIL] = ""
         
     }
     private func clearDataTextfield() {
@@ -188,16 +192,16 @@ extension EmailGenerateVC {
         self.textFieldEmail.text = ""
         self.textFieldObjectEmail.text = ""
         self.textFieldMessageEmail.text = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.EMAIL] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.OBJECT_EMAIL] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.MESSAGE_EMAIL] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.EMAIL] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.OBJECT_EMAIL] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.MESSAGE_EMAIL] = ""
         
     }
     func checkIsSeenDetail(){
-        if emailValue.isSeen == AppConstants.ISSEEN {
-            self.textFieldEmail.text = emailValue.email ?? ""
-            self.textFieldObjectEmail.text = emailValue.objectEmail ?? ""
-            self.textFieldMessageEmail.text = emailValue.messageEmail ?? ""
+        if emailViewModel.isSeen == AppConstants.ISSEEN {
+            self.textFieldEmail.text = emailViewModel.email ?? ""
+            self.textFieldObjectEmail.text = emailViewModel.objectEmail ?? ""
+            self.textFieldMessageEmail.text = emailViewModel.messageEmail ?? ""
         }
     }
 }

@@ -22,8 +22,8 @@ class UrlGenerateVC: BaseViewController {
     lazy var viewBackground: UIView = {
         let view = UIView()
         view.layer.borderColor = UIColor.black.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -32,8 +32,8 @@ class UrlGenerateVC: BaseViewController {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -51,11 +51,11 @@ class UrlGenerateVC: BaseViewController {
         return view
     }()
   
-    var urlValue = UrlViewModel()
-    var viewModel : GenerateViewModel?
+    var urlViewModel = UrlViewModel()
+    var generateViewModel : GenerateViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = GenerateViewModel()
+        generateViewModel = GenerateViewModel()
         initUI()
         self.bindViewModel()
         self.addLeftBackButton()
@@ -86,14 +86,12 @@ class UrlGenerateVC: BaseViewController {
     @objc func doGenerate() {
         print("done")
         self.defineValue()
-        viewModel?.doGenerateValue();
+        generateViewModel?.doGenerateValue();
     }
     @objc func inputFieldEditingDidEnd(textField: UITextField){
-        self.viewModel?.focusTextField = textField
-        
+        self.generateViewModel?.focusTextField = textField
         if textField == textFieldUrl {
-            viewModel?.url = textField.text ?? ""
-            viewModel?.validateUrl()
+            generateViewModel?.url = textField.text ?? ""
         }
         
     }

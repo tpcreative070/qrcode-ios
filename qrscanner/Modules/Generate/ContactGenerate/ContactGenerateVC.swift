@@ -17,8 +17,8 @@ class ContactGenerateVC: BaseViewController {
     var viewBackground: UIView = {
         let view = UIView()
         view.layer.borderColor = UIColor.black.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -26,8 +26,8 @@ class ContactGenerateVC: BaseViewController {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -35,8 +35,8 @@ class ContactGenerateVC: BaseViewController {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -44,8 +44,8 @@ class ContactGenerateVC: BaseViewController {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -53,8 +53,8 @@ class ContactGenerateVC: BaseViewController {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -114,11 +114,11 @@ class ContactGenerateVC: BaseViewController {
         
         return view
     }()
-    var contactValue = ContactViewModel()
-    var viewModel : GenerateViewModel?
+    var contactViewModel = ContactViewModel()
+    var generateViewModel : GenerateViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = GenerateViewModel()
+        generateViewModel = GenerateViewModel()
         self.initUI()
         self.bindViewModel()
         self.addLeftBackButton()
@@ -149,26 +149,22 @@ class ContactGenerateVC: BaseViewController {
     @objc func doGenerate() {
         print("done")
         self.defineValue()
-        viewModel?.doGenerateValue();
+        generateViewModel?.doGenerateValue();
     }
     @objc func inputFieldEditingDidEnd(textField: UITextField){
-        self.viewModel?.focusTextField = textField
+        self.generateViewModel?.focusTextField = textField
         
         if textField == textFieldFullNameContact {
-            viewModel?.text = textField.text ?? ""
-            viewModel?.validateFullnameContact()
+            generateViewModel?.fullNameContact = textField.text ?? ""
         }
         if textField == textFieldAddressContact {
-            viewModel?.text = textField.text ?? ""
-            viewModel?.validateAddressContact()
+            generateViewModel?.addressContact = textField.text ?? ""
         }
         if textField == textFieldPhoneContact {
-            viewModel?.text = textField.text ?? ""
-            viewModel?.validatePhoneContact()
+            generateViewModel?.phoneContact = textField.text ?? ""
         }
         if textField == textFieldEmailContact {
-            viewModel?.text = textField.text ?? ""
-            viewModel?.validateEmailContact()
+            generateViewModel?.emailContact = textField.text ?? ""
         }
         
     }

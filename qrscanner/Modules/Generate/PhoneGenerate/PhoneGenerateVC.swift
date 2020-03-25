@@ -2,7 +2,7 @@
 //  PhoneGenerateVC.swift
 //  qrscanner
 //
-//  Created by Mac10 on 3/12/20.
+//  Created by MacAppConstants.CORNER_RADIUS on 3/AppConstants.WIDTH_BORDER2/20.
 //  Copyright © 2020 thanhphong070. All rights reserved.
 //
 
@@ -17,8 +17,8 @@ class PhoneGenerateVC: BaseViewController {
     lazy var viewBackground: UIView = {
         let view = UIView()
         view.layer.borderColor = UIColor.black.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -26,8 +26,8 @@ class PhoneGenerateVC: BaseViewController {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -46,11 +46,11 @@ class PhoneGenerateVC: BaseViewController {
         return view
     }()
     
-    var phoneValue = PhoneViewModel()
-    var viewModel : GenerateViewModel?
+    var phoneViewModel = PhoneViewModel()
+    var generateViewModel : GenerateViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = GenerateViewModel()
+        generateViewModel = GenerateViewModel()
         self.initUI()
         self.setupDelegate()
         self.addLeftBackButton()
@@ -80,14 +80,14 @@ class PhoneGenerateVC: BaseViewController {
     @objc func doGenerate() {
         print("done")
         self.defineValue()
-        viewModel?.doGenerateValue();
+        generateViewModel?.doGenerateValue();
     }
     @objc func inputFieldEditingDidEnd(textField: UITextField){
-        self.viewModel?.focusTextField = textField
+        self.generateViewModel?.focusTextField = textField
         
         if textField == textFieldPhone {
-            viewModel?.text = textField.text ?? ""
-            viewModel?.validatePhoneTelephoneNumber()
+            generateViewModel?.phoneTelephone = textField.text ?? ""
+            
         }
         
     }

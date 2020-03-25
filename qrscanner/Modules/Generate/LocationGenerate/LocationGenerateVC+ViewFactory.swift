@@ -12,8 +12,8 @@ import MapKit
 import CoreLocation
 extension LocationGenerateVC {
     func initUI() {
-        let gety = view.frame.height * 5.8/7
-        let value_item = view.frame.height/7
+//        let gety = view.frame.height * 5.8/7
+//        let value_item = view.frame.height/7
          self.view.addSubview(scrollView)
                   NSLayoutConstraint.activate([
                       scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
@@ -27,7 +27,7 @@ extension LocationGenerateVC {
             viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewBackground.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            viewBackground.heightAnchor.constraint(equalToConstant: gety)
+            viewBackground.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND * 4)
         ])
         
         viewBackground.addSubview(viewLatBg)
@@ -35,7 +35,7 @@ extension LocationGenerateVC {
             viewLatBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewLatBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewLatBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewLatBg.heightAnchor.constraint(equalToConstant: value_item)
+            viewLatBg.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM)
         ])
         viewLatBg.addSubview(lbLatitude)
         NSLayoutConstraint.activate([
@@ -54,7 +54,7 @@ extension LocationGenerateVC {
             viewLongBg.topAnchor.constraint(equalTo: viewLatBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             viewLongBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewLongBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewLongBg.heightAnchor.constraint(equalToConstant: value_item)
+            viewLongBg.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM)
         ])
         viewLongBg.addSubview(lbLongtitude)
         NSLayoutConstraint.activate([
@@ -75,7 +75,7 @@ extension LocationGenerateVC {
             viewQueryBg.topAnchor.constraint(equalTo: viewLongBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             viewQueryBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewQueryBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewQueryBg.heightAnchor.constraint(equalToConstant: value_item)
+            viewQueryBg.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM)
         ])
         viewQueryBg.addSubview(lbQuery)
         NSLayoutConstraint.activate([
@@ -94,7 +94,7 @@ extension LocationGenerateVC {
             viewMap.topAnchor.constraint(equalTo: viewQueryBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             viewMap.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewMap.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewMap.heightAnchor.constraint(equalToConstant: value_item*2)
+            viewMap.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM*2)
         ])
          self.lbLatitude.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
          self.lbLongtitude.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
@@ -104,9 +104,13 @@ extension LocationGenerateVC {
         setupNavItems()
         let longTapGesture = UILongPressGestureRecognizer(target: self, action: #selector(longTap))
         viewMap.addGestureRecognizer(longTapGesture)
-        
+        addTarget(textFieldLatitude)
+        addTarget(textFieldLongtitude)
+        addTarget(textFieldQuery)
     }
-    
+    func addTarget(_ textField: UITextField) {
+        textField.addTarget(self, action: #selector(inputFieldEditingDidEnd), for: .editingDidEnd)
+    }
     func setupNavItems() {
         
         self.view.backgroundColor = .white
@@ -133,7 +137,7 @@ extension LocationGenerateVC {
     }
     
     func bindViewModel() {
-        viewModel?.errorMessages.bind({ [weak self] errors in
+        generateViewModel?.errorMessages.bind({ [weak self] errors in
             
             if errors.count > 0 {
                 self?.textFieldLatitude.errorMessage = errors[GenerateViewModelKey.LAT] ?? ""
@@ -151,45 +155,45 @@ extension LocationGenerateVC {
             
             
         })
-        viewModel?.showLoading.bind { [weak self] visible in
+        generateViewModel?.showLoading.bind { [weak self] visible in
             if self != nil {
                 visible ? ProgressHUD.show(): ProgressHUD.dismiss()
             }
         }
         
-        viewModel?.responseToView = { [weak self] value in
+        generateViewModel?.responseToView = { [weak self] value in
             
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
                 let resVC = ResultGenerateVC()
-                resVC.contentData = ContentViewModel(data: LocationModel(latitude: Float((self?.textFieldLatitude.text)!) , longtitude: Float((self?.textFieldLongtitude.text)!), query: (self?.textFieldQuery.text)!))
-                resVC.imgCode = (self?.viewModel?.result)!
-                resVC.viewModel.typeCode = EnumType.LOCATION.rawValue
-                if (self?.locationValue.isSeen)! == AppConstants.ISSEEN {
-                    resVC.viewModel.isUpdate = AppConstants.ISUPDATE
-                    resVC.viewModel.createDateTime = (self?.locationValue.createDateTime)!
+                resVC.contentViewModel = ContentViewModel(data: LocationModel(latitude: Float((self?.textFieldLatitude.text)!) , longtitude: Float((self?.textFieldLongtitude.text)!), query: (self?.textFieldQuery.text)!))
+                resVC.imgCode = (self?.generateViewModel?.result)!
+                resVC.resultViewModel.typeCode = EnumType.LOCATION.rawValue
+                if (self?.locationViewModel.isSeen)! == AppConstants.ISSEEN {
+                    resVC.resultViewModel.isUpdate = AppConstants.ISUPDATE
+                    resVC.resultViewModel.createDateTime = (self?.locationViewModel.createDateTime)!
 
                 }
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }
         }
-        viewModel?.onShowError = { [weak self] alert in
+        generateViewModel?.onShowError = { [weak self] alert in
             self?.clearDataTextfield()
             self?.presentSingleButtonDialog(alert: alert)
         }
-        viewModel?.latBinding.bind({ (value) in
+        generateViewModel?.latBinding.bind({ (value) in
             self.textFieldLatitude.text = String(value)
         })
         
-        viewModel?.lonBinding.bind({ (value) in
+        generateViewModel?.lonBinding.bind({ (value) in
             self.textFieldLongtitude.text = String(value)
         })
         
-        viewModel?.queryBinding.bind({ (value) in
+        generateViewModel?.queryBinding.bind({ (value) in
             self.textFieldQuery.text = value
         })
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.LAT] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.LON] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.QUERY] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.LAT] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.LON] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.QUERY] = ""
         
     }
     
@@ -203,16 +207,16 @@ extension LocationGenerateVC {
         self.textFieldLatitude.text = ""
         self.textFieldLongtitude.text = ""
         self.textFieldQuery.text = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.LAT] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.LON] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.QUERY] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.LAT] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.LON] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.QUERY] = ""
         
     }
     func checkIsSeenDetail(){
-        if locationValue.isSeen == AppConstants.ISSEEN {
-            textFieldLatitude.text = String(locationValue.latitude!)
-            textFieldLongtitude.text = String(locationValue.longtitude!)
-            textFieldQuery.text = locationValue.query ?? ""
+        if locationViewModel.isSeen == AppConstants.ISSEEN {
+            textFieldLatitude.text = String(locationViewModel.latitude!)
+            textFieldLongtitude.text = String(locationViewModel.longtitude!)
+            textFieldQuery.text = locationViewModel.query ?? ""
         }
     }
     func addAnnotation(location: CLLocationCoordinate2D){
@@ -222,10 +226,10 @@ extension LocationGenerateVC {
         self.viewMap.addAnnotation(annotation)
     }
     func defineValue(){
-        self.viewModel?.typeCode = EnumType.LOCATION.rawValue
-        self.viewModel?.lat = Float(textFieldLatitude.text!)
-        self.viewModel?.lon = Float(textFieldLongtitude.text!)
-        self.viewModel?.query = textFieldQuery.text
+        self.generateViewModel?.typeCode = EnumType.LOCATION.rawValue
+        self.generateViewModel?.lat = Float(textFieldLatitude.text!)
+        self.generateViewModel?.lon = Float(textFieldLongtitude.text!)
+        self.generateViewModel?.query = textFieldQuery.text
     }
     
 }
@@ -252,7 +256,7 @@ extension LocationGenerateVC : CLLocationManagerDelegate{
             return
         }
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionMeter, longitudinalMeters: regionMeter)
+        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: generateViewModel!.regionMeter, longitudinalMeters: generateViewModel!.regionMeter)
         viewMap.setRegion(region, animated: true)
         textFieldLatitude.text = String (location.coordinate.latitude)
         textFieldLongtitude.text = String(location.coordinate.longitude)
@@ -261,8 +265,8 @@ extension LocationGenerateVC : CLLocationManagerDelegate{
         checkLocationAuthorization()
     }
     func setupLocationManager(){
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        generateViewModel?.locationManager.delegate = self
+        generateViewModel?.locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
     func checkLocationService(){
         if CLLocationManager.locationServicesEnabled(){
@@ -274,8 +278,8 @@ extension LocationGenerateVC : CLLocationManagerDelegate{
         }
     }
     func centerViewOnUserLocation(){
-        if let location = locationManager.location?.coordinate{
-            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionMeter, longitudinalMeters: regionMeter)
+        if let location = generateViewModel?.locationManager.location?.coordinate{
+            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: generateViewModel!.regionMeter, longitudinalMeters: generateViewModel!.regionMeter)
             viewMap.setRegion(region, animated: true)
         }
     }
@@ -284,11 +288,11 @@ extension LocationGenerateVC : CLLocationManagerDelegate{
         case .authorizedWhenInUse:
             viewMap.showsUserLocation = true
             //centerViewOnUserLocation()
-            locationManager.startUpdatingLocation()
+            generateViewModel?.locationManager.startUpdatingLocation()
         case .denied: // Show alert telling users how to turn on permissions
             break
         case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
+            generateViewModel?.locationManager.requestWhenInUseAuthorization()
             viewMap.showsUserLocation = true
         case .restricted: // Show an alert letting them know what’s up
             break

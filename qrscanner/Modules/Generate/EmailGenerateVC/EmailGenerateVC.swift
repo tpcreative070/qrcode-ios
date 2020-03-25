@@ -94,12 +94,12 @@ class EmailGenerateVC: BaseViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-    var emailValue = EmailViewModel()
-    var viewModel : GenerateViewModel?
+    var emailViewModel = EmailViewModel()
+    var generateViewModel : GenerateViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = GenerateViewModel()
+        generateViewModel = GenerateViewModel()
         self.initUI()
         bindViewModel()
         addLeftBackButton()
@@ -118,10 +118,10 @@ class EmailGenerateVC: BaseViewController {
         keyboardHelper?.deregisterKeyboardNotification()
     }
     func defineValue(){
-        self.viewModel?.typeCode = EnumType.EMAIL.rawValue
-        self.viewModel?.email = textFieldEmail.text
-        self.viewModel?.objectEmail = textFieldObjectEmail.text
-        self.viewModel?.messageEmail = textFieldMessageEmail.text
+        self.generateViewModel?.typeCode = EnumType.EMAIL.rawValue
+        self.generateViewModel?.email = textFieldEmail.text
+        self.generateViewModel?.objectEmail = textFieldObjectEmail.text
+        self.generateViewModel?.messageEmail = textFieldMessageEmail.text
     }
     override func dismissKeyboard() {
         doDismiss()
@@ -132,22 +132,19 @@ class EmailGenerateVC: BaseViewController {
     @objc func doGenerate() {
         print("done")
         self.defineValue()
-        viewModel?.doGenerateValue();
+        generateViewModel?.doGenerateValue();
     }
     @objc func inputFieldEditingDidEnd(textField: UITextField){
-        self.viewModel?.focusTextField = textField
+        self.generateViewModel?.focusTextField = textField
         
         if textField == textFieldEmail {
-            viewModel?.text = textField.text ?? ""
-            viewModel?.validateEmail()
+            generateViewModel?.email = textField.text ?? ""
         }
         if textField == textFieldObjectEmail {
-            viewModel?.text = textField.text ?? ""
-            viewModel?.validateObjectEmail()
+            generateViewModel?.objectEmail = textField.text ?? ""
         }
         if textField == textFieldMessageEmail {
-            viewModel?.text = textField.text ?? ""
-            viewModel?.validateMessageEmail()
+            generateViewModel?.messageEmail = textField.text ?? ""
         }
     }
     

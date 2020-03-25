@@ -22,8 +22,8 @@ class EventGenerateVC: BaseViewController {
     var viewBackground: UIView = {
         let view = UIView()
         view.layer.borderColor = UIColor.black.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -31,8 +31,8 @@ class EventGenerateVC: BaseViewController {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -40,8 +40,8 @@ class EventGenerateVC: BaseViewController {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -49,8 +49,8 @@ class EventGenerateVC: BaseViewController {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -58,8 +58,8 @@ class EventGenerateVC: BaseViewController {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -67,8 +67,8 @@ class EventGenerateVC: BaseViewController {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -139,15 +139,14 @@ class EventGenerateVC: BaseViewController {
         view.alpha = AppConstants.ALPHA_DISBALE
         return view
     }()
-       var eventValue = EventViewModel()
-    var viewModel : GenerateViewModel?
+       var eventViewModel = EventViewModel()
+    var generateViewModel : GenerateViewModel?
     var toolBar = UIToolbar()
     var datePicker = UIDatePicker()
-    var beginTime : Date?
-    var endTime: Date?
+  
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = GenerateViewModel()
+        generateViewModel = GenerateViewModel()
         self.initUI()
         self.setupDelegate()
         self.bindViewModel()
@@ -180,25 +179,22 @@ class EventGenerateVC: BaseViewController {
     @objc func doGenerate() {
         print("done")
         self.defineValue()
-        viewModel?.doGenerateValue();
+        generateViewModel?.doGenerateValue();
     }
     @objc func inputFieldEditingDidEnd(textField: UITextField){
-        self.viewModel?.focusTextField = textField
+        self.generateViewModel?.focusTextField = textField
         
         if textField == textFieldTitle {
-            viewModel?.text = textField.text ?? ""
-            viewModel?.validateTitleEvent()
+            generateViewModel?.titleEvent = textField.text ?? ""
         }
         if textField == textFieldLocation {
-            viewModel?.text = textField.text ?? ""
-            viewModel?.validateLocationEvent()
+            generateViewModel?.locationEvent = textField.text ?? ""
         }
         if textField == textFieldDescription {
-            viewModel?.text = textField.text ?? ""
-            viewModel?.validateDescriptionEvent()
+            generateViewModel?.descriptionEvent = textField.text ?? ""
         }
         if textField == textFieldBeginTime {
-    datePicker.datePickerMode = .dateAndTime
+            datePicker.datePickerMode = .dateAndTime
        }
        if textField == textFieldEndTime {
            datePicker.datePickerMode = .dateAndTime
@@ -210,13 +206,13 @@ class EventGenerateVC: BaseViewController {
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .medium
         textFieldBeginTime.text = dateFormatter.string(from: datePicker.date)
-        beginTime = datePicker.date
+        generateViewModel?.beginTime = datePicker.date
     }
     if textFieldEndTime.isFirstResponder {
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .medium
         textFieldEndTime.text = dateFormatter.string(from: datePicker.date)
-        endTime = datePicker.date
+        generateViewModel?.endTime = datePicker.date
     }
         self.view.endEditing(true)
 

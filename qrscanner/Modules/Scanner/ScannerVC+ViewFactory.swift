@@ -278,7 +278,7 @@ extension ScannerVC {
         
         self.viewModel.navigate = { [weak self] in
             let  vc = DetailVC()
-            vc.listContent = (self?.viewModel.listItemContent)!
+            vc.listContentViewModel = (self?.viewModel.listItemContent)!
             self?.navigationController?.pushViewController(vc, animated: true)
             self?.viewModel.defaultValue()
         }

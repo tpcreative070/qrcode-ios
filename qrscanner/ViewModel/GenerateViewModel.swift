@@ -8,6 +8,7 @@
 
 import UIKit
 import ZXingObjC
+import MapKit
 struct GenerateViewModelKey {
     public static let TO = "to"
     public static let MESSAGE = "message"
@@ -32,11 +33,13 @@ struct GenerateViewModelKey {
     public static let SSID = "ssid"
     public static let PASSWORD = "password"
     public static let PROTECT = "protect"
-
+    
 }
 class GenerateViewModel : GenerateViewModelDelegate {
-    var createDateTime: Int = 0
-    var isSeen: Int = 0
+    var beginTime : Date?
+    var endTime: Date?
+    let regionMeter : Double = 10000.0
+    let locationManager = CLLocationManager()
     var navigate: (() -> ())?
     var showLoading: Bindable<Bool> = Bindable(false)
     var onShowError: ((SingleButtonAlert) -> Void)?
@@ -47,24 +50,37 @@ class GenerateViewModel : GenerateViewModelDelegate {
     var typeCode : String = ""
     var generateValue : GenerateEntityModel?
     var stringResult: String = ""
-    /*Url*/
     var urlBinding : Bindable<String> = Bindable("")
+    var textBinding : Bindable<String> = Bindable("")
+    var emailBinding : Bindable<String> = Bindable("")
+    var objectEmailBinding : Bindable<String> = Bindable("")
+    var messageEmailBinding : Bindable<String> = Bindable("")
+    var phoneTelephoneBinding : Bindable<String> = Bindable("")
+    var fullNameContactBinding : Bindable<String> = Bindable("")
+    var addressContactBinding : Bindable<String> = Bindable("")
+    var phoneContactBinding : Bindable<String> = Bindable("")
+    var emailContactBinding : Bindable<String> = Bindable("")
+    var latBinding : Bindable<Float> = Bindable(0.0)
+    var lonBinding : Bindable<Float> = Bindable(0.0)
+    var queryBinding : Bindable<String> = Bindable("")
+    var titleEventBinding : Bindable<String> = Bindable("")
+    var locationEventBinding : Bindable<String> = Bindable("")
+    var descriptionEventBinding : Bindable<String> = Bindable("")
+    var beginTimeEventBinding : Bindable<Date> = Bindable(Date())
+    var endTimeEventBinding : Bindable<Date> = Bindable(Date())
+    var ssidBinding : Bindable<String> = Bindable("")
+    var passwordBinding : Bindable<String> = Bindable("")
+    var protectBinding : Bindable<String> = Bindable("")
     var url: String?{
         didSet {
             validateUrl()
         }
     }
-    /*Text*/
-    var textBinding : Bindable<String> = Bindable("")
     var text: String?{
         didSet {
             validateText()
         }
     }
-    /*Email*/
-    var emailBinding : Bindable<String> = Bindable("")
-    var objectEmailBinding : Bindable<String> = Bindable("")
-    var messageEmailBinding : Bindable<String> = Bindable("")
     var email: String?{
         didSet {
             validateEmail()
@@ -80,17 +96,14 @@ class GenerateViewModel : GenerateViewModelDelegate {
             validateMessageEmail()
         }
     }
-    /*Telephone*/
-    var phoneTelephoneBinding : Bindable<String> = Bindable("")
     var phoneTelephone: String?{
         didSet {
             validatePhoneTelephoneNumber()
         }
     }
-    /*Message*/
     var toBinding : Bindable<String> = Bindable("")
     var messageBinding : Bindable<String> = Bindable("")
-
+    
     var to: String? {
         didSet {
             validateTo()
@@ -101,40 +114,27 @@ class GenerateViewModel : GenerateViewModelDelegate {
             validateMessage()
         }
     }
-    /*Contact*/
-    var fullNameContactBinding : Bindable<String> = Bindable("")
-    var addressContactBinding : Bindable<String> = Bindable("")
-    var phoneContactBinding : Bindable<String> = Bindable("")
-    var emailContactBinding : Bindable<String> = Bindable("")
     var fullNameContact: String?{
         didSet{
             validateFullnameContact()
         }
     }
-    
     var addressContact: String?{
         didSet{
             validateAddressContact()
         }
     }
-    
     var phoneContact: String?{
         didSet{
             validatePhoneContact()
         }
     }
-    
     var emailContact: String?{
         didSet{
             validateEmailContact()
             
         }
     }
-    /*Location*/
-    var latBinding : Bindable<Float> = Bindable(0.0)
-    var lonBinding : Bindable<Float> = Bindable(0.0)
-    var queryBinding : Bindable<String> = Bindable("")
-
     var lat: Float?{
         didSet {
             validateLat()
@@ -150,13 +150,6 @@ class GenerateViewModel : GenerateViewModelDelegate {
             validateQuery()
         }
     }
-    /*Event*/
-    var titleEventBinding : Bindable<String> = Bindable("")
-    var locationEventBinding : Bindable<String> = Bindable("")
-    var descriptionEventBinding : Bindable<String> = Bindable("")
-    var beginTimeEventBinding : Bindable<Date> = Bindable(Date())
-    var endTimeEventBinding : Bindable<Date> = Bindable(Date())
-
     var titleEvent: String?{
         didSet {
             validateTitleEvent()
@@ -182,11 +175,6 @@ class GenerateViewModel : GenerateViewModelDelegate {
             validateEndTimeEvent()
         }
     }
-    /*Wifi*/
-    var ssidBinding : Bindable<String> = Bindable("")
-    var passwordBinding : Bindable<String> = Bindable("")
-    var protectBinding : Bindable<String> = Bindable("")
-
     var ssid: String?{
         didSet {
             validateSSID()
@@ -199,7 +187,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
     }
     var protect: String?{
         didSet {
-           // validateProtect()
+            
         }
     }
     /**
@@ -251,13 +239,20 @@ class GenerateViewModel : GenerateViewModelDelegate {
         if url == nil || !ValidatorHelper.minLength(url,minLength: 1) {
             errorMessages.value[GenerateViewModelKey.URL] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorUrlRequired) ?? ""
         }
-//        else if ((url!.range(of: "http://", options: .caseInsensitive) == nil)) || (((url!.range(of: "https://", options: .caseInsensitive) == nil)))
-//            {
-//            errorMessages.value[GenerateViewModelKey.URL] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorUrlInvalid) ?? ""
-//        }
+        else if !verifyUrl(urlString: url) {
+                     errorMessages.value[GenerateViewModelKey.URL] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorUrlInvalid) ?? ""
+        }
         else {
             errorMessages.value.removeValue(forKey: GenerateViewModelKey.URL)
         }
+    }
+   func verifyUrl (urlString: String?) -> Bool {
+        if let urlString = urlString {
+            if let url = NSURL(string: urlString) {
+                return UIApplication.shared.canOpenURL(url as URL)
+            }
+        }
+        return false
     }
     /**
      ValidateText
@@ -384,27 +379,27 @@ class GenerateViewModel : GenerateViewModelDelegate {
         }
     }
     /**
-        ValidateTitleEvent
-        */
-       func validateTitleEvent(){
-           if titleEvent == nil || !ValidatorHelper.minLength(titleEvent,minLength: 1) {
-               errorMessages.value[GenerateViewModelKey.TITLE_EVENT] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorTitleEventRequired ) ?? ""
-           }
-           else {
-               errorMessages.value.removeValue(forKey: GenerateViewModelKey.TITLE_EVENT)
-           }
-       }
+     ValidateTitleEvent
+     */
+    func validateTitleEvent(){
+        if titleEvent == nil || !ValidatorHelper.minLength(titleEvent,minLength: 1) {
+            errorMessages.value[GenerateViewModelKey.TITLE_EVENT] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorTitleEventRequired ) ?? ""
+        }
+        else {
+            errorMessages.value.removeValue(forKey: GenerateViewModelKey.TITLE_EVENT)
+        }
+    }
     /**
-           ValidateLocationEvent
-           */
-          func validateLocationEvent(){
-              if locationEvent == nil || !ValidatorHelper.minLength(locationEvent,minLength: 1) {
-                  errorMessages.value[GenerateViewModelKey.LOCATION_EVENT] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorLocationEventRequired ) ?? ""
-              }
-              else {
-                  errorMessages.value.removeValue(forKey: GenerateViewModelKey.LOCATION_EVENT)
-              }
-          }
+     ValidateLocationEvent
+     */
+    func validateLocationEvent(){
+        if locationEvent == nil || !ValidatorHelper.minLength(locationEvent,minLength: 1) {
+            errorMessages.value[GenerateViewModelKey.LOCATION_EVENT] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorLocationEventRequired ) ?? ""
+        }
+        else {
+            errorMessages.value.removeValue(forKey: GenerateViewModelKey.LOCATION_EVENT)
+        }
+    }
     private let userService: UserService
     /**
      ValidateQuery
@@ -469,23 +464,23 @@ class GenerateViewModel : GenerateViewModelDelegate {
         }
     }
     /**
-        ValidateSSID
-        */
-       func validatePassword(){
-           if password == nil || !ValidatorHelper.minLength(password,minLength: 1) {
-               errorMessages.value[GenerateViewModelKey.SSID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorPassWordWifiRequired) ?? ""
-           }
-           else {
-               errorMessages.value.removeValue(forKey: GenerateViewModelKey.PASSWORD)
-           }
-       }
+     ValidateSSID
+     */
+    func validatePassword(){
+        if password == nil || !ValidatorHelper.minLength(password,minLength: 1) {
+            errorMessages.value[GenerateViewModelKey.SSID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorPassWordWifiRequired) ?? ""
+        }
+        else {
+            errorMessages.value.removeValue(forKey: GenerateViewModelKey.PASSWORD)
+        }
+    }
     /**
      Init model with user service
      */
     init(userService: UserService = UserService()) {
-      self.userService = userService
-      self.urlBinding = Bindable("")
-      self.textBinding = Bindable("")
+        self.userService = userService
+        self.urlBinding = Bindable("")
+        self.textBinding = Bindable("")
         self.emailBinding = Bindable("")
         self.objectEmailBinding = Bindable("")
         self.messageEmailBinding = Bindable("")
@@ -518,9 +513,9 @@ class GenerateViewModel : GenerateViewModelDelegate {
             if ( errorMessages.value.count > 0 ) {
                 return
             }
-         
-                value = "\(url!)"
-        
+            
+            value = "\(url!)"
+            
         }
         else if typeCode == EnumType.TEXT.rawValue{
             validateText()
@@ -536,12 +531,12 @@ class GenerateViewModel : GenerateViewModelDelegate {
             validateLon()
             validateQuery()
             if ( errorMessages.value.count > 0 ) {
-                       return
-                   }
-                   else{
-                       value = "geo:\(lat!),\(lon!)?q=\(query!)"
-                   }
-                    }
+                return
+            }
+            else{
+                value = "geo:\(lat!),\(lon!)?q=\(query!)"
+            }
+        }
         else if typeCode == EnumType.EMAIL.rawValue{
             validateEmail()
             validateObjectEmail()
@@ -560,20 +555,20 @@ class GenerateViewModel : GenerateViewModelDelegate {
             validateBeginTimeEvent()
             validateEndTimeEvent()
             if ( errorMessages.value.count > 0 ) {
-                           return
-                       }
-                       else{
-                            let df = DateFormatter()
-                                                       df.locale = Locale(identifier: "en_US_POSIX")
-                                                       df.timeZone = TimeZone.autoupdatingCurrent
-                                                       df.dateFormat = "yyyyMMdd'T'HHmmss"
-                                                       let startDate = df.string(from: beginTimeEvent!)
-                                                       let endDate = df.string(from: endTimeEvent!)
-                                                       value = "BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:\(titleEvent!)\nLOCATION: \(locationEvent!)\nDESCRIPTION:\(descriptionEvent!)\nDTSTART: \(startDate)\nDTEND:\(endDate)\nEND:VEVENT\nEND:VCALENDAR"
-                            //                       }
-                                       
-                       }
-           
+                return
+            }
+            else{
+                let df = DateFormatter()
+                df.locale = Locale(identifier: "en_US_POSIX")
+                df.timeZone = TimeZone.autoupdatingCurrent
+                df.dateFormat = "yyyyMMdd'T'HHmmss"
+                let startDate = df.string(from: beginTimeEvent!)
+                let endDate = df.string(from: endTimeEvent!)
+                value = "BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:\(titleEvent!)\nLOCATION: \(locationEvent!)\nDESCRIPTION:\(descriptionEvent!)\nDTSTART: \(startDate)\nDTEND:\(endDate)\nEND:VEVENT\nEND:VCALENDAR"
+                //                       }
+                
+            }
+            
             
             
         }
@@ -592,12 +587,12 @@ class GenerateViewModel : GenerateViewModelDelegate {
             validateSSID()
             validatePassword()
             if ( errorMessages.value.count > 0 ) {
-                           return
-                       }
-                       else{
+                return
+            }
+            else{
                 value = "WIFI:T:\(protect!);S:\(ssid!);P:\(password!);;"
-                       }
-
+            }
+            
         }
         else if typeCode == EnumType.TELEPHONE.rawValue{
             validatePhoneTelephoneNumber()

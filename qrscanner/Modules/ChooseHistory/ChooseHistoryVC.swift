@@ -33,13 +33,12 @@ class ChooseHistoryVC : UIViewController,UIViewControllerTransitioningDelegate, 
     }()
     var dataSource :TableViewDataSource<TableViewCell,HistoryViewModel,HeaderView>!
     var sections = [TableSection<String, HistoryViewModel>]()
-    let viewModel = HistoryViewModelList()
+    let historyViewModel = HistoryViewModelList()
     var floaty = Floaty()
-    var flagselectItem = false
     override func viewDidLoad() {
         super.viewDidLoad()
         print("into ViewDidLoad History")
-        self.sections = TableSection.group(rowItems: self.viewModel.listHistories, by: { (headline) in
+        self.sections = TableSection.group(rowItems: self.historyViewModel.listHistories, by: { (headline) in
             return headline.typeCode
         })
         initUI()
@@ -56,12 +55,12 @@ class ChooseHistoryVC : UIViewController,UIViewControllerTransitioningDelegate, 
     @objc func doDeleteItem() {
         print("do select")
         
-        for index in viewModel.listHistories {
-            Utils.logMessage(object: viewModel.listHistories)
+        for index in historyViewModel.listHistories {
+            Utils.logMessage(object: historyViewModel.listHistories)
             if index.check == true {
-                viewModel.countItemSelected += 1
+                historyViewModel.countItemSelected += 1
                 print(index.content)
-                self.viewModel.doDeleteHistory(mData: index)
+                self.historyViewModel.doDeleteHistory(mData: index)
                 
             }
         }
@@ -70,18 +69,18 @@ class ChooseHistoryVC : UIViewController,UIViewControllerTransitioningDelegate, 
     @objc func doSelectAll(_ sender: UIButton) {
         if !sender.isSelected {
             sender.isSelected = true
-            viewModel.doSelectedAll(isValue: true)
+            historyViewModel.doSelectedAll(isValue: true)
         }
         else {
             sender.isSelected = false
-            viewModel.doSelectedAll(isValue: false)
+            historyViewModel.doSelectedAll(isValue: false)
         }
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.viewModel.doGetListHistories()
-        self.viewModel.isSelected.value = false
+        self.historyViewModel.doGetListHistories()
+        self.historyViewModel.isSelected.value = false
         print("into ViewDidAppear History")
     }
     

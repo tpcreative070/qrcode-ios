@@ -753,7 +753,9 @@ class TableViewCell : UITableViewCell{
             let objectEmail = value_data?.objectEmail ?? ""
             let messageEmail = value_data?.messageEmail ?? ""
             let value_email = "mailto:\(email)?subject=\(objectEmail)&body=\(messageEmail)"
-            if let url = URL(string: value_email) {
+            let strURL: String = value_email.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+
+            if let url = URL(string: strURL) {
                 if #available(iOS 10.0, *) {
                     UIApplication.shared.open(url)
                 } else {

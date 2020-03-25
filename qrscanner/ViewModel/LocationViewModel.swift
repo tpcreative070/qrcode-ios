@@ -15,25 +15,26 @@ class LocationViewModel : Codable , LocationViewModelDelegate{
     
     var queryView: String{return query ?? ""}
     
-   
-     var latitude: String?
-   var longtitude: String?
-     var query: String?
+    
+    var latitude: String?
+    var longtitude: String?
+    var query: String?
     var createDateTime: Int?
-       var typeCode : String?
-       var isSeen : Int? = 0
-       var isUpdate: Int?
+    var typeCode : String?
+    var isSeen : Int? = 0
+    var isUpdate: Int?
+    
     init(data: ValuePushModel) {
-                   self.createDateTime = data.createDateTime
-                   self.typeCode = data.typeCode
-                   self.isSeen = data.isSeen
-                self.isUpdate = data.isUpdate
-               }
+        self.createDateTime = data.createDateTime
+        self.typeCode = data.typeCode
+        self.isSeen = data.isSeen
+        self.isUpdate = data.isUpdate
+    }
     init(data: LocationModel) {
         self.latitude = String(data.latitude!)
         self.longtitude = String(data.longtitude!)
         self.query = data.query!
-     }
+    }
     init() {
         
     }

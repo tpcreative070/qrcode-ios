@@ -21,8 +21,8 @@ extension TableViewCell {
         
         self.viewRoot.addSubview(imgIcon)
         NSLayoutConstraint.activate([
-            self.imgIcon.topAnchor.constraint(equalTo: self.viewRoot.topAnchor,constant: AppConstants.MARGIN_TOP),
-            self.imgIcon.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM),
+            self.imgIcon.topAnchor.constraint(equalTo: self.viewRoot.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM),
+            self.imgIcon.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
             self.imgIcon.leadingAnchor.constraint(equalTo: self.viewRoot.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
             self.imgIcon.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
             self.imgIcon.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
@@ -35,16 +35,16 @@ extension TableViewCell {
         NSLayoutConstraint.activate([
             self.lbTitle.leadingAnchor.constraint(equalTo: self.imgIcon.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
 //            self.lbTitle.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor,constant: AppConstants.MARGIN_RIGHT),
-            self.lbTitle.topAnchor.constraint(equalTo: self.viewRoot.topAnchor,constant: AppConstants.MARGIN_TOP),
+            self.lbTitle.topAnchor.constraint(equalTo: self.viewRoot.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM),
             self.lbTitle.centerYAnchor.constraint(equalTo: self.viewRoot.centerYAnchor),
-             self.lbTitle.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM),
+             self.lbTitle.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
         ])
         self.viewRoot.addSubview(self.viewSub)
         NSLayoutConstraint.activate([
             self.viewSub.leadingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor),
             self.viewSub.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor, constant: AppConstants.MARGIN_RIGHT),
-            self.viewSub.topAnchor.constraint(equalTo: self.viewRoot.topAnchor,constant: AppConstants.MARGIN_TOP),
-            self.viewSub.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM)
+            self.viewSub.topAnchor.constraint(equalTo: self.viewRoot.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM),
+            self.viewSub.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM)
         ])
         self.viewSub.addSubview(self.imgPlusIcon)
         NSLayoutConstraint.activate([
@@ -60,8 +60,8 @@ extension TableViewCell {
         NSLayoutConstraint.activate([
             self.stackView.leadingAnchor.constraint(equalTo: self.imgIcon.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
             self.stackView.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor,constant: AppConstants.MARGIN_RIGHT),
-            self.stackView.topAnchor.constraint(equalTo: self.lbTitle.topAnchor,constant: AppConstants.MARGIN_TOP),
-            self.stackView.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM)
+            self.stackView.topAnchor.constraint(equalTo: self.lbTitle.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM),
+            self.stackView.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM)
         ])
         
         self.stackView.axis = .horizontal
@@ -75,7 +75,7 @@ extension TableViewCell {
             self.viewUnderLine.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor),
             self.viewUnderLine.heightAnchor.constraint(equalToConstant: 1)
         ])
-     //   self.viewUnderLine.backgroundColor = AppColors.GRAY_LIGHT
+        self.viewUnderLine.backgroundColor = AppColors.GRAY_LIGHT
          self.lbTitle.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
     }
    

@@ -2,7 +2,7 @@
 //  WifiGenerateVC.swift
 //  qrscanner
 //
-//  Created by Mac10 on 3/12/20.
+//  Created by MacAppConstants.CORNER_RADIUS on 3/12/20.
 //  Copyright © 2020 thanhphong070. All rights reserved.
 //
 import UIKit
@@ -16,8 +16,8 @@ class WifiGenerateVC: BaseViewController {
     var viewBackground: UIView = {
         let view = UIView()
         view.layer.borderColor = UIColor.black.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -25,8 +25,8 @@ class WifiGenerateVC: BaseViewController {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -34,8 +34,8 @@ class WifiGenerateVC: BaseViewController {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -43,8 +43,8 @@ class WifiGenerateVC: BaseViewController {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -52,8 +52,8 @@ class WifiGenerateVC: BaseViewController {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -173,30 +173,30 @@ class WifiGenerateVC: BaseViewController {
         radioNone.isSelected = true
         radioWEP.isSelected = false
         radioWPA.isSelected = false
-        viewModel?.protect = LanguageHelper.getTranslationByKey(LanguageKey.None)
+        generateViewModel?.protect = LanguageHelper.getTranslationByKey(LanguageKey.None)
     }
     
     @objc func actionRadioWEP (sender: RadioButton) {
         radioWEP.isSelected = true
         radioWPA.isSelected = false
         radioNone.isSelected = false
-        viewModel?.protect = LanguageHelper.getTranslationByKey(LanguageKey.WEP)
+        generateViewModel?.protect = LanguageHelper.getTranslationByKey(LanguageKey.WEP)
     }
     @objc func actionRadioWPA (sender: RadioButton) {
         radioWEP.isSelected = false
         radioWPA.isSelected = true
         radioNone.isSelected = false
-        viewModel?.protect = LanguageHelper.getTranslationByKey(LanguageKey.WPA)
+        generateViewModel?.protect = LanguageHelper.getTranslationByKey(LanguageKey.WPA)
     }
     
 
-    var wifiValue = WifiViewModel()
-    var viewModel : GenerateViewModel?
+    var wifiViewModel = WifiViewModel()
+    var generateViewModel : GenerateViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = GenerateViewModel()
+        generateViewModel = GenerateViewModel()
         radioWPA.isSelected = true
-        viewModel?.protect = LanguageHelper.getTranslationByKey(LanguageKey.WPA)
+        generateViewModel?.protect = LanguageHelper.getTranslationByKey(LanguageKey.WPA)
         initUI()
         self.bindViewModel()
         self.addLeftBackButton()
@@ -224,18 +224,16 @@ class WifiGenerateVC: BaseViewController {
     @objc func doGenerate() {
         print("done")
         self.defineValue()
-        viewModel?.doGenerateValue();
+        generateViewModel?.doGenerateValue();
     }
     @objc func inputFieldEditingDidEnd(textField: UITextField){
-        self.viewModel?.focusTextField = textField
+        self.generateViewModel?.focusTextField = textField
         
         if textField == textFieldSsid {
-            viewModel?.text = textField.text ?? ""
-            viewModel?.validateSSID()
+            generateViewModel?.ssid = textField.text ?? ""
         }
         if textField == textFieldPass {
-            viewModel?.text = textField.text ?? ""
-            viewModel?.validatePassword()
+            generateViewModel?.password = textField.text ?? ""
         }
         
         

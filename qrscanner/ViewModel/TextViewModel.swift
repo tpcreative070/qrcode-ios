@@ -9,16 +9,16 @@
 import UIKit
 class TextViewModel : Codable , TextViewModelDelegate{
     
-   
-  var textTxtView: String{
-         return text ?? ""
-     }
-
-     var text: String?
-  
-     init(text: String) {
+    
+    var textTxtView: String{
+        return text ?? ""
+    }
+    
+    var text: String?
+    
+    init(text: String) {
         self.text = text
-     }
+    }
     var createDateTime: Int?
     var typeCode : String?
     var isSeen : Int? = 0
@@ -30,9 +30,9 @@ class TextViewModel : Codable , TextViewModelDelegate{
         
     }
     init(data: ValuePushModel) {
-              self.createDateTime = data.createDateTime
-              self.typeCode = data.typeCode
-              self.isSeen = data.isSeen
-           self.isUpdate = data.isUpdate
-          }
+        self.createDateTime = data.createDateTime
+        self.typeCode = data.typeCode
+        self.isSeen = data.isSeen
+        self.isUpdate = data.isUpdate
+    }
 }

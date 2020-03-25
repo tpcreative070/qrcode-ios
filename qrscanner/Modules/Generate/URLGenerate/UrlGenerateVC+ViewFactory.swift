@@ -9,9 +9,9 @@
 import UIKit
 extension UrlGenerateVC {
     func initUI() {
-        print(view.frame.height)
-        let gety = view.frame.height * 1.4/7
-        let value_item = view.frame.height/7
+//        print(view.frame.height)
+//        let gety = view.frame.height * 1.4/7
+//        let value_item = view.frame.height/7
         self.view.addSubview(scrollView)
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
@@ -25,7 +25,7 @@ extension UrlGenerateVC {
             viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewBackground.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            viewBackground.heightAnchor.constraint(equalToConstant: gety)
+            viewBackground.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND)
         ])
         
         viewBackground.addSubview(viewUrlBg)
@@ -33,7 +33,7 @@ extension UrlGenerateVC {
             viewUrlBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewUrlBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewUrlBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewUrlBg.heightAnchor.constraint(equalToConstant: value_item)
+            viewUrlBg.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM)
         ])
         
         viewUrlBg.addSubview(lbUrl)
@@ -52,7 +52,7 @@ extension UrlGenerateVC {
         self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
         self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
         setupNavItems()
-        
+        addTarget(textFieldUrl)
     }
     
     func addTarget(_ urlField: UITextField) {
@@ -81,7 +81,7 @@ extension UrlGenerateVC {
     }
     
     func bindViewModel() {
-        viewModel?.errorMessages.bind({ [weak self] errors in
+        generateViewModel?.errorMessages.bind({ [weak self] errors in
             if errors.count > 0 {
                 self?.textFieldUrl.errorMessage = errors[GenerateViewModelKey.URL] ?? ""
             }
@@ -91,47 +91,47 @@ extension UrlGenerateVC {
                 }
             }
         })
-        viewModel?.showLoading.bind { [weak self] visible in
+        generateViewModel?.showLoading.bind { [weak self] visible in
             if self != nil {
                 visible ? ProgressHUD.show(): ProgressHUD.dismiss()
             }
         }
-        viewModel?.responseToView = { [weak self] value in
+        generateViewModel?.responseToView = { [weak self] value in
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
                 let resVC = ResultGenerateVC()
-                resVC.contentData = ContentViewModel(data: UrlModel(url: (self?.textFieldUrl.text)!))
-                resVC.viewModel.typeCode = EnumType.URL.rawValue
-                resVC.imgCode = (self?.viewModel?.result)!
-                if (self?.urlValue.isSeen)! == AppConstants.ISSEEN {
-                    resVC.viewModel.isUpdate = AppConstants.ISUPDATE
-                    resVC.viewModel.createDateTime = (self?.urlValue.createDateTime)!
+                resVC.contentViewModel = ContentViewModel(data: UrlModel(url: (self?.textFieldUrl.text)!))
+                resVC.resultViewModel.typeCode = EnumType.URL.rawValue
+                resVC.imgCode = (self?.generateViewModel?.result)!
+                if (self?.urlViewModel.isSeen)! == AppConstants.ISSEEN {
+                    resVC.resultViewModel.isUpdate = AppConstants.ISUPDATE
+                    resVC.resultViewModel.createDateTime = (self?.urlViewModel.createDateTime)!
 
                 }
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }
         }
-        viewModel?.onShowError = { [weak self] alert in
+        generateViewModel?.onShowError = { [weak self] alert in
             self?.clearDataurlfield()
             self?.presentSingleButtonDialog(alert: alert)
         }
-        viewModel?.urlBinding.bind({ (value) in
+        generateViewModel?.urlBinding.bind({ (value) in
             self.textFieldUrl.text = value
         })
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.URL] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.URL] = ""
     }
     private func clearDataurlfield() {
         self.textFieldUrl.resignFirstResponder()
         self.textFieldUrl.text = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.URL] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.URL] = ""
     }
     func checkIsSeenDetail(){
-        if urlValue.isSeen == AppConstants.ISSEEN {
-            textFieldUrl.text = urlValue.url ?? ""
+        if urlViewModel.isSeen == AppConstants.ISSEEN {
+            textFieldUrl.text = urlViewModel.url ?? ""
         }
     }
     func defineValue(){
-        self.viewModel?.typeCode = EnumType.URL.rawValue
-        self.viewModel?.url = textFieldUrl.text
+        self.generateViewModel?.typeCode = EnumType.URL.rawValue
+        self.generateViewModel?.url = textFieldUrl.text
     }
     
 }

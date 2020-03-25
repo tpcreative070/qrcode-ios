@@ -12,9 +12,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
     var transactionIdBinding: Bindable<String> = Bindable("")
     var responseToView: ((String) -> ())?
     var showLoading: Bindable<Bool> = Bindable(false)
-    
     var onShowError: ((SingleButtonAlert) -> Void)?
-    
     var dictionaryList: [Int : ContentModel] = [Int : ContentModel]()
     var resultScan: Bindable<String> = Bindable("")
     var itemScanner : GenerateEntityModel = GenerateEntityModel()

@@ -48,30 +48,19 @@ class HistoryViewModel  : Codable ,GenerateViewModelDeletegate{
     }
     
     init(data : GenerateEntityModel) {
-    //    let date_create = TimeHelper.getTimeSince1970(time:Int(data.createdDateTime!))
-     //   let date_update = TimeHelper.getTimeSince1970(time:Int(data.updatedDateTime!))
         self.typeCode = data.typeCode?.uppercased() ?? ""
         self.createdDateTime = Int(data.createdDateTime!)
         self.updatedDateTime = Int(data.updatedDateTime!)
         self.isHistory = data.isHistory!
         self.isSave = data.isSave!
         self.bookMark = data.bookMark!
-        //  self.content = data.content!
-        print(data.content!)
-        // self.content = (data.content?.toObject(value: GenerateModel.self))!
-        //   let typeCode = data.typeCode?.uppercased()
         if typeCode == EnumType.URL.rawValue{
-            //            let blogPost: UrlModel = try! JSONDecoder().decode(UrlModel.self, from: jsonData)
-            //            self.contents = blogPost.url ?? ""
-            //            let content = UrlModel()
-            // let url : UrlModel =   (data.content?.toObject(value: UrlModel.self))!
             self.content = ContentModel(data :(data.content?.toObject(value: UrlModel.self))!)
             let stringContent = content.content?.data(using: .utf8 )
             let urlModel : UrlModel = try! JSONDecoder().decode(UrlModel.self, from: stringContent!)
             valueShowContent = urlModel.url ?? ""
             
         }
-            //
         else if typeCode == EnumType.TEXT.rawValue{
             self.content = ContentModel(data: (data.content?.toObject(value: TextModel.self))!)
             let stringContent = content.content?.data(using: .utf8 )
@@ -126,12 +115,7 @@ class HistoryViewModel  : Codable ,GenerateViewModelDeletegate{
             let contactModel : ContactModel = try! JSONDecoder().decode(ContactModel.self, from: stringContent!)
             valueShowContent = contactModel.fullNameContact ?? ""
         }
-        //        else
-        //        {
-        //
-        //            self.content = ""
-        //            self.contents = ""
-        //        }
+
     }
     
 }

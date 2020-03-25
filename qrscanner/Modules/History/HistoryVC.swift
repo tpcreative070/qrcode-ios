@@ -33,12 +33,11 @@ class HistoryVC : UIViewController,UIViewControllerTransitioningDelegate, UINavi
     }()
     var dataSource :TableViewDataSource<TableViewCell,HistoryViewModel,HeaderView>!
     var sections = [TableSection<String, HistoryViewModel>]()
-    let viewModel = HistoryViewModelList()
+    let historyViewModel = HistoryViewModelList()
     var floaty = Floaty()
-    var flagselectItem = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.sections = TableSection.group(rowItems: self.viewModel.listHistories, by: { (headline) in
+        self.sections = TableSection.group(rowItems: self.historyViewModel.listHistories, by: { (headline) in
             return headline.typeCode
         })
         initUI()
@@ -46,8 +45,8 @@ class HistoryVC : UIViewController,UIViewControllerTransitioningDelegate, UINavi
     }
     override func viewDidAppear(_ animated: Bool) {
         
-        self.viewModel.doGetListHistories()
-        self.viewModel.isSelected.value = false
+        self.historyViewModel.doGetListHistories()
+        self.historyViewModel.isSelected.value = false
         self.navigationController?.isNavigationBarHidden = true
 
         print("into ViewDidAppear History")

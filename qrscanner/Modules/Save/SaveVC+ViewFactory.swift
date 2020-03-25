@@ -176,7 +176,7 @@ extension SaveVC : TableViewCellDelegate{
             print(data.content.content!)
             let value = data.content
             let  vc = DetailVC()
-            vc.listContent = [ContentViewModel(data: value)]
+            vc.listContentViewModel = [ContentViewModel(data: value)]
             self.navigationController?.pushViewController(vc, animated: true)
             
         }
@@ -191,74 +191,74 @@ extension SaveVC : TableViewCellDelegate{
         if typeCode == EnumType.URL.rawValue{
             let urlModel : UrlViewModel = try! JSONDecoder().decode(UrlViewModel.self, from: stringContent!)
             let  vc = UrlGenerateVC()
-            vc.urlValue = urlModel
-            vc.urlValue.isSeen = AppConstants.ISSEEN
-            vc.urlValue.createDateTime = value_data!.createdDateTime
+            vc.urlViewModel = urlModel
+            vc.urlViewModel.isSeen = AppConstants.ISSEEN
+            vc.urlViewModel.createDateTime = value_data!.createdDateTime
             self.navigationController?.pushViewController(vc, animated: true)
         }
         if typeCode == EnumType.WIFI.rawValue{
             let wifiModel : WifiViewModel = try! JSONDecoder().decode(WifiViewModel.self, from: stringContent!)
             let  vc = WifiGenerateVC()
-            vc.wifiValue = wifiModel
-            vc.wifiValue.isSeen = AppConstants.ISSEEN
-            vc.wifiValue.createDateTime = value_data!.createdDateTime
+            vc.wifiViewModel = wifiModel
+            vc.wifiViewModel.isSeen = AppConstants.ISSEEN
+            vc.wifiViewModel.createDateTime = value_data!.createdDateTime
             self.navigationController?.pushViewController(vc, animated: true)
         }
         if typeCode == EnumType.TELEPHONE.rawValue{
             let phoneModel : PhoneViewModel = try! JSONDecoder().decode(PhoneViewModel.self, from: stringContent!)
             let  vc = PhoneGenerateVC()
-            vc.phoneValue = phoneModel
-            vc.phoneValue.isSeen = AppConstants.ISSEEN
-            vc.phoneValue.createDateTime = value_data!.createdDateTime
+            vc.phoneViewModel = phoneModel
+            vc.phoneViewModel.isSeen = AppConstants.ISSEEN
+            vc.phoneViewModel.createDateTime = value_data!.createdDateTime
             self.navigationController?.pushViewController(vc, animated: true)
         }
         if typeCode == EnumType.TEXT.rawValue{
             let textModel : TextViewModel = try! JSONDecoder().decode(TextViewModel.self, from: stringContent!)
             let  vc = TextGenerateVC()
-            vc.textValue = textModel
-            vc.textValue.isSeen = AppConstants.ISSEEN
-            vc.textValue.createDateTime = value_data!.createdDateTime
+            vc.textViewModel = textModel
+            vc.textViewModel.isSeen = AppConstants.ISSEEN
+            vc.textViewModel.createDateTime = value_data!.createdDateTime
             self.navigationController?.pushViewController(vc, animated: true)
         }
         if typeCode == EnumType.CONTACT.rawValue{
             let contactModel : ContactViewModel = try! JSONDecoder().decode(ContactViewModel.self, from: stringContent!)
             let  vc = ContactGenerateVC()
-            vc.contactValue = contactModel
-            vc.contactValue.isSeen = AppConstants.ISSEEN
-            vc.contactValue.createDateTime = value_data!.createdDateTime
+            vc.contactViewModel = contactModel
+            vc.contactViewModel.isSeen = AppConstants.ISSEEN
+            vc.contactViewModel.createDateTime = value_data!.createdDateTime
             self.navigationController?.pushViewController(vc, animated: true)
         }
         if typeCode == EnumType.EVENT.rawValue{
             let eventModel : EventViewModel = try! JSONDecoder().decode(EventViewModel.self, from: stringContent!)
             let  vc = EventGenerateVC()
-            vc.eventValue = eventModel
-            vc.eventValue.isSeen = AppConstants.ISSEEN
-            vc.eventValue.createDateTime = value_data!.createdDateTime
+            vc.eventViewModel = eventModel
+            vc.eventViewModel.isSeen = AppConstants.ISSEEN
+            vc.eventViewModel.createDateTime = value_data!.createdDateTime
             self.navigationController?.pushViewController(vc, animated: true)
         }
         if typeCode == EnumType.LOCATION.rawValue{
             let locationModel : LocationViewModel = try! JSONDecoder().decode(LocationViewModel.self, from: stringContent!)
             let  vc = LocationGenerateVC()
-            vc.locationValue = locationModel
-            vc.locationValue.isSeen = AppConstants.ISSEEN
-            vc.locationValue.createDateTime = value_data!.createdDateTime
+            vc.locationViewModel = locationModel
+            vc.locationViewModel.isSeen = AppConstants.ISSEEN
+            vc.locationViewModel.createDateTime = value_data!.createdDateTime
             self.navigationController?.pushViewController(vc, animated: true)
         }
         if typeCode == EnumType.MESSAGE.rawValue{
             let messageModel : MessageViewModel = try! JSONDecoder().decode(MessageViewModel.self, from: stringContent!)
             let  vc = MessageGenerateVC()
-            vc.messageValue = messageModel
-            vc.messageValue.isSeen = AppConstants.ISSEEN
-            vc.messageValue.createDateTime = value_data!.createdDateTime
+            vc.messageViewModel = messageModel
+            vc.messageViewModel.isSeen = AppConstants.ISSEEN
+            vc.messageViewModel.createDateTime = value_data!.createdDateTime
             self.navigationController?.pushViewController(vc, animated: true)
         }
         if typeCode == EnumType.EMAIL.rawValue{
             var emailModel : EmailViewModel = EmailViewModel()
             emailModel = try! JSONDecoder().decode(EmailViewModel.self, from: stringContent!)
             let  vc = EmailGenerateVC()
-            vc.emailValue = emailModel
-            vc.emailValue.isSeen = AppConstants.ISSEEN
-            vc.emailValue.createDateTime = value_data!.createdDateTime
+            vc.emailViewModel = emailModel
+            vc.emailViewModel.isSeen = AppConstants.ISSEEN
+            vc.emailViewModel.createDateTime = value_data!.createdDateTime
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

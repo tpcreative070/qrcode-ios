@@ -9,8 +9,7 @@
 import UIKit
 extension PhoneGenerateVC {
     func initUI() {
-        let gety = view.frame.height * 1.4/7
-        let value_item = view.frame.height/7
+       
          self.view.addSubview(scrollView)
                     NSLayoutConstraint.activate([
                         scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
@@ -24,14 +23,14 @@ extension PhoneGenerateVC {
             viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewBackground.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            viewBackground.heightAnchor.constraint(equalToConstant: gety)
+            viewBackground.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND)
         ])
         viewBackground.addSubview(viewPhoneBg)
         NSLayoutConstraint.activate([
             viewPhoneBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewPhoneBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewPhoneBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewPhoneBg.heightAnchor.constraint(equalToConstant: value_item)
+            viewPhoneBg.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM)
         ])
         
         viewPhoneBg.addSubview(lbPhone)
@@ -50,6 +49,7 @@ extension PhoneGenerateVC {
         self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
         self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
         setupNavItems()
+        addTarget(textFieldPhone)
     }
     func addTarget(_ textField: UITextField) {
         textField.addTarget(self, action: #selector(inputFieldEditingDidEnd), for: .editingDidEnd)
@@ -80,7 +80,7 @@ extension PhoneGenerateVC {
     }
     
     func bindViewModel() {
-        viewModel?.errorMessages.bind({ [weak self] errors in
+        generateViewModel?.errorMessages.bind({ [weak self] errors in
             
             if errors.count > 0 {
                 self?.textFieldPhone.errorMessage = errors[GenerateViewModelKey.PHONE_TELEPHONE] ?? ""
@@ -91,47 +91,47 @@ extension PhoneGenerateVC {
                 }
             }
         })
-        viewModel?.showLoading.bind { [weak self] visible in
+        generateViewModel?.showLoading.bind { [weak self] visible in
             if self != nil {
                 visible ? ProgressHUD.show(): ProgressHUD.dismiss()
             }
         }
-        viewModel?.responseToView = { [weak self] value in
+        generateViewModel?.responseToView = { [weak self] value in
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
                 let resVC = ResultGenerateVC()
-                resVC.contentData = ContentViewModel(data: ContentModel(data: PhoneModel(phone: (self?.textFieldPhone.text!)!)))
-                resVC.imgCode = (self?.viewModel?.result)!
-                resVC.viewModel.typeCode = EnumType.TELEPHONE.rawValue
-                if (self?.phoneValue.isSeen)! == AppConstants.ISSEEN {
-                    resVC.viewModel.isUpdate = AppConstants.ISUPDATE
-                    resVC.viewModel.createDateTime = (self?.phoneValue.createDateTime)!
+                resVC.contentViewModel = ContentViewModel(data: ContentModel(data: PhoneModel(phone: (self?.textFieldPhone.text!)!)))
+                resVC.imgCode = (self?.generateViewModel?.result)!
+                resVC.resultViewModel.typeCode = EnumType.TELEPHONE.rawValue
+                if (self?.phoneViewModel.isSeen)! == AppConstants.ISSEEN {
+                    resVC.resultViewModel.isUpdate = AppConstants.ISUPDATE
+                    resVC.resultViewModel.createDateTime = (self?.phoneViewModel.createDateTime)!
 
                 }
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }
         }
-        viewModel?.onShowError = { [weak self] alert in
+        generateViewModel?.onShowError = { [weak self] alert in
             self?.clearDataTextfield()
             self?.presentSingleButtonDialog(alert: alert)
         }
-        viewModel?.phoneTelephoneBinding.bind({ (value) in
+        generateViewModel?.phoneTelephoneBinding.bind({ (value) in
             self.textFieldPhone.text = value
         })
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.PHONE_TELEPHONE] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.PHONE_TELEPHONE] = ""
     }
     private func clearDataTextfield() {
         self.textFieldPhone.resignFirstResponder()
         self.textFieldPhone.text = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.PHONE_TELEPHONE] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.PHONE_TELEPHONE] = ""
     }
     func checkIsSeenDetail(){
-        if phoneValue.isSeen == AppConstants.ISSEEN {
-            textFieldPhone.text = phoneValue.phone ?? ""
+        if phoneViewModel.isSeen == AppConstants.ISSEEN {
+            textFieldPhone.text = phoneViewModel.phone ?? ""
         }
     }
     func defineValue(){
-        self.viewModel?.typeCode = EnumType.TELEPHONE.rawValue
-        self.viewModel?.phoneTelephone = textFieldPhone.text ?? ""
+        self.generateViewModel?.typeCode = EnumType.TELEPHONE.rawValue
+        self.generateViewModel?.phoneTelephone = textFieldPhone.text ?? ""
     }
 }
 extension PhoneGenerateVC: UITextFieldDelegate {

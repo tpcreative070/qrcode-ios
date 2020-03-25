@@ -17,16 +17,16 @@ class MessageGenerateVC: BaseViewController {
     var viewBackground: UIView = {
         let view = UIView()
         view.layer.borderColor = UIColor.black.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     var stackViewTo : StackView = {
         let view = StackView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
-        view.layer.cornerRadius = 10
-        view.layer.borderWidth = 1
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -34,8 +34,8 @@ class MessageGenerateVC: BaseViewController {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -43,8 +43,8 @@ class MessageGenerateVC: BaseViewController {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -73,11 +73,11 @@ class MessageGenerateVC: BaseViewController {
         view.alpha = AppConstants.ALPHA_DISBALE
         return view
     }()
-    var messageValue = MessageViewModel()
-    var viewModel : GenerateViewModel?
+    var messageViewModel = MessageViewModel()
+    var generateViewModel : GenerateViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = GenerateViewModel()
+        generateViewModel = GenerateViewModel()
         self.initUI()
         self.setupDelegate()
         self.bindViewModel()
@@ -107,18 +107,16 @@ class MessageGenerateVC: BaseViewController {
     @objc func doGenerate() {
         print("done")
         self.defineValue()
-        viewModel?.doGenerateValue();
+        generateViewModel?.doGenerateValue();
     }
     @objc func inputFieldEditingDidEnd(textField: UITextField){
-        self.viewModel?.focusTextField = textField
+        self.generateViewModel?.focusTextField = textField
         
         if textField == textFieldTo {
-            viewModel?.text = textField.text ?? ""
-            viewModel?.validateTo()
+            generateViewModel?.to = textField.text ?? ""
         }
         if textField == textFieldMessage {
-            viewModel?.text = textField.text ?? ""
-            viewModel?.validateMessage()
+            generateViewModel?.message = textField.text ?? ""
         }
         
     }

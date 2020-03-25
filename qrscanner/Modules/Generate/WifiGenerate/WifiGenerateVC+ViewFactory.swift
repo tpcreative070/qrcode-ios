@@ -9,8 +9,6 @@
 import UIKit
 extension WifiGenerateVC {
     func initUI() {
-        let gety = view.frame.height * 4.2/7
-        let value_item = view.frame.height/7
        self.view.addSubview(scrollView)
              NSLayoutConstraint.activate([
                  scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
@@ -24,14 +22,14 @@ extension WifiGenerateVC {
             viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewBackground.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            viewBackground.heightAnchor.constraint(equalToConstant: gety)
+            viewBackground.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND * 3.1)
         ])
         viewBackground.addSubview(viewSsidBg)
         NSLayoutConstraint.activate([
             viewSsidBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewSsidBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewSsidBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewSsidBg.heightAnchor.constraint(equalToConstant: value_item)
+            viewSsidBg.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM)
         ])
         
         viewSsidBg.addSubview(lbSsid)
@@ -51,7 +49,7 @@ extension WifiGenerateVC {
             viewPassBg.topAnchor.constraint(equalTo: viewSsidBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             viewPassBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewPassBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewPassBg.heightAnchor.constraint(equalToConstant: value_item)
+            viewPassBg.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM)
         ])
         viewPassBg.addSubview(lbPass)
         NSLayoutConstraint.activate([
@@ -72,7 +70,7 @@ extension WifiGenerateVC {
             viewProtectBg.topAnchor.constraint(equalTo: viewPassBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             viewProtectBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewProtectBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewProtectBg.heightAnchor.constraint(equalToConstant: value_item*1.6)
+            viewProtectBg.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM*1.8)
         ])
         viewWPAContainer.addSubview(radioWPA)
         NSLayoutConstraint.activate([
@@ -141,24 +139,25 @@ extension WifiGenerateVC {
         self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
               self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
         setupNavItems()
-        
+        addTarget(textFieldSsid)
+        addTarget(textFieldPass)
     }
     func addTarget(_ textField: UITextField) {
         textField.addTarget(self, action: #selector(inputFieldEditingDidEnd), for: .editingDidEnd)
     }
     func defineValue(){
-        self.viewModel?.typeCode = EnumType.WIFI.rawValue
-        self.viewModel?.ssid = textFieldSsid.text
-        self.viewModel?.password = textFieldPass.text
+        self.generateViewModel?.typeCode = EnumType.WIFI.rawValue
+        self.generateViewModel?.ssid = textFieldSsid.text
+        self.generateViewModel?.password = textFieldPass.text
         if radioWPA.isSelected {
-            self.viewModel?.protect = LanguageHelper.getTranslationByKey(LanguageKey.WPA)
+            self.generateViewModel?.protect = LanguageHelper.getTranslationByKey(LanguageKey.WPA)
         }
         else if radioWEP.isSelected {
-            self.viewModel?.protect = LanguageHelper.getTranslationByKey(LanguageKey.WEP)
+            self.generateViewModel?.protect = LanguageHelper.getTranslationByKey(LanguageKey.WEP)
         }
         else
         {
-            self.viewModel?.protect = LanguageHelper.getTranslationByKey(LanguageKey.None)
+            self.generateViewModel?.protect = LanguageHelper.getTranslationByKey(LanguageKey.None)
         }
     }
     func setupNavItems() {
@@ -182,7 +181,7 @@ extension WifiGenerateVC {
     }
     
     func bindViewModel() {
-        viewModel?.errorMessages.bind({ [weak self] errors in
+        generateViewModel?.errorMessages.bind({ [weak self] errors in
             if errors.count > 0 {
                 self?.textFieldSsid.errorMessage = errors[GenerateViewModelKey.SSID] ?? ""
                 self?.textFieldPass.errorMessage = errors[GenerateViewModelKey.PASSWORD] ?? ""
@@ -194,40 +193,40 @@ extension WifiGenerateVC {
                 }
             }
         })
-        viewModel?.showLoading.bind { [weak self] visible in
+        generateViewModel?.showLoading.bind { [weak self] visible in
             if self != nil {
                 visible ? ProgressHUD.show(): ProgressHUD.dismiss()
             }
         }
-        viewModel?.responseToView = { [weak self] value in
+        generateViewModel?.responseToView = { [weak self] value in
             
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
                 let resVC = ResultGenerateVC()
-                resVC.contentData = ContentViewModel(data: WifiModel(ssid: (self?.textFieldSsid.text)!, password: (self?.textFieldPass.text)!, protect: (self?.viewModel?.protect)!))
-                resVC.imgCode = (self?.viewModel?.result)!
-                resVC.viewModel.typeCode = EnumType.WIFI.rawValue
-                if (self?.wifiValue.isSeen)! == AppConstants.ISSEEN {
-                    resVC.viewModel.isUpdate = AppConstants.ISUPDATE
-                    resVC.viewModel.createDateTime = (self?.wifiValue.createDateTime)!
+                resVC.contentViewModel = ContentViewModel(data: WifiModel(ssid: (self?.textFieldSsid.text)!, password: (self?.textFieldPass.text)!, protect: (self?.generateViewModel?.protect)!))
+                resVC.imgCode = (self?.generateViewModel?.result)!
+                resVC.resultViewModel.typeCode = EnumType.WIFI.rawValue
+                if (self?.wifiViewModel.isSeen)! == AppConstants.ISSEEN {
+                    resVC.resultViewModel.isUpdate = AppConstants.ISUPDATE
+                    resVC.resultViewModel.createDateTime = (self?.wifiViewModel.createDateTime)!
 
                 }
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }
         }
-        viewModel?.onShowError = { [weak self] alert in
+        generateViewModel?.onShowError = { [weak self] alert in
             self?.clearDataTextfield()
             self?.presentSingleButtonDialog(alert: alert)
         }
-        viewModel?.ssidBinding.bind({ (value) in
+        generateViewModel?.ssidBinding.bind({ (value) in
             self.textFieldSsid.text = value
         })
         
-        viewModel?.passwordBinding.bind({ (value) in
+        generateViewModel?.passwordBinding.bind({ (value) in
             self.textFieldPass.text = value
         })
         
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.SSID] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.PASSWORD] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.SSID] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.PASSWORD] = ""
         
     }
     
@@ -237,24 +236,24 @@ extension WifiGenerateVC {
         self.textFieldPass.resignFirstResponder()
         self.textFieldSsid.text = ""
         self.textFieldPass.text = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.SSID] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.PASSWORD] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.SSID] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.PASSWORD] = ""
     }
     func checkIsSeenDetail(){
-        if wifiValue.isSeen == AppConstants.ISSEEN {
-            textFieldSsid.text = wifiValue.ssid ?? ""
-            textFieldPass.text = wifiValue.protect ?? ""
-            if wifiValue.protect == LanguageHelper.getTranslationByKey(LanguageKey.WPA){
+        if wifiViewModel.isSeen == AppConstants.ISSEEN {
+            textFieldSsid.text = wifiViewModel.ssid ?? ""
+            textFieldPass.text = wifiViewModel.protect ?? ""
+            if wifiViewModel.protect == LanguageHelper.getTranslationByKey(LanguageKey.WPA){
                 radioWEP.isSelected = false
                 radioNone.isSelected = false
                 radioWPA.isSelected = true
             }
-            if wifiValue.protect == LanguageHelper.getTranslationByKey(LanguageKey.WEP){
+            if wifiViewModel.protect == LanguageHelper.getTranslationByKey(LanguageKey.WEP){
                 radioWPA.isSelected = false
                 radioNone.isSelected = false
                 radioWEP.isSelected = true
             }
-            if wifiValue.protect == LanguageHelper.getTranslationByKey(LanguageKey.None){
+            if wifiViewModel.protect == LanguageHelper.getTranslationByKey(LanguageKey.None){
                 radioWEP.isSelected = false
                 radioWPA.isSelected = false
                 radioNone.isSelected = true

@@ -41,11 +41,11 @@ class WifiViewModel : Codable , WifiViewModelDelegate{
         self.network = data.protect ?? ""
     }
     init(data: ValuePushModel) {
-                self.createDateTime = data.createDateTime
-                self.typeCode = data.typeCode
-                self.isSeen = data.isSeen
-             self.isUpdate = data.isUpdate
-            }
+        self.createDateTime = data.createDateTime
+        self.typeCode = data.typeCode
+        self.isSeen = data.isSeen
+        self.isUpdate = data.isUpdate
+    }
     init() {
         
     }

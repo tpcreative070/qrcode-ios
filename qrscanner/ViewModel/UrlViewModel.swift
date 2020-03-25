@@ -8,29 +8,29 @@
 
 import UIKit
 class UrlViewModel : Codable , UrlViewModelDelegate{
-
-  
+    
+    
     var urlTxtView: String{
         return url ?? ""
     }
- var createDateTime: Int?
+    var createDateTime: Int?
     var typeCode : String?
     var isSeen : Int? = 0
     var isUpdate: Int?
-  
+    
     var url: String?
- 
+    
     init(url: String) {
         self.url = url
     }
     init() {
         
     }
-
+    
     init(data: ValuePushModel) {
-                self.createDateTime = data.createDateTime
-                self.typeCode = data.typeCode
-                self.isSeen = data.isSeen
-             self.isUpdate = data.isUpdate
-            }
+        self.createDateTime = data.createDateTime
+        self.typeCode = data.typeCode
+        self.isSeen = data.isSeen
+        self.isUpdate = data.isUpdate
+    }
 }

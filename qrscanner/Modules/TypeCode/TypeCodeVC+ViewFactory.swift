@@ -65,19 +65,19 @@ extension TypeCodeVC {
     }
     
     func updateDataSource() {
-         self.dataSource.items = self.viewModel.list
+         self.dataSource.items = self.viewModel.listTypeCondeViewModel
         self.dataSource.configureSwipeCell = { cell,vm in
             self.log(object: vm)
             self.viewModel.currentCell = vm
         }
         self.tableView.reloadData()
         log(message: "List typecode available...")
-        log(object: self.viewModel.list)
+        log(object: self.viewModel.listTypeCondeViewModel)
     }
     
     //set dataSource fo tableView
     func bindTableView(){
-        self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.Generate.rawValue, items: self.viewModel.list,isSelectionStype: false){ cell, vm in
+        self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.Generate.rawValue, items: self.viewModel.listTypeCondeViewModel,isSelectionStype: false){ cell, vm in
             cell.configView(viewModel: vm)
             cell.configData(viewModel: vm)
             cell.delegate = self

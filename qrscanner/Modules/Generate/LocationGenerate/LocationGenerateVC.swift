@@ -17,8 +17,8 @@ class LocationGenerateVC: BaseViewController {
     lazy var viewBackground: UIView = {
         let view = UIView()
         view.layer.borderColor = UIColor.black.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -26,8 +26,8 @@ class LocationGenerateVC: BaseViewController {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -35,8 +35,8 @@ class LocationGenerateVC: BaseViewController {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -44,8 +44,8 @@ class LocationGenerateVC: BaseViewController {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -95,13 +95,12 @@ class LocationGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var locationValue = LocationViewModel()
-    var viewModel : GenerateViewModel?
-    let regionMeter : Double = 10000.0
-    let locationManager = CLLocationManager()
+    var locationViewModel = LocationViewModel()
+    var generateViewModel : GenerateViewModel?
+  
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = GenerateViewModel()
+        generateViewModel = GenerateViewModel()
         self.initUI()
         self.checkLocationService()
         self.bindViewModel()
@@ -119,7 +118,20 @@ class LocationGenerateVC: BaseViewController {
             addAnnotation(location: locationOnMap)
         }
     }
-    
+    @objc func inputFieldEditingDidEnd(textField: UITextField){
+           self.generateViewModel?.focusTextField = textField
+           
+           if textField == textFieldLatitude {
+            generateViewModel?.lat = Float(String(textField.text!)) ?? 0
+           }
+           if textField == textFieldLongtitude {
+            generateViewModel?.lon = Float(String(textField.text!)) ?? 0
+           }
+           if textField == textFieldQuery {
+               generateViewModel?.query = textField.text ?? ""
+           }
+
+       }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardHelper?.registerKeyboardNotification()
@@ -143,7 +155,7 @@ class LocationGenerateVC: BaseViewController {
     @objc func doGenerate() {
         print("done")
         self.defineValue()
-        viewModel?.doGenerateValue();
+        generateViewModel?.doGenerateValue();
     }
     
     

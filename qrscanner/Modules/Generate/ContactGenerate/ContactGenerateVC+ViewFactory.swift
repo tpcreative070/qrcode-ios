@@ -9,8 +9,7 @@
 import UIKit
 extension ContactGenerateVC{
     func initUI(){
-        let gety = view.frame.height * 4.7/7
-        let value_item = view.frame.height/7
+   
         self.view.addSubview(scrollView)
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
@@ -24,14 +23,14 @@ extension ContactGenerateVC{
             viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewBackground.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            viewBackground.heightAnchor.constraint(equalToConstant: gety)
+            viewBackground.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND * 3.3)
         ])
         viewBackground.addSubview(viewFullNameContactBg)
         NSLayoutConstraint.activate([
             viewFullNameContactBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewFullNameContactBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewFullNameContactBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewFullNameContactBg.heightAnchor.constraint(equalToConstant: value_item)
+            viewFullNameContactBg.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM)
         ])
         
         viewFullNameContactBg.addSubview(lbFullNameContact)
@@ -52,7 +51,7 @@ extension ContactGenerateVC{
             viewAddressContactBg.topAnchor.constraint(equalTo: viewFullNameContactBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             viewAddressContactBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewAddressContactBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewAddressContactBg.heightAnchor.constraint(equalToConstant: value_item)
+            viewAddressContactBg.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM)
         ])
         
         viewAddressContactBg.addSubview(lbAddressContact)
@@ -73,7 +72,7 @@ extension ContactGenerateVC{
             viewPhoneContactBg.topAnchor.constraint(equalTo: viewAddressContactBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             viewPhoneContactBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewPhoneContactBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewPhoneContactBg.heightAnchor.constraint(equalToConstant: value_item)
+            viewPhoneContactBg.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM)
         ])
         
         viewPhoneContactBg.addSubview(lbPhoneContact)
@@ -93,7 +92,7 @@ extension ContactGenerateVC{
             viewEmailContactBg.topAnchor.constraint(equalTo: viewPhoneContactBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             viewEmailContactBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewEmailContactBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewEmailContactBg.heightAnchor.constraint(equalToConstant: value_item)
+            viewEmailContactBg.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM)
         ])
         
         viewEmailContactBg.addSubview(lbEmailContact)
@@ -115,6 +114,11 @@ extension ContactGenerateVC{
         self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
         self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
         setupNavItems()
+        addTarget(textFieldEmailContact)
+        addTarget(textFieldPhoneContact)
+        addTarget(textFieldAddressContact)
+        addTarget(textFieldFullNameContact)
+        
     }
     
     func addTarget(_ textField: UITextField) {
@@ -146,7 +150,7 @@ extension ContactGenerateVC{
     }
     
     func bindViewModel() {
-        viewModel?.errorMessages.bind({ [weak self] errors in
+        generateViewModel?.errorMessages.bind({ [weak self] errors in
             
             if errors.count > 0 {
                 self?.textFieldFullNameContact.errorMessage = errors[GenerateViewModelKey.FULLNAME_CONTACT] ?? ""
@@ -163,48 +167,48 @@ extension ContactGenerateVC{
                 }
             }
         })
-        viewModel?.showLoading.bind { [weak self] visible in
+        generateViewModel?.showLoading.bind { [weak self] visible in
             if self != nil {
                 visible ? ProgressHUD.show(): ProgressHUD.dismiss()
             }
         }
         
-        viewModel?.responseToView = { [weak self] value in
+        generateViewModel?.responseToView = { [weak self] value in
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
                 let resVC = ResultGenerateVC()
-                resVC.contentData = ContentViewModel(data: ContactModel(fullNameContact: (self?.textFieldFullNameContact.text)!, addressContact: (self?.textFieldAddressContact.text)!, phoneContact: (self?.textFieldPhoneContact.text)!, emailContact: (self?.textFieldEmailContact.text)!))
-                resVC.imgCode = (self?.viewModel?.result)!
-                resVC.viewModel.typeCode = EnumType.CONTACT.rawValue
-                if (self?.contactValue.isSeen)! == AppConstants.ISSEEN {
-                    resVC.viewModel.isUpdate = AppConstants.ISUPDATE
-                    resVC.viewModel.createDateTime = (self?.contactValue.createDateTime)!
+                resVC.contentViewModel = ContentViewModel(data: ContactModel(fullNameContact: (self?.textFieldFullNameContact.text)!, addressContact: (self?.textFieldAddressContact.text)!, phoneContact: (self?.textFieldPhoneContact.text)!, emailContact: (self?.textFieldEmailContact.text)!))
+                resVC.imgCode = (self?.generateViewModel?.result)!
+                resVC.resultViewModel.typeCode = EnumType.CONTACT.rawValue
+                if (self?.contactViewModel.isSeen)! == AppConstants.ISSEEN {
+                    resVC.resultViewModel.isUpdate = AppConstants.ISUPDATE
+                    resVC.resultViewModel.createDateTime = (self?.contactViewModel.createDateTime)!
                     
                 }
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }
         }
-        viewModel?.onShowError = { [weak self] alert in
+        generateViewModel?.onShowError = { [weak self] alert in
             //self?.clearDataTextfield()
             self?.presentSingleButtonDialog(alert: alert)
         }
-        viewModel?.phoneContactBinding.bind({ (value) in
+        generateViewModel?.phoneContactBinding.bind({ (value) in
             self.textFieldPhoneContact.text = value
         })
         
-        viewModel?.fullNameContactBinding.bind({ (value) in
+        generateViewModel?.fullNameContactBinding.bind({ (value) in
             self.textFieldFullNameContact.text = value
         })
         
-        viewModel?.addressContactBinding.bind({ (value) in
+        generateViewModel?.addressContactBinding.bind({ (value) in
             self.textFieldAddressContact.text = value
         })
-        viewModel?.emailContactBinding.bind({ (value) in
+        generateViewModel?.emailContactBinding.bind({ (value) in
             self.textFieldEmailContact.text = value
         })
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.FULLNAME_CONTACT] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.ADDRESS_CONTACT] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.PHONE_CONTACT] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.EMAIL_CONTACT] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.FULLNAME_CONTACT] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.ADDRESS_CONTACT] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.PHONE_CONTACT] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.EMAIL_CONTACT] = ""
     }
     
     
@@ -218,27 +222,27 @@ extension ContactGenerateVC{
         self.textFieldFullNameContact.text = ""
         self.textFieldEmailContact.text = ""
         self.textFieldAddressContact.text = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.FULLNAME_CONTACT] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.ADDRESS_CONTACT] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.PHONE_CONTACT] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.EMAIL_CONTACT] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.FULLNAME_CONTACT] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.ADDRESS_CONTACT] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.PHONE_CONTACT] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.EMAIL_CONTACT] = ""
         
     }
     func defineValue(){
-        self.viewModel?.typeCode = EnumType.CONTACT.rawValue
-        self.viewModel?.fullNameContact = textFieldFullNameContact.text
-        self.viewModel?.emailContact = textFieldEmailContact.text
-        self.viewModel?.addressContact = textFieldAddressContact.text
-        self.viewModel?.phoneContact = textFieldPhoneContact.text
+        self.generateViewModel?.typeCode = EnumType.CONTACT.rawValue
+        self.generateViewModel?.fullNameContact = textFieldFullNameContact.text
+        self.generateViewModel?.emailContact = textFieldEmailContact.text
+        self.generateViewModel?.addressContact = textFieldAddressContact.text
+        self.generateViewModel?.phoneContact = textFieldPhoneContact.text
         
         
     }
     func checkIsSeenDetail(){
-        if contactValue.isSeen == AppConstants.ISSEEN {
-            textFieldFullNameContact.text = contactValue.fullNameContact ?? ""
-            textFieldEmailContact.text = contactValue.emailContact ?? ""
-            textFieldPhoneContact.text = contactValue.phoneContact ?? ""
-            textFieldAddressContact.text = contactValue.addressContact ?? ""
+        if contactViewModel.isSeen == AppConstants.ISSEEN {
+            textFieldFullNameContact.text = contactViewModel.fullNameContact ?? ""
+            textFieldEmailContact.text = contactViewModel.emailContact ?? ""
+            textFieldPhoneContact.text = contactViewModel.phoneContact ?? ""
+            textFieldAddressContact.text = contactViewModel.addressContact ?? ""
         }
     }
     

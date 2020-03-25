@@ -62,14 +62,14 @@ extension DetailVC {
         navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRight)]
     }
     func bindViewModel() {
-        self.viewModel.showLoading.bind { visible in
+        self.contentViewModel.showLoading.bind { visible in
             visible ? ProgressHUD.show(): ProgressHUD.dismiss()
         }
-        self.viewModel.onShowError = { [weak self] alert in
+        self.contentViewModel.onShowError = { [weak self] alert in
             self?.presentSingleButtonDialog(alert: alert)
         }
         
-        self.viewModel.responseToView = {[weak self] value in
+        self.contentViewModel.responseToView = {[weak self] value in
             if value == EnumResponseToView.UPDATE_DATA_SOURCE.rawValue {
                 //   self?.updateDataSource()
             }
@@ -77,20 +77,20 @@ extension DetailVC {
     }
     
     func updateDataSource() {
-        self.dataSource.items = self.viewModel.listContent
+        self.dataSource.items = self.contentViewModel.listContent
         self.dataSource.configureSwipeCell = { cell,vm in
             self.log(object: vm)
-            self.viewModel.currentCell = vm
+            self.contentViewModel.currentCell = vm
         }
         // self.dataSource.swipeActionRight = swipeActionRight()
         self.tableView.reloadData()
         log(message: "List typecode available...")
-        log(object: self.viewModel.listContent)
+        log(object: self.contentViewModel.listContent)
     }
     
     //set dataSource fo tableView
     func bindTableView(){
-        self.dataSource = TableViewDataSourceContent(items: self.listContent, configureCell: { (cell, vm) in
+        self.dataSource = TableViewDataSourceContent(items: self.listContentViewModel, configureCell: { (cell, vm) in
             cell.configView(view: vm)
             cell.configData(viewModel: vm)
             cell.delegate = self
@@ -98,7 +98,7 @@ extension DetailVC {
         
         self.dataSource.configureSwipeCell = { cell,vm in
             self.log(object: vm)
-            self.viewModel.currentCell = vm
+            self.contentViewModel.currentCell = vm
         }
         //  self.dataSource.swipeActionRight = swipeActionRight()
         self.dataSource.loadMore = {

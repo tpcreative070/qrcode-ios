@@ -54,7 +54,8 @@ struct AppConstants {
     static let ISSEEN = 1
     static let ISUPDATE = 2
     static let ISCHOOSE = 1
-
+    static let WIDTH_BORDER = CGFloat(1)
+    static let CORNER_RADIUS = CGFloat(10)
     static let LARGE_SIZE = 200
     static let MEDIUM_SIZE = 50
     static let SMALL_SIZE = 20
@@ -66,6 +67,9 @@ struct AppConstants {
     static let FLOAT_LABEL_HEIGHT = CGFloat(25)
     static let INPUT_FIELD_HEIGHT = CGFloat(30)
     static let HEIGHT_BUTTON_DEFAULT = CGFloat(50)
+    static let HEIGHT_BACKGROUND_ITEM = CGFloat(90)
+    static let HEIGHT_BACKGROUND = CGFloat(130)
+
     static let WIDTH_BUTTON_DEFAULT = CGFloat(100)
     static let IC_DEFAULT = CFloat(25)
     static let ICON_WIDTH_HEIGHT = CGFloat(30)
@@ -79,11 +83,12 @@ struct AppConstants {
     static let MARGIN_LEFT_ITEM_HIS = CGFloat(-80)
     static let MARGIN_RIGHT_ITEM_HIS = CGFloat(80)
 
-    static let MARGIN_TOP_ITEM = CGFloat(10)
+    static let MARGIN_TOP_ITEM = CGFloat(12)
     static let MARGIN_TOP_SUBITEM = CGFloat(5)
     static let MARGIN_TOP_CONTAINER = CGFloat(30)
     static let MARGIN_LEFT_CONTAINER = CGFloat(60)
 
+    static let MARGIN_BOTTOM_ITEM = CGFloat(-12)
 
     static let MARGIN_BOTTOM = CGFloat(-20)
     static let MARGIN_BOTTOM_TAB = CGFloat(-30)

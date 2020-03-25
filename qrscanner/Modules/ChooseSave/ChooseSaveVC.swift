@@ -32,13 +32,12 @@ class ChooseSaveVC : UIViewController,UIViewControllerTransitioningDelegate, UIN
     }()
     var dataSource :TableViewDataSource<TableViewCell,SaveViewModel,HeaderView>!
     var sections = [TableSection<String, SaveViewModel>]()
-    let viewModel = SaveViewModelList()
+    let saveViewModel = SaveViewModelList()
     var floaty = Floaty()
-    var flagselectItem = false
     override func viewDidLoad() {
         super.viewDidLoad()
         print("into ViewDidLoad Save")
-        self.sections = TableSection.group(rowItems: self.viewModel.listSave, by: { (headline) in
+        self.sections = TableSection.group(rowItems: self.saveViewModel.listSave, by: { (headline) in
             return headline.typeCode
         })
         initUI()
@@ -53,12 +52,12 @@ class ChooseSaveVC : UIViewController,UIViewControllerTransitioningDelegate, UIN
         
     }
     @objc func doDeleteItem() {
-        for index in viewModel.listSave {
-            Utils.logMessage(object: viewModel.listSave)
+        for index in saveViewModel.listSave {
+            Utils.logMessage(object: saveViewModel.listSave)
             if index.check == true {
-                viewModel.countItemSelected += 1
+                saveViewModel.countItemSelected += 1
                 print(index.content)
-                self.viewModel.doDeleteSave(mData: index)
+                self.saveViewModel.doDeleteSave(mData: index)
             }
         }
         
@@ -66,18 +65,18 @@ class ChooseSaveVC : UIViewController,UIViewControllerTransitioningDelegate, UIN
     @objc func doSelectAll(_ sender: UIButton) {
         if !sender.isSelected {
             sender.isSelected = true
-            viewModel.doSelectedAll(isValue: true)
+            saveViewModel.doSelectedAll(isValue: true)
         }
         else {
             sender.isSelected = false
-            viewModel.doSelectedAll(isValue: false)
+            saveViewModel.doSelectedAll(isValue: false)
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         
-        self.viewModel.doGetListSave()
-        self.viewModel.isSelected.value = false
+        self.saveViewModel.doGetListSave()
+        self.saveViewModel.isSelected.value = false
         
         print("into ViewDidAppear History")
     }

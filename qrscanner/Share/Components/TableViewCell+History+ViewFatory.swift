@@ -21,8 +21,8 @@ extension TableViewCell {
                NSLayoutConstraint.activate([
                 self.viewBackgroundSecond.trailingAnchor.constraint(equalTo: self.trailingAnchor),
                 self.viewBackgroundSecond.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-                self.viewBackgroundSecond.topAnchor.constraint(equalTo: self.topAnchor, constant: AppConstants.MARGIN_TOP),
-                self.viewBackgroundSecond.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: AppConstants.MARGIN_BOTTOM)
+                self.viewBackgroundSecond.topAnchor.constraint(equalTo: self.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
+                self.viewBackgroundSecond.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: AppConstants.MARGIN_BOTTOM_ITEM)
                    ])
         
         self.viewBackgroundSecond.addSubview(viewRoot)
@@ -44,7 +44,7 @@ extension TableViewCell {
                NSLayoutConstraint.activate([
                    self.lbContent.leadingAnchor.constraint(equalTo: self.viewRoot.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
                    self.lbContent.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor),
-                   self.lbContent.topAnchor.constraint(equalTo: self.lbCreatedDate.bottomAnchor,constant: AppConstants.MARGIN_TOP_ITEM),
+                   self.lbContent.topAnchor.constraint(equalTo: self.lbCreatedDate.bottomAnchor,constant: AppConstants.MARGIN_TOP_SUBITEM),
                    self.lbContent.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor)
                    
                ])

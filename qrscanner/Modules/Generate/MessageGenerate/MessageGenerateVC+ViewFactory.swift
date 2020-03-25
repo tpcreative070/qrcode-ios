@@ -10,8 +10,7 @@ import UIKit
 extension MessageGenerateVC {
     func initUI() {
         setupNavItems()
-        let gety = view.frame.height * 2.5/7
-        let value_item = view.frame.height/7
+       
         self.view.addSubview(scrollView)
                   NSLayoutConstraint.activate([
                       scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
@@ -25,14 +24,14 @@ extension MessageGenerateVC {
                    viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
                    viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
                    viewBackground.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-                   viewBackground.heightAnchor.constraint(equalToConstant: gety)
+                   viewBackground.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND * 1.77)
                ])
         viewBackground.addSubview(viewToBg)
         NSLayoutConstraint.activate([
             viewToBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewToBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewToBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewToBg.heightAnchor.constraint(equalToConstant: value_item)
+            viewToBg.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM)
         ])
         self.viewToBg.addSubview(stackViewTo)
         NSLayoutConstraint.activate([
@@ -65,7 +64,7 @@ extension MessageGenerateVC {
             viewFromBg.topAnchor.constraint(equalTo: viewToBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             viewFromBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewFromBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewFromBg.heightAnchor.constraint(equalToConstant: value_item)
+            viewFromBg.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM)
         ])
         viewFromBg.addSubview(lbFrom)
         NSLayoutConstraint.activate([
@@ -83,6 +82,9 @@ extension MessageGenerateVC {
         self.lbFrom.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
         self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
         self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
+        addTarget(textFieldTo)
+        addTarget(textFieldMessage)
+
     }
     func addTarget(_ textField: UITextField) {
         textField.addTarget(self, action: #selector(inputFieldEditingDidEnd), for: .editingDidEnd)
@@ -112,7 +114,7 @@ extension MessageGenerateVC {
     }
     
     func bindViewModel() {
-        viewModel?.errorMessages.bind({ [weak self] errors in
+        generateViewModel?.errorMessages.bind({ [weak self] errors in
             
             if errors.count > 0 {
                 self?.textFieldTo.errorMessage = errors[GenerateViewModelKey.TO] ?? ""
@@ -128,40 +130,40 @@ extension MessageGenerateVC {
             
             
         })
-        viewModel?.showLoading.bind { [weak self] visible in
+        generateViewModel?.showLoading.bind { [weak self] visible in
             if self != nil {
                 visible ? ProgressHUD.show(): ProgressHUD.dismiss()
             }
         }
         
-        viewModel?.responseToView = { [weak self] value in
+        generateViewModel?.responseToView = { [weak self] value in
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
                 let resVC = ResultGenerateVC()
-                resVC.contentData = ContentViewModel(data: MessageModel(to: (self?.textFieldTo.text)!, message: (self?.textFieldMessage.text)!))
-                resVC.imgCode = (self?.viewModel?.result)!
-                resVC.viewModel.typeCode = EnumType.MESSAGE.rawValue
-                if (self?.messageValue.isSeen)! == AppConstants.ISSEEN {
-                    resVC.viewModel.isUpdate = AppConstants.ISUPDATE
-                    resVC.viewModel.createDateTime = (self?.messageValue.createDateTime)!
+                resVC.contentViewModel = ContentViewModel(data: MessageModel(to: (self?.textFieldTo.text)!, message: (self?.textFieldMessage.text)!))
+                resVC.imgCode = (self?.generateViewModel?.result)!
+                resVC.resultViewModel.typeCode = EnumType.MESSAGE.rawValue
+                if (self?.messageViewModel.isSeen)! == AppConstants.ISSEEN {
+                    resVC.resultViewModel.isUpdate = AppConstants.ISUPDATE
+                    resVC.resultViewModel.createDateTime = (self?.messageViewModel.createDateTime)!
                 }
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }
         }
-        viewModel?.onShowError = { [weak self] alert in
+        generateViewModel?.onShowError = { [weak self] alert in
             self?.clearDataTextfield()
             self?.presentSingleButtonDialog(alert: alert)
         }
-        viewModel?.toBinding.bind({ (value) in
+        generateViewModel?.toBinding.bind({ (value) in
             self.textFieldTo.text = value
         })
         
-        viewModel?.messageBinding.bind({ (value) in
+        generateViewModel?.messageBinding.bind({ (value) in
             self.textFieldMessage.text = value
         })
         
         
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.TO] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.MESSAGE] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.TO] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.MESSAGE] = ""
         
     }
     
@@ -173,20 +175,20 @@ extension MessageGenerateVC {
         
         self.textFieldTo.text = ""
         self.textFieldMessage.text = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.TO] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.MESSAGE] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.TO] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.MESSAGE] = ""
         
     }
     func defineValue(){
-        self.viewModel?.typeCode = EnumType.MESSAGE.rawValue
-        self.viewModel?.message = textFieldMessage.text
-        self.viewModel?.to = textFieldTo.text
+        self.generateViewModel?.typeCode = EnumType.MESSAGE.rawValue
+        self.generateViewModel?.message = textFieldMessage.text
+        self.generateViewModel?.to = textFieldTo.text
         
     }
     func checkIsSeenDetail(){
-        if messageValue.isSeen == AppConstants.ISSEEN {
-            textFieldTo.text = messageValue.toMessage ?? ""
-            textFieldMessage.text = messageValue.message ?? ""
+        if messageViewModel.isSeen == AppConstants.ISSEEN {
+            textFieldTo.text = messageViewModel.toMessage ?? ""
+            textFieldMessage.text = messageViewModel.message ?? ""
             
         }
     }

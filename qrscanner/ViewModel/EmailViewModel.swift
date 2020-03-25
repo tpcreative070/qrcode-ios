@@ -18,19 +18,19 @@ class EmailViewModel : Codable , EmailViewModelDelegate{
         return messageEmail ?? ""
     }
     var email: String?
-   var messageEmail: String?
-     var objectEmail: String?
+    var messageEmail: String?
+    var objectEmail: String?
     
     var createDateTime: Int?
     var typeCode : String?
     var isSeen : Int? = 0
     var isUpdate: Int?
-
+    
     init(to: String, subject: String, message: String) {
         self.email = to
         self.messageEmail = message
         self.objectEmail = subject
-     }
+    }
     init(data: EmailModel){
         self.email = data.email!
         self.messageEmail = data.messageEmail!
@@ -43,14 +43,14 @@ class EmailViewModel : Codable , EmailViewModelDelegate{
         self.email = dataEmail.email!
         self.messageEmail = dataEmail.messageEmail!
         self.objectEmail = dataEmail.objectEmail!
-           self.createDateTime = dataValue.createDateTime
-           self.typeCode = dataValue.typeCode
-           self.isSeen = dataValue.isSeen
-       }
+        self.createDateTime = dataValue.createDateTime
+        self.typeCode = dataValue.typeCode
+        self.isSeen = dataValue.isSeen
+    }
     init(data: ValuePushModel) {
-           self.createDateTime = data.createDateTime
-           self.typeCode = data.typeCode
-           self.isSeen = data.isSeen
+        self.createDateTime = data.createDateTime
+        self.typeCode = data.typeCode
+        self.isSeen = data.isSeen
         self.isUpdate = data.isUpdate
-       }
+    }
 }

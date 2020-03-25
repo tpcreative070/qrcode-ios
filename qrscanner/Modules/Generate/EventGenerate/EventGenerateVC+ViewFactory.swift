@@ -9,8 +9,8 @@
 import UIKit
 extension EventGenerateVC {
     func initUI() {
-        let gety = view.frame.height * 5.8/7
-        let value_item = view.frame.height/7
+//        let gety = view.frame.height * 5.8/7
+//        let value_item = view.frame.height/7
         self.view.addSubview(scrollView)
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
@@ -25,7 +25,7 @@ extension EventGenerateVC {
             viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewBackground.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
 
-            viewBackground.heightAnchor.constraint(equalToConstant: gety)
+            viewBackground.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND * 4.1)
             
         ])
         
@@ -34,7 +34,7 @@ extension EventGenerateVC {
             viewTitleBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewTitleBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewTitleBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewTitleBg.heightAnchor.constraint(equalToConstant: value_item)
+            viewTitleBg.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM)
         ])
         
         viewTitleBg.addSubview(lbTitle)
@@ -54,7 +54,7 @@ extension EventGenerateVC {
             viewLocationBg.topAnchor.constraint(equalTo: viewTitleBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             viewLocationBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewLocationBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewLocationBg.heightAnchor.constraint(equalToConstant: value_item)
+            viewLocationBg.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM)
         ])
         viewLocationBg.addSubview(lbLocation)
         NSLayoutConstraint.activate([
@@ -74,7 +74,7 @@ extension EventGenerateVC {
             viewDescriptionBg.topAnchor.constraint(equalTo: viewLocationBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             viewDescriptionBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewDescriptionBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewDescriptionBg.heightAnchor.constraint(equalToConstant: value_item)
+            viewDescriptionBg.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM)
         ])
         viewDescriptionBg.addSubview(lbDescription)
         NSLayoutConstraint.activate([
@@ -93,7 +93,7 @@ extension EventGenerateVC {
             viewBeginBg.topAnchor.constraint(equalTo: viewDescriptionBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             viewBeginBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewBeginBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewBeginBg.heightAnchor.constraint(equalToConstant: value_item)
+            viewBeginBg.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM)
         ])
         viewBeginBg.addSubview(lbBeginTime)
         NSLayoutConstraint.activate([
@@ -112,7 +112,7 @@ extension EventGenerateVC {
             viewEndBg.topAnchor.constraint(equalTo: viewBeginBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             viewEndBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewEndBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewEndBg.heightAnchor.constraint(equalToConstant: value_item)
+            viewEndBg.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM)
         ])
         viewEndBg.addSubview(lbEndTime)
         NSLayoutConstraint.activate([
@@ -135,6 +135,10 @@ extension EventGenerateVC {
         self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
         setupNavItems()
         setupEndedUpScrollView()
+        addTarget(textFieldTitle)
+        addTarget(textFieldDescription)
+        addTarget(textFieldLocation)
+
     }
     func setupEndedUpScrollView(){
         viewBackground.addSubview(endedUpScrollViewContainerView)
@@ -174,7 +178,7 @@ extension EventGenerateVC {
     }
     
     func bindViewModel() {
-        viewModel?.errorMessages.bind({ [weak self] errors in
+        generateViewModel?.errorMessages.bind({ [weak self] errors in
             if errors.count > 0 {
                 self?.textFieldTitle.errorMessage = errors[GenerateViewModelKey.TITLE_EVENT] ?? ""
                 self?.textFieldLocation.errorMessage = errors[GenerateViewModelKey.LOCATION_EVENT] ?? ""
@@ -193,51 +197,51 @@ extension EventGenerateVC {
             }
             
         })
-        viewModel?.showLoading.bind { [weak self] visible in
+        generateViewModel?.showLoading.bind { [weak self] visible in
             if self != nil {
                 visible ? ProgressHUD.show(): ProgressHUD.dismiss()
             }
         }
         
-        viewModel?.responseToView = { [weak self] value in
+        generateViewModel?.responseToView = { [weak self] value in
             
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
                 let resVC = ResultGenerateVC()
-                resVC.contentData = ContentViewModel(data: EventModel(title: (self?.textFieldTitle.text)!, location: (self?.textFieldLocation.text)!, description: (self?.textFieldDescription.text)!, beginTime: (self?.textFieldBeginTime.text)!, endTime: (self?.textFieldEndTime.text)!))
-                resVC.imgCode = (self?.viewModel?.result)!
-                resVC.viewModel.typeCode = EnumType.EVENT.rawValue
-                if (self?.eventValue.isSeen)! == AppConstants.ISSEEN {
-                    resVC.viewModel.isUpdate = AppConstants.ISUPDATE
-                    resVC.viewModel.createDateTime = (self?.eventValue.createDateTime)!
+                resVC.contentViewModel = ContentViewModel(data: EventModel(title: (self?.textFieldTitle.text)!, location: (self?.textFieldLocation.text)!, description: (self?.textFieldDescription.text)!, beginTime: (self?.textFieldBeginTime.text)!, endTime: (self?.textFieldEndTime.text)!))
+                resVC.imgCode = (self?.generateViewModel?.result)!
+                resVC.resultViewModel.typeCode = EnumType.EVENT.rawValue
+                if (self?.eventViewModel.isSeen)! == AppConstants.ISSEEN {
+                    resVC.resultViewModel.isUpdate = AppConstants.ISUPDATE
+                    resVC.resultViewModel.createDateTime = (self?.eventViewModel.createDateTime)!
 
                 }
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }
         }
-        viewModel?.onShowError = { [weak self] alert in
+        generateViewModel?.onShowError = { [weak self] alert in
             //self?.clearDataTextfield()
             self?.presentSingleButtonDialog(alert: alert)
         }
-        viewModel?.titleEventBinding.bind({ (value) in
+        generateViewModel?.titleEventBinding.bind({ (value) in
             self.textFieldTitle.text = value
         })
-        viewModel?.locationEventBinding.bind({ (value) in
+        generateViewModel?.locationEventBinding.bind({ (value) in
             self.textFieldLocation.text = value
         })
-        viewModel?.descriptionEventBinding.bind({ (value) in
+        generateViewModel?.descriptionEventBinding.bind({ (value) in
             self.textFieldDescription.text = value
         })
-        viewModel?.beginTimeEventBinding.bind({ (value) in
+        generateViewModel?.beginTimeEventBinding.bind({ (value) in
             self.textFieldBeginTime.text = TimeHelper.getString(time: value, dateFormat: TimeHelper.FormatDateTime)
         })
-        viewModel?.endTimeEventBinding.bind({ (value) in
+        generateViewModel?.endTimeEventBinding.bind({ (value) in
             self.textFieldBeginTime.text = TimeHelper.getString(time: value, dateFormat: TimeHelper.FormatDateTime)
         })
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.TITLE_EVENT] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.LOCATION_EVENT] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.DESCRIPTION_EVENT] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.BEGINTIME_EVENT] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.ENDTIME_EVENT] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.TITLE_EVENT] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.LOCATION_EVENT] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.DESCRIPTION_EVENT] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.BEGINTIME_EVENT] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.ENDTIME_EVENT] = ""
         
     }
     private func clearDataTextfield() {
@@ -249,11 +253,11 @@ extension EventGenerateVC {
         self.textFieldDescription.text = ""
         self.textFieldBeginTime.text = TimeHelper.getString(time: Date(), dateFormat: TimeHelper.FormatDateTime)
         self.textFieldEndTime.text = TimeHelper.getString(time: Date(), dateFormat: TimeHelper.FormatDateTime)
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.TITLE_EVENT] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.LOCATION_EVENT] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.DESCRIPTION_EVENT] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.BEGINTIME_EVENT] = ""
-        self.viewModel?.errorMessages.value[GenerateViewModelKey.ENDTIME_EVENT] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.TITLE_EVENT] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.LOCATION_EVENT] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.DESCRIPTION_EVENT] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.BEGINTIME_EVENT] = ""
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.ENDTIME_EVENT] = ""
     }
     func setupDatePicker(){
         textFieldBeginTime.inputView    = datePicker
@@ -265,24 +269,24 @@ extension EventGenerateVC {
         textFieldEndTime.inputAccessoryView     = toolBar
     }
     func defineValue(){
-        self.viewModel?.typeCode = EnumType.EVENT.rawValue
-        self.viewModel?.titleEvent = textFieldTitle.text
-        self.viewModel?.locationEvent = textFieldLocation.text
-        self.viewModel?.descriptionEvent = textFieldDescription.text
-        print(beginTime)
-        print(endTime)
-        self.viewModel?.beginTimeEvent = beginTime
-        self.viewModel?.endTimeEvent = endTime
+        self.generateViewModel?.typeCode = EnumType.EVENT.rawValue
+        self.generateViewModel?.titleEvent = textFieldTitle.text
+        self.generateViewModel?.locationEvent = textFieldLocation.text
+        self.generateViewModel?.descriptionEvent = textFieldDescription.text
+        print(generateViewModel?.beginTime)
+        print(generateViewModel?.endTime)
+        self.generateViewModel?.beginTimeEvent = generateViewModel?.beginTime
+        self.generateViewModel?.endTimeEvent = generateViewModel?.endTime
         
         
     }
     func checkIsSeenDetail(){
-        if eventValue.isSeen == AppConstants.ISSEEN {
-            textFieldTitle.text = eventValue.title ?? ""
-            textFieldLocation.text = eventValue.location ?? ""
-            textFieldDescription.text = eventValue.description ?? ""
-            textFieldBeginTime.text = eventValue.beginTime ?? ""
-            textFieldEndTime.text = eventValue.endTime ?? ""
+        if eventViewModel.isSeen == AppConstants.ISSEEN {
+            textFieldTitle.text = eventViewModel.title ?? ""
+            textFieldLocation.text = eventViewModel.location ?? ""
+            textFieldDescription.text = eventViewModel.description ?? ""
+            textFieldBeginTime.text = eventViewModel.beginTime ?? ""
+            textFieldEndTime.text = eventViewModel.endTime ?? ""
         }
     }
     

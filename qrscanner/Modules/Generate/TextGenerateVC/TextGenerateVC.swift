@@ -43,11 +43,11 @@ class TextGenerateVC: BaseViewController {
         
         return view
     }()
-    var textValue = TextViewModel()
-    var viewModel : GenerateViewModel?
+    var textViewModel = TextViewModel()
+    var generateViewModel : GenerateViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = GenerateViewModel()
+        generateViewModel = GenerateViewModel()
         self.initUI()
         self.bindViewModel()
         self.addLeftBackButton()
@@ -75,14 +75,13 @@ class TextGenerateVC: BaseViewController {
     @objc func doGenerate() {
         print("done")
         self.defineValue()
-        viewModel?.doGenerateValue();
+        generateViewModel?.doGenerateValue();
     }
     @objc func inputFieldEditingDidEnd(textField: UITextField){
-        self.viewModel?.focusTextField = textField
+        self.generateViewModel?.focusTextField = textField
         
         if textField == textFieldText {
-            viewModel?.text = textField.text ?? ""
-            viewModel?.validateText()
+            generateViewModel?.text = textField.text ?? ""
         }
         
     }

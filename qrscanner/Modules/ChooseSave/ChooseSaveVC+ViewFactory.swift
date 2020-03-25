@@ -67,27 +67,27 @@ extension ChooseSaveVC  {
         
     }
     func bindViewModel() {
-        self.viewModel.showLoading.bind { visible in
+        self.saveViewModel.showLoading.bind { visible in
             visible ? ProgressHUD.show(): ProgressHUD.dismiss()
         }
-        self.viewModel.onShowError = { [weak self] alert in
+        self.saveViewModel.onShowError = { [weak self] alert in
             self?.presentSingleButtonDialog(alert: alert)
         }
         
-        self.viewModel.responseToView = {[weak self] value in
+        self.saveViewModel.responseToView = {[weak self] value in
             if value == EnumResponseToView.UPDATE_DATA_SOURCE.rawValue {
-                self?.navigationItem.title = "\(String(describing: self!.viewModel.countItemSelected)) selected"
+                self?.navigationItem.title = "\(String(describing: self!.saveViewModel.countItemSelected)) selected"
                 self?.updateDataSource()
             }
         }
-        self.viewModel.doGetListSave()
+        self.saveViewModel.doGetListSave()
     }
     func updateDataSource() {
-        self.sections = TableSection.group(rowItems: self.viewModel.listSave, by: { (headline) in
+        self.sections = TableSection.group(rowItems: self.saveViewModel.listSave, by: { (headline) in
             return headline.typeCode
         })
         self.dataSource.sections = self.sections
-        self.dataSource.items = self.viewModel.listSave
+        self.dataSource.items = self.saveViewModel.listSave
         self.tableView.reloadData()
     }
     func setupNavItems() {
@@ -105,7 +105,7 @@ extension ChooseSaveVC  {
     }
     
     func bindTableView(){
-        self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.SaveChoose.rawValue, items: self.viewModel.listSave,sections: self.sections, height: AppConstants.TABLE_ROW_HEIGHT,isSelectionStype: .none){ cell, vm in
+        self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.SaveChoose.rawValue, items: self.saveViewModel.listSave,sections: self.sections, height: AppConstants.TABLE_ROW_HEIGHT,isSelectionStype: .none){ cell, vm in
             cell.configView(view: vm)
             cell.configData(viewModel: vm)
             cell.delegate = self
@@ -192,12 +192,12 @@ extension ChooseSaveVC : TableViewCellDelegate{
     
     func cellViewSelected(cell: TableViewCell, countSelected: Int) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
-        let result = self.viewModel.listSave[indexPath.row]
+        let result = self.saveViewModel.listSave[indexPath.row]
         print("history select: \(result)")
     }
     
     func cellViewSelected(cell: Codable) {
-        self.viewModel.doSelectItem(coable: cell)
+        self.saveViewModel.doSelectItem(coable: cell)
     }
     
     func cellCodable(codable: Codable) {

@@ -15,7 +15,6 @@ class DetailVC : BaseViewController{
     }()
     let viewWrapper: UIView = {
         let parentView = UIView()
-        parentView.backgroundColor = .red
         parentView.translatesAutoresizingMaskIntoConstraints = false
         return parentView
     }()
@@ -25,9 +24,9 @@ class DetailVC : BaseViewController{
         return view
     }()
     
-    var viewModel = ContentViewModelList()
+    var contentViewModel = ContentViewModelList()
     var dataSource :TableViewDataSourceContent<TableViewCell,ContentViewModel,HeaderView>!
-    var listContent: [ContentViewModel] = [ContentViewModel]()
+    var listContentViewModel: [ContentViewModel] = [ContentViewModel]()
     var tableView : UITableView!
 
     override func viewDidLoad() {
@@ -35,7 +34,7 @@ class DetailVC : BaseViewController{
         initUI()
         addLeftBackButton()
         bindViewModel()
-        viewModel.listContent = listContent
+        contentViewModel.listContent = listContentViewModel
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
