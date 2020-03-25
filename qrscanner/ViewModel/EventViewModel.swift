@@ -29,12 +29,15 @@ class EventViewModel : Codable , EventViewModelDelegate{
     var endView: String{
         return endTime ?? ""
     }
-    
     var title : String?
     var location: String?
     var description: String?
     var beginTime: String?
     var endTime: String?
+   var createDateTime: Int?
+       var typeCode : String?
+       var isSeen : Int? = 0
+       var isUpdate: Int?
     init(data: EventModel) {
         self.title = data.title!
         self.location = data.location!
@@ -42,6 +45,12 @@ class EventViewModel : Codable , EventViewModelDelegate{
         self.beginTime = data.beginTime!
         self.endTime = data.endTime!
     }
+   init(data: ValuePushModel) {
+                     self.createDateTime = data.createDateTime
+                     self.typeCode = data.typeCode
+                     self.isSeen = data.isSeen
+                  self.isUpdate = data.isUpdate
+                 }
     init() {    }
- 
+    
 }

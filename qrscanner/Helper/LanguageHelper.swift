@@ -45,7 +45,8 @@ class LanguageHelper {
         if data.count > 0 {
             langData = data
         } else {
-            var currentLang = LanguageCode.Vietnamese
+            var currentLang = LanguageCode.English
+            print(currentLang)
             if let mData = CommonService.getMultipleLanguages(){
                 currentLang = mData
             }

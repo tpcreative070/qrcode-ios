@@ -10,37 +10,47 @@ import UIKit
 extension UrlGenerateVC {
     func initUI() {
         print(view.frame.height)
-        let gety = view.frame.height * 1.3/7
+        let gety = view.frame.height * 1.4/7
         let value_item = view.frame.height/7
-        view.addSubview(viewBackground)
+        self.view.addSubview(scrollView)
         NSLayoutConstraint.activate([
-            viewBackground.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+        ])
+        scrollView.addSubview(viewBackground)
+        NSLayoutConstraint.activate([
+            viewBackground.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: AppConstants.MARGIN_TOP),
             viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewBackground.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             viewBackground.heightAnchor.constraint(equalToConstant: gety)
-            
         ])
         
         viewBackground.addSubview(viewUrlBg)
         NSLayoutConstraint.activate([
-            viewUrlBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: 10),
+            viewUrlBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewUrlBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewUrlBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: -20),
+            viewUrlBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewUrlBg.heightAnchor.constraint(equalToConstant: value_item)
         ])
         
         viewUrlBg.addSubview(lbUrl)
         NSLayoutConstraint.activate([
-            lbUrl.topAnchor.constraint(equalTo: viewUrlBg.topAnchor, constant: 10),
+            lbUrl.topAnchor.constraint(equalTo: viewUrlBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             lbUrl.leadingAnchor.constraint(equalTo: viewUrlBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             lbUrl.trailingAnchor.constraint(equalTo: viewUrlBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewUrlBg.addSubview(textFieldUrl)
         NSLayoutConstraint.activate([
-            textFieldUrl.topAnchor.constraint(equalTo: lbUrl.bottomAnchor, constant: 5),
+            textFieldUrl.topAnchor.constraint(equalTo: lbUrl.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
             textFieldUrl.leadingAnchor.constraint(equalTo: viewUrlBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             textFieldUrl.trailingAnchor.constraint(equalTo: viewUrlBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
+         self.lbUrl.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
+        self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
         setupNavItems()
         
     }
@@ -50,7 +60,7 @@ extension UrlGenerateVC {
     }
     func setupNavItems() {
         self.view.backgroundColor = .white
-        navigationItem.title = LanguageKey.Url
+        navigationItem.title = LanguageHelper.getTranslationByKey(LanguageKey.Url)
         let urlAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = urlAttributes
         //        navigationController?.navigationBar.prefersLargeTitles = DeviceHelper.isIpad() ? false : true
@@ -89,12 +99,13 @@ extension UrlGenerateVC {
         viewModel?.responseToView = { [weak self] value in
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
                 let resVC = ResultGenerateVC()
-                resVC.typeCode = LanguageKey.Url
-                resVC.createDateTime = self!.createDateTime
                 resVC.contentData = ContentViewModel(data: UrlModel(url: (self?.textFieldUrl.text)!))
+                resVC.viewModel.typeCode = EnumType.URL.rawValue
                 resVC.imgCode = (self?.viewModel?.result)!
-                if self?.isSeen == AppConstants.ISSEEN {
-                    resVC.isUpdate = AppConstants.ISUPDATE
+                if (self?.urlValue.isSeen)! == AppConstants.ISSEEN {
+                    resVC.viewModel.isUpdate = AppConstants.ISUPDATE
+                    resVC.viewModel.createDateTime = (self?.urlValue.createDateTime)!
+
                 }
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }
@@ -114,12 +125,12 @@ extension UrlGenerateVC {
         self.viewModel?.errorMessages.value[GenerateViewModelKey.URL] = ""
     }
     func checkIsSeenDetail(){
-        if isSeen == AppConstants.ISSEEN {
+        if urlValue.isSeen == AppConstants.ISSEEN {
             textFieldUrl.text = urlValue.url ?? ""
         }
     }
     func defineValue(){
-        self.viewModel?.typeCode = LanguageKey.Url
+        self.viewModel?.typeCode = EnumType.URL.rawValue
         self.viewModel?.url = textFieldUrl.text
     }
     

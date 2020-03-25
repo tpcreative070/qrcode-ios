@@ -12,67 +12,77 @@ extension MessageGenerateVC {
         setupNavItems()
         let gety = view.frame.height * 2.5/7
         let value_item = view.frame.height/7
-        view.addSubview(viewBackground)
-        NSLayoutConstraint.activate([
-            viewBackground.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
-            viewBackground.heightAnchor.constraint(equalToConstant: gety)
-            
-        ])
+        self.view.addSubview(scrollView)
+                  NSLayoutConstraint.activate([
+                      scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+                      scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+                      scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+                      scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+                  ])
+             scrollView.addSubview(viewBackground)
+         NSLayoutConstraint.activate([
+                   viewBackground.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: AppConstants.MARGIN_TOP),
+                   viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+                   viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+                   viewBackground.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+                   viewBackground.heightAnchor.constraint(equalToConstant: gety)
+               ])
         viewBackground.addSubview(viewToBg)
         NSLayoutConstraint.activate([
-            viewToBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: 10),
+            viewToBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewToBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewToBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: -20),
+            viewToBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewToBg.heightAnchor.constraint(equalToConstant: value_item)
         ])
         self.viewToBg.addSubview(stackViewTo)
         NSLayoutConstraint.activate([
-            self.stackViewTo.leadingAnchor.constraint(equalTo: self.viewToBg.leadingAnchor,constant: 0),
+            self.stackViewTo.leadingAnchor.constraint(equalTo: self.viewToBg.leadingAnchor),
             self.stackViewTo.widthAnchor.constraint(equalTo: self.viewToBg.widthAnchor,multiplier: 5/6),
             
-            self.stackViewTo.topAnchor.constraint(equalTo: self.viewToBg.topAnchor,constant: 0),
+            self.stackViewTo.topAnchor.constraint(equalTo: self.viewToBg.topAnchor),
             
         ])
         self.stackViewTo.axis = .vertical
         self.stackViewTo.alignment = .fill
         self.stackViewTo.distribution = UIStackView.Distribution.fillEqually
-        self.stackViewTo.spacing = 10
+        self.stackViewTo.spacing = AppConstants.MARGIN_TOP_ITEM
         self.stackViewTo.addArrangedSubview(lbTo)
         self.stackViewTo.addArrangedSubview(textFieldTo)
         viewToBg.addSubview(lbTo)
         NSLayoutConstraint.activate([
-            lbTo.topAnchor.constraint(equalTo: viewToBg.topAnchor, constant: 10),
+            lbTo.topAnchor.constraint(equalTo: viewToBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             lbTo.leadingAnchor.constraint(equalTo: viewToBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             lbTo.trailingAnchor.constraint(equalTo: viewToBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewToBg.addSubview(textFieldTo)
         NSLayoutConstraint.activate([
-            textFieldTo.topAnchor.constraint(equalTo: lbTo.bottomAnchor, constant: 5),
+            textFieldTo.topAnchor.constraint(equalTo: lbTo.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
             textFieldTo.leadingAnchor.constraint(equalTo: viewToBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             textFieldTo.trailingAnchor.constraint(equalTo: viewToBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewBackground.addSubview(viewFromBg)
         NSLayoutConstraint.activate([
-            viewFromBg.topAnchor.constraint(equalTo: viewToBg.bottomAnchor, constant: 10),
+            viewFromBg.topAnchor.constraint(equalTo: viewToBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             viewFromBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewFromBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: -20),
+            viewFromBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewFromBg.heightAnchor.constraint(equalToConstant: value_item)
         ])
         viewFromBg.addSubview(lbFrom)
         NSLayoutConstraint.activate([
-            lbFrom.topAnchor.constraint(equalTo: viewFromBg.topAnchor, constant: 10),
+            lbFrom.topAnchor.constraint(equalTo: viewFromBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             lbFrom.leadingAnchor.constraint(equalTo: viewFromBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             lbFrom.trailingAnchor.constraint(equalTo: viewFromBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewFromBg.addSubview(textFieldMessage)
         NSLayoutConstraint.activate([
-            textFieldMessage.topAnchor.constraint(equalTo: lbFrom.bottomAnchor, constant: 5),
+            textFieldMessage.topAnchor.constraint(equalTo: lbFrom.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
             textFieldMessage.leadingAnchor.constraint(equalTo: viewFromBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             textFieldMessage.trailingAnchor.constraint(equalTo: viewFromBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-        
+        self.lbTo.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.lbFrom.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
+        self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
     }
     func addTarget(_ textField: UITextField) {
         textField.addTarget(self, action: #selector(inputFieldEditingDidEnd), for: .editingDidEnd)
@@ -80,7 +90,7 @@ extension MessageGenerateVC {
     func setupNavItems() {
         self.view.backgroundColor = .white
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationItem.title = LanguageKey.Message
+        navigationItem.title = LanguageHelper.getTranslationByKey(LanguageKey.Message)
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationController?.navigationBar.isTranslucent = true
@@ -127,12 +137,12 @@ extension MessageGenerateVC {
         viewModel?.responseToView = { [weak self] value in
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
                 let resVC = ResultGenerateVC()
-                resVC.typeCode = LanguageKey.Message
-                resVC.createDateTime = self!.createDateTime
                 resVC.contentData = ContentViewModel(data: MessageModel(to: (self?.textFieldTo.text)!, message: (self?.textFieldMessage.text)!))
                 resVC.imgCode = (self?.viewModel?.result)!
-                if self?.isSeen == AppConstants.ISSEEN {
-                    resVC.isUpdate = AppConstants.ISUPDATE
+                resVC.viewModel.typeCode = EnumType.MESSAGE.rawValue
+                if (self?.messageValue.isSeen)! == AppConstants.ISSEEN {
+                    resVC.viewModel.isUpdate = AppConstants.ISUPDATE
+                    resVC.viewModel.createDateTime = (self?.messageValue.createDateTime)!
                 }
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }
@@ -168,18 +178,18 @@ extension MessageGenerateVC {
         
     }
     func defineValue(){
-        self.viewModel?.typeCode = LanguageKey.Message
+        self.viewModel?.typeCode = EnumType.MESSAGE.rawValue
         self.viewModel?.message = textFieldMessage.text
         self.viewModel?.to = textFieldTo.text
-
+        
     }
-  func checkIsSeenDetail(){
-       if isSeen == AppConstants.ISSEEN {
-           textFieldTo.text = messageValue.to ?? ""
-           textFieldMessage.text = messageValue.message ?? ""
-           
-       }
-   }
+    func checkIsSeenDetail(){
+        if messageValue.isSeen == AppConstants.ISSEEN {
+            textFieldTo.text = messageValue.toMessage ?? ""
+            textFieldMessage.text = messageValue.message ?? ""
+            
+        }
+    }
     
 }
 extension MessageGenerateVC: UITextFieldDelegate {

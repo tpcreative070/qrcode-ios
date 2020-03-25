@@ -2,7 +2,7 @@
 //  LocationGenerate+ViewFactory.swift
 //  qrscanner
 //
-//  Created by Mac10 on 3/12/20.
+//  Created by MacAppConstants.MARGIN_TOP_ITEM on 3/12/20.
 //  Copyright © 2020 thanhphong070. All rights reserved.
 //
 
@@ -12,52 +12,59 @@ import MapKit
 import CoreLocation
 extension LocationGenerateVC {
     func initUI() {
-        let gety = view.frame.height * 3.5/7
+        let gety = view.frame.height * 5.8/7
         let value_item = view.frame.height/7
-        view.addSubview(viewBackground)
-        NSLayoutConstraint.activate([
-            viewBackground.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+         self.view.addSubview(scrollView)
+                  NSLayoutConstraint.activate([
+                      scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+                      scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+                      scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+                      scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+                  ])
+             scrollView.addSubview(viewBackground)
+       NSLayoutConstraint.activate([
+            viewBackground.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: AppConstants.MARGIN_TOP),
             viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewBackground.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             viewBackground.heightAnchor.constraint(equalToConstant: gety)
-            
         ])
-
+        
         viewBackground.addSubview(viewLatBg)
         NSLayoutConstraint.activate([
-            viewLatBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: 10),
+            viewLatBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewLatBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewLatBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: -20),
+            viewLatBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewLatBg.heightAnchor.constraint(equalToConstant: value_item)
         ])
         viewLatBg.addSubview(lbLatitude)
         NSLayoutConstraint.activate([
-            lbLatitude.topAnchor.constraint(equalTo: viewLatBg.topAnchor, constant: 20),
+            lbLatitude.topAnchor.constraint(equalTo: viewLatBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             lbLatitude.leadingAnchor.constraint(equalTo: viewLatBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             lbLatitude.trailingAnchor.constraint(equalTo: viewLatBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewLatBg.addSubview(textFieldLatitude)
         NSLayoutConstraint.activate([
-            textFieldLatitude.topAnchor.constraint(equalTo: lbLatitude.bottomAnchor, constant: 5),
+            textFieldLatitude.topAnchor.constraint(equalTo: lbLatitude.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
             textFieldLatitude.leadingAnchor.constraint(equalTo: viewLatBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             textFieldLatitude.trailingAnchor.constraint(equalTo: viewLatBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewBackground.addSubview(viewLongBg)
         NSLayoutConstraint.activate([
-            viewLongBg.topAnchor.constraint(equalTo: viewLatBg.bottomAnchor, constant: 10),
+            viewLongBg.topAnchor.constraint(equalTo: viewLatBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             viewLongBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewLongBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: -20),
+            viewLongBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewLongBg.heightAnchor.constraint(equalToConstant: value_item)
         ])
         viewLongBg.addSubview(lbLongtitude)
         NSLayoutConstraint.activate([
-            lbLongtitude.topAnchor.constraint(equalTo: viewLongBg.topAnchor, constant: 20),
+            lbLongtitude.topAnchor.constraint(equalTo: viewLongBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             lbLongtitude.leadingAnchor.constraint(equalTo: viewLongBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             lbLongtitude.trailingAnchor.constraint(equalTo: viewLongBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewLongBg.addSubview(textFieldLongtitude)
         NSLayoutConstraint.activate([
-            textFieldLongtitude.topAnchor.constraint(equalTo: lbLongtitude.bottomAnchor, constant: 5),
+            textFieldLongtitude.topAnchor.constraint(equalTo: lbLongtitude.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
             textFieldLongtitude.leadingAnchor.constraint(equalTo: viewLongBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             textFieldLongtitude.trailingAnchor.constraint(equalTo: viewLongBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
@@ -65,42 +72,46 @@ extension LocationGenerateVC {
         
         viewBackground.addSubview(viewQueryBg)
         NSLayoutConstraint.activate([
-            viewQueryBg.topAnchor.constraint(equalTo: viewLongBg.bottomAnchor, constant: 10),
+            viewQueryBg.topAnchor.constraint(equalTo: viewLongBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             viewQueryBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewQueryBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: -20),
+            viewQueryBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewQueryBg.heightAnchor.constraint(equalToConstant: value_item)
         ])
         viewQueryBg.addSubview(lbQuery)
         NSLayoutConstraint.activate([
-            lbQuery.topAnchor.constraint(equalTo: viewQueryBg.topAnchor, constant: 20),
+            lbQuery.topAnchor.constraint(equalTo: viewQueryBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             lbQuery.leadingAnchor.constraint(equalTo: viewQueryBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             lbQuery.trailingAnchor.constraint(equalTo: viewQueryBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewQueryBg.addSubview(textFieldQuery)
         NSLayoutConstraint.activate([
-            textFieldQuery.topAnchor.constraint(equalTo: lbQuery.bottomAnchor, constant: 5),
+            textFieldQuery.topAnchor.constraint(equalTo: lbQuery.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
             textFieldQuery.leadingAnchor.constraint(equalTo: viewQueryBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             textFieldQuery.trailingAnchor.constraint(equalTo: viewQueryBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-        view.addSubview(viewMap)
+        viewBackground.addSubview(viewMap)
         NSLayoutConstraint.activate([
-            viewMap.topAnchor.constraint(equalTo: viewBackground.bottomAnchor, constant: 10),
-            viewMap.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: 5),
-            viewMap.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: -5),
+            viewMap.topAnchor.constraint(equalTo: viewQueryBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
+            viewMap.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewMap.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewMap.heightAnchor.constraint(equalToConstant: value_item*2)
         ])
-      
+         self.lbLatitude.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+         self.lbLongtitude.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.lbQuery.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
+        self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
         setupNavItems()
         let longTapGesture = UILongPressGestureRecognizer(target: self, action: #selector(longTap))
         viewMap.addGestureRecognizer(longTapGesture)
         
     }
- 
+    
     func setupNavItems() {
         
         self.view.backgroundColor = .white
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationItem.title = LanguageKey.Location
+        navigationItem.title = LanguageHelper.getTranslationByKey(LanguageKey.Location)
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationController?.navigationBar.isTranslucent = true
@@ -147,14 +158,16 @@ extension LocationGenerateVC {
         }
         
         viewModel?.responseToView = { [weak self] value in
+            
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
                 let resVC = ResultGenerateVC()
-                resVC.typeCode = LanguageKey.Location
-                resVC.createDateTime = self!.createDateTime
                 resVC.contentData = ContentViewModel(data: LocationModel(latitude: Float((self?.textFieldLatitude.text)!) , longtitude: Float((self?.textFieldLongtitude.text)!), query: (self?.textFieldQuery.text)!))
                 resVC.imgCode = (self?.viewModel?.result)!
-                if self?.isSeen == AppConstants.ISSEEN {
-                    resVC.isUpdate = AppConstants.ISUPDATE
+                resVC.viewModel.typeCode = EnumType.LOCATION.rawValue
+                if (self?.locationValue.isSeen)! == AppConstants.ISSEEN {
+                    resVC.viewModel.isUpdate = AppConstants.ISUPDATE
+                    resVC.viewModel.createDateTime = (self?.locationValue.createDateTime)!
+
                 }
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }
@@ -196,20 +209,20 @@ extension LocationGenerateVC {
         
     }
     func checkIsSeenDetail(){
-        if isSeen == AppConstants.ISSEEN {
+        if locationValue.isSeen == AppConstants.ISSEEN {
             textFieldLatitude.text = String(locationValue.latitude!)
             textFieldLongtitude.text = String(locationValue.longtitude!)
             textFieldQuery.text = locationValue.query ?? ""
         }
     }
     func addAnnotation(location: CLLocationCoordinate2D){
-          let annotation = MKPointAnnotation()
-          annotation.coordinate = location
-          annotation.title = "Place you press"
-          self.viewMap.addAnnotation(annotation)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location
+        annotation.title = "Place you press"
+        self.viewMap.addAnnotation(annotation)
     }
     func defineValue(){
-        self.viewModel?.typeCode = LanguageKey.Location
+        self.viewModel?.typeCode = EnumType.LOCATION.rawValue
         self.viewModel?.lat = Float(textFieldLatitude.text!)
         self.viewModel?.lon = Float(textFieldLongtitude.text!)
         self.viewModel?.query = textFieldQuery.text
@@ -308,5 +321,5 @@ extension LocationGenerateVC: MKMapViewDelegate{
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {    }
-        }
+    }
 }

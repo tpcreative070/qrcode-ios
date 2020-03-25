@@ -49,14 +49,14 @@ class ScannerViewModel : ScannerViewModelDelegate {
         var value_content = ""
         print(mValue)
         if mValue.contains("http://") || mValue.contains("https://"){
-            typeCode = LanguageKey.Url
+            typeCode = EnumType.URL.rawValue
             let content = UrlModel(url: mValue)
             let jsonData = try! JSONEncoder().encode(content)
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
             print(value_content)
         }
         else if (mValue.contains("geo")) {
-            typeCode = LanguageKey.Location
+            typeCode = EnumType.LOCATION.rawValue
             if mValue != nil || mValue != "" {
                 if mValue.contains(":") {
                     let arr_split_colon = mValue.split(separator: ":")
@@ -82,7 +82,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
             
         }
         else if ((mValue.range(of: "mailto", options: .caseInsensitive)) != nil) || ((mValue.range(of: "MATMSG", options: .caseInsensitive)) != nil){
-            typeCode = LanguageKey.Email
+            typeCode = EnumType.EMAIL.rawValue
             var email : String = ""
             var sub : String = ""
             var body : String = ""
@@ -121,7 +121,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
             
         }
         else if (mValue.contains("BEGIN:VCALENDAR")) || (mValue.contains("BEGIN:VEVENT")){
-            typeCode = LanguageKey.Event
+            typeCode = EnumType.EVENT.rawValue
             var summary : String = ""
             var location : String = ""
             var description : String = ""
@@ -156,7 +156,9 @@ class ScannerViewModel : ScannerViewModelDelegate {
                     }
                 }
             }
-            
+            print(dtstart)
+            print(dtstart)
+
             let datestart = TimeHelper.getDate(timeString: dtstart)!
             let dateend = TimeHelper.getDate(timeString: dtend)!
             let content = EventModel(title: summary, location: location, description: description, beginTime: datestart, endTime: dateend)
@@ -167,7 +169,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
         }
         else if ((mValue.range(of: "SMS", options: .caseInsensitive)) != nil)
         {
-            typeCode = LanguageKey.Message
+            typeCode = EnumType.MESSAGE.rawValue
             let arr_mess = mValue.split(separator: ":")
             let content = MessageModel(to: String(arr_mess[1]) , message: String(arr_mess[2]))
             let jsonData = try! JSONEncoder().encode(content)
@@ -176,7 +178,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
             
         }
         else if ((mValue.range(of: "WIFI", options: .caseInsensitive)) != nil) {
-            typeCode = LanguageKey.Wifi
+            typeCode = EnumType.WIFI.rawValue
             var ssid : String = ""
             var protect : String = ""
             var pass : String = ""
@@ -208,7 +210,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
             
         }
         else if (mValue.contains("MECARD")) || (mValue.contains("VCARD")) || (mValue.contains("MCARD")) {
-            typeCode = LanguageKey.Contact
+            typeCode = EnumType.CONTACT.rawValue
             var fullName : String = ""
             var address : String = ""
             var phone : String = ""
@@ -267,7 +269,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
             
         }
         else if (mValue.caseInsensitiveCompare("tel") == .orderedSame || (mValue.range(of: "TEL", options: .caseInsensitive)) != nil) {
-            typeCode = LanguageKey.Telephone
+            typeCode = EnumType.TELEPHONE.rawValue
             let tel = String(mValue.split(separator: ":")[1])
             let content = PhoneModel(phone: tel)
             let jsonData = try! JSONEncoder().encode(content)
@@ -278,7 +280,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
             
         else
         {
-            typeCode = LanguageKey.Text
+            typeCode = EnumType.TEXT.rawValue
             let content = TextModel(text: mValue)
             let jsonData = try! JSONEncoder().encode(content)
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!

@@ -12,61 +12,67 @@ extension ResultGenerateVC {
         
         view.addSubview(imgQrcode)
         NSLayoutConstraint.activate([
-            imgQrcode.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant : 20),
+            imgQrcode.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant : AppConstants.MARGIN_TOP),
             imgQrcode.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             imgQrcode.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: AppConstants.MARGIN_RIGHT),
             imgQrcode.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/2),
             imgQrcode.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/2)
             
         ])
-        self.view.addSubview(viewShare)
-        NSLayoutConstraint.activate([
-            self.viewShare.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
-            viewShare.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT),
-            viewShare.heightAnchor.constraint(equalToConstant: 50),
-            self.viewShare.topAnchor.constraint(equalTo: self.imgQrcode.bottomAnchor,constant: 20),
-            
-        ])
-        
-        viewShare.addSubview(imgShare)
-        NSLayoutConstraint.activate([
-            imgShare.topAnchor.constraint(equalTo: viewShare.topAnchor, constant: 10),
-            imgShare.widthAnchor.constraint(equalToConstant: 30),
-            imgShare.heightAnchor.constraint(equalToConstant: 30),
-            imgShare.leadingAnchor.constraint(equalTo: viewShare.leadingAnchor, constant: AppConstants.MARGIN_LEFT)
-            
-        ])
-        viewShare.addSubview(lbShare)
-        NSLayoutConstraint.activate([
-            lbShare.topAnchor.constraint(equalTo: viewShare.topAnchor, constant: 10),
-            lbShare.leadingAnchor.constraint(equalTo: imgShare.trailingAnchor, constant: AppConstants.MARGIN_LEFT),
-            lbShare.trailingAnchor.constraint(equalTo: viewShare.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
-        ])
-        self.view.addSubview(viewSave)
-        NSLayoutConstraint.activate([
-            self.viewSave.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
-            viewSave.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT),
-            viewSave.heightAnchor.constraint(equalToConstant: 50),
-            
-            self.viewSave.topAnchor.constraint(equalTo: self.viewShare.bottomAnchor,constant: 20),
-            
-        ])
-        
-        viewSave.addSubview(imgSave)
-        NSLayoutConstraint.activate([
-            imgSave.topAnchor.constraint(equalTo: viewSave.topAnchor, constant: 10),
-            imgSave.widthAnchor.constraint(equalToConstant: 30),
-            imgSave.heightAnchor.constraint(equalToConstant: 30),
-            imgSave.leadingAnchor.constraint(equalTo: viewSave.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            
-        ])
-        viewSave.addSubview(lbSave)
-        NSLayoutConstraint.activate([
-            lbSave.topAnchor.constraint(equalTo: viewSave.topAnchor, constant: 10),
-            lbSave.leadingAnchor.constraint(equalTo: imgSave.trailingAnchor, constant: AppConstants.MARGIN_LEFT),
-            lbSave.trailingAnchor.constraint(equalTo: viewSave.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
-        ])
-        
+       self.view.addSubview(viewShare)
+                    NSLayoutConstraint.activate([
+                        self.viewShare.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
+                        self.viewShare.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: AppConstants.MARGIN_RIGHT),
+                        self.viewShare.topAnchor.constraint(equalTo: self.imgQrcode.bottomAnchor,constant:  AppConstants.MARGIN_TOP),
+                        
+                    ])
+                    
+                    
+                    viewShare.addSubview(imgShare)
+                    NSLayoutConstraint.activate([
+                        imgShare.topAnchor.constraint(equalTo: viewShare.topAnchor, constant:  AppConstants.MARGIN_TOP),
+                        imgShare.leadingAnchor.constraint(equalTo: viewShare.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+                        self.imgShare.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+                        self.imgShare.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+                        self.imgShare.centerYAnchor.constraint(equalTo: self.viewShare.centerYAnchor)
+                        
+                    ])
+                    viewShare.addSubview(lbShare)
+                    NSLayoutConstraint.activate([
+                      lbShare.topAnchor.constraint(equalTo: viewShare.topAnchor, constant: AppConstants.MARGIN_TOP),
+                        lbShare.leadingAnchor.constraint(equalTo: imgShare.trailingAnchor, constant: AppConstants.MARGIN_LEFT),
+                        lbShare.trailingAnchor.constraint(equalTo: viewShare.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT),
+                        self.lbShare.centerYAnchor.constraint(equalTo: self.viewShare.centerYAnchor)
+                        
+                    ])
+                    
+                 self.view.addSubview(viewSave)
+                         NSLayoutConstraint.activate([
+                             self.viewSave.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
+                             self.viewSave.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: AppConstants.MARGIN_RIGHT),
+                             self.viewSave.topAnchor.constraint(equalTo: self.viewShare.bottomAnchor,constant:  AppConstants.MARGIN_TOP),
+                             
+                         ])
+                         
+                         
+                         viewSave.addSubview(imgSave)
+                         NSLayoutConstraint.activate([
+                             imgSave.topAnchor.constraint(equalTo: viewSave.topAnchor, constant:  AppConstants.MARGIN_TOP),
+                             imgSave.leadingAnchor.constraint(equalTo: viewSave.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+                             self.imgSave.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+                             self.imgSave.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+                             self.imgSave.centerYAnchor.constraint(equalTo: self.viewSave.centerYAnchor)
+                             
+                         ])
+                         viewSave.addSubview(lbSave)
+                         NSLayoutConstraint.activate([
+                           lbSave.topAnchor.constraint(equalTo: viewSave.topAnchor, constant: AppConstants.MARGIN_TOP),
+                             lbSave.leadingAnchor.constraint(equalTo: imgSave.trailingAnchor, constant: AppConstants.MARGIN_LEFT),
+                             lbSave.trailingAnchor.constraint(equalTo: viewSave.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT),
+                             self.lbSave.centerYAnchor.constraint(equalTo: self.viewSave.centerYAnchor)
+                             
+                         ])
+             
         setupNavItems()
         viewShare.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector(shareView(sender:))))
         viewSave.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector(saveView(sender:))))
@@ -74,7 +80,7 @@ extension ResultGenerateVC {
     func setupNavItems() {
         self.view.backgroundColor = .white
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationItem.title = typeCode
+        navigationItem.title = viewModel.typeCode
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationController?.navigationBar.isTranslucent = true

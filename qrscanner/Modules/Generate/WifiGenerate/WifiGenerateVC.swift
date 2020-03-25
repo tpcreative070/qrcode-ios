@@ -8,10 +8,14 @@
 import UIKit
 
 class WifiGenerateVC: BaseViewController {
-    
+    lazy var scrollView: UIScrollView = {
+             let scrollView = UIScrollView()
+             scrollView.translatesAutoresizingMaskIntoConstraints = false
+             return scrollView
+         }()
     var viewBackground: UIView = {
         let view = UIView()
-        view.layer.borderColor = UIColor.lightGray.cgColor
+        view.layer.borderColor = UIColor.black.cgColor
         view.layer.borderWidth = 1
         view.layer.cornerRadius = 10
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -55,25 +59,25 @@ class WifiGenerateVC: BaseViewController {
     }()
     lazy var lbSsid : ICLabel = {
         let view = ICLabel()
-        view.text = LanguageKey.SSID
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.SSID)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     lazy var lbPass : ICLabel = {
         let view = ICLabel()
-        view.text = LanguageKey.Password
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Password)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     lazy var lbNetwork : ICLabel = {
         let view = ICLabel()
-        view.text = LanguageKey.NetworkEncryption
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.NetworkEncryption)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     lazy var lbHidden : ICLabel = {
         let view = ICLabel()
-        view.text = LanguageKey.Hidden
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Hidden)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -118,7 +122,7 @@ class WifiGenerateVC: BaseViewController {
     
     lazy var lbWPA : ICLabel = {
         let label = ICLabel()
-        label.text = LanguageKey.WPA
+        label.text = LanguageHelper.getTranslationByKey(LanguageKey.WPA)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -131,7 +135,7 @@ class WifiGenerateVC: BaseViewController {
     
     lazy var lbWEP : ICLabel = {
         let label = ICLabel()
-        label.text = LanguageKey.WEP
+        label.text = LanguageHelper.getTranslationByKey(LanguageKey.WEP)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -151,7 +155,7 @@ class WifiGenerateVC: BaseViewController {
     
     lazy var lbNone : ICLabel = {
         let noneLabel = ICLabel()
-        noneLabel.text = LanguageKey.None
+        noneLabel.text = LanguageHelper.getTranslationByKey(LanguageKey.None)
         noneLabel.translatesAutoresizingMaskIntoConstraints = false
         return noneLabel
     }()
@@ -169,33 +173,30 @@ class WifiGenerateVC: BaseViewController {
         radioNone.isSelected = true
         radioWEP.isSelected = false
         radioWPA.isSelected = false
-        viewModel?.protect = LanguageKey.None
+        viewModel?.protect = LanguageHelper.getTranslationByKey(LanguageKey.None)
     }
     
     @objc func actionRadioWEP (sender: RadioButton) {
         radioWEP.isSelected = true
         radioWPA.isSelected = false
         radioNone.isSelected = false
-        viewModel?.protect = LanguageKey.WEP
+        viewModel?.protect = LanguageHelper.getTranslationByKey(LanguageKey.WEP)
     }
     @objc func actionRadioWPA (sender: RadioButton) {
         radioWEP.isSelected = false
         radioWPA.isSelected = true
         radioNone.isSelected = false
-        viewModel?.protect = LanguageKey.WPA
+        viewModel?.protect = LanguageHelper.getTranslationByKey(LanguageKey.WPA)
     }
     
-    
-    var createDateTime : Int = 0
-    var typeCode : String = ""
+
     var wifiValue = WifiViewModel()
-    var isSeen : Int = 0
     var viewModel : GenerateViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = GenerateViewModel()
         radioWPA.isSelected = true
-        viewModel?.protect = LanguageKey.WPA
+        viewModel?.protect = LanguageHelper.getTranslationByKey(LanguageKey.WPA)
         initUI()
         self.bindViewModel()
         self.addLeftBackButton()

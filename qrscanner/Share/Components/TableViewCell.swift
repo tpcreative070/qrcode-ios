@@ -104,8 +104,11 @@ class TableViewCell : UITableViewCell{
     //config with history
     func configView(view : GenerateViewModelDeletegate){
         self.lbTypeCode.text = "\(view.typeCodeView)"
+        print("\(view.typeCodeView)")
         self.lbCreatedDate.text = String(view.createdDateTimeView)
+        print("\(view.createdDateTimeView)")
         self.lbContent.text = view.contentView
+        print("\(view.contentView)")
         self.lbContent.textColor = AppColors.GRAY
         self.checkBox.borderStyle = .square
         self.checkBox.checkmarkStyle = .tick
@@ -116,47 +119,47 @@ class TableViewCell : UITableViewCell{
         self.checkBox.isChecked = view.checkShowView ?? false
     }
     func configView(view : ContentViewModelDeletegate){
-        if view.typeCodeView.uppercased() == LanguageKey.Url{
+        if view.typeCodeView.uppercased() == EnumType.URL.rawValue{
             let jsonData = view.contentView.data(using: .utf8)!
             let urlData = try! JSONDecoder().decode(UrlModel.self, from: jsonData)
             configView(viewModel: UrlViewModel(url: urlData.url!))
         }
-        if view.typeCodeView.uppercased() == LanguageKey.Email{
+        if view.typeCodeView.uppercased() == EnumType.EMAIL.rawValue{
             let jsonData = view.contentView.data(using: .utf8)!
             let data = try! JSONDecoder().decode(EmailModel.self, from: jsonData)
             configView(viewModel: EmailViewModel(data: data))
         }
-        if view.typeCodeView.uppercased() == LanguageKey.Text{
+        if view.typeCodeView.uppercased() == EnumType.TEXT.rawValue{
             let jsonData = view.contentView.data(using: .utf8)!
             let urlData = try! JSONDecoder().decode(TextModel.self, from: jsonData)
             configView(viewModel: TextViewModel(text: urlData.text!))
         }
-        if view.typeCodeView.uppercased() == LanguageKey.Message{
+        if view.typeCodeView.uppercased() == EnumType.MESSAGE.rawValue{
             let jsonData = view.contentView.data(using: .utf8)!
             let data = try! JSONDecoder().decode(MessageModel.self, from: jsonData)
             configView(viewModel: MessageViewModel(data: MessageModel(to: data.to!, message: data.message!)))
         }
-        if view.typeCodeView.uppercased() == LanguageKey.Location{
+        if view.typeCodeView.uppercased() == EnumType.LOCATION.rawValue{
             let jsonData = view.contentView.data(using: .utf8)!
             let data = try! JSONDecoder().decode(LocationModel.self, from: jsonData)
             configView(viewModel: LocationViewModel(data: LocationModel(latitude: data.latitude!, longtitude: data.longtitude!, query: data.query!)))
         }
-        if view.typeCodeView.uppercased() == LanguageKey.Event{
+        if view.typeCodeView.uppercased() == EnumType.EVENT.rawValue{
             let jsonData = view.contentView.data(using: .utf8)!
             let data = try! JSONDecoder().decode(EventModel.self, from: jsonData)
             configView(viewModel: EventViewModel(data: data))
         }
-        if view.typeCodeView.uppercased() == LanguageKey.Contact{
+        if view.typeCodeView.uppercased() == EnumType.CONTACT.rawValue{
             let jsonData = view.contentView.data(using: .utf8)!
             let data = try! JSONDecoder().decode(ContactModel.self, from: jsonData)
             configView(viewModel: ContactViewModel(data: data))
         }
-        if view.typeCodeView.uppercased() == LanguageKey.Telephone{
+        if view.typeCodeView.uppercased() == EnumType.TELEPHONE.rawValue{
             let jsonData = view.contentView.data(using: .utf8)!
             let data = try! JSONDecoder().decode(PhoneModel.self, from: jsonData)
             configView(viewModel: PhoneViewModel(phone: data))
         }
-        if view.typeCodeView.uppercased() == LanguageKey.Wifi{
+        if view.typeCodeView.uppercased() == EnumType.WIFI.rawValue{
                  let jsonData = view.contentView.data(using: .utf8)!
                  let data = try! JSONDecoder().decode(WifiModel.self, from: jsonData)
                  configView(viewModel: WifiViewModel(data: data))
@@ -424,13 +427,13 @@ class TableViewCell : UITableViewCell{
     lazy var lbClipboard : ICLabel = {
         let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.text = LanguageKey.Clipboard
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Clipboard)
         return view
     }()
     func configView(viewModel : UrlViewModelDelegate){
-        self.lbTitleFirst.text = LanguageKey.Url
-        self.lbTitleSecond.text = LanguageKey.Url
-        self.lbTitleThird.text = LanguageKey.Search
+        self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.Url)
+        self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Url)
+        self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Search)
         self.textFieldValueFirst.text = viewModel.urlTxtView
     }
     /*text*/
@@ -443,9 +446,9 @@ class TableViewCell : UITableViewCell{
     }()
     
     func configView(viewModel : TextViewModelDelegate){
-        self.lbTitleFirst.text = LanguageKey.Text
-        self.lbTitleSecond.text = LanguageKey.Text
-        self.lbTitleThird.text = LanguageKey.Search
+        self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.Text)
+        self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Text)
+        self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Search)
         self.textFieldValueFirst.text = viewModel.textTxtView
     }
     /*phone*/
@@ -458,8 +461,8 @@ class TableViewCell : UITableViewCell{
     }()
     
     func configView(viewModel : PhoneViewModelDelegate){
-        self.lbTitleFirst.text = LanguageKey.Phone
-        self.lbTitleSecond.text = LanguageKey.Phone
+        self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.Phone)
+        self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Phone)
         self.textFieldValueFirst.text = viewModel.phoneTxtView
     }
     /*email*/
@@ -472,10 +475,10 @@ class TableViewCell : UITableViewCell{
     }()
     
     func configView(viewModel : EmailViewModelDelegate){
-        self.lbTitleFirst.text = LanguageKey.To
-        self.lbTitleSecond.text = LanguageKey.Subject
-        self.lbTitleThird.text = LanguageKey.Message
-        self.lbTitleFour.text = LanguageKey.Email
+        self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.To)
+        self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Subject)
+        self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Message)
+        self.lbTitleFour.text = LanguageHelper.getTranslationByKey(LanguageKey.Email)
         
         self.textFieldValueFirst.text = viewModel.toTxtView
         self.textFieldValueSecond.text = viewModel.subjectView
@@ -491,11 +494,11 @@ class TableViewCell : UITableViewCell{
     }()
     
     func configView(viewModel : WifiViewModelDelegate){
-        self.lbTitleFirst.text = LanguageKey.SSID
-        self.lbTitleSecond.text = LanguageKey.Password
-        self.lbTitleThird.text = LanguageKey.NetworkEncryption
-        self.lbTitleFour.text = LanguageKey.Hidden
-        self.lbTitleFive.text = LanguageKey.Wifi
+        self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.SSID)
+        self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Password)
+        self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.NetworkEncryption)
+        self.lbTitleFour.text = LanguageHelper.getTranslationByKey(LanguageKey.Hidden)
+        self.lbTitleFive.text = LanguageHelper.getTranslationByKey(LanguageKey.Wifi)
         
         self.textFieldValueFirst.text = viewModel.ssidView
         self.textFieldValueSecond.text = viewModel.passwordView
@@ -518,11 +521,11 @@ class TableViewCell : UITableViewCell{
     }()
     
     func configView(viewModel : ContactViewModel){
-        self.lbTitleFirst.text = LanguageKey.FullName
-        self.lbTitleSecond.text = LanguageKey.Address
-        self.lbTitleThird.text = LanguageKey.Phone
-        self.lbTitleFour.text = LanguageKey.Email
-        self.lbTitleFive.text = LanguageKey.AddressBook
+        self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.FullName)
+        self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Address)
+        self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Phone)
+        self.lbTitleFour.text = LanguageHelper.getTranslationByKey(LanguageKey.Email)
+        self.lbTitleFive.text = LanguageHelper.getTranslationByKey(LanguageKey.AddressBook)
         
         self.textFieldValueFirst.text = viewModel.fullnameView
         self.textFieldValueSecond.text = viewModel.addressView
@@ -540,10 +543,10 @@ class TableViewCell : UITableViewCell{
     }()
     
     func configView(viewModel : LocationViewModel){
-        self.lbTitleFirst.text = LanguageKey.Latitude
-        self.lbTitleSecond.text = LanguageKey.Longtitude
-        self.lbTitleThird.text = LanguageKey.Query
-        self.lbTitleFour.text = LanguageKey.Location
+        self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.Latitude)
+        self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Longtitude)
+        self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Query)
+        self.lbTitleFour.text = LanguageHelper.getTranslationByKey(LanguageKey.Location)
         
         self.textFieldValueFirst.text = viewModel.latView
         self.textFieldValueSecond.text = viewModel.longView
@@ -560,9 +563,9 @@ class TableViewCell : UITableViewCell{
     }()
     
     func configView(viewModel : MessageViewModel){
-        self.lbTitleFirst.text = LanguageKey.To
-        self.lbTitleSecond.text = LanguageKey.Message
-        self.lbTitleThird.text = LanguageKey.Sms
+        self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.To)
+        self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Message)
+        self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Sms)
         
         self.textFieldValueFirst.text = viewModel.toView
         self.textFieldValueSecond.text = viewModel.messageView
@@ -578,12 +581,12 @@ class TableViewCell : UITableViewCell{
     }()
     
     func configView(viewModel : EventViewModel){
-        self.lbTitleFirst.text = LanguageKey.Title
-        self.lbTitleSecond.text = LanguageKey.Location
-        self.lbTitleThird.text = LanguageKey.Description
-        self.lbTitleFour.text = LanguageKey.TimeBegin
-        self.lbTitleFive.text = LanguageKey.TimeEnd
-        self.lbTitleSix.text = LanguageKey.Calendar
+        self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.Title)
+        self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Location)
+        self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Description)
+        self.lbTitleFour.text = LanguageHelper.getTranslationByKey(LanguageKey.TimeBegin)
+        self.lbTitleFive.text = LanguageHelper.getTranslationByKey(LanguageKey.TimeEnd)
+        self.lbTitleSix.text = LanguageHelper.getTranslationByKey(LanguageKey.Calendar)
         
         
         
@@ -807,6 +810,7 @@ class TableViewCell : UITableViewCell{
                     let event:EKEvent = EKEvent(eventStore: eventStore)
                     
                     event.title = value_data!.title
+                    print(value_data?.beginTime)
                     event.startDate = TimeHelper.getDateTime(timeString: value_data!.beginTime!) ?? Date()
                    
                     event.endDate = TimeHelper.getDateTime(timeString: value_data!.endTime!) ?? Date()

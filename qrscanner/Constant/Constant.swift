@@ -68,15 +68,30 @@ struct AppConstants {
     static let HEIGHT_BUTTON_DEFAULT = CGFloat(50)
     static let WIDTH_BUTTON_DEFAULT = CGFloat(100)
     static let IC_DEFAULT = CFloat(25)
+    static let ICON_WIDTH_HEIGHT = CGFloat(30)
     static let IC_CLOSE_WIDTH = CFloat(30)
     static let IC_CLOSE_HEIGHT = CFloat(30)
     static let MARGIN_LEFT = CGFloat(20)
     static let MARGIN_RIGHT = CGFloat(-20)
+    static let MARGIN_RIGHT_ITEMPLUS = CGFloat(-40)
+
     static let MARGIN_TOP = CGFloat(20)
-    static let MARGIN_BOTTOM = CGFloat(-10)
+    static let MARGIN_LEFT_ITEM_HIS = CGFloat(-80)
+    static let MARGIN_RIGHT_ITEM_HIS = CGFloat(80)
+
+    static let MARGIN_TOP_ITEM = CGFloat(10)
+    static let MARGIN_TOP_SUBITEM = CGFloat(5)
+    static let MARGIN_TOP_CONTAINER = CGFloat(30)
+    static let MARGIN_LEFT_CONTAINER = CGFloat(60)
+
+
+    static let MARGIN_BOTTOM = CGFloat(-20)
+    static let MARGIN_BOTTOM_TAB = CGFloat(-30)
+
     static let ALPHA_DEFAULT = CGFloat(1)
     static let ALPHA_DISBALE = CGFloat(0.5)
-    static let TABLE_ROW_HEIGHT = CGFloat(80)
+    static let TABLE_ROW_HEIGHT = CGFloat(40)
+    
     // switch button default config
     static let SWITCH_ON_TINT_COLOR = UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 1)
     static let SWITCH_OFF_TINT_COLOR = UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 1)
@@ -108,6 +123,8 @@ struct AppConstants {
      static let MENU_ITEM_UNDER_LINE_TRAILING = CGFloat(-10)
      static let IC_SKIP_WIDTH = CFloat(80)
      static let IC_SKIP_HEIGHT = CFloat(50)
+    static let IC_QR_HEIGHT = CFloat(50)
+
      static let MENU_BUTTON_MARGIN_LEFT = CGFloat(10)
      static let MENU_BUTTON_MARGIN_RIGHT = CGFloat(-10)
      static let MARGIN_BOTTOM_TO_BUTTON = CGFloat(-90)
@@ -163,7 +180,13 @@ struct AppFonts {
     static let BUTTON_TITLE_SIZE = CGFloat(20)
     static let FOOTER_LABEL_FONT_SIZE = CGFloat(14)
     
-    static let LABEL_FONT_SIZE = CGFloat(18)
+    static let LABEL_FONT_SIZE = CGFloat(16)
+    static let LABEL_TITLE_FONT_SIZE = CGFloat(18)
+
+    static let LABEL_DETAIL_ITEM_FONT_SIZE = CGFloat(14)
+    static let BUTTON_HEIGHT = CGFloat(45)
+    static let TEXTFIELD_HEIGHT = CGFloat(50)
+    
     static let ERROR_LABEL_FONT_SIZE = CGFloat(15)
     static let FLOAT_LABEL_FONT_SIZE = CGFloat(16)
     static let FLOAT_PLACEHOLDER_FONT_SIZE = CGFloat(14)
@@ -172,12 +195,13 @@ struct AppFonts {
     static let INPUT_TEXT_FONT_SIZE_DEFAULT = CGFloat(15)
     static let VERSION_FONT_SIZE = CGFloat(18)
     static let GROUP_ITEM_TITLE = CGFloat(20)
-    static let ITEM_LABEL_FONT_SIZE = CGFloat(18)
+    static let ITEM_LABEL_FONT_SIZE = CGFloat(16)
     static let ITEM_LABEL_SUB_FONT_SIZE = CGFloat(16)
     static let ITEM_LABEL_SMALL_FONT_SIZE = CGFloat(14)
     static let BUTTON_FONT_SIZE = CGFloat(16)
     static let VERSION_FONT_NORMAL_SIZE = CGFloat(16)
-    
+
+
     static func moderateScale(fontName: String = AppFonts.SFranciscoRegular, size: CGFloat = AppFonts.LABEL_FONT_SIZE, factor: CGFloat = 1)->UIFont{
         let guidelineBaseWidth = CGFloat(375) // Scaling font for iPhone 5s, 5
         let screenSize = UIScreen.main.bounds
@@ -212,7 +236,7 @@ struct AppImages {
     static let IC_DELETE = "ic_delete"
     static let IC_EMAIL = "ic_email"
     static let IC_EVENT = "ic_event"
-    static let IC_FLASH = "ic_flash"
+    static let IC_FLASH = "ic_flash_off"
     static let IC_FLIP_CAMERA = "ic_flip_camera"
     static let IC_HELP = "ic_help"
     static let IC_IMAGE = "ic_image"
@@ -977,18 +1001,18 @@ enum EnumIdentifier : String {
 case SaveChoose = "save_choose"
     case Save = "save"
      case Generate = "generate"
-    case Url = "url"
-    case Text = "text"
-case Phone = "phone"
-    case Email = "email"
-    case Wifi = "wifi"
-    case Contact = "contact"
-    case Location = "location"
-    case Message = "message"
-    case Event = "event"
+    case Url = "URL"
+    case Text = "TEXT"
+case Phone = "PHONE"
+    case Email = "EMAIL"
+    case Wifi = "WIFI"
+    case Contact = "CONTACT"
+    case Location = "LOCATION"
+    case Message = "MESSAGE"
+    case Event = "EVENT"
  case Detail = "detail"
     case Content = "content"
-case Telephone = "telephone"
+case Telephone = "TELEPHONE"
     case Transactions = "transactions"
     case QRCodeHistory = "qrcodeHistory"
     case ScannerResult = "ScannerResult"
@@ -1007,15 +1031,15 @@ case Telephone = "telephone"
     case ReceiveLixiOptions = "ReceiveLixiOptions"
 }
 enum EnumType : String {
-    case URL = "url"
-        case TEXT = "text"
-    case PHONE = "phone"
-        case EMAIL = "email"
-        case WIFI = "wifi"
-        case CONTACT = "contact"
-        case LOCATION = "location"
-        case MESSAGE = "message"
-        case EVENT = "event"
+    case URL = "URL"
+        case TEXT = "TEXT"
+    case TELEPHONE = "TELEPHONE"
+        case EMAIL = "EMAIL"
+        case WIFI = "WIFI"
+        case CONTACT = "CONTACT"
+        case LOCATION = "LOCATION"
+        case MESSAGE = "MESSAGE"
+        case EVENT = "EVENT"
 }
 enum EnumResponseCode : String {
     case USER_IS_NOT_EXISTED = "3035"

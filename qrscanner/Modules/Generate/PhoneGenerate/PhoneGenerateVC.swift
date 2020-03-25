@@ -9,9 +9,14 @@
 import UIKit
 
 class PhoneGenerateVC: BaseViewController {
+    lazy var scrollView: UIScrollView = {
+                let scrollView = UIScrollView()
+                scrollView.translatesAutoresizingMaskIntoConstraints = false
+                return scrollView
+            }()
     lazy var viewBackground: UIView = {
         let view = UIView()
-        view.layer.borderColor = UIColor.lightGray.cgColor
+        view.layer.borderColor = UIColor.black.cgColor
         view.layer.borderWidth = 1
         view.layer.cornerRadius = 10
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -28,7 +33,7 @@ class PhoneGenerateVC: BaseViewController {
     }()
     lazy var lbPhone : ICLabel = {
         let view = ICLabel()
-        view.text = LanguageKey.Phone
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Phone)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -41,14 +46,10 @@ class PhoneGenerateVC: BaseViewController {
         return view
     }()
     
-    var createDateTime : Int = 0
-    var typeCode : String = ""
     var phoneValue = PhoneViewModel()
-    var isSeen : Int = 0
     var viewModel : GenerateViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
-        typeCode = typeCode.uppercased()
         viewModel = GenerateViewModel()
         self.initUI()
         self.setupDelegate()

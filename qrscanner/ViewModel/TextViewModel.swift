@@ -19,11 +19,20 @@ class TextViewModel : Codable , TextViewModelDelegate{
      init(text: String) {
         self.text = text
      }
+    var createDateTime: Int?
+    var typeCode : String?
+    var isSeen : Int? = 0
+    var isUpdate: Int?
     init(data : TextModel) {
         self.text = data.text ?? ""
     }
     init() {
         
     }
-    
+    init(data: ValuePushModel) {
+              self.createDateTime = data.createDateTime
+              self.typeCode = data.typeCode
+              self.isSeen = data.isSeen
+           self.isUpdate = data.isUpdate
+          }
 }

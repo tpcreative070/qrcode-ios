@@ -9,9 +9,14 @@
 import UIKit
 
 class ContactGenerateVC: BaseViewController {
+    lazy var scrollView: UIScrollView = {
+                   let scrollView = UIScrollView()
+                   scrollView.translatesAutoresizingMaskIntoConstraints = false
+                   return scrollView
+               }()
     var viewBackground: UIView = {
         let view = UIView()
-        view.layer.borderColor = UIColor.lightGray.cgColor
+        view.layer.borderColor = UIColor.black.cgColor
         view.layer.borderWidth = 1
         view.layer.cornerRadius = 10
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -55,26 +60,26 @@ class ContactGenerateVC: BaseViewController {
     }()
     lazy var lbFullNameContact : ICLabel = {
         let view = ICLabel()
-        view.text = LanguageKey.Phone
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Phone)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     lazy var lbAddressContact : ICLabel = {
         let view = ICLabel()
-        view.text = LanguageKey.Address
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Address)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     lazy var lbPhoneContact : ICLabel = {
         let view = ICLabel()
-        view.text = LanguageKey.Phone
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Phone)
         
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     lazy var lbEmailContact : ICLabel = {
         let view = ICLabel()
-        view.text = LanguageKey.Email
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Email)
         
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -109,14 +114,10 @@ class ContactGenerateVC: BaseViewController {
         
         return view
     }()
-    var createDateTime : Int = 0
     var contactValue = ContactViewModel()
-    var isSeen : Int = 0
-    var typeCode : String = ""
     var viewModel : GenerateViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
-        typeCode = typeCode.uppercased()
         viewModel = GenerateViewModel()
         self.initUI()
         self.bindViewModel()

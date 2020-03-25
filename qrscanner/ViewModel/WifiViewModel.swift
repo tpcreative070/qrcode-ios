@@ -24,7 +24,10 @@ class WifiViewModel : Codable , WifiViewModelDelegate{
     var hidden: Bool?
     var protect: String?
     var network: String?
-    
+    var createDateTime: Int?
+    var typeCode : String?
+    var isSeen : Int? = 0
+    var isUpdate: Int?
     init(ssid: String, hidden: Bool, protect: String, network: String) {
         self.ssid = ssid
         self.hidden = hidden
@@ -37,6 +40,12 @@ class WifiViewModel : Codable , WifiViewModelDelegate{
         self.protect = data.password ?? ""
         self.network = data.protect ?? ""
     }
+    init(data: ValuePushModel) {
+                self.createDateTime = data.createDateTime
+                self.typeCode = data.typeCode
+                self.isSeen = data.isSeen
+             self.isUpdate = data.isUpdate
+            }
     init() {
         
     }

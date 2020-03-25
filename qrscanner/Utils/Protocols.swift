@@ -98,6 +98,9 @@ protocol GenerateViewModelDelegate  {
       var phoneContact: String? {get}
     var emailContact: String? {get}
    
+    var createDateTime: Int{get}
+    var isSeen: Int{get}
+    var typeCode : String{get}
    
 }
 protocol ResultViewModelDelegate  {
@@ -151,12 +154,16 @@ protocol PhoneViewModelDelegate {
     var phoneTxtView : String{get}
 
 }
+protocol ValuePushViewModelDelegate {
+    var toTxtView : String{get}
+    var subjectView : String{get}
+    var messageView : String{get}
+}
 /*email protocol*/
 protocol EmailViewModelDelegate {
     var toTxtView : String{get}
     var subjectView : String{get}
     var messageView : String{get}
-
 }
 /*wifi protocol*/
 protocol WifiViewModelDelegate {

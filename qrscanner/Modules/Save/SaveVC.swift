@@ -35,7 +35,6 @@ class SaveVC : UIViewController,UIViewControllerTransitioningDelegate, UINavigat
     var sections = [TableSection<String, SaveViewModel>]()
     let viewModel = SaveViewModelList()
     var floaty = Floaty()
-    var flagselectItem = false
     override func viewDidLoad() {
         super.viewDidLoad()
         self.sections = TableSection.group(rowItems: self.viewModel.listSave, by: { (headline) in

@@ -287,7 +287,7 @@ struct Helper {
   }
     static func getValueContent(typeCode : String, contentData: String) -> String{
         var valueShowContent = ""
-        if typeCode == LanguageKey.Url{
+        if typeCode == EnumType.URL.rawValue{
               
                   let content = ContentModel(data :(contentData.toObject(value: UrlModel.self))!)
                   let stringContent = content.content?.data(using: .utf8 )
@@ -296,25 +296,25 @@ struct Helper {
                   
               }
                   //
-              else if typeCode == LanguageKey.Text{
+              else if typeCode == EnumType.TEXT.rawValue{
                   let content = ContentModel(data: (contentData.toObject(value: TextModel.self))!)
                   let stringContent = content.content?.data(using: .utf8 )
                   let textModel : TextModel = try! JSONDecoder().decode(TextModel.self, from: stringContent!)
                   valueShowContent = textModel.text ?? ""
               }
-              else if typeCode == LanguageKey.Location{
+              else if typeCode == EnumType.LOCATION.rawValue{
                   let content = ContentModel(data: (contentData.toObject(value: LocationModel.self))!)
                   let stringContent = content.content?.data(using: .utf8 )
                   let locationModel : LocationModel = try! JSONDecoder().decode(LocationModel.self, from: stringContent!)
                   valueShowContent = "\(locationModel.latitude ?? 0),\(locationModel.longtitude ?? 0),(\(locationModel.query ?? ""))"
               }
-              else if typeCode == LanguageKey.Email{
+              else if typeCode == EnumType.EMAIL.rawValue{
                   let content = ContentModel(data: (contentData.toObject(value: EmailModel.self))!)
                   let stringContent = content.content?.data(using: .utf8 )
                   let emailModel : EmailModel = try! JSONDecoder().decode(EmailModel.self, from: stringContent!)
                   valueShowContent = emailModel.email ?? ""
               }
-              else if typeCode == LanguageKey.Event{
+              else if typeCode == EnumType.EVENT.rawValue{
                   
                   let content = ContentModel(data: (contentData.toObject(value: EventModel.self))!)
                   let stringContent = content.content?.data(using: .utf8 )
@@ -322,28 +322,28 @@ struct Helper {
                   valueShowContent = eventModel.title ?? ""
                   
               }
-              else if typeCode == LanguageKey.Message{
+              else if typeCode == EnumType.MESSAGE.rawValue{
                   
                   let content = ContentModel(data: (contentData.toObject(value: MessageModel.self))!)
                   let stringContent = content.content?.data(using: .utf8 )
                   let messageModel : MessageModel = try! JSONDecoder().decode(MessageModel.self, from: stringContent!)
                   valueShowContent = messageModel.message ?? ""
               }
-              else if typeCode == LanguageKey.Wifi{
+              else if typeCode == EnumType.WIFI.rawValue{
                   
                   let content = ContentModel(data: (contentData.toObject(value: WifiModel.self))!)
                   let stringContent = content.content?.data(using: .utf8 )
                   let wifiModel : WifiModel = try! JSONDecoder().decode(WifiModel.self, from: stringContent!)
                   valueShowContent = wifiModel.ssid ?? ""
               }
-              else if typeCode == LanguageKey.Telephone{
+              else if typeCode == EnumType.TELEPHONE.rawValue{
                   
                   let content = ContentModel(data: (contentData.toObject(value: PhoneModel.self))!)
                   let stringContent = content.content?.data(using: .utf8 )
                   let phoneModel : PhoneModel = try! JSONDecoder().decode(PhoneModel.self, from: stringContent!)
                   valueShowContent = phoneModel.phone ?? ""
               }
-              else if typeCode == LanguageKey.Contact{
+              else if typeCode == EnumType.CONTACT.rawValue{
                   
                   let content = ContentModel(data: (contentData.toObject(value: ContactModel.self))!)
                   let stringContent = content.content?.data(using: .utf8 )
@@ -354,7 +354,7 @@ struct Helper {
     }
     static func getValueShareContent(typeCode : String, contentData: String) -> String{
            var valueShowContent = ""
-           if typeCode == LanguageKey.Url{
+           if typeCode == EnumType.URL.rawValue{
                  
                      let content = ContentModel(data :(contentData.toObject(value: UrlModel.self))!)
                      let stringContent = content.content?.data(using: .utf8 )
@@ -363,25 +363,25 @@ struct Helper {
                      
                  }
                      //
-                 else if typeCode == LanguageKey.Text{
+                 else if typeCode == EnumType.TEXT.rawValue{
                      let content = ContentModel(data: (contentData.toObject(value: TextModel.self))!)
                      let stringContent = content.content?.data(using: .utf8 )
                      let textModel : TextModel = try! JSONDecoder().decode(TextModel.self, from: stringContent!)
                      valueShowContent = "Text: \(textModel.text ?? "")"
                  }
-                 else if typeCode == LanguageKey.Location{
+                 else if typeCode == EnumType.LOCATION.rawValue{
                      let content = ContentModel(data: (contentData.toObject(value: LocationModel.self))!)
                      let stringContent = content.content?.data(using: .utf8 )
                      let locationModel : LocationModel = try! JSONDecoder().decode(LocationModel.self, from: stringContent!)
                      valueShowContent = "Latitude: \(locationModel.latitude ?? 0)\nLongtitude: \(locationModel.longtitude ?? 0)\nQuery: \(locationModel.query ?? "")"
                  }
-                 else if typeCode == LanguageKey.Email{
+                 else if typeCode == EnumType.EMAIL.rawValue{
                      let content = ContentModel(data: (contentData.toObject(value: EmailModel.self))!)
                      let stringContent = content.content?.data(using: .utf8 )
                      let emailModel : EmailModel = try! JSONDecoder().decode(EmailModel.self, from: stringContent!)
             valueShowContent = "Email: \(emailModel.email ?? "")\nSubject: \(emailModel.objectEmail ?? "")\nMessage:\(emailModel.messageEmail ?? "")"
                  }
-                 else if typeCode == LanguageKey.Event{
+                 else if typeCode == EnumType.EVENT.rawValue{
                      
                      let content = ContentModel(data: (contentData.toObject(value: EventModel.self))!)
                      let stringContent = content.content?.data(using: .utf8 )
@@ -389,28 +389,28 @@ struct Helper {
             valueShowContent = "Title: \(eventModel.title ?? "")\nDescription: \(eventModel.description ?? "")\nLocation: \(eventModel.location ?? "")\nStart event: \(eventModel.beginTime ?? "")\nEnd event: \(eventModel.endTime ?? "")"
                      
                  }
-                 else if typeCode == LanguageKey.Message{
+                 else if typeCode == EnumType.MESSAGE.rawValue{
                      
                      let content = ContentModel(data: (contentData.toObject(value: MessageModel.self))!)
                      let stringContent = content.content?.data(using: .utf8 )
                      let messageModel : MessageModel = try! JSONDecoder().decode(MessageModel.self, from: stringContent!)
             valueShowContent = "Phone: \(messageModel.to ?? "")\nMessage: \(messageModel.message ?? "")"
                  }
-                 else if typeCode == LanguageKey.Wifi{
+                 else if typeCode == EnumType.WIFI.rawValue{
                      
                      let content = ContentModel(data: (contentData.toObject(value: WifiModel.self))!)
                      let stringContent = content.content?.data(using: .utf8 )
                      let wifiModel : WifiModel = try! JSONDecoder().decode(WifiModel.self, from: stringContent!)
             valueShowContent = "SSID: \(wifiModel.ssid ?? "")\nPassword: \(wifiModel.password ?? "")\nNetwork encryption: \(wifiModel.protect ?? "")\nHidden: \(wifiModel.hidden)"
                  }
-                 else if typeCode == LanguageKey.Telephone{
+                 else if typeCode == EnumType.TELEPHONE.rawValue{
                      
                      let content = ContentModel(data: (contentData.toObject(value: PhoneModel.self))!)
                      let stringContent = content.content?.data(using: .utf8 )
                      let phoneModel : PhoneModel = try! JSONDecoder().decode(PhoneModel.self, from: stringContent!)
                      valueShowContent = "Phone: \(phoneModel.phone)"
                  }
-                 else if typeCode == LanguageKey.Contact{
+                 else if typeCode == EnumType.CONTACT.rawValue{
                      
                      let content = ContentModel(data: (contentData.toObject(value: ContactModel.self))!)
                      let stringContent = content.content?.data(using: .utf8 )

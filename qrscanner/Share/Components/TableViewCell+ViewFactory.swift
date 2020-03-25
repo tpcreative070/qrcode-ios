@@ -42,8 +42,6 @@ extension TableViewCell {
             setupMessageView()
             case .Event:
             setupEventView()
-            case .Content:
-            setupContentView()
         default :
             break
         }
@@ -53,10 +51,10 @@ extension TableViewCell {
     backgroundView?.backgroundColor = .red
         self.addSubview(self.viewBackground)
         NSLayoutConstraint.activate([
-            self.viewBackground.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant:10),
-            self.viewBackground.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            self.viewBackground.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
-            self.viewBackground.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
+            self.viewBackground.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            self.viewBackground.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.viewBackground.topAnchor.constraint(equalTo: self.topAnchor),
+            self.viewBackground.bottomAnchor.constraint(equalTo: self.bottomAnchor)
             ])
         //add gesture to leftView
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(actionCellViewTap))

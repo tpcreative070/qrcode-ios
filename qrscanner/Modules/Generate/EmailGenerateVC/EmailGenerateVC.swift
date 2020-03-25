@@ -9,10 +9,14 @@
 import UIKit
 
 class EmailGenerateVC: BaseViewController {
-    
+    lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
     var viewBackground: UIView = {
         let view = UIView()
-        view.layer.borderColor = UIColor.lightGray.cgColor
+        view.layer.borderColor = UIColor.black.cgColor
         view.layer.borderWidth = 1
         view.layer.cornerRadius = 10
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -47,19 +51,16 @@ class EmailGenerateVC: BaseViewController {
     }()
     lazy var lbEmail : ICLabel = {
         let view = ICLabel()
-        view.text = LanguageKey.EmailAddress
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     lazy var lbObjectEmail : ICLabel = {
         let view = ICLabel()
-        view.text = LanguageKey.Object
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     lazy var lbMessageEmail : ICLabel = {
         let view = ICLabel()
-        view.text = LanguageKey.Message
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -93,16 +94,11 @@ class EmailGenerateVC: BaseViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-    var viewModelTypeCode = TypeCodeViewModelList()
-    var createDateTime : Int = 0
     var emailValue = EmailViewModel()
-    var isSeen : Int = 0
-    var typeCode : String = ""
     var viewModel : GenerateViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        typeCode = typeCode.uppercased()
         viewModel = GenerateViewModel()
         self.initUI()
         bindViewModel()
@@ -122,7 +118,7 @@ class EmailGenerateVC: BaseViewController {
         keyboardHelper?.deregisterKeyboardNotification()
     }
     func defineValue(){
-        self.viewModel?.typeCode = LanguageKey.Email
+        self.viewModel?.typeCode = EnumType.EMAIL.rawValue
         self.viewModel?.email = textFieldEmail.text
         self.viewModel?.objectEmail = textFieldObjectEmail.text
         self.viewModel?.messageEmail = textFieldMessageEmail.text

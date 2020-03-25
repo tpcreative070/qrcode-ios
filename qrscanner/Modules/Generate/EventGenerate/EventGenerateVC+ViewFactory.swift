@@ -2,14 +2,14 @@
 //  EventGenerate+ViewFactory.swift
 //  qrscanner
 //
-//  Created by Mac10 on 3/12/20.
+//  Created by MacAppConstants.MARGIN_TOP_ITEM on 3/12/20.
 //  Copyright © 2020 thanhphong070. All rights reserved.
 //
 
 import UIKit
 extension EventGenerateVC {
     func initUI() {
-        let gety = view.frame.height * 5.7/7
+        let gety = view.frame.height * 5.8/7
         let value_item = view.frame.height/7
         self.view.addSubview(scrollView)
         NSLayoutConstraint.activate([
@@ -20,101 +20,103 @@ extension EventGenerateVC {
         ])
         scrollView.addSubview(viewBackground)
         NSLayoutConstraint.activate([
-            viewBackground.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            viewBackground.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewBackground.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+
             viewBackground.heightAnchor.constraint(equalToConstant: gety)
             
         ])
         
         viewBackground.addSubview(viewTitleBg)
         NSLayoutConstraint.activate([
-            viewTitleBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: 10),
+            viewTitleBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewTitleBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewTitleBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: -20),
+            viewTitleBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewTitleBg.heightAnchor.constraint(equalToConstant: value_item)
         ])
         
         viewTitleBg.addSubview(lbTitle)
         NSLayoutConstraint.activate([
-            lbTitle.topAnchor.constraint(equalTo: viewTitleBg.topAnchor, constant: 10),
+            lbTitle.topAnchor.constraint(equalTo: viewTitleBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             lbTitle.leadingAnchor.constraint(equalTo: viewTitleBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             lbTitle.trailingAnchor.constraint(equalTo: viewTitleBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewTitleBg.addSubview(textFieldTitle)
         NSLayoutConstraint.activate([
-            textFieldTitle.topAnchor.constraint(equalTo: lbTitle.bottomAnchor, constant: 5),
+            textFieldTitle.topAnchor.constraint(equalTo: lbTitle.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
             textFieldTitle.leadingAnchor.constraint(equalTo: viewTitleBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             textFieldTitle.trailingAnchor.constraint(equalTo: viewTitleBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewBackground.addSubview(viewLocationBg)
         NSLayoutConstraint.activate([
-            viewLocationBg.topAnchor.constraint(equalTo: viewTitleBg.bottomAnchor, constant: 10),
+            viewLocationBg.topAnchor.constraint(equalTo: viewTitleBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             viewLocationBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewLocationBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: -20),
+            viewLocationBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewLocationBg.heightAnchor.constraint(equalToConstant: value_item)
         ])
         viewLocationBg.addSubview(lbLocation)
         NSLayoutConstraint.activate([
-            lbLocation.topAnchor.constraint(equalTo: viewLocationBg.topAnchor, constant: 10),
+            lbLocation.topAnchor.constraint(equalTo: viewLocationBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             lbLocation.leadingAnchor.constraint(equalTo: viewLocationBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             lbLocation.trailingAnchor.constraint(equalTo: viewLocationBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewLocationBg.addSubview(textFieldLocation)
         NSLayoutConstraint.activate([
-            textFieldLocation.topAnchor.constraint(equalTo: lbLocation.bottomAnchor, constant: 5),
+            textFieldLocation.topAnchor.constraint(equalTo: lbLocation.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
             textFieldLocation.leadingAnchor.constraint(equalTo: viewLocationBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             textFieldLocation.trailingAnchor.constraint(equalTo: viewLocationBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         
         viewBackground.addSubview(viewDescriptionBg)
         NSLayoutConstraint.activate([
-            viewDescriptionBg.topAnchor.constraint(equalTo: viewLocationBg.bottomAnchor, constant: 10),
+            viewDescriptionBg.topAnchor.constraint(equalTo: viewLocationBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             viewDescriptionBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewDescriptionBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: -20),
+            viewDescriptionBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewDescriptionBg.heightAnchor.constraint(equalToConstant: value_item)
         ])
         viewDescriptionBg.addSubview(lbDescription)
         NSLayoutConstraint.activate([
-            lbDescription.topAnchor.constraint(equalTo: viewDescriptionBg.topAnchor, constant: 10),
+            lbDescription.topAnchor.constraint(equalTo: viewDescriptionBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             lbDescription.leadingAnchor.constraint(equalTo: viewDescriptionBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             lbDescription.trailingAnchor.constraint(equalTo: viewDescriptionBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewDescriptionBg.addSubview(textFieldDescription)
         NSLayoutConstraint.activate([
-            textFieldDescription.topAnchor.constraint(equalTo: lbDescription.bottomAnchor, constant: 5),
+            textFieldDescription.topAnchor.constraint(equalTo: lbDescription.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
             textFieldDescription.leadingAnchor.constraint(equalTo: viewDescriptionBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             textFieldDescription.trailingAnchor.constraint(equalTo: viewDescriptionBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewBackground.addSubview(viewBeginBg)
         NSLayoutConstraint.activate([
-            viewBeginBg.topAnchor.constraint(equalTo: viewDescriptionBg.bottomAnchor, constant: 10),
+            viewBeginBg.topAnchor.constraint(equalTo: viewDescriptionBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             viewBeginBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewBeginBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: -20),
+            viewBeginBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewBeginBg.heightAnchor.constraint(equalToConstant: value_item)
         ])
         viewBeginBg.addSubview(lbBeginTime)
         NSLayoutConstraint.activate([
-            lbBeginTime.topAnchor.constraint(equalTo: viewBeginBg.topAnchor, constant: 10),
+            lbBeginTime.topAnchor.constraint(equalTo: viewBeginBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             lbBeginTime.leadingAnchor.constraint(equalTo: viewBeginBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             lbBeginTime.trailingAnchor.constraint(equalTo: viewBeginBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewBeginBg.addSubview(textFieldBeginTime)
         NSLayoutConstraint.activate([
-            textFieldBeginTime.topAnchor.constraint(equalTo: lbBeginTime.bottomAnchor, constant: 5),
+            textFieldBeginTime.topAnchor.constraint(equalTo: lbBeginTime.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
             textFieldBeginTime.leadingAnchor.constraint(equalTo: viewBeginBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             textFieldBeginTime.trailingAnchor.constraint(equalTo: viewBeginBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewBackground.addSubview(viewEndBg)
         NSLayoutConstraint.activate([
-            viewEndBg.topAnchor.constraint(equalTo: viewBeginBg.bottomAnchor, constant: 10),
+            viewEndBg.topAnchor.constraint(equalTo: viewBeginBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             viewEndBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewEndBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: -20),
+            viewEndBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewEndBg.heightAnchor.constraint(equalToConstant: value_item)
         ])
         viewEndBg.addSubview(lbEndTime)
         NSLayoutConstraint.activate([
-            lbEndTime.topAnchor.constraint(equalTo: viewEndBg.topAnchor, constant: 10),
+            lbEndTime.topAnchor.constraint(equalTo: viewEndBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             lbEndTime.leadingAnchor.constraint(equalTo: viewEndBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             lbEndTime.trailingAnchor.constraint(equalTo: viewEndBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
@@ -124,6 +126,13 @@ extension EventGenerateVC {
             textFieldEndTime.leadingAnchor.constraint(equalTo: viewEndBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             textFieldEndTime.trailingAnchor.constraint(equalTo: viewEndBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
+          self.lbTitle.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+          self.lbLocation.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+          self.lbDescription.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+         self.lbBeginTime.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+         self.lbEndTime.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
+        self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
         setupNavItems()
         setupEndedUpScrollView()
     }
@@ -143,7 +152,7 @@ extension EventGenerateVC {
     func setupNavItems() {
         self.view.backgroundColor = .white
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationItem.title = LanguageKey.Event
+        navigationItem.title = LanguageHelper.getTranslationByKey(LanguageKey.Event)
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationController?.navigationBar.isTranslucent = true
@@ -182,7 +191,7 @@ extension EventGenerateVC {
                     self?.textFieldEndTime.errorMessage = ""
                 }
             }
-         
+            
         })
         viewModel?.showLoading.bind { [weak self] visible in
             if self != nil {
@@ -191,14 +200,16 @@ extension EventGenerateVC {
         }
         
         viewModel?.responseToView = { [weak self] value in
+            
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
                 let resVC = ResultGenerateVC()
-                resVC.typeCode = LanguageKey.Event
-                resVC.createDateTime = self!.createDateTime
                 resVC.contentData = ContentViewModel(data: EventModel(title: (self?.textFieldTitle.text)!, location: (self?.textFieldLocation.text)!, description: (self?.textFieldDescription.text)!, beginTime: (self?.textFieldBeginTime.text)!, endTime: (self?.textFieldEndTime.text)!))
                 resVC.imgCode = (self?.viewModel?.result)!
-                if self?.isSeen == AppConstants.ISSEEN {
-                    resVC.isUpdate = AppConstants.ISUPDATE
+                resVC.viewModel.typeCode = EnumType.EVENT.rawValue
+                if (self?.eventValue.isSeen)! == AppConstants.ISSEEN {
+                    resVC.viewModel.isUpdate = AppConstants.ISUPDATE
+                    resVC.viewModel.createDateTime = (self?.eventValue.createDateTime)!
+
                 }
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }
@@ -229,7 +240,7 @@ extension EventGenerateVC {
         self.viewModel?.errorMessages.value[GenerateViewModelKey.ENDTIME_EVENT] = ""
         
     }
-        private func clearDataTextfield() {
+    private func clearDataTextfield() {
         self.textFieldTitle.resignFirstResponder()
         self.textFieldLocation.resignFirstResponder()
         self.textFieldDescription.resignFirstResponder()
@@ -254,17 +265,19 @@ extension EventGenerateVC {
         textFieldEndTime.inputAccessoryView     = toolBar
     }
     func defineValue(){
-        self.viewModel?.typeCode = LanguageKey.Event
+        self.viewModel?.typeCode = EnumType.EVENT.rawValue
         self.viewModel?.titleEvent = textFieldTitle.text
         self.viewModel?.locationEvent = textFieldLocation.text
         self.viewModel?.descriptionEvent = textFieldDescription.text
+        print(beginTime)
+        print(endTime)
         self.viewModel?.beginTimeEvent = beginTime
         self.viewModel?.endTimeEvent = endTime
         
         
     }
     func checkIsSeenDetail(){
-        if isSeen == AppConstants.ISSEEN {
+        if eventValue.isSeen == AppConstants.ISSEEN {
             textFieldTitle.text = eventValue.title ?? ""
             textFieldLocation.text = eventValue.location ?? ""
             textFieldDescription.text = eventValue.description ?? ""

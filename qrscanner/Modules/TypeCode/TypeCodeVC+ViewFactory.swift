@@ -135,32 +135,32 @@ extension TypeCodeVC : TableViewCellDelegate {
     func navigationToAddGenerateVC(typeCode: String){
         var vc : UIViewController? = UIViewController()
        let typeCode = typeCode.uppercased()
-        if typeCode == LanguageKey.Url{
+        if typeCode == EnumType.URL.rawValue{
                 vc = UrlGenerateVC()
               }
-              else if typeCode == LanguageKey.Text{
+              else if typeCode == EnumType.TEXT.rawValue{
                   vc = TextGenerateVC()
               }
-              else if typeCode == LanguageKey.Location{
+              else if typeCode == EnumType.LOCATION.rawValue{
                   vc = LocationGenerateVC()
               }
-              else if typeCode == LanguageKey.Email{
+              else if typeCode == EnumType.EMAIL.rawValue{
                  vc = EmailGenerateVC()
               }
-              else if typeCode == LanguageKey.Event{
+              else if typeCode == EnumType.EVENT.rawValue{
                  vc = EventGenerateVC()
               }
-              else if typeCode == LanguageKey.Message{
+              else if typeCode == EnumType.MESSAGE.rawValue{
                 vc = MessageGenerateVC()
 
               }
-              else if typeCode == LanguageKey.Wifi{
+              else if typeCode == EnumType.WIFI.rawValue{
                  vc = WifiGenerateVC()
               }
-              else if typeCode == LanguageKey.Telephone{
+              else if typeCode == EnumType.TELEPHONE.rawValue{
                   vc = PhoneGenerateVC()
               }
-              else if typeCode == LanguageKey.Contact{
+              else if typeCode == EnumType.CONTACT.rawValue{
               vc = ContactGenerateVC()
 
               }

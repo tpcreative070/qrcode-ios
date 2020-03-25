@@ -23,6 +23,8 @@ class MainVC : SwipeMenuViewController {
         addedView()
         setupStatusBar()
         super.viewDidLoad()
+        UIFont.availableFonts()
+
         self.view.backgroundColor = .white
     }
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

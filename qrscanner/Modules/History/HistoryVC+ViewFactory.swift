@@ -21,7 +21,7 @@ extension HistoryVC  {
         self.scrollView.addSubview(viewWrapper)
         NSLayoutConstraint.activate([
             viewWrapper.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor),
-            viewWrapper.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -30),
+            viewWrapper.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: AppConstants.MARGIN_BOTTOM),
             viewWrapper.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             viewWrapper.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             viewWrapper.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
@@ -39,7 +39,7 @@ extension HistoryVC  {
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0)
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
         setupFloatButton()
         setupEndedUpScrollView()
@@ -78,7 +78,8 @@ extension HistoryVC  {
     }
     
     func bindTableView(){
-        self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.History.rawValue, items: self.viewModel.listHistories,sections: self.sections, height: 40,isSelectionStype: false){ cell, vm in
+        print(self.viewModel.listHistories)
+        self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.History.rawValue, items: self.viewModel.listHistories,sections: self.sections, height: AppConstants.TABLE_ROW_HEIGHT,isSelectionStype: false){ cell, vm in
             cell.configView(view: vm)
             cell.configData(viewModel: vm)
             cell.delegate = self
@@ -110,7 +111,7 @@ extension HistoryVC  {
         item.titleLabelPosition = .left
         item.icon = UIImage(named: AppImages.IC_KEYBOARD)
         item.icon?.withTintColor(.white)
-        item.title = LanguageKey.Csv
+        item.title = LanguageHelper.getTranslationByKey(LanguageKey.Csv)
         item.handler = { item in
             let activiController = UIActivityViewController(activityItems: ["this text"], applicationActivities: nil)
             self.present(activiController,animated: true, completion: nil)
@@ -120,7 +121,7 @@ extension HistoryVC  {
         item_select.buttonColor = AppColors.PRIMARY_COLOR
         item_select.titleLabelPosition = .left
         item_select.icon = UIImage(named: AppImages.IC_SELECT_ALL)
-        item_select.title = LanguageKey.Select
+        item_select.title = LanguageHelper.getTranslationByKey(LanguageKey.Select)
         item_select.handler = { item in
             self.navigationController?.pushViewController(ChooseHistoryVC(), animated: false)
         }

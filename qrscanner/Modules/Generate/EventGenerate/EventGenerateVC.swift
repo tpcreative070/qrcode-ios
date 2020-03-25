@@ -21,7 +21,7 @@ class EventGenerateVC: BaseViewController {
     }()
     var viewBackground: UIView = {
         let view = UIView()
-        view.layer.borderColor = UIColor.lightGray.cgColor
+        view.layer.borderColor = UIColor.black.cgColor
         view.layer.borderWidth = 1
         view.layer.cornerRadius = 10
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -74,32 +74,32 @@ class EventGenerateVC: BaseViewController {
     }()
     lazy var lbTitle : ICLabel = {
         let view = ICLabel()
-        view.text = LanguageKey.Title
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Title)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     lazy var lbLocation : ICLabel = {
         let view = ICLabel()
-        view.text = LanguageKey.Location
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Location)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     lazy var lbDescription : ICLabel = {
         let view = ICLabel()
-        view.text = LanguageKey.Description
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Description)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     lazy var lbBeginTime : ICLabel = {
         let view = ICLabel()
-        view.text = LanguageKey.TimeBegin
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.TimeBegin)
         
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     lazy var lbEndTime : ICLabel = {
         let view = ICLabel()
-        view.text = LanguageKey.TimeEnd
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.TimeEnd)
         
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -139,10 +139,7 @@ class EventGenerateVC: BaseViewController {
         view.alpha = AppConstants.ALPHA_DISBALE
         return view
     }()
-    var createDateTime : Int = 0
        var eventValue = EventViewModel()
-       var isSeen : Int = 0
-       var typeCode : String = ""
     var viewModel : GenerateViewModel?
     var toolBar = UIToolbar()
     var datePicker = UIDatePicker()
@@ -150,7 +147,6 @@ class EventGenerateVC: BaseViewController {
     var endTime: Date?
     override func viewDidLoad() {
         super.viewDidLoad()
-        typeCode = typeCode.uppercased()
         viewModel = GenerateViewModel()
         self.initUI()
         self.setupDelegate()

@@ -51,7 +51,7 @@ class HeaderView : UITableViewHeaderFooterView{
     // config view with Confirm
     func configView(view : GenerateViewModelDeletegate){
         self.lbGroupName.text = view.typeCodeView
-        self.lbGroupName.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoBold, size: AppFonts.LABEL_FONT_SIZE)
+        self.lbGroupName.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoBold, size: AppFonts.LABEL_TITLE_FONT_SIZE)
     }
     /*
      func configView(view : TransactionsLogsViewModelDeletegate){

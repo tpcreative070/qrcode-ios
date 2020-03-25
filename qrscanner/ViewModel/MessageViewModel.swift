@@ -10,22 +10,32 @@ import Foundation
 import UIKit
 class MessageViewModel : Codable , MessageViewModelDelegate{
     var toView: String {
-        return toMessage
+        return toMessage ?? ""
     }
     
     var messageView: String {
-        return message
+        return message ?? ""
     }
+    var toMessage: String?
+   var message: String?
+  var createDateTime: Int?
+     var typeCode : String?
+     var isSeen : Int? = 0
+     var isUpdate: Int?
     
-   
-     var toMessage: String
-   var message: String
-  
-
     init(data: MessageModel) {
         self.toMessage = data.to!
         self.message = data.message!
     
      }
+    init(data: ValuePushModel) {
+        self.createDateTime = data.createDateTime
+        self.typeCode = data.typeCode
+        self.isSeen = data.isSeen
+     self.isUpdate = data.isUpdate
+    }
+    init() {
+        
+    }
     
 }

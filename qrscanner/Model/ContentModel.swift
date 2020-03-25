@@ -43,7 +43,7 @@ class ContentModel : Codable {
           self.content = JSONSerializerHelper.toJson(data)
       }
     init(data: PhoneModel) {
-          self.typeCode = EnumType.PHONE.rawValue
+          self.typeCode = EnumType.TELEPHONE.rawValue
           self.content = JSONSerializerHelper.toJson(data)
       }
     init(data: WifiModel) {

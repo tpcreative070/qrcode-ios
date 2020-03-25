@@ -20,15 +20,15 @@ enum TypeCodeOption: Int, CustomStringConvertible {
     case Url
     var name: String {
         switch self {
-        case .Email: return LanguageHelper.getTranslationByKey(LanguageKey.Email) ?? "Email"
-        case .Message: return LanguageHelper.getTranslationByKey(LanguageKey.Message) ?? "Message"
-        case .Location: return LanguageHelper.getTranslationByKey(LanguageKey.Location) ?? "Location"
-        case .Event: return LanguageHelper.getTranslationByKey(LanguageKey.Event) ?? "Event"
-        case .Contact: return LanguageHelper.getTranslationByKey(LanguageKey.Contact) ?? "Contact"
-        case .Telephone: return LanguageHelper.getTranslationByKey(LanguageKey.Telephone) ?? "Telephone"
-        case .Text: return LanguageHelper.getTranslationByKey(LanguageKey.Text) ?? "Text"
-        case .Wifi: return LanguageHelper.getTranslationByKey(LanguageKey.Wifi) ?? "Wifi"
-        case .Url: return LanguageHelper.getTranslationByKey(LanguageKey.Url) ?? "Url"
+        case .Email: return "Email"
+        case .Message: return "Message"
+        case .Location: return "Location"
+        case .Event: return "Event"
+        case .Contact: return "Contact"
+        case .Telephone: return "Telephone"
+        case .Text: return "Text"
+        case .Wifi: return "Wifi"
+        case .Url: return "Url"
             
         }
     }

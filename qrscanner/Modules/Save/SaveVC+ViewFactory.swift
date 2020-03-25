@@ -21,7 +21,7 @@ extension SaveVC  {
         self.scrollView.addSubview(wrapperView)
         NSLayoutConstraint.activate([
             wrapperView.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor),
-            wrapperView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -30),
+            wrapperView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: AppConstants.MARGIN_BOTTOM),
             wrapperView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             wrapperView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             wrapperView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
@@ -42,7 +42,7 @@ extension SaveVC  {
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0)
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
         
         setupEndedUpScrollView()
@@ -90,7 +90,7 @@ extension SaveVC  {
     }
     
     func bindTableView(){
-        self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.Save.rawValue, items: self.viewModel.listSave,sections: self.sections, height: 40,isSelectionStype: false){ cell, vm in
+        self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.Save.rawValue, items: self.viewModel.listSave,sections: self.sections, height: AppConstants.TABLE_ROW_HEIGHT,isSelectionStype: false){ cell, vm in
             cell.configViewSave(view: vm)
             cell.configData(viewModel: vm)
             cell.delegate = self
@@ -128,7 +128,7 @@ extension SaveVC  {
         item.titleLabelPosition = .left
         item.icon = UIImage(named: AppImages.IC_KEYBOARD)
         item.icon?.withTintColor(.white)
-        item.title = LanguageKey.Csv
+        item.title = LanguageHelper.getTranslationByKey(LanguageKey.Csv)
         item.handler = { item in
             let activiController = UIActivityViewController(activityItems: ["this text"], applicationActivities: nil)
             self.present(activiController,animated: true, completion: nil)
@@ -142,10 +142,10 @@ extension SaveVC  {
         
         item_select.titleLabelPosition = .left
         item_select.icon = UIImage(named: AppImages.IC_SELECT_ALL)
-        item_select.title = LanguageKey.Select
+        item_select.title = LanguageHelper.getTranslationByKey(LanguageKey.Select)
         item_select.handler = { item in
             self.navigationController?.pushViewController(ChooseSaveVC(), animated: false)
-           
+            
         }
         floaty.tintColor = .white
         floaty.addItem(item: item_select)
@@ -171,15 +171,15 @@ extension SaveVC : TableViewCellDelegate{
     }
     
     func cellViewSelected(cell: Codable) {
-          if let data = JSONHelper.get(value: SaveViewModel.self,anyObject: cell){
-                  print(data.typeCode)
-                  print(data.content.content!)
-                  let value = data.content
-                  let  vc = DetailVC()
-                  vc.listContent = [ContentViewModel(data: value)]
-                  self.navigationController?.pushViewController(vc, animated: true)
-                  
-              }
+        if let data = JSONHelper.get(value: SaveViewModel.self,anyObject: cell){
+            print(data.typeCode)
+            print(data.content.content!)
+            let value = data.content
+            let  vc = DetailVC()
+            vc.listContent = [ContentViewModel(data: value)]
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
     }
     
     func cellCodable(codable: Codable) {
@@ -187,76 +187,78 @@ extension SaveVC : TableViewCellDelegate{
         let typeCode = value_data?.typeCode.uppercased()
         let content = value_data!.content
         let stringContent = content.content?.data(using: .utf8 )
-        if typeCode == LanguageKey.Url{
+        print(stringContent)
+        if typeCode == EnumType.URL.rawValue{
             let urlModel : UrlViewModel = try! JSONDecoder().decode(UrlViewModel.self, from: stringContent!)
             let  vc = UrlGenerateVC()
             vc.urlValue = urlModel
-            vc.createDateTime = value_data!.createdDateTime
-            vc.isSeen = AppConstants.ISSEEN
+            vc.urlValue.isSeen = AppConstants.ISSEEN
+            vc.urlValue.createDateTime = value_data!.createdDateTime
             self.navigationController?.pushViewController(vc, animated: true)
         }
-        if typeCode == LanguageKey.Wifi{
+        if typeCode == EnumType.WIFI.rawValue{
             let wifiModel : WifiViewModel = try! JSONDecoder().decode(WifiViewModel.self, from: stringContent!)
             let  vc = WifiGenerateVC()
             vc.wifiValue = wifiModel
-            vc.createDateTime = value_data!.createdDateTime
-            vc.isSeen = AppConstants.ISSEEN
+            vc.wifiValue.isSeen = AppConstants.ISSEEN
+            vc.wifiValue.createDateTime = value_data!.createdDateTime
             self.navigationController?.pushViewController(vc, animated: true)
         }
-        if typeCode == LanguageKey.Telephone{
+        if typeCode == EnumType.TELEPHONE.rawValue{
             let phoneModel : PhoneViewModel = try! JSONDecoder().decode(PhoneViewModel.self, from: stringContent!)
             let  vc = PhoneGenerateVC()
             vc.phoneValue = phoneModel
-            vc.createDateTime = value_data!.createdDateTime
-            vc.isSeen = AppConstants.ISSEEN
+            vc.phoneValue.isSeen = AppConstants.ISSEEN
+            vc.phoneValue.createDateTime = value_data!.createdDateTime
             self.navigationController?.pushViewController(vc, animated: true)
         }
-        if typeCode == LanguageKey.Text{
-                  let textModel : TextViewModel = try! JSONDecoder().decode(TextViewModel.self, from: stringContent!)
-                  let  vc = TextGenerateVC()
-                  vc.textValue = textModel
-                  vc.createDateTime = value_data!.createdDateTime
-                  vc.isSeen = AppConstants.ISSEEN
-                  self.navigationController?.pushViewController(vc, animated: true)
-              }
-        if typeCode == LanguageKey.Contact{
-                  let contactModel : ContactViewModel = try! JSONDecoder().decode(ContactViewModel.self, from: stringContent!)
-                  let  vc = ContactGenerateVC()
-                  vc.contactValue = contactModel
-                  vc.createDateTime = value_data!.createdDateTime
-                  vc.isSeen = AppConstants.ISSEEN
-                  self.navigationController?.pushViewController(vc, animated: true)
-              }
-        if typeCode == LanguageKey.Event{
-                  let eventModel : EventViewModel = try! JSONDecoder().decode(EventViewModel.self, from: stringContent!)
-                  let  vc = EventGenerateVC()
-                  vc.eventValue = eventModel
-                  vc.createDateTime = value_data!.createdDateTime
-                  vc.isSeen = AppConstants.ISSEEN
-                  self.navigationController?.pushViewController(vc, animated: true)
-              }
-        if typeCode == LanguageKey.Location{
-                  let locationModel : LocationViewModel = try! JSONDecoder().decode(LocationViewModel.self, from: stringContent!)
-                  let  vc = LocationGenerateVC()
-                  vc.locationValue = locationModel
-                  vc.createDateTime = value_data!.createdDateTime
-                  vc.isSeen = AppConstants.ISSEEN
-                  self.navigationController?.pushViewController(vc, animated: true)
-              }
-        if typeCode == LanguageKey.Message{
-                  let messageModel : MessageModel = try! JSONDecoder().decode(MessageModel.self, from: stringContent!)
-                  let  vc = MessageGenerateVC()
-                  vc.messageValue = messageModel
-                  vc.createDateTime = value_data!.createdDateTime
-                  vc.isSeen = AppConstants.ISSEEN
-                  self.navigationController?.pushViewController(vc, animated: true)
-              }
-        if typeCode == LanguageKey.Email{
-            let emailModel : EmailViewModel = try! JSONDecoder().decode(EmailViewModel.self, from: stringContent!)
+        if typeCode == EnumType.TEXT.rawValue{
+            let textModel : TextViewModel = try! JSONDecoder().decode(TextViewModel.self, from: stringContent!)
+            let  vc = TextGenerateVC()
+            vc.textValue = textModel
+            vc.textValue.isSeen = AppConstants.ISSEEN
+            vc.textValue.createDateTime = value_data!.createdDateTime
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if typeCode == EnumType.CONTACT.rawValue{
+            let contactModel : ContactViewModel = try! JSONDecoder().decode(ContactViewModel.self, from: stringContent!)
+            let  vc = ContactGenerateVC()
+            vc.contactValue = contactModel
+            vc.contactValue.isSeen = AppConstants.ISSEEN
+            vc.contactValue.createDateTime = value_data!.createdDateTime
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if typeCode == EnumType.EVENT.rawValue{
+            let eventModel : EventViewModel = try! JSONDecoder().decode(EventViewModel.self, from: stringContent!)
+            let  vc = EventGenerateVC()
+            vc.eventValue = eventModel
+            vc.eventValue.isSeen = AppConstants.ISSEEN
+            vc.eventValue.createDateTime = value_data!.createdDateTime
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if typeCode == EnumType.LOCATION.rawValue{
+            let locationModel : LocationViewModel = try! JSONDecoder().decode(LocationViewModel.self, from: stringContent!)
+            let  vc = LocationGenerateVC()
+            vc.locationValue = locationModel
+            vc.locationValue.isSeen = AppConstants.ISSEEN
+            vc.locationValue.createDateTime = value_data!.createdDateTime
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if typeCode == EnumType.MESSAGE.rawValue{
+            let messageModel : MessageViewModel = try! JSONDecoder().decode(MessageViewModel.self, from: stringContent!)
+            let  vc = MessageGenerateVC()
+            vc.messageValue = messageModel
+            vc.messageValue.isSeen = AppConstants.ISSEEN
+            vc.messageValue.createDateTime = value_data!.createdDateTime
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if typeCode == EnumType.EMAIL.rawValue{
+            var emailModel : EmailViewModel = EmailViewModel()
+            emailModel = try! JSONDecoder().decode(EmailViewModel.self, from: stringContent!)
             let  vc = EmailGenerateVC()
             vc.emailValue = emailModel
-            vc.createDateTime = value_data!.createdDateTime
-            vc.isSeen = AppConstants.ISSEEN
+            vc.emailValue.isSeen = AppConstants.ISSEEN
+            vc.emailValue.createDateTime = value_data!.createdDateTime
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

@@ -9,97 +9,111 @@
 import UIKit
 extension ContactGenerateVC{
     func initUI(){
-        let gety = view.frame.height * 4.5/7
+        let gety = view.frame.height * 4.7/7
         let value_item = view.frame.height/7
-        view.addSubview(viewBackground)
+        self.view.addSubview(scrollView)
         NSLayoutConstraint.activate([
-            viewBackground.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+        ])
+        scrollView.addSubview(viewBackground)
+        NSLayoutConstraint.activate([
+            viewBackground.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: AppConstants.MARGIN_TOP),
             viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewBackground.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             viewBackground.heightAnchor.constraint(equalToConstant: gety)
         ])
         viewBackground.addSubview(viewFullNameContactBg)
         NSLayoutConstraint.activate([
-            viewFullNameContactBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: 10),
+            viewFullNameContactBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewFullNameContactBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewFullNameContactBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: -20),
+            viewFullNameContactBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewFullNameContactBg.heightAnchor.constraint(equalToConstant: value_item)
         ])
         
         viewFullNameContactBg.addSubview(lbFullNameContact)
         NSLayoutConstraint.activate([
-            lbFullNameContact.topAnchor.constraint(equalTo: viewFullNameContactBg.topAnchor, constant: 10),
+            lbFullNameContact.topAnchor.constraint(equalTo: viewFullNameContactBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             lbFullNameContact.leadingAnchor.constraint(equalTo: viewFullNameContactBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             lbFullNameContact.trailingAnchor.constraint(equalTo: viewFullNameContactBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewFullNameContactBg.addSubview(textFieldFullNameContact)
         NSLayoutConstraint.activate([
-            textFieldFullNameContact.topAnchor.constraint(equalTo: lbFullNameContact.bottomAnchor, constant: 5),
+            textFieldFullNameContact.topAnchor.constraint(equalTo: lbFullNameContact.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
             textFieldFullNameContact.leadingAnchor.constraint(equalTo: viewFullNameContactBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             textFieldFullNameContact.trailingAnchor.constraint(equalTo: viewFullNameContactBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         
         viewBackground.addSubview(viewAddressContactBg)
         NSLayoutConstraint.activate([
-            viewAddressContactBg.topAnchor.constraint(equalTo: viewFullNameContactBg.bottomAnchor, constant: 10),
+            viewAddressContactBg.topAnchor.constraint(equalTo: viewFullNameContactBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             viewAddressContactBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewAddressContactBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: -20),
+            viewAddressContactBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewAddressContactBg.heightAnchor.constraint(equalToConstant: value_item)
         ])
         
         viewAddressContactBg.addSubview(lbAddressContact)
         NSLayoutConstraint.activate([
-            lbAddressContact.topAnchor.constraint(equalTo: viewAddressContactBg.topAnchor, constant: 10),
+            lbAddressContact.topAnchor.constraint(equalTo: viewAddressContactBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             lbAddressContact.leadingAnchor.constraint(equalTo: viewAddressContactBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             lbAddressContact.trailingAnchor.constraint(equalTo: viewAddressContactBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewAddressContactBg.addSubview(textFieldAddressContact)
         NSLayoutConstraint.activate([
-            textFieldAddressContact.topAnchor.constraint(equalTo: lbAddressContact.bottomAnchor, constant: 5),
+            textFieldAddressContact.topAnchor.constraint(equalTo: lbAddressContact.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
             textFieldAddressContact.leadingAnchor.constraint(equalTo: viewAddressContactBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             textFieldAddressContact.trailingAnchor.constraint(equalTo: viewAddressContactBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         
         viewBackground.addSubview(viewPhoneContactBg)
         NSLayoutConstraint.activate([
-            viewPhoneContactBg.topAnchor.constraint(equalTo: viewAddressContactBg.bottomAnchor, constant: 10),
+            viewPhoneContactBg.topAnchor.constraint(equalTo: viewAddressContactBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             viewPhoneContactBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewPhoneContactBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: -20),
+            viewPhoneContactBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewPhoneContactBg.heightAnchor.constraint(equalToConstant: value_item)
         ])
         
         viewPhoneContactBg.addSubview(lbPhoneContact)
         NSLayoutConstraint.activate([
-            lbPhoneContact.topAnchor.constraint(equalTo: viewPhoneContactBg.topAnchor, constant: 10),
+            lbPhoneContact.topAnchor.constraint(equalTo: viewPhoneContactBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             lbPhoneContact.leadingAnchor.constraint(equalTo: viewPhoneContactBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             lbPhoneContact.trailingAnchor.constraint(equalTo: viewPhoneContactBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewPhoneContactBg.addSubview(textFieldPhoneContact)
         NSLayoutConstraint.activate([
-            textFieldPhoneContact.topAnchor.constraint(equalTo: lbPhoneContact.bottomAnchor, constant: 5),
+            textFieldPhoneContact.topAnchor.constraint(equalTo: lbPhoneContact.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
             textFieldPhoneContact.leadingAnchor.constraint(equalTo: viewPhoneContactBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             textFieldPhoneContact.trailingAnchor.constraint(equalTo: viewPhoneContactBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewBackground.addSubview(viewEmailContactBg)
         NSLayoutConstraint.activate([
-            viewEmailContactBg.topAnchor.constraint(equalTo: viewPhoneContactBg.bottomAnchor, constant: 10),
+            viewEmailContactBg.topAnchor.constraint(equalTo: viewPhoneContactBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             viewEmailContactBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewEmailContactBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: -20),
+            viewEmailContactBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewEmailContactBg.heightAnchor.constraint(equalToConstant: value_item)
         ])
         
         viewEmailContactBg.addSubview(lbEmailContact)
         NSLayoutConstraint.activate([
-            lbEmailContact.topAnchor.constraint(equalTo: viewEmailContactBg.topAnchor, constant: 10),
+            lbEmailContact.topAnchor.constraint(equalTo: viewEmailContactBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             lbEmailContact.leadingAnchor.constraint(equalTo: viewEmailContactBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             lbEmailContact.trailingAnchor.constraint(equalTo: viewEmailContactBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewEmailContactBg.addSubview(textFieldEmailContact)
         NSLayoutConstraint.activate([
-            textFieldEmailContact.topAnchor.constraint(equalTo: lbEmailContact.bottomAnchor, constant: 5),
+            textFieldEmailContact.topAnchor.constraint(equalTo: lbEmailContact.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
             textFieldEmailContact.leadingAnchor.constraint(equalTo: viewEmailContactBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             textFieldEmailContact.trailingAnchor.constraint(equalTo: viewEmailContactBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
+        self.lbFullNameContact.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.lbAddressContact.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.lbPhoneContact.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.lbEmailContact.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
+        self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
         setupNavItems()
     }
     
@@ -110,7 +124,7 @@ extension ContactGenerateVC{
         
         self.view.backgroundColor = .white
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationItem.title = LanguageKey.Contact
+        self.navigationItem.title = LanguageHelper.getTranslationByKey(LanguageKey.Contact)
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
         self.navigationController?.navigationBar.isTranslucent = true
@@ -158,12 +172,13 @@ extension ContactGenerateVC{
         viewModel?.responseToView = { [weak self] value in
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
                 let resVC = ResultGenerateVC()
-                resVC.typeCode = LanguageKey.Contact
-                resVC.createDateTime = self!.createDateTime
                 resVC.contentData = ContentViewModel(data: ContactModel(fullNameContact: (self?.textFieldFullNameContact.text)!, addressContact: (self?.textFieldAddressContact.text)!, phoneContact: (self?.textFieldPhoneContact.text)!, emailContact: (self?.textFieldEmailContact.text)!))
                 resVC.imgCode = (self?.viewModel?.result)!
-                if self?.isSeen == AppConstants.ISSEEN {
-                    resVC.isUpdate = AppConstants.ISUPDATE
+                resVC.viewModel.typeCode = EnumType.CONTACT.rawValue
+                if (self?.contactValue.isSeen)! == AppConstants.ISSEEN {
+                    resVC.viewModel.isUpdate = AppConstants.ISUPDATE
+                    resVC.viewModel.createDateTime = (self?.contactValue.createDateTime)!
+                    
                 }
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }
@@ -210,7 +225,7 @@ extension ContactGenerateVC{
         
     }
     func defineValue(){
-        self.viewModel?.typeCode = LanguageKey.Contact
+        self.viewModel?.typeCode = EnumType.CONTACT.rawValue
         self.viewModel?.fullNameContact = textFieldFullNameContact.text
         self.viewModel?.emailContact = textFieldEmailContact.text
         self.viewModel?.addressContact = textFieldAddressContact.text
@@ -219,7 +234,7 @@ extension ContactGenerateVC{
         
     }
     func checkIsSeenDetail(){
-        if isSeen == AppConstants.ISSEEN {
+        if contactValue.isSeen == AppConstants.ISSEEN {
             textFieldFullNameContact.text = contactValue.fullNameContact ?? ""
             textFieldEmailContact.text = contactValue.emailContact ?? ""
             textFieldPhoneContact.text = contactValue.phoneContact ?? ""

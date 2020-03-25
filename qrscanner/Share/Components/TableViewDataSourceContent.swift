@@ -48,7 +48,8 @@ class TableViewDataSourceContent<Cell: UITableViewCell,ViewModel, HeaderInSectio
         
             let item = self.items[indexPath.row]
         print(item.typeCode!)
-            let cell = tableView.dequeueReusableCell(withIdentifier: item.typeCode! , for: indexPath) as! Cell
+        print((item.typeCode?.uppercased())!)
+        let cell = tableView.dequeueReusableCell(withIdentifier: (item.typeCode?.uppercased())! , for: indexPath) as! Cell
             self.configureCell(cell,item)
             if indexPath.row == self.items.count - 1 && self.items.count > 0  {
                 self.loadMore?()

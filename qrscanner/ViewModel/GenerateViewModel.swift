@@ -35,10 +35,8 @@ struct GenerateViewModelKey {
 
 }
 class GenerateViewModel : GenerateViewModelDelegate {
-    
-    
-    
-    
+    var createDateTime: Int = 0
+    var isSeen: Int = 0
     var navigate: (() -> ())?
     var showLoading: Bindable<Bool> = Bindable(false)
     var onShowError: ((SingleButtonAlert) -> Void)?
@@ -515,7 +513,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
         var value = ""
         print(typeCode)
         //typeCode = typeCode.uppercased()
-        if typeCode == LanguageKey.Url{
+        if typeCode == EnumType.URL.rawValue{
             validateUrl()
             if ( errorMessages.value.count > 0 ) {
                 return
@@ -524,7 +522,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
                 value = "\(url!)"
         
         }
-        else if typeCode == LanguageKey.Text{
+        else if typeCode == EnumType.TEXT.rawValue{
             validateText()
             if ( errorMessages.value.count > 0 ) {
                 return
@@ -533,7 +531,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
                 value = "\(text!)"
             }
         }
-        else if typeCode == LanguageKey.Location{
+        else if typeCode == EnumType.LOCATION.rawValue{
             validateLat()
             validateLon()
             validateQuery()
@@ -544,7 +542,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
                        value = "geo:\(lat!),\(lon!)?q=\(query!)"
                    }
                     }
-        else if typeCode == LanguageKey.Email{
+        else if typeCode == EnumType.EMAIL.rawValue{
             validateEmail()
             validateObjectEmail()
             validateMessageEmail()
@@ -555,7 +553,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
                 value = "mailto:\(email!)?subject=\(objectEmail!)&body=\(messageEmail!)"
             }
         }
-        else if typeCode == LanguageKey.Event{
+        else if typeCode == EnumType.EVENT.rawValue{
             validateTitleEvent()
             validateLocationEvent()
             validateDescriptionEvent()
@@ -579,7 +577,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
             
             
         }
-        else if typeCode == LanguageKey.Message{
+        else if typeCode == EnumType.MESSAGE.rawValue{
             validateTo()
             validateMessage()
             print(errorMessages.value)
@@ -590,7 +588,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
                 value = "SMSTO:\(to!):\(message!)"
             }
         }
-        else if typeCode == LanguageKey.Wifi{
+        else if typeCode == EnumType.WIFI.rawValue{
             validateSSID()
             validatePassword()
             if ( errorMessages.value.count > 0 ) {
@@ -601,7 +599,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
                        }
 
         }
-        else if typeCode == LanguageKey.Telephone{
+        else if typeCode == EnumType.TELEPHONE.rawValue{
             validatePhoneTelephoneNumber()
             if ( errorMessages.value.count > 0 ) {
                 return
@@ -610,7 +608,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
                 value = "tel:\(phoneTelephone!)"
             }
         }
-        else if typeCode == LanguageKey.Contact{
+        else if typeCode == EnumType.CONTACT.rawValue{
             validateFullnameContact()
             validateEmailContact()
             validatePhoneContact()

@@ -9,9 +9,14 @@
 import UIKit
 import MapKit
 class LocationGenerateVC: BaseViewController {
+    lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
     lazy var viewBackground: UIView = {
         let view = UIView()
-        view.layer.borderColor = UIColor.lightGray.cgColor
+        view.layer.borderColor = UIColor.black.cgColor
         view.layer.borderWidth = 1
         view.layer.cornerRadius = 10
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -46,19 +51,19 @@ class LocationGenerateVC: BaseViewController {
     }()
     lazy var lbLatitude : ICLabel = {
         let view = ICLabel()
-        view.text = LanguageKey.Latitude
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Latitude)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     lazy var lbLongtitude : ICLabel = {
         let view = ICLabel()
-        view.text = LanguageKey.Longtitude
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Longtitude)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     lazy var lbQuery : ICLabel = {
         let view = ICLabel()
-        view.text = LanguageKey.Query
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Query)
         
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -90,17 +95,12 @@ class LocationGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var createDateTime : Int = 0
     var locationValue = LocationViewModel()
-    var isSeen : Int = 0
-    var typeCode : String = ""
     var viewModel : GenerateViewModel?
     let regionMeter : Double = 10000.0
     let locationManager = CLLocationManager()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        typeCode = typeCode.uppercased()
         viewModel = GenerateViewModel()
         self.initUI()
         self.checkLocationService()

@@ -9,35 +9,46 @@
 import UIKit
 extension PhoneGenerateVC {
     func initUI() {
-        let gety = view.frame.height * 1.3/7
+        let gety = view.frame.height * 1.4/7
         let value_item = view.frame.height/7
-        view.addSubview(viewBackground)
-        NSLayoutConstraint.activate([
-            viewBackground.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+         self.view.addSubview(scrollView)
+                    NSLayoutConstraint.activate([
+                        scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+                        scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+                        scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+                        scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+                    ])
+        scrollView.addSubview(viewBackground)
+       NSLayoutConstraint.activate([
+            viewBackground.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: AppConstants.MARGIN_TOP),
             viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewBackground.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             viewBackground.heightAnchor.constraint(equalToConstant: gety)
         ])
         viewBackground.addSubview(viewPhoneBg)
         NSLayoutConstraint.activate([
-            viewPhoneBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: 10),
+            viewPhoneBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewPhoneBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewPhoneBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: -20),
+            viewPhoneBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewPhoneBg.heightAnchor.constraint(equalToConstant: value_item)
         ])
         
         viewPhoneBg.addSubview(lbPhone)
         NSLayoutConstraint.activate([
-            lbPhone.topAnchor.constraint(equalTo: viewPhoneBg.topAnchor, constant: 10),
+            lbPhone.topAnchor.constraint(equalTo: viewPhoneBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             lbPhone.leadingAnchor.constraint(equalTo: viewPhoneBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             lbPhone.trailingAnchor.constraint(equalTo: viewPhoneBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewPhoneBg.addSubview(textFieldPhone)
         NSLayoutConstraint.activate([
-            textFieldPhone.topAnchor.constraint(equalTo: lbPhone.bottomAnchor, constant: 5),
+            textFieldPhone.topAnchor.constraint(equalTo: lbPhone.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
             textFieldPhone.leadingAnchor.constraint(equalTo: viewPhoneBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             textFieldPhone.trailingAnchor.constraint(equalTo: viewPhoneBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
+         self.lbPhone.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
+        self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
         setupNavItems()
     }
     func addTarget(_ textField: UITextField) {
@@ -47,7 +58,7 @@ extension PhoneGenerateVC {
         
         self.view.backgroundColor = .white
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationItem.title = LanguageKey.Telephone
+        navigationItem.title = LanguageHelper.getTranslationByKey(LanguageKey.Telephone)
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationController?.navigationBar.isTranslucent = true
@@ -88,12 +99,13 @@ extension PhoneGenerateVC {
         viewModel?.responseToView = { [weak self] value in
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
                 let resVC = ResultGenerateVC()
-                resVC.typeCode = LanguageKey.Telephone
-                resVC.createDateTime = self!.createDateTime
                 resVC.contentData = ContentViewModel(data: ContentModel(data: PhoneModel(phone: (self?.textFieldPhone.text!)!)))
                 resVC.imgCode = (self?.viewModel?.result)!
-                if self?.isSeen == AppConstants.ISSEEN {
-                    resVC.isUpdate = AppConstants.ISUPDATE
+                resVC.viewModel.typeCode = EnumType.TELEPHONE.rawValue
+                if (self?.phoneValue.isSeen)! == AppConstants.ISSEEN {
+                    resVC.viewModel.isUpdate = AppConstants.ISUPDATE
+                    resVC.viewModel.createDateTime = (self?.phoneValue.createDateTime)!
+
                 }
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }
@@ -113,12 +125,12 @@ extension PhoneGenerateVC {
         self.viewModel?.errorMessages.value[GenerateViewModelKey.PHONE_TELEPHONE] = ""
     }
     func checkIsSeenDetail(){
-        if isSeen == AppConstants.ISSEEN {
+        if phoneValue.isSeen == AppConstants.ISSEEN {
             textFieldPhone.text = phoneValue.phone ?? ""
         }
     }
     func defineValue(){
-        self.viewModel?.typeCode = LanguageKey.Telephone
+        self.viewModel?.typeCode = EnumType.TELEPHONE.rawValue
         self.viewModel?.phoneTelephone = textFieldPhone.text ?? ""
     }
 }

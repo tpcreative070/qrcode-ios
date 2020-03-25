@@ -155,6 +155,8 @@ class ScannerVC: UIViewController {
         viewScan.setFrameSize(roi: lbScannerRectangle)
         viewScan.drawCorners()
        // self.scanView.isHidden = true
+        self.viewBackground.bringSubviewToFront(viewIcon)
+
         self.viewBackground.bringSubviewToFront(viewFlipCamera)
         self.viewBackground.bringSubviewToFront(viewHelpBg)
         self.viewBackground.bringSubviewToFront(viewFlashBg)

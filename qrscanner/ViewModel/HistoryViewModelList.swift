@@ -26,6 +26,7 @@ class HistoryViewModelList : HistoryViewModelListDeletegate{
                 return HistoryViewModel(data:  data)
             })
         }
+        print(listHistories)
         listHistories = listHistories.sorted {$0.updatedDateTime > $1.updatedDateTime}
         responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
     }

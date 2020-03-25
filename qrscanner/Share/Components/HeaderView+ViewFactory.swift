@@ -48,20 +48,21 @@ extension HeaderView{
     fileprivate func setupSubView(){
         self.backGroundView.addSubview(self.lbGroupName)
         NSLayoutConstraint.activate([
-            self.lbGroupName.leadingAnchor.constraint(equalTo: self.backGroundView.leadingAnchor, constant: 10),
-            self.lbGroupName.trailingAnchor.constraint(equalTo: self.backGroundView.trailingAnchor, constant: -10),
-            self.lbGroupName.topAnchor.constraint(equalTo: self.backGroundView.topAnchor,constant: 5),
-            self.lbGroupName.bottomAnchor.constraint(equalTo: self.backGroundView.bottomAnchor,constant: -0)
+            self.lbGroupName.leadingAnchor.constraint(equalTo: self.backGroundView.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            self.lbGroupName.trailingAnchor.constraint(equalTo: self.backGroundView.trailingAnchor, constant: AppConstants.MARGIN_RIGHT),
+            self.lbGroupName.topAnchor.constraint(equalTo: self.backGroundView.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM),
+            self.lbGroupName.bottomAnchor.constraint(equalTo: self.backGroundView.bottomAnchor)
         ])
+        
     }
     
     fileprivate func setupQrcodeHistorySubView(){
         self.backGroundView.addSubview(self.lbGroupName)
         NSLayoutConstraint.activate([
-            self.lbGroupName.leadingAnchor.constraint(equalTo: self.backGroundView.leadingAnchor, constant: 10),
-            self.lbGroupName.trailingAnchor.constraint(equalTo: self.backGroundView.trailingAnchor, constant: -10),
-            self.lbGroupName.topAnchor.constraint(equalTo: self.backGroundView.topAnchor,constant: 5),
-            self.lbGroupName.bottomAnchor.constraint(equalTo: self.backGroundView.bottomAnchor,constant: -0)
+            self.lbGroupName.leadingAnchor.constraint(equalTo: self.backGroundView.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            self.lbGroupName.trailingAnchor.constraint(equalTo: self.backGroundView.trailingAnchor, constant: AppConstants.MARGIN_RIGHT),
+            self.lbGroupName.topAnchor.constraint(equalTo: self.backGroundView.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM),
+            self.lbGroupName.bottomAnchor.constraint(equalTo: self.backGroundView.bottomAnchor)
         ])
     }
 }

@@ -9,9 +9,14 @@
 import UIKit
 
 class MessageGenerateVC: BaseViewController {
+    lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
     var viewBackground: UIView = {
         let view = UIView()
-        view.layer.borderColor = UIColor.lightGray.cgColor
+        view.layer.borderColor = UIColor.black.cgColor
         view.layer.borderWidth = 1
         view.layer.cornerRadius = 10
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -45,13 +50,13 @@ class MessageGenerateVC: BaseViewController {
     }()
     lazy var lbTo : ICLabel = {
         let view = ICLabel()
-        view.text = LanguageKey.To
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.To)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     lazy var lbFrom : ICLabel = {
         let view = ICLabel()
-        view.text = LanguageKey.Message
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Message)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -68,14 +73,10 @@ class MessageGenerateVC: BaseViewController {
         view.alpha = AppConstants.ALPHA_DISBALE
         return view
     }()
-    var createDateTime : Int = 0
-    var messageValue = MessageModel()
-    var isSeen : Int = 0
-    var typeCode : String = ""
+    var messageValue = MessageViewModel()
     var viewModel : GenerateViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
-        typeCode = typeCode.uppercased()
         viewModel = GenerateViewModel()
         self.initUI()
         self.setupDelegate()

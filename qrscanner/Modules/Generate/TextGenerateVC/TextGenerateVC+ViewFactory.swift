@@ -9,35 +9,46 @@
 import UIKit
 extension TextGenerateVC {
     func initUI() {
-        let gety = view.frame.height * 1.3/7
+        let gety = view.frame.height * 1.4/7
         let value_item = view.frame.height/7
-        view.addSubview(viewBackground)
+        self.view.addSubview(scrollView)
         NSLayoutConstraint.activate([
-            viewBackground.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+        ])
+        scrollView.addSubview(viewBackground)
+        NSLayoutConstraint.activate([
+            viewBackground.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: AppConstants.MARGIN_TOP),
             viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewBackground.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             viewBackground.heightAnchor.constraint(equalToConstant: gety)
         ])
         viewBackground.addSubview(viewTextBg)
         NSLayoutConstraint.activate([
-            viewTextBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: 10),
+            viewTextBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewTextBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewTextBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: -20),
+            viewTextBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewTextBg.heightAnchor.constraint(equalToConstant: value_item)
         ])
         
         viewTextBg.addSubview(lbText)
         NSLayoutConstraint.activate([
-            lbText.topAnchor.constraint(equalTo: viewTextBg.topAnchor, constant: 10),
+            lbText.topAnchor.constraint(equalTo: viewTextBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             lbText.leadingAnchor.constraint(equalTo: viewTextBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             lbText.trailingAnchor.constraint(equalTo: viewTextBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewTextBg.addSubview(textFieldText)
         NSLayoutConstraint.activate([
-            textFieldText.topAnchor.constraint(equalTo: lbText.bottomAnchor, constant: 5),
+            textFieldText.topAnchor.constraint(equalTo: lbText.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
             textFieldText.leadingAnchor.constraint(equalTo: viewTextBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             textFieldText.trailingAnchor.constraint(equalTo: viewTextBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
+        self.lbText.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
+        self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
         setupNavItems()
         
     }
@@ -47,7 +58,7 @@ extension TextGenerateVC {
     func setupNavItems() {
         
         self.view.backgroundColor = .white
-        navigationItem.title = LanguageKey.Text
+        navigationItem.title = LanguageHelper.getTranslationByKey(LanguageKey.Text)
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationController?.navigationBar.isTranslucent = true
@@ -87,14 +98,15 @@ extension TextGenerateVC {
         }
         
         viewModel?.responseToView = { [weak self] value in
+            
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
                 let resVC = ResultGenerateVC()
-                resVC.typeCode = LanguageKey.Text
-                resVC.createDateTime = self!.createDateTime
                 resVC.contentData = ContentViewModel(data: TextModel(text: (self?.textFieldText.text)!))
                 resVC.imgCode = (self?.viewModel?.result)!
-                if self?.isSeen == AppConstants.ISSEEN {
-                    resVC.isUpdate = AppConstants.ISUPDATE
+                resVC.viewModel.typeCode = EnumType.TEXT.rawValue
+                if (self?.textValue.isSeen)! == AppConstants.ISSEEN {
+                    resVC.viewModel.isUpdate = AppConstants.ISUPDATE
+                    resVC.viewModel.createDateTime = (self?.textValue.createDateTime)!
                 }
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }
@@ -116,12 +128,12 @@ extension TextGenerateVC {
         self.viewModel?.errorMessages.value[GenerateViewModelKey.TEXT] = ""
     }
     func defineValue(){
-        self.viewModel?.typeCode = LanguageKey.Text
+        self.viewModel?.typeCode = EnumType.TEXT.rawValue
         self.viewModel?.text = textFieldText.text
         
     }
     func checkIsSeenDetail(){
-        if isSeen == AppConstants.ISSEEN {
+        if textValue.isSeen == AppConstants.ISSEEN {
             textFieldText.text = String(textValue.text ?? "")
             
         }

@@ -22,7 +22,7 @@ extension ChooseHistoryVC  {
         self.scrollView.addSubview(viewWrapper)
         NSLayoutConstraint.activate([
             viewWrapper.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor),
-            viewWrapper.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -30),
+            viewWrapper.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: AppConstants.MARGIN_BOTTOM),
             viewWrapper.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             viewWrapper.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             viewWrapper.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
@@ -42,7 +42,7 @@ extension ChooseHistoryVC  {
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0)
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
         setupNavItems()
         setupFloatButton()
@@ -107,7 +107,7 @@ extension ChooseHistoryVC  {
     }
     
     func bindTableView(){
-        self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.HistoryChoose.rawValue, items: self.viewModel.listHistories,sections: self.sections, height: 40,isSelectionStype: .none){ cell, vm in
+        self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.HistoryChoose.rawValue, items: self.viewModel.listHistories,sections: self.sections, height: AppConstants.TABLE_ROW_HEIGHT,isSelectionStype: .none){ cell, vm in
             cell.configView(view: vm)
             cell.configData(viewModel: vm)
             cell.delegate = self
@@ -144,7 +144,7 @@ extension ChooseHistoryVC  {
         item.titleLabelPosition = .left
         item.icon = UIImage(named: AppImages.IC_KEYBOARD)
         item.icon?.withTintColor(.white)
-        item.title = LanguageKey.Csv
+        item.title = LanguageHelper.getTranslationByKey(LanguageKey.Csv)
         item.handler = { item in
             let activiController = UIActivityViewController(activityItems: ["this text"], applicationActivities: nil)
             self.present(activiController,animated: true, completion: nil)
@@ -156,7 +156,7 @@ extension ChooseHistoryVC  {
         
         item_select.titleLabelPosition = .left
         item_select.icon = UIImage(named: AppImages.IC_SELECT_ALL)
-        item_select.title = LanguageKey.Select
+        item_select.title = LanguageHelper.getTranslationByKey(LanguageKey.Select)
         item_select.handler = { item in
         }
         floaty.tintColor = .white
