@@ -106,8 +106,8 @@ extension TableViewCell  {
                self.viewUnderLine.heightAnchor.constraint(equalToConstant: 1)
            ])
            self.viewUnderLine.backgroundColor = .lightGray
-            viewBackgroundThird.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(phoneAction(sender:))))
-            viewBackgroundThird.isUserInteractionEnabled  = true
+            viewBackgroundFour.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(phoneAction(sender:))))
+            viewBackgroundFour.isUserInteractionEnabled  = true
           
             viewClipboard.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(clipboardAction(sender:))))
             viewClipboard.isUserInteractionEnabled  = true

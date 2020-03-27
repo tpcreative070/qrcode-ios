@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import PDFKit
 class ResultGenerateVC: BaseViewController {
     var viewShare: UIView = {
         let view = UIView()
@@ -193,6 +193,9 @@ class ResultGenerateVC: BaseViewController {
             }
         }
         
+    }
+    @objc func printAction(sender : UITapGestureRecognizer){
+        self.printImage()
     }
     
 }

@@ -37,8 +37,8 @@ class UrlGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var lbUrl : UILabel = {
-        let view = UILabel()
+    lazy var lbUrl : ICLabel = {
+        let view = ICLabel()
         view.text = LanguageHelper.getTranslationByKey(LanguageKey.Url)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view

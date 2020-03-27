@@ -104,6 +104,8 @@ extension HistoryVC  {
             endedUpScrollViewContainerView.bottomAnchor.constraint(equalTo: viewWrapper.bottomAnchor)
         ])
     }
+
+   
     func setupFloatButton(){
         let item = FloatyItem()
         item.hasShadow = false
@@ -113,8 +115,7 @@ extension HistoryVC  {
         item.icon?.withTintColor(.white)
         item.title = LanguageHelper.getTranslationByKey(LanguageKey.Csv)
         item.handler = { item in
-            let activiController = UIActivityViewController(activityItems: ["this text"], applicationActivities: nil)
-            self.present(activiController,animated: true, completion: nil)
+            self.getCSVHistory(listValue: self.historyViewModel.listHistories)
         }
         let item_select = FloatyItem()
         item_select.hasShadow = false

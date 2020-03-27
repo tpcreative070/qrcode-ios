@@ -16,7 +16,7 @@ class HistoryViewModelList : HistoryViewModelListDeletegate{
     var currentCell: HistoryViewModel?
     var isVisible: Bindable<Bool> = Bindable(false)
     var countItemSelected: Int = 0
-    
+    var historyArray:[Dictionary<String, AnyObject>] =  Array()
     var navigate: (() -> ())?
     func doGetListHistories(){
         if let mList = SQLHelper.getListHistories(){

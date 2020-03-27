@@ -23,8 +23,4 @@ class TypeCodeViewModelList : TypeCodeViewModelListDelegate {
        }
         responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
     }
-
-    
-    
-    
 }

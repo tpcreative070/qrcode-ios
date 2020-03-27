@@ -29,7 +29,7 @@ extension TableViewCell {
             
         ])
         self.stackView.axis = .horizontal
-        self.stackView.spacing = 5
+        self.stackView.spacing = AppConstants.MARGIN_TOP_SUBITEM
         
         self.stackView.addArrangedSubview(stackViewVertical)
         NSLayoutConstraint.activate([
@@ -42,7 +42,7 @@ extension TableViewCell {
         self.stackViewVertical.axis = .vertical
         self.stackViewVertical.alignment = .fill
         self.stackViewVertical.distribution = UIStackView.Distribution.fillEqually
-        self.stackViewVertical.spacing = 10
+        self.stackViewVertical.spacing = AppConstants.MARGIN_TOP_ITEM
         self.stackViewVertical.addArrangedSubview(lbCreatedDate)
         self.stackViewVertical.addArrangedSubview(lbContent)
         
@@ -58,8 +58,8 @@ extension TableViewCell {
       
             self.viewSub.addSubview(checkBox)
             NSLayoutConstraint.activate([
-                self.checkBox.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
-                self.checkBox.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+                self.checkBox.widthAnchor.constraint(equalToConstant: AppConstants.MARGIN_LEFT),
+                self.checkBox.heightAnchor.constraint(equalToConstant: AppConstants.MARGIN_LEFT),
                 self.checkBox.centerYAnchor.constraint(equalTo: self.stackView.centerYAnchor),
                 self.checkBox.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor,constant: AppConstants.MARGIN_RIGHT)
             ])

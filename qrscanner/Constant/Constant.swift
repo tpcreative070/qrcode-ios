@@ -69,19 +69,31 @@ struct AppConstants {
     static let HEIGHT_BUTTON_DEFAULT = CGFloat(50)
     static let HEIGHT_BACKGROUND_ITEM = CGFloat(90)
     static let HEIGHT_BACKGROUND = CGFloat(130)
+    static let HEIGHT_IMAGE_HELP = CGFloat(200)
 
     static let WIDTH_BUTTON_DEFAULT = CGFloat(100)
     static let IC_DEFAULT = CFloat(25)
     static let ICON_WIDTH_HEIGHT = CGFloat(30)
+    static let ICON_SCAN_WIDTH_HEIGHT = CGFloat(30)
     static let IC_CLOSE_WIDTH = CFloat(30)
     static let IC_CLOSE_HEIGHT = CFloat(30)
     static let MARGIN_LEFT = CGFloat(20)
+    static let MARGIN_LEFT_HELP = CGFloat(10)
+
+    static let MARGIN_LEFT_ICON = CGFloat(30)
+    static let MARGIN_LEFT_ALERT_BTN = CGFloat(100)
+
     static let MARGIN_RIGHT = CGFloat(-20)
+    static let MARGIN_RIGHT_ALERT_BTN = CGFloat(-100)
+    static let MARGIN_RIGHT_HELP = CGFloat(-10)
+
     static let MARGIN_RIGHT_ITEMPLUS = CGFloat(-40)
 
     static let MARGIN_TOP = CGFloat(20)
     static let MARGIN_LEFT_ITEM_HIS = CGFloat(-80)
     static let MARGIN_RIGHT_ITEM_HIS = CGFloat(80)
+    static let MARGIN_TOP_ALERT = CGFloat(130)
+    static let MARGIN_BOTTOM_ALERT = CGFloat(-130)
 
     static let MARGIN_TOP_ITEM = CGFloat(12)
     static let MARGIN_TOP_SUBITEM = CGFloat(5)
@@ -187,6 +199,7 @@ struct AppFonts {
     
     static let LABEL_FONT_SIZE = CGFloat(16)
     static let LABEL_TITLE_FONT_SIZE = CGFloat(18)
+    static let LABEL_TITLE_FONT_SIZE_HELP = CGFloat(20)
 
     static let LABEL_DETAIL_ITEM_FONT_SIZE = CGFloat(14)
     static let BUTTON_HEIGHT = CGFloat(45)
@@ -241,7 +254,10 @@ struct AppImages {
     static let IC_DELETE = "ic_delete"
     static let IC_EMAIL = "ic_email"
     static let IC_EVENT = "ic_event"
-    static let IC_FLASH = "ic_flash_off"
+    static let IC_FLASH_OFF = "ic_flash_off"
+    static let IC_FLASH_ON = "ic_flash_on"
+    static let IC_PRINT = "ic_print"
+
     static let IC_FLIP_CAMERA = "ic_flip_camera"
     static let IC_HELP = "ic_help"
     static let IC_IMAGE = "ic_image"
@@ -432,6 +448,8 @@ struct LanguageKey {
     static let EmailAddress = "EMAIL_ADDRESS"
     static let Object = "OBJECT"
     static let SaveSuccess = "SAVE_SUCCESS"
+    static let Copy_Item_Success = "COPY_ITEM_SUCCESS"
+
     static let CancelButtonTitle = "CANCEL"
     static let DoneButtonTitle = "DONE"
     static let TimeFrame = "TIME_FRAME"
@@ -512,6 +530,7 @@ struct LanguageKey {
     //typeCode
     static let Sms = "SMS"
     static let Email = "EMAIL"
+    static let Email_Help = "care@tpcreative.me"
     static let Message = "MESSAGE"
     static let Location = "LOCATION"
     static let Event = "EVENT"
@@ -522,8 +541,8 @@ struct LanguageKey {
     static let Url = "URL"
     static let True = "TRUE"
     static let False = "FALSE"
-
-    
+    static let Copy_item = "COPY_ITEMS"
+    static let Content_copy = "CONTENT_COPY"
     //Confirm
      static let Gender = "GENDER"
      static let FirstName = "FIRSTNAME"
@@ -544,6 +563,8 @@ struct LanguageKey {
      static let SearchPlaceholder = "SEARCHPLACEHOLDER"
      static let NoResult = "NORESULT"
      static let Cancel = "CANCEL"
+    static let Copy = "COPY"
+
      static let TryAgain = "TRY_AGAIN"
      static let Ok = "OK"
    
@@ -1006,6 +1027,8 @@ enum EnumIdentifier : String {
 case SaveChoose = "save_choose"
     case Save = "save"
      case Generate = "generate"
+    case Alert = "alert"
+
     case Url = "URL"
     case Text = "TEXT"
 case Phone = "PHONE"

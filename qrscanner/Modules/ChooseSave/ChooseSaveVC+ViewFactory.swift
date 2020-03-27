@@ -96,10 +96,11 @@ extension ChooseSaveVC  {
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
         let menuButtonRightDel = UIButton(type: .system)
-        menuButtonRightDel.setImage(#imageLiteral(resourceName: "ic_delete"), for: .normal)
+        menuButtonRightDel.setImage(UIImage(named: AppImages.IC_DELETE), for: .normal)
+
         menuButtonRightDel.addTarget(self, action: #selector(doDeleteItem), for: .touchUpInside)
         let menuButtonRightSelectAll = UIButton(type: .system)
-        menuButtonRightSelectAll.setImage(#imageLiteral(resourceName: "ic_select_all"), for: .normal)
+        menuButtonRightSelectAll.setImage(UIImage(named: AppImages.IC_SELECT_ALL), for: .normal)
         menuButtonRightSelectAll.addTarget(self, action: #selector(doSelectAll), for: .touchUpInside)
         navigationItem.rightBarButtonItems = [UIBarButtonItem(customView:menuButtonRightSelectAll),UIBarButtonItem(customView: menuButtonRightDel)]
     }
@@ -140,8 +141,7 @@ extension ChooseSaveVC  {
         item.icon?.withTintColor(.white)
         item.title = LanguageHelper.getTranslationByKey(LanguageKey.Csv)
         item.handler = { item in
-            let activiController = UIActivityViewController(activityItems: ["this text"], applicationActivities: nil)
-            self.present(activiController,animated: true, completion: nil)
+             self.getCSVSave(listValue: self.saveViewModel.listSave)
         }
         
         let item_select = FloatyItem()

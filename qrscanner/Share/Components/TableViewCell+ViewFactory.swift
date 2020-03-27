@@ -14,53 +14,55 @@ extension TableViewCell {
         case .History:
             setupHistorySubView()
             break
-            case .HistoryChoose:
-                      setupChooseHistorySubView()
-                      break
-            case .SaveChoose:
+        case .HistoryChoose:
+            setupChooseHistorySubView()
+            break
+        case .SaveChoose:
             setupChooseHistorySubView()
             break
         case .Generate:
             setupGenerateSubView()
-            case .Save:
+        case .Save:
             setupSaveSubView()
-            case .Url:
+        case .Url:
             setupUrlView()
-            case .Text:
+        case .Text:
             setupTextView()
-            case .Telephone:
+        case .Telephone:
             setupPhoneView()
-            case .Email:
+        case .Email:
             setupEmailView()
-            case .Wifi:
+        case .Wifi:
             setupWifiView()
-            case .Contact:
+        case .Contact:
             setupContactView()
-            case .Location:
+        case .Location:
             setupLocationView()
-            case .Message:
+        case .Message:
             setupMessageView()
-            case .Event:
+        case .Event:
             setupEventView()
+            case .Alert:
+            setupAlertSubView()
         default :
             break
         }
     }
     
- func setupBackgroud(){
-    backgroundView?.backgroundColor = .red
+    func setupBackgroud(){
+        backgroundView?.backgroundColor = .red
         self.addSubview(self.viewBackground)
         NSLayoutConstraint.activate([
             self.viewBackground.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             self.viewBackground.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.viewBackground.topAnchor.constraint(equalTo: self.topAnchor),
             self.viewBackground.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-            ])
+        ])
         //add gesture to leftView
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(actionCellViewTap))
         self.viewBackground.addGestureRecognizer(tapGesture)
-    
+        
     }
     
-   
+    
 }

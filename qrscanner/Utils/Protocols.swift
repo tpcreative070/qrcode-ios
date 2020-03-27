@@ -44,6 +44,12 @@ protocol HistoryViewModelListDeletegate  : BaseViewModel{
     var responseToView : ((String) ->())? {get set}
     var isSelected : Bindable<Bool> {get}
 }
+protocol AlertViewModelListDeletegate  : BaseViewModel{
+    var navigate: (() -> ())?  { get }
+    var listItem : [AlertViewModel] {get}
+    var responseToView : ((String) ->())? {get set}
+    var isSelected : Bindable<Bool> {get}
+}
 protocol ContentViewModelListDeletegate  : BaseViewModel{
     var navigate: (() -> ())?  { get }
     var listContent : [ContentViewModel] {get}
@@ -63,6 +69,10 @@ protocol GenerateViewModelDeletegate {
     var isSaveView : Bool {get}
     var bookMark : Bool {get}
     var contentView : String {get}
+    var checkShowView : Bool? {get}
+}
+protocol AlertViewModelDeletegate {
+    var nameItemView : String {get}
     var checkShowView : Bool? {get}
 }
 protocol ContentViewModelDeletegate {
@@ -133,6 +143,10 @@ protocol TypeCodeViewModelListDelegate {
     var listTypeCondeViewModel : [TypeCodeViewModel] {get}
     var responseToView : ((String) ->())? {get set}
     
+}
+protocol AlertViewModelListDelegate {
+    var listAlertViewModel : [AlertViewModel] {get}
+    var responseToView : ((String) ->())? {get set}
 }
 protocol TableViewCellDelegate {
     func cellViewSelected(cell: TableViewCell)

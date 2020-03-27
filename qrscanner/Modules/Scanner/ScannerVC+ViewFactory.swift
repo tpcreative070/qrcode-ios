@@ -20,14 +20,23 @@ extension ScannerVC {
             viewBackground.widthAnchor.constraint(equalToConstant: view.frame.width),
             viewBackground.heightAnchor.constraint(equalToConstant: view.frame.height)
         ])
+        viewBackground.addSubview(wrapperFirstView)
+        NSLayoutConstraint.activate([
+            wrapperFirstView.topAnchor.constraint(equalTo: viewBackground.topAnchor),
+            wrapperFirstView.leftAnchor.constraint(equalTo: viewBackground.leftAnchor),
+            wrapperFirstView.rightAnchor.constraint(equalTo: viewBackground.rightAnchor),
+            wrapperFirstView.widthAnchor.constraint(equalToConstant: viewBackground.frame.width),
+            wrapperFirstView.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/4)
+        ])
+        
         viewBackground.addSubview(viewIcon)
-               NSLayoutConstraint.activate([
-                   viewIcon.topAnchor.constraint(equalTo: viewBackground.topAnchor),
-                   viewIcon.bottomAnchor.constraint(equalTo: viewBackground.bottomAnchor),
-                   viewIcon.leftAnchor.constraint(equalTo: viewBackground.leftAnchor),
-                   viewIcon.rightAnchor.constraint(equalTo: viewBackground.rightAnchor),
-                   viewIcon.centerXAnchor.constraint(equalTo: viewBackground.centerXAnchor)
-               ])
+        NSLayoutConstraint.activate([
+            viewIcon.topAnchor.constraint(equalTo: viewBackground.topAnchor),
+            viewIcon.bottomAnchor.constraint(equalTo: viewBackground.bottomAnchor),
+            viewIcon.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewIcon.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewIcon.centerXAnchor.constraint(equalTo: viewBackground.centerXAnchor)
+        ])
         viewBackground.addSubview(viewScan)
         NSLayoutConstraint.activate([
             viewScan.centerXAnchor.constraint(equalTo: viewBackground.centerXAnchor),
@@ -44,70 +53,97 @@ extension ScannerVC {
             lbScannerRectangle.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             lbScannerRectangle.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2)
         ])
-        
+        viewBackground.addSubview(wrapperSecondView)
+        NSLayoutConstraint.activate([
+            wrapperSecondView.topAnchor.constraint(equalTo: lbScannerRectangle.bottomAnchor),
+            wrapperSecondView.leftAnchor.constraint(equalTo: viewBackground.leftAnchor),
+            wrapperSecondView.rightAnchor.constraint(equalTo: viewBackground.rightAnchor),
+            wrapperSecondView.widthAnchor.constraint(equalToConstant: viewBackground.frame.width),
+            wrapperSecondView.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/4)
+        ])
+        viewBackground.addSubview(wrapperThirdView)
+        NSLayoutConstraint.activate([
+            wrapperThirdView.topAnchor.constraint(equalTo: wrapperFirstView.bottomAnchor),
+            wrapperThirdView.leftAnchor.constraint(equalTo: viewBackground.leftAnchor),
+            wrapperThirdView.rightAnchor.constraint(equalTo: lbScannerRectangle.leftAnchor),
+            wrapperThirdView.widthAnchor.constraint(equalToConstant: viewBackground.frame.width),
+            wrapperThirdView.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2)
+        ])
+        viewBackground.addSubview(wrapperFourView)
+        NSLayoutConstraint.activate([
+            wrapperFourView.topAnchor.constraint(equalTo: wrapperFirstView.bottomAnchor),
+            wrapperFourView.leftAnchor.constraint(equalTo: lbScannerRectangle.rightAnchor),
+            wrapperFourView.rightAnchor.constraint(equalTo: viewBackground.rightAnchor),
+            wrapperFourView.widthAnchor.constraint(equalToConstant: viewBackground.frame.width),
+            wrapperFourView.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2)
+        ])
         viewIcon.addSubview(viewFlipCamera)
         NSLayoutConstraint.activate([
             
             viewFlipCamera.topAnchor.constraint(equalTo: viewIcon.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewFlipCamera.leadingAnchor.constraint(equalTo: viewIcon.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewFlipCamera.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
-            viewFlipCamera.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT)
+            viewFlipCamera.widthAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT),
+            viewFlipCamera.heightAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT)
         ])
-        viewFlipCamera.backgroundColor = .red
         viewFlipCamera.addSubview(imgFlipCamera)
         NSLayoutConstraint.activate([
             imgFlipCamera.topAnchor.constraint(equalTo: viewFlipCamera.topAnchor),
-            imgFlipCamera.leadingAnchor.constraint(equalTo: viewFlipCamera.leadingAnchor)
+            imgFlipCamera.leadingAnchor.constraint(equalTo: viewFlipCamera.leadingAnchor, constant: AppConstants.MARGIN_LEFT_HELP),
+            imgFlipCamera.widthAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT),
+            imgFlipCamera.heightAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT)
         ])
         viewIcon.addSubview(viewFlashBg)
         NSLayoutConstraint.activate([
             
             viewFlashBg.topAnchor.constraint(equalTo: viewIcon.topAnchor, constant: AppConstants.MARGIN_TOP),
-            viewFlashBg.leadingAnchor.constraint(equalTo: viewFlipCamera.trailingAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewFlashBg.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
-            viewFlashBg.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT)
+            viewFlashBg.leadingAnchor.constraint(equalTo: viewFlipCamera.trailingAnchor, constant: AppConstants.MARGIN_LEFT_ICON),
+            viewFlashBg.widthAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT),
+            viewFlashBg.heightAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT)
         ])
-        viewFlashBg.backgroundColor = .yellow
-        viewFlashBg.addSubview(imgFlash)
+        viewFlashBg.addSubview(imgFlashOff)
         NSLayoutConstraint.activate([
-            imgFlash.topAnchor.constraint(equalTo: viewFlashBg.topAnchor),
-            imgFlash.leadingAnchor.constraint(equalTo: viewFlashBg.leadingAnchor),
+            imgFlashOff.topAnchor.constraint(equalTo: viewFlashBg.topAnchor),
+            imgFlashOff.leadingAnchor.constraint(equalTo: viewFlashBg.leadingAnchor),
+            imgFlashOff.widthAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT),
+            imgFlashOff.heightAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT)
         ])
         viewIcon.addSubview(viewHelpBg)
         NSLayoutConstraint.activate([
             viewHelpBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
-            viewHelpBg.leadingAnchor.constraint(equalTo: viewFlashBg.trailingAnchor, constant:  AppConstants.MARGIN_LEFT),
-            viewHelpBg.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
-            viewHelpBg.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT)
+            viewHelpBg.leadingAnchor.constraint(equalTo: viewFlashBg.trailingAnchor, constant:  AppConstants.MARGIN_LEFT_ALERT_BTN),
+            viewHelpBg.widthAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT),
+            viewHelpBg.heightAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT)
         ])
-        viewHelpBg.backgroundColor = .brown
-
+        
         viewHelpBg.addSubview(imgHelp)
         NSLayoutConstraint.activate([
             imgHelp.topAnchor.constraint(equalTo: viewHelpBg.topAnchor),
             imgHelp.leadingAnchor.constraint(equalTo: viewHelpBg.leadingAnchor),
+            imgHelp.widthAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT),
+            imgHelp.heightAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT)
         ])
         viewIcon.addSubview(viewScanBg)
         NSLayoutConstraint.activate([
             
             viewScanBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
-            viewScanBg.leadingAnchor.constraint(equalTo: viewHelpBg.trailingAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewScanBg.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
-            viewScanBg.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT)
+            viewScanBg.leadingAnchor.constraint(equalTo: viewHelpBg.trailingAnchor, constant: AppConstants.MARGIN_LEFT_ICON),
+            viewScanBg.widthAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT),
+            viewScanBg.heightAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT)
         ])
-        viewScanBg.backgroundColor = .green
         viewScanBg.addSubview(imgScan)
         NSLayoutConstraint.activate([
             imgScan.topAnchor.constraint(equalTo: viewScanBg.topAnchor),
             imgScan.leadingAnchor.constraint(equalTo: viewScanBg.leadingAnchor),
+            imgScan.widthAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT),
+            imgScan.heightAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT)
         ])
         
         let tapScan = UITapGestureRecognizer(target: self, action: #selector(actionGallery(sender:)))
         self.viewScanBg.addGestureRecognizer(tapScan)
-                let tapFrontCamera = UITapGestureRecognizer(target: self, action: #selector(actionFrontCamera(sender:)))
-                                 self.viewFlipCamera.addGestureRecognizer(tapFrontCamera)
-        //        let tapHelp = UITapGestureRecognizer(target: self, action: #selector(actionHelp(sender:)))
-        //                           self.imgHelpView.addGestureRecognizer(tapHelp)
+        let tapFrontCamera = UITapGestureRecognizer(target: self, action: #selector(actionFrontCamera(sender:)))
+        self.viewFlipCamera.addGestureRecognizer(tapFrontCamera)
+        let tapHelp = UITapGestureRecognizer(target: self, action: #selector(actionHelp(sender:)))
+        self.viewHelpBg.addGestureRecognizer(tapHelp)
         let tapFlash = UITapGestureRecognizer(target: self, action: #selector(actionFlash(sender:)))
         self.viewFlashBg.addGestureRecognizer(tapFlash)
     }
@@ -288,17 +324,17 @@ extension ScannerVC {
             //            self.present(alert,animated: true,completion: nil)
         }
         
-//        viewModel.cameraBinding.bind {[weak self] value in
-//            DispatchQueue.main.async {
-//                if !value {
-//                      self?.doAlertMessage(permission: "Camera")
-//                }
-//            }
-//        }
+        //        viewModel.cameraBinding.bind {[weak self] value in
+        //            DispatchQueue.main.async {
+        //                if !value {
+        //                      self?.doAlertMessage(permission: "Camera")
+        //                }
+        //            }
+        //        }
     }
-
     
-   
+    
+    
     func onTakeGallery(){
         let imagePicker = OpalImagePickerController()
         imagePicker.imagePickerDelegate = self
@@ -323,17 +359,6 @@ extension ScannerVC: ZXCaptureDelegate {
         
         capture?.stop()
         isScanning = false
-      //  let text = _result.text ?? "Unknow"
-        // let format = barcodeFormatToString(format: _result.barcodeFormat)
-        
-        //   let displayStr = "Scanned !\nFormat: \(format)\nContents: \(text)"
-        //        print(displayStr)
-        //        resultLabel?.text = displayStr
-        //        print(result!)
-        //
-        //        let alert = UIAlertController(title: "Result", message: text, preferredStyle: .alert)
-        //        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-        //        self.present(alert,animated: true,completion: nil)
         viewModel.isScanner = true
         viewModel.scannerResult(mValue: "\(result!)")
         

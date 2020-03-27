@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2811A1172411089D0003AB9A /* TypeCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2811A1162411089D0003AB9A /* TypeCodeViewModel.swift */; };
+		28390CCD242DE0B500383427 /* HelpVC+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28390CCC242DE0B500383427 /* HelpVC+ViewFactory.swift */; };
+		28390CCF242DE10700383427 /* HelpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28390CCE242DE10700383427 /* HelpVC.swift */; };
+		28390CD1242DF82D00383427 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28390CD0242DF82D00383427 /* TextView.swift */; };
+		28390CDA242E4C9500383427 /* UIView+ToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28390CD9242E4C9500383427 /* UIView+ToImage.swift */; };
 		283A22732410D3FA006308F4 /* TypeCodeViewModelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283A22722410D3FA006308F4 /* TypeCodeViewModelList.swift */; };
 		283A22752410D8F5006308F4 /* TypeCodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283A22742410D8F5006308F4 /* TypeCodeModel.swift */; };
 		283A22772410E573006308F4 /* TypeCodeOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283A22762410E573006308F4 /* TypeCodeOption.swift */; };
@@ -98,6 +102,12 @@
 		2897F7AE2422438500ED0A60 /* TableViewCell+Message+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2897F7AD2422438500ED0A60 /* TableViewCell+Message+ViewFactory.swift */; };
 		2897F7B0242249C800ED0A60 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2897F7AF242249C800ED0A60 /* EventViewModel.swift */; };
 		2897F7B224224C7100ED0A60 /* TableViewCell+Event+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2897F7B124224C7100ED0A60 /* TableViewCell+Event+ViewFactory.swift */; };
+		28998A34242CA36F00C6837D /* AlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28998A33242CA36F00C6837D /* AlertVC.swift */; };
+		28998A36242CA39300C6837D /* AlertVC+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28998A35242CA39300C6837D /* AlertVC+ViewFactory.swift */; };
+		28998A38242CA3F800C6837D /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28998A37242CA3F800C6837D /* AlertViewModel.swift */; };
+		28998A3A242CA40900C6837D /* AlertViewModelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28998A39242CA40900C6837D /* AlertViewModelList.swift */; };
+		28998A3C242CAE0B00C6837D /* TableViewCell+Alert+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28998A3B242CAE0B00C6837D /* TableViewCell+Alert+ViewFactory.swift */; };
+		28998A3E242CC0D100C6837D /* Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28998A3D242CC0D100C6837D /* Modal.swift */; };
 		289B4BA0241394ED005BC714 /* languages.json in Resources */ = {isa = PBXBuildFile; fileRef = 289B4B9F241394ED005BC714 /* languages.json */; };
 		289B4BA224140B0E005BC714 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289B4BA124140B0E005BC714 /* RadioButton.swift */; };
 		289B4BA424140C8F005BC714 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289B4BA324140C8F005BC714 /* Label.swift */; };
@@ -244,6 +254,10 @@
 		1E59C1D747076534360C168D /* Pods-qrscannerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-qrscannerUITests.debug.xcconfig"; path = "Target Support Files/Pods-qrscannerUITests/Pods-qrscannerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		25204941E7B604FC6E41DB00 /* Pods-qrscanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-qrscanner.release.xcconfig"; path = "Target Support Files/Pods-qrscanner/Pods-qrscanner.release.xcconfig"; sourceTree = "<group>"; };
 		2811A1162411089D0003AB9A /* TypeCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCodeViewModel.swift; sourceTree = "<group>"; };
+		28390CCC242DE0B500383427 /* HelpVC+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HelpVC+ViewFactory.swift"; sourceTree = "<group>"; };
+		28390CCE242DE10700383427 /* HelpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpVC.swift; sourceTree = "<group>"; };
+		28390CD0242DF82D00383427 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		28390CD9242E4C9500383427 /* UIView+ToImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ToImage.swift"; sourceTree = "<group>"; };
 		283A22722410D3FA006308F4 /* TypeCodeViewModelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCodeViewModelList.swift; sourceTree = "<group>"; };
 		283A22742410D8F5006308F4 /* TypeCodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCodeModel.swift; sourceTree = "<group>"; };
 		283A22762410E573006308F4 /* TypeCodeOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCodeOption.swift; sourceTree = "<group>"; };
@@ -334,6 +348,12 @@
 		2897F7AD2422438500ED0A60 /* TableViewCell+Message+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewCell+Message+ViewFactory.swift"; sourceTree = "<group>"; };
 		2897F7AF242249C800ED0A60 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
 		2897F7B124224C7100ED0A60 /* TableViewCell+Event+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewCell+Event+ViewFactory.swift"; sourceTree = "<group>"; };
+		28998A33242CA36F00C6837D /* AlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertVC.swift; sourceTree = "<group>"; };
+		28998A35242CA39300C6837D /* AlertVC+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlertVC+ViewFactory.swift"; sourceTree = "<group>"; };
+		28998A37242CA3F800C6837D /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
+		28998A39242CA40900C6837D /* AlertViewModelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModelList.swift; sourceTree = "<group>"; };
+		28998A3B242CAE0B00C6837D /* TableViewCell+Alert+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewCell+Alert+ViewFactory.swift"; sourceTree = "<group>"; };
+		28998A3D242CC0D100C6837D /* Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modal.swift; sourceTree = "<group>"; };
 		289B4B9F241394ED005BC714 /* languages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = languages.json; sourceTree = "<group>"; };
 		289B4BA124140B0E005BC714 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		289B4BA324140C8F005BC714 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
@@ -499,6 +519,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		28390CC9242DDF7800383427 /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				28390CCE242DE10700383427 /* HelpVC.swift */,
+				28390CCC242DE0B500383427 /* HelpVC+ViewFactory.swift */,
+			);
+			path = Help;
+			sourceTree = "<group>";
+		};
 		285BDBEF24272B7200AA0BBF /* ChooseSave */ = {
 			isa = PBXGroup;
 			children = (
@@ -637,6 +666,16 @@
 				2894D6C0241C9097009E1659 /* TimeInterval+String.swift */,
 			);
 			path = ImagePickerHelper;
+			sourceTree = "<group>";
+		};
+		28998A26242C90E500C6837D /* AlertClipboard */ = {
+			isa = PBXGroup;
+			children = (
+				28998A33242CA36F00C6837D /* AlertVC.swift */,
+				28998A35242CA39300C6837D /* AlertVC+ViewFactory.swift */,
+				28998A3D242CC0D100C6837D /* Modal.swift */,
+			);
+			path = AlertClipboard;
 			sourceTree = "<group>";
 		};
 		28A05728240E3AC300AD5353 /* Progress */ = {
@@ -843,6 +882,8 @@
 				2895099024267E1B009A4785 /* ResultViewModel.swift */,
 				2893712B2428689700E40471 /* ContentViewModelList.swift */,
 				2893712D242868EC00E40471 /* ContentViewModel.swift */,
+				28998A37242CA3F800C6837D /* AlertViewModel.swift */,
+				28998A39242CA40900C6837D /* AlertViewModelList.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -891,6 +932,7 @@
 				28969FBF241BDBCE00F30A29 /* Codable+ToObject.swift */,
 				2894D6C5241C9280009E1659 /* UIImage+CGImage.swift */,
 				289749162429B81B00717701 /* UIFont.swift */,
+				28390CD9242E4C9500383427 /* UIView+ToImage.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -933,6 +975,8 @@
 		D2BA0A502408DCF30074C7A1 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				28390CC9242DDF7800383427 /* Help */,
+				28998A26242C90E500C6837D /* AlertClipboard */,
 				289371242428523A00E40471 /* Detail */,
 				285BDBEF24272B7200AA0BBF /* ChooseSave */,
 				D2BA0AE3240A73B50074C7A1 /* History */,
@@ -1053,6 +1097,8 @@
 				2897F79F2421D3E400ED0A60 /* TableViewCell+Wifi+ViewFactory.swift */,
 				2897F7A92422001900ED0A60 /* TableViewCell+Location+ViewHistory.swift */,
 				2897F7B124224C7100ED0A60 /* TableViewCell+Event+ViewFactory.swift */,
+				28998A3B242CAE0B00C6837D /* TableViewCell+Alert+ViewFactory.swift */,
+				28390CD0242DF82D00383427 /* TextView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1453,6 +1499,7 @@
 				D2BA0A9C2409EC9D0074C7A1 /* ConfigurationStoreModel.swift in Sources */,
 				D2BA0ADF240A69830074C7A1 /* UIEdgeInsetsExtension.swift in Sources */,
 				D2BA0ABC240A61540074C7A1 /* BaseReponseModel.swift in Sources */,
+				28390CD1242DF82D00383427 /* TextView.swift in Sources */,
 				28BFA8E1240CF938002ECD93 /* TableSection.swift in Sources */,
 				28A0572A240E3AD800AD5353 /* ProgressHUD.swift in Sources */,
 				D2BA0A68240967620074C7A1 /* Protocols.swift in Sources */,
@@ -1462,8 +1509,10 @@
 				28D81D3C24162493007834F0 /* LocationModel.swift in Sources */,
 				2894E12B24213C7800263637 /* TableViewCell+Email+ViewFactory.swift in Sources */,
 				2865AA2724124E4A00C1F207 /* ValidatorHelper.swift in Sources */,
+				28998A38242CA3F800C6837D /* AlertViewModel.swift in Sources */,
 				D2BA0A62240966D20074C7A1 /* TableViewDataSource.swift in Sources */,
 				28969F98241B6C4400F30A29 /* UIView+Draggable.swift in Sources */,
+				28998A36242CA39300C6837D /* AlertVC+ViewFactory.swift in Sources */,
 				D2BA0A8324096A870074C7A1 /* CommonService.swift in Sources */,
 				289204D72419691E00AD3F49 /* TextGenerateVC.swift in Sources */,
 				2893EF252419CE2B004D58C6 /* MessageGenerateVC+ViewFactory.swift in Sources */,
@@ -1471,6 +1520,7 @@
 				D2BA0AEF240A7B320074C7A1 /* TransferMultipleViewModel.swift in Sources */,
 				D2BA0A6A2409691F0074C7A1 /* ICButton.swift in Sources */,
 				2894E1102420665F00263637 /* SaveViewModelList.swift in Sources */,
+				28390CCD242DE0B500383427 /* HelpVC+ViewFactory.swift in Sources */,
 				D2BA0A7524096A1F0074C7A1 /* UIColor+HexToRGB.swift in Sources */,
 				2897F7AE2422438500ED0A60 /* TableViewCell+Message+ViewFactory.swift in Sources */,
 				D2BA0ADC240A69830074C7A1 /* UIColorExtension.swift in Sources */,
@@ -1512,21 +1562,25 @@
 				D2BA0ACA240A68E90074C7A1 /* ShareSingleton.swift in Sources */,
 				288591D5241A49890081DB79 /* PhoneGenerateVC+ViewFactory.swift in Sources */,
 				2894B58E242320F300E958DC /* HistoryViewModel.swift in Sources */,
+				28998A3E242CC0D100C6837D /* Modal.swift in Sources */,
 				288591CE241A491B0081DB79 /* ContactGenerateVC.swift in Sources */,
 				D2BA0AF5240A9BE70074C7A1 /* ScannerVC.swift in Sources */,
 				2897491B2429FA1100717701 /* ValuePushModel.swift in Sources */,
 				2894B5902423231700E958DC /* SaveViewModel.swift in Sources */,
 				289B4BA624141CD2005BC714 /* ViewRectangleArea.swift in Sources */,
+				28998A3C242CAE0B00C6837D /* TableViewCell+Alert+ViewFactory.swift in Sources */,
 				28DD502724113E080080A059 /* UIStoryboard+List.swift in Sources */,
 				D2BA0ABB240A61540074C7A1 /* UserResponseModel.swift in Sources */,
 				D2BA0AC0240A61D70074C7A1 /* UserRequestModel.swift in Sources */,
 				2897F7B224224C7100ED0A60 /* TableViewCell+Event+ViewFactory.swift in Sources */,
 				28BFA8F2240D4FCA002ECD93 /* ContentModel.swift in Sources */,
 				2865AA302412BD1F00C1F207 /* UITextField+fixCaretPosition.swift in Sources */,
+				28998A3A242CA40900C6837D /* AlertViewModelList.swift in Sources */,
 				28969FC2241BF3A700F30A29 /* ICCheckBox.swift in Sources */,
 				289371282428526400E40471 /* DetailVC+ViewFactory.swift in Sources */,
 				289B4BA224140B0E005BC714 /* RadioButton.swift in Sources */,
 				2897F7AC242242A700ED0A60 /* MessageViewModel.swift in Sources */,
+				28390CDA242E4C9500383427 /* UIView+ToImage.swift in Sources */,
 				D2BA0AB3240A60DE0074C7A1 /* Result.swift in Sources */,
 				D2BA0AF3240A9BCE0074C7A1 /* SaveVC+ViewFactory.swift in Sources */,
 				288591D3241A49790081DB79 /* PhoneGenerateVC.swift in Sources */,
@@ -1558,6 +1612,7 @@
 				D27F115E23FF9487001D175F /* ContentView.swift in Sources */,
 				2894D6C4241C9108009E1659 /* GalleryManager.swift in Sources */,
 				D2BA0A7C24096A5E0074C7A1 /* ICBackGrayButton.swift in Sources */,
+				28390CCF242DE10700383427 /* HelpVC.swift in Sources */,
 				D2BA0AE9240A74540074C7A1 /* SettingsVC.swift in Sources */,
 				28D81D442416308A007834F0 /* String+ToObject.swift in Sources */,
 				2894E11B2420BA6500263637 /* UrlViewModel.swift in Sources */,
@@ -1579,6 +1634,7 @@
 				289204D924196B1600AD3F49 /* TextGenerateVC+ViewFactory.swift in Sources */,
 				D2BA0A7E24096A5E0074C7A1 /* ICCloseBlackButton.swift in Sources */,
 				2893EF2D241A117A004D58C6 /* EventGenerateVC.swift in Sources */,
+				28998A34242CA36F00C6837D /* AlertVC.swift in Sources */,
 				2897F7A82421FE6200ED0A60 /* LocationViewModel.swift in Sources */,
 				2865AA2A24128DF000C1F207 /* ResultGenerateVC.swift in Sources */,
 				28D81D3A241623C2007834F0 /* ContactModel.swift in Sources */,

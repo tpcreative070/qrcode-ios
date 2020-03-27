@@ -50,5 +50,14 @@ class DetailVC : BaseViewController{
     override func actionLeft() {
         dismiss()
     }
-    
+    @objc func actionHelp(sender: UITapGestureRecognizer){
+        let email = LanguageKey.Email_Help
+        if let url = URL(string: "mailto:\(email)") {
+           if #available(iOS 10.0, *) {
+             UIApplication.shared.open(url)
+           } else {
+             UIApplication.shared.openURL(url)
+           }
+         }
+     }
 }

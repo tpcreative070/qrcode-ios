@@ -72,7 +72,7 @@ extension TextGenerateVC {
         //        menuButtonLeft.addTarget(self, action: #selector(returnScreen), for: .touchUpInside)
         //        navigationItem.leftBarButtonItems = [UIBarButtonItem(customView: menuButtonLeft)]
         let menuButtonRight = UIButton(type: .system)
-        menuButtonRight.setImage(#imageLiteral(resourceName: "ic_check"), for: .normal)
+        menuButtonRight.setImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
         menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchUpInside)
         navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRight)]
     }

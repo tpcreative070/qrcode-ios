@@ -1,5 +1,9 @@
 {
     "en": {
+        "COPY_ITEM_SUCCESS" : "Copied items successful",
+        "COPY": "COPY",
+        "CONTENT_COPY" : "Select which items you want to copy.",
+        "COPY_ITEMS" : "Copy items",
         "SAVE_SUCCESS" : "Save success",
         "SAVE" : "Save",
         "CSV" : "Csv",
@@ -124,7 +128,7 @@
         "SEARCHPLACEHOLDER" : "Search city or airport",
         "NORESULT" : "No Result",
         "ECASH" : "eCash",
-        "CANCEL" : "Cancel",
+        "CANCEL" : "CANCEL",
         "FLIGHTNAME" : "Flight name",
         "HISTORY" : "History",
         "ONEWAY" : "One way",
@@ -403,6 +407,10 @@
         "RENEW_NOT_ALLOW" : "The OTP code is still valid, OTP sending failed"
     },
     "vi" : {
+        "COPY_ITEM_SUCCESS" : "Các mục đã sao chép thành công",
+        "COPY": "SAO CHÉP",
+        "CONTENT_COPY" : "Chọn mục bạn muốn sao chép.",
+        "COPY_ITEMS" : "Sao chép các mục",
         "SAVE_SUCCESS" : "Lưu thành công",
         "SAVE" : "Lưu",
         "CSV" : "Csv",
@@ -530,7 +538,7 @@
         "SEARCH_PLACEHOLDER" : "Search city or airport",
         "NORESULT" : "Không có kết quả",
         "ECASH" : "eCash",
-        "CANCEL" : "Huỷ",
+        "CANCEL" : "HUỶ",
         "FLIGHTNAME" : "Flight name",
         "HISTORY" : "Lịch sử",
         "ONEWAY" : "One way",
