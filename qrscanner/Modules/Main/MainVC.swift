@@ -94,9 +94,7 @@ class MainVC : SwipeMenuViewController {
     override func swipeMenuView(_ swipeMenuView: SwipeMenuView, didChangeIndexFrom fromIndex: Int, to toIndex: Int) {
         super.swipeMenuView(swipeMenuView, didChangeIndexFrom: fromIndex, to: toIndex)
         print("did change from section\(fromIndex + 1)  to section\(toIndex + 1)")
-      //  reload()
-       // tabBarController?.selectedIndex = 1
-     //   swipeMenuView.reloadIndex(options: options, indexcurent: toIndex, isOrientationChange: false)
+        
     }
     
     // MARK - SwipeMenuViewDataSource

@@ -55,6 +55,7 @@ struct AppConstants {
     static let ISUPDATE = 2
     static let ISCHOOSE = 1
     static let WIDTH_BORDER = CGFloat(1)
+      static let WIDTH_BORDER_SCAN = CGFloat(2)
     static let CORNER_RADIUS = CGFloat(10)
     static let LARGE_SIZE = 200
     static let MEDIUM_SIZE = 50
@@ -70,19 +71,22 @@ struct AppConstants {
     static let HEIGHT_BACKGROUND_ITEM = CGFloat(90)
     static let HEIGHT_BACKGROUND = CGFloat(130)
     static let HEIGHT_IMAGE_HELP = CGFloat(200)
-    
+    static let HEIGHT_IMAGE_SETTING = CGFloat(50)
+
     static let WIDTH_BUTTON_DEFAULT = CGFloat(100)
     static let IC_DEFAULT = CFloat(25)
     static let ICON_WIDTH_HEIGHT = CGFloat(30)
     static let ICON_SCAN_WIDTH_HEIGHT = CGFloat(30)
     static let IC_CLOSE_WIDTH = CFloat(30)
     static let IC_CLOSE_HEIGHT = CFloat(30)
+    static let MARGIN_LEFT_SETTING = CGFloat(5)
     static let MARGIN_LEFT = CGFloat(20)
     static let MARGIN_LEFT_HELP = CGFloat(10)
     
     static let MARGIN_LEFT_ICON = CGFloat(30)
     static let MARGIN_LEFT_ALERT_BTN = CGFloat(100)
-    
+    static let MARGIN_RIGHT_SETTING = CGFloat(-5)
+
     static let MARGIN_RIGHT = CGFloat(-20)
     static let MARGIN_RIGHT_ALERT_BTN = CGFloat(-100)
     static let MARGIN_RIGHT_HELP = CGFloat(-10)
@@ -95,8 +99,10 @@ struct AppConstants {
     static let MARGIN_TOP_ALERT = CGFloat(130)
     static let MARGIN_BOTTOM_ALERT = CGFloat(-130)
     static let SWITCH_HEIGHT_DEFAULT = CGFloat(20)
-    static let SWITCH_WIDTH_DEFAULT = CGFloat(50)
+    static let SWITCH_WIDTH_DEFAULT = CGFloat(40)
     static let MARGIN_TOP_ITEM = CGFloat(12)
+    static let MARGIN_TOP_ITEM_SETTING = CGFloat(8)
+
     static let MARGIN_TOP_SUBITEM = CGFloat(5)
     static let MARGIN_TOP_CONTAINER = CGFloat(30)
     static let MARGIN_LEFT_CONTAINER = CGFloat(60)
@@ -109,6 +115,19 @@ struct AppConstants {
     static let ALPHA_DEFAULT = CGFloat(1)
     static let ALPHA_DISBALE = CGFloat(0.5)
     static let TABLE_ROW_HEIGHT = CGFloat(40)
+    //Scanner
+    static let CAPTURE_ROTATION = Double(0)
+    static let SCAN_REACT_ROTATION_90 = Double(90)
+    static let SCAN_REACT_ROTATION_180 = Double(180)
+    static let SCAN_REACT_ROTATION_270 = Double(270)
+      static let WITH_ALPHA_COMPONENT = CGFloat(0.5)
+    static let VIDEO_HEIGHT_1080 = CGFloat(1080.0)
+    static let VIDEO_HEIGHT_1920 = CGFloat(1920.0)
+    static let VIDEO_HEIGHT_720 = CGFloat(720.0)
+    static let VIDEO_HEIGHT_1280 = CGFloat(1280.0)
+
+    
+    
     
     // switch button default config
     static let SWITCH_ON_TINT_COLOR = UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 1)
@@ -418,6 +437,27 @@ struct AppViewOptions {
 }
 
 struct LanguageKey {
+    //Scanner
+    static let Aztec = "Aztec"
+    static let CODABAR = "CODABAR"
+    static let Code_39 = "Code 39"
+    static let Code_93 = "Code 93"
+    static let Code_128 = "Code 128"
+    static let Data_Matrix = "Data Matrix"
+    static let EAN_8 = "EAN-8"
+    static let EAN_13 = "EAN-13"
+    static let ITF = "ITF"
+    static let PDF417 = "PDF417"
+    static let QR_Code = "QR Code"
+    static let RSS_14 = "RSS 14"
+    static let RSS_Expanded = "RSS Expanded"
+    static let UPCA = "UPCA"
+    static let UPCE = "UPCE"
+    static let UPC_EAN_extension = "UPC/EAN extension"
+    static let Unknown = "Unknown"
+    
+
+    
     static let Clipboard = "CLIPBOARD"
     //Floaty Button
     static let Csv = "CSV"

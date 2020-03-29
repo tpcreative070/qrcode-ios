@@ -287,7 +287,7 @@ class SettingsVC : BaseViewController {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.image = UIImage(named: AppImages.IC_QRCODE)
-        view.tintColor = AppColors.COLOR_ACCENT
+        view.tintColor = AppColors.BLACK_COLOR
         return view
     }()
     lazy var imgCopy : UIImageView = {

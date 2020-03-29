@@ -115,15 +115,17 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
     }()
     var video = AVCaptureVideoPreviewLayer()
     var capture: ZXCapture?
-    let regionCornerRadius = CGFloat(10.0)
+    let regionCornerRadius = AppConstants.CORNER_RADIUS
     var isScanning: Bool?
     var isFirstApplyOrientation: Bool?
     var captureSizeTransform: CGAffineTransform?
     let viewModel =  ScannerViewModel()
     var isFlash = false
     var isFront = false
+    
     var frontCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front)
     var backCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
+    
     var videoPreviewLayer : AVCaptureVideoPreviewLayer?
     var session : AVCaptureSession?
     
@@ -186,9 +188,10 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
         self.navigationController?.pushViewController(vc, animated: true)
     }
     override func viewDidDisappear(_ animated: Bool) {
-        
-    }
-   
+        session?.stopRunning()
+       }
+    
+  
     override func viewWillAppear(_ animated: Bool) {
         print("viewWillAppear")
     }
@@ -197,8 +200,7 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
         session?.startRunning()
     }
     
-   
-    
+ 
 }
 
 

@@ -156,40 +156,40 @@ extension ScannerVC {
         
         switch orientation {
         case .portrait:
-            captureRotation = 0
-            scanRectRotation = 90
+            captureRotation = AppConstants.CAPTURE_ROTATION
+            scanRectRotation = AppConstants.SCAN_REACT_ROTATION_90
             break
             
         case .landscapeLeft:
-            captureRotation = 90
-            scanRectRotation = 180
+            captureRotation = AppConstants.SCAN_REACT_ROTATION_90
+            scanRectRotation = AppConstants.SCAN_REACT_ROTATION_180
             break
             
         case .landscapeRight:
-            captureRotation = 270
-            scanRectRotation = 0
+            captureRotation = AppConstants.SCAN_REACT_ROTATION_270
+            scanRectRotation = AppConstants.CAPTURE_ROTATION
             break
             
         case .portraitUpsideDown:
-            captureRotation = 180
-            scanRectRotation = 270
+            captureRotation = AppConstants.SCAN_REACT_ROTATION_180
+            scanRectRotation = AppConstants.SCAN_REACT_ROTATION_270
             break
             
         default:
-            captureRotation = 0
-            scanRectRotation = 90
+            captureRotation = AppConstants.CAPTURE_ROTATION
+            scanRectRotation = AppConstants.SCAN_REACT_ROTATION_90
             break
         }
         
         applyRectOfInterest(orientation: orientation)
         
-        let angleRadius = captureRotation / 180.0 * Double.pi
+        let angleRadius = captureRotation / AppConstants.SCAN_REACT_ROTATION_180 * Double.pi
         let captureTranform = CGAffineTransform(rotationAngle: CGFloat(angleRadius))
         
         capture?.transform = captureTranform
         capture?.rotation = CGFloat(scanRectRotation)
         capture?.layer.frame = view.frame
-        capture?.layer.backgroundColor = UIColor.white.withAlphaComponent(0.5).cgColor
+        capture?.layer.backgroundColor = UIColor.white.withAlphaComponent(AppConstants.WITH_ALPHA_COMPONENT).cgColor
     }
     
     func applyRectOfInterest(orientation: UIInterfaceOrientation) {
@@ -203,11 +203,11 @@ extension ScannerVC {
         
         // Currently support only for 1920x1080 || 1280x720
         if cameraSessionPreset == AVCaptureSession.Preset.hd1920x1080.rawValue {
-            videoHeight = 1080.0
-            videoWidth = 1920.0
+            videoHeight = AppConstants.VIDEO_HEIGHT_1080
+            videoWidth = AppConstants.VIDEO_HEIGHT_1920
         } else {
-            videoHeight = 720.0
-            videoWidth = 1280.0
+            videoHeight = AppConstants.VIDEO_HEIGHT_720
+            videoWidth = AppConstants.VIDEO_HEIGHT_1280
         }
         
         if orientation == UIInterfaceOrientation.portrait {
@@ -238,71 +238,57 @@ extension ScannerVC {
     func barcodeFormatToString(format: ZXBarcodeFormat) -> String {
         switch (format) {
         case kBarcodeFormatAztec:
-            print("Aztec")
-            return "Aztec"
+            return LanguageKey.Aztec
             
         case kBarcodeFormatCodabar:
-            print("CODABAR")
-            return "CODABAR"
+            return LanguageKey.CODABAR
             
         case kBarcodeFormatCode39:
             print("Code 39")
-            return "Code 39"
+            return LanguageKey.Code_39
             
         case kBarcodeFormatCode93:
-            print("Code 93")
-            return "Code 93"
+            return LanguageKey.Code_93
             
         case kBarcodeFormatCode128:
-            print("Code 128")
-            return "Code 128"
+            return LanguageKey.Code_128
             
         case kBarcodeFormatDataMatrix:
-            print("Data Matrix")
-            return "Data Matrix"
+            return LanguageKey.Data_Matrix
             
         case kBarcodeFormatEan8:
-            print("EAN-8")
-            return "EAN-8"
+            return LanguageKey.EAN_8
             
         case kBarcodeFormatEan13:
-            print("EAN-13")
-            return "EAN-13"
+            return LanguageKey.EAN_13
             
         case kBarcodeFormatITF:
-            print("ITF")
-            return "ITF"
+            return LanguageKey.ITF
             
         case kBarcodeFormatPDF417:
             print("PDF417")
-            return "PDF417"
+            return LanguageKey.PDF417
             
         case kBarcodeFormatQRCode:
-            print("QR Code")
-            return "QR Code"
+            return LanguageKey.QR_Code
             
         case kBarcodeFormatRSS14:
-            print("RSS 14")
-            return "RSS 14"
+            return LanguageKey.RSS_14
             
         case kBarcodeFormatRSSExpanded:
-            print("RSS Expanded")
-            return "RSS Expanded"
+            return LanguageKey.RSS_Expanded
             
         case kBarcodeFormatUPCA:
-            print("UPCA")
-            return "UPCA"
+            return LanguageKey.UPCA
             
         case kBarcodeFormatUPCE:
-            print("UPCE")
-            return "UPCE"
+            return LanguageKey.UPCE
             
         case kBarcodeFormatUPCEANExtension:
-            print("UPC/EAN extension")
-            return "UPC/EAN extension"
+            return LanguageKey.UPC_EAN_extension
             
         default:
-            return "Unknown"
+            return LanguageKey.Unknown
         }
     }
     func bindViewModel() {
@@ -345,13 +331,13 @@ extension ScannerVC {
        func setupCameraBack()
        {
            if backCamera?.isConnected == true {
-               session?.stopRunning()
+            session?.stopRunning()
                let captureDevice =  AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
                do{
                    
                    let input = try AVCaptureDeviceInput(device: captureDevice!)
                    session = AVCaptureSession()
-                   session?.addInput(input)
+                session?.addInput(input)
                    setuplayoutCamera()
                    
                }
@@ -364,13 +350,13 @@ extension ScannerVC {
        func setupCameraFront()
        {
            if frontCamera?.isConnected == true {
-               session?.stopRunning()
+            session?.stopRunning()
                let captureDevice =  AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front)
                do{
                    
                    let input = try AVCaptureDeviceInput(device: captureDevice!)
                    session = AVCaptureSession()
-                   session?.addInput(input)
+                session?.addInput(input)
                    setuplayoutCamera()
                    print(view.layer.bounds)
                }
@@ -381,10 +367,10 @@ extension ScannerVC {
        }
        func setuplayoutCamera(){
            let output = AVCaptureMetadataOutput()
-           session?.addOutput(output)
+        session?.addOutput(output)
            output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
            output.metadataObjectTypes = [AVMetadataObject.ObjectType.qr, .code128, .code39, .code93,.dataMatrix,.ean13,.ean8,.aztec,.pdf417,.upce,.code39Mod43]
-           video = AVCaptureVideoPreviewLayer(session: session!)
+        video = AVCaptureVideoPreviewLayer(session: session!)
            video.videoGravity = AVLayerVideoGravity.resizeAspectFill
            video.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
            video.frame = view.layer.bounds
@@ -392,7 +378,7 @@ extension ScannerVC {
            lbScannerRectangle.layer.masksToBounds = true
            lbScannerRectangle.layer.cornerRadius = self.regionCornerRadius
            lbScannerRectangle.layer.borderColor = UIColor.white.cgColor
-           lbScannerRectangle.layer.borderWidth = 2.0
+        lbScannerRectangle.layer.borderWidth = AppConstants.WIDTH_BORDER_SCAN
            viewScan.setFrameSize(roi: lbScannerRectangle)
            viewScan.drawCorners()
            self.viewBackground.bringSubviewToFront(wrapperFirstView)
@@ -407,16 +393,16 @@ extension ScannerVC {
            self.viewBackground.bringSubviewToFront(viewScan)
            self.viewBackground.bringSubviewToFront(viewScan)
            self.viewBackground.bringSubviewToFront(lbScannerRectangle)
-           session?.startRunning()
+        session?.startRunning()
        }
        
        func clearInput(){
-              if let inputs = session?.inputs as? [AVCaptureDeviceInput] {
+        if let inputs = session?.inputs as? [AVCaptureDeviceInput] {
                   for input in inputs {
-                      session?.removeInput(input)
+                    session?.removeInput(input)
                   }
               }
-              session?.stopRunning()
+        session?.stopRunning()
           }
        func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
            if metadataObjects != nil && metadataObjects.count != 0 {
@@ -426,7 +412,7 @@ extension ScannerVC {
                    isScanning = false
                    viewModel.isScanner = true
                    viewModel.scannerResult(mValue: "\(object.stringValue!)")
-                   session?.stopRunning()
+                session?.stopRunning()
                }
            }
        }
