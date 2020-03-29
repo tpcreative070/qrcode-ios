@@ -12,132 +12,130 @@ import UIKit
 extension TableViewCell  {
     
     func setupUrlView(){
-        self.addSubview(self.backGroundView1)
+        self.addSubview(self.viewBackgroundSecond)
         NSLayoutConstraint.activate([
-            self.backGroundView1.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant:10),
-            self.backGroundView1.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            self.backGroundView1.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
-            self.backGroundView1.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
+            self.viewBackgroundSecond.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            self.viewBackgroundSecond.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.viewBackgroundSecond.topAnchor.constraint(equalTo: self.topAnchor, constant: AppConstants.MARGIN_TOP),
+            self.viewBackgroundSecond.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
         
-        self.backGroundView1.addSubview(viewRoot)
+        self.viewBackgroundSecond.addSubview(viewRoot)
         NSLayoutConstraint.activate([
-            self.viewRoot.leadingAnchor.constraint(equalTo: self.backGroundView1.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
-            self.viewRoot.trailingAnchor.constraint(equalTo: self.backGroundView1.trailingAnchor,constant:   AppConstants.MARGIN_RIGHT),
-            self.viewRoot.topAnchor.constraint(equalTo: self.backGroundView1.topAnchor,constant: 0),
+            self.viewRoot.leadingAnchor.constraint(equalTo: self.viewBackgroundSecond.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
+            self.viewRoot.trailingAnchor.constraint(equalTo: self.viewBackgroundSecond.trailingAnchor,constant:   AppConstants.MARGIN_RIGHT),
+            self.viewRoot.topAnchor.constraint(equalTo: self.viewBackgroundSecond.topAnchor),
             //   self.viewRoot.bottomAnchor.constraint(equalTo: self.backGroundView1.bottomAnchor,constant: -0)
             
         ])
-        viewRoot.addSubview(titleLbl1)
+        viewRoot.addSubview(lbTitleFirst)
         NSLayoutConstraint.activate([
-            titleLbl1.topAnchor.constraint(equalTo: viewRoot.topAnchor, constant: 10),
-            titleLbl1.leadingAnchor.constraint(equalTo: viewRoot.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            titleLbl1.trailingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            lbTitleFirst.topAnchor.constraint(equalTo: viewRoot.topAnchor, constant: AppConstants.MARGIN_TOP),
+            lbTitleFirst.leadingAnchor.constraint(equalTo: viewRoot.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbTitleFirst.trailingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-        viewRoot.addSubview(valueTxt1)
+        viewRoot.addSubview(textFieldValueFirst)
         NSLayoutConstraint.activate([
-            valueTxt1.topAnchor.constraint(equalTo: titleLbl1.bottomAnchor, constant: 0),
-            valueTxt1.leadingAnchor.constraint(equalTo: viewRoot.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            valueTxt1.trailingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant: AppConstants.MARGIN_RIGHT)
+            textFieldValueFirst.topAnchor.constraint(equalTo: lbTitleFirst.bottomAnchor),
+            textFieldValueFirst.leadingAnchor.constraint(equalTo: viewRoot.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            textFieldValueFirst.trailingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant: AppConstants.MARGIN_RIGHT)
         ])
         
-        self.backGroundView1.addSubview(bgView1)
+        self.viewBackgroundSecond.addSubview(viewBackgroundThird)
         NSLayoutConstraint.activate([
-            self.bgView1.leadingAnchor.constraint(equalTo: self.viewRoot.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
-            self.bgView1.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor,constant:  AppConstants.MARGIN_RIGHT),
-            self.bgView1.topAnchor.constraint(equalTo: self.valueTxt1.bottomAnchor,constant: 20),
+            self.viewBackgroundThird.leadingAnchor.constraint(equalTo: self.viewRoot.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
+            self.viewBackgroundThird.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor,constant:  AppConstants.MARGIN_RIGHT),
+            self.viewBackgroundThird.topAnchor.constraint(equalTo: self.textFieldValueFirst.bottomAnchor,constant: AppConstants.MARGIN_TOP),
+        ])
+        viewBackgroundThird.addSubview(imgSearch)
+        NSLayoutConstraint.activate([
+            imgSearch.topAnchor.constraint(equalTo: viewBackgroundThird.topAnchor, constant:  AppConstants.MARGIN_TOP),
+            imgSearch.leadingAnchor.constraint(equalTo: viewBackgroundThird.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            self.imgSearch.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgSearch.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgSearch.centerYAnchor.constraint(equalTo: self.viewBackgroundThird.centerYAnchor)
+            
+        ])
+        viewBackgroundThird.addSubview(lbTitleThird)
+        NSLayoutConstraint.activate([
+            lbTitleThird.topAnchor.constraint(equalTo: viewBackgroundThird.topAnchor, constant:  AppConstants.MARGIN_TOP),
+            lbTitleThird.leadingAnchor.constraint(equalTo: imgSearch.trailingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbTitleThird.trailingAnchor.constraint(equalTo: viewBackgroundThird.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT),
+            self.lbTitleThird.centerYAnchor.constraint(equalTo: self.viewBackgroundThird.centerYAnchor)
             
         ])
         
-        
-        bgView1.addSubview(searchImg)
-        NSLayoutConstraint.activate([
-            searchImg.topAnchor.constraint(equalTo: bgView1.topAnchor, constant: 10),
-            searchImg.leadingAnchor.constraint(equalTo: bgView1.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            self.searchImg.widthAnchor.constraint(equalToConstant: 30),
-            self.searchImg.heightAnchor.constraint(equalToConstant: 30),
-            self.searchImg.centerYAnchor.constraint(equalTo: self.bgView1.centerYAnchor)
-            
-        ])
-        bgView1.addSubview(titleLabel3)
-        NSLayoutConstraint.activate([
-            titleLabel3.topAnchor.constraint(equalTo: bgView1.topAnchor, constant: 10),
-            titleLabel3.leadingAnchor.constraint(equalTo: searchImg.trailingAnchor, constant: AppConstants.MARGIN_LEFT),
-            titleLabel3.trailingAnchor.constraint(equalTo: bgView1.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT),
-            self.titleLabel3.centerYAnchor.constraint(equalTo: self.bgView1.centerYAnchor)
-            
-        ])
-        
-          self.backGroundView1.addSubview(bgView2)
+          self.viewBackgroundSecond.addSubview(viewBackgroundFour)
               NSLayoutConstraint.activate([
-                  self.bgView2.leadingAnchor.constraint(equalTo: self.viewRoot.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
-                  self.bgView2.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor,constant: AppConstants.MARGIN_RIGHT),
-                  self.bgView2.topAnchor.constraint(equalTo: self.bgView1.bottomAnchor,constant: 20),
+                  self.viewBackgroundFour.leadingAnchor.constraint(equalTo: self.viewRoot.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
+                  self.viewBackgroundFour.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor,constant: AppConstants.MARGIN_RIGHT),
+                  self.viewBackgroundFour.topAnchor.constraint(equalTo: self.viewBackgroundThird.bottomAnchor,constant:  AppConstants.MARGIN_TOP),
                   
               ])
               
               
-              bgView2.addSubview(urlImg)
+              viewBackgroundFour.addSubview(imgUrl)
               NSLayoutConstraint.activate([
-                  urlImg.topAnchor.constraint(equalTo: bgView2.topAnchor, constant: 10),
-                  urlImg.leadingAnchor.constraint(equalTo: bgView2.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-                  self.urlImg.widthAnchor.constraint(equalToConstant: 30),
-                  self.urlImg.heightAnchor.constraint(equalToConstant: 30),
-                  self.urlImg.centerYAnchor.constraint(equalTo: self.bgView2.centerYAnchor)
+                  imgUrl.topAnchor.constraint(equalTo: viewBackgroundFour.topAnchor, constant:  AppConstants.MARGIN_TOP),
+                  imgUrl.leadingAnchor.constraint(equalTo: viewBackgroundFour.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+                  self.imgUrl.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+                  self.imgUrl.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+                  self.imgUrl.centerYAnchor.constraint(equalTo: self.viewBackgroundFour.centerYAnchor)
                   
               ])
-              bgView2.addSubview(titleLbl2)
+              viewBackgroundFour.addSubview(lbTitleSecond)
               NSLayoutConstraint.activate([
-                  titleLbl2.topAnchor.constraint(equalTo: bgView2.topAnchor, constant: 10),
-                  titleLbl2.leadingAnchor.constraint(equalTo: urlImg.trailingAnchor, constant: AppConstants.MARGIN_LEFT),
-                  titleLbl2.trailingAnchor.constraint(equalTo: bgView2.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT),
-                  self.titleLbl2.centerYAnchor.constraint(equalTo: self.bgView2.centerYAnchor)
+                lbTitleSecond.topAnchor.constraint(equalTo: viewBackgroundFour.topAnchor, constant: AppConstants.MARGIN_TOP),
+                  lbTitleSecond.leadingAnchor.constraint(equalTo: imgUrl.trailingAnchor, constant: AppConstants.MARGIN_LEFT),
+                  lbTitleSecond.trailingAnchor.constraint(equalTo: viewBackgroundFour.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT),
+                  self.lbTitleSecond.centerYAnchor.constraint(equalTo: self.viewBackgroundFour.centerYAnchor)
                   
               ])
               
-        self.backGroundView1.addSubview(clipboardView)
-        NSLayoutConstraint.activate([
-            self.clipboardView.leadingAnchor.constraint(equalTo: self.viewRoot.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
-            clipboardView.trailingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant: AppConstants.MARGIN_RIGHT),
-            clipboardView.heightAnchor.constraint(equalToConstant: 50),
-            
-            self.clipboardView.topAnchor.constraint(equalTo: self.bgView2.bottomAnchor,constant: 10),
-        ])
+           self.viewBackgroundSecond.addSubview(viewClipboard)
+                   NSLayoutConstraint.activate([
+                       self.viewClipboard.leadingAnchor.constraint(equalTo: self.viewRoot.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
+                       self.viewClipboard.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor,constant: AppConstants.MARGIN_RIGHT),
+                       self.viewClipboard.topAnchor.constraint(equalTo: self.viewBackgroundFour.bottomAnchor,constant:  AppConstants.MARGIN_TOP),
+                       
+                   ])
+                   
+                   
+                   viewClipboard.addSubview(imgClipboard)
+                   NSLayoutConstraint.activate([
+                       imgClipboard.topAnchor.constraint(equalTo: viewClipboard.topAnchor, constant:  AppConstants.MARGIN_TOP),
+                       imgClipboard.leadingAnchor.constraint(equalTo: viewClipboard.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+                       self.imgClipboard.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+                       self.imgClipboard.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+                       self.imgClipboard.centerYAnchor.constraint(equalTo: self.viewClipboard.centerYAnchor)
+                       
+                   ])
+                   viewClipboard.addSubview(lbClipboard)
+                   NSLayoutConstraint.activate([
+                     lbClipboard.topAnchor.constraint(equalTo: viewClipboard.topAnchor, constant: AppConstants.MARGIN_TOP),
+                       lbClipboard.leadingAnchor.constraint(equalTo: imgClipboard.trailingAnchor, constant: AppConstants.MARGIN_LEFT),
+                       lbClipboard.trailingAnchor.constraint(equalTo: viewClipboard.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT),
+                       self.lbClipboard.centerYAnchor.constraint(equalTo: self.viewClipboard.centerYAnchor)
+                       
+                   ])
+       
         
-        self.clipboardView.addSubview(clipboardImage)
-        NSLayoutConstraint.activate([
-            clipboardImage.topAnchor.constraint(equalTo: clipboardView.topAnchor, constant: 20),
-            clipboardImage.leadingAnchor.constraint(equalTo: clipboardView.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            self.clipboardImage.widthAnchor.constraint(equalToConstant: 30),
-            self.clipboardImage.heightAnchor.constraint(equalToConstant: 30),
-            
-            
-            
-        ])
-        clipboardView.addSubview(clipboardLabel)
-        NSLayoutConstraint.activate([
-            clipboardLabel.topAnchor.constraint(equalTo: clipboardView.topAnchor, constant: 10),
-            clipboardLabel.leadingAnchor.constraint(equalTo: clipboardImage.trailingAnchor, constant: AppConstants.MARGIN_LEFT),
-            clipboardLabel.trailingAnchor.constraint(equalTo: clipboardView.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT),
-            clipboardLabel.centerYAnchor.constraint(equalTo: self.clipboardView.centerYAnchor)
-        ])
         
-        
-        self.backGroundView1.addSubview(self.viewUnderLine)
+        self.viewBackgroundSecond.addSubview(self.viewUnderLine)
         NSLayoutConstraint.activate([
-            self.viewUnderLine.topAnchor.constraint(equalTo: self.clipboardView.bottomAnchor, constant: 20),
-            self.viewUnderLine.leadingAnchor.constraint(equalTo: self.backGroundView1.leadingAnchor),
-            self.viewUnderLine.trailingAnchor.constraint(equalTo: self.backGroundView1.trailingAnchor),
-            self.viewUnderLine.bottomAnchor.constraint(equalTo: self.backGroundView1.bottomAnchor),
+            self.viewUnderLine.topAnchor.constraint(equalTo: self.viewClipboard.bottomAnchor, constant: AppConstants.MARGIN_TOP),
+            self.viewUnderLine.leadingAnchor.constraint(equalTo: self.viewBackgroundSecond.leadingAnchor),
+            self.viewUnderLine.trailingAnchor.constraint(equalTo: self.viewBackgroundSecond.trailingAnchor),
+            self.viewUnderLine.bottomAnchor.constraint(equalTo: self.viewBackgroundSecond.bottomAnchor),
             self.viewUnderLine.heightAnchor.constraint(equalToConstant: 1)
         ])
-          self.viewUnderLine.backgroundColor = .gray
-        bgView1.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(searchUrlAction(sender:))))
-        bgView1.isUserInteractionEnabled  = true
-      bgView2.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(urlAction(sender:))))
-        bgView2.isUserInteractionEnabled  = true
-        clipboardView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(clipboardAction(sender:))))
-               clipboardView.isUserInteractionEnabled  = true
+        self.viewUnderLine.backgroundColor = .lightGray
+        viewBackgroundThird.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(searchUrlAction(sender:))))
+        viewBackgroundThird.isUserInteractionEnabled  = true
+      viewBackgroundFour.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(urlAction(sender:))))
+        viewBackgroundFour.isUserInteractionEnabled  = true
+        viewClipboard.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(clipboardAction(sender:))))
+               viewClipboard.isUserInteractionEnabled  = true
     }
     
 }

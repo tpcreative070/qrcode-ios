@@ -37,7 +37,7 @@ setupImage()
                imageIcon.topAnchor.constraint(equalTo: self.topAnchor,constant: 5),
          
                imageIcon.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-               imageIcon.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: -30)
+               imageIcon.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_TAB)
            ])
        }
     required public init?(coder aDecoder: NSCoder) {

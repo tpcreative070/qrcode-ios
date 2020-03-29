@@ -8,25 +8,49 @@
 
 import Foundation
 class EmailViewModel : Codable , EmailViewModelDelegate{
-    
-   
     var toTxtView : String {
-        return to
+        return email ?? ""
     }
     var subjectView : String{
-        return subject
+        return objectEmail ?? ""
     }
     var messageView : String{
-        return message
+        return messageEmail ?? ""
     }
-
-     var to: String
-   var subject: String
-     var message: String
-    init(to: String, subject: String, message: String) {
-        self.to = to
-        self.message = message
-        self.subject = subject
-     }
+    var email: String?
+    var messageEmail: String?
+    var objectEmail: String?
     
+    var createDateTime: Int?
+    var typeCode : String?
+    var isSeen : Int? = 0
+    var isUpdate: Int?
+    
+    init(to: String, subject: String, message: String) {
+        self.email = to
+        self.messageEmail = message
+        self.objectEmail = subject
+    }
+    init(data: EmailModel){
+        self.email = data.email!
+        self.messageEmail = data.messageEmail!
+        self.objectEmail = data.objectEmail!
+    }
+    init() {
+        
+    }
+    init(dataEmail: EmailModel,dataValue: ValuePushModel) {
+        self.email = dataEmail.email!
+        self.messageEmail = dataEmail.messageEmail!
+        self.objectEmail = dataEmail.objectEmail!
+        self.createDateTime = dataValue.createDateTime
+        self.typeCode = dataValue.typeCode
+        self.isSeen = dataValue.isSeen
+    }
+    init(data: ValuePushModel) {
+        self.createDateTime = data.createDateTime
+        self.typeCode = data.typeCode
+        self.isSeen = data.isSeen
+        self.isUpdate = data.isUpdate
+    }
 }

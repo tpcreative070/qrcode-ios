@@ -16,4 +16,7 @@ class EmailModel : Codable {
         self.objectEmail = objectEmail
         self.messageEmail = messageEmail
     }
+    init() {
+        
+    }
 }

@@ -15,13 +15,13 @@ class TableViewCell : UITableViewCell{
     var delegate : TableViewCellDelegate?
     var identifier =  EnumIdentifier.None
     var codable : Codable?
-    let backGroundView : UIView = {
+    let viewBackground : UIView = {
         let view = UIView()
         //        view.backgroundColor = .clear
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    let backGroundView1 : UIView = {
+    let viewBackgroundSecond : UIView = {
         let view = UIView()
         //        view.backgroundColor = .clear
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -43,7 +43,7 @@ class TableViewCell : UITableViewCell{
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_generate")
+        view.image = UIImage(named: AppImages.IC_GENERATE)
         return view
     }()
     lazy var lbTitle : ICLabel = {
@@ -104,8 +104,11 @@ class TableViewCell : UITableViewCell{
     //config with history
     func configView(view : GenerateViewModelDeletegate){
         self.lbTypeCode.text = "\(view.typeCodeView)"
+        print("\(view.typeCodeView)")
         self.lbCreatedDate.text = String(view.createdDateTimeView)
+        print("\(view.createdDateTimeView)")
         self.lbContent.text = view.contentView
+        print("\(view.contentView)")
         self.lbContent.textColor = AppColors.GRAY
         self.checkBox.borderStyle = .square
         self.checkBox.checkmarkStyle = .tick
@@ -115,12 +118,84 @@ class TableViewCell : UITableViewCell{
         self.checkBox.isEnabled = false
         self.checkBox.isChecked = view.checkShowView ?? false
     }
+    func configView(view : AlertViewModelDeletegate){
+        self.lbTitle.text = String(view.nameItemView)
+        print(String(view.nameItemView))
+        self.checkBox.borderStyle = .square
+        self.checkBox.checkmarkStyle = .tick
+        self.checkBox.borderWidth = 2
+        self.checkBox.checkedBorderColor = AppColors.COLOR_ACCENT
+        self.checkBox.checkmarkColor = AppColors.COLOR_ACCENT
+        self.checkBox.isEnabled = false
+        self.checkBox.isChecked = view.checkShowView ?? false
+    }
+    
+    func configView(view : ContentViewModelDeletegate){
+        if view.typeCodeView.uppercased() == EnumType.URL.rawValue{
+            let jsonData = view.contentView.data(using: .utf8)!
+            let urlData = try! JSONDecoder().decode(UrlModel.self, from: jsonData)
+            configView(viewModel: UrlViewModel(url: urlData.url!))
+        }
+        if view.typeCodeView.uppercased() == EnumType.EMAIL.rawValue{
+            let jsonData = view.contentView.data(using: .utf8)!
+            let data = try! JSONDecoder().decode(EmailModel.self, from: jsonData)
+            configView(viewModel: EmailViewModel(data: data))
+        }
+        if view.typeCodeView.uppercased() == EnumType.TEXT.rawValue{
+            let jsonData = view.contentView.data(using: .utf8)!
+            let urlData = try! JSONDecoder().decode(TextModel.self, from: jsonData)
+            configView(viewModel: TextViewModel(text: urlData.text!))
+        }
+        if view.typeCodeView.uppercased() == EnumType.MESSAGE.rawValue{
+            let jsonData = view.contentView.data(using: .utf8)!
+            let data = try! JSONDecoder().decode(MessageModel.self, from: jsonData)
+            configView(viewModel: MessageViewModel(data: MessageModel(to: data.to!, message: data.message!)))
+        }
+        if view.typeCodeView.uppercased() == EnumType.LOCATION.rawValue{
+            let jsonData = view.contentView.data(using: .utf8)!
+            let data = try! JSONDecoder().decode(LocationModel.self, from: jsonData)
+            configView(viewModel: LocationViewModel(data: LocationModel(latitude: data.latitude!, longtitude: data.longtitude!, query: data.query!)))
+        }
+        if view.typeCodeView.uppercased() == EnumType.EVENT.rawValue{
+            let jsonData = view.contentView.data(using: .utf8)!
+            let data = try! JSONDecoder().decode(EventModel.self, from: jsonData)
+            configView(viewModel: EventViewModel(data: data))
+        }
+        if view.typeCodeView.uppercased() == EnumType.CONTACT.rawValue{
+            let jsonData = view.contentView.data(using: .utf8)!
+            let data = try! JSONDecoder().decode(ContactModel.self, from: jsonData)
+            configView(viewModel: ContactViewModel(data: data))
+        }
+        if view.typeCodeView.uppercased() == EnumType.TELEPHONE.rawValue{
+            let jsonData = view.contentView.data(using: .utf8)!
+            let data = try! JSONDecoder().decode(PhoneModel.self, from: jsonData)
+            configView(viewModel: PhoneViewModel(phone: data))
+        }
+        if view.typeCodeView.uppercased() == EnumType.WIFI.rawValue{
+            let jsonData = view.contentView.data(using: .utf8)!
+            let data = try! JSONDecoder().decode(WifiModel.self, from: jsonData)
+            configView(viewModel: WifiViewModel(data: data))
+        }
+    }
+    func configViewSave(view : GenerateViewModelDeletegate){
+        self.lbTypeCode.text = "\(view.typeCodeView)"
+        self.lbCreatedDate.text = String(view.updatedDateTimeView)
+        self.lbContent.text = view.contentView
+        self.lbContent.textColor = AppColors.GRAY
+    }
     //Config with generate
     func configView(viewModel : TypeCodeViewModelDelegate){
         self.lbTitle.text = "\(viewModel.nameView)"
         self.imgIcon.image = UIImage(named: viewModel.imgIconView)
     }
-    
+    //    func configView(viewModel: ContentModel){
+    //        if viewModel.typeCode!.uppercased() == LanguageKey.Url{
+    //            configView(viewModel: UrlViewModel(url: "sdfsd"))
+    //        }
+    //        if viewModel.typeCode!.uppercased() == LanguageKey.Phone{
+    //            configView(viewModel: PhoneViewModel(phone: "983248593"))
+    //        }
+    //    }
     func configData(viewModel : Codable){
         self.codable = viewModel
     }
@@ -146,8 +221,8 @@ class TableViewCell : UITableViewCell{
         else if reuseIdentifier == EnumIdentifier.Text.rawValue {
             identifier = EnumIdentifier.Text
         }
-        else if reuseIdentifier == EnumIdentifier.Phone.rawValue {
-            identifier = EnumIdentifier.Phone
+        else if reuseIdentifier == EnumIdentifier.Telephone.rawValue {
+            identifier = EnumIdentifier.Telephone
         }
         else if reuseIdentifier == EnumIdentifier.Email.rawValue {
             identifier = EnumIdentifier.Email
@@ -170,6 +245,15 @@ class TableViewCell : UITableViewCell{
         else if reuseIdentifier == EnumIdentifier.HistoryChoose.rawValue {
             identifier = EnumIdentifier.HistoryChoose
         }
+        else if reuseIdentifier == EnumIdentifier.SaveChoose.rawValue {
+            identifier = EnumIdentifier.SaveChoose
+        }
+        else if reuseIdentifier == EnumIdentifier.Content.rawValue {
+            identifier = EnumIdentifier.Content
+        }
+        else if reuseIdentifier == EnumIdentifier.Alert.rawValue {
+            identifier = EnumIdentifier.Alert
+        }
         setupView()
     }
     
@@ -185,6 +269,12 @@ class TableViewCell : UITableViewCell{
         if identifier == EnumIdentifier.HistoryChoose {
             self.checkBox.isChecked = !self.checkBox.isChecked
         }
+        if identifier == EnumIdentifier.SaveChoose {
+            self.checkBox.isChecked = !self.checkBox.isChecked
+        }
+        if identifier == EnumIdentifier.Alert {
+                   self.checkBox.isChecked = !self.checkBox.isChecked
+               }
         
     }
     @objc func actionCellViewLongPress(sender : UILongPressGestureRecognizer){
@@ -194,6 +284,9 @@ class TableViewCell : UITableViewCell{
             //                          self.delegate?.cellViewSelected(cell: data)
             //                      }
             if identifier == EnumIdentifier.HistoryChoose {
+                self.checkBox.isChecked = !self.checkBox.isChecked
+            }
+            if identifier == EnumIdentifier.SaveChoose {
                 self.checkBox.isChecked = !self.checkBox.isChecked
             }
         }
@@ -207,10 +300,9 @@ class TableViewCell : UITableViewCell{
             let value_data = JSONHelper.get(value: HistoryViewModel.self,anyObject: data)
             if value_data != nil{
                 let valueShare = Helper.getValueShareContent(typeCode: value_data!.typeCode, contentData: value_data!.content.content!)
-                
                 let activiController = UIActivityViewController(activityItems: [valueShare], applicationActivities: nil)
                 UIApplication.shared.keyWindow?.rootViewController?.present(activiController,animated: true, completion: nil)
-     
+                
             }
         }
     }
@@ -226,7 +318,7 @@ class TableViewCell : UITableViewCell{
         self.viewModel.maxBinding.value = Int(sender.value)
     }
     /*url detail */
-    lazy  var urlBg: UIView = {
+    lazy  var viewUrlBg: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -235,47 +327,47 @@ class TableViewCell : UITableViewCell{
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var titleLbl1 : UILabel = {
-        let view = UILabel()
+    lazy var lbTitleFirst : ICLabel = {
+        let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var valueTxt1: ICTextFieldNoneIcon = {
+    lazy var textFieldValueFirst: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
         
         return view
     }()
-    lazy var valueTxt2: ICTextFieldNoneIcon = {
+    lazy var textFieldValueSecond: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
         
         return view
     }()
-    lazy var valueTxt3: ICTextFieldNoneIcon = {
+    lazy var textFieldValueThird: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
         
         return view
     }()
-    lazy var valueTxt4: ICTextFieldNoneIcon = {
+    lazy var textFieldValueFour: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
         
         return view
     }()
-    lazy var valueTxt5: ICTextFieldNoneIcon = {
+    lazy var textFieldValueFive: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
         
         return view
     }()
-    var bgView1: UIView = {
+    var viewBackgroundThird: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -284,7 +376,7 @@ class TableViewCell : UITableViewCell{
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var bgView2: UIView = {
+    var viewBackgroundFour: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -293,7 +385,7 @@ class TableViewCell : UITableViewCell{
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var clipboardView: UIView = {
+    var viewClipboard: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
@@ -302,219 +394,224 @@ class TableViewCell : UITableViewCell{
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var searchImg : UIImageView = {
+    lazy var imgSearch : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_search")
+        view.image = UIImage(named: AppImages.IC_SEARCH)
         return view
     }()
-    lazy var titleLbl2 : UILabel = {
-        let view = UILabel()
+    lazy var lbTitleSecond : ICLabel = {
+        let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var urlImg : UIImageView = {
+    lazy var imgUrl : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_language")
+        view.image = UIImage(named: AppImages.IC_LANGUAGE)
         return view
     }()
     
-    lazy var titleLabel3 : UILabel = {
-        let view = UILabel()
+    lazy var lbTitleThird : ICLabel = {
+        let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var titleLabel4 : UILabel = {
-        let view = UILabel()
+    lazy var lbTitleFour : ICLabel = {
+        let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var titleLabel5 : UILabel = {
-        let view = UILabel()
+    lazy var lbTitleFive : ICLabel = {
+        let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var titleLabel6 : UILabel = {
-        let view = UILabel()
+    lazy var lbTitleSix : ICLabel = {
+        let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var clipboardImage : UIImageView = {
+    lazy var imgClipboard : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_copy")
+        view.image = UIImage(named: AppImages.IC_COPY)
         return view
     }()
-    lazy var clipboardLabel : UILabel = {
-        let view = UILabel()
+    lazy var lbClipboard : ICLabel = {
+        let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.text = "Clipboard"
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Clipboard)
         return view
     }()
     func configView(viewModel : UrlViewModelDelegate){
-        self.titleLbl1.text = "Url"
-        self.titleLbl2.text = "Url"
-        self.titleLabel3.text = "Search"
-        self.valueTxt1.text = viewModel.urlTxtView
+        self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.Url)
+        self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Url)
+        self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Search)
+        self.textFieldValueFirst.text = viewModel.urlTxtView
     }
     /*text*/
-    lazy var textImg : UIImageView = {
+    lazy var imgText : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_textsms")
+        view.image = UIImage(named: AppImages.IC_SMS)
         return view
     }()
     
     func configView(viewModel : TextViewModelDelegate){
-        self.titleLbl1.text = "Text"
-        self.titleLbl2.text = "Text"
-        self.titleLabel3.text = "Search"
-        self.valueTxt1.text = viewModel.textTxtView
+        self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.Text)
+        self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Text)
+        self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Search)
+        self.textFieldValueFirst.text = viewModel.textTxtView
     }
     /*phone*/
-    lazy var phoneImg : UIImageView = {
+    lazy var imgPhone : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_phone")
+        view.image = UIImage(named: AppImages.IC_PHONE)
         return view
     }()
     
     func configView(viewModel : PhoneViewModelDelegate){
-        self.titleLbl1.text = "Phone"
-        self.titleLbl2.text = "Phone"
-        self.valueTxt1.text = viewModel.phoneTxtView
+        self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.Phone)
+        self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Phone)
+        self.textFieldValueFirst.text = viewModel.phoneTxtView
     }
     /*email*/
-    lazy var emailImg : UIImageView = {
+    lazy var imgEmail : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_email")
+        view.image = UIImage(named: AppImages.IC_EMAIL)
         return view
     }()
     
     func configView(viewModel : EmailViewModelDelegate){
-        self.titleLbl1.text = "To"
-        self.titleLbl2.text = "Subject"
-        self.titleLabel3.text = "Message"
-        self.titleLabel4.text = "Email"
+        self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.To)
+        self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Subject)
+        self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Message)
+        self.lbTitleFour.text = LanguageHelper.getTranslationByKey(LanguageKey.Email)
         
-        self.valueTxt1.text = viewModel.toTxtView
-        self.valueTxt2.text = viewModel.subjectView
-        self.valueTxt3.text = viewModel.messageView
+        self.textFieldValueFirst.text = viewModel.toTxtView
+        self.textFieldValueSecond.text = viewModel.subjectView
+        self.textFieldValueThird.text = viewModel.messageView
     }
     /*wifi*/
-    lazy var wifiImg : UIImageView = {
+    lazy var imgWifi : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_wifi")
+        view.image = UIImage(named: AppImages.IC_WIFI)
         return view
     }()
     
     func configView(viewModel : WifiViewModelDelegate){
-        self.titleLbl1.text = "SSID"
-        self.titleLbl2.text = "Password"
-        self.titleLabel3.text = "Network Encryption"
-        self.titleLabel4.text = "Hidden"
-        self.titleLabel5.text = "Wifi"
+        self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.SSID)
+        self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Password)
+        self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.NetworkEncryption)
+        self.lbTitleFour.text = LanguageHelper.getTranslationByKey(LanguageKey.Hidden)
+        self.lbTitleFive.text = LanguageHelper.getTranslationByKey(LanguageKey.Wifi)
         
-        self.valueTxt1.text = viewModel.ssidView
-        self.valueTxt2.text = viewModel.passwordView
-        self.valueTxt3.text = viewModel.networkView
-        self.valueTxt4.text = viewModel.hiddenView
+        self.textFieldValueFirst.text = viewModel.ssidView
+        self.textFieldValueSecond.text = viewModel.passwordView
+        self.textFieldValueThird.text = viewModel.networkView
+        if viewModel.hiddenView {
+            self.textFieldValueFour.text = LanguageKey.True
+        }
+        if !(viewModel.hiddenView) {
+            self.textFieldValueFour.text = LanguageKey.False
+        }
         
     }
     /*contact*/
-    lazy var contactImg : UIImageView = {
+    lazy var imgContact : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_contact_calendar")
+        view.image = UIImage(named: AppImages.IC_CONTACT_CALENDAR)
         return view
     }()
     
     func configView(viewModel : ContactViewModel){
-        self.titleLbl1.text = "Fullname "
-        self.titleLbl2.text = "Address"
-        self.titleLabel3.text = "Phone"
-        self.titleLabel4.text = "Email"
-        self.titleLabel5.text = "AddressBook"
+        self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.FullName)
+        self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Address)
+        self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Phone)
+        self.lbTitleFour.text = LanguageHelper.getTranslationByKey(LanguageKey.Email)
+        self.lbTitleFive.text = LanguageHelper.getTranslationByKey(LanguageKey.AddressBook)
         
-        self.valueTxt1.text = viewModel.fullnameView
-        self.valueTxt2.text = viewModel.addressView
-        self.valueTxt3.text = viewModel.phoneView
-        self.valueTxt4.text = viewModel.emailView
+        self.textFieldValueFirst.text = viewModel.fullnameView
+        self.textFieldValueSecond.text = viewModel.addressView
+        self.textFieldValueThird.text = viewModel.phoneView
+        self.textFieldValueFour.text = viewModel.emailView
         
     }
     /*location*/
-    lazy var locationImg : UIImageView = {
+    lazy var imgLocation : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_location")
+        view.image = UIImage(named: AppImages.IC_LOCATION)
         return view
     }()
     
     func configView(viewModel : LocationViewModel){
-        self.titleLbl1.text = "Latitude "
-        self.titleLbl2.text = "Longtitude"
-        self.titleLabel3.text = "Query"
-        self.titleLabel4.text = "Location"
+        self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.Latitude)
+        self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Longtitude)
+        self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Query)
+        self.lbTitleFour.text = LanguageHelper.getTranslationByKey(LanguageKey.Location)
         
-        self.valueTxt1.text = viewModel.latView
-        self.valueTxt2.text = viewModel.longView
-        self.valueTxt3.text = viewModel.query
+        self.textFieldValueFirst.text = viewModel.latView
+        self.textFieldValueSecond.text = viewModel.longView
+        self.textFieldValueThird.text = viewModel.query
         
     }
     /*message*/
-    lazy var smsImg : UIImageView = {
+    lazy var imgSms : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_textsms")
+        view.image = UIImage(named: AppImages.IC_SMS)
         return view
     }()
     
     func configView(viewModel : MessageViewModel){
-        self.titleLbl1.text = "To "
-        self.titleLbl2.text = "Message"
-        self.titleLabel3.text = "SMS"
+        self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.To)
+        self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Message)
+        self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Sms)
         
-        self.valueTxt1.text = viewModel.toView
-        self.valueTxt2.text = viewModel.messageView
+        self.textFieldValueFirst.text = viewModel.toView
+        self.textFieldValueSecond.text = viewModel.messageView
         
     }
     /*calendar*/
-    lazy var eventImg : UIImageView = {
+    lazy var imgEvent : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = AppColors.COLOR_ACCENT
-        view.image = UIImage(named: "ic_event")
+        view.image = UIImage(named: AppImages.IC_EVENT)
         return view
     }()
     
     func configView(viewModel : EventViewModel){
-        self.titleLbl1.text = "Title "
-        self.titleLbl2.text = "Location"
-        self.titleLabel3.text = "Description"
-        self.titleLabel4.text = "Begin Time"
-        self.titleLabel5.text = "End Time"
-        self.titleLabel6.text = "Calendar"
+        self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.Title)
+        self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Location)
+        self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Description)
+        self.lbTitleFour.text = LanguageHelper.getTranslationByKey(LanguageKey.TimeBegin)
+        self.lbTitleFive.text = LanguageHelper.getTranslationByKey(LanguageKey.TimeEnd)
+        self.lbTitleSix.text = LanguageHelper.getTranslationByKey(LanguageKey.Calendar)
         
         
         
-        self.valueTxt1.text = viewModel.titleView
-        self.valueTxt2.text = viewModel.locationView
-        self.valueTxt3.text = viewModel.descriptionView
-        self.valueTxt4.text = viewModel.beginView
-        self.valueTxt5.text = viewModel.endView
+        self.textFieldValueFirst.text = viewModel.titleView
+        self.textFieldValueSecond.text = viewModel.locationView
+        self.textFieldValueThird.text = viewModel.descriptionView
+        self.textFieldValueFour.text = viewModel.beginView
+        self.textFieldValueFive.text = viewModel.endView
         
         
     }
@@ -525,60 +622,64 @@ class TableViewCell : UITableViewCell{
     @objc func urlAction(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
-            let value_data = JSONHelper.get(value: UrlViewModel.self,anyObject: data)
-            if value_data != nil{
-                let urlValue = value_data?.urlTxt
-                if let url = NSURL(string: urlValue!) {
-                    UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
-                    
-                }
+            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
+            let value_data = valueContentView?.content
+            let jsonData = value_data!.data(using: .utf8)!
+            let urlValue = try! JSONDecoder().decode(UrlModel.self, from: jsonData)
+            if let url = NSURL(string: urlValue.url!) {
+                UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+                
             }
         }
     }
     @objc func searchUrlAction(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
-            print(data.self)
-            let value_data = JSONHelper.get(value: UrlViewModel.self,anyObject: data)
-            let urlValue = value_data?.urlTxt
-            if let url = URL(string: urlValue!) {
+            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
+            let value_data = valueContentView?.content
+            let jsonData = value_data!.data(using: .utf8)!
+            let urlValue = try! JSONDecoder().decode(UrlModel.self, from: jsonData)
+            if let url = URL(string: urlValue.url!) {
                 UIApplication.shared.open(url)
             }
-            
         }
     }
     @objc func searchTextAction(sender : UITapGestureRecognizer){
+        
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
-            print(data.self)
-            let value_data = JSONHelper.get(value: TextViewModel.self,anyObject: data)
-            let urlValue = "\(value_data?.textTxt ?? "")"
-            
-            let   query = urlValue.replacingOccurrences(of: " ", with: "+")
+            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
+            let value_data = valueContentView?.content
+            let jsonData = value_data!.data(using: .utf8)!
+            let value = try! JSONDecoder().decode(TextModel.self, from: jsonData)
+            let text = value.text ?? ""
+            let  query = text.replacingOccurrences(of: " ", with: "+")
             let url = "https://www.google.co.in/search?q=" + query
             UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
-            
         }
     }
     @objc func textAction(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
-            print(data.self)
-            let value_data = JSONHelper.get(value: TextViewModel.self,anyObject: data)
-            let textValue = value_data?.textTxt
-            let activiController = UIActivityViewController(activityItems: [textValue as Any], applicationActivities: nil)
+            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
+            let value_data = valueContentView?.content
+            let jsonData = value_data!.data(using: .utf8)!
+            let value = try! JSONDecoder().decode(TextModel.self, from: jsonData)
+            let text = value.text ?? ""
+            let activiController = UIActivityViewController(activityItems: [text as Any], applicationActivities: nil)
             self.window?.rootViewController!.present(activiController, animated: true, completion: nil)
-            //UIApplication.shared.keyWindow?.rootViewController?.present(activiController,animated: true, completion: nil)
-            
         }
     }
     @objc func phoneAction(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
-            print(data.self)
-            let value_data = JSONHelper.get(value: PhoneViewModel.self,anyObject: data)
-            let textValue = value_data?.phoneTxt
-            if let url = URL(string: "tel://\(textValue!)"), UIApplication.shared.canOpenURL(url) {
+            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
+            let value_data = valueContentView?.content
+            let jsonData = value_data!.data(using: .utf8)!
+            let value = try! JSONDecoder().decode(PhoneModel.self, from: jsonData)
+            let textValue = value.phone ?? ""
+            print(textValue)
+            if let url = URL(string: "tel://\(textValue)"), UIApplication.shared.canOpenURL(url) {
                 if #available(iOS 10, *) {
                     UIApplication.shared.open(url)
                 } else {
@@ -591,9 +692,11 @@ class TableViewCell : UITableViewCell{
     @objc func messageAction(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
-            print(data.self)
-            let value_data = JSONHelper.get(value: MessageViewModel.self,anyObject: data)
-            let smsValue = "sms:+\((value_data?.toMessage)!))&body=\((value_data?.message)!))"
+            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
+            let value_data = valueContentView?.content
+            let jsonData = value_data!.data(using: .utf8)!
+            let value = try! JSONDecoder().decode(MessageModel.self, from: jsonData)
+            let smsValue = "sms:+\((value.to ?? ""))&body=\(value.message ?? "")"
             let strURL: String = smsValue.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             UIApplication.shared.open(URL.init(string: strURL)!, options: [:], completionHandler: nil)
             
@@ -601,30 +704,56 @@ class TableViewCell : UITableViewCell{
     }
     @objc func clipboardAction(sender : UITapGestureRecognizer){
         
+        self.delegate?.cellViewSelected(cell: self)
+        if let data = codable {
+            self.delegate?.cellViewSelected(cell: data)
+        }
+       /* if let data = codable {
+            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
+            let value_data = valueContentView?.content
+            let jsonData = value_data!.data(using: .utf8)!
+            let value = try! JSONDecoder().decode(MessageModel.self, from: jsonData)
+            var vc = AlertVC(listItem: [AlertViewModel(name: value.message!)])
+            //let alert = CustomAlert(title: "Hello there!! 👋🏻👋🏻", image: UIImage(named: "img")!)
+                  vc.show(animated: true)
+//        var alrController = UIAlertController(title: "\n\n\n\n\n\n", message: nil, preferredStyle: UIAlertController.Style.alert)
+//        alrController.view.addSubview(vc)
+//
+//        let somethingAction = UIAlertAction(title: "Something", style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in print("something")})
+//
+//        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: {(alert: UIAlertAction!) in print("cancel")})
+//
+//        alrController.addAction(somethingAction)
+//        alrController.addAction(cancelAction)
+//        self.window?.rootViewController?.present(alrController, animated: true, completion: nil)
+        }
+ */
     }
     @objc func addContactAction(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
-            print(data.self)
-            let value_data = JSONHelper.get(value: ContactViewModel.self,anyObject: data)
+            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
+            let value = valueContentView?.content
+            let jsonData = value!.data(using: .utf8)!
+            let value_data = try! JSONDecoder().decode(ContactModel.self, from: jsonData)
             let store = CNContactStore()
             store.requestAccess(for: .contacts) { (granted, err) in
-                if err == nil{
+                if err != nil{
                     print("Failed request access")
                     return
                 }
                 if granted{
                     // Creating a new contact
                     let newContact = CNMutableContact()
-                    newContact.givenName = value_data!.fullnameView
-                    let email = CNLabeledValue(label: CNLabelHome, value: "\(value_data!.emailView)" as NSString)
+                    newContact.givenName = value_data.fullNameContact!
+                    let email = CNLabeledValue(label: CNLabelHome, value: "\(value_data.emailContact!)" as NSString)
                     newContact.emailAddresses = [email]
                     let homeAddress = CNMutablePostalAddress()
-                    homeAddress.city = value_data!.addressView
+                    homeAddress.city = value_data.addressContact!
                     newContact.postalAddresses = [CNLabeledValue(label:CNLabelHome, value:homeAddress)]
                     newContact.phoneNumbers = [CNLabeledValue(
                         label:CNLabelPhoneNumberiPhone,
-                        value:CNPhoneNumber(stringValue:value_data!.phoneView))]
+                        value:CNPhoneNumber(stringValue:value_data.phoneContact!))]
                     
                     
                     // Saving contact
@@ -658,13 +787,17 @@ class TableViewCell : UITableViewCell{
     }
     @objc func emailAction(sender : UITapGestureRecognizer){
         if let data = codable {
-            print(data.self)
-            let value_data = JSONHelper.get(value: EmailViewModel.self,anyObject: data)
-            let email = value_data?.messageView
-            let objectEmail = value_data?.subjectView
-            let messageEmail = value_data?.messageView
-            let value = "mailto:\(email!)?subject=\(objectEmail!)&body=\(messageEmail!)"
-            if let url = URL(string: value) {
+            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
+            let value = valueContentView?.content
+            let jsonData = value!.data(using: .utf8)!
+            let value_data = try? JSONDecoder().decode(EmailModel.self, from: jsonData)
+            let email = value_data?.email ?? ""
+            let objectEmail = value_data?.objectEmail ?? ""
+            let messageEmail = value_data?.messageEmail ?? ""
+            let value_email = "mailto:\(email)?subject=\(objectEmail)&body=\(messageEmail)"
+            let strURL: String = value_email.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+            
+            if let url = URL(string: strURL) {
                 if #available(iOS 10.0, *) {
                     UIApplication.shared.open(url)
                 } else {
@@ -686,10 +819,12 @@ class TableViewCell : UITableViewCell{
     }
     @objc func locationAction(sender : UITapGestureRecognizer){
         if let data = codable {
-            print(data.self)
-            let value_data = JSONHelper.get(value: LocationViewModel.self,anyObject: data)
-            let lat = Float(value_data!.latitude) ?? 0
-            let lng = Float(value_data!.longtitude) ?? 0
+            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
+            let value = valueContentView?.content
+            let jsonData = value!.data(using: .utf8)!
+            let value_data = try? JSONDecoder().decode(LocationModel.self, from: jsonData)
+            let lat = Float(value_data!.latitude ?? 0)
+            let lng = Float(value_data!.longtitude ?? 0)
             let regionDistance:CLLocationDistance = 10000
             let coordinates = CLLocationCoordinate2DMake(CLLocationDegrees(lat), CLLocationDegrees(lng))
             let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
@@ -705,7 +840,10 @@ class TableViewCell : UITableViewCell{
     }
     @objc func eventAction(sender : UITapGestureRecognizer){
         if let data = codable {
-            let value_data = JSONHelper.get(value: EventViewModel.self,anyObject: data)
+            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
+            let value = valueContentView?.content
+            let jsonData = value!.data(using: .utf8)!
+            let value_data = try? JSONDecoder().decode(EventModel.self, from: jsonData)
             let eventStore : EKEventStore = EKEventStore()
             // 'EKEntityTypeReminder' or 'EKEntityTypeEvent'
             eventStore.requestAccess(to: .event) { (granted, error) in
@@ -715,12 +853,13 @@ class TableViewCell : UITableViewCell{
                     
                     let event:EKEvent = EKEvent(eventStore: eventStore)
                     
-                    event.title = value_data!.titleView
-                    event.startDate = TimeHelper.getDateTime(timeString: value_data!.beginTime)!
-                   
-                    event.endDate = TimeHelper.getDateTime(timeString: value_data!.endTime)!
-                    event.notes = value_data?.descriptionView ?? ""
-                    event.location = value_data?.locationView ?? ""
+                    event.title = value_data!.title
+                    print(value_data?.beginTime)
+                    event.startDate = TimeHelper.getDateTime(timeString: value_data!.beginTime!) ?? Date()
+                    
+                    event.endDate = TimeHelper.getDateTime(timeString: value_data!.endTime!) ?? Date()
+                    event.notes = value_data?.description ?? ""
+                    event.location = value_data?.location ?? ""
                     event.calendar = eventStore.defaultCalendarForNewEvents
                     do {
                         try eventStore.save(event, span: .thisEvent)
@@ -740,6 +879,13 @@ class TableViewCell : UITableViewCell{
                     
                 }
             }
+        }
+    }
+    @objc func actionImgCreateViewTap(sender : UITapGestureRecognizer){
+        if let data = codable {
+            
+            self.delegate?.cellCodable(codable: data)
+            
         }
     }
 }

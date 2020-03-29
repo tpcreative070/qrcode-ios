@@ -11,84 +11,144 @@ import ZXingObjC
 import Photos
 extension ScannerVC {
     func iniUI(){
-        view.addSubview(bgView)
-        bgView.addSubview(scanView)
-        
+        view.addSubview(viewBackground)
         NSLayoutConstraint.activate([
-            scanView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
-            scanView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            
-            scanView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25),
-            scanView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -25),
-            
-            scanView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/2)
+            viewBackground.topAnchor.constraint(equalTo: view.topAnchor),
+            viewBackground.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor),
+            viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor),
+            viewBackground.widthAnchor.constraint(equalToConstant: view.frame.width),
+            viewBackground.heightAnchor.constraint(equalToConstant: view.frame.height)
         ])
-        bgView.addSubview(lbScannerRectangle)
-        
+        viewBackground.addSubview(wrapperFirstView)
         NSLayoutConstraint.activate([
-            lbScannerRectangle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
-            lbScannerRectangle.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            
-            lbScannerRectangle.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30),
-            lbScannerRectangle.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30),
-            
-            lbScannerRectangle.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/2)
+            wrapperFirstView.topAnchor.constraint(equalTo: viewBackground.topAnchor),
+            wrapperFirstView.leftAnchor.constraint(equalTo: viewBackground.leftAnchor),
+            wrapperFirstView.rightAnchor.constraint(equalTo: viewBackground.rightAnchor),
+            wrapperFirstView.widthAnchor.constraint(equalToConstant: viewBackground.frame.width),
+            wrapperFirstView.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/4)
         ])
-        bgView.addSubview(iconView)
-               
-               NSLayoutConstraint.activate([
-                   iconView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                   iconView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-                   iconView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25),
-                   iconView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -25),
-            ])
-        iconView.addSubview(frontCamera)
-               
-               NSLayoutConstraint.activate([
-                frontCamera.topAnchor.constraint(equalTo: iconView.topAnchor, constant: 0),
-                frontCamera.leftAnchor.constraint(equalTo: iconView.leftAnchor, constant: 0),
-                ])
-       iconView.addSubview(flash)
-                    
-                    NSLayoutConstraint.activate([
-                     flash.topAnchor.constraint(equalTo: iconView.topAnchor, constant: 0),
-                                         
-                        flash.leftAnchor.constraint(equalTo: frontCamera.rightAnchor, constant: 30),
-                    ])
-            iconView.addSubview(imgHelp)
-                             
-                             NSLayoutConstraint.activate([
-                              imgHelp.topAnchor.constraint(equalTo: iconView.topAnchor, constant: 0),
-                                                  
-                                 imgHelp.leftAnchor.constraint(equalTo: flash.rightAnchor, constant: 30),
-                             ])
-        bgView.addSubview(imgView)
-                                   
-                                   NSLayoutConstraint.activate([
-                                    imgView.topAnchor.constraint(equalTo: bgView.topAnchor, constant: 50),
-                                    imgView.heightAnchor.constraint(equalToConstant: 30),
-                                    imgView.widthAnchor.constraint(equalToConstant: 30),
-                                       imgView.leftAnchor.constraint(equalTo: bgView.rightAnchor, constant: 30),
-                                   ])
-//        imgView.addSubview(imgScan)
-//
-//                                       NSLayoutConstraint.activate([
-//                                        imgScan.topAnchor.constraint(equalTo: imgView.topAnchor, constant: 0),
-//
-//                                           imgScan.leftAnchor.constraint(equalTo: imgView.leftAnchor, constant: 30),
-//                                       ])
         
-        imgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector (self.urlAction (_:))))
-
+        viewBackground.addSubview(viewIcon)
+        NSLayoutConstraint.activate([
+            viewIcon.topAnchor.constraint(equalTo: viewBackground.topAnchor),
+            viewIcon.bottomAnchor.constraint(equalTo: viewBackground.bottomAnchor),
+            viewIcon.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewIcon.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewIcon.centerXAnchor.constraint(equalTo: viewBackground.centerXAnchor)
+        ])
+        viewBackground.addSubview(viewScan)
+        NSLayoutConstraint.activate([
+            viewScan.centerXAnchor.constraint(equalTo: viewBackground.centerXAnchor),
+            viewScan.centerYAnchor.constraint(equalTo: viewBackground.centerYAnchor),
+            viewScan.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewScan.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewScan.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2)
+        ])
+        viewBackground.addSubview(lbScannerRectangle)
+        NSLayoutConstraint.activate([
+            lbScannerRectangle.centerXAnchor.constraint(equalTo: viewBackground.centerXAnchor),
+            lbScannerRectangle.centerYAnchor.constraint(equalTo: viewBackground.centerYAnchor),
+            lbScannerRectangle.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbScannerRectangle.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            lbScannerRectangle.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2)
+        ])
+        viewBackground.addSubview(wrapperSecondView)
+        NSLayoutConstraint.activate([
+            wrapperSecondView.topAnchor.constraint(equalTo: lbScannerRectangle.bottomAnchor),
+            wrapperSecondView.leftAnchor.constraint(equalTo: viewBackground.leftAnchor),
+            wrapperSecondView.rightAnchor.constraint(equalTo: viewBackground.rightAnchor),
+            wrapperSecondView.widthAnchor.constraint(equalToConstant: viewBackground.frame.width),
+            wrapperSecondView.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/4)
+        ])
+        viewBackground.addSubview(wrapperThirdView)
+        NSLayoutConstraint.activate([
+            wrapperThirdView.topAnchor.constraint(equalTo: wrapperFirstView.bottomAnchor),
+            wrapperThirdView.leftAnchor.constraint(equalTo: viewBackground.leftAnchor),
+            wrapperThirdView.rightAnchor.constraint(equalTo: lbScannerRectangle.leftAnchor),
+            wrapperThirdView.widthAnchor.constraint(equalToConstant: viewBackground.frame.width),
+            wrapperThirdView.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2)
+        ])
+        viewBackground.addSubview(wrapperFourView)
+        NSLayoutConstraint.activate([
+            wrapperFourView.topAnchor.constraint(equalTo: wrapperFirstView.bottomAnchor),
+            wrapperFourView.leftAnchor.constraint(equalTo: lbScannerRectangle.rightAnchor),
+            wrapperFourView.rightAnchor.constraint(equalTo: viewBackground.rightAnchor),
+            wrapperFourView.widthAnchor.constraint(equalToConstant: viewBackground.frame.width),
+            wrapperFourView.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2)
+        ])
+        viewIcon.addSubview(viewFlipCamera)
+        NSLayoutConstraint.activate([
+            
+            viewFlipCamera.topAnchor.constraint(equalTo: viewIcon.topAnchor, constant: AppConstants.MARGIN_TOP),
+            viewFlipCamera.leadingAnchor.constraint(equalTo: viewIcon.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewFlipCamera.widthAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT),
+            viewFlipCamera.heightAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT)
+        ])
+        viewFlipCamera.addSubview(imgFlipCamera)
+        NSLayoutConstraint.activate([
+            imgFlipCamera.topAnchor.constraint(equalTo: viewFlipCamera.topAnchor),
+            imgFlipCamera.leadingAnchor.constraint(equalTo: viewFlipCamera.leadingAnchor, constant: AppConstants.MARGIN_LEFT_HELP),
+            imgFlipCamera.widthAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT),
+            imgFlipCamera.heightAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT)
+        ])
+        viewIcon.addSubview(viewFlashBg)
+        NSLayoutConstraint.activate([
+            
+            viewFlashBg.topAnchor.constraint(equalTo: viewIcon.topAnchor, constant: AppConstants.MARGIN_TOP),
+            viewFlashBg.leadingAnchor.constraint(equalTo: viewFlipCamera.trailingAnchor, constant: AppConstants.MARGIN_LEFT_ICON),
+            viewFlashBg.widthAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT),
+            viewFlashBg.heightAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT)
+        ])
+        viewFlashBg.addSubview(imgFlashOff)
+        NSLayoutConstraint.activate([
+            imgFlashOff.topAnchor.constraint(equalTo: viewFlashBg.topAnchor),
+            imgFlashOff.leadingAnchor.constraint(equalTo: viewFlashBg.leadingAnchor),
+            imgFlashOff.widthAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT),
+            imgFlashOff.heightAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT)
+        ])
+        viewIcon.addSubview(viewHelpBg)
+        NSLayoutConstraint.activate([
+            viewHelpBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
+            viewHelpBg.leadingAnchor.constraint(equalTo: viewFlashBg.trailingAnchor, constant:  AppConstants.MARGIN_LEFT_ALERT_BTN),
+            viewHelpBg.widthAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT),
+            viewHelpBg.heightAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT)
+        ])
+        
+        viewHelpBg.addSubview(imgHelp)
+        NSLayoutConstraint.activate([
+            imgHelp.topAnchor.constraint(equalTo: viewHelpBg.topAnchor),
+            imgHelp.leadingAnchor.constraint(equalTo: viewHelpBg.leadingAnchor),
+            imgHelp.widthAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT),
+            imgHelp.heightAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT)
+        ])
+        viewIcon.addSubview(viewScanBg)
+        NSLayoutConstraint.activate([
+            
+            viewScanBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
+            viewScanBg.leadingAnchor.constraint(equalTo: viewHelpBg.trailingAnchor, constant: AppConstants.MARGIN_LEFT_ICON),
+            viewScanBg.widthAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT),
+            viewScanBg.heightAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT)
+        ])
+        viewScanBg.addSubview(imgScan)
+        NSLayoutConstraint.activate([
+            imgScan.topAnchor.constraint(equalTo: viewScanBg.topAnchor),
+            imgScan.leadingAnchor.constraint(equalTo: viewScanBg.leadingAnchor),
+            imgScan.widthAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT),
+            imgScan.heightAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT)
+        ])
+        
+        let tapScan = UITapGestureRecognizer(target: self, action: #selector(actionGallery(sender:)))
+        self.viewScanBg.addGestureRecognizer(tapScan)
+        let tapFrontCamera = UITapGestureRecognizer(target: self, action: #selector(actionFrontCamera(sender:)))
+        self.viewFlipCamera.addGestureRecognizer(tapFrontCamera)
+        let tapHelp = UITapGestureRecognizer(target: self, action: #selector(actionHelp(sender:)))
+        self.viewHelpBg.addGestureRecognizer(tapHelp)
+        let tapFlash = UITapGestureRecognizer(target: self, action: #selector(actionFlash(sender:)))
+        self.viewFlashBg.addGestureRecognizer(tapFlash)
+ 
     }
-   @objc func urlAction(_ sender:UITapGestureRecognizer){
-       print("hello")
-   //        guard let url = URL(string: urlSeen?.url) else { return }
-   //        UIApplication.shared.open(url)
-       }
-  
+    
     func applyOrientation() {
         let orientation = UIApplication.shared.statusBarOrientation
         var captureRotation: Double
@@ -96,43 +156,46 @@ extension ScannerVC {
         
         switch orientation {
         case .portrait:
-            captureRotation = 0
-            scanRectRotation = 90
+            captureRotation = AppConstants.CAPTURE_ROTATION
+            scanRectRotation = AppConstants.SCAN_REACT_ROTATION_90
             break
             
         case .landscapeLeft:
-            captureRotation = 90
-            scanRectRotation = 180
+            captureRotation = AppConstants.SCAN_REACT_ROTATION_90
+            scanRectRotation = AppConstants.SCAN_REACT_ROTATION_180
             break
             
         case .landscapeRight:
-            captureRotation = 270
-            scanRectRotation = 0
+            captureRotation = AppConstants.SCAN_REACT_ROTATION_270
+            scanRectRotation = AppConstants.CAPTURE_ROTATION
             break
             
         case .portraitUpsideDown:
-            captureRotation = 180
-            scanRectRotation = 270
+            captureRotation = AppConstants.SCAN_REACT_ROTATION_180
+            scanRectRotation = AppConstants.SCAN_REACT_ROTATION_270
             break
             
         default:
-            captureRotation = 0
-            scanRectRotation = 90
+            captureRotation = AppConstants.CAPTURE_ROTATION
+            scanRectRotation = AppConstants.SCAN_REACT_ROTATION_90
             break
         }
         
         applyRectOfInterest(orientation: orientation)
         
-        let angleRadius = captureRotation / 180.0 * Double.pi
+        let angleRadius = captureRotation / AppConstants.SCAN_REACT_ROTATION_180 * Double.pi
         let captureTranform = CGAffineTransform(rotationAngle: CGFloat(angleRadius))
         
         capture?.transform = captureTranform
         capture?.rotation = CGFloat(scanRectRotation)
         capture?.layer.frame = view.frame
+        capture?.layer.backgroundColor = UIColor.white.withAlphaComponent(AppConstants.WITH_ALPHA_COMPONENT).cgColor
     }
     
     func applyRectOfInterest(orientation: UIInterfaceOrientation) {
-        guard var transformedVideoRect = scanView?.frame,
+        print(viewScan.frame)
+        
+        guard var transformedVideoRect = viewScan?.frame,
             let cameraSessionPreset = capture?.sessionPreset
             else { return }
         var scaleVideoX, scaleVideoY: CGFloat
@@ -140,11 +203,11 @@ extension ScannerVC {
         
         // Currently support only for 1920x1080 || 1280x720
         if cameraSessionPreset == AVCaptureSession.Preset.hd1920x1080.rawValue {
-            videoHeight = 1080.0
-            videoWidth = 1920.0
+            videoHeight = AppConstants.VIDEO_HEIGHT_1080
+            videoWidth = AppConstants.VIDEO_HEIGHT_1920
         } else {
-            videoHeight = 720.0
-            videoWidth = 1280.0
+            videoHeight = AppConstants.VIDEO_HEIGHT_720
+            videoWidth = AppConstants.VIDEO_HEIGHT_1280
         }
         
         if orientation == UIInterfaceOrientation.portrait {
@@ -175,71 +238,57 @@ extension ScannerVC {
     func barcodeFormatToString(format: ZXBarcodeFormat) -> String {
         switch (format) {
         case kBarcodeFormatAztec:
-            print("Aztec")
-            return "Aztec"
+            return LanguageKey.Aztec
             
         case kBarcodeFormatCodabar:
-            print("CODABAR")
-            return "CODABAR"
+            return LanguageKey.CODABAR
             
         case kBarcodeFormatCode39:
             print("Code 39")
-            return "Code 39"
+            return LanguageKey.Code_39
             
         case kBarcodeFormatCode93:
-            print("Code 93")
-            return "Code 93"
+            return LanguageKey.Code_93
             
         case kBarcodeFormatCode128:
-            print("Code 128")
-            return "Code 128"
+            return LanguageKey.Code_128
             
         case kBarcodeFormatDataMatrix:
-            print("Data Matrix")
-            return "Data Matrix"
+            return LanguageKey.Data_Matrix
             
         case kBarcodeFormatEan8:
-            print("EAN-8")
-            return "EAN-8"
+            return LanguageKey.EAN_8
             
         case kBarcodeFormatEan13:
-            print("EAN-13")
-            return "EAN-13"
+            return LanguageKey.EAN_13
             
         case kBarcodeFormatITF:
-            print("ITF")
-            return "ITF"
+            return LanguageKey.ITF
             
         case kBarcodeFormatPDF417:
             print("PDF417")
-            return "PDF417"
+            return LanguageKey.PDF417
             
         case kBarcodeFormatQRCode:
-            print("QR Code")
-            return "QR Code"
+            return LanguageKey.QR_Code
             
         case kBarcodeFormatRSS14:
-            print("RSS 14")
-            return "RSS 14"
+            return LanguageKey.RSS_14
             
         case kBarcodeFormatRSSExpanded:
-            print("RSS Expanded")
-            return "RSS Expanded"
+            return LanguageKey.RSS_Expanded
             
         case kBarcodeFormatUPCA:
-            print("UPCA")
-            return "UPCA"
+            return LanguageKey.UPCA
             
         case kBarcodeFormatUPCE:
-            print("UPCE")
-            return "UPCE"
+            return LanguageKey.UPCE
             
         case kBarcodeFormatUPCEANExtension:
-            print("UPC/EAN extension")
-            return "UPC/EAN extension"
+            return LanguageKey.UPC_EAN_extension
             
         default:
-            return "Unknown"
+            return LanguageKey.Unknown
         }
     }
     func bindViewModel() {
@@ -250,84 +299,123 @@ extension ScannerVC {
             self?.presentSingleButtonDialog(alert: alert)
         }
         
-        self.viewModel.responseToView = {[weak self] value in
-           
+        self.viewModel.navigate = { [weak self] in
+            let  vc = DetailVC()
+            vc.listContentViewModel = (self?.viewModel.listItemContent)!
+            self?.navigationController?.pushViewController(vc, animated: true)
+            self?.viewModel.defaultValue()
         }
-        
-        
-        
         self.viewModel.resultScan.bind { value in
-//            let alert = UIAlertController(title: "Result", message: value, preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-//            self.present(alert,animated: true,completion: nil)
+            //            let alert = UIAlertController(title: "Result", message: value, preferredStyle: .alert)
+            //            alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+            //            self.present(alert,animated: true,completion: nil)
         }
         
-        viewModel.cameraBinding.bind {[weak self] value in
-            DispatchQueue.main.async {
-                if !value {
-                  //  self?.doAlertMessage(permission: "Camera")
-                }
-            }
-        }
+        //        viewModel.cameraBinding.bind {[weak self] value in
+        //            DispatchQueue.main.async {
+        //                if !value {
+        //                      self?.doAlertMessage(permission: "Camera")
+        //                }
+        //            }
+        //        }
     }
-    func setupNavItems() {
-            
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
-            //navigationItem.title = LanguageKey.Scanner
-            let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-            navigationController?.navigationBar.titleTextAttributes = textAttributes
-            navigationController?.navigationBar.isTranslucent = true
-    //        navigationController?.navigationBar.prefersLargeTitles = DeviceHelper.isIpad() ? false : true
-    //        navigationItem.largeTitleDisplayMode = DeviceHelper.isIpad() ? .never : .automatic
-            
-            navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
-            self.navigationController?.navigationBar.tintColor = .white
-            self.extendedLayoutIncludesOpaqueBars = true
-        let cameraItem = UIBarButtonItem(image: UIImage(named: "ic_flip_camera"), style: .plain, target: self, action: #selector(chooseCameraItem))
-             let flashItem = UIBarButtonItem(image: UIImage(named: "ic_flash_off"), style: .plain, target: self, action: #selector(chooseFlashItem))
-             navigationItem.leftBarButtonItems = [cameraItem, flashItem]
-        
-        let helpItem = UIBarButtonItem(image: UIImage(named: "ic_help"), style: .plain, target: self, action: #selector(chooseHelpItem))
-        let imageItem = UIBarButtonItem(image: UIImage(named: "ic_image"), style: .plain, target: self, action: #selector(chooseImageItem))
-        navigationItem.rightBarButtonItems = [imageItem,helpItem]
-        }
-    @objc func chooseCameraItem(){
-       var defaultVideoDevice: AVCaptureDevice?
-
-       // Choose the back dual camera if available, otherwise default to a wide angle camera.
-       if let dualCameraDevice = AVCaptureDevice.default(.builtInDualCamera, for: AVMediaType.video, position: .back) {
-           defaultVideoDevice = dualCameraDevice
-       }
-
-       else if let backCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .back) {
-           defaultVideoDevice = backCameraDevice
-       }
-
-       else if let frontCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .front) {
-           defaultVideoDevice = frontCameraDevice
-       }
-        do {
-            let videoDeviceInput = try AVCaptureDeviceInput(device: defaultVideoDevice!)}
-        catch{
-            print(error)
-        }
-        
-    }
-    @objc func chooseFlashItem(){
-        GalleryHelper.flashlight()
-
-    }
-    @objc func chooseHelpItem(){
-        
-    }
-    @objc func chooseImageItem(){
-        onTakeGallery()
-    }
+    
+    
+    
     func onTakeGallery(){
-       let imagePicker = OpalImagePickerController()
-       imagePicker.imagePickerDelegate = self
-       present(imagePicker, animated: true, completion: nil)
+        let imagePicker = OpalImagePickerController()
+        imagePicker.imagePickerDelegate = self
+        present(imagePicker, animated: true, completion: nil)
     }
+    
+       func setupCameraBack()
+       {
+           if backCamera?.isConnected == true {
+            session?.stopRunning()
+               let captureDevice =  AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
+               do{
+                   
+                   let input = try AVCaptureDeviceInput(device: captureDevice!)
+                   session = AVCaptureSession()
+                session?.addInput(input)
+                   setuplayoutCamera()
+                   
+               }
+               catch{
+                   print(error)
+               }
+           }
+           
+       }
+       func setupCameraFront()
+       {
+           if frontCamera?.isConnected == true {
+            session?.stopRunning()
+               let captureDevice =  AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front)
+               do{
+                   
+                   let input = try AVCaptureDeviceInput(device: captureDevice!)
+                   session = AVCaptureSession()
+                session?.addInput(input)
+                   setuplayoutCamera()
+                   print(view.layer.bounds)
+               }
+               catch{
+                   print(error)
+               }
+           }
+       }
+       func setuplayoutCamera(){
+           let output = AVCaptureMetadataOutput()
+        session?.addOutput(output)
+           output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+           output.metadataObjectTypes = [AVMetadataObject.ObjectType.qr, .code128, .code39, .code93,.dataMatrix,.ean13,.ean8,.aztec,.pdf417,.upce,.code39Mod43]
+        video = AVCaptureVideoPreviewLayer(session: session!)
+           video.videoGravity = AVLayerVideoGravity.resizeAspectFill
+           video.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
+           video.frame = view.layer.bounds
+           viewBackground.layer.addSublayer(video)
+           lbScannerRectangle.layer.masksToBounds = true
+           lbScannerRectangle.layer.cornerRadius = self.regionCornerRadius
+           lbScannerRectangle.layer.borderColor = UIColor.white.cgColor
+        lbScannerRectangle.layer.borderWidth = AppConstants.WIDTH_BORDER_SCAN
+           viewScan.setFrameSize(roi: lbScannerRectangle)
+           viewScan.drawCorners()
+           self.viewBackground.bringSubviewToFront(wrapperFirstView)
+           self.viewBackground.bringSubviewToFront(wrapperSecondView)
+           self.viewBackground.bringSubviewToFront(wrapperThirdView)
+           self.viewBackground.bringSubviewToFront(wrapperFourView)
+           self.lbScannerRectangle.backgroundColor = UIColor.white.withAlphaComponent(0)
+           self.viewBackground.bringSubviewToFront(viewIcon)
+           self.viewBackground.bringSubviewToFront(viewFlipCamera)
+           self.viewBackground.bringSubviewToFront(viewHelpBg)
+           self.viewBackground.bringSubviewToFront(viewFlashBg)
+           self.viewBackground.bringSubviewToFront(viewScan)
+           self.viewBackground.bringSubviewToFront(viewScan)
+           self.viewBackground.bringSubviewToFront(lbScannerRectangle)
+        session?.startRunning()
+       }
+       
+       func clearInput(){
+        if let inputs = session?.inputs as? [AVCaptureDeviceInput] {
+                  for input in inputs {
+                    session?.removeInput(input)
+                  }
+              }
+        session?.stopRunning()
+          }
+       func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+           if metadataObjects != nil && metadataObjects.count != 0 {
+               if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject
+               {
+                   AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                   isScanning = false
+                   viewModel.isScanner = true
+                   viewModel.scannerResult(mValue: "\(object.stringValue!)")
+                session?.stopRunning()
+               }
+           }
+       }
 }
 extension ScannerVC : OpalImagePickerControllerDelegate {
     func imagePicker(_ picker: OpalImagePickerController, didFinishPickingImages images: [UIImage]) {
@@ -347,21 +435,10 @@ extension ScannerVC: ZXCaptureDelegate {
         
         capture?.stop()
         isScanning = false
-        let text = _result.text ?? "Unknow"
-       // let format = barcodeFormatToString(format: _result.barcodeFormat)
-
-     //   let displayStr = "Scanned !\nFormat: \(format)\nContents: \(text)"
-//        print(displayStr)
-//        resultLabel?.text = displayStr
-        print(result!)
-
-        let alert = UIAlertController(title: "Result", message: text, preferredStyle: .alert)
-                   alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-                   self.present(alert,animated: true,completion: nil)
+        viewModel.isScanner = true
         viewModel.scannerResult(mValue: "\(result!)")
-
-        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
         
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
             guard let weakSelf = self else { return }
             weakSelf.isScanning = true

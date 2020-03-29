@@ -1,5 +1,5 @@
 //
-//  GenerateVC+ViewFactory.swift
+//  TypeCodeVC+ViewFactory.swift
 //  qrscanner
 //
 //  Created by phong070 on 2/29/20.
@@ -29,13 +29,7 @@ extension TypeCodeVC {
         /*TableView*/
         tableView = UITableView()
         tableView.allowsSelection = true
-//        if(DeviceHelper.isSmallScreen()){
-//            tableView.isScrollEnabled = true
-//        }else{
-//            tableView.isScrollEnabled = false
-//        }
         tableView.isScrollEnabled = true
-
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
@@ -48,14 +42,6 @@ extension TypeCodeVC {
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
-        wrapperView.addSubview(ended)
-        NSLayoutConstraint.activate([
-            ended.leftAnchor.constraint(equalTo: wrapperView.leftAnchor),
-            ended.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor),
-            ended.rightAnchor.constraint(equalTo: wrapperView.rightAnchor),
-            ended.topAnchor.constraint(equalTo: tableView.bottomAnchor)
-        ])
-//        self.view.layoutIfNeeded()
         setupEndedUpScrollView()
         setupTableView()
         bindTableView()
@@ -79,20 +65,19 @@ extension TypeCodeVC {
     }
     
     func updateDataSource() {
-         self.dataSource.items = self.viewModel.list
+         self.dataSource.items = self.viewModel.listTypeCondeViewModel
         self.dataSource.configureSwipeCell = { cell,vm in
             self.log(object: vm)
             self.viewModel.currentCell = vm
         }
-       // self.dataSource.swipeActionRight = swipeActionRight()
         self.tableView.reloadData()
         log(message: "List typecode available...")
-        log(object: self.viewModel.list)
+        log(object: self.viewModel.listTypeCondeViewModel)
     }
     
     //set dataSource fo tableView
     func bindTableView(){
-        self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.Generate.rawValue, items: self.viewModel.list,isSelectionStype: false){ cell, vm in
+        self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.Generate.rawValue, items: self.viewModel.listTypeCondeViewModel,isSelectionStype: false){ cell, vm in
             cell.configView(viewModel: vm)
             cell.configData(viewModel: vm)
             cell.delegate = self
@@ -115,8 +100,6 @@ extension TypeCodeVC {
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
     }
-
-    
   }
 extension TypeCodeVC : TableViewCellDelegate {
     func cellViewLongSelected(cell: TableViewCell) {
@@ -138,8 +121,6 @@ extension TypeCodeVC : TableViewCellDelegate {
     }
     
     func cellViewSelected(cell: Codable) {
-     //  self.viewModel.doSelectItem(coable: cell)
-    //    log(object: cell)
         if let data = JSONHelper.get(value: TypeCodeModel.self,anyObject: cell){
             navigationToAddGenerateVC(typeCode: data.name!)
         }
@@ -150,55 +131,49 @@ extension TypeCodeVC : TableViewCellDelegate {
     }
     func cellViewSelected(cell: TableViewCell, action: EnumResponseToView) {
           print("\(cell.identifier) -- \(cell.lbTitle)")
-
     }
     func navigationToAddGenerateVC(typeCode: String){
         var vc : UIViewController? = UIViewController()
        let typeCode = typeCode.uppercased()
-        if typeCode == LanguageKey.Url{
+        if typeCode == EnumType.URL.rawValue{
                 vc = UrlGenerateVC()
               }
-              else if typeCode == LanguageKey.Text{
+              else if typeCode == EnumType.TEXT.rawValue{
                   vc = TextGenerateVC()
-
               }
-              else if typeCode == LanguageKey.Location{
+              else if typeCode == EnumType.LOCATION.rawValue{
                   vc = LocationGenerateVC()
-
               }
-              else if typeCode == LanguageKey.Email{
+              else if typeCode == EnumType.EMAIL.rawValue{
                  vc = EmailGenerateVC()
-            print("Email")
               }
-              else if typeCode == LanguageKey.Event{
+              else if typeCode == EnumType.EVENT.rawValue{
                  vc = EventGenerateVC()
               }
-              else if typeCode == LanguageKey.Message{
+              else if typeCode == EnumType.MESSAGE.rawValue{
                 vc = MessageGenerateVC()
 
               }
-              else if typeCode == LanguageKey.Wifi{
+              else if typeCode == EnumType.WIFI.rawValue{
                  vc = WifiGenerateVC()
               }
-              else if typeCode == LanguageKey.Telephone{
+              else if typeCode == EnumType.TELEPHONE.rawValue{
                   vc = PhoneGenerateVC()
               }
-              else if typeCode == LanguageKey.Contact{
+              else if typeCode == EnumType.CONTACT.rawValue{
               vc = ContactGenerateVC()
 
               }
-      print(vc)
       self.navigationController?.pushViewController(vc!, animated: true)
     }
     func setupEndedUpScrollView(){
       wrapperView.addSubview(endedUpScrollViewContainerView)
       NSLayoutConstraint.activate([
-        endedUpScrollViewContainerView.topAnchor.constraint(equalTo: ended.bottomAnchor),
+        endedUpScrollViewContainerView.topAnchor.constraint(equalTo: tableView.bottomAnchor),
         endedUpScrollViewContainerView.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor),
         endedUpScrollViewContainerView.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor),
         endedUpScrollViewContainerView.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor)
         ])
-//       self.view.layoutIfNeeded()
     }
 }
 extension TypeCodeVC : SingleButtonDialogPresenter {

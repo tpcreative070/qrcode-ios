@@ -48,49 +48,38 @@ class HistoryViewModel  : Codable ,GenerateViewModelDeletegate{
     }
     
     init(data : GenerateEntityModel) {
-    //    let date_create = TimeHelper.getTimeSince1970(time:Int(data.createdDateTime!))
-     //   let date_update = TimeHelper.getTimeSince1970(time:Int(data.updatedDateTime!))
         self.typeCode = data.typeCode?.uppercased() ?? ""
         self.createdDateTime = Int(data.createdDateTime!)
         self.updatedDateTime = Int(data.updatedDateTime!)
         self.isHistory = data.isHistory!
         self.isSave = data.isSave!
         self.bookMark = data.bookMark!
-        //  self.content = data.content!
-        print(data.content!)
-        // self.content = (data.content?.toObject(value: GenerateModel.self))!
-        //   let typeCode = data.typeCode?.uppercased()
-        if typeCode == LanguageKey.Url{
-            //            let blogPost: UrlModel = try! JSONDecoder().decode(UrlModel.self, from: jsonData)
-            //            self.contents = blogPost.url ?? ""
-            //            let content = UrlModel()
-            // let url : UrlModel =   (data.content?.toObject(value: UrlModel.self))!
+        if typeCode == EnumType.URL.rawValue{
             self.content = ContentModel(data :(data.content?.toObject(value: UrlModel.self))!)
             let stringContent = content.content?.data(using: .utf8 )
             let urlModel : UrlModel = try! JSONDecoder().decode(UrlModel.self, from: stringContent!)
             valueShowContent = urlModel.url ?? ""
             
         }
-            //
-        else if typeCode == LanguageKey.Text{
+        else if typeCode == EnumType.TEXT.rawValue{
             self.content = ContentModel(data: (data.content?.toObject(value: TextModel.self))!)
             let stringContent = content.content?.data(using: .utf8 )
             let textModel : TextModel = try! JSONDecoder().decode(TextModel.self, from: stringContent!)
             valueShowContent = textModel.text ?? ""
         }
-        else if typeCode == LanguageKey.Location{
+        else if typeCode == EnumType.LOCATION.rawValue{
             self.content = ContentModel(data: (data.content?.toObject(value: LocationModel.self))!)
             let stringContent = content.content?.data(using: .utf8 )
             let locationModel : LocationModel = try! JSONDecoder().decode(LocationModel.self, from: stringContent!)
             valueShowContent = "\(locationModel.latitude ?? 0),\(locationModel.longtitude ?? 0),(\(locationModel.query ?? ""))"
         }
-        else if typeCode == LanguageKey.Email{
+        else if typeCode == EnumType.EMAIL.rawValue{
             self.content = ContentModel(data: (data.content?.toObject(value: EmailModel.self))!)
             let stringContent = content.content?.data(using: .utf8 )
             let emailModel : EmailModel = try! JSONDecoder().decode(EmailModel.self, from: stringContent!)
             valueShowContent = emailModel.email ?? ""
         }
-        else if typeCode == LanguageKey.Event{
+        else if typeCode == EnumType.EVENT.rawValue{
             
             self.content = ContentModel(data: (data.content?.toObject(value: EventModel.self))!)
             let stringContent = content.content?.data(using: .utf8 )
@@ -98,40 +87,35 @@ class HistoryViewModel  : Codable ,GenerateViewModelDeletegate{
             valueShowContent = eventModel.title ?? ""
             
         }
-        else if typeCode == LanguageKey.Message{
+        else if typeCode == EnumType.MESSAGE.rawValue{
             
             self.content = ContentModel(data: (data.content?.toObject(value: MessageModel.self))!)
             let stringContent = content.content?.data(using: .utf8 )
             let messageModel : MessageModel = try! JSONDecoder().decode(MessageModel.self, from: stringContent!)
             valueShowContent = messageModel.message ?? ""
         }
-        else if typeCode == LanguageKey.Wifi{
+        else if typeCode == EnumType.WIFI.rawValue{
             
             self.content = ContentModel(data: (data.content?.toObject(value: WifiModel.self))!)
             let stringContent = content.content?.data(using: .utf8 )
             let wifiModel : WifiModel = try! JSONDecoder().decode(WifiModel.self, from: stringContent!)
             valueShowContent = wifiModel.ssid ?? ""
         }
-        else if typeCode == LanguageKey.Telephone{
+        else if typeCode == EnumType.TELEPHONE.rawValue{
             
             self.content = ContentModel(data: (data.content?.toObject(value: PhoneModel.self))!)
             let stringContent = content.content?.data(using: .utf8 )
             let phoneModel : PhoneModel = try! JSONDecoder().decode(PhoneModel.self, from: stringContent!)
-            valueShowContent = phoneModel.phone
+            valueShowContent = phoneModel.phone ?? ""
         }
-        else if typeCode == LanguageKey.Contact{
+        else if typeCode == EnumType.CONTACT.rawValue{
             
             self.content = ContentModel(data: (data.content?.toObject(value: ContactModel.self))!)
             let stringContent = content.content?.data(using: .utf8 )
             let contactModel : ContactModel = try! JSONDecoder().decode(ContactModel.self, from: stringContent!)
             valueShowContent = contactModel.fullNameContact ?? ""
         }
-        //        else
-        //        {
-        //
-        //            self.content = ""
-        //            self.contents = ""
-        //        }
+
     }
     
 }

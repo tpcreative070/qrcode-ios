@@ -19,4 +19,7 @@ class ContactModel : Codable {
          self.emailContact = emailContact
       
     }
+    init() {
+        
+    }
 }

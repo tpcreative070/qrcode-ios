@@ -13,4 +13,7 @@ class TextModel : Codable {
     init(text: String) {
         self.text = text
     }
+    init() {
+        
+    }
 }

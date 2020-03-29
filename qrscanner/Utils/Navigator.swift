@@ -45,7 +45,5 @@ class Navigator {
     }
     static func pushViewController<T :UIViewController >( from: T,to : T) {
        from.navigationController?.pushViewController(to, animated: true)
-        
-        
-     }
+    }
 }

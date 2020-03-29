@@ -37,6 +37,7 @@ class TimeHelper {
         var year : Int?
         var hour :Int?
         var minute :Int?
+        
         let dateTime = timeString.split(separator: " ")
         if dateTime.count > 0 {
             let date = dateTime[0].split(separator: "-")
@@ -52,21 +53,21 @@ class TimeHelper {
                 minute = Int(time[1])
             }
         }
-//      // Specify date components
-//        var dateComponents = DateComponents()
-//        dateComponents.year = year
-//        dateComponents.month = month
-//        dateComponents.day = day
-//        dateComponents.timeZone = TimeZone(abbreviation: "THA") // ThaiLand Standard Time
-//        dateComponents.hour = hour
-//        dateComponents.minute = minute
-//        let userCalendar = Calendar.current // user calendar
-//        userCalendar.date(bySettingHour: hour!, minute: minute!, second: 0, of: dateComponents.date!)
-//        let someDateTime = userCalendar.date(from: dateComponents)
+        //      // Specify date components
+        //        var dateComponents = DateComponents()
+        //        dateComponents.year = year
+        //        dateComponents.month = month
+        //        dateComponents.day = day
+        //        dateComponents.timeZone = TimeZone(abbreviation: "THA") // ThaiLand Standard Time
+        //        dateComponents.hour = hour
+        //        dateComponents.minute = minute
+        //        let userCalendar = Calendar.current // user calendar
+        //        userCalendar.date(bySettingHour: hour!, minute: minute!, second: 0, of: dateComponents.date!)
+        //        let someDateTime = userCalendar.date(from: dateComponents)
         print(Date.calculateDate(day: day!, month: month!, year: year!, hour: hour!, minute: minute!))
         return Date.calculateDate(day: day!, month: month!, year: year!, hour: hour!, minute: minute!)
-      }
-
+    }
+    
     // conver Date to String with format
     static func getString(time : Date, dateFormat: String) -> String {
         let dateFormatter = DateFormatter()
@@ -130,36 +131,39 @@ class TimeHelper {
     static func getDate(timeString: String) -> String? {
         if timeString.contains("T") {
             let arr_date = timeString.split(separator: "T")
-                   let year = arr_date[0].prefix(4)
-                   let month_start = arr_date[0].index(arr_date[0].startIndex,offsetBy: 4)
-                   let month_end = arr_date[0].index(arr_date[0].endIndex,offsetBy: -2)
-                   let month = arr_date[0][month_start..<month_end]
-                   let day = arr_date[0].suffix(2)
-                   let hour = arr_date[1].prefix(2)
-                    let minute_start = arr_date[1].index(arr_date[1].startIndex,offsetBy: 2)
-                   let minute_end = arr_date[1].index(arr_date[1].endIndex,offsetBy: -2)
-                           let minute = arr_date[1][minute_start..<minute_end]
-               
-                   let date = "\(day)-\(month)-\(year) \(hour):\(minute)"
-                   return date
+            let year = arr_date[0].prefix(4)
+            print(year)
+            let month_start = arr_date[0].index(arr_date[0].startIndex,offsetBy: 4)
+            let month_end = arr_date[0].index(arr_date[0].endIndex,offsetBy: -2)
+            let month = arr_date[0][month_start..<month_end]
+            print(month)
+            let day = arr_date[0].suffix(2)
+            print(day)
+            let hour = arr_date[1].prefix(2)
+            let minute_start = arr_date[1].index(arr_date[1].startIndex,offsetBy: 2)
+            let minute_end = arr_date[1].index(arr_date[1].endIndex,offsetBy: -2)
+            let minute = arr_date[1][minute_start..<minute_end]
+            
+            let date = "\(day)-\(month)-\(year) \(hour):\(minute)"
+            return date
         }
         else{
             let year = timeString.prefix(4)
             print(year)
-                              let month_start = timeString.index(timeString.startIndex,offsetBy: 4)
+            let month_start = timeString.index(timeString.startIndex,offsetBy: 4)
             print(month_start)
-                              let month_end = timeString.index(timeString.endIndex,offsetBy: -2)
+            let month_end = timeString.index(timeString.endIndex,offsetBy: -2)
             print(month_end)
             let month = timeString[month_start..<month_end]
             print(month)
-             let day = timeString.suffix(2)
+            let day = timeString.suffix(2)
             
             print(day)
             let hour = 0
             let mini = 0
             let date = "\(day)-\(month)-\(year) \(hour):\(mini)"
-                              return date
+            return date
         }
-       
+        
     }
 }

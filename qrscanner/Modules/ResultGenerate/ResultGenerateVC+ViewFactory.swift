@@ -9,91 +9,116 @@
 import UIKit
 extension ResultGenerateVC {
     func initUI(){
+        
+        view.addSubview(imgQrcode)
+        NSLayoutConstraint.activate([
+            imgQrcode.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant : AppConstants.MARGIN_TOP),
+            imgQrcode.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            imgQrcode.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: AppConstants.MARGIN_RIGHT),
+            imgQrcode.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/2),
+            imgQrcode.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/2)
+            
+        ])
+        self.view.addSubview(viewShare)
+        NSLayoutConstraint.activate([
+            self.viewShare.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
+            self.viewShare.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: AppConstants.MARGIN_RIGHT),
+            self.viewShare.topAnchor.constraint(equalTo: self.imgQrcode.bottomAnchor,constant:  AppConstants.MARGIN_TOP),
+            
+        ])
+        
+        
+        viewShare.addSubview(imgShare)
+        NSLayoutConstraint.activate([
+            imgShare.topAnchor.constraint(equalTo: viewShare.topAnchor, constant:  AppConstants.MARGIN_TOP),
+            imgShare.leadingAnchor.constraint(equalTo: viewShare.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            self.imgShare.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgShare.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgShare.centerYAnchor.constraint(equalTo: self.viewShare.centerYAnchor)
+            
+        ])
+        viewShare.addSubview(lbShare)
+        NSLayoutConstraint.activate([
+            lbShare.topAnchor.constraint(equalTo: viewShare.topAnchor, constant: AppConstants.MARGIN_TOP),
+            lbShare.leadingAnchor.constraint(equalTo: imgShare.trailingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbShare.trailingAnchor.constraint(equalTo: viewShare.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT),
+            self.lbShare.centerYAnchor.constraint(equalTo: self.viewShare.centerYAnchor)
+            
+        ])
+        
+        self.view.addSubview(viewSave)
+        NSLayoutConstraint.activate([
+            self.viewSave.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
+            self.viewSave.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: AppConstants.MARGIN_RIGHT),
+            self.viewSave.topAnchor.constraint(equalTo: self.viewShare.bottomAnchor,constant:  AppConstants.MARGIN_TOP),
+            
+        ])
+        
+        
+        viewSave.addSubview(imgSave)
+        NSLayoutConstraint.activate([
+            imgSave.topAnchor.constraint(equalTo: viewSave.topAnchor, constant:  AppConstants.MARGIN_TOP),
+            imgSave.leadingAnchor.constraint(equalTo: viewSave.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            self.imgSave.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgSave.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgSave.centerYAnchor.constraint(equalTo: self.viewSave.centerYAnchor)
+            
+        ])
+        viewSave.addSubview(lbSave)
+        NSLayoutConstraint.activate([
+            lbSave.topAnchor.constraint(equalTo: viewSave.topAnchor, constant: AppConstants.MARGIN_TOP),
+            lbSave.leadingAnchor.constraint(equalTo: imgSave.trailingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbSave.trailingAnchor.constraint(equalTo: viewSave.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT),
+            self.lbSave.centerYAnchor.constraint(equalTo: self.viewSave.centerYAnchor)
+            
+        ])
+        
         setupNavItems()
-
-        view.addSubview(qrcodeImage)
-        NSLayoutConstraint.activate([
-            qrcodeImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant : 20),
-            qrcodeImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            qrcodeImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: AppConstants.MARGIN_RIGHT),
-            qrcodeImage.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/2),
-            qrcodeImage.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/2)
-
-        ])
-        
-        self.view.addSubview(shareView)
-        NSLayoutConstraint.activate([
-            self.shareView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
-            shareView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT),
-            shareView.heightAnchor.constraint(equalToConstant: 50),
-            
-            self.shareView.topAnchor.constraint(equalTo: self.qrcodeImage.bottomAnchor,constant: 20),
-            
-        ])
-        
-        shareView.addSubview(shareImg)
-        NSLayoutConstraint.activate([
-            shareImg.topAnchor.constraint(equalTo: shareView.topAnchor, constant: 10),
-            shareImg.widthAnchor.constraint(equalToConstant: 30),
-            shareImg.heightAnchor.constraint(equalToConstant: 30),
-            shareImg.leadingAnchor.constraint(equalTo: shareView.leadingAnchor, constant: AppConstants.MARGIN_LEFT)
-            
-        ])
-        shareView.addSubview(shareLbl)
-        NSLayoutConstraint.activate([
-            shareLbl.topAnchor.constraint(equalTo: shareView.topAnchor, constant: 10),
-            shareLbl.leadingAnchor.constraint(equalTo: shareImg.trailingAnchor, constant: AppConstants.MARGIN_LEFT),
-            shareLbl.trailingAnchor.constraint(equalTo: shareView.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
-        ])
-        self.view.addSubview(saveView)
-        NSLayoutConstraint.activate([
-            self.saveView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
-            saveView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT),
-            saveView.heightAnchor.constraint(equalToConstant: 50),
-            
-            self.saveView.topAnchor.constraint(equalTo: self.shareView.bottomAnchor,constant: 20),
-            
-        ])
-        
-        saveView.addSubview(saveImg)
-        NSLayoutConstraint.activate([
-            saveImg.topAnchor.constraint(equalTo: saveView.topAnchor, constant: 10),
-            saveImg.widthAnchor.constraint(equalToConstant: 30),
-                       saveImg.heightAnchor.constraint(equalToConstant: 30),
-            saveImg.leadingAnchor.constraint(equalTo: saveView.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            
-        ])
-        saveView.addSubview(saveLabel)
-        NSLayoutConstraint.activate([
-                   saveLabel.topAnchor.constraint(equalTo: saveView.topAnchor, constant: 10),
-                   saveLabel.leadingAnchor.constraint(equalTo: saveImg.trailingAnchor, constant: AppConstants.MARGIN_LEFT),
-                   saveLabel.trailingAnchor.constraint(equalTo: saveView.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
-               ])
-       
-        
-        shareView.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector(shareView(sender:))))
-        saveView.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector(saveView(sender:))))
+        viewShare.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector(shareView(sender:))))
+        viewSave.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector(saveView(sender:))))
     }
     func setupNavItems() {
-          
-          self.view.backgroundColor = .white
-          self.navigationController?.setNavigationBarHidden(false, animated: true)
-          navigationItem.title = typeCode
-          let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-          navigationController?.navigationBar.titleTextAttributes = textAttributes
-          navigationController?.navigationBar.isTranslucent = true
-          navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
-          self.navigationController?.navigationBar.tintColor = .white
-          self.extendedLayoutIncludesOpaqueBars = true
-          
-          //        let menuButtonLeft = UIButton(type: .system)
-          //        menuButtonLeft.setImage(#imageLiteral(resourceName: "ic_back"), for: .normal)
-          //        menuButtonLeft.addTarget(self, action: #selector(returnScreen), for: .touchUpInside)
-          //        navigationItem.leftBarButtonItems = [UIBarButtonItem(customView: menuButtonLeft)]
-     //     let menuButtonRight = UIButton(type: .system)
-     //     menuButtonRight.setImage(#imageLiteral(resourceName: "ic_check"), for: .normal)
-     //     menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchUpInside)
-      //    navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRight)]
-      }
-      
+        self.view.backgroundColor = .white
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationItem.title = resultViewModel.typeCode
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
+        self.navigationController?.navigationBar.tintColor = .white
+        self.extendedLayoutIncludesOpaqueBars = true
+        
+        //        let menuButtonLeft = UIButton(type: .system)
+        //        menuButtonLeft.setImage(#imageLiteral(resourceName: "ic_back"), for: .normal)
+        //        menuButtonLeft.addTarget(self, action: #selector(returnScreen), for: .touchUpInside)
+        //        navigationItem.leftBarButtonItems = [UIBarButtonItem(customView: menuButtonLeft)]
+             let menuButtonRight = UIButton(type: .system)
+        menuButtonRight.setImage(UIImage(named: AppImages.IC_PRINT), for: .normal)
+             menuButtonRight.addTarget(self, action: #selector(printAction), for: .touchUpInside)
+            navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRight)]
+    }
+    func printImage(){
+        let borderWidth: CGFloat = 100.0
+        let internalPrintView = UIImageView(frame: CGRect(x: 0, y: 0, width: imgCode.size.width, height: imgCode.size.height))
+        let printView = UIView(frame: CGRect(x: 0, y: 0, width: imgCode.size.width + borderWidth*2, height: imgCode.size.height + borderWidth*2))
+        internalPrintView.image = imgCode
+        internalPrintView.center = CGPoint(x: printView.frame.size.width/2, y: printView.frame.size.height/2)
+        printView.addSubview(internalPrintView)
+        let printController = UIPrintInteractionController.shared
+        let printInfo = UIPrintInfo(dictionary: nil)
+        printInfo.jobName = "printing an image"
+        printInfo.outputType = .photo
+        printController.printInfo = printInfo
+        printController.printingItem = printView.toImage()
+        printController.present(animated: true) { (_, isPrinted, error) in
+            if error == nil {
+                if isPrinted{
+                    print("image is printed")
+                }
+                else{
+                    print("image is not print")
+                }
+            }
+        }
+    }
 }

@@ -8,33 +8,45 @@
 
 import Foundation
 class WifiViewModel : Codable , WifiViewModelDelegate{
-    
-    
-    
-   
+    var networkView: String{
+        return network ?? ""
+    }
     var ssidView : String {
-        return ssid
+        return ssid ?? ""
     }
     var passwordView : String{
-        return protect
+        return protect ?? ""
     }
-    var hiddenView : String{
-        return hidden
+    var hiddenView : Bool{
+        return hidden ?? false
     }
-    var networkView : String{
-           return network
-       }
-
-     var ssid: String
-   var hidden: String
-     var protect: String
-    var network: String
-
-    init(ssid: String, hidden: String, protect: String, network: String) {
+    var ssid: String?
+    var hidden: Bool?
+    var protect: String?
+    var network: String?
+    var createDateTime: Int?
+    var typeCode : String?
+    var isSeen : Int? = 0
+    var isUpdate: Int?
+    init(ssid: String, hidden: Bool, protect: String, network: String) {
         self.ssid = ssid
         self.hidden = hidden
         self.protect = protect
         self.network = network
-     }
-    
+    }
+    init(data : WifiModel) {
+        self.ssid = data.ssid ?? ""
+        self.hidden = data.hidden
+        self.protect = data.password ?? ""
+        self.network = data.protect ?? ""
+    }
+    init(data: ValuePushModel) {
+        self.createDateTime = data.createDateTime
+        self.typeCode = data.typeCode
+        self.isSeen = data.isSeen
+        self.isUpdate = data.isUpdate
+    }
+    init() {
+        
+    }
 }

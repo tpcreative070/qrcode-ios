@@ -8,8 +8,11 @@
 
 import Foundation
 class PhoneModel : Codable{
-    var phone : String
+    var phone : String?
     init(phone: String) {
         self.phone = phone
+    }
+    init(){
+        
     }
 }

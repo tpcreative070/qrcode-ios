@@ -17,59 +17,63 @@ extension UIStackView {
 }
 extension TableViewCell {
     func setupHistorySubView(){
-        self.addSubview(self.backGroundView1)
+        self.addSubview(self.viewBackgroundSecond)
                NSLayoutConstraint.activate([
-                   self.backGroundView1.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant:10),
-                   self.backGroundView1.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-                   self.backGroundView1.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
-                   self.backGroundView1.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
+                self.viewBackgroundSecond.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+                self.viewBackgroundSecond.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+                self.viewBackgroundSecond.topAnchor.constraint(equalTo: self.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
+                self.viewBackgroundSecond.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: AppConstants.MARGIN_BOTTOM_ITEM)
                    ])
         
-        self.backGroundView1.addSubview(viewRoot)
+        self.viewBackgroundSecond.addSubview(viewRoot)
         NSLayoutConstraint.activate([
-            self.viewRoot.leadingAnchor.constraint(equalTo: self.backGroundView1.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
-            self.viewRoot.trailingAnchor.constraint(equalTo: self.backGroundView1.trailingAnchor,constant:   -80),
-            self.viewRoot.topAnchor.constraint(equalTo: self.backGroundView1.topAnchor,constant: 0),
-            self.viewRoot.bottomAnchor.constraint(equalTo: self.backGroundView1.bottomAnchor,constant: -0)
+            self.viewRoot.leadingAnchor.constraint(equalTo: self.viewBackgroundSecond.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
+            self.viewRoot.trailingAnchor.constraint(equalTo: self.viewBackgroundSecond.trailingAnchor,constant: AppConstants.MARGIN_LEFT_ITEM_HIS),
+            self.viewRoot.topAnchor.constraint(equalTo: self.viewBackgroundSecond.topAnchor),
+            self.viewRoot.bottomAnchor.constraint(equalTo: self.viewBackgroundSecond.bottomAnchor)
             
         ])
         self.viewRoot.addSubview(lbCreatedDate)
         NSLayoutConstraint.activate([
             self.lbCreatedDate.leadingAnchor.constraint(equalTo: self.viewRoot.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
-            self.lbCreatedDate.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor,constant:   0),
-            self.lbCreatedDate.topAnchor.constraint(equalTo: self.viewRoot.topAnchor,constant: 0),
+            self.lbCreatedDate.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor),
+            self.lbCreatedDate.topAnchor.constraint(equalTo: self.viewRoot.topAnchor),
             
         ])
         self.viewRoot.addSubview(lbContent)
                NSLayoutConstraint.activate([
                    self.lbContent.leadingAnchor.constraint(equalTo: self.viewRoot.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
-                   self.lbContent.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor,constant:   0),
-                   self.lbContent.topAnchor.constraint(equalTo: self.lbCreatedDate.bottomAnchor,constant: 10),
-                   self.lbContent.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor,constant: -0)
+                   self.lbContent.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor),
+                   self.lbContent.topAnchor.constraint(equalTo: self.lbCreatedDate.bottomAnchor,constant: AppConstants.MARGIN_TOP_SUBITEM),
+                   self.lbContent.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor)
                    
                ])
-        self.backGroundView1.addSubview(viewSub)
+        self.viewBackgroundSecond.addSubview(viewSub)
                NSLayoutConstraint.activate([
-                   self.viewSub.leadingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor,constant: 0),
-                   self.viewSub.trailingAnchor.constraint(equalTo: self.backGroundView1.trailingAnchor,constant:   0),
-                   self.viewSub.topAnchor.constraint(equalTo: self.backGroundView1.topAnchor,constant: 0),
-                   self.viewSub.bottomAnchor.constraint(equalTo: self.backGroundView1.bottomAnchor,constant: -0)
+                   self.viewSub.leadingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor),
+                   self.viewSub.trailingAnchor.constraint(equalTo: self.viewBackgroundSecond.trailingAnchor),
+                   self.viewSub.topAnchor.constraint(equalTo: self.viewBackgroundSecond.topAnchor),
+                   self.viewSub.bottomAnchor.constraint(equalTo: self.viewBackgroundSecond.bottomAnchor)
                    
                ])
       
         self.viewSub.addSubview(imgIcon)
             self.imgIcon.centerYAnchor.constraint(equalTo: viewSub.centerYAnchor).isActive = true
-        self.imgIcon.leadingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant: 10).isActive = true
-            self.imgIcon.image = UIImage(named: "ic_share")
+        self.imgIcon.leadingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant: AppConstants.MARGIN_LEFT).isActive = true
+        self.imgIcon.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT).isActive = true
+        self.imgIcon.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT).isActive = true
+        self.imgIcon.image = UIImage(named: AppImages.IC_SHARE)
         
-        self.backGroundView1.addSubview(self.viewUnderLine)
+        self.viewBackgroundSecond.addSubview(self.viewUnderLine)
         NSLayoutConstraint.activate([
-            self.viewUnderLine.leadingAnchor.constraint(equalTo: self.backGroundView1.leadingAnchor),
-            self.viewUnderLine.trailingAnchor.constraint(equalTo: self.backGroundView1.trailingAnchor),
-            self.viewUnderLine.bottomAnchor.constraint(equalTo: self.backGroundView1.bottomAnchor),
+            self.viewUnderLine.leadingAnchor.constraint(equalTo: self.viewBackgroundSecond.leadingAnchor),
+            self.viewUnderLine.trailingAnchor.constraint(equalTo: self.viewBackgroundSecond.trailingAnchor),
+            self.viewUnderLine.bottomAnchor.constraint(equalTo: self.viewBackgroundSecond.bottomAnchor),
             self.viewUnderLine.heightAnchor.constraint(equalToConstant: 1)
         ])
         //  self.viewUnderLine.backgroundColor = .gray
+         self.lbCreatedDate.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE)
+         self.lbContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(actionImageViewTap(sender:)))
         imgIcon.addGestureRecognizer(tapGesture)
         imgIcon.isUserInteractionEnabled  = true

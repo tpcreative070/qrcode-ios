@@ -16,7 +16,7 @@ class HistoryViewModelList : HistoryViewModelListDeletegate{
     var currentCell: HistoryViewModel?
     var isVisible: Bindable<Bool> = Bindable(false)
     var countItemSelected: Int = 0
-    
+    var historyArray:[Dictionary<String, AnyObject>] =  Array()
     var navigate: (() -> ())?
     func doGetListHistories(){
         if let mList = SQLHelper.getListHistories(){
@@ -26,6 +26,7 @@ class HistoryViewModelList : HistoryViewModelListDeletegate{
                 return HistoryViewModel(data:  data)
             })
         }
+        print(listHistories)
         listHistories = listHistories.sorted {$0.updatedDateTime > $1.updatedDateTime}
         responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
     }
@@ -62,8 +63,6 @@ class HistoryViewModelList : HistoryViewModelListDeletegate{
             if SQLHelper.updateHistory(createDateTime: mData.createdDateTime, value: false){
                 doGetListHistories()
             }
-            
-            
         }
         
         func doSelectedAll(isValue : Bool){

@@ -50,11 +50,13 @@ public struct KeychainSwiftConstants {
 
 struct AppConstants {
     static var ischoose = 0
-
+    
     static let ISSEEN = 1
     static let ISUPDATE = 2
     static let ISCHOOSE = 1
-
+    static let WIDTH_BORDER = CGFloat(1)
+      static let WIDTH_BORDER_SCAN = CGFloat(2)
+    static let CORNER_RADIUS = CGFloat(10)
     static let LARGE_SIZE = 200
     static let MEDIUM_SIZE = 50
     static let SMALL_SIZE = 20
@@ -66,17 +68,67 @@ struct AppConstants {
     static let FLOAT_LABEL_HEIGHT = CGFloat(25)
     static let INPUT_FIELD_HEIGHT = CGFloat(30)
     static let HEIGHT_BUTTON_DEFAULT = CGFloat(50)
+    static let HEIGHT_BACKGROUND_ITEM = CGFloat(90)
+    static let HEIGHT_BACKGROUND = CGFloat(130)
+    static let HEIGHT_IMAGE_HELP = CGFloat(200)
+    static let HEIGHT_IMAGE_SETTING = CGFloat(50)
+
     static let WIDTH_BUTTON_DEFAULT = CGFloat(100)
     static let IC_DEFAULT = CFloat(25)
+    static let ICON_WIDTH_HEIGHT = CGFloat(30)
+    static let ICON_SCAN_WIDTH_HEIGHT = CGFloat(30)
     static let IC_CLOSE_WIDTH = CFloat(30)
     static let IC_CLOSE_HEIGHT = CFloat(30)
+    static let MARGIN_LEFT_SETTING = CGFloat(5)
     static let MARGIN_LEFT = CGFloat(20)
+    static let MARGIN_LEFT_HELP = CGFloat(10)
+    
+    static let MARGIN_LEFT_ICON = CGFloat(30)
+    static let MARGIN_LEFT_ALERT_BTN = CGFloat(100)
+    static let MARGIN_RIGHT_SETTING = CGFloat(-5)
+
     static let MARGIN_RIGHT = CGFloat(-20)
+    static let MARGIN_RIGHT_ALERT_BTN = CGFloat(-100)
+    static let MARGIN_RIGHT_HELP = CGFloat(-10)
+    
+    static let MARGIN_RIGHT_ITEMPLUS = CGFloat(-40)
+    
     static let MARGIN_TOP = CGFloat(20)
-    static let MARGIN_BOTTOM = CGFloat(-10)
+    static let MARGIN_LEFT_ITEM_HIS = CGFloat(-80)
+    static let MARGIN_RIGHT_ITEM_HIS = CGFloat(80)
+    static let MARGIN_TOP_ALERT = CGFloat(130)
+    static let MARGIN_BOTTOM_ALERT = CGFloat(-130)
+    static let SWITCH_HEIGHT_DEFAULT = CGFloat(20)
+    static let SWITCH_WIDTH_DEFAULT = CGFloat(40)
+    static let MARGIN_TOP_ITEM = CGFloat(12)
+    static let MARGIN_TOP_ITEM_SETTING = CGFloat(8)
+
+    static let MARGIN_TOP_SUBITEM = CGFloat(5)
+    static let MARGIN_TOP_CONTAINER = CGFloat(30)
+    static let MARGIN_LEFT_CONTAINER = CGFloat(60)
+    
+    static let MARGIN_BOTTOM_ITEM = CGFloat(-12)
+    
+    static let MARGIN_BOTTOM = CGFloat(-20)
+    static let MARGIN_BOTTOM_TAB = CGFloat(-30)
+    
     static let ALPHA_DEFAULT = CGFloat(1)
     static let ALPHA_DISBALE = CGFloat(0.5)
-    static let TABLE_ROW_HEIGHT = CGFloat(80)
+    static let TABLE_ROW_HEIGHT = CGFloat(40)
+    //Scanner
+    static let CAPTURE_ROTATION = Double(0)
+    static let SCAN_REACT_ROTATION_90 = Double(90)
+    static let SCAN_REACT_ROTATION_180 = Double(180)
+    static let SCAN_REACT_ROTATION_270 = Double(270)
+      static let WITH_ALPHA_COMPONENT = CGFloat(0.5)
+    static let VIDEO_HEIGHT_1080 = CGFloat(1080.0)
+    static let VIDEO_HEIGHT_1920 = CGFloat(1920.0)
+    static let VIDEO_HEIGHT_720 = CGFloat(720.0)
+    static let VIDEO_HEIGHT_1280 = CGFloat(1280.0)
+
+    
+    
+    
     // switch button default config
     static let SWITCH_ON_TINT_COLOR = UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 1)
     static let SWITCH_OFF_TINT_COLOR = UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 1)
@@ -92,61 +144,63 @@ struct AppConstants {
     static let HEIGHT_CONSTRAINT_LABLE_PASSENGERS = CGFloat(20)
     static let SOUND_EMPTY = "empty.wav"
     //Menu
-     static let MENU_FOOTER_SIZE = CGFloat(100)
-     static let MENU_ITEM_IMAGE_DOUBLE_SIZE = CGFloat(40)
-     static let MENU_ITEM_IMAGE_SIZE = CGFloat(30)
-     static let MENU_ITEM_IMAGE_LEADING = CGFloat(12)
-     static let MENU_ITEM_TITLE_TOP = CGFloat(10)
-     static let MENU_ITEM_TITLE_TRAILING = CGFloat(-50)
-     static let MENU_ITEM_TITLE_LEADING = CGFloat(12)
-     static let MENU_ITEM_CONTAINER_BOTTOM = CGFloat(-17)
-     static let MENU_ITEM_DESCRIPTION_BOTTOM = CGFloat(-8)
-     static let MENU_ITEM_BADGE_SIZE = CGFloat(25)
-     static let MENU_ITEM_BADGE_LEADING = CGFloat(12)
-     static let MENU_ITEM_UNDER_LINE_BOTTOM = CGFloat(-24)
-     static let MENU_ITEM_UNDER_LINE_LEADING = CGFloat(50)
-     static let MENU_ITEM_UNDER_LINE_TRAILING = CGFloat(-10)
-     static let IC_SKIP_WIDTH = CFloat(80)
-     static let IC_SKIP_HEIGHT = CFloat(50)
-     static let MENU_BUTTON_MARGIN_LEFT = CGFloat(10)
-     static let MENU_BUTTON_MARGIN_RIGHT = CGFloat(-10)
-     static let MARGIN_BOTTOM_TO_BUTTON = CGFloat(-90)
-     static let MENU_HEADER_TOP_SIZE = CGFloat(40)
-     static let MENU_HEADER_NORMAL_TOP_SIZE = CGFloat(20)
-     static let MENU_HEADER_BOTTOM_SIZE = CGFloat(-40)
-     static let MENU_HEADER_BOTTOM_NORMAL_SIZE = CGFloat(-20)
-     static let MENU_FOOTER_NORMAL_SIZE = CGFloat(85)
-     static let MENU_HEIGHT_CELL_SIZE = CGFloat(80)
-     static let MENU_HEIGHT_CELL_NORMAL_SIZE = CGFloat(60)
-     static let MENU_HEIGHT_CELL_PLUS_SIZE = CGFloat(60)
-     static let MENU_HEIGHT_CELL_MAX_SIZE = CGFloat(60)
-     static let MENU_HEIGHT_CELL_SMALL_SIZE = CGFloat(50)
-     static let MENU_ITEM_TITLE_NORMAL_TOP = CGFloat(9)
-     static let MENU_ITEM_TITLE_PLUS_TOP = CGFloat(12)
-     static let MENU_ITEM_TITLE_MAX_TOP = CGFloat(17)
-     static let MENU_ITEM_TITLE_SMALL_TOP = CGFloat(9)
-     static let MENU_ITEM_DESCRIPTION_NORMAL_BOTTOM = CGFloat(-6)
-     static let MENU_ITEM_DESCRIPTION_PLUS_BOTTOM = CGFloat(-8)
-     static let MENU_ITEM_DESCRIPTION_MAX_BOTTOM = CGFloat(-13)
-     static let MENU_ITEM_DESCRIPTION_SMALL_BOTTOM = CGFloat(-8)
-     static let MENU_ITEM_CONTAINER_NORMAL_BOTTOM = CGFloat(-10)
-     static let MENU_ITEM_IMAGE_DOUBLE_NORMAL_SIZE = CGFloat(40)
-     static let MENU_ITEM_IMAGE_DOUBLE_PLUS_SIZE = CGFloat(40)
-     static let MENU_ITEM_IMAGE_DOUBLE_MAX_SIZE = CGFloat(40)
-     static let MENU_ITEM_IMAGE_DOUBLE_SMALL_SIZE = CGFloat(30)
-     static let MENU_ITEM_IMAGE_NORMAL_SIZE = CGFloat(25)
-     static let MENU_FOOTER_PLUS_SIZE = CGFloat(90)
-     static let MENU_FOOTER_MAX_SIZE = CGFloat(130)
-     static let LOGO_NORMAL_WIDTH = CGFloat(100)
-     static let LOGO_NORMAL_HEIGHT = CGFloat(25)
+    static let MENU_FOOTER_SIZE = CGFloat(100)
+    static let MENU_ITEM_IMAGE_DOUBLE_SIZE = CGFloat(40)
+    static let MENU_ITEM_IMAGE_SIZE = CGFloat(30)
+    static let MENU_ITEM_IMAGE_LEADING = CGFloat(12)
+    static let MENU_ITEM_TITLE_TOP = CGFloat(10)
+    static let MENU_ITEM_TITLE_TRAILING = CGFloat(-50)
+    static let MENU_ITEM_TITLE_LEADING = CGFloat(12)
+    static let MENU_ITEM_CONTAINER_BOTTOM = CGFloat(-17)
+    static let MENU_ITEM_DESCRIPTION_BOTTOM = CGFloat(-8)
+    static let MENU_ITEM_BADGE_SIZE = CGFloat(25)
+    static let MENU_ITEM_BADGE_LEADING = CGFloat(12)
+    static let MENU_ITEM_UNDER_LINE_BOTTOM = CGFloat(-24)
+    static let MENU_ITEM_UNDER_LINE_LEADING = CGFloat(50)
+    static let MENU_ITEM_UNDER_LINE_TRAILING = CGFloat(-10)
+    static let IC_SKIP_WIDTH = CFloat(80)
+    static let IC_SKIP_HEIGHT = CFloat(50)
+    static let IC_QR_HEIGHT = CFloat(50)
+    
+    static let MENU_BUTTON_MARGIN_LEFT = CGFloat(10)
+    static let MENU_BUTTON_MARGIN_RIGHT = CGFloat(-10)
+    static let MARGIN_BOTTOM_TO_BUTTON = CGFloat(-90)
+    static let MENU_HEADER_TOP_SIZE = CGFloat(40)
+    static let MENU_HEADER_NORMAL_TOP_SIZE = CGFloat(20)
+    static let MENU_HEADER_BOTTOM_SIZE = CGFloat(-40)
+    static let MENU_HEADER_BOTTOM_NORMAL_SIZE = CGFloat(-20)
+    static let MENU_FOOTER_NORMAL_SIZE = CGFloat(85)
+    static let MENU_HEIGHT_CELL_SIZE = CGFloat(80)
+    static let MENU_HEIGHT_CELL_NORMAL_SIZE = CGFloat(60)
+    static let MENU_HEIGHT_CELL_PLUS_SIZE = CGFloat(60)
+    static let MENU_HEIGHT_CELL_MAX_SIZE = CGFloat(60)
+    static let MENU_HEIGHT_CELL_SMALL_SIZE = CGFloat(50)
+    static let MENU_ITEM_TITLE_NORMAL_TOP = CGFloat(9)
+    static let MENU_ITEM_TITLE_PLUS_TOP = CGFloat(12)
+    static let MENU_ITEM_TITLE_MAX_TOP = CGFloat(17)
+    static let MENU_ITEM_TITLE_SMALL_TOP = CGFloat(9)
+    static let MENU_ITEM_DESCRIPTION_NORMAL_BOTTOM = CGFloat(-6)
+    static let MENU_ITEM_DESCRIPTION_PLUS_BOTTOM = CGFloat(-8)
+    static let MENU_ITEM_DESCRIPTION_MAX_BOTTOM = CGFloat(-13)
+    static let MENU_ITEM_DESCRIPTION_SMALL_BOTTOM = CGFloat(-8)
+    static let MENU_ITEM_CONTAINER_NORMAL_BOTTOM = CGFloat(-10)
+    static let MENU_ITEM_IMAGE_DOUBLE_NORMAL_SIZE = CGFloat(40)
+    static let MENU_ITEM_IMAGE_DOUBLE_PLUS_SIZE = CGFloat(40)
+    static let MENU_ITEM_IMAGE_DOUBLE_MAX_SIZE = CGFloat(40)
+    static let MENU_ITEM_IMAGE_DOUBLE_SMALL_SIZE = CGFloat(30)
+    static let MENU_ITEM_IMAGE_NORMAL_SIZE = CGFloat(25)
+    static let MENU_FOOTER_PLUS_SIZE = CGFloat(90)
+    static let MENU_FOOTER_MAX_SIZE = CGFloat(130)
+    static let LOGO_NORMAL_WIDTH = CGFloat(100)
+    static let LOGO_NORMAL_HEIGHT = CGFloat(25)
     static let MARGIN_TOP_LOGIN_CENTER = CGFloat(20)
     static let MARGIN_TOP_BETWEEN_TEXT_FIELD = CGFloat(15)
     static let IG_INPUT_FIELD_WITH_ERROR_HEIGHT_DEFAULT = CGFloat(100)
-     static let DEFAULT_RIGHT_BUTTON_HEIGHT = CGFloat(32)
-     static let DEFAULT_RIGHT_BUTTON_WIDTH = CGFloat(32)
-     static let MARGIN_TOP_TRIGGER = CGFloat(-80)
+    static let DEFAULT_RIGHT_BUTTON_HEIGHT = CGFloat(32)
+    static let DEFAULT_RIGHT_BUTTON_WIDTH = CGFloat(32)
+    static let MARGIN_TOP_TRIGGER = CGFloat(-80)
     static let TOOLBAR_HEIGHT = CGFloat(44.0)
-
+    
 }
 
 struct AppFonts {
@@ -163,7 +217,14 @@ struct AppFonts {
     static let BUTTON_TITLE_SIZE = CGFloat(20)
     static let FOOTER_LABEL_FONT_SIZE = CGFloat(14)
     
-    static let LABEL_FONT_SIZE = CGFloat(18)
+    static let LABEL_FONT_SIZE = CGFloat(16)
+    static let LABEL_TITLE_FONT_SIZE = CGFloat(18)
+    static let LABEL_TITLE_FONT_SIZE_HELP = CGFloat(20)
+    
+    static let LABEL_DETAIL_ITEM_FONT_SIZE = CGFloat(14)
+    static let BUTTON_HEIGHT = CGFloat(45)
+    static let TEXTFIELD_HEIGHT = CGFloat(50)
+    
     static let ERROR_LABEL_FONT_SIZE = CGFloat(15)
     static let FLOAT_LABEL_FONT_SIZE = CGFloat(16)
     static let FLOAT_PLACEHOLDER_FONT_SIZE = CGFloat(14)
@@ -172,11 +233,12 @@ struct AppFonts {
     static let INPUT_TEXT_FONT_SIZE_DEFAULT = CGFloat(15)
     static let VERSION_FONT_SIZE = CGFloat(18)
     static let GROUP_ITEM_TITLE = CGFloat(20)
-    static let ITEM_LABEL_FONT_SIZE = CGFloat(18)
+    static let ITEM_LABEL_FONT_SIZE = CGFloat(16)
     static let ITEM_LABEL_SUB_FONT_SIZE = CGFloat(16)
     static let ITEM_LABEL_SMALL_FONT_SIZE = CGFloat(14)
     static let BUTTON_FONT_SIZE = CGFloat(16)
     static let VERSION_FONT_NORMAL_SIZE = CGFloat(16)
+    
     
     static func moderateScale(fontName: String = AppFonts.SFranciscoRegular, size: CGFloat = AppFonts.LABEL_FONT_SIZE, factor: CGFloat = 1)->UIFont{
         let guidelineBaseWidth = CGFloat(375) // Scaling font for iPhone 5s, 5
@@ -188,7 +250,7 @@ struct AppFonts {
         if Helper.isIpad() {
             font =  UIFont(name: fontName, size: (size * 1.2))!
         } else {
-          
+            
             if screenWidth >= guidelineBaseWidth {
                 font =  UIFont(name: fontName, size: (size + (temp - size) * factor))!
             }else{
@@ -206,8 +268,44 @@ struct AppImages {
     static let IC_SAVE = "ic_save"
     static let IC_SETTING = "ic_settings_white"
     
-    static let IC_SEARCH = "ic_search"
+    static let IC_CONTACT_CALENDAR = "ic_contact_calendar"
+    static let IC_COPY = "ic_copy"
+    static let IC_CREATE = "ic_create"
     static let IC_DELETE = "ic_delete"
+    static let IC_EMAIL = "ic_email"
+    static let IC_EVENT = "ic_event"
+    static let IC_FLASH_OFF = "ic_flash_off"
+    static let IC_FLASH_ON = "ic_flash_on"
+    static let IC_PRINT = "ic_print"
+    
+    static let IC_FLIP_CAMERA = "ic_flip_camera"
+    static let IC_HELP = "ic_help"
+    static let IC_IMAGE = "ic_image"
+    static let IC_KEYBOARD = "ic_keyboard"
+    static let IC_LABEL = "ic_label"
+    static let IC_LANGUAGE = "ic_language"
+    static let IC_LOCATION = "ic_location"
+    static let IC_MENU = "ic_menu"
+    static let IC_PHONE = "ic_phone"
+    static let IC_SHARE = "ic_share"
+    static let IC_SEARCH = "ic_search"
+    static let IC_SELECT_ALL = "ic_select_all"
+    static let IC_SETTINGS_WHITE = "ic_settings_white"
+    static let IC_SUPPORT = "ic_support"
+    static let IC_TEXT = "ic_text"
+    static let IC_SMS = "ic_textsms"
+    static let IC_VIBRATION = "ic_vibration"
+    static let IC_WIFI = "ic_wifi"
+    static let BG1 = "bg1"
+    static let BG2 = "bg2"
+    static let BG3 = "bg3"
+    static let IC_COLOR = "ic_color"
+    static let IC_BEEP = "ic_beep"
+    static let IC_PRIVACY = "ic_privacy"
+    static let IC_START = "ic_start"
+    static let IC_PERMISSION = "ic_permission"
+    
+    
     static let IC_HOME = "ic_home"
     static let IC_CONTACT = "ic_contact"
     static let IC_TRANSACTION = "ic_history"
@@ -244,14 +342,12 @@ struct AppImages {
     static let IC_ERROR = "ic_error"
     static let IC_SUCCESS = "ic_success"
     static let IC_SIGN_OUT = "ic_sign_out"
-    static let IC_HELP = "ic_help"
     static let IC_DESTROY = "ic_block"
     static let IC_CHANGE_PASSWORD = "ic_change_password"
     static let IC_NEXT = "ic_next"
     static let IC_NEXT_IOS = "ic_next_ios"
     static let IC_EDIT_PICTURE = "ic_edit_picture"
     static let IC_EXCLAMATION = "ic_exclamation"
-    static let IC_FLASH = "ic_flash"
     static let IC_GALLERY = "ic_gallery"
     static let IC_CONTACT_ACTIVE = "ic_contact_active"
     static let IC_BACK = "ic_back"
@@ -264,11 +360,9 @@ struct AppImages {
     static let IC_CHECK_FAIL = "ic_check_fail"
     static let IC_MORE = "ic_more"
     static let IC_FILTER = "ic_filter"
-    static let IC_SHARE = "ic_share"
     static let IC_DOWNLOAD = "ic_download"
     static let IC_SIGN_OUT_RED = "ic_sign_out_red"
     static let IC_CHECK = "ic_check"
-    static let IC_LANGUAGE = "ic_language"
     static let IC_INTRO_BACKGROUND = "ic_intro_background"
     static let IC_INTRO_1 = "ic_intro_1"
     static let IC_INTRO_2 = "ic_intro_2"
@@ -318,15 +412,15 @@ struct AppColors {
     static let PRIMARY_COLOR_DARK = UIColor.init(red: 13/255.0, green: 121/255.0, blue: 121/255.0, alpha: 1.0)
     static let COLOR_ACCENT = UIColor.init(red: 225/255.0, green: 151/255.0, blue: 4/255.0, alpha: 1.0)
     static let COLOR_ACCENT_DARK = UIColor.init(red: 171/255.0, green: 115/255.0, blue: 4/255.0, alpha: 1.0)
-   
-//    blue: #38BBE9
-//    blue-light: #38BBE9 (50% opacity)
-//    gray: #99A9B3
-//    gray-light: #F0F0F0
-//    gray-light-text : #828899
-//    black: #000000
-//    popup background: #082034 (50% opacity)
-//    F0F0F0 : background color of contact
+    
+    //    blue: #38BBE9
+    //    blue-light: #38BBE9 (50% opacity)
+    //    gray: #99A9B3
+    //    gray-light: #F0F0F0
+    //    gray-light-text : #828899
+    //    black: #000000
+    //    popup background: #082034 (50% opacity)
+    //    F0F0F0 : background color of contact
     static let BLUE = UIColor.init(red: 56/255.0, green: 187/255.0, blue: 233/255.0, alpha: 1.0)
     static let BLUE_LIGHT = UIColor.init(red: 56/255.0, green: 187/255.0, blue: 233/255.0, alpha: 0.5)
     static let GRAY = UIColor.init(red: 153/255.0, green: 169/255.0, blue: 179/255.0, alpha: 1.0)
@@ -337,12 +431,92 @@ struct AppColors {
     static let GRAY_LIGHT_90 = UIColor.init(red: 242/255.0, green: 246/255.0, blue: 249/255.0, alpha: 1.0)
 }
 struct AppViewOptions {
-  static let SPLIT_VIEW = 0
-  static let NAV_VIEW = 1
-  static let NO_VIEW = 2
+    static let SPLIT_VIEW = 0
+    static let NAV_VIEW = 1
+    static let NO_VIEW = 2
 }
 
 struct LanguageKey {
+    //Scanner
+    static let Aztec = "Aztec"
+    static let CODABAR = "CODABAR"
+    static let Code_39 = "Code 39"
+    static let Code_93 = "Code 93"
+    static let Code_128 = "Code 128"
+    static let Data_Matrix = "Data Matrix"
+    static let EAN_8 = "EAN-8"
+    static let EAN_13 = "EAN-13"
+    static let ITF = "ITF"
+    static let PDF417 = "PDF417"
+    static let QR_Code = "QR Code"
+    static let RSS_14 = "RSS 14"
+    static let RSS_Expanded = "RSS Expanded"
+    static let UPCA = "UPCA"
+    static let UPCE = "UPCE"
+    static let UPC_EAN_extension = "UPC/EAN extension"
+    static let Unknown = "Unknown"
+    
+
+    
+    static let Clipboard = "CLIPBOARD"
+    //Floaty Button
+    static let Csv = "CSV"
+    static let Select = "SELECT"
+    //Wifi
+    static let SSID = "SSID"
+    static let NetworkEncryption = "NETWORK_ENCRYPTION"
+    static let Hidden = "HIDDEN"
+    static let WPA = "WPA_WPA2"
+    static let WEP = "WEP"
+    static let None = "NONE"
+    //Phone
+    static let Phone = "PHONE"
+    //Contact
+    static let Fullname = "FULLNAME"
+    static let Address = "ADDRESS"
+    static let AddressBook = "ADDRESS_BOOK"
+    
+    //Event
+    static let Title = "TITLE"
+    static let Description = "DESCRIPTION"
+    static let TimeBegin = "TIME_BEGIN"
+    static let TimeEnd = "TIME_END"
+    static let Calendar = "CALENDAR"
+    
+    //Location
+    static let Latitude = "LATITUDE"
+    static let Longtitude = "LONGTITUDE"
+    static let Query = "QUERY"
+    //Message
+    static let To = "TO"
+    static let Subject = "SUBJECT"
+    //Text
+    //Email
+    static let EmailAddress = "EMAIL_ADDRESS"
+    static let Object = "OBJECT"
+    static let SaveSuccess = "SAVE_SUCCESS"
+    static let Copy_Item_Success = "COPY_ITEM_SUCCESS"
+    //Setting
+    static let Scan = "SCAN"
+    static let Advance_Feature = "AVANCE_FEATURE"
+    static let Information = "INFORMATION"
+    static let Vibrate  = "VIBRATE"
+    static let Beep = "BEEP"
+    static let Change_code_color = "CHANGE_CODE_COLOR"
+    static let Change_code_color_content = "CHANGE_CODE_COLOR_CONTENT"
+    static let CopyClipboard = "COPY_CLIPBOARD"
+      static let CopyClipboard_Content = "COPY_CLIPBOARD_CONTENT"
+    static let  OpenWeb = "OPEN_WEB"
+     static let  OpenWebContent = "OPEN_WEB_CONTENT"
+    static let AppPermission = "APP_PERMISSION"
+    static let Privacy = "PRIVACY"
+    static let Rate = "RATE"
+    static let Support = "SUPPORT"
+    static let SupportContent = "SUPPORT_CONTENT"
+    static let QRVersion = "QR_VERSION"
+    static let QRVersionContent = "QR_VERSION_CONTENT"
+
+    
     static let CancelButtonTitle = "CANCEL"
     static let DoneButtonTitle = "DONE"
     static let TimeFrame = "TIME_FRAME"
@@ -379,7 +553,7 @@ struct LanguageKey {
     static let ErrorLastNameRequired = "ERROR_LASTNAME_REQUIRED"
     static let ErrorBirthdayRequired = "ERROR_BIRTHDAY_REQUIRED"
     static let ErrorBirthdayInvalid = "ERROR_BIRTHDAY_INVALID"
-  
+    
     //time
     static let Time_Day = "DAY"
     static let Time_Days = "DAYS"
@@ -391,7 +565,6 @@ struct LanguageKey {
     static let Time_Seconds = "SECONDS"
     
     //Home
-    static let To = "TO"
     static let FROM = "FROM"
     static let Passengers = "PASSENGERS"
     static let SeatClass = "SEATCLASS"
@@ -422,7 +595,9 @@ struct LanguageKey {
     static let PayVTVCab = "PAYVTVCAB"
     static let ActiveAccountNow = "ACTIVE_ACCOUNT_NOW"
     //typeCode
+    static let Sms = "SMS"
     static let Email = "EMAIL"
+    static let Email_Help = "care@tpcreative.me"
     static let Message = "MESSAGE"
     static let Location = "LOCATION"
     static let Event = "EVENT"
@@ -431,84 +606,88 @@ struct LanguageKey {
     static let Text = "TEXT"
     static let Wifi = "WIFI"
     static let Url = "URL"
-
-    
+    static let True = "TRUE"
+    static let False = "FALSE"
+    static let Copy_item = "COPY_ITEMS"
+    static let Content_copy = "CONTENT_COPY"
     //Confirm
-     static let Gender = "GENDER"
-     static let FirstName = "FIRSTNAME"
-     static let LastName = "LASTNAME"
-     static let Birthday = "BIRTHDAY"
-     static let ContactInfo = "CONTACTINFO"
-     static let Booking = "BOOKING"
-     static let FillUp = "FILL_UP"
+    static let Gender = "GENDER"
+    static let FirstName = "FIRSTNAME"
+    static let LastName = "LASTNAME"
+    static let Birthday = "BIRTHDAY"
+    static let ContactInfo = "CONTACTINFO"
+    static let Booking = "BOOKING"
+    static let FillUp = "FILL_UP"
     //Checkout
-     static let TicketNumber = "TICKETNUMBER"
-     static let Status = "STATUS"
-     static let TotalMoney = "TOTALMONEY"
-     static let NoPayment = "NOPAYMENT"
-     static let Paymented = "PAYMENTED"
-     static let Checkout = "CHECKOUT"
-     static let FLIGHTNAME = "FLIGHTNAME"
-     //Destination
-     static let SearchPlaceholder = "SEARCHPLACEHOLDER"
-     static let NoResult = "NORESULT"
-     static let Cancel = "CANCEL"
-     static let TryAgain = "TRY_AGAIN"
-     static let Ok = "OK"
-   
-     //SignIn
-     static let TitleBrand = "ECASH"
-     static let SignOut = "SIGNOUT"
-     static let SignInWithGoogle = "SIGNINWITHGOOGLE"
-     static let ErrorUserNameNotMathCurrentUserName = "ERROR_USERNAME_DOES_NOT_MATH_CURRENT_USERNAME"
-     static let USER_NOT_ACTIVE = "USER_NOT_ACTIVE"
-     //HistoryCheckout
-     static let OneWay = "ONEWAY"
-     static let Total = "TOTAL"
-     static let Quantity = "QUANTITY"
-     static let CreatedDate = "CREATEDDATE"
-     static let Maximum7Passengers = "MAXIMUM7PASSENGERS"
-     static let InfantCouldNotMoreThanAdult = "INFANTCOUNTNOTMORETHANADULT"
-     //Gallery
-     static let ChooseFromLibrary = "CHOOSEFROMLABRARY"
-     static let ChooseFromPhotoRoll = "CHOOSEFROMPHOTOROLL"
-     static let NoSources = "NOSOURCES"
-     static let TakePhoto = "TAKEPHOTO"
-     static let TakeVideo = "TAKEVIDEO"
-     //Tab bar
-     static let Home = "HOME"
-     static let Generate = "GENERATE"
-     static let Scanner = "SCANNER"
-     static let Save = "SAVE"
-     static let Setting = "SETTING"
-     //SignIn
-     static let CouldNotSignIn = "COULD_NOT_SIGN_IN"
-     static let DoNotHaveAnAccount = "DO_NOT_HAVE_AN_ACCOUNT"
-     static let SignUpNow = "SIGN_UP_NOW"
-     static let ActiveSuccessful = "ACTIVE_SUCCESSFUL"
-     static let UsernameCouldNotContainSpecialCharacter = "USERNAME_COULD_NOT_CONTAIN_SPECIAL_CHARACTER"
-     //SignUp
-     static let SignUp = "SIGNUP"
-     static let AccountNumber = "ACCOUNTNUMBER"
-     static let FullName = "FULLNAME"
-     static let Password = "PASSWORD"
-     static let EnterId = "ENTERID"
-     static let EnterPhoneNumber = "ENTERPHONENUMBER"
-     static let ConfirmPassWord = "CONFIRMPASSWORD"
-     static let ErrorAccountNumberRequired = "ERROR_ACCOUNT_NUMBER_REQUIRED"
-     static let ErrorUsernameRequired = "ERROR_USER_NAME_REQUIRED"
-     static let ErrorFullNameRequired = "ERROR_FULLNAME_REQUIRED"
-     static let ErrorConfirmRequired = "ERROR_CONFIRM_REQUIRED"
-     static let ErrorIdRequired = "ERROR_ID_REQUIRED"
-     static let ErrorIdInvalid = "ERROR_ID_INVALID"
-     static let ErrorPasswordDoNotMatch = "PASSWORD_DO_NOT_MATCH"
-     static let Alert = "ALERT"
-     static let ErrorOTPRequest = "ERROR_OTP_REQUIRED"
-     static let AddOTP = "ADD_OTP"
-     static let PleaseEnterTheOTPCode = "PLEASE_ENTER_THE_OTP_CODE"
-     static let Active = "ACTIVE"
-     static let OTPCode = "OTP_CODE"
-     static let IdMustBeDigitNumber = "ID_MUST_BE_DIGIT_NUMBERS"
+    static let TicketNumber = "TICKETNUMBER"
+    static let Status = "STATUS"
+    static let TotalMoney = "TOTALMONEY"
+    static let NoPayment = "NOPAYMENT"
+    static let Paymented = "PAYMENTED"
+    static let Checkout = "CHECKOUT"
+    static let FLIGHTNAME = "FLIGHTNAME"
+    //Destination
+    static let SearchPlaceholder = "SEARCHPLACEHOLDER"
+    static let NoResult = "NORESULT"
+    static let Cancel = "CANCEL"
+    static let Copy = "COPY"
+    
+    static let TryAgain = "TRY_AGAIN"
+    static let Ok = "OK"
+    
+    //SignIn
+    static let TitleBrand = "ECASH"
+    static let SignOut = "SIGNOUT"
+    static let SignInWithGoogle = "SIGNINWITHGOOGLE"
+    static let ErrorUserNameNotMathCurrentUserName = "ERROR_USERNAME_DOES_NOT_MATH_CURRENT_USERNAME"
+    static let USER_NOT_ACTIVE = "USER_NOT_ACTIVE"
+    //HistoryCheckout
+    static let OneWay = "ONEWAY"
+    static let Total = "TOTAL"
+    static let Quantity = "QUANTITY"
+    static let CreatedDate = "CREATEDDATE"
+    static let Maximum7Passengers = "MAXIMUM7PASSENGERS"
+    static let InfantCouldNotMoreThanAdult = "INFANTCOUNTNOTMORETHANADULT"
+    //Gallery
+    static let ChooseFromLibrary = "CHOOSEFROMLABRARY"
+    static let ChooseFromPhotoRoll = "CHOOSEFROMPHOTOROLL"
+    static let NoSources = "NOSOURCES"
+    static let TakePhoto = "TAKEPHOTO"
+    static let TakeVideo = "TAKEVIDEO"
+    //Tab bar
+    static let Home = "HOME"
+    static let Generate = "GENERATE"
+    static let Scanner = "SCANNER"
+    static let Save = "SAVE"
+    static let Setting = "SETTING"
+    //SignIn
+    static let CouldNotSignIn = "COULD_NOT_SIGN_IN"
+    static let DoNotHaveAnAccount = "DO_NOT_HAVE_AN_ACCOUNT"
+    static let SignUpNow = "SIGN_UP_NOW"
+    static let ActiveSuccessful = "ACTIVE_SUCCESSFUL"
+    static let UsernameCouldNotContainSpecialCharacter = "USERNAME_COULD_NOT_CONTAIN_SPECIAL_CHARACTER"
+    //SignUp
+    static let SignUp = "SIGNUP"
+    static let AccountNumber = "ACCOUNTNUMBER"
+    static let FullName = "FULLNAME"
+    static let Password = "PASSWORD"
+    static let EnterId = "ENTERID"
+    static let EnterPhoneNumber = "ENTERPHONENUMBER"
+    static let ConfirmPassWord = "CONFIRMPASSWORD"
+    static let ErrorAccountNumberRequired = "ERROR_ACCOUNT_NUMBER_REQUIRED"
+    static let ErrorUsernameRequired = "ERROR_USER_NAME_REQUIRED"
+    static let ErrorFullNameRequired = "ERROR_FULLNAME_REQUIRED"
+    static let ErrorConfirmRequired = "ERROR_CONFIRM_REQUIRED"
+    static let ErrorIdRequired = "ERROR_ID_REQUIRED"
+    static let ErrorIdInvalid = "ERROR_ID_INVALID"
+    static let ErrorPasswordDoNotMatch = "PASSWORD_DO_NOT_MATCH"
+    static let Alert = "ALERT"
+    static let ErrorOTPRequest = "ERROR_OTP_REQUIRED"
+    static let AddOTP = "ADD_OTP"
+    static let PleaseEnterTheOTPCode = "PLEASE_ENTER_THE_OTP_CODE"
+    static let Active = "ACTIVE"
+    static let OTPCode = "OTP_CODE"
+    static let IdMustBeDigitNumber = "ID_MUST_BE_DIGIT_NUMBERS"
     //GenerateQR
     static let ErrorToRequired = "ERROR_TO_REQUIRED"
     static let ErrorUrlRequired = "ERROR_URL_REQUIRED"
@@ -532,208 +711,214 @@ struct LanguageKey {
     static let ErrorLocationEventRequired = "ERROR_LOCATION_EVENT_REQUIRED"
     static let ErrorTitleEventRequired = "ERROR_TITLE_EVENT_REQUIRED"
     static let ErrorSSIDRequired = "ERROR_SSID_REQUIRED"
-       static let ErrorPassWordWifiRequired = "ERROR_PASS_WIFI_REQUIRED"
+    static let ErrorPassWordWifiRequired = "ERROR_PASS_WIFI_REQUIRED"
     static let ErrorMessageRequired = "ERROR_MESSAGE_REQUIRED"
-
-     //Add eCash
-     static let Verify = "VERIFY"
-     static let Money = "MONEY"
-     static let M500 = "M500"
-     static let M200 = "M200"
-     static let M100 = "M100"
-     static let M50 = "M50"
-     static let M20 = "M20"
-     static let M10 = "M10"
-     static let YoureDongBalanceIsNotEnough = "EDONG_NOT_ENOUGH"
-     static let SocketConnectError = "SOCKET_CONNECT_ERROR"
-     static let NotFoundeDongId = "NOT_FOUND_EDONG_ID"
-     static let eCashToeCash = "ECASH_TO_ECASH"
-     static let NoListAvailable = "NO_LIST_AVAILABLE"
-     static let SelectMoney = "SELECT_MONEY"
-     static let Count = "COUNT"
-     static let Amount = "AMOUNT"
-     //WithdraweCash
-     static let WithdraweCash = "WITHDRAW_ECASH"
-     static let WithdrawToeDong = "WITHDRAW_TO_EDONG"
-     static let EnterMoney = "ENTERMONEY"
-     static let ErrorMoneyRequired = "ERROR_MONEY_REQUIRED"
-     static let YoureCashBalanceIsNotEnough = "ECASH_NOT_ENOUGH"
+    //Help
+    static let Title_Help1 = "TITLE_HELP1"
+    static let Title_Help2 = "TITLE_HELP2"
+    static let Title_Help_Content1 = "TITLE_HELP_CONTENT1"
+    static let Title_Help_Content2 = "TITLE_HELP_CONTENT2"
+    static let Title_Help_Content3 = "TITLE_HELP_CONTENT3"
+    static let Title_Help_Content4 = "TITLE_HELP_CONTENT4"
+    
+    //Add eCash
+    static let Verify = "VERIFY"
+    static let Money = "MONEY"
+    static let M500 = "M500"
+    static let M200 = "M200"
+    static let M100 = "M100"
+    static let M50 = "M50"
+    static let M20 = "M20"
+    static let M10 = "M10"
+    static let YoureDongBalanceIsNotEnough = "EDONG_NOT_ENOUGH"
+    static let SocketConnectError = "SOCKET_CONNECT_ERROR"
+    static let NotFoundeDongId = "NOT_FOUND_EDONG_ID"
+    static let eCashToeCash = "ECASH_TO_ECASH"
+    static let NoListAvailable = "NO_LIST_AVAILABLE"
+    static let SelectMoney = "SELECT_MONEY"
+    static let Count = "COUNT"
+    static let Amount = "AMOUNT"
+    //WithdraweCash
+    static let WithdraweCash = "WITHDRAW_ECASH"
+    static let WithdrawToeDong = "WITHDRAW_TO_EDONG"
+    static let EnterMoney = "ENTERMONEY"
+    static let ErrorMoneyRequired = "ERROR_MONEY_REQUIRED"
+    static let YoureCashBalanceIsNotEnough = "ECASH_NOT_ENOUGH"
     
     //Transfer
-     static let EntereCashId = "ENTER_ECASH_ID"
-     static let EnterContent = "ENTER_CONTENT"
-     static let TransferToeCash = "TRANSFER_TO_ECASH"
-     static let ErrorWalletIdRequired = "ERROR_WALLET_ID_REQUIRED"
-     static let ErrorMonenyRequired = "ERROR_MONEY_REQUIRED"
-     static let ErrorContentRequired = "ERROR_CONTENT_REQUIRED"
-
-     //Alert
-     static let ErrorOcurred = "ERROR_OCURRED"
-     static let IdNumber = "ID_NUMBER"
-     static let Username  = "USERNAME"
-     static let NotExisted = "NOT_EXISTED"
-     static let AlreadyExisted = "ALREADYEXISTED"
-     static let Close = "CLOSE"
-     static let Yes = "YES"
-     static let No = "NO"
-     static let DoYouWantToSignIn = "DO_YOU_WANT_TO_SIGIN"
-     static let TransactionSuccessful = "TRANSACTION_SUCCESSFUL"
-     static let YouHaveAddedToeCash = "YOU_HAVE_ADDED_TO_ECASH"
-     static let YouHaveWithdrawnFromeDong = "YOU_HAVE_WITHDRAWN_FROM_EDONG"
-     static let YouHaveTransferredToeCash = "YOU_HAVE_TRANSFERRED_TO_ECASH"
-     static let YouHaveExchangedCash = "YOU_HAVE_EXCHANGED_CASH"
+    static let EntereCashId = "ENTER_ECASH_ID"
+    static let EnterContent = "ENTER_CONTENT"
+    static let TransferToeCash = "TRANSFER_TO_ECASH"
+    static let ErrorWalletIdRequired = "ERROR_WALLET_ID_REQUIRED"
+    static let ErrorMonenyRequired = "ERROR_MONEY_REQUIRED"
+    static let ErrorContentRequired = "ERROR_CONTENT_REQUIRED"
+    
+    //Alert
+    static let ErrorOcurred = "ERROR_OCURRED"
+    static let IdNumber = "ID_NUMBER"
+    static let Username  = "USERNAME"
+    static let NotExisted = "NOT_EXISTED"
+    static let AlreadyExisted = "ALREADYEXISTED"
+    static let Close = "CLOSE"
+    static let Yes = "YES"
+    static let No = "NO"
+    static let DoYouWantToSignIn = "DO_YOU_WANT_TO_SIGIN"
+    static let TransactionSuccessful = "TRANSACTION_SUCCESSFUL"
+    static let YouHaveAddedToeCash = "YOU_HAVE_ADDED_TO_ECASH"
+    static let YouHaveWithdrawnFromeDong = "YOU_HAVE_WITHDRAWN_FROM_EDONG"
+    static let YouHaveTransferredToeCash = "YOU_HAVE_TRANSFERRED_TO_ECASH"
+    static let YouHaveExchangedCash = "YOU_HAVE_EXCHANGED_CASH"
     
     
-     //My Wallet
-     static let ChangePassword = "CHANGE_PASSWORD"
-     static let Help = "HELP"
-     static let DeleteAccount = "DELETEACCOUNT"
-     static let DoYouWantExitThisSession = "DO_YOU_WANT_EXIT_THIS_SESSION"
-     
-     //My Profile
-     static let Address = "ADDRESS"
-     static let PhoneNumber = "PHONE_NUMBER"
-     static let Change = "CHANGE"
-     static let SessionExpried = "SESSION_EXPIRED"
-     static let SignIn = "SIGN_IN"
-     static let ThisFeatureComingSoon = "THIS_FEATURE_COMING_SOON"
-     static let MyAvatar = "MY_AVATAR"
-     static let MyQRCode = "MY_QRCODE"
-     //Scanner
-     static let Flash = "FLASH"
-     static let Gallery = "GALLERY"
-     static let ScanQR = "SCANQR"
-     static let CreatedQR = "CREATED_QR"
-     static let QRTitle = "QRTITLE"
-     static let QRStatus = "QRSTATUS"
-     static let UseQRCode = "USEQRCODE"
-     static let GeneratedQR = "GENERATEDQR"
-     static let AskPermissionAlert = "ASK_PERMISSION_ALERT"
-     static let QRCodeHasBeenReceivedBefore = "QRCODE_HAS_BEEN_RECEIVED_BEFORE"
-     static let InvalidQRCode = "INVALID_QRCODE"
-     static let TransactionAreSentToAnother = "TRANSACTION_ARE_SENT_TO_ANOTHER"
-     //Exchange eCash
-     static let CashListAvailable = "CASH_LIST_AVAILABLE"
-     static let CashExchage = "CASH_EXCHANGE"
-     static let CashReceive = "CASH_RECEIVE"
-     static let ExchangeCash = "EXCHANGE_CASH"
-     static let TotalExchangeCash = "TOTAL_EXCHANGE_CASH"
-     static let TotalExpectationCash = "TOTAL_EXPECTATION_CASH"
-
+    //My Wallet
+    static let ChangePassword = "CHANGE_PASSWORD"
+    static let Help = "HELP"
+    static let DeleteAccount = "DELETEACCOUNT"
+    static let DoYouWantExitThisSession = "DO_YOU_WANT_EXIT_THIS_SESSION"
+    
+    //My Profile
+    static let PhoneNumber = "PHONE_NUMBER"
+    static let Change = "CHANGE"
+    static let SessionExpried = "SESSION_EXPIRED"
+    static let SignIn = "SIGN_IN"
+    static let ThisFeatureComingSoon = "THIS_FEATURE_COMING_SOON"
+    static let MyAvatar = "MY_AVATAR"
+    static let MyQRCode = "MY_QRCODE"
+    //Scanner
+    static let Flash = "FLASH"
+    static let Gallery = "GALLERY"
+    static let ScanQR = "SCANQR"
+    static let CreatedQR = "CREATED_QR"
+    static let QRTitle = "QRTITLE"
+    static let QRStatus = "QRSTATUS"
+    static let UseQRCode = "USEQRCODE"
+    static let GeneratedQR = "GENERATEDQR"
+    static let AskPermissionAlert = "ASK_PERMISSION_ALERT"
+    static let QRCodeHasBeenReceivedBefore = "QRCODE_HAS_BEEN_RECEIVED_BEFORE"
+    static let InvalidQRCode = "INVALID_QRCODE"
+    static let TransactionAreSentToAnother = "TRANSACTION_ARE_SENT_TO_ANOTHER"
+    //Exchange eCash
+    static let CashListAvailable = "CASH_LIST_AVAILABLE"
+    static let CashExchage = "CASH_EXCHANGE"
+    static let CashReceive = "CASH_RECEIVE"
+    static let ExchangeCash = "EXCHANGE_CASH"
+    static let TotalExchangeCash = "TOTAL_EXCHANGE_CASH"
+    static let TotalExpectationCash = "TOTAL_EXPECTATION_CASH"
+    
     //Transactions History
     static let StatusSuccess = "STATUS_SUCCESS"
     static let StatusFail = "STATUS_FAIL"
     static let Months = "MONTHS"
     
-     //Generated QRCode
-     static let Send = "SEND"
-     static let Delete = "DELETE"
-     //Scanner Result
-     static let ReceiveeCash = "RECEIVEECASH"
-     static let TransactionsInfo = "TRANSACTIONSINFO"
-     static let eCashTotal = "ECASHTOTAL"
-     static let Sender = "SENDER"
-     static let Content = "CONTENT"
-     static let ReceiverNotFound = "RECEIVER_NOT_FOUND"
-     static let AskPermission = "ASK_PERMISSION"
-     static let ReceivedLixiSuccessfully = "RECEIVED_LIXI_SUCCESSFULLY"
-     //Contact
-     static let Edit = "EDIT"
-     static let DeviceInfo = "DEVICE_INFO"
-     static let WalletNumber = "WALLET_NUMBER"
-     static let TypeName = "TYPE_NAME"
-     //Add contact
-     static let AddContact = "ADD_CONTACT"
+    //Generated QRCode
+    static let Send = "SEND"
+    static let Delete = "DELETE"
+    //Scanner Result
+    static let ReceiveeCash = "RECEIVEECASH"
+    static let TransactionsInfo = "TRANSACTIONSINFO"
+    static let eCashTotal = "ECASHTOTAL"
+    static let Sender = "SENDER"
+    static let Content = "CONTENT"
+    static let ReceiverNotFound = "RECEIVER_NOT_FOUND"
+    static let AskPermission = "ASK_PERMISSION"
+    static let ReceivedLixiSuccessfully = "RECEIVED_LIXI_SUCCESSFULLY"
+    //Contact
+    static let Edit = "EDIT"
+    static let DeviceInfo = "DEVICE_INFO"
+    static let WalletNumber = "WALLET_NUMBER"
+    static let TypeName = "TYPE_NAME"
+    //Add contact
+    static let AddContact = "ADD_CONTACT"
     static let AddContactSuccess = "ADD_CONTACT_SUCCESS"
     static let AddContactExisted = "ADD_CONTACT_EXISTED"
-     static let Add = "ADD"
-     static let TypePhoneNumberWalletId = "TYPE_PHONE_NUMBER_OR_WALLET_ID"
-     //Transaction filter
-     static let Time = "TIME"
-     static let TransactionType = "TRANSACTION_TYPE"
-     static let Done = "DONE"
-     static let TransactionDetail = "TRANSACTION_DETAIL"
-     static let eCashEmount = "ECASH_AMOUNT"
-     static let Clear = "CLEAR"
-     static let ChooseTime = "CHOOSE_TIME"
-     static let ChooseType = "CHOOSE_TYPE"
-     static let ChooseStatus = "CHOOSE_STATUS"
-     //Transaction log detail
-     static let QRCode = "QRCODE"
-     static let Share = "SHARE"
-     static let SaveToDevice = "SAVE_TO_DEVICE"
-     static let ReceiverCode = "RECEIVER_CODE"
-     static let Issuer = "ISSUER"
-     static let SenderCode  = "SENDER_CODE"
-     static let FullNameTitle = "FULLNAME_TITLE"
-     static let AlreadySavedQRCodeToDevice = "ALREADY_SAVED_QRCODE_TO_DEVICE"
-     static let AreYouSureDeleteThisAccount  = "ARE_YOU_SURE_DELETE_THIS_ACCOUNT"
-     static let SavedToDevice = "SAVED_TO_DEVICE"
-     //Destroy Wallet
-     static let DestroyAccount = "DESTROY_ACCOUNT"
-     static let DestroyContent   = "DESTROY_CONTENT"
-     static let TransfereCash = "TRANSFER_ECASH"
-     static let Exit = "EXIT"
-     static let DestroyAccountSuccessfully = "DESTROY_ACCOUNT_SUCCESSFULLY"
-     //Change Password
-     static let EnterNewPassword = "ENTER_NEW_PASSWORD"
-     static let EnterOldPassword = "ENTER_OLD_PASSWORD"
-     static let NewPasswordIsTheSameWithOldPassword = "NEW_PASSWORD_IS_THE_SAME_WITH_OLD_PASSWORD"
-     //Forgot password
-     static let ForgotPassword  = "FORGOTPASSWORD"
-     static let VerifyOTP = "VERIFY_OTP"
-     static let TheCodeWasSentTo = "THE_CODE_WAS_SEND_TO"
-     static let EnterOTPCode = "ENTER_OTP_CODE"
-     static let Resend = "RESEND"
-     static let RecoverPassword = "RECOVERPASSWORD"
-     static let RecoverPasswordSuccessfully = "RECOVER_PASSWORD_SUCCESSFULLY"
-     //Mutiple languages
-     static let ChooseYourLanguage = "CHOOSE_YOUR_LANGUAGE"
-     static let Vietnamese = "VIETNAMESE"
-     static let English = "English"
-     static let Language =  "LANGUAGE"
-     //My QRCode
-     static let ScanQRCodeLetToEWallet = "SCANQRCODELETTOADDEWALLET"
-     static let CouldNotAddToItself  = "COULD_NOT_ADD_TO_ITSELF"
-     static let CouldNotTransferToItself = "COULD_NOT_TRANSFER_TO_ITSELF"
-     static let YourImagesSaveToPhotos = "YOUR_IMAGE_WAS_SAVED_TO_PHOTOS"
-     //Intro
-     static let Skip = "SKIP"
-     static let Start = "START"
-     static let NotificationHistory = "NOTIFICATION_HISTORY"
+    static let Add = "ADD"
+    static let TypePhoneNumberWalletId = "TYPE_PHONE_NUMBER_OR_WALLET_ID"
+    //Transaction filter
+    static let Time = "TIME"
+    static let TransactionType = "TRANSACTION_TYPE"
+    static let Done = "DONE"
+    static let TransactionDetail = "TRANSACTION_DETAIL"
+    static let eCashEmount = "ECASH_AMOUNT"
+    static let Clear = "CLEAR"
+    static let ChooseTime = "CHOOSE_TIME"
+    static let ChooseType = "CHOOSE_TYPE"
+    static let ChooseStatus = "CHOOSE_STATUS"
+    //Transaction log detail
+    static let QRCode = "QRCODE"
+    static let Share = "SHARE"
+    static let SaveToDevice = "SAVE_TO_DEVICE"
+    static let ReceiverCode = "RECEIVER_CODE"
+    static let Issuer = "ISSUER"
+    static let SenderCode  = "SENDER_CODE"
+    static let FullNameTitle = "FULLNAME_TITLE"
+    static let AlreadySavedQRCodeToDevice = "ALREADY_SAVED_QRCODE_TO_DEVICE"
+    static let AreYouSureDeleteThisAccount  = "ARE_YOU_SURE_DELETE_THIS_ACCOUNT"
+    static let SavedToDevice = "SAVED_TO_DEVICE"
+    //Destroy Wallet
+    static let DestroyAccount = "DESTROY_ACCOUNT"
+    static let DestroyContent   = "DESTROY_CONTENT"
+    static let TransfereCash = "TRANSFER_ECASH"
+    static let Exit = "EXIT"
+    static let DestroyAccountSuccessfully = "DESTROY_ACCOUNT_SUCCESSFULLY"
+    //Change Password
+    static let EnterNewPassword = "ENTER_NEW_PASSWORD"
+    static let EnterOldPassword = "ENTER_OLD_PASSWORD"
+    static let NewPasswordIsTheSameWithOldPassword = "NEW_PASSWORD_IS_THE_SAME_WITH_OLD_PASSWORD"
+    //Forgot password
+    static let ForgotPassword  = "FORGOTPASSWORD"
+    static let VerifyOTP = "VERIFY_OTP"
+    static let TheCodeWasSentTo = "THE_CODE_WAS_SEND_TO"
+    static let EnterOTPCode = "ENTER_OTP_CODE"
+    static let Resend = "RESEND"
+    static let RecoverPassword = "RECOVERPASSWORD"
+    static let RecoverPasswordSuccessfully = "RECOVER_PASSWORD_SUCCESSFULLY"
+    //Mutiple languages
+    static let ChooseYourLanguage = "CHOOSE_YOUR_LANGUAGE"
+    static let Vietnamese = "VIETNAMESE"
+    static let English = "English"
+    static let Language =  "LANGUAGE"
+    //My QRCode
+    static let ScanQRCodeLetToEWallet = "SCANQRCODELETTOADDEWALLET"
+    static let CouldNotAddToItself  = "COULD_NOT_ADD_TO_ITSELF"
+    static let CouldNotTransferToItself = "COULD_NOT_TRANSFER_TO_ITSELF"
+    static let YourImagesSaveToPhotos = "YOUR_IMAGE_WAS_SAVED_TO_PHOTOS"
+    //Intro
+    static let Skip = "SKIP"
+    static let Start = "START"
+    static let NotificationHistory = "NOTIFICATION_HISTORY"
     
-     //Profile info
-     static let ProfileInfo = "PROFILE_INFO"
-     static let Full_Name = "FULL_NAME_PROFILE"
-     static let ErrorAddressRequired = "ERROR_ADDRESS_REQUIRED"
-     //GalleryOptions
-     static let ChangeAvatar = "CHANGE_AVATAR"
-     static let ChooseFromGallery = "CHOOSE_FROM_GALLERY"
-     static let TakePicture = "TAKE_PICTURE"
-     static let YouCouldNotSelectMoreThan = "YOU_COULD_NOT_SELECT_MORE_THAN"
-     //Lixi
-     static let Opened = "OPENED"
-     static let Lock = "LOCK"
-     static let YourLixi = "YOUR_LIXI"
-     static let LuckyMoneyFrom = "LUCKY_MONEY_FROM"
-     static let LuarNewYearFromECPAY = "LUNAR_NEW_YEAR_FROM_ECPAY"
-     //SendLixi
-     static let SendLixi = "SEND_LIXI"
-     //ReceiveLixiOptions
-     static let Greetings = "GREETINGS"
-     static let GreetingsMessage = "GREETINGS_MESSAGE"
-     static let LuckyMoney = "LUCKY_MONEY"
-     static let ChooseTemplate  = "CHOOSE_TEMPLATE"
-     static let ErrorOccurredLocalDB = "ERROR_OCCURREDLOCAL_DB"
-     static let UpdatedSuccessfully = "UPDATED_SUCCESSFULLY"
-     static let InsertedSuccessfully = "INSERTED_SUCCESSFULLY"
-     static let ErrorOccurredFromSystem = "ERROR_OCCURRED_FROM_SYSTEM"
-     static let PleaseActiveAccountToUseThisFeature = "PLEASE_ACTIVE_ACCOUNT_TO_USE_THIS_FEATURE"
-     static let NotFound = "NOT_FOUND"
-     static let AccountDoesNotExist = "ACCOUNT_DOES_NOT_EXIST"
-     static let PasswordIncorrect = "PASSWORD_INCORRECT"
-     static let OTPInvalid = "OTP_INVALID"
-     static let OTPIncorrect = "OTP_INCORRECT"
+    //Profile info
+    static let ProfileInfo = "PROFILE_INFO"
+    static let Full_Name = "FULL_NAME_PROFILE"
+    static let ErrorAddressRequired = "ERROR_ADDRESS_REQUIRED"
+    //GalleryOptions
+    static let ChangeAvatar = "CHANGE_AVATAR"
+    static let ChooseFromGallery = "CHOOSE_FROM_GALLERY"
+    static let TakePicture = "TAKE_PICTURE"
+    static let YouCouldNotSelectMoreThan = "YOU_COULD_NOT_SELECT_MORE_THAN"
+    //Lixi
+    static let Opened = "OPENED"
+    static let Lock = "LOCK"
+    static let YourLixi = "YOUR_LIXI"
+    static let LuckyMoneyFrom = "LUCKY_MONEY_FROM"
+    static let LuarNewYearFromECPAY = "LUNAR_NEW_YEAR_FROM_ECPAY"
+    //SendLixi
+    static let SendLixi = "SEND_LIXI"
+    //ReceiveLixiOptions
+    static let Greetings = "GREETINGS"
+    static let GreetingsMessage = "GREETINGS_MESSAGE"
+    static let LuckyMoney = "LUCKY_MONEY"
+    static let ChooseTemplate  = "CHOOSE_TEMPLATE"
+    static let ErrorOccurredLocalDB = "ERROR_OCCURREDLOCAL_DB"
+    static let UpdatedSuccessfully = "UPDATED_SUCCESSFULLY"
+    static let InsertedSuccessfully = "INSERTED_SUCCESSFULLY"
+    static let ErrorOccurredFromSystem = "ERROR_OCCURRED_FROM_SYSTEM"
+    static let PleaseActiveAccountToUseThisFeature = "PLEASE_ACTIVE_ACCOUNT_TO_USE_THIS_FEATURE"
+    static let NotFound = "NOT_FOUND"
+    static let AccountDoesNotExist = "ACCOUNT_DOES_NOT_EXIST"
+    static let PasswordIncorrect = "PASSWORD_INCORRECT"
+    static let OTPInvalid = "OTP_INVALID"
+    static let OTPIncorrect = "OTP_INCORRECT"
 }
 
 struct LanguageCode {
@@ -742,26 +927,26 @@ struct LanguageCode {
 }
 
 struct StorageKey {
-  static let activeAccountData = "ActiveAccountData"
-  static let signupData = "SignUpData"
-  static let signInData = "SignInData"
-  static let signInNoneWalletData = "SignInNoneWalletData"
-  static let configData = "configurationData"
-  static let cipherKey = "cipherKey"
-  static let eDongInfoData = "eDongInfoData"
-  static let isAlreadyStore = "isAlreadyStore"
-  static let keychain = "keychain"
-  static let keychainFirebase = "keychainFirebase"
-  static let masterkey = "masterkey"
-  static let firstCreatedKeyChain = "firstCreatedKeyChain"
-  static let deviceId  = "deviceId"
-  static let multipleLanguages = "multipleLanguages"
-  static let firebaseToken = "firebaseToken"
-  static let channelPublicKey = "channelPublicKey"
-  static let isIntro = "isIntro"
-  static let isSignOut = "isSignOut"
+    static let activeAccountData = "ActiveAccountData"
+    static let signupData = "SignUpData"
+    static let signInData = "SignInData"
+    static let signInNoneWalletData = "SignInNoneWalletData"
+    static let configData = "configurationData"
+    static let cipherKey = "cipherKey"
+    static let eDongInfoData = "eDongInfoData"
+    static let isAlreadyStore = "isAlreadyStore"
+    static let keychain = "keychain"
+    static let keychainFirebase = "keychainFirebase"
+    static let masterkey = "masterkey"
+    static let firstCreatedKeyChain = "firstCreatedKeyChain"
+    static let deviceId  = "deviceId"
+    static let multipleLanguages = "multipleLanguages"
+    static let firebaseToken = "firebaseToken"
+    static let channelPublicKey = "channelPublicKey"
+    static let isIntro = "isIntro"
+    static let isSignOut = "isSignOut"
     static let valueImageGenerate = "valueImageGenerate"
-
+    
 }
 
 struct FolderName {
@@ -771,20 +956,20 @@ struct FolderName {
 }
 
 struct ConfigKey {
-   static let BaseUrl = "RootUrl"
-   static let WSUrl = "WSUrl"
-   static let AppName = "CFBundleName"
-   static let GoogleClientId = "GoogleClientId"
-   static let GoogleReversedClientId = "GoogleReversedClientId"
-   static let AppDataFolder = "appDataFolder"
-   static let RequestUpdateeDong = "RequestUpdateeDong"
-   static let DismissView = "DismissView"
-   static let RequestQRCodeResult = "RequestQRCodeResult"
-   static let UpdatedUIForChangedLanguage = "UpdatedUIForChangedLanguage"
-   static let RequestCheckAvailableNotification = "RequestCheckAvailableNotification"
-   static let RequestNavigationNotificationHistory = "RequestNavigationNotificationHistory"
-   static let RequestSaveToPhotos = "RequestSaveToPhotos"
-   static let ActionToView = "ActionToView"
+    static let BaseUrl = "RootUrl"
+    static let WSUrl = "WSUrl"
+    static let AppName = "CFBundleName"
+    static let GoogleClientId = "GoogleClientId"
+    static let GoogleReversedClientId = "GoogleReversedClientId"
+    static let AppDataFolder = "appDataFolder"
+    static let RequestUpdateeDong = "RequestUpdateeDong"
+    static let DismissView = "DismissView"
+    static let RequestQRCodeResult = "RequestQRCodeResult"
+    static let UpdatedUIForChangedLanguage = "UpdatedUIForChangedLanguage"
+    static let RequestCheckAvailableNotification = "RequestCheckAvailableNotification"
+    static let RequestNavigationNotificationHistory = "RequestNavigationNotificationHistory"
+    static let RequestSaveToPhotos = "RequestSaveToPhotos"
+    static let ActionToView = "ActionToView"
 }
 
 struct CipherKey {
@@ -905,6 +1090,10 @@ struct Controller {
 }
 
 enum EnumIdentifier : String {
+    case Scan = "Scan"
+    case Advance_Feature = "Advance_Feature"
+    case Information = "Information"
+    
     case None = "None"
     case Home  = "Home"
     case HistoryCheckout = "HistoryCheckout"
@@ -913,19 +1102,23 @@ enum EnumIdentifier : String {
     case WithdrawMultipleeCash = "WithdrawMultipleeCash"
     case History = "history"
     case HistoryChoose = "history_choose"
-
+    case SaveChoose = "save_choose"
     case Save = "save"
-     case Generate = "generate"
-    case Url = "url"
-    case Text = "text"
-case Phone = "phone"
-    case Email = "email"
-    case Wifi = "wifi"
-    case Contact = "contact"
-    case Location = "location"
-    case Message = "message"
-    case Event = "event"
-
+    case Generate = "generate"
+    case Alert = "alert"
+    
+    case Url = "URL"
+    case Text = "TEXT"
+    case Phone = "PHONE"
+    case Email = "EMAIL"
+    case Wifi = "WIFI"
+    case Contact = "CONTACT"
+    case Location = "LOCATION"
+    case Message = "MESSAGE"
+    case Event = "EVENT"
+    case Detail = "detail"
+    case Content = "content"
+    case Telephone = "TELEPHONE"
     case Transactions = "transactions"
     case QRCodeHistory = "qrcodeHistory"
     case ScannerResult = "ScannerResult"
@@ -944,15 +1137,15 @@ case Phone = "phone"
     case ReceiveLixiOptions = "ReceiveLixiOptions"
 }
 enum EnumType : String {
-    case URL = "url"
-        case TEXT = "text"
-    case PHONE = "phone"
-        case EMAIL = "email"
-        case WIFI = "wifi"
-        case CONTACT = "contact"
-        case LOCATION = "location"
-        case MESSAGE = "message"
-        case EVENT = "event"
+    case URL = "URL"
+    case TEXT = "TEXT"
+    case TELEPHONE = "TELEPHONE"
+    case EMAIL = "EMAIL"
+    case WIFI = "WIFI"
+    case CONTACT = "CONTACT"
+    case LOCATION = "LOCATION"
+    case MESSAGE = "MESSAGE"
+    case EVENT = "EVENT"
 }
 enum EnumResponseCode : String {
     case USER_IS_NOT_EXISTED = "3035"
@@ -1122,7 +1315,7 @@ enum EnumTransactionsAction  : String {
     case INSERT_CASH_LOGS_TEMPORARY_FAILED = "INSERT_CASH_LOGS_TEMPORARY_FAILED"
     case UPDATE_CASH_LOGS_TEMPORARY_SUCCESS = "UPDATE_CASH_LOGS_TEMPORARY_SUCCESS"
     case UPDATE_CASH_LOGS_TEMPORARY_FAILED = "UPDATE_CASH_LOGS_TEMPORARY_FAILED"
-   
+    
     case INSERT_CASH_LOGS_SUCCESS = "INSERT_CASH_LOGS_SUCCESS"
     case INSERT_CASH_LOGS_COMPLETED = "INSERT_CASH_LOGS_COMPLETED"
     case INSERT_CASH_LOGS_FAILED = "INSERT_CASH_LOGS_FAILED"

@@ -25,7 +25,7 @@ class NavigationRightButton : UIButton{
     self.translatesAutoresizingMaskIntoConstraints = false
     self.layer.backgroundColor = UIColor.clear.cgColor
     self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    self.setImage(#imageLiteral(resourceName: "ic_active_checked").withRenderingMode(.alwaysOriginal), for: .normal)
+    self.setImage(UIImage(named: AppImages.IC_CHECK)?.withRenderingMode(.alwaysOriginal), for: .normal)
     NSLayoutConstraint.activate([
       self.heightAnchor.constraint(equalToConstant: CGFloat(width)),
       self.widthAnchor.constraint(equalToConstant: CGFloat(height))

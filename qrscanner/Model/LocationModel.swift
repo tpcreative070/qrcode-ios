@@ -12,9 +12,12 @@ class LocationModel : Codable {
     var latitude: Float?
     var longtitude: Float?
     var query: String?
-    init(latitude: Float, longtitude: Float, query: String) {
+    init(latitude: Float?, longtitude: Float?, query: String) {
         self.latitude = latitude
          self.longtitude = longtitude
          self.query = query
+    }
+    init() {
+        
     }
 }

@@ -18,7 +18,7 @@ class ContentModel : Codable {
        }
        init(data: TextModel) {
            self.content = JSONSerializerHelper.toJson(data)
-           self.typeCode = EnumType.URL.rawValue
+           self.typeCode = EnumType.TEXT.rawValue
        }
        init(data: EmailModel) {
       
@@ -43,13 +43,17 @@ class ContentModel : Codable {
           self.content = JSONSerializerHelper.toJson(data)
       }
     init(data: PhoneModel) {
-          self.typeCode = EnumType.PHONE.rawValue
+          self.typeCode = EnumType.TELEPHONE.rawValue
           self.content = JSONSerializerHelper.toJson(data)
       }
     init(data: WifiModel) {
           self.typeCode = EnumType.WIFI.rawValue
           self.content = JSONSerializerHelper.toJson(data)
       }
+    init(typeCode: String, content : String) {
+        self.typeCode = typeCode
+        self.content = content
+    }
     init() {
           
       }

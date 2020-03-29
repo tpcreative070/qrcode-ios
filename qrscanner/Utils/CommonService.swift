@@ -256,7 +256,7 @@ class CommonService {
         do {
             //Decode multibarcode
             let array_resultbar = try readerbarcode?.decodeMultiple(bitmap!, hints: hints) as! [ZXResult]
-            if (array_resultbar.count > 0)
+            if (array_resultbar.count > 1)
             {
                 for item in array_resultbar {
                     
@@ -266,11 +266,12 @@ class CommonService {
                 }
                 
             }
-            // 1) you missed the name of the method, "decode", and
-            // 2) use optional binding to make sure you get a value
-            //  let result = try reader.decode(bitmap, hints:hints)
-            //  let text = result.text ?? "Unknow"
-            //   completion(text)
+            if array_resultbar.count == 1 {
+                let text = array_resultbar[0].text ?? "Unknow"
+                completion(text)
+                return
+            }
+            
         }catch {
             completion(nil)
         }
@@ -280,8 +281,8 @@ class CommonService {
             {
                 for item in array_resultqr {
                     print("\(item)  ---  \(item.barcodeFormat)")
-                   let text = item.text ?? "Unknow"
-                     completion(text)
+                    let text = item.text ?? "Unknow"
+                    completion(text)
                 }
                 
             }
@@ -295,22 +296,27 @@ class CommonService {
     }
     //reader QRCode
     static func onReaderMultiQRcode(tempImage : CGImage, completion : @escaping (_ result : String?) -> ()) {
-         do {
-             // initializers are imported without "initWith"
-             let source: ZXLuminanceSource = ZXCGImageLuminanceSource(cgImage: tempImage)
-             let binazer = ZXHybridBinarizer(source: source)
-             let bitmap = ZXBinaryBitmap(binarizer: binazer)
-             let hints = ZXDecodeHints()
-             let reader = ZXMultiFormatReader()
-             // 1) you missed the name of the method, "decode", and
-             // 2) use optional binding to make sure you get a value
-             let result = try reader.decode(bitmap, hints:hints)
-             let text = result.text ?? "Unknow"
-             completion(text)
-         }catch {
-             completion(nil)
-         }
-     }
+        do {
+            // initializers are imported without "initWith"
+            let source: ZXLuminanceSource = ZXCGImageLuminanceSource(cgImage: tempImage)
+            let binazer = ZXHybridBinarizer(source: source)
+            let bitmap = ZXBinaryBitmap(binarizer: binazer)
+            let hints = ZXDecodeHints()
+            let reader = ZXMultiFormatReader()
+            // 1) you missed the name of the method, "decode", and
+            // 2) use optional binding to make sure you get a value
+            let result = try reader.decode(bitmap, hints:hints)
+            let text = result.text ?? "Unknow"
+            completion(text)
+        }catch {
+            completion(nil)
+        }
+    }
     
-    
+    //    static func sendDataToContactEntities(data : ContactsEntityModel, isResponse : Bool){
+    //        ShareSyncContactSingleton.shared.set(value: PassDataViewModel(identifier: EnumPassdata.CONTACT_ENTITIES,contact: data))
+    //        if isResponse {
+    //            ShareSyncContactSingleton.shared.bindData()
+    //        }
+    //    }
 }

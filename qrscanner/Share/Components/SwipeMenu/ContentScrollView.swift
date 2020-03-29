@@ -13,7 +13,7 @@ open class ContentScrollView: UIScrollView {
 
     fileprivate var pageViews: [UIView] = []
 
-    fileprivate var currentIndex: Int = 0
+    fileprivate var currentIndex: Int = 2
 
     fileprivate var options: SwipeMenuViewOptions.ContentScrollView = SwipeMenuViewOptions.ContentScrollView()
 
@@ -47,17 +47,15 @@ open class ContentScrollView: UIScrollView {
 
     public func reset() {
         pageViews = []
-        currentIndex = 0
+        currentIndex = 2
     }
 
     public func reload() {
         self.didMoveToSuperview()
     }
-
     public func update(_ newIndex: Int) {
         currentIndex = newIndex
     }
-
     // MARK: - Setup
 
     fileprivate func setup() {

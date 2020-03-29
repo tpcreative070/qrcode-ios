@@ -17,13 +17,22 @@ class MainVC : SwipeMenuViewController {
     var mScanner : ScannerVC?
     var mSettings : SettingsVC?
     var dataCount: Int = 5
-    
+
     override func viewDidLoad() {
         initUI()
         addedView()
         setupStatusBar()
+        
+          
+
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+   //     UIFont.availableFonts()
+
+        //self.view.backgroundColor = .white
+      //  let vc = ScannerVC()
+       // self.navigationController?.pushViewController(vc, animated: false)
+//        mScanner = ScannerVC()
+//        show(mScanner!, sender: nil)
     }
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if segue.identifier == "popupSegue" {
@@ -41,11 +50,9 @@ class MainVC : SwipeMenuViewController {
            if #available(iOS 13.0, *) {
                      let app = UIApplication.shared
                      let statusBarHeight: CGFloat = app.statusBarFrame.size.height
-                     
                      let statusbarView = UIView()
                      statusbarView.backgroundColor = AppColors.PRIMARY_COLOR_DARK
                      view.addSubview(statusbarView)
-                   
                      statusbarView.translatesAutoresizingMaskIntoConstraints = false
                      statusbarView.heightAnchor
                          .constraint(equalToConstant: statusBarHeight).isActive = true
@@ -68,13 +75,14 @@ class MainVC : SwipeMenuViewController {
     // MARK: - SwipeMenuViewDelegate
     override func swipeMenuView(_ swipeMenuView: SwipeMenuView, viewWillSetupAt currentIndex: Int) {
         super.swipeMenuView(swipeMenuView, viewWillSetupAt: currentIndex)
-        print("will setup SwipeMenuView")
+               print("will setup SwipeMenuView")
     }
     
     override func swipeMenuView(_ swipeMenuView: SwipeMenuView, viewDidSetupAt currentIndex: Int) {
         super.swipeMenuView(swipeMenuView, viewDidSetupAt: currentIndex)
         print("currentIndex : \(currentIndex)")
         print("did setup SwipeMenuView")
+       
       //  reload()
     }
     
@@ -86,8 +94,7 @@ class MainVC : SwipeMenuViewController {
     override func swipeMenuView(_ swipeMenuView: SwipeMenuView, didChangeIndexFrom fromIndex: Int, to toIndex: Int) {
         super.swipeMenuView(swipeMenuView, didChangeIndexFrom: fromIndex, to: toIndex)
         print("did change from section\(fromIndex + 1)  to section\(toIndex + 1)")
-       // tabBarController?.selectedIndex = 1
-     //   swipeMenuView.reloadIndex(options: options, indexcurent: toIndex, isOrientationChange: false)
+        
     }
     
     // MARK - SwipeMenuViewDataSource
@@ -99,14 +106,21 @@ class MainVC : SwipeMenuViewController {
         return children[index].navigationItem.title ?? ""
     }
      override func swipeMenuView(_ swipeMenuView: SwipeMenuView, imageForPageAt index: Int) -> UIImageView {
-          return children[index].navigationItem.titleView as! UIImageView ?? UIImageView.init(image: UIImage(named: "ic_scan"))
-              
+        return children[index].navigationItem.titleView as! UIImageView ?? UIImageView.init(image: UIImage(named: AppImages.IC_HELP))
           }
     override func swipeMenuView(_ swipeMenuView: SwipeMenuView, viewControllerForPageAt index: Int) -> UIViewController {
+        
         let vc = children[index]
         vc.didMove(toParent: self)
         return vc
+    
     }
-   
+//   override func swipeMenuView(_ swipeMenuView: SwipeMenuView, viewWillSetupAt currentIndex: Int) -> UIViewController {
+//        super.swipeMenuView(swipeMenuView, viewWillSetupAt: currentIndex)
+//       let vc = children[currentIndex]
+//       vc.didMove(toParent: self)
+//       return vc
+//        print("will setup SwipeMenuView")
+//    }
 }
 

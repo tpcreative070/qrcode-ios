@@ -10,7 +10,6 @@ import UIKit
 import Floaty
 extension SaveVC  {
     func initUI(){
-        self.navigationController?.isNavigationBarHidden = true
         /*SetupScrollView*/
         self.view.addSubview(scrollView)
         NSLayoutConstraint.activate([
@@ -22,18 +21,12 @@ extension SaveVC  {
         self.scrollView.addSubview(wrapperView)
         NSLayoutConstraint.activate([
             wrapperView.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor),
-            wrapperView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -30),
+            wrapperView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: AppConstants.MARGIN_BOTTOM),
             wrapperView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             wrapperView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             wrapperView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
         ])
-        /*Lable*/
-        wrapperView.addSubview(lbTittle)
-        NSLayoutConstraint.activate([
-            lbTittle.topAnchor.constraint(equalTo: wrapperView.topAnchor, constant: 15),
-            lbTittle.leftAnchor.constraint(equalTo: wrapperView.leftAnchor),
-            lbTittle.heightAnchor.constraint(equalToConstant: 20),
-        ])
+        
         /*TableView*/
         tableView = UITableView()
         tableView.allowsSelection = true
@@ -51,14 +44,13 @@ extension SaveVC  {
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
-        //        self.view.layoutIfNeeded()
         
         setupEndedUpScrollView()
         setupTableView()
         bindTableView()
-   
+        
     }
-   
+    
     //Mark: - setUpTableView()
     func setupTableView(){
         
@@ -78,18 +70,18 @@ extension SaveVC  {
             if value == EnumResponseToView.UPDATE_DATA_SOURCE.rawValue {
                 self?.updateDataSource()
             }
-            //            else if value == EnumResponseToView.MULTIPLE_SELECTED_DONE.rawValue {
-            //                self?.doMultipleSelected()
-            //            }
         }
         
+        //
+        //        self.viewModel.isSelected.bind { (value) in
+        //            self.viewModel.doSelectedAll(isValue: value)
+        //        }
         self.viewModel.doGetListSave()
     }
     func updateDataSource() {
         self.sections = TableSection.group(rowItems: self.viewModel.listSave, by: { (headline) in
             return headline.typeCode
         })
-        //        self.dataSource.swipeActionRight = swipeActionRight()
         self.dataSource.sections = self.sections
         self.dataSource.items = self.viewModel.listSave
         self.tableView.reloadData()
@@ -98,8 +90,8 @@ extension SaveVC  {
     }
     
     func bindTableView(){
-        self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.Save.rawValue, items: self.viewModel.listSave,sections: self.sections, height: 40,isSelectionStype: false){ cell, vm in
-            cell.configView(view: vm)
+        self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.Save.rawValue, items: self.viewModel.listSave,sections: self.sections, height: AppConstants.TABLE_ROW_HEIGHT,isSelectionStype: false){ cell, vm in
+            cell.configViewSave(view: vm)
             cell.configData(viewModel: vm)
             cell.delegate = self
         }
@@ -109,13 +101,12 @@ extension SaveVC  {
             section.configView(view: vm)
         }
         self.dataSource.loadMore = {
-         //   self.log(message: "Loading more")
+            //   self.log(message: "Loading more")
         }
         //        self.dataSource.configureSwipeCell = { cell,vm in
         //            self.log(object: vm)
         //            self.viewModel.currentCell = vm
         //        }
-        //self.dataSource.swipeActionRight = swipeActionRight()
         self.tableView.dataSource = self.dataSource
         self.tableView.delegate = self.dataSource
     }
@@ -129,86 +120,152 @@ extension SaveVC  {
         ])
         //          self.view.layoutIfNeeded()
     }
+    func setupFloatButton(){
+        let item = FloatyItem()
+        item.hasShadow = false
+        item.buttonColor = AppColors.PRIMARY_COLOR
+        
+        item.titleLabelPosition = .left
+        item.icon = UIImage(named: AppImages.IC_KEYBOARD)
+        item.icon?.withTintColor(.white)
+        item.title = LanguageHelper.getTranslationByKey(LanguageKey.Csv)
+        item.handler = { item in
+                       self.getCSVSave(listValue: self.viewModel.listSave)
+        }
+        
+        //    floaty.hasShadow = false
+        
+        let item_select = FloatyItem()
+        item_select.hasShadow = false
+        item_select.buttonColor = AppColors.PRIMARY_COLOR
+        
+        item_select.titleLabelPosition = .left
+        item_select.icon = UIImage(named: AppImages.IC_SELECT_ALL)
+        item_select.title = LanguageHelper.getTranslationByKey(LanguageKey.Select)
+        item_select.handler = { item in
+            self.navigationController?.pushViewController(ChooseSaveVC(), animated: false)
+            
+        }
+        floaty.tintColor = .white
+        floaty.addItem(item: item_select)
+        floaty.addItem(item: item)
+        self.wrapperView.addSubview(floaty)
+    }
 }
 extension SaveVC : TableViewCellDelegate{
     func cellViewLongSelected(cell: TableViewCell) {
-        
-    }
-    
-    func cellViewLongSelected(cell: Codable) {
-        
+        navigationController?.pushViewController(ChooseHistoryVC(), animated: false)
     }
     
     func cellViewSelected(cell: TableViewCell) {
         
     }
-    
+    func cellViewLongSelected(cell: Codable) {
+        navigationController?.pushViewController(ChooseHistoryVC(), animated: false)
+    }
     func cellViewSelected(cell: TableViewCell, countSelected: Int) {
-        
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        let result = self.viewModel.listSave[indexPath.row]
+        print("save select: \(result)")
     }
     
     func cellViewSelected(cell: Codable) {
-        print(cell)
         if let data = JSONHelper.get(value: SaveViewModel.self,anyObject: cell){
             print(data.typeCode)
-            print(data.content)
-            //    print(data.contents)
-            // let blogPost: UrlModel = try! JSONDecoder().decode(UrlModel.self, from: data.content)
-            //            self.content = blogPost.url ?? ""
-         //   navigationToDetail(typeCode: data.typeCode, content: data.content)
-        }
-        //       let vc = EmailGenerateVC()
-        //        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    func navigationToDetail(typeCode: String, content: String){
-        //  var vc : UIViewController? = UIViewController()
-        let typeCode = typeCode.uppercased()
-        if typeCode == LanguageKey.Url{
-            let  vc = UrlGenerateVC()
-            vc.isSeen = AppConstants.ISSEEN
-         //   vc.urlSeen = content.ur
+            print(data.content.content!)
+            let value = data.content
+            let  vc = DetailVC()
+            vc.listContentViewModel = [ContentViewModel(data: value)]
             self.navigationController?.pushViewController(vc, animated: true)
             
         }
-        else if typeCode == LanguageKey.Text{
-            //  vc = TextGenerateVC()
-            
-        }
-        else if typeCode == LanguageKey.Location{
-            //  vc = LocationGenerateVC()
-            
-        }
-        else if typeCode == LanguageKey.Email{
-            //   vc = EmailGenerateVC()
-            print("Email")
-        }
-        else if typeCode == LanguageKey.Event{
-            //  vc = EventGenerateVC()
-        }
-        else if typeCode == LanguageKey.Message{
-            // vc = MessageGenerateVC()
-            
-        }
-        else if typeCode == LanguageKey.Wifi{
-            // vc = WifiGenerateVC()
-        }
-        else if typeCode == LanguageKey.Telephone{
-            // vc = PhoneGenerateVC()
-        }
-        else if typeCode == LanguageKey.Contact{
-            // vc = ContactGenerateVC()
-            
-        }
-        // print(vc)
-        
     }
+    
     func cellCodable(codable: Codable) {
-        
+        let value_data = JSONHelper.get(value: SaveViewModel.self,anyObject: codable)
+        let typeCode = value_data?.typeCode.uppercased()
+        let content = value_data!.content
+        let stringContent = content.content?.data(using: .utf8 )
+        print(stringContent)
+        if typeCode == EnumType.URL.rawValue{
+            let urlModel : UrlViewModel = try! JSONDecoder().decode(UrlViewModel.self, from: stringContent!)
+            let  vc = UrlGenerateVC()
+            vc.urlViewModel = urlModel
+            vc.urlViewModel.isSeen = AppConstants.ISSEEN
+            vc.urlViewModel.createDateTime = value_data!.createdDateTime
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if typeCode == EnumType.WIFI.rawValue{
+            let wifiModel : WifiViewModel = try! JSONDecoder().decode(WifiViewModel.self, from: stringContent!)
+            let  vc = WifiGenerateVC()
+            vc.wifiViewModel = wifiModel
+            vc.wifiViewModel.isSeen = AppConstants.ISSEEN
+            vc.wifiViewModel.createDateTime = value_data!.createdDateTime
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if typeCode == EnumType.TELEPHONE.rawValue{
+            let phoneModel : PhoneViewModel = try! JSONDecoder().decode(PhoneViewModel.self, from: stringContent!)
+            let  vc = PhoneGenerateVC()
+            vc.phoneViewModel = phoneModel
+            vc.phoneViewModel.isSeen = AppConstants.ISSEEN
+            vc.phoneViewModel.createDateTime = value_data!.createdDateTime
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if typeCode == EnumType.TEXT.rawValue{
+            let textModel : TextViewModel = try! JSONDecoder().decode(TextViewModel.self, from: stringContent!)
+            let  vc = TextGenerateVC()
+            vc.textViewModel = textModel
+            vc.textViewModel.isSeen = AppConstants.ISSEEN
+            vc.textViewModel.createDateTime = value_data!.createdDateTime
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if typeCode == EnumType.CONTACT.rawValue{
+            let contactModel : ContactViewModel = try! JSONDecoder().decode(ContactViewModel.self, from: stringContent!)
+            let  vc = ContactGenerateVC()
+            vc.contactViewModel = contactModel
+            vc.contactViewModel.isSeen = AppConstants.ISSEEN
+            vc.contactViewModel.createDateTime = value_data!.createdDateTime
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if typeCode == EnumType.EVENT.rawValue{
+            let eventModel : EventViewModel = try! JSONDecoder().decode(EventViewModel.self, from: stringContent!)
+            let  vc = EventGenerateVC()
+            vc.eventViewModel = eventModel
+            vc.eventViewModel.isSeen = AppConstants.ISSEEN
+            vc.eventViewModel.createDateTime = value_data!.createdDateTime
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if typeCode == EnumType.LOCATION.rawValue{
+            let locationModel : LocationViewModel = try! JSONDecoder().decode(LocationViewModel.self, from: stringContent!)
+            let  vc = LocationGenerateVC()
+            vc.locationViewModel = locationModel
+            vc.locationViewModel.isSeen = AppConstants.ISSEEN
+            vc.locationViewModel.createDateTime = value_data!.createdDateTime
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if typeCode == EnumType.MESSAGE.rawValue{
+            let messageModel : MessageViewModel = try! JSONDecoder().decode(MessageViewModel.self, from: stringContent!)
+            let  vc = MessageGenerateVC()
+            vc.messageViewModel = messageModel
+            vc.messageViewModel.isSeen = AppConstants.ISSEEN
+            vc.messageViewModel.createDateTime = value_data!.createdDateTime
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if typeCode == EnumType.EMAIL.rawValue{
+            var emailModel : EmailViewModel = EmailViewModel()
+            emailModel = try! JSONDecoder().decode(EmailViewModel.self, from: stringContent!)
+            let  vc = EmailGenerateVC()
+            vc.emailViewModel = emailModel
+            vc.emailViewModel.isSeen = AppConstants.ISSEEN
+            vc.emailViewModel.createDateTime = value_data!.createdDateTime
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     func cellViewSelected(cell: TableViewCell, action: EnumResponseToView) {
         
     }
 }
+
 extension SaveVC : SingleButtonDialogPresenter{
     
 }

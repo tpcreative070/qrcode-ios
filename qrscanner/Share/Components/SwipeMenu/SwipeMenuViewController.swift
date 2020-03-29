@@ -35,7 +35,7 @@ class SwipeMenuViewController: UIViewController, SwipeMenuViewDelegate, SwipeMen
             ])
         } else {
             NSLayoutConstraint.activate([
-                swipeMenuView.topAnchor.constraint(equalTo: topLayoutGuide.topAnchor,constant: 0),
+                swipeMenuView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor ,constant: 0),
                 swipeMenuView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 swipeMenuView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 swipeMenuView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -60,7 +60,7 @@ class SwipeMenuViewController: UIViewController, SwipeMenuViewDelegate, SwipeMen
     }
     
     open func swipeMenuView(_ swipeMenuView: SwipeMenuView, imageForPageAt index: Int) -> UIImageView {
-           return children[index].navigationItem.titleView as! UIImageView ?? UIImageView.init(image: UIImage(named: "ic_scan"))
+        return children[index].navigationItem.titleView as! UIImageView ?? UIImageView.init(image: UIImage(named: AppImages.IC_HELP))
           }
 
     

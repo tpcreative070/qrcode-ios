@@ -19,110 +19,110 @@ class EventGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var backgroundView: UIView = {
+    var viewBackground: UIView = {
         let view = UIView()
-        view.layer.borderColor = UIColor.lightGray.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderColor = UIColor.black.cgColor
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var titleBg: UIView = {
-        let view = UIView()
-        view.backgroundColor = AppColors.GRAY_LIGHT_90
-        view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    var locationBg: UIView = {
+    var viewTitleBg: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var descriptionBg: UIView = {
+    var viewLocationBg: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var beginTimeBg: UIView = {
+    var viewDescriptionBg: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var endTimeBg: UIView = {
+    var viewBeginBg: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var titleLbL : UILabel = {
-        let view = UILabel()
-        view.text = "Title"
+    var viewEndBg: UIView = {
+        let view = UIView()
+        view.backgroundColor = AppColors.GRAY_LIGHT_90
+        view.layer.borderColor = UIColor.white.cgColor
+        view.layer.borderWidth = AppConstants.WIDTH_BORDER
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var locationLbL : UILabel = {
-        let view = UILabel()
-        view.text = "Location"
+    lazy var lbTitle : ICLabel = {
+        let view = ICLabel()
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Title)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var descriptionLbL : UILabel = {
-        let view = UILabel()
-        view.text = "Description"
+    lazy var lbLocation : ICLabel = {
+        let view = ICLabel()
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Location)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var beginTimeLbL : UILabel = {
-        let view = UILabel()
-        view.text = "Time begin"
+    lazy var lbDescription : ICLabel = {
+        let view = ICLabel()
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Description)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    lazy var lbBeginTime : ICLabel = {
+        let view = ICLabel()
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.TimeBegin)
         
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var endTimeLbL : UILabel = {
-        let view = UILabel()
-        view.text = "Time end"
+    lazy var lbEndTime : ICLabel = {
+        let view = ICLabel()
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.TimeEnd)
         
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var titleTxt: ICTextFieldNoneIcon = {
+    lazy var textFieldTitle: ICTextFieldNoneIcon = {
         let titleTxt = ICTextFieldNoneIcon()
         titleTxt.translatesAutoresizingMaskIntoConstraints = false
         titleTxt.alpha = AppConstants.ALPHA_DISBALE
         return titleTxt
     }()
-    lazy var locationTxt: ICTextFieldNoneIcon = {
+    lazy var textFieldLocation: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
         return view
     }()
-    lazy var descriptionTxt: ICTextFieldNoneIcon = {
+    lazy var textFieldDescription: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
         return view
     }()
-    lazy var beginTimeTxt: ICTextFieldNoneIcon = {
+    lazy var textFieldBeginTime: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
@@ -133,45 +133,28 @@ class EventGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var endTimeTxt: ICTextFieldNoneIcon = {
+    lazy var textFieldEndTime: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
         return view
     }()
-    var typeCode : String = ""
-    var viewModel : GenerateViewModel?
+       var eventViewModel = EventViewModel()
+    var generateViewModel : GenerateViewModel?
     var toolBar = UIToolbar()
     var datePicker = UIDatePicker()
-    var beginTime : Date?
-    var endTime: Date?
+  
     override func viewDidLoad() {
         super.viewDidLoad()
-        typeCode = typeCode.uppercased()
-        viewModel = GenerateViewModel()
+        generateViewModel = GenerateViewModel()
         self.initUI()
         self.setupDelegate()
-        setupStatusBar()
         self.bindViewModel()
-        
         self.addLeftBackButton()
-//
-//        datetimePickerView?.datePickerMode = .dateAndTime
-//        datetimePickerView?.minimumDate = Date.calculateDate(day: 1, month: 1, year: 2020, hour: 0, minute: 0)
-//        datetimePickerView?.maximumDate = Date.calculateDate(day: 31, month: 1, year: 2030, hour: 0, minute: 0)
-//
-//        datetimePickerView?.addTarget(self, action: #selector(EventGenerateVC.dateChanged(datePicker:)), for: .valueChanged)
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(EventGenerateVC.viewTapped(gestureRecognizer:)))
-//        view.addGestureRecognizer(tapGesture)
-   
-        beginTimeTxt.inputView    = datePicker
-         endTimeTxt.inputView      = datePicker
-        toolBar.sizeToFit()
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
-        toolBar.setItems([doneButton], animated: true)
-        beginTimeTxt.inputAccessoryView   = toolBar
-        endTimeTxt.inputAccessoryView     = toolBar
+        self.setupDatePicker()
+        self.checkIsSeenDetail()
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -186,16 +169,7 @@ class EventGenerateVC: BaseViewController {
 
         keyboardHelper?.deregisterKeyboardNotification()
     }
-    func defineValue(){
-        self.viewModel?.typeCode = LanguageKey.Event
-        self.viewModel?.titleEvent = titleTxt.text
-        self.viewModel?.locationEvent = locationTxt.text
-        self.viewModel?.descriptionEvent = descriptionTxt.text
-        self.viewModel?.beginTimeEvent = beginTime
-        self.viewModel?.endTimeEvent = endTime
-        
-        
-    }
+ 
     override func dismissKeyboard() {
         doDismiss()
     }
@@ -205,86 +179,45 @@ class EventGenerateVC: BaseViewController {
     @objc func doGenerate() {
         print("done")
         self.defineValue()
-        viewModel?.doGenerateValue();
+        generateViewModel?.doGenerateValue();
     }
-    var flagTime : Bool = false
     @objc func inputFieldEditingDidEnd(textField: UITextField){
-        self.viewModel?.focusTextField = textField
+        self.generateViewModel?.focusTextField = textField
         
-        if textField == titleTxt {
-            viewModel?.text = textField.text ?? ""
-            viewModel?.validateTitleEvent()
+        if textField == textFieldTitle {
+            generateViewModel?.titleEvent = textField.text ?? ""
         }
-        if textField == locationTxt {
-            viewModel?.text = textField.text ?? ""
-            viewModel?.validateLocationEvent()
+        if textField == textFieldLocation {
+            generateViewModel?.locationEvent = textField.text ?? ""
         }
-        if textField == descriptionTxt {
-            viewModel?.text = textField.text ?? ""
-            viewModel?.validateDescriptionEvent()
+        if textField == textFieldDescription {
+            generateViewModel?.descriptionEvent = textField.text ?? ""
         }
-        if textField == beginTimeTxt {
-    datePicker.datePickerMode = .dateAndTime
+        if textField == textFieldBeginTime {
+            datePicker.datePickerMode = .dateAndTime
        }
-       if textField == endTimeTxt {
+       if textField == textFieldEndTime {
            datePicker.datePickerMode = .dateAndTime
        }
     }
     @objc func doneButtonTapped() {
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
-    if beginTimeTxt.isFirstResponder {
+    if textFieldBeginTime.isFirstResponder {
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .medium
-        beginTimeTxt.text = dateFormatter.string(from: datePicker.date)
-        beginTime = datePicker.date
+        textFieldBeginTime.text = dateFormatter.string(from: datePicker.date)
+        generateViewModel?.beginTime = datePicker.date
     }
-    if endTimeTxt.isFirstResponder {
+    if textFieldEndTime.isFirstResponder {
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .medium
-        endTimeTxt.text = dateFormatter.string(from: datePicker.date)
-        endTime = datePicker.date
+        textFieldEndTime.text = dateFormatter.string(from: datePicker.date)
+        generateViewModel?.endTime = datePicker.date
     }
         self.view.endEditing(true)
 
     }
-//    @objc func chooseBeginTime(sender : UITapGestureRecognizer){
-//        flagTime = true
-//        beginTimeTxt.inputView = datetimePickerView
-//    }
-//    @objc func chooseEndTime(sender : UITapGestureRecognizer){
-//        flagTime = false
-//        endTimeTxt.inputView = datetimePickerView
-//    }
-    @objc  func viewTapped(gestureRecognizer : UITapGestureRecognizer){
-        view.endEditing(true)
-    }
-    @objc  func dateChanged(datePicker : UIDatePicker){
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy HH:mm"
-        
-        if flagTime {
-            beginTimeTxt.text = formatter.string(from: datePicker.date)}
-        else{
-            endTimeTxt.text = formatter.string(from: datePicker.date)
-        }
-        view.endEditing(true)
-    }
-    func show(){
-        let date = Date()
-        let calendar = Calendar.current
-        
-        //    backgroundView.addSubview(datetimePickerView)
-        //    NSLayoutConstraint.activate([
-        //        titleLbL.topAnchor.constraint(equalTo: backgroundView.centerYAnchor, constant: 20),
-        //        titleLbL.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 0),
-        //        titleLbL.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant:  0)
-        //    ])
-    }
-    
-    //func hide(){
-    //    backgroundView.didAddSubview(datetimePickerView)
-    //
-    // }
-    
+
+  
+   
 }

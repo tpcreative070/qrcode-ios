@@ -9,15 +9,26 @@
 import UIKit
 class PhoneViewModel : Codable , PhoneViewModelDelegate{
     
-   
-  var phoneTxtView: String{
-         return phoneTxt
-     }
-
-     var phoneTxt: String
-  
-     init(text: String) {
-         phoneTxt = text
-     }
     
+    var phoneTxtView: String{
+        return phone ?? ""
+    }
+    
+    var phone: String?
+    var createDateTime: Int?
+    var typeCode : String?
+    var isSeen : Int? = 0
+    var isUpdate: Int?
+    init(phone: PhoneModel) {
+        self.phone = phone.phone ?? ""
+    }
+    init() {
+        
+    }
+    init(data: ValuePushModel) {
+        self.createDateTime = data.createDateTime
+        self.typeCode = data.typeCode
+        self.isSeen = data.isSeen
+        self.isUpdate = data.isUpdate
+    }
 }
