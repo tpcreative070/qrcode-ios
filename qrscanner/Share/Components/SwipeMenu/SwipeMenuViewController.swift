@@ -35,7 +35,7 @@ class SwipeMenuViewController: UIViewController, SwipeMenuViewDelegate, SwipeMen
             ])
         } else {
             NSLayoutConstraint.activate([
-                swipeMenuView.topAnchor.constraint(equalTo: topLayoutGuide.topAnchor,constant: 0),
+                swipeMenuView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor ,constant: 0),
                 swipeMenuView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 swipeMenuView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 swipeMenuView.bottomAnchor.constraint(equalTo: view.bottomAnchor)

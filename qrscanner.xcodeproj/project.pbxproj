@@ -59,6 +59,10 @@
 		2894B5972423C9E100E958DC /* ChooseHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894B5962423C9E100E958DC /* ChooseHistoryVC.swift */; };
 		2894B5992423C9F500E958DC /* ChooseHistoryVC+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894B5982423C9F500E958DC /* ChooseHistoryVC+ViewFactory.swift */; };
 		2894B59B2423CA3600E958DC /* TableViewCell+ChooseHistory+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894B59A2423CA3600E958DC /* TableViewCell+ChooseHistory+ViewFactory.swift */; };
+		2894B6B824307E8900769F68 /* SettingsViewModelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894B6B724307E8900769F68 /* SettingsViewModelList.swift */; };
+		2894B6BA24307E9B00769F68 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894B6B924307E9B00769F68 /* SettingsViewModel.swift */; };
+		2894B6BC243097EC00769F68 /* IGSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894B6BB243097EC00769F68 /* IGSwitch.swift */; };
+		2894B6BE2430981800769F68 /* CustomThumbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894B6BD2430981800769F68 /* CustomThumbView.swift */; };
 		2894D6B5241C8EDE009E1659 /* OpalImagePickerRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894D6B4241C8EDE009E1659 /* OpalImagePickerRootViewController.swift */; };
 		2894D6B7241C8F1D009E1659 /* ImagePickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894D6B6241C8F1D009E1659 /* ImagePickerCollectionViewCell.swift */; };
 		2894D6B9241C8F41009E1659 /* OpalImagePickerCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894D6B8241C8F41009E1659 /* OpalImagePickerCollectionViewLayout.swift */; };
@@ -305,6 +309,10 @@
 		2894B5962423C9E100E958DC /* ChooseHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseHistoryVC.swift; sourceTree = "<group>"; };
 		2894B5982423C9F500E958DC /* ChooseHistoryVC+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChooseHistoryVC+ViewFactory.swift"; sourceTree = "<group>"; };
 		2894B59A2423CA3600E958DC /* TableViewCell+ChooseHistory+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewCell+ChooseHistory+ViewFactory.swift"; sourceTree = "<group>"; };
+		2894B6B724307E8900769F68 /* SettingsViewModelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelList.swift; sourceTree = "<group>"; };
+		2894B6B924307E9B00769F68 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		2894B6BB243097EC00769F68 /* IGSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGSwitch.swift; sourceTree = "<group>"; };
+		2894B6BD2430981800769F68 /* CustomThumbView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomThumbView.swift; sourceTree = "<group>"; };
 		2894D6B4241C8EDE009E1659 /* OpalImagePickerRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpalImagePickerRootViewController.swift; sourceTree = "<group>"; };
 		2894D6B6241C8F1D009E1659 /* ImagePickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		2894D6B8241C8F41009E1659 /* OpalImagePickerCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpalImagePickerCollectionViewLayout.swift; sourceTree = "<group>"; };
@@ -884,6 +892,8 @@
 				2893712D242868EC00E40471 /* ContentViewModel.swift */,
 				28998A37242CA3F800C6837D /* AlertViewModel.swift */,
 				28998A39242CA40900C6837D /* AlertViewModelList.swift */,
+				2894B6B724307E8900769F68 /* SettingsViewModelList.swift */,
+				2894B6B924307E9B00769F68 /* SettingsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1099,6 +1109,8 @@
 				2897F7B124224C7100ED0A60 /* TableViewCell+Event+ViewFactory.swift */,
 				28998A3B242CAE0B00C6837D /* TableViewCell+Alert+ViewFactory.swift */,
 				28390CD0242DF82D00383427 /* TextView.swift */,
+				2894B6BB243097EC00769F68 /* IGSwitch.swift */,
+				2894B6BD2430981800769F68 /* CustomThumbView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1492,6 +1504,7 @@
 				2894E12D2421472900263637 /* EmailViewModel.swift in Sources */,
 				2894E1292421365B00263637 /* PhoneViewModel.swift in Sources */,
 				2894E1212421055D00263637 /* TableViewCell+Text+ViewFatory.swift in Sources */,
+				2894B6BA24307E9B00769F68 /* SettingsViewModel.swift in Sources */,
 				28DD502324113D840080A059 /* Navigator.swift in Sources */,
 				28BFA8F6240D5B46002ECD93 /* HistoryViewModelList.swift in Sources */,
 				2865AA2524124D4900C1F207 /* GenerateViewModel.swift in Sources */,
@@ -1535,6 +1548,7 @@
 				288591DF241A49E50081DB79 /* WifiGenerateVC+ViewFactory.swift in Sources */,
 				D2BA0AB5240A60DE0074C7A1 /* EndPoint.swift in Sources */,
 				2893EF33241A28D5004D58C6 /* DateTimePicker.swift in Sources */,
+				2894B6BC243097EC00769F68 /* IGSwitch.swift in Sources */,
 				2894D6C1241C9097009E1659 /* TimeInterval+String.swift in Sources */,
 				285BDBF324272B9D00AA0BBF /* ChooseSaveVC+ViewFactory.swift in Sources */,
 				289204B02418F4B100AD3F49 /* EmailGenerateVC+ViewFactory.swift in Sources */,
@@ -1544,6 +1558,7 @@
 				289749192429EB8B00717701 /* ShareSyncContactSingleton.swift in Sources */,
 				D2BA0AC4240A62110074C7A1 /* SignInResponseModel.swift in Sources */,
 				D2BA0A9324096ABC0074C7A1 /* LanguageHelper.swift in Sources */,
+				2894B6B824307E8900769F68 /* SettingsViewModelList.swift in Sources */,
 				2894D6BD241C9012009E1659 /* UIView+Helper.swift in Sources */,
 				2893713224288C1700E40471 /* TableViewDataSourceContent.swift in Sources */,
 				D2BA0ADE240A69830074C7A1 /* TabItemView.swift in Sources */,
@@ -1592,6 +1607,7 @@
 				28A0572E240E413A00AD5353 /* ICStepper.swift in Sources */,
 				28D81D342416229C007834F0 /* TextModel.swift in Sources */,
 				2897F7A22421D61000ED0A60 /* WifiViewModel.swift in Sources */,
+				2894B6BE2430981800769F68 /* CustomThumbView.swift in Sources */,
 				D2BA0A6C240969440074C7A1 /* Constant.swift in Sources */,
 				289767542414D4D500AD0D78 /* ScannerViewModel.swift in Sources */,
 				D2BA0AED240A74D70074C7A1 /* MainVC+ViewFactory.swift in Sources */,
