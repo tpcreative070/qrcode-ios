@@ -242,8 +242,9 @@ class CommonService {
     }
     
     //  //reader QRCode
-    static func onReaderQRcode(tempImage : CGImage, completion : @escaping (_ result : String?) -> ()) {
-        
+    static func onReaderQRcode(tempImage : CGImage, countList: Int, completion : @escaping (_ result : [ZXResult]?) -> ()) {
+        var listMultiResult : [ZXResult] = []
+        var listSingleResult : [ZXResult] = []
         // initializers are imported without "initWith"
         let source: ZXLuminanceSource = ZXCGImageLuminanceSource(cgImage: tempImage)
         let binazer = ZXHybridBinarizer(source: source)
@@ -258,17 +259,25 @@ class CommonService {
             let array_resultbar = try readerbarcode?.decodeMultiple(bitmap!, hints: hints) as! [ZXResult]
             if (array_resultbar.count > 1)
             {
-                for item in array_resultbar {
-                    
-                    print("\(item)  ---  \(item.barcodeFormat)")
-                    let text = item.text ?? "Unknow"
-                    completion(text)
+                if countList == 1 {
+                    for item in array_resultbar{
+                        completion([item])
+                    }
+                }
+                else{
+                    for item in array_resultbar{
+                        print("\(item)  ---  \(item.barcodeFormat)")
+                        listMultiResult.append(item)
+                    }
+                    completion(listMultiResult)
                 }
                 
             }
             if array_resultbar.count == 1 {
-                let text = array_resultbar[0].text ?? "Unknow"
-                completion(text)
+                // let text = array_resultbar[0].text ?? "Unknow"
+                //                completion(text)
+                listSingleResult.append(array_resultbar[0])
+                completion(listSingleResult)
                 return
             }
             
@@ -279,12 +288,18 @@ class CommonService {
             let  array_resultqr =  try readersqrcode.decodeMultiple(bitmap!, hints: hints) as! [ZXResult]
             if (array_resultqr.count > 0 )
             {
-                for item in array_resultqr {
-                    print("\(item)  ---  \(item.barcodeFormat)")
-                    let text = item.text ?? "Unknow"
-                    completion(text)
+                if countList == 1 {
+                    for item in array_resultqr{
+                        completion([item])
+                    }
                 }
-                
+                else{
+                    for item in array_resultqr{
+                        print("\(item)  ---  \(item.barcodeFormat)")
+                        listMultiResult.append(item)
+                    }
+                    completion(listMultiResult)
+                }
             }
         }
         catch {

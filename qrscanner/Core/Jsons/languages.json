@@ -1,5 +1,6 @@
 {
     "en": {
+        "CHOOSE_QRCODE" : "Choose any QRCode or Barcode you want to find",
         "VIBRATE" : "Vibrate",
         "BEEP" : "Beep",
         "CHANGE_CODE_COLOR" : "Change code color",
@@ -432,6 +433,7 @@
         "RENEW_NOT_ALLOW" : "The OTP code is still valid, OTP sending failed"
     },
     "vi" : {
+        "CHOOSE_QRCODE" : "Chọn bất kỳ mã vạch hoặc mã vạch nào bạn muốn tìm",
         "VIBRATE" : "Rung",
         "BEEP" : "bíp",
         "CHANGE_CODE_COLOR" : "Thay đổi màu mã",

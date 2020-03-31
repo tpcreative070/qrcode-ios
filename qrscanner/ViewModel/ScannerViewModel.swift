@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ZXingObjC
 class ScannerViewModel : ScannerViewModelDelegate {
     var cameraBinding: Bindable<Bool> = Bindable(false)
     var transactionIdBinding: Bindable<String> = Bindable("")
@@ -18,12 +19,24 @@ class ScannerViewModel : ScannerViewModelDelegate {
     var itemScanner : GenerateEntityModel = GenerateEntityModel()
     var listItemScanner : [GenerateEntityModel] = [GenerateEntityModel]()
     var listItemContent : [ContentViewModel] = [ContentViewModel]()
-     var navigate: (() -> ())?
+    var listTransaction : [ContentViewModel] = [ContentViewModel]()
+    var listResult : [ZXResult] = [ZXResult]()
+    var navigate: (() -> ())?
     var isScanner : Bool = false
-    private let userService : UserService
+    var isQRCode : Int = 0
+    var dateTime : String?
+    var isVibrate: Bool?
+
+    
+    let userService : UserService
     init(userService : UserService = UserService()) {
         self.userService = userService
     }
+    init(userService : UserService = UserService(), data: SettingModel) {
+         self.userService = userService
+        self.isVibrate = data.isVibrate
+     }
+   
     func askCameraPermission() {
         DispatchQueue.main.async {
             let check = GrantPermission.checkCameraPermission()
@@ -45,6 +58,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
     func scannerResult(mValue : String){
         var typeCode = ""
         var value_content = ""
+        listTransaction.removeAll()
         print(mValue)
         if mValue.contains("http://") || mValue.contains("https://"){
             typeCode = EnumType.URL.rawValue
@@ -156,7 +170,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
             }
             print(dtstart)
             print(dtstart)
-
+            
             let datestart = TimeHelper.getDate(timeString: dtstart)!
             let dateend = TimeHelper.getDate(timeString: dtend)!
             let content = EventModel(title: summary, location: location, description: description, beginTime: datestart, endTime: dateend)
@@ -297,95 +311,93 @@ class ScannerViewModel : ScannerViewModelDelegate {
         }
         else
         {
+            
             print("value insert: \(value_content)")
             let createDateTime = Date().millisecondsSince1970
-           let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false))
-            if result {
-                itemScanner = SQLHelper.getItemScanner(createDateTime: createDateTime)!
-                let typeCode = itemScanner.typeCode?.lowercased()
-                print(typeCode)
-                let content = itemScanner.content
-                print(content)
-                 let value = ContentViewModel(data: ContentModel(typeCode : typeCode!, content: content!))
-                listItemContent.append(value)
-//                listItemScanner.append(itemScanner)
-//                print(listItemScanner.count)
-//                if listItemScanner.count > 1 {
-//                    self.responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
-//                }
-//                if listItemScanner.count == 1{
-//
-//                }
-                print(isScanner)
-                if isScanner {
-                   self.navigate?()
+            if isScanner {
+                
+                let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: ""))
+                if result {
+                    itemScanner = SQLHelper.getItemScanner(createDateTime: createDateTime)!
+                    let typeCode = itemScanner.typeCode?.lowercased()
+                    print(typeCode)
+                    let content = itemScanner.content
+                    print(content)
+                    let value = ContentViewModel(data: ContentModel(typeCode : typeCode!, content: content!))
+                    listTransaction.append(value)
+                    print(listTransaction)
+                    self.navigate?()
+                   //  self.navigate?()
                 }
+            }
+            else{
+                let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!))
             }
         }
-        
-    }
-    func defaultValue(){
-        self.itemScanner = GenerateEntityModel()
-           self.listItemScanner.removeAll()
-        self.listItemContent.removeAll()
-        self.isScanner = false
-       }
-    func doAsync(list : [UIImage]){
-      //  showLoading.value = true
-        defaultValue()
-        let myGroup = DispatchGroup()
-        if list.count > 1{
-            for index in list {
-                myGroup.enter()
-                //Do something and leave
-                if let mData = index.toCGImage(){
-                    CommonService.onReaderMultiQRcode(tempImage: mData) { (value) in
-                        if let mValue = value {
-                            self.scannerResult(mValue: mValue)
-                        }else {
-                            let okAlert = SingleButtonAlert(
-                                title: LanguageHelper.getTranslationByKey(LanguageKey.Alert) ?? "Error",
-                                message: LanguageHelper.getTranslationByKey(LanguageKey.InvalidQRCode),
-                                action: AlertAction(buttonTitle: "Ok", handler: {
-                                    print("Ok pressed!")
-                                    //  self.defaultValue()
-                                })
-                            )
-                            self.onShowError?(okAlert)
-                        }
-                        //            myGroup.leave()
-                    }
-                }
-            }
-            self.navigate?()
+       
 
-        }
-        if list.count == 1 {
-            if let mData = list[0].toCGImage(){
-                CommonService.onReaderQRcode(tempImage: mData) { (value) in
-                    if let mValue = value {
-                        self.scannerResult(mValue: mValue)
-                    }
-//                    else {
-//                        let okAlert = SingleButtonAlert(
-//                            title: LanguageHelper.getTranslationByKey(LanguageKey.Alert) ?? "Error",
-//                            message: LanguageHelper.getTranslationByKey(LanguageKey.InvalidQRCode),
-//                            action: AlertAction(buttonTitle: "Ok", handler: {
-//                                print("Ok pressed!")
-//                                //  self.defaultValue()
-//                            })
-//                        )
-//                        self.onShowError?(okAlert)
-//                    }
-                    //            myGroup.leave()
-                }
-            }
-        }
-        myGroup.notify(queue: .main) {
-            print("Finished all requests.")
-             self.navigate?()
-            self.showLoading.value = false
-        }
     }
     
+        func defaultValue(){
+            self.itemScanner = GenerateEntityModel()
+            self.listItemScanner.removeAll()
+            self.listItemContent.removeAll()
+            self.listResult.removeAll()
+            self.isScanner = false
+        }
+        func doAsync(list : [UIImage]){
+            //  showLoading.value = true
+            defaultValue()
+            let myGroup = DispatchGroup()
+            if list.count > 0{
+                for index in list {
+                    myGroup.enter()
+                    //Do something and leave
+                    if let mData = index.toCGImage(){
+                        CommonService.onReaderQRcode(tempImage: mData, countList : list.count) { (value) in
+                            if let mValue = value {
+                                if mValue.count > 1
+                                {
+                                    if list.count > 0{
+                                    self.listResult.append(contentsOf: mValue)
+                                   //
+                                    }
+                                }
+                                else
+                                {
+                                    self.scannerResult(mValue: mValue[0].text)
+                                }
+                            }else {
+                                
+                            }
+                        }
+                    }
+                }
+                //            self.navigate?()
+            }
+            print(listResult)
+            if listResult.count > 0{
+                self.responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
+            }
+            myGroup.notify(queue: .main) {
+                print("Finished all requests.")
+                self.navigate?()
+                self.showLoading.value = false
+            }
+            
+        }
+    func doGetListTransaction(){
+        listTransaction.removeAll()
+        print(dateTime)
+              if let mList = SQLHelper.getListTransaction(transaction: dateTime!){
+                  var index = 0
+                  self.listTransaction = mList.map({ (data) -> ContentViewModel in
+                      index += 1
+                   return ContentViewModel(typeCode: data.typeCode!, content: data.content!)
+                  })
+              }
+              print(listTransaction)
+           self.navigate?()
+          }
+  
 }

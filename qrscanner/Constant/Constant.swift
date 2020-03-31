@@ -50,7 +50,11 @@ public struct KeychainSwiftConstants {
 
 struct AppConstants {
     static var ischoose = 0
-    
+    static var isVibrate = 0
+    static var isBeep = 0
+    static var isOpen = 0
+
+    static let soundID = 1057
     static let ISSEEN = 1
     static let ISUPDATE = 2
     static let ISCHOOSE = 1
@@ -73,7 +77,7 @@ struct AppConstants {
     static let HEIGHT_IMAGE_HELP = CGFloat(200)
     static let HEIGHT_IMAGE_SETTING = CGFloat(50)
 
-    static let WIDTH_BUTTON_DEFAULT = CGFloat(100)
+    static let WIDTH_BUTTON_DEFAULT = CGFloat(120)
     static let IC_DEFAULT = CFloat(25)
     static let ICON_WIDTH_HEIGHT = CGFloat(30)
     static let ICON_SCAN_WIDTH_HEIGHT = CGFloat(30)
@@ -98,8 +102,8 @@ struct AppConstants {
     static let MARGIN_RIGHT_ITEM_HIS = CGFloat(80)
     static let MARGIN_TOP_ALERT = CGFloat(130)
     static let MARGIN_BOTTOM_ALERT = CGFloat(-130)
-    static let SWITCH_HEIGHT_DEFAULT = CGFloat(20)
-    static let SWITCH_WIDTH_DEFAULT = CGFloat(40)
+    static let SWITCH_HEIGHT_DEFAULT = CGFloat(15)
+    static let SWITCH_WIDTH_DEFAULT = CGFloat(45)
     static let MARGIN_TOP_ITEM = CGFloat(12)
     static let MARGIN_TOP_ITEM_SETTING = CGFloat(8)
 
@@ -130,14 +134,14 @@ struct AppConstants {
     
     
     // switch button default config
-    static let SWITCH_ON_TINT_COLOR = UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 1)
+    static let SWITCH_ON_TINT_COLOR = UIColor(red: 247/255, green: 204/255, blue: 119/255, alpha: 1)
     static let SWITCH_OFF_TINT_COLOR = UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 1)
     static let SWITCH_CORNER_RADIUS = CGFloat(0.5)
     static let SWITCH_THUMB_CORNER_RADIUS = CGFloat(0.5)
-    static let SWITCH_THUMB_SIZE_WIDTH = 27
-    static let SWITCH_THUMB_SIZE_HEIGHT = 27
-    static let SWITCH_THUMB_ON_TINT_COLOR = UIColor(red: 183/255, green: 61/255, blue: 55/255, alpha: 1)
-    static let SWITCH_THUMB_OFF_TINT_COLOR = UIColor(red: 99/255, green: 109/255, blue: 121/255, alpha: 1)
+    static let SWITCH_THUMB_SIZE_WIDTH = 25
+    static let SWITCH_THUMB_SIZE_HEIGHT = 25
+    static let SWITCH_THUMB_ON_TINT_COLOR = UIColor(red: 225/255, green: 151/255, blue: 4/255, alpha: 1)
+    static let SWITCH_THUMB_OFF_TINT_COLOR = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
     static let SWITCH_ANIMATION_DURATION = 0.25
     static let HEIGHT_CONSTRAINT_LABLE = CGFloat(20)
     static let HEIGHT_CONSTRAINT_VIEW = CGFloat(50)
@@ -304,7 +308,8 @@ struct AppImages {
     static let IC_PRIVACY = "ic_privacy"
     static let IC_START = "ic_start"
     static let IC_PERMISSION = "ic_permission"
-    
+    static let IC_FLAG = "ic_flag"
+
     
     static let IC_HOME = "ic_home"
     static let IC_CONTACT = "ic_contact"
@@ -610,6 +615,8 @@ struct LanguageKey {
     static let False = "FALSE"
     static let Copy_item = "COPY_ITEMS"
     static let Content_copy = "CONTENT_COPY"
+    static let ChooseQRCode = "CHOOSE_QRCODE"
+    
     //Confirm
     static let Gender = "GENDER"
     static let FirstName = "FIRSTNAME"
@@ -1091,6 +1098,7 @@ struct Controller {
 
 enum EnumIdentifier : String {
     case Scan = "Scan"
+    case QRCodeList = "QRCodeList"
     case Advance_Feature = "Advance_Feature"
     case Information = "Information"
     
@@ -1228,6 +1236,8 @@ enum EnumResponseToView : String {
     case ECASH_TO_ECASH = "ECASH_TO_ECASH"
     case EXCHANGE_CASH = "EXCHANGE_CASH"
     case UPDATE_DATA_SOURCE = "UPDATE_DATA_SOURCE"
+    case GET_DATA_SOURCE = "GET_DATA_SOURCE"
+
     case UPDATE_DATA_SOURCE_COLLECTION_VIEW = "UPDATE_DATA_SOURCE_COLLECTION_IVEW"
     case NO_INTERNET_CONNECTION = "NO_INTERNET_CONNECTION"
     case NO_SOCKET_CONNECTION = "NO_SOCKET_CONNECTION"
