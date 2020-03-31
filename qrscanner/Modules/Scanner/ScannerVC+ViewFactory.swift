@@ -146,7 +146,7 @@ extension ScannerVC {
         self.viewHelpBg.addGestureRecognizer(tapHelp)
         let tapFlash = UITapGestureRecognizer(target: self, action: #selector(actionFlash(sender:)))
         self.viewFlashBg.addGestureRecognizer(tapFlash)
- 
+        
     }
     
     func applyOrientation() {
@@ -266,7 +266,6 @@ extension ScannerVC {
             return LanguageKey.ITF
             
         case kBarcodeFormatPDF417:
-            print("PDF417")
             return LanguageKey.PDF417
             
         case kBarcodeFormatQRCode:
@@ -298,12 +297,23 @@ extension ScannerVC {
         self.viewModel.onShowError = { [weak self] alert in
             self?.presentSingleButtonDialog(alert: alert)
         }
-        
+        self.viewModel.responseToView = {[weak self] value in
+            if value == EnumResponseToView.UPDATE_DATA_SOURCE.rawValue {
+                let vc = QRCodeVC()
+                vc.viewModel.listQRResult = (self?.viewModel.listResult)!
+                vc.viewModel.dateTime = self?.viewModel.dateTime
+                self?.navigationController?.pushViewController(vc,animated: true)
+            }
+        }
         self.viewModel.navigate = { [weak self] in
+            if self!.viewModel.listResult.count > 1{
+            }
+            else{
             let  vc = DetailVC()
-            vc.listContentViewModel = (self?.viewModel.listItemContent)!
+            vc.listContentViewModel = (self?.viewModel.listTransaction)!
             self?.navigationController?.pushViewController(vc, animated: true)
             self?.viewModel.defaultValue()
+            }
         }
         self.viewModel.resultScan.bind { value in
             //            let alert = UIAlertController(title: "Result", message: value, preferredStyle: .alert)
@@ -328,98 +338,107 @@ extension ScannerVC {
         present(imagePicker, animated: true, completion: nil)
     }
     
-       func setupCameraBack()
-       {
-           if backCamera?.isConnected == true {
+    func setupCameraBack()
+    {
+        if backCamera?.isConnected == true {
             session?.stopRunning()
-               let captureDevice =  AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
-               do{
-                   
-                   let input = try AVCaptureDeviceInput(device: captureDevice!)
-                   session = AVCaptureSession()
+            let captureDevice =  AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
+            do{
+                
+                let input = try AVCaptureDeviceInput(device: captureDevice!)
+                session = AVCaptureSession()
                 session?.addInput(input)
-                   setuplayoutCamera()
-                   
-               }
-               catch{
-                   print(error)
-               }
-           }
-           
-       }
-       func setupCameraFront()
-       {
-           if frontCamera?.isConnected == true {
+                setuplayoutCamera()
+                
+            }
+            catch{
+                print(error)
+            }
+        }
+        
+    }
+    func setupCameraFront()
+    {
+        if frontCamera?.isConnected == true {
             session?.stopRunning()
-               let captureDevice =  AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front)
-               do{
-                   
-                   let input = try AVCaptureDeviceInput(device: captureDevice!)
-                   session = AVCaptureSession()
+            let captureDevice =  AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front)
+            do{
+                
+                let input = try AVCaptureDeviceInput(device: captureDevice!)
+                session = AVCaptureSession()
                 session?.addInput(input)
-                   setuplayoutCamera()
-                   print(view.layer.bounds)
-               }
-               catch{
-                   print(error)
-               }
-           }
-       }
-       func setuplayoutCamera(){
-           let output = AVCaptureMetadataOutput()
+                setuplayoutCamera()
+                print(view.layer.bounds)
+            }
+            catch{
+                print(error)
+            }
+        }
+    }
+    func setuplayoutCamera(){
+        let output = AVCaptureMetadataOutput()
         session?.addOutput(output)
-           output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-           output.metadataObjectTypes = [AVMetadataObject.ObjectType.qr, .code128, .code39, .code93,.dataMatrix,.ean13,.ean8,.aztec,.pdf417,.upce,.code39Mod43]
+        output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+        output.metadataObjectTypes = [AVMetadataObject.ObjectType.qr, .code128, .code39, .code93,.dataMatrix,.ean13,.ean8,.aztec,.pdf417,.upce,.code39Mod43]
         video = AVCaptureVideoPreviewLayer(session: session!)
-           video.videoGravity = AVLayerVideoGravity.resizeAspectFill
-           video.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
-           video.frame = view.layer.bounds
-           viewBackground.layer.addSublayer(video)
-           lbScannerRectangle.layer.masksToBounds = true
-           lbScannerRectangle.layer.cornerRadius = self.regionCornerRadius
-           lbScannerRectangle.layer.borderColor = UIColor.white.cgColor
+        video.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        video.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
+        video.frame = view.layer.bounds
+        viewBackground.layer.addSublayer(video)
+        lbScannerRectangle.layer.masksToBounds = true
+        lbScannerRectangle.layer.cornerRadius = self.regionCornerRadius
+        lbScannerRectangle.layer.borderColor = UIColor.white.cgColor
         lbScannerRectangle.layer.borderWidth = AppConstants.WIDTH_BORDER_SCAN
-           viewScan.setFrameSize(roi: lbScannerRectangle)
-           viewScan.drawCorners()
-           self.viewBackground.bringSubviewToFront(wrapperFirstView)
-           self.viewBackground.bringSubviewToFront(wrapperSecondView)
-           self.viewBackground.bringSubviewToFront(wrapperThirdView)
-           self.viewBackground.bringSubviewToFront(wrapperFourView)
-           self.lbScannerRectangle.backgroundColor = UIColor.white.withAlphaComponent(0)
-           self.viewBackground.bringSubviewToFront(viewIcon)
-           self.viewBackground.bringSubviewToFront(viewFlipCamera)
-           self.viewBackground.bringSubviewToFront(viewHelpBg)
-           self.viewBackground.bringSubviewToFront(viewFlashBg)
-           self.viewBackground.bringSubviewToFront(viewScan)
-           self.viewBackground.bringSubviewToFront(viewScan)
-           self.viewBackground.bringSubviewToFront(lbScannerRectangle)
+        viewScan.setFrameSize(roi: lbScannerRectangle)
+        viewScan.drawCorners()
+        self.viewBackground.bringSubviewToFront(wrapperFirstView)
+        self.viewBackground.bringSubviewToFront(wrapperSecondView)
+        self.viewBackground.bringSubviewToFront(wrapperThirdView)
+        self.viewBackground.bringSubviewToFront(wrapperFourView)
+        self.lbScannerRectangle.backgroundColor = UIColor.white.withAlphaComponent(0)
+        self.viewBackground.bringSubviewToFront(viewIcon)
+        self.viewBackground.bringSubviewToFront(viewFlipCamera)
+        self.viewBackground.bringSubviewToFront(viewHelpBg)
+        self.viewBackground.bringSubviewToFront(viewFlashBg)
+        self.viewBackground.bringSubviewToFront(viewScan)
+        self.viewBackground.bringSubviewToFront(viewScan)
+        self.viewBackground.bringSubviewToFront(lbScannerRectangle)
         session?.startRunning()
-       }
-       
-       func clearInput(){
+    }
+    
+    func clearInput(){
         if let inputs = session?.inputs as? [AVCaptureDeviceInput] {
-                  for input in inputs {
-                    session?.removeInput(input)
-                  }
-              }
+            for input in inputs {
+                session?.removeInput(input)
+            }
+        }
         session?.stopRunning()
-          }
-       func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-           if metadataObjects != nil && metadataObjects.count != 0 {
-               if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject
-               {
-                   AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                   isScanning = false
-                   viewModel.isScanner = true
-                   viewModel.scannerResult(mValue: "\(object.stringValue!)")
+    }
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        if metadataObjects != nil && metadataObjects.count != 0 {
+            if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject
+            {
+                print(AppConstants.isVibrate)
+                if AppConstants.isVibrate == 1 {
+                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                }
+                if AppConstants.isBeep == 1 {
+                      SoundHelper.shared.play()
+                }
+                isScanning = false
+                viewModel.isScanner = true
+                viewModel.scannerResult(mValue: "\(object.stringValue!)")
                 session?.stopRunning()
-               }
-           }
-       }
+            }
+        }
+    }
 }
 extension ScannerVC : OpalImagePickerControllerDelegate {
     func imagePicker(_ picker: OpalImagePickerController, didFinishPickingImages images: [UIImage]) {
+        self.viewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
         self.viewModel.doAsync(list: images)
+        viewModel.doGetListTransaction()
+
     }
     func imagePicker(_ picker: OpalImagePickerController, didFinishPickingAssets assets: [PHAsset]) {
     }
@@ -437,7 +456,7 @@ extension ScannerVC: ZXCaptureDelegate {
         isScanning = false
         viewModel.isScanner = true
         viewModel.scannerResult(mValue: "\(result!)")
-        
+     
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
             guard let weakSelf = self else { return }

@@ -18,7 +18,8 @@ class GenerateEntity{
     private let isSave  = Expression<Bool>("isSave")
     private let updatedDateTime  = Expression<Int>("updatedDateTime")
     private let bookMark  = Expression<Bool>("bookMark")
-    
+    private let transactionID = Expression<String>("transactionID")
+
     
     private init() {
         
@@ -34,12 +35,14 @@ class GenerateEntity{
                 t.column(isSave)
                 t.column(updatedDateTime)
                 t.column(bookMark)
+                t.column(transactionID)
+
                 print("create table")
                 
-                insert(db: db, data: GenerateEntityModel(createdDateTime: 1584363456017, typeCode: "text", content: "{\"text\":\"hello\"}", isHistory: true, isSave: true, updatedDateTime: 1584363456017, bookMark : false))
-                insert(db: db, data: GenerateEntityModel(createdDateTime: 1584363493871, typeCode: "url", content: "{\"url\":\"http://gg.com\"}", isHistory: true, isSave: true, updatedDateTime: 1584363493871, bookMark : false))
-                insert(db: db, data: GenerateEntityModel(createdDateTime: 1584363509600, typeCode: "url", content: "{\"url\":\"http://gedfg.com\"}", isHistory: true, isSave: true, updatedDateTime: 1584363509600, bookMark : false))
-                insert(db: db, data: GenerateEntityModel(createdDateTime: 1584363516788, typeCode: "text", content: "{\"text\":\"dfdfsdf\"}", isHistory: true, isSave: true, updatedDateTime: 1584363516788, bookMark : false))
+                insert(db: db, data: GenerateEntityModel(createdDateTime: 1584363456017, typeCode: "text", content: "{\"text\":\"hello\"}", isHistory: true, isSave: true, updatedDateTime: 1584363456017, bookMark : false, transactionID : "1"))
+                insert(db: db, data: GenerateEntityModel(createdDateTime: 1584363493871, typeCode: "url", content: "{\"url\":\"http://gg.com\"}", isHistory: true, isSave: true, updatedDateTime: 1584363493871, bookMark : false, transactionID : "2"))
+                insert(db: db, data: GenerateEntityModel(createdDateTime: 1584363509600, typeCode: "url", content: "{\"url\":\"http://gedfg.com\"}", isHistory: true, isSave: true, updatedDateTime: 1584363509600, bookMark : false, transactionID : "2"))
+                insert(db: db, data: GenerateEntityModel(createdDateTime: 1584363516788, typeCode: "text", content: "{\"text\":\"dfdfsdf\"}", isHistory: true, isSave: true, updatedDateTime: 1584363516788, bookMark : false, transactionID : "2"))
                 //                    insert(db: db, data: ScannerEntityModel(createdDateTime: "222", typeCode: "url", content: "{\"url\":\"gg.com\"}", isHistory: 1, isSave: 0, updateDateTime: "222"))
                 //                    insert(db: db, data: ScannerEntityModel(createdDateTime: "333", typeCode: "Event", content: "{\"title\":\"event to night\",\"loaction\":\"new york\",\"description\":\"\",\"begin\":\"25 thg 3 2020 15:19\",\"end\":\"25 thg 2 2020 22:00\"}", isHistory: 1, isSave: 0, updateDateTime: "333"))
             })
@@ -55,7 +58,9 @@ class GenerateEntity{
                                    isHistory <- data.isHistory!,
                                    isSave <- data.isSave!,
                                    updatedDateTime <- Int(data.updatedDateTime!),
-                                   bookMark <- data.bookMark!
+                                   bookMark <- data.bookMark!,
+            transactionID <- data.transactionID!
+
             
         )
         do{
@@ -75,7 +80,7 @@ class GenerateEntity{
                 .filter(isHistory == true)
                 .order(updatedDateTime.asc)
             let response = try db.prepare(query).map({(event) -> GenerateEntityModel in
-                return GenerateEntityModel(createdDateTime: event[createdDateTime], typeCode: event[typeCode],content: event[content], isHistory: event[isHistory], isSave: event[isSave], updatedDateTime: event[updatedDateTime], bookMark: event[bookMark])
+                return GenerateEntityModel(createdDateTime: event[createdDateTime], typeCode: event[typeCode],content: event[content], isHistory: event[isHistory], isSave: event[isSave], updatedDateTime: event[updatedDateTime], bookMark: event[bookMark], transactionID: event[transactionID])
             })
             return response
         }catch {
@@ -89,7 +94,7 @@ class GenerateEntity{
                 .filter(isSave == true)
                 .order(updatedDateTime.asc)
             let response = try db.prepare(query).map({(event) -> GenerateEntityModel in
-                return GenerateEntityModel(createdDateTime: event[createdDateTime], typeCode: event[typeCode],content: event[content], isHistory: event[isHistory], isSave: event[isSave], updatedDateTime: event[updatedDateTime], bookMark: event[bookMark])
+                return GenerateEntityModel(createdDateTime: event[createdDateTime], typeCode: event[typeCode],content: event[content], isHistory: event[isHistory], isSave: event[isSave], updatedDateTime: event[updatedDateTime], bookMark: event[bookMark], transactionID: event[transactionID])
             })
             return response
         }catch {
@@ -160,7 +165,7 @@ class GenerateEntity{
                 .filter(createdDateTime == key)    // WHERE "name" IS NOT NULL
                 .limit(1)
             let response = try db.prepare(query).map({(event) -> GenerateEntityModel in
-                return GenerateEntityModel(createdDateTime: event[createdDateTime], typeCode: event[typeCode],content: event[content], isHistory: event[isHistory], isSave: event[isSave], updatedDateTime: event[updatedDateTime], bookMark: event[bookMark])
+                return GenerateEntityModel(createdDateTime: event[createdDateTime], typeCode: event[typeCode],content: event[content], isHistory: event[isHistory], isSave: event[isSave], updatedDateTime: event[updatedDateTime], bookMark: event[bookMark], transactionID: event[transactionID])
             })
             if response.count > 0{
                 return response[0]
@@ -171,6 +176,19 @@ class GenerateEntity{
         }
         return nil
     }
-    
+    func getTransaction(db : Connection,key : String) -> [GenerateEntityModel]?{
+          do{
+                     let query = table.select(table[*])  // SELECT "email" FROM "users"
+                         .filter(transactionID == key)
+                         .order(updatedDateTime.asc)
+                     let response = try db.prepare(query).map({(event) -> GenerateEntityModel in
+                         return GenerateEntityModel(createdDateTime: event[createdDateTime], typeCode: event[typeCode],content: event[content], isHistory: event[isHistory], isSave: event[isSave], updatedDateTime: event[updatedDateTime], bookMark: event[bookMark], transactionID: event[transactionID])
+                     })
+                     return response
+                 }catch {
+                     debugPrint(error)
+                 }
+                 return nil
+       }
 }
 

@@ -150,6 +150,7 @@ class SQLHelper {
         }
         return GenerateEntity.instance.getListHistory(db: db)
     }
+    
     /*Get list save*/
     class open func getListSave() -> [GenerateEntityModel]?{
         guard let db = connection() else {
@@ -186,6 +187,13 @@ class SQLHelper {
            }
         return GenerateEntity.instance.getObject(db: db, key: (createDateTime))
        }
+    /*Get list history transaction*/
+    class open func getListTransaction(transaction : String) -> [GenerateEntityModel]?{
+        guard let db = connection() else {
+            return nil
+        }
+        return GenerateEntity.instance.getTransaction(db: db, key: transaction)
+    }
 }
 
 

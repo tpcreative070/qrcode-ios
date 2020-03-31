@@ -71,6 +71,11 @@ protocol GenerateViewModelDeletegate {
     var contentView : String {get}
     var checkShowView : Bool? {get}
 }
+protocol TransactionViewModelDeletegate {
+    var isSaveView : Bool {get}
+    var typeCode : Bool {get}
+    var content : String {get}
+}
 protocol AlertViewModelDeletegate {
     var nameItemView : String {get}
     var checkShowView : Bool? {get}
@@ -83,6 +88,11 @@ protocol ContentViewModelDeletegate {
 protocol TypeCodeViewModelDelegate {
     var nameView : String {get}
     var imgIconView : String{get}
+}
+protocol QRCodeViewModelDelegate {
+    var imgCodeView : String{get}
+    var typeCodeView : Int{get}
+    var checkShowView : Bool? {get}
 }
 protocol ScannerViewModelDelegate : BaseViewModel {
     var responseToView : ((String) ->())? {get set}
@@ -144,6 +154,12 @@ protocol TypeCodeViewModelListDelegate {
     var responseToView : ((String) ->())? {get set}
     
 }
+protocol QRCodeViewModelListDelegate {
+     var navigate: (() -> ())?  { get }
+      var listItem : [QRCodeViewModel] {get}
+      var responseToView : ((String) ->())? {get set}
+      var isSelected : Bindable<Bool> {get}
+}
 protocol AlertViewModelListDelegate {
     var listAlertViewModel : [AlertViewModel] {get}
     var responseToView : ((String) ->())? {get set}
@@ -168,6 +184,7 @@ protocol UrlViewModelDelegate {
     var urlTxtView : String{get}
     
 }
+
 protocol DetailViewModelListDelegate {
     var listurl : [UrlViewModel] {get}
     var listtext : [TextViewModel] {get}

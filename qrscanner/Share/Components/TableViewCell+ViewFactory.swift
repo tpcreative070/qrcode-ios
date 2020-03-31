@@ -44,6 +44,8 @@ extension TableViewCell {
             setupEventView()
             case .Alert:
             setupAlertSubView()
+            case .QRCodeList:
+            setupQRCodeSubView()
         default :
             break
         }

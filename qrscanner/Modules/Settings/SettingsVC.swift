@@ -13,7 +13,7 @@ class SettingsVC : BaseViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-    lazy var endedUpScrollViewContainerView : UIView = {
+   lazy var endedUpScrollViewContainerView : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -58,6 +58,11 @@ class SettingsVC : BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    lazy var viewLanguage: UIView = {
+          let view = UIView()
+          view.translatesAutoresizingMaskIntoConstraints = false
+          return view
+      }()
     lazy var viewRate: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -99,6 +104,16 @@ class SettingsVC : BaseViewController {
         return view
     }()
     var stackViewVersion : StackView = {
+        let view = StackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    var stackViewLanguage : StackView = {
+         let view = StackView()
+         view.translatesAutoresizingMaskIntoConstraints = false
+         return view
+     }()
+    var stackViewSupport : StackView = {
         let view = StackView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -148,6 +163,18 @@ class SettingsVC : BaseViewController {
     lazy var lbCopy : ICLabel = {
         let view = ICLabel()
         view.text = LanguageHelper.getTranslationByKey(LanguageKey.CopyClipboard)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    lazy var lbLanguage : ICLabel = {
+        let view = ICLabel()
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Language)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    lazy var lbLanguageContent : ICLabel = {
+        let view = ICLabel()
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.ChooseYourLanguage)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -223,26 +250,26 @@ class SettingsVC : BaseViewController {
               view.translatesAutoresizingMaskIntoConstraints = false
               return view
           }()
-    lazy var switchVibrate: IGSwitch = {
-       let switchView = IGSwitch()
+    lazy var switchVibrate: ICSwitchButton = {
+       let switchView = ICSwitchButton()
        switchView.isOn = false
        switchView.translatesAutoresizingMaskIntoConstraints = false;
        return switchView
      }()
-    lazy var switchBeep: IGSwitch = {
-       let switchView = IGSwitch()
+    lazy var switchBeep: ICSwitchButton = {
+       let switchView = ICSwitchButton()
        switchView.isOn = false
        switchView.translatesAutoresizingMaskIntoConstraints = false;
        return switchView
      }()
-    lazy var switchCopy: IGSwitch = {
-       let switchView = IGSwitch()
+    lazy var switchCopy: ICSwitchButton = {
+       let switchView = ICSwitchButton()
        switchView.isOn = false
        switchView.translatesAutoresizingMaskIntoConstraints = false;
        return switchView
      }()
-    lazy var switchOpen: IGSwitch = {
-       let switchView = IGSwitch()
+    lazy var switchOpen: ICSwitchButton = {
+       let switchView = ICSwitchButton()
        switchView.isOn = false
        switchView.translatesAutoresizingMaskIntoConstraints = false;
        return switchView
@@ -251,6 +278,13 @@ class SettingsVC : BaseViewController {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.image = UIImage(named: AppImages.IC_VIBRATION)
+        view.tintColor = AppColors.COLOR_ACCENT
+        return view
+    }()
+    lazy var imgLanguage : UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.image = UIImage(named: AppImages.IC_FLAG)
         view.tintColor = AppColors.COLOR_ACCENT
         return view
     }()
@@ -353,8 +387,40 @@ class SettingsVC : BaseViewController {
         view.tintColor = AppColors.COLOR_ACCENT
         return view
     }()
+    var scannerViewModel = ScannerViewModel()
+    var settingViewModel = SettingViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
+        bindViewModel()
     }
+    @objc func switchVibrateDidChange (_ : ICSwitchButton){
+              print(switchVibrate.isOn)
+            //ScannerVC().viewModel.isVibrate = switchVibrate.isOn
+        if switchVibrate.isOn{
+            AppConstants.isVibrate = 1}
+        else {
+            AppConstants.isVibrate = 0
+        }
+              //self.viewModel.isQRCode =  switchVibrate.isOn
+       }
+    @objc func switchOpenDidChange (_ : ICSwitchButton){
+                if switchOpen.isOn{
+                           AppConstants.isOpen = 1}
+                       else {
+                           AppConstants.isOpen = 0
+                       }
+         }
+    @objc func switchBeepDidChange (_ : ICSwitchButton){
+                 if switchBeep.isOn{
+                           AppConstants.isBeep = 1}
+                       else {
+                           AppConstants.isBeep = 0
+                       }
+         }
+    @objc func switchCopyDidChange (_ : ICSwitchButton){
+                print(switchCopy.isOn)
+                //self.viewModel.isQRCode =  switchVibrate.isOn
+         }
+  
 }

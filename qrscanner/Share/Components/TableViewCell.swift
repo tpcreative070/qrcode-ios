@@ -10,6 +10,7 @@ import UIKit
 import Contacts
 import MapKit
 import EventKit
+import ZXingObjC
 class TableViewCell : UITableViewCell{
     var viewModel  = TableViewCellViewModel()
     var delegate : TableViewCellDelegate?
@@ -129,12 +130,51 @@ class TableViewCell : UITableViewCell{
         self.checkBox.isEnabled = false
         self.checkBox.isChecked = view.checkShowView ?? false
     }
+    func configView(view : QRCodeViewModelDelegate){
+        self.imgIcon.image = set(image: view.imgCodeView, typeformat: view.typeCodeView)
+        self.checkBox.borderStyle = .square
+        self.checkBox.checkmarkStyle = .tick
+        self.checkBox.borderWidth = 2
+        self.checkBox.checkedBorderColor = AppColors.COLOR_ACCENT
+        self.checkBox.checkmarkColor = AppColors.COLOR_ACCENT
+        self.checkBox.isEnabled = false
+        self.checkBox.isChecked = view.checkShowView ?? false
+    }
     
+    func set(image : String, typeformat : Int) -> UIImage{
+           print(image)
+           do{
+               let writer = ZXMultiFormatWriter()
+               let hints = ZXEncodeHints() as ZXEncodeHints
+               hints.encoding = String.Encoding.utf8.rawValue
+               let typeformat = ZXBarcodeFormat.init(UInt32(typeformat))
+               if let result : ZXBitMatrix = try writer.encode(image, format: typeformat, width: 300, height: 300,hints: hints){
+                   let image : ZXImage = ZXImage(matrix: result)
+                   let barcode : UIImage = UIImage(cgImage: image.cgimage)
+                   return barcode
+               }
+               else
+               {
+                   print("nil barcode")
+                return UIImage(named: "ic_help")!
+               }
+           }
+           catch{
+               print("error \(error)")
+            return UIImage(named: "ic_help")!
+
+           }
+       }
     func configView(view : ContentViewModelDeletegate){
         if view.typeCodeView.uppercased() == EnumType.URL.rawValue{
             let jsonData = view.contentView.data(using: .utf8)!
             let urlData = try! JSONDecoder().decode(UrlModel.self, from: jsonData)
             configView(viewModel: UrlViewModel(url: urlData.url!))
+            if AppConstants.isOpen == 1{
+                if let url = URL(string: urlData.url!) {
+                               UIApplication.shared.open(url)
+                           }
+            }
         }
         if view.typeCodeView.uppercased() == EnumType.EMAIL.rawValue{
             let jsonData = view.contentView.data(using: .utf8)!
@@ -253,6 +293,9 @@ class TableViewCell : UITableViewCell{
         }
         else if reuseIdentifier == EnumIdentifier.Alert.rawValue {
             identifier = EnumIdentifier.Alert
+        }
+        else if reuseIdentifier == EnumIdentifier.QRCodeList.rawValue {
+            identifier = EnumIdentifier.QRCodeList
         }
         setupView()
     }
@@ -452,6 +495,7 @@ class TableViewCell : UITableViewCell{
         self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Url)
         self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Search)
         self.textFieldValueFirst.text = viewModel.urlTxtView
+        
     }
     /*text*/
     lazy var imgText : UIImageView = {

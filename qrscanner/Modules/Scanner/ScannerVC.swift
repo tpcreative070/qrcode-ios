@@ -120,9 +120,12 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
     var isFirstApplyOrientation: Bool?
     var captureSizeTransform: CGAffineTransform?
     let viewModel =  ScannerViewModel()
+    let qrViewModel =  QRCodeViewModel()
+    let settingViewModel = SettingViewModel()
     var isFlash = false
     var isFront = false
-    
+    let systemSoundID: SystemSoundID = SystemSoundID(AppConstants.soundID)
+
     var frontCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front)
     var backCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
     

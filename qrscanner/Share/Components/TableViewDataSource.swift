@@ -79,6 +79,7 @@ class TableViewDataSource<Cell: UITableViewCell,ViewModel, HeaderInSection : UIT
                 }
             }
         }else{
+         
             let item = self.items[indexPath.row]
             self.configureCell(cell,item)
             if indexPath.row == self.items.count - 1 && self.items.count > 0  {

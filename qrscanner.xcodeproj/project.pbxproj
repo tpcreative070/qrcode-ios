@@ -61,8 +61,6 @@
 		2894B59B2423CA3600E958DC /* TableViewCell+ChooseHistory+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894B59A2423CA3600E958DC /* TableViewCell+ChooseHistory+ViewFactory.swift */; };
 		2894B6B824307E8900769F68 /* SettingsViewModelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894B6B724307E8900769F68 /* SettingsViewModelList.swift */; };
 		2894B6BA24307E9B00769F68 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894B6B924307E9B00769F68 /* SettingsViewModel.swift */; };
-		2894B6BC243097EC00769F68 /* IGSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894B6BB243097EC00769F68 /* IGSwitch.swift */; };
-		2894B6BE2430981800769F68 /* CustomThumbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894B6BD2430981800769F68 /* CustomThumbView.swift */; };
 		2894D6B5241C8EDE009E1659 /* OpalImagePickerRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894D6B4241C8EDE009E1659 /* OpalImagePickerRootViewController.swift */; };
 		2894D6B7241C8F1D009E1659 /* ImagePickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894D6B6241C8F1D009E1659 /* ImagePickerCollectionViewCell.swift */; };
 		2894D6B9241C8F41009E1659 /* OpalImagePickerCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894D6B8241C8F41009E1659 /* OpalImagePickerCollectionViewLayout.swift */; };
@@ -82,7 +80,6 @@
 		2894E12B24213C7800263637 /* TableViewCell+Email+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894E12A24213C7800263637 /* TableViewCell+Email+ViewFactory.swift */; };
 		2894E12D2421472900263637 /* EmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2894E12C2421472900263637 /* EmailViewModel.swift */; };
 		2895099124267E1B009A4785 /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2895099024267E1B009A4785 /* ResultViewModel.swift */; };
-		28969BAE24173DC000070BDC /* qrscanner.db in Resources */ = {isa = PBXBuildFile; fileRef = 28969BAD24173DC000070BDC /* qrscanner.db */; };
 		28969BB02417878400070BDC /* AppDelegate+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28969BAF2417878400070BDC /* AppDelegate+UI.swift */; };
 		28969F98241B6C4400F30A29 /* UIView+Draggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28969F97241B6C4400F30A29 /* UIView+Draggable.swift */; };
 		28969FBC241B8CC300F30A29 /* TableViewCell+Save+ViewFatory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28969FBB241B8CC300F30A29 /* TableViewCell+Save+ViewFatory.swift */; };
@@ -124,6 +121,19 @@
 		28A05735240E499400AD5353 /* SFProText-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 28A05731240E499300AD5353 /* SFProText-Regular.otf */; };
 		28A05736240E499400AD5353 /* SFProText-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 28A05732240E499400AD5353 /* SFProText-Semibold.otf */; };
 		28A05739240E968B00AD5353 /* AppDelegate+Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A05738240E968B00AD5353 /* AppDelegate+Config.swift */; };
+		28A4E1B72431D44C00DDD4A1 /* QRCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4E1B62431D44C00DDD4A1 /* QRCodeVC.swift */; };
+		28A4E1B92431D47900DDD4A1 /* QRCodeVC+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4E1B82431D47900DDD4A1 /* QRCodeVC+ViewFactory.swift */; };
+		28A4E1BB2431D4F400DDD4A1 /* QRCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4E1BA2431D4F400DDD4A1 /* QRCodeViewModel.swift */; };
+		28A4E1BD2431D60E00DDD4A1 /* QRCodeViewModelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4E1BC2431D60E00DDD4A1 /* QRCodeViewModelList.swift */; };
+		28A4E1BF2431DE0400DDD4A1 /* TableViewCell+QRCode+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4E1BE2431DE0400DDD4A1 /* TableViewCell+QRCode+ViewFactory.swift */; };
+		28A4E1C32432DB2400DDD4A1 /* qrscanner.db in Resources */ = {isa = PBXBuildFile; fileRef = 28A4E1C22432DB2400DDD4A1 /* qrscanner.db */; };
+		28A4E1C52432E89D00DDD4A1 /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4E1C42432E89D00DDD4A1 /* TransactionViewModel.swift */; };
+		28A4E1C72433224F00DDD4A1 /* ICSwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4E1C62433224F00DDD4A1 /* ICSwitchButton.swift */; };
+		28A4E1C9243322E400DDD4A1 /* ICCustomThumbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4E1C8243322E400DDD4A1 /* ICCustomThumbView.swift */; };
+		28A4E1CB24332BC400DDD4A1 /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4E1CA24332BC400DDD4A1 /* SettingModel.swift */; };
+		28A4E1D024333D5200DDD4A1 /* PlaySoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4E1CF24333D5200DDD4A1 /* PlaySoundManager.swift */; };
+		28A4E1D224333E2A00DDD4A1 /* SoundHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4E1D124333E2A00DDD4A1 /* SoundHelper.swift */; };
+		28A4E1D42433411A00DDD4A1 /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 28A4E1D32433411A00DDD4A1 /* beep.wav */; };
 		28BFA8D8240CDC82002ECD93 /* TableViewCell+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BFA8D4240CDC81002ECD93 /* TableViewCell+ViewFactory.swift */; };
 		28BFA8DA240CDC82002ECD93 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BFA8D6240CDC82002ECD93 /* TableViewCell.swift */; };
 		28BFA8E1240CF938002ECD93 /* TableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BFA8E0240CF938002ECD93 /* TableSection.swift */; };
@@ -311,8 +321,6 @@
 		2894B59A2423CA3600E958DC /* TableViewCell+ChooseHistory+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewCell+ChooseHistory+ViewFactory.swift"; sourceTree = "<group>"; };
 		2894B6B724307E8900769F68 /* SettingsViewModelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelList.swift; sourceTree = "<group>"; };
 		2894B6B924307E9B00769F68 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		2894B6BB243097EC00769F68 /* IGSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGSwitch.swift; sourceTree = "<group>"; };
-		2894B6BD2430981800769F68 /* CustomThumbView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomThumbView.swift; sourceTree = "<group>"; };
 		2894D6B4241C8EDE009E1659 /* OpalImagePickerRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpalImagePickerRootViewController.swift; sourceTree = "<group>"; };
 		2894D6B6241C8F1D009E1659 /* ImagePickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		2894D6B8241C8F41009E1659 /* OpalImagePickerCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpalImagePickerCollectionViewLayout.swift; sourceTree = "<group>"; };
@@ -332,7 +340,6 @@
 		2894E12A24213C7800263637 /* TableViewCell+Email+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewCell+Email+ViewFactory.swift"; sourceTree = "<group>"; };
 		2894E12C2421472900263637 /* EmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewModel.swift; sourceTree = "<group>"; };
 		2895099024267E1B009A4785 /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
-		28969BAD24173DC000070BDC /* qrscanner.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = qrscanner.db; sourceTree = "<group>"; };
 		28969BAF2417878400070BDC /* AppDelegate+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+UI.swift"; sourceTree = "<group>"; };
 		28969F97241B6C4400F30A29 /* UIView+Draggable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Draggable.swift"; sourceTree = "<group>"; };
 		28969FBB241B8CC300F30A29 /* TableViewCell+Save+ViewFatory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewCell+Save+ViewFatory.swift"; sourceTree = "<group>"; };
@@ -374,6 +381,19 @@
 		28A05731240E499300AD5353 /* SFProText-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Regular.otf"; sourceTree = "<group>"; };
 		28A05732240E499400AD5353 /* SFProText-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Semibold.otf"; sourceTree = "<group>"; };
 		28A05738240E968B00AD5353 /* AppDelegate+Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Config.swift"; sourceTree = "<group>"; };
+		28A4E1B62431D44C00DDD4A1 /* QRCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeVC.swift; sourceTree = "<group>"; };
+		28A4E1B82431D47900DDD4A1 /* QRCodeVC+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QRCodeVC+ViewFactory.swift"; sourceTree = "<group>"; };
+		28A4E1BA2431D4F400DDD4A1 /* QRCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewModel.swift; sourceTree = "<group>"; };
+		28A4E1BC2431D60E00DDD4A1 /* QRCodeViewModelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewModelList.swift; sourceTree = "<group>"; };
+		28A4E1BE2431DE0400DDD4A1 /* TableViewCell+QRCode+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewCell+QRCode+ViewFactory.swift"; sourceTree = "<group>"; };
+		28A4E1C22432DB2400DDD4A1 /* qrscanner.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = qrscanner.db; sourceTree = "<group>"; };
+		28A4E1C42432E89D00DDD4A1 /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
+		28A4E1C62433224F00DDD4A1 /* ICSwitchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICSwitchButton.swift; sourceTree = "<group>"; };
+		28A4E1C8243322E400DDD4A1 /* ICCustomThumbView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICCustomThumbView.swift; sourceTree = "<group>"; };
+		28A4E1CA24332BC400DDD4A1 /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
+		28A4E1CF24333D5200DDD4A1 /* PlaySoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySoundManager.swift; sourceTree = "<group>"; };
+		28A4E1D124333E2A00DDD4A1 /* SoundHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundHelper.swift; sourceTree = "<group>"; };
+		28A4E1D32433411A00DDD4A1 /* beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep.wav; sourceTree = "<group>"; };
 		28BFA8D4240CDC81002ECD93 /* TableViewCell+ViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewCell+ViewFactory.swift"; sourceTree = "<group>"; };
 		28BFA8D6240CDC82002ECD93 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		28BFA8E0240CF938002ECD93 /* TableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSection.swift; sourceTree = "<group>"; };
@@ -695,6 +715,23 @@
 			path = Progress;
 			sourceTree = "<group>";
 		};
+		28A4E1B52431D41700DDD4A1 /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				28A4E1B62431D44C00DDD4A1 /* QRCodeVC.swift */,
+				28A4E1B82431D47900DDD4A1 /* QRCodeVC+ViewFactory.swift */,
+			);
+			path = QRCode;
+			sourceTree = "<group>";
+		};
+		28A4E1CC24333CF300DDD4A1 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				28A4E1D32433411A00DDD4A1 /* beep.wav */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
 		28DD502C241156C60080A059 /* Generate */ = {
 			isa = PBXGroup;
 			children = (
@@ -746,6 +783,7 @@
 		D27F115823FF9487001D175F /* qrscanner */ = {
 			isa = PBXGroup;
 			children = (
+				28A4E1CC24333CF300DDD4A1 /* Sound */,
 				D2BA0A502408DCF30074C7A1 /* Modules */,
 				D2BA0A4F2408DCED0074C7A1 /* Share */,
 				D2BA0A4E2408DCE60074C7A1 /* Helper */,
@@ -894,6 +932,9 @@
 				28998A39242CA40900C6837D /* AlertViewModelList.swift */,
 				2894B6B724307E8900769F68 /* SettingsViewModelList.swift */,
 				2894B6B924307E9B00769F68 /* SettingsViewModel.swift */,
+				28A4E1BA2431D4F400DDD4A1 /* QRCodeViewModel.swift */,
+				28A4E1BC2431D60E00DDD4A1 /* QRCodeViewModelList.swift */,
+				28A4E1C42432E89D00DDD4A1 /* TransactionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -919,6 +960,7 @@
 				28D81D3F24162727007834F0 /* WifiModel.swift */,
 				28D81D4124162AC7007834F0 /* GenerateEntityModel.swift */,
 				2897491A2429FA1100717701 /* ValuePushModel.swift */,
+				28A4E1CA24332BC400DDD4A1 /* SettingModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -967,6 +1009,8 @@
 				2865AA2624124E4A00C1F207 /* ValidatorHelper.swift */,
 				289767552414D85100AD0D78 /* GrantPermission.swift */,
 				28969FC3241C08F900F30A29 /* GalleryHelper.swift */,
+				28A4E1CF24333D5200DDD4A1 /* PlaySoundManager.swift */,
+				28A4E1D124333E2A00DDD4A1 /* SoundHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -985,6 +1029,7 @@
 		D2BA0A502408DCF30074C7A1 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				28A4E1B52431D41700DDD4A1 /* QRCode */,
 				28390CC9242DDF7800383427 /* Help */,
 				28998A26242C90E500C6837D /* AlertClipboard */,
 				289371242428523A00E40471 /* Detail */,
@@ -1005,7 +1050,7 @@
 		D2BA0A512408DD190074C7A1 /* SQLite */ = {
 			isa = PBXGroup;
 			children = (
-				28969BAD24173DC000070BDC /* qrscanner.db */,
+				28A4E1C22432DB2400DDD4A1 /* qrscanner.db */,
 			);
 			path = SQLite;
 			sourceTree = "<group>";
@@ -1108,9 +1153,10 @@
 				2897F7A92422001900ED0A60 /* TableViewCell+Location+ViewHistory.swift */,
 				2897F7B124224C7100ED0A60 /* TableViewCell+Event+ViewFactory.swift */,
 				28998A3B242CAE0B00C6837D /* TableViewCell+Alert+ViewFactory.swift */,
+				28A4E1BE2431DE0400DDD4A1 /* TableViewCell+QRCode+ViewFactory.swift */,
 				28390CD0242DF82D00383427 /* TextView.swift */,
-				2894B6BB243097EC00769F68 /* IGSwitch.swift */,
-				2894B6BD2430981800769F68 /* CustomThumbView.swift */,
+				28A4E1C62433224F00DDD4A1 /* ICSwitchButton.swift */,
+				28A4E1C8243322E400DDD4A1 /* ICCustomThumbView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1318,11 +1364,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28A4E1D42433411A00DDD4A1 /* beep.wav in Resources */,
 				D2BA0AAC240A592A0074C7A1 /* GoogleService-Info-Develop.plist in Resources */,
 				28A05733240E499400AD5353 /* SFProText-Bold.otf in Resources */,
 				D27F116623FF9488001D175F /* LaunchScreen.storyboard in Resources */,
 				D27F116323FF9488001D175F /* Preview Assets.xcassets in Resources */,
-				28969BAE24173DC000070BDC /* qrscanner.db in Resources */,
+				28A4E1C32432DB2400DDD4A1 /* qrscanner.db in Resources */,
 				D27F116023FF9488001D175F /* Assets.xcassets in Resources */,
 				28A05734240E499400AD5353 /* SFProText-Light.otf in Resources */,
 				289B4BA0241394ED005BC714 /* languages.json in Resources */,
@@ -1495,6 +1542,7 @@
 				D2BA0AF1240A9B940074C7A1 /* HistoryVC.swift in Sources */,
 				D2BA0A8424096A870074C7A1 /* Utils.swift in Sources */,
 				289B4BA424140C8F005BC714 /* Label.swift in Sources */,
+				28A4E1B72431D44C00DDD4A1 /* QRCodeVC.swift in Sources */,
 				D2BA0A8E24096ABC0074C7A1 /* KeyboardHelper.swift in Sources */,
 				28DD502524113DBD0080A059 /* NavigationModel.swift in Sources */,
 				D2BA0A9024096ABC0074C7A1 /* JSONSerializerHelper.swift in Sources */,
@@ -1526,6 +1574,7 @@
 				D2BA0A62240966D20074C7A1 /* TableViewDataSource.swift in Sources */,
 				28969F98241B6C4400F30A29 /* UIView+Draggable.swift in Sources */,
 				28998A36242CA39300C6837D /* AlertVC+ViewFactory.swift in Sources */,
+				28A4E1BD2431D60E00DDD4A1 /* QRCodeViewModelList.swift in Sources */,
 				D2BA0A8324096A870074C7A1 /* CommonService.swift in Sources */,
 				289204D72419691E00AD3F49 /* TextGenerateVC.swift in Sources */,
 				2893EF252419CE2B004D58C6 /* MessageGenerateVC+ViewFactory.swift in Sources */,
@@ -1536,6 +1585,7 @@
 				28390CCD242DE0B500383427 /* HelpVC+ViewFactory.swift in Sources */,
 				D2BA0A7524096A1F0074C7A1 /* UIColor+HexToRGB.swift in Sources */,
 				2897F7AE2422438500ED0A60 /* TableViewCell+Message+ViewFactory.swift in Sources */,
+				28A4E1BB2431D4F400DDD4A1 /* QRCodeViewModel.swift in Sources */,
 				D2BA0ADC240A69830074C7A1 /* UIColorExtension.swift in Sources */,
 				D2BA0AD8240A69830074C7A1 /* UIViewExtension.swift in Sources */,
 				D2BA0A70240969DC0074C7A1 /* ICButtonCustom.swift in Sources */,
@@ -1543,12 +1593,12 @@
 				D2BA0A60240966710074C7A1 /* SwiftEventBusHelper.swift in Sources */,
 				D2BA0A9124096ABC0074C7A1 /* KeychainSwiftHelper.swift in Sources */,
 				2893EF282419DBCD004D58C6 /* LocationGenerateVC.swift in Sources */,
+				28A4E1D024333D5200DDD4A1 /* PlaySoundManager.swift in Sources */,
 				D2BA0ADD240A69830074C7A1 /* SwipeMenuViewController.swift in Sources */,
 				D2BA0ABA240A61540074C7A1 /* ResponseErrorModel.swift in Sources */,
 				288591DF241A49E50081DB79 /* WifiGenerateVC+ViewFactory.swift in Sources */,
 				D2BA0AB5240A60DE0074C7A1 /* EndPoint.swift in Sources */,
 				2893EF33241A28D5004D58C6 /* DateTimePicker.swift in Sources */,
-				2894B6BC243097EC00769F68 /* IGSwitch.swift in Sources */,
 				2894D6C1241C9097009E1659 /* TimeInterval+String.swift in Sources */,
 				285BDBF324272B9D00AA0BBF /* ChooseSaveVC+ViewFactory.swift in Sources */,
 				289204B02418F4B100AD3F49 /* EmailGenerateVC+ViewFactory.swift in Sources */,
@@ -1557,7 +1607,9 @@
 				2892048B2418C6BF00AD3F49 /* UIViewController+StatusBar.swift in Sources */,
 				289749192429EB8B00717701 /* ShareSyncContactSingleton.swift in Sources */,
 				D2BA0AC4240A62110074C7A1 /* SignInResponseModel.swift in Sources */,
+				28A4E1D224333E2A00DDD4A1 /* SoundHelper.swift in Sources */,
 				D2BA0A9324096ABC0074C7A1 /* LanguageHelper.swift in Sources */,
+				28A4E1CB24332BC400DDD4A1 /* SettingModel.swift in Sources */,
 				2894B6B824307E8900769F68 /* SettingsViewModelList.swift in Sources */,
 				2894D6BD241C9012009E1659 /* UIView+Helper.swift in Sources */,
 				2893713224288C1700E40471 /* TableViewDataSourceContent.swift in Sources */,
@@ -1573,6 +1625,7 @@
 				28D81D36241622D0007834F0 /* PhoneModel.swift in Sources */,
 				28BFA8DA240CDC82002ECD93 /* TableViewCell.swift in Sources */,
 				2897F7A42421DB3100ED0A60 /* ContactViewModel.swift in Sources */,
+				28A4E1C52432E89D00DDD4A1 /* TransactionViewModel.swift in Sources */,
 				28DD50362411619C0080A059 /* TextField.swift in Sources */,
 				D2BA0ACA240A68E90074C7A1 /* ShareSingleton.swift in Sources */,
 				288591D5241A49890081DB79 /* PhoneGenerateVC+ViewFactory.swift in Sources */,
@@ -1584,6 +1637,7 @@
 				2894B5902423231700E958DC /* SaveViewModel.swift in Sources */,
 				289B4BA624141CD2005BC714 /* ViewRectangleArea.swift in Sources */,
 				28998A3C242CAE0B00C6837D /* TableViewCell+Alert+ViewFactory.swift in Sources */,
+				28A4E1C72433224F00DDD4A1 /* ICSwitchButton.swift in Sources */,
 				28DD502724113E080080A059 /* UIStoryboard+List.swift in Sources */,
 				D2BA0ABB240A61540074C7A1 /* UserResponseModel.swift in Sources */,
 				D2BA0AC0240A61D70074C7A1 /* UserRequestModel.swift in Sources */,
@@ -1607,14 +1661,15 @@
 				28A0572E240E413A00AD5353 /* ICStepper.swift in Sources */,
 				28D81D342416229C007834F0 /* TextModel.swift in Sources */,
 				2897F7A22421D61000ED0A60 /* WifiViewModel.swift in Sources */,
-				2894B6BE2430981800769F68 /* CustomThumbView.swift in Sources */,
 				D2BA0A6C240969440074C7A1 /* Constant.swift in Sources */,
 				289767542414D4D500AD0D78 /* ScannerViewModel.swift in Sources */,
+				28A4E1C9243322E400DDD4A1 /* ICCustomThumbView.swift in Sources */,
 				D2BA0AED240A74D70074C7A1 /* MainVC+ViewFactory.swift in Sources */,
 				D2BA0A5A2408DE530074C7A1 /* TranslationEntity.swift in Sources */,
 				D2BA0A8F24096ABC0074C7A1 /* JSONHelper.swift in Sources */,
 				D2BA0A9E2409ED300074C7A1 /* String+ConfigKey.swift in Sources */,
 				28BFA8EA240D40B2002ECD93 /* TableViewCellViewModel.swift in Sources */,
+				28A4E1B92431D47900DDD4A1 /* QRCodeVC+ViewFactory.swift in Sources */,
 				28D81D3E2416267E007834F0 /* EventModel.swift in Sources */,
 				2897F7A02421D3E400ED0A60 /* TableViewCell+Wifi+ViewFactory.swift in Sources */,
 				2892D4F7240F7A8100E84F4A /* TableViewCell+History+ViewFatory.swift in Sources */,
@@ -1658,6 +1713,7 @@
 				D2BA0AC8240A62900074C7A1 /* SignUpResponseModel.swift in Sources */,
 				2894B5972423C9E100E958DC /* ChooseHistoryVC.swift in Sources */,
 				28BFA8F0240D4A04002ECD93 /* AlertHelper.swift in Sources */,
+				28A4E1BF2431DE0400DDD4A1 /* TableViewCell+QRCode+ViewFactory.swift in Sources */,
 				283A22772410E573006308F4 /* TypeCodeOption.swift in Sources */,
 				28D81D4024162727007834F0 /* WifiModel.swift in Sources */,
 				288591E2241A4A0A0081DB79 /* UrlGenerateVC.swift in Sources */,
