@@ -54,17 +54,21 @@ class ChooseHistoryVC : UIViewController,UIViewControllerTransitioningDelegate, 
     }
     @objc func doDeleteItem() {
         print("do select")
-        
+        ProgressHUD.showInView(view: self.view)
+
+       // self.historyViewModel.showLoading.value = true
         for index in historyViewModel.listHistories {
             Utils.logMessage(object: historyViewModel.listHistories)
             if index.check == true {
                 historyViewModel.countItemSelected += 1
                 print(index.content)
                 self.historyViewModel.doDeleteHistory(mData: index)
-                
+
             }
         }
-        
+        ProgressHUD.dismiss()
+       // self.historyViewModel.showLoading.value = false
+
     }
     @objc func doSelectAll(_ sender: UIButton) {
         if !sender.isSelected {

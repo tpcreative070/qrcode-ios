@@ -124,11 +124,8 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
     let settingViewModel = SettingViewModel()
     var isFlash = false
     var isFront = false
-    let systemSoundID: SystemSoundID = SystemSoundID(AppConstants.soundID)
-
     var frontCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front)
     var backCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
-    
     var videoPreviewLayer : AVCaptureVideoPreviewLayer?
     var session : AVCaptureSession?
     
@@ -137,7 +134,6 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
         super.viewDidLoad()
         print("view did load")
         iniUI()
-        
         if #available(iOS 10.2, *){
             let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
             do{
@@ -182,6 +178,7 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
         print("actionGallery")
         self.viewBackground.bringSubviewToFront(viewIcon)
         viewModel.defaultValue()
+       // ProgressHUD.showInView(view: self.view)
         onTakeGallery()
     }
     
@@ -196,10 +193,14 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
     
   
     override func viewWillAppear(_ animated: Bool) {
+        ProgressHUD.dismiss()
+
         print("viewWillAppear")
     }
     override func viewDidAppear(_ animated: Bool) {
         print("viewDidAppear11")
+        ProgressHUD.dismiss()
+
         session?.startRunning()
     }
     

@@ -19,6 +19,7 @@ class HistoryViewModelList : HistoryViewModelListDeletegate{
     var historyArray:[Dictionary<String, AnyObject>] =  Array()
     var navigate: (() -> ())?
     func doGetListHistories(){
+        self.showLoading.value = true
         if let mList = SQLHelper.getListHistories(){
             var index = 0
             self.listHistories = mList.map({ (data) -> HistoryViewModel in
@@ -28,6 +29,7 @@ class HistoryViewModelList : HistoryViewModelListDeletegate{
         }
         print(listHistories)
         listHistories = listHistories.sorted {$0.updatedDateTime > $1.updatedDateTime}
+        
         responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
     }
     

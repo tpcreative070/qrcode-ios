@@ -11,7 +11,7 @@ extension QRCodeVC {
     func initUI(){
         self.navigationController?.isNavigationBarHidden = true
         /*SetupScrollView*/
-       self.view.addSubview(scrollView)
+        self.view.addSubview(scrollView)
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
@@ -28,9 +28,9 @@ extension QRCodeVC {
         wrapperView.addSubview(lbTitle)
         NSLayoutConstraint.activate([
             lbTitle.topAnchor.constraint(equalTo: wrapperView.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-      lbTitle.leftAnchor.constraint(equalTo: wrapperView.leftAnchor, constant: AppConstants.MARGIN_LEFT_HELP),
-      lbTitle.centerXAnchor.constraint(equalTo: wrapperView.centerXAnchor)
-
+            lbTitle.leftAnchor.constraint(equalTo: wrapperView.leftAnchor, constant: AppConstants.MARGIN_LEFT_HELP),
+            lbTitle.centerXAnchor.constraint(equalTo: wrapperView.centerXAnchor)
+            
         ])
         /*TableView*/
         tableView = UITableView()
@@ -38,7 +38,7 @@ extension QRCodeVC {
         tableView.isScrollEnabled = true
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
-      //  tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
+        //  tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
         tableView.sectionFooterHeight = 0
         wrapperView.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -48,14 +48,14 @@ extension QRCodeVC {
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.topAnchor.constraint(equalTo: lbTitle.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM)
         ])
-      //  btnDone.addTarget(self, action: #selector(getListSelectedItem), for: .touchUpInside)
+        //  btnDone.addTarget(self, action: #selector(getListSelectedItem), for: .touchUpInside)
         setupNavItems()
         setupEndedUpScrollView()
         setupTableView()
         bindTableView()
         
     }
-
+    
     func bindViewModel() {
         self.viewModel.showLoading.bind { visible in
             visible ? ProgressHUD.show(): ProgressHUD.dismiss()
@@ -63,38 +63,44 @@ extension QRCodeVC {
         self.viewModel.onShowError = { [weak self] alert in
             self?.presentSingleButtonDialog(alert: alert)
         }
-
+        
         self.viewModel.responseToView = {[weak self] value in
             if value == EnumResponseToView.UPDATE_DATA_SOURCE.rawValue {
-               self?.updateDataSource()
+                self?.navigationItem.title = "\(String(describing: self!.viewModel.countItemSelected)) \(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Selected)!))"
+                self?.updateDataSource()
             }
             if value == EnumResponseToView.GET_DATA_SOURCE.rawValue {
-               self?.updateDataSource()
+                self?.updateDataSource()
             }
         }
         self.viewModel.navigate = { [weak self] in
-                 
-                let  vc = DetailVC()
-                print(self?.viewModel.listTransaction)
-                vc.listContentViewModel = ((self?.viewModel.listTransaction)!)
-                self?.navigationController?.pushViewController(vc, animated: true)
+            if (self?.viewModel.listTransaction.count)! > 0{
+            let  vc = DetailVC()
+            vc.listContentViewModel = ((self?.viewModel.listTransaction)!)
+            self?.navigationController?.pushViewController(vc, animated: true)
             self?.navigationController?.viewControllers.remove(at: 1)
+            }
+            else{
+                let alert = UIAlertController(title: LanguageHelper.getTranslationByKey(LanguageKey.Alert), message:LanguageHelper.getTranslationByKey(LanguageKey.ChooseQRCode) , preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Ok), style: UIAlertAction.Style.default, handler: nil))
+                self?.present(alert, animated: true, completion: nil)
+            }
         }
         
         self.viewModel.convertStringToQRCode(mValue: viewModel.listQRResult)
     }
-
+    
     func updateDataSource() {
-         self.dataSource.items = self.viewModel.listItem
+        self.dataSource.items = self.viewModel.listItem
         self.dataSource.configureSwipeCell = { cell,vm in
             self.log(object: vm)
             self.viewModel.currentCell = vm
         }
         self.tableView.reloadData()
         log(message: "List typecode available...")
-    //    log(object: self.viewModel.listTypeCondeViewModel)
+        //    log(object: self.viewModel.listTypeCondeViewModel)
     }
-
+    
     //set dataSource fo tableView
     func bindTableView(){
         self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.QRCodeList.rawValue, items: self.viewModel.listItem,isSelectionStype: false){ cell, vm in
@@ -106,14 +112,14 @@ extension QRCodeVC {
             self.log(object: vm)
             self.viewModel.currentCell = vm
         }
-      //  self.dataSource.swipeActionRight = swipeActionRight()
+        //  self.dataSource.swipeActionRight = swipeActionRight()
         self.dataSource.loadMore = {
             self.log(message: "Loading more")
         }
         self.tableView.dataSource = self.dataSource
         self.tableView.delegate = self.dataSource
     }
-
+    
     func setupTableView(){
         tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.QRCodeList.rawValue)
         tableView.backgroundColor = .white
@@ -121,23 +127,23 @@ extension QRCodeVC {
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
     }
     func setupNavItems() {
-           self.view.backgroundColor = .white
-           let urlAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-           navigationController?.navigationBar.titleTextAttributes = urlAttributes
-           navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
-           self.navigationController?.navigationBar.tintColor = .white
+        self.view.backgroundColor = .white
+        let urlAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = urlAttributes
+        navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
+        self.navigationController?.navigationBar.tintColor = .white
         
         let menuButtonRightSelectAll = UIButton(type: .system)
-               menuButtonRightSelectAll.setImage(UIImage(named: AppImages.IC_SELECT_ALL), for: .normal)
-               menuButtonRightSelectAll.addTarget(self, action: #selector(doSelectAll), for: .touchUpInside)
-              
+        menuButtonRightSelectAll.setImage(UIImage(named: AppImages.IC_SELECT_ALL), for: .normal)
+        menuButtonRightSelectAll.addTarget(self, action: #selector(doSelectAll), for: .touchUpInside)
         
-           let menuButtonRight = UIButton(type: .system)
-           menuButtonRight.setImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
-           menuButtonRight.addTarget(self, action: #selector(getListSelectedItem), for: .touchUpInside)
-           navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRight), UIBarButtonItem(customView: menuButtonRightSelectAll)]
-       }
-  }
+        
+        let menuButtonRight = UIButton(type: .system)
+        menuButtonRight.setImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
+        menuButtonRight.addTarget(self, action: #selector(getListSelectedItem), for: .touchUpInside)
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRight), UIBarButtonItem(customView: menuButtonRightSelectAll)]
+    }
+}
 extension QRCodeVC : TableViewCellDelegate {
     func cellViewLongSelected(cell: TableViewCell) {
         
@@ -154,32 +160,32 @@ extension QRCodeVC : TableViewCellDelegate {
     
     func cellViewSelected(cell: TableViewCell, countSelected: Int) {
         print("\(cell.identifier) -- \(cell.lbTitle)")
-
+        
     }
     
     func cellViewSelected(cell: Codable) {
         print(cell)
-//        if let data = JSONHelper.get(value: QRCodeViewModel.self,anyObject: cell){
-//            print(data.imgCodeView)
-//               }
+        //        if let data = JSONHelper.get(value: QRCodeViewModel.self,anyObject: cell){
+        //            print(data.imgCodeView)
+        //               }
         self.viewModel.doSelectItem(coable: cell)
-
+        
     }
     
     func cellCodable(codable: Codable) {
         print("cellCodable")
     }
     func cellViewSelected(cell: TableViewCell, action: EnumResponseToView) {
-          print("\(cell.identifier) -- \(cell.lbTitle)")
+        print("\(cell.identifier) -- \(cell.lbTitle)")
     }
     
     func setupEndedUpScrollView(){
-      wrapperView.addSubview(endedUpScrollViewContainerView)
-      NSLayoutConstraint.activate([
-        endedUpScrollViewContainerView.topAnchor.constraint(equalTo: tableView.bottomAnchor),
-        endedUpScrollViewContainerView.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor),
-        endedUpScrollViewContainerView.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor),
-        endedUpScrollViewContainerView.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor)
+        wrapperView.addSubview(endedUpScrollViewContainerView)
+        NSLayoutConstraint.activate([
+            endedUpScrollViewContainerView.topAnchor.constraint(equalTo: tableView.bottomAnchor),
+            endedUpScrollViewContainerView.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor),
+            endedUpScrollViewContainerView.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor),
+            endedUpScrollViewContainerView.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor)
         ])
     }
 }

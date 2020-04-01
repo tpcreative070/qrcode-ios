@@ -69,11 +69,11 @@ extension DetailVC {
             self?.presentSingleButtonDialog(alert: alert)
         }
         
-        self.contentViewModel.responseToView = {[weak self] value in
-            if value == EnumResponseToView.UPDATE_DATA_SOURCE.rawValue {
-                //   self?.updateDataSource()
-            }
-        }
+//        self.contentViewModel.responseToView = {[weak self] value in
+//            if value == EnumResponseToView.UPDATE_DATA_SOURCE.rawValue {
+//                   self?.updateDataSource()
+//            }
+//        }
     }
     
     func updateDataSource() {

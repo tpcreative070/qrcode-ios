@@ -74,9 +74,9 @@ extension AlertVC {
         NSLayoutConstraint.activate([
             btnOK.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             btnOK.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor, constant: AppConstants.MARGIN_BOTTOM),
-            btnOK.leadingAnchor.constraint(equalTo: btnCancel.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
+            btnOK.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor,constant: AppConstants.MARGIN_RIGHT),
             btnOK.heightAnchor.constraint(equalToConstant: AppConstants.MARGIN_TOP_CONTAINER),
-            btnOK.widthAnchor.constraint(equalToConstant: AppConstants.MARGIN_LEFT_CONTAINER)
+            btnOK.widthAnchor.constraint(equalToConstant: AppConstants.MARGIN_TOP_ALERT)
             
         ])
         

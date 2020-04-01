@@ -104,10 +104,11 @@ class GenerateEntity{
     }
     
     
-    func delete(db : Connection, value : Int) ->Bool{
+    func delete(db : Connection, value : Bool) ->Bool{
         do{
             let query = table.select(table[*])  // SELECT "email" FROM "users"
-                .filter(createdDateTime == value)   // WHERE "name" IS NOT NULL
+                .filter(isHistory == value)   // WHERE "name" IS NOT NULL
+                .filter(isSave == value)
             try db.run(query.delete())
             debugPrint("Deleted successfully")
             return true

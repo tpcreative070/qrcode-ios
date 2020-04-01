@@ -148,6 +148,7 @@ class SQLHelper {
         guard let db = connection() else {
             return nil
         }
+         GenerateEntity.instance.delete(db: db, value: false)
         return GenerateEntity.instance.getListHistory(db: db)
     }
     
@@ -156,15 +157,17 @@ class SQLHelper {
         guard let db = connection() else {
             return nil
         }
+        GenerateEntity.instance.delete(db: db, value: false)
         return GenerateEntity.instance.getListSave(db: db)
     }
     /*Delete */
-       class open func deleteScanner(createDateTime : Int) ->Bool{
+     /*  class open func deleteScanner(createDateTime : Int) ->Bool{
            guard let db = connection() else {
                return false
            }
         return GenerateEntity.instance.delete(db: db, value: (createDateTime))
        }
+     */
     /*Update History*/
     class open func updateHistory(createDateTime : Int, value: Bool) ->Bool{
              guard let db = connection() else {

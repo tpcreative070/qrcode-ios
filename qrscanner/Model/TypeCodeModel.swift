@@ -11,10 +11,12 @@ class TypeCodeModel  : Codable{
     var identify : Int?
     var name  : String?
     var iconImage : String?
-    init(identify : Int, name : String, icon : String) {
+    var description : String?
+    init(identify : Int, name : String, icon : String, description : String) {
         self.identify = identify
         self.name =  name;
         self.iconImage = icon
+        self.description = description
     }
     
     

@@ -244,7 +244,6 @@ extension ScannerVC {
             return LanguageKey.CODABAR
             
         case kBarcodeFormatCode39:
-            print("Code 39")
             return LanguageKey.Code_39
             
         case kBarcodeFormatCode93:
@@ -291,8 +290,18 @@ extension ScannerVC {
         }
     }
     func bindViewModel() {
+        
         self.viewModel.showLoading.bind { visible in
-            visible ? ProgressHUD.show(): ProgressHUD.dismiss()
+            print(visible)
+         //   visible ? ProgressHUD.show(): ProgressHUD.dismiss()
+            if visible{
+             //   self.viewBackground.bringSubviewToFront(self.wrapperFirstView)
+              //  self.view.backgroundColor = .blue
+                ProgressHUD.showInView(view: self.view)
+            }
+            else{
+                ProgressHUD.dismiss()
+            }
         }
         self.viewModel.onShowError = { [weak self] alert in
             self?.presentSingleButtonDialog(alert: alert)
@@ -306,7 +315,10 @@ extension ScannerVC {
             }
         }
         self.viewModel.navigate = { [weak self] in
+            print(self!.viewModel.listResult.count)
             if self!.viewModel.listResult.count > 1{
+                self?.viewModel.listResult.removeAll()
+               // self?.viewModel.defaultValue()
             }
             else{
             let  vc = DetailVC()
@@ -416,7 +428,9 @@ extension ScannerVC {
     }
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if metadataObjects != nil && metadataObjects.count != 0 {
-            if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject
+            let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject
+            print(object)
+            if object?.stringValue != nil
             {
                 print(AppConstants.isVibrate)
                 if AppConstants.isVibrate == 1 {
@@ -427,20 +441,36 @@ extension ScannerVC {
                 }
                 isScanning = false
                 viewModel.isScanner = true
-                viewModel.scannerResult(mValue: "\(object.stringValue!)")
+                viewModel.scannerResult(mValue: "\(String(describing: (object?.stringValue)!))")
                 session?.stopRunning()
             }
+            else{
+                print("nil object")
+            }
+            
+        }
+        else{
+            
         }
     }
 }
 extension ScannerVC : OpalImagePickerControllerDelegate {
     func imagePicker(_ picker: OpalImagePickerController, didFinishPickingImages images: [UIImage]) {
         self.viewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
+
         self.viewModel.doAsync(list: images)
+        
         viewModel.doGetListTransaction()
 
     }
     func imagePicker(_ picker: OpalImagePickerController, didFinishPickingAssets assets: [PHAsset]) {
+        print("didF")
+        ProgressHUD.showInView(view: self.view)
+       // ProgressHUD.dismiss()
+    }
+    func imagePickerDidCancel(_ picker: OpalImagePickerController) {
+        print("cancel")
+         ProgressHUD.dismiss()
     }
 }
 // MARK: ZXCaptureDelegate

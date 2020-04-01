@@ -441,8 +441,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
      ValidateEndTime
      */
     func validateEndTimeEvent(){
-        print(endTimeEvent)
-        if beginTimeEvent == nil {
+        if beginTimeEvent?.date == nil {
             errorMessages.value[GenerateViewModelKey.ENDTIME_EVENT] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorEndTimeRequired) ?? ""
         }
         else if (beginTimeEvent != nil && beginTimeEvent! > endTimeEvent!){

@@ -273,8 +273,6 @@ extension EventGenerateVC {
         self.generateViewModel?.titleEvent = textFieldTitle.text
         self.generateViewModel?.locationEvent = textFieldLocation.text
         self.generateViewModel?.descriptionEvent = textFieldDescription.text
-        print(generateViewModel?.beginTime)
-        print(generateViewModel?.endTime)
         self.generateViewModel?.beginTimeEvent = generateViewModel?.beginTime
         self.generateViewModel?.endTimeEvent = generateViewModel?.endTime
         

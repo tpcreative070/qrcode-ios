@@ -254,6 +254,34 @@ class CommonService {
         let reader = ZXMultiFormatReader()
         let readersqrcode = ZXQRCodeMultiReader()
         let readerbarcode = ZXGenericMultipleBarcodeReader(delegate:reader)
+        do{
+                   let  array_resultqr =  try readersqrcode.decodeMultiple(bitmap!, hints: hints) as! [ZXResult]
+                   if (array_resultqr.count > 1 )
+                   {
+                       if countList == 1 {
+                           for item in array_resultqr{
+                               completion([item])
+                           }
+                       }
+                       else{
+                           for item in array_resultqr{
+                               print("\(item)  ---  \(item.barcodeFormat)")
+                               listMultiResult.append(item)
+                           }
+                           completion(listMultiResult)
+                       }
+                   }
+            if array_resultqr.count == 1 {
+                           // let text = array_resultbar[0].text ?? "Unknow"
+                           //                completion(text)
+                           listSingleResult.append(array_resultqr[0])
+                           completion(listSingleResult)
+                           return
+                       }
+               }
+               catch {
+                   completion(nil)
+               }
         do {
             //Decode multibarcode
             let array_resultbar = try readerbarcode?.decodeMultiple(bitmap!, hints: hints) as! [ZXResult]
@@ -284,30 +312,6 @@ class CommonService {
         }catch {
             completion(nil)
         }
-        do{
-            let  array_resultqr =  try readersqrcode.decodeMultiple(bitmap!, hints: hints) as! [ZXResult]
-            if (array_resultqr.count > 0 )
-            {
-                if countList == 1 {
-                    for item in array_resultqr{
-                        completion([item])
-                    }
-                }
-                else{
-                    for item in array_resultqr{
-                        print("\(item)  ---  \(item.barcodeFormat)")
-                        listMultiResult.append(item)
-                    }
-                    completion(listMultiResult)
-                }
-            }
-        }
-        catch {
-            completion(nil)
-        }
-        
-        
-        
     }
     //reader QRCode
     static func onReaderMultiQRcode(tempImage : CGImage, completion : @escaping (_ result : String?) -> ()) {

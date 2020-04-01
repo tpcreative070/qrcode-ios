@@ -467,6 +467,7 @@ struct LanguageKey {
     //Floaty Button
     static let Csv = "CSV"
     static let Select = "SELECT"
+    static let Selected = "SELECTED"
     //Wifi
     static let SSID = "SSID"
     static let NetworkEncryption = "NETWORK_ENCRYPTION"

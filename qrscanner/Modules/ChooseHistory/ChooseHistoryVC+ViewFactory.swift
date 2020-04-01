@@ -65,6 +65,7 @@ extension ChooseHistoryVC  {
     }
     func bindViewModel() {
         self.historyViewModel.showLoading.bind { visible in
+            print(visible)
             visible ? ProgressHUD.show(): ProgressHUD.dismiss()
         }
         self.historyViewModel.onShowError = { [weak self] alert in
@@ -73,7 +74,7 @@ extension ChooseHistoryVC  {
         
         self.historyViewModel.responseToView = {[weak self] value in
             if value == EnumResponseToView.UPDATE_DATA_SOURCE.rawValue {
-                self?.navigationItem.title = "\(String(describing: self!.historyViewModel.countItemSelected)) selected"
+                self?.navigationItem.title = "\(String(describing: self!.historyViewModel.countItemSelected)) \(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Selected)!))"
                 self?.updateDataSource()
             }
         }
@@ -86,6 +87,8 @@ extension ChooseHistoryVC  {
         self.dataSource.sections = self.sections
         self.dataSource.items = self.historyViewModel.listHistories
         self.tableView.reloadData()
+        self.historyViewModel.showLoading.value = false
+
     }
     func setupNavItems() {
         self.view.backgroundColor = .white
@@ -103,7 +106,7 @@ extension ChooseHistoryVC  {
         let menuButtonRightSelectAll = UIButton(type: .system)
         menuButtonRightSelectAll.setImage(UIImage(named: AppImages.IC_SELECT_ALL), for: .normal)
         menuButtonRightSelectAll.addTarget(self, action: #selector(doSelectAll), for: .touchUpInside)
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView:menuButtonRightSelectAll),UIBarButtonItem(customView: menuButtonRightDel)]
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRightDel),UIBarButtonItem(customView:menuButtonRightSelectAll)]
     }
     
     func bindTableView(){
@@ -146,8 +149,7 @@ extension ChooseHistoryVC  {
         item.icon?.withTintColor(.white)
         item.title = LanguageHelper.getTranslationByKey(LanguageKey.Csv)
         item.handler = { item in
-            let activiController = UIActivityViewController(activityItems: ["this text"], applicationActivities: nil)
-            self.present(activiController,animated: true, completion: nil)
+            self.getCSVHistory(listValue: self.historyViewModel.listHistories)
         }
         
         let item_select = FloatyItem()

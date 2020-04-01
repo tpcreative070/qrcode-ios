@@ -75,6 +75,7 @@ extension HistoryVC  {
         self.dataSource.sections = self.sections
         self.dataSource.items = self.historyViewModel.listHistories
         self.tableView.reloadData()
+        self.historyViewModel.showLoading.value = false
     }
     
     func bindTableView(){
