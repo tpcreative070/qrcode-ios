@@ -91,6 +91,7 @@ extension SettingsVC {
             switchBeep.widthAnchor.constraint(equalToConstant: AppConstants.SWITCH_WIDTH_DEFAULT),
             switchBeep.heightAnchor.constraint(equalToConstant: AppConstants.SWITCH_HEIGHT_DEFAULT)
         ])
+      
         self.viewBeep.addSubview(self.viewUnderLineScan)
         NSLayoutConstraint.activate([
             self.viewUnderLineScan.leadingAnchor.constraint(equalTo: self.viewBackground.leadingAnchor),
@@ -101,13 +102,87 @@ extension SettingsVC {
         self.viewUnderLineScan.backgroundColor = AppColors.GRAY_LIGHT
         self.viewBackground.addSubview(lbAvanceFeatures)
         NSLayoutConstraint.activate([
-            lbAvanceFeatures.topAnchor.constraint(equalTo: viewBeep.bottomAnchor, constant: AppConstants.MARGIN_TOP),
+            lbAvanceFeatures.topAnchor.constraint(equalTo: viewUnderLineScan.bottomAnchor, constant: AppConstants.MARGIN_TOP),
             lbAvanceFeatures.trailingAnchor.constraint(equalTo: viewBackground.trailingAnchor),
             lbAvanceFeatures.leadingAnchor.constraint(equalTo: viewBackground.leadingAnchor),
         ])
+        self.viewBackground.addSubview(viewMultiScan)
+        NSLayoutConstraint.activate([
+            viewMultiScan.topAnchor.constraint(equalTo: lbAvanceFeatures.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
+            viewMultiScan.trailingAnchor.constraint(equalTo: viewBackground.trailingAnchor, constant: AppConstants.MARGIN_RIGHT_SETTING),
+            viewMultiScan.leadingAnchor.constraint(equalTo: viewBackground.leadingAnchor, constant: AppConstants.MARGIN_LEFT_SETTING),
+            viewMultiScan.widthAnchor.constraint(equalToConstant: viewBackground.frame.width),
+            
+        ])
+        self.viewMultiScan.addSubview(imgMultiScan)
+        NSLayoutConstraint.activate([
+            self.imgMultiScan.leadingAnchor.constraint(equalTo: self.viewMultiScan.leadingAnchor),
+            self.imgMultiScan.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgMultiScan.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgMultiScan.centerYAnchor.constraint(equalTo: self.viewMultiScan.centerYAnchor)
+        ])
+        
+        self.viewMultiScan.addSubview(stackViewMultiScan)
+        NSLayoutConstraint.activate([
+            self.stackViewMultiScan.leadingAnchor.constraint(equalTo: self.imgMultiScan.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
+            self.stackViewMultiScan.topAnchor.constraint(equalTo: self.viewMultiScan.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
+            self.stackViewMultiScan.centerYAnchor.constraint(equalTo: self.viewMultiScan.centerYAnchor),
+            self.stackViewMultiScan.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.5),
+            
+        ])
+        self.stackViewMultiScan.axis = .vertical
+        self.stackViewMultiScan.alignment = .fill
+        self.stackViewMultiScan.distribution = UIStackView.Distribution.fillEqually
+        self.stackViewMultiScan.spacing = AppConstants.MARGIN_TOP_SUBITEM
+        self.stackViewMultiScan.addArrangedSubview(lbScanMulti)
+        self.stackViewMultiScan.addArrangedSubview(lbMultiScanContent)
+        self.viewMultiScan.addSubview(self.switchMultiScan)
+        NSLayoutConstraint.activate([
+            switchMultiScan.topAnchor.constraint(equalTo: viewMultiScan.topAnchor, constant: AppConstants.MARGIN_TOP),
+            switchMultiScan.trailingAnchor.constraint(equalTo: viewMultiScan.trailingAnchor),
+            switchMultiScan.widthAnchor.constraint(equalToConstant: AppConstants.SWITCH_WIDTH_DEFAULT),
+            switchMultiScan.heightAnchor.constraint(equalToConstant: AppConstants.SWITCH_HEIGHT_DEFAULT),
+        ])
+        self.viewBackground.addSubview(viewMultiLoad)
+             NSLayoutConstraint.activate([
+                 viewMultiLoad.topAnchor.constraint(equalTo: viewMultiScan.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
+                 viewMultiLoad.trailingAnchor.constraint(equalTo: viewBackground.trailingAnchor, constant: AppConstants.MARGIN_RIGHT_SETTING),
+                 viewMultiLoad.leadingAnchor.constraint(equalTo: viewBackground.leadingAnchor, constant: AppConstants.MARGIN_LEFT_SETTING),
+                 viewMultiLoad.widthAnchor.constraint(equalToConstant: viewBackground.frame.width),
+                 
+             ])
+             self.viewMultiLoad.addSubview(imgMultiLoad)
+             NSLayoutConstraint.activate([
+                 self.imgMultiLoad.leadingAnchor.constraint(equalTo: self.viewMultiLoad.leadingAnchor),
+                 self.imgMultiLoad.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+                 self.imgMultiLoad.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+                 self.imgMultiLoad.centerYAnchor.constraint(equalTo: self.viewMultiLoad.centerYAnchor)
+             ])
+             
+             self.viewMultiLoad.addSubview(stackViewMultiLoad)
+             NSLayoutConstraint.activate([
+                 self.stackViewMultiLoad.leadingAnchor.constraint(equalTo: self.imgMultiLoad.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
+                 self.stackViewMultiLoad.topAnchor.constraint(equalTo: self.viewMultiLoad.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
+                 self.stackViewMultiLoad.centerYAnchor.constraint(equalTo: self.viewMultiLoad.centerYAnchor),
+                 self.stackViewMultiLoad.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.5),
+                 
+             ])
+             self.stackViewMultiLoad.axis = .vertical
+             self.stackViewMultiLoad.alignment = .fill
+             self.stackViewMultiLoad.distribution = UIStackView.Distribution.fillEqually
+             self.stackViewMultiLoad.spacing = AppConstants.MARGIN_TOP_SUBITEM
+             self.stackViewMultiLoad.addArrangedSubview(lbLoadMulti)
+             self.stackViewMultiLoad.addArrangedSubview(lbMultiLoadContent)
+             self.viewMultiLoad.addSubview(self.switchMultiLoad)
+             NSLayoutConstraint.activate([
+                 switchMultiLoad.topAnchor.constraint(equalTo: viewMultiLoad.topAnchor, constant: AppConstants.MARGIN_TOP),
+                 switchMultiLoad.trailingAnchor.constraint(equalTo: viewMultiLoad.trailingAnchor),
+                 switchMultiLoad.widthAnchor.constraint(equalToConstant: AppConstants.SWITCH_WIDTH_DEFAULT),
+                 switchMultiLoad.heightAnchor.constraint(equalToConstant: AppConstants.SWITCH_HEIGHT_DEFAULT),
+             ])
         self.viewBackground.addSubview(viewChangeColor)
         NSLayoutConstraint.activate([
-            viewChangeColor.topAnchor.constraint(equalTo: lbAvanceFeatures.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
+            viewChangeColor.topAnchor.constraint(equalTo: viewMultiLoad.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
             viewChangeColor.trailingAnchor.constraint(equalTo: viewBackground.trailingAnchor, constant: AppConstants.MARGIN_RIGHT_SETTING),
             viewChangeColor.leadingAnchor.constraint(equalTo: viewBackground.leadingAnchor, constant: AppConstants.MARGIN_LEFT_SETTING),
             viewChangeColor.widthAnchor.constraint(equalToConstant: viewBackground.frame.width),
@@ -458,10 +533,17 @@ extension SettingsVC {
         self.lbOpenWebContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.FLOAT_PLACEHOLDER_FONT_SIZE)
         self.lbOpenWebContent.textColor = AppColors.GRAY
         
+        self.lbMultiScanContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.FLOAT_PLACEHOLDER_FONT_SIZE)
+               self.lbMultiScanContent.textColor = AppColors.GRAY
+        self.lbMultiLoadContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.FLOAT_PLACEHOLDER_FONT_SIZE)
+               self.lbMultiLoadContent.textColor = AppColors.GRAY
         self.lbCopyContent.numberOfLines = 2
         self.lbOpenWebContent.numberOfLines = 2
         self.lbLanguageContent.numberOfLines = 2
-        
+        self.lbMultiLoadContent.numberOfLines = 2
+        self.lbMultiScanContent.numberOfLines = 2
+
+
         self.lbScan.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoSemiBold, size: AppFonts.LABEL_TITLE_FONT_SIZE)
         self.lbScan.textColor = AppColors.PRIMARY_COLOR
         self.lbAvanceFeatures.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoSemiBold, size: AppFonts.LABEL_TITLE_FONT_SIZE)
@@ -474,6 +556,24 @@ extension SettingsVC {
           self.switchOpen.addTarget(self, action: #selector(switchOpenDidChange(_:)), for: .touchUpInside)
           self.switchBeep.addTarget(self, action: #selector(switchBeepDidChange(_:)), for: .touchUpInside)
           self.switchCopy.addTarget(self, action: #selector(switchCopyDidChange(_:)), for: .touchUpInside)
+        self.switchMultiScan.addTarget(self, action: #selector(switchMultiScanDidChange(_:)), for: .touchUpInside)
+
+        self.switchMultiLoad.addTarget(self, action: #selector(switchMultiLoadDidChange(_:)), for: .touchUpInside)
+
+        self.viewLanguage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(doChangeLanguage(sender:))))
+                  viewLanguage.isUserInteractionEnabled  = true
+        self.viewChangeColor.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(doChangeColor(sender:))))
+                         viewChangeColor.isUserInteractionEnabled  = true
+        self.viewAppPermission.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showPermission(sender:))))
+                                viewAppPermission.isUserInteractionEnabled  = true
+        self.viewPrivacy.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showPrivacy(sender:))))
+                                      viewPrivacy.isUserInteractionEnabled  = true
+        self.viewShare.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showShare(sender:))))
+           viewShare.isUserInteractionEnabled  = true
+        self.viewHelp.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showHelp(sender:))))
+        viewHelp.isUserInteractionEnabled  = true
+        self.viewSupport.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showSupport(sender:))))
+        viewHelp.isUserInteractionEnabled  = true
     }
     func setupEndedUpScrollView(){
         viewBackground.addSubview(endedUpScrollViewContainerView)
@@ -485,6 +585,26 @@ extension SettingsVC {
         ])
         self.view.layoutIfNeeded()
     }
+    func checkIsOnSwitch(){
+           if UserDefaults.standard.bool(forKey:KeyUserDefault.MultiScan){
+                switchMultiScan.isOn = true
+           }
+           if UserDefaults.standard.bool(forKey:KeyUserDefault.MultiLoad){
+                       switchMultiLoad.isOn = true
+                  }
+           if UserDefaults.standard.bool(forKey:KeyUserDefault.Vibrate){
+                       switchVibrate.isOn = true
+                  }
+           if UserDefaults.standard.bool(forKey:KeyUserDefault.Copy){
+                       switchCopy.isOn = true
+                  }
+           if UserDefaults.standard.bool(forKey:KeyUserDefault.Beep){
+                       switchBeep.isOn = true
+                  }
+           if UserDefaults.standard.bool(forKey:KeyUserDefault.OpenWeb){
+                       switchOpen.isOn = true
+                  }
+       }
     func switchDefaultConfig(switchView: ICSwitchButton) {
       switchView.onTintColor = AppConstants.SWITCH_ON_TINT_COLOR
       switchView.offTintColor = AppConstants.SWITCH_OFF_TINT_COLOR
@@ -496,6 +616,9 @@ extension SettingsVC {
       switchView.animationDuration = AppConstants.SWITCH_ANIMATION_DURATION
     }
     func bindViewModel(){
+        self.switchDefaultConfig(switchView: switchMultiScan)
+        self.switchDefaultConfig(switchView: switchMultiLoad)
+
         self.switchDefaultConfig(switchView: switchVibrate)
         self.switchDefaultConfig(switchView: switchOpen)
         self.switchDefaultConfig(switchView: switchBeep)

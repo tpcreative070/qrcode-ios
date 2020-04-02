@@ -44,6 +44,11 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    var viewFooter : UIView = {
+          let view = UIView()
+          view.translatesAutoresizingMaskIntoConstraints = false
+          return view
+      }()
     var viewScan : ViewRectangleArea! = {
         let view = ViewRectangleArea()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -55,6 +60,27 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
         return lbScannerRectangle
     }()
     
+    lazy var lbTotal : ICLabel = {
+        let view = ICLabel()
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Total)
+        view.textColor = AppColors.WHITE_COLOR
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    lazy var lbTotalResult : ICLabel = {
+           let view = ICLabel()
+           view.text = "0"
+           view.translatesAutoresizingMaskIntoConstraints = false
+        
+           return view
+       }()
+    let btnOK: UIButton = {
+           let btn = UIButton()
+           btn.translatesAutoresizingMaskIntoConstraints = false
+           btn.setTitle(LanguageHelper.getTranslationByKey(LanguageKey.Done),for: .normal)
+        btn.setTitleColor(AppColors.WHITE_COLOR, for: .normal)
+           return btn
+       }()
     var viewScanBg : UIView! = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -181,7 +207,17 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
        // ProgressHUD.showInView(view: self.view)
         onTakeGallery()
     }
-    
+    @objc func doneScanner(){
+           print("printO")
+        self.viewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
+        viewModel.isScanner = true
+        print(viewModel.listScanner)
+        for item in viewModel.listScanner {
+            self.viewModel.scannerResult(mValue: item)
+        }
+        viewModel.doGetListTransaction()
+        lbTotalResult.text =  "\(viewModel.listScanner.count)"
+       }
     @objc func actionHelp(sender : UITapGestureRecognizer){
         print("actionScanQR")
         let vc = HelpVC()

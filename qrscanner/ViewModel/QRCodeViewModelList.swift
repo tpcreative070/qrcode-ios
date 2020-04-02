@@ -323,7 +323,7 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
             {
                 let createDateTime = Date().millisecondsSince1970
                 print("value dateTime: \(dateTime)")
-                let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!))
+                let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: ""))
                 
             }
         }

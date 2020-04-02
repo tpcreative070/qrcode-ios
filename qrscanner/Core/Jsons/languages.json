@@ -1,5 +1,17 @@
 {
     "en": {
+    "APPPERMISSIONCONTENT1":"1. WRITE_EXTERNAL_STORAGE: Save QRCode to SDCard",
+           "APPPERMISSIONCONTENT2":"2. READ_EXTERNAL_STORAGE: Load QRCode from SDCard",
+           "APPPERMISSIONCONTENT3":"3. ACCESS_FINE_LOCATION: Getting longtitude and latitude for QRCode type of location",
+           "APPPERMISSIONCONTENT4":"4. CAMERA PERMISSION: Scanner code",
+           "APPPERMISSIONCONTENT5":"5. CALL_PHONE: Share QRCode to your call",
+           "APPPERMISSIONCONTENT6":"6. CONTACT: Add new contact on your phone",
+
+        "CHOOSE_ONE_QRCODE": "Only 1 photo is selected, if you want to select multiple photos in Settings -> Turn on Multi Loader",
+        "MULTI_SCAN" : "Multi Scanner",
+        "MULTI_LOAD" : "Multi Loader",
+        "MULTI_SCAN_CONTENT" : "Select multiple images from the library to scan at the same time",
+        "MULTI_LOAD_CONTENT": "Scanning multiple images at a time will then display the results",
          "SELECTED" : "selected",
         "SETTING": "Settings",
         "TELEPHONE" : "Telephone",
@@ -438,6 +450,18 @@
         "RENEW_NOT_ALLOW" : "The OTP code is still valid, OTP sending failed"
     },
     "vi" : {
+        "APPPERMISSIONCONTENT1":"1. WRITE_EXTERNAL_STORAGE: Save QRCode to SDCard",
+               "APPPERMISSIONCONTENT2":"2. READ_EXTERNAL_STORAGE: Load QRCode from SDCard",
+               "APPPERMISSIONCONTENT3":"3. ACCESS_FINE_LOCATION: Getting longtitude and latitude for QRCode type of location",
+               "APPPERMISSIONCONTENT4":"4. CAMERA PERMISSION: Scanner code",
+               "APPPERMISSIONCONTENT5":"5. CALL_PHONE: Share QRCode to your call",
+               "APPPERMISSIONCONTENT6":"6. CONTACT: Add new contact on your phone",
+     
+        "CHOOSE_ONE_QRCODE": "Chỉ được chọn 1 ảnh, nếu muốn chọn nhiều ảnh vào Cài đặt -> Bật chọn nhiêù ảnh",
+        "MULTI_SCAN" : "Scanner nhiều ảnh",
+              "MULTI_LOAD" : "Tải nhiều ảnh",
+              "MULTI_SCAN_CONTENT" : "Chọn nhiều hình ảnh từ thư viện để quét cùng một lúc",
+              "MULTI_LOAD_CONTENT": "Quét nhiều hình ảnh cùng một lúc sẽ hiển thị kết quả",
         "SELECTED" : "Được chọn",
           "SETTING": "Cài đặt",
         "TELEPHONE" : "Điện thoại",
@@ -604,7 +628,7 @@
         "FLIGHTNAME" : "Flight name",
         "HISTORY" : "Lịch sử",
         "ONEWAY" : "One way",
-        "TOTAL" : "Tổng tiền",
+        "TOTAL" : "Tổng số mã",
         "QUANTITY" : "Số lượng",
         "CREATEDDATE" : "Ngày tạo",
         "CONTACT" : "Liên hệ",

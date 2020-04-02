@@ -269,6 +269,8 @@ struct AppImages {
     static let IC_GENERATE = "ic_generate"
     static let IC_HISTORY = "ic_history"
     static let IC_SCAN = "ic_scan"
+    static let IC_SCAN_QR = "ic_scanqr"
+
     static let IC_SAVE = "ic_save"
     static let IC_SETTING = "ic_settings_white"
     
@@ -298,6 +300,7 @@ struct AppImages {
     static let IC_SUPPORT = "ic_support"
     static let IC_TEXT = "ic_text"
     static let IC_SMS = "ic_textsms"
+    static let IC_SCAN_MULTI = "ic_scanqr"
     static let IC_VIBRATION = "ic_vibration"
     static let IC_WIFI = "ic_wifi"
     static let BG1 = "bg1"
@@ -434,14 +437,36 @@ struct AppColors {
     static let POPUP_BACKGROUND = UIColor.init(red: 8/255.0, green: 32/255.0, blue: 52/255.0, alpha: 0.5)
     static let ORANGE = UIColor.init(red: 241/255.0, green: 89/255.0, blue: 43/255.0, alpha: 1.0)
     static let GRAY_LIGHT_90 = UIColor.init(red: 242/255.0, green: 246/255.0, blue: 249/255.0, alpha: 1.0)
+    
+    static let BLUE_IN_COLOR = UIColor.init(red: 60/255.0, green: 102/255.0, blue: 210/255.0, alpha: 1.0)
+    static let DARK_GREEN_COLOR = UIColor.init(red: 19/255.0, green: 121/255.0, blue: 120/255.0, alpha: 1.0)
+    static let PINK_COLOR = UIColor.init(red: 234/255.0, green: 56/255.0, blue: 120/255.0, alpha: 1.0)
+    static let LIGHT_PURPLE_COLOR = UIColor.init(red: 124/255.0, green: 23/255.0, blue: 159/255.0, alpha: 1.0)
+    static let PURPLE_COLOR = UIColor.init(red: 83/255.0, green: 41/255.0, blue: 164/255.0, alpha: 1.0)
+    static let INDIGO_COLOR = UIColor.init(red: 16/255.0, green: 125/255.0, blue: 143/255.0, alpha: 1.0)
+    static let BLACK_GREEN_COLOR = UIColor.init(red: 2/255.0, green: 77/255.0, blue: 63/255.0, alpha: 1.0)
+    static let CYAN_COLOR = UIColor.init(red: 101/255.0, green: 160/255.0, blue: 62/255.0, alpha: 1.0)
+    static let MOSS_GREEN_COLOR = UIColor.init(red: 126/255.0, green: 142/255.0, blue: 25/255.0, alpha: 1.0)
+    static let ORANGE_IN_COLOR = UIColor.init(red: 234/255.0, green: 80/255.0, blue: 9/255.0, alpha: 1.0)
+    static let BROWN_COLOR = UIColor.init(red: 91/255.0, green: 64/255.0, blue: 53/255.0, alpha: 1.0)
+
 }
 struct AppViewOptions {
     static let SPLIT_VIEW = 0
     static let NAV_VIEW = 1
     static let NO_VIEW = 2
 }
-
+struct KeyUserDefault{
+     static let Vibrate = "Vibrate"
+     static let Beep = "Beep"
+     static let MultiScan = "MultiScan"
+     static let MultiLoad = "MultiLoad"
+     static let Copy = "Copy"
+    static let OpenWeb = "OpenWeb"
+}
 struct LanguageKey {
+
+    
     //Scanner
     static let Aztec = "Aztec"
     static let CODABAR = "CODABAR"
@@ -521,6 +546,10 @@ struct LanguageKey {
     static let SupportContent = "SUPPORT_CONTENT"
     static let QRVersion = "QR_VERSION"
     static let QRVersionContent = "QR_VERSION_CONTENT"
+    static let MultiScan = "MULTI_SCAN"
+    static let MultiLoad = "MULTI_LOAD"
+    static let MultiScanContent = "MULTI_SCAN_CONTENT"
+    static let MultiLoadContent = "MULTI_LOAD_CONTENT"
 
     
     static let CancelButtonTitle = "CANCEL"
@@ -601,6 +630,8 @@ struct LanguageKey {
     static let PayVTVCab = "PAYVTVCAB"
     static let ActiveAccountNow = "ACTIVE_ACCOUNT_NOW"
     //typeCode
+    
+    static let Total = "TOTAL"
     static let Sms = "SMS"
     static let Email = "EMAIL"
     static let Email_Help = "care@tpcreative.me"
@@ -617,7 +648,16 @@ struct LanguageKey {
     static let Copy_item = "COPY_ITEMS"
     static let Content_copy = "CONTENT_COPY"
     static let ChooseQRCode = "CHOOSE_QRCODE"
-    
+      static let ChooseOneQRCode = "CHOOSE_ONE_QRCODE"
+    static let AppPermissonContent1 = "APPPERMISSIONCONTENT1"
+     static let AppPermissonContent2 = "APPPERMISSIONCONTENT2"
+     static let AppPermissonContent3 = "APPPERMISSIONCONTENT3"
+    static let AppPermissonContent4 = "APPPERMISSIONCONTENT4"
+
+    static let AppPermissonContent5 = "APPPERMISSIONCONTENT5"
+
+    static let AppPermissonContent6 = "APPPERMISSIONCONTENT6"
+
     //Confirm
     static let Gender = "GENDER"
     static let FirstName = "FIRSTNAME"
@@ -651,7 +691,6 @@ struct LanguageKey {
     static let USER_NOT_ACTIVE = "USER_NOT_ACTIVE"
     //HistoryCheckout
     static let OneWay = "ONEWAY"
-    static let Total = "TOTAL"
     static let Quantity = "QUANTITY"
     static let CreatedDate = "CREATEDDATE"
     static let Maximum7Passengers = "MAXIMUM7PASSENGERS"
@@ -1102,7 +1141,8 @@ enum EnumIdentifier : String {
     case QRCodeList = "QRCodeList"
     case Advance_Feature = "Advance_Feature"
     case Information = "Information"
-    
+    case ChangeColor = "ChangeColor"
+
     case None = "None"
     case Home  = "Home"
     case HistoryCheckout = "HistoryCheckout"
@@ -1155,6 +1195,20 @@ enum EnumType : String {
     case LOCATION = "LOCATION"
     case MESSAGE = "MESSAGE"
     case EVENT = "EVENT"
+}
+enum ColorString : String {
+    case Black = "Black"
+    case Blue = "Blue"
+    case DarkGreen = "DarkGreen"
+    case Pink = "Pink"
+    case LightPurple = "LightPurple"
+    case Purple = "Purple"
+    case Indigo = "Indigo"
+    case BlackGreen = "BlackGreen"
+    case Cyan = "Cyan"
+     case MossGreen = "MossGreen"
+     case Orange = "Orange"
+     case Brown = "Brown"
 }
 enum EnumResponseCode : String {
     case USER_IS_NOT_EXISTED = "3035"

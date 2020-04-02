@@ -170,7 +170,8 @@ class TableViewCell : UITableViewCell{
             let jsonData = view.contentView.data(using: .utf8)!
             let urlData = try! JSONDecoder().decode(UrlModel.self, from: jsonData)
             configView(viewModel: UrlViewModel(url: urlData.url!))
-            if AppConstants.isOpen == 1{
+            if  UserDefaults.standard.bool(forKey: KeyUserDefault.OpenWeb)
+{
                 if let url = URL(string: urlData.url!) {
                                UIApplication.shared.open(url)
                            }

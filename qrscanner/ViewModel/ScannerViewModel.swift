@@ -26,7 +26,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
     var isQRCode : Int = 0
     var dateTime : String?
     var isVibrate: Bool?
-    
+    var listScanner : [String] = [String]()
     
     let userService : UserService
     init(userService : UserService = UserService()) {
@@ -315,8 +315,14 @@ class ScannerViewModel : ScannerViewModelDelegate {
             print("value insert: \(value_content)")
             let createDateTime = Date().millisecondsSince1970
             if isScanner {
-                
-                let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: ""))
+                if UserDefaults.standard.bool(forKey:KeyUserDefault.MultiScan){
+                    let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: ""))
+                                   if result {
+                                       print("insert success")
+                                   }
+                }
+                else{
+                let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: "", isCode: ""))
                 if result {
                     itemScanner = SQLHelper.getItemScanner(createDateTime: createDateTime)!
                     let typeCode = itemScanner.typeCode?.lowercased()
@@ -327,9 +333,10 @@ class ScannerViewModel : ScannerViewModelDelegate {
                     self.navigate?()
                     //  self.navigate?()
                 }
+                }
             }
             else{
-                let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!))
+                let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: ""))
                 if result {
                     print("insert success")
                 }
@@ -441,6 +448,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
     }
     func doGetListTransaction(){
         listTransaction.removeAll()
+        print(dateTime)
         if let mList = SQLHelper.getListTransaction(transaction: dateTime!){
             var index = 0
             self.listTransaction = mList.map({ (data) -> ContentViewModel in
@@ -449,6 +457,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
             })
         }
         print(listTransaction)
+        listScanner.removeAll()
         self.navigate?()
     }
     

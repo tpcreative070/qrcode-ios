@@ -148,6 +148,36 @@ extension ScannerVC {
         self.viewFlashBg.addGestureRecognizer(tapFlash)
         
     }
+    func setupFooter(){
+        viewBackground.addSubview(viewFooter)
+        NSLayoutConstraint.activate([
+            viewFooter.bottomAnchor.constraint(equalTo: viewBackground.bottomAnchor, constant: AppConstants.MARGIN_BOTTOM_ITEM),
+            viewFooter.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewFooter.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewFooter.centerXAnchor.constraint(equalTo: viewBackground.centerXAnchor)
+        ])
+        viewFooter.addSubview(lbTotal)
+        NSLayoutConstraint.activate([
+            lbTotal.topAnchor.constraint(equalTo: viewFooter.topAnchor),
+            lbTotal.bottomAnchor.constraint(equalTo: viewFooter.bottomAnchor),
+            lbTotal.leftAnchor.constraint(equalTo: viewFooter.leftAnchor),
+        ])
+        viewFooter.addSubview(lbTotalResult)
+        NSLayoutConstraint.activate([
+            lbTotalResult.topAnchor.constraint(equalTo: viewFooter.topAnchor),
+            lbTotalResult.bottomAnchor.constraint(equalTo: viewFooter.bottomAnchor),
+            lbTotalResult.leftAnchor.constraint(equalTo: lbTotal.rightAnchor, constant: AppConstants.MARGIN_LEFT),
+        ])
+        viewFooter.addSubview(btnOK)
+        NSLayoutConstraint.activate([
+            btnOK.topAnchor.constraint(equalTo: viewFooter.topAnchor),
+            btnOK.bottomAnchor.constraint(equalTo: viewFooter.bottomAnchor),
+            btnOK.rightAnchor.constraint(equalTo: viewFooter.rightAnchor, constant: AppConstants.MARGIN_RIGHT)
+        ])
+        self.lbTotalResult.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.lbTotalResult.textColor = .white
+        btnOK.addTarget(self, action: #selector(doneScanner), for: .touchUpInside)
+    }
     
     func applyOrientation() {
         let orientation = UIApplication.shared.statusBarOrientation
@@ -293,10 +323,10 @@ extension ScannerVC {
         
         self.viewModel.showLoading.bind { visible in
             print(visible)
-         //   visible ? ProgressHUD.show(): ProgressHUD.dismiss()
+            //   visible ? ProgressHUD.show(): ProgressHUD.dismiss()
             if visible{
-             //   self.viewBackground.bringSubviewToFront(self.wrapperFirstView)
-              //  self.view.backgroundColor = .blue
+                //   self.viewBackground.bringSubviewToFront(self.wrapperFirstView)
+                //  self.view.backgroundColor = .blue
                 ProgressHUD.showInView(view: self.view)
             }
             else{
@@ -318,13 +348,13 @@ extension ScannerVC {
             print(self!.viewModel.listResult.count)
             if self!.viewModel.listResult.count > 1{
                 self?.viewModel.listResult.removeAll()
-               // self?.viewModel.defaultValue()
+                // self?.viewModel.defaultValue()
             }
             else{
-            let  vc = DetailVC()
-            vc.listContentViewModel = (self?.viewModel.listTransaction)!
-            self?.navigationController?.pushViewController(vc, animated: true)
-            self?.viewModel.defaultValue()
+                let  vc = DetailVC()
+                vc.listContentViewModel = (self?.viewModel.listTransaction)!
+                self?.navigationController?.pushViewController(vc, animated: true)
+                self?.viewModel.defaultValue()
             }
         }
         self.viewModel.resultScan.bind { value in
@@ -415,6 +445,7 @@ extension ScannerVC {
         self.viewBackground.bringSubviewToFront(viewScan)
         self.viewBackground.bringSubviewToFront(viewScan)
         self.viewBackground.bringSubviewToFront(lbScannerRectangle)
+        
         session?.startRunning()
     }
     
@@ -429,20 +460,40 @@ extension ScannerVC {
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if metadataObjects != nil && metadataObjects.count != 0 {
             let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject
-            print(object)
             if object?.stringValue != nil
             {
                 print(AppConstants.isVibrate)
-                if AppConstants.isVibrate == 1 {
+                if  UserDefaults.standard.bool(forKey:KeyUserDefault.Vibrate)
+                {
                     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
                 }
-                if AppConstants.isBeep == 1 {
-                      SoundHelper.shared.play()
+                if  UserDefaults.standard.bool(forKey: KeyUserDefault.Beep) {
+                    SoundHelper.shared.play()
                 }
-                isScanning = false
-                viewModel.isScanner = true
-                viewModel.scannerResult(mValue: "\(String(describing: (object?.stringValue)!))")
-                session?.stopRunning()
+                print(UserDefaults.standard.bool(forKey:KeyUserDefault.MultiScan))
+                if UserDefaults.standard.bool(forKey:KeyUserDefault.MultiScan){
+                    viewFooter.isHidden = false
+                    setupFooter()
+                    self.viewBackground.bringSubviewToFront(viewFooter)
+                    
+                    viewModel.listScanner.append("\(String(describing: (object?.stringValue)!))")
+                    lbTotalResult.text =  "\(viewModel.listScanner.count)"
+                    session?.stopRunning()
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        self.session?.startRunning()
+                    }
+                }
+                else{
+                    viewModel.listScanner.removeAll()
+                    viewFooter.isHidden = true
+                    lbTotalResult.text =  "\(viewModel.listScanner.count)"
+                    isScanning = false
+                    viewModel.isScanner = true
+                    viewModel.scannerResult(mValue: "\(String(describing: (object?.stringValue)!))")
+                    session?.stopRunning()
+                }
+                
             }
             else{
                 print("nil object")
@@ -457,21 +508,37 @@ extension ScannerVC {
 extension ScannerVC : OpalImagePickerControllerDelegate {
     func imagePicker(_ picker: OpalImagePickerController, didFinishPickingImages images: [UIImage]) {
         self.viewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
-
-        self.viewModel.doAsync(list: images)
+        print(UserDefaults.standard.bool(forKey:KeyUserDefault.MultiLoad))
+        if  UserDefaults.standard.bool(forKey:KeyUserDefault.MultiLoad){
+            self.viewModel.doAsync(list: images)
+            viewModel.doGetListTransaction()
+        }
+        else{
+            if images.count > 1{
+                let alert = UIAlertController(title: LanguageHelper.getTranslationByKey(LanguageKey.Alert), message:LanguageHelper.getTranslationByKey(LanguageKey.ChooseOneQRCode) , preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Ok), style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                ProgressHUD.dismiss()
+                
+            }
+            else{
+                self.viewModel.doAsync(list: images)
+                viewModel.doGetListTransaction()
+            }
+        }
         
-        viewModel.doGetListTransaction()
-
+        
     }
     func imagePicker(_ picker: OpalImagePickerController, didFinishPickingAssets assets: [PHAsset]) {
         print("didF")
         ProgressHUD.showInView(view: self.view)
-       // ProgressHUD.dismiss()
+        // ProgressHUD.dismiss()
     }
     func imagePickerDidCancel(_ picker: OpalImagePickerController) {
         print("cancel")
-         ProgressHUD.dismiss()
+        ProgressHUD.dismiss()
     }
+    
 }
 // MARK: ZXCaptureDelegate
 extension ScannerVC: ZXCaptureDelegate {
@@ -486,7 +553,7 @@ extension ScannerVC: ZXCaptureDelegate {
         isScanning = false
         viewModel.isScanner = true
         viewModel.scannerResult(mValue: "\(result!)")
-     
+        
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
             guard let weakSelf = self else { return }
