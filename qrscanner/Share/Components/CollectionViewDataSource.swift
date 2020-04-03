@@ -27,6 +27,7 @@ class CollectionViewDataSource <Cell: UICollectionViewCell,ViewModel> : NSObject
     }
   
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("\(items.count) sections")
         return items.count
     }
     
@@ -55,6 +56,7 @@ class CollectionViewDataSource <Cell: UICollectionViewCell,ViewModel> : NSObject
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
+        print("\(section)")
         return .zero
     }
     

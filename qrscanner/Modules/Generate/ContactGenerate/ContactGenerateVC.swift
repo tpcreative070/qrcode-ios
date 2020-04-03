@@ -60,7 +60,7 @@ class ContactGenerateVC: BaseViewController {
     }()
     lazy var lbFullNameContact : ICLabel = {
         let view = ICLabel()
-        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Phone)
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.FullName)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -80,7 +80,6 @@ class ContactGenerateVC: BaseViewController {
     lazy var lbEmailContact : ICLabel = {
         let view = ICLabel()
         view.text = LanguageHelper.getTranslationByKey(LanguageKey.Email)
-        
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

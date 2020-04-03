@@ -11,7 +11,6 @@ import Floaty
 extension ChooseSaveVC  {
     func initUI(){
         setupNavItems()
-        
         /*SetupScrollView*/
         self.view.addSubview(scrollView)
         NSLayoutConstraint.activate([
@@ -76,7 +75,7 @@ extension ChooseSaveVC  {
         
         self.saveViewModel.responseToView = {[weak self] value in
             if value == EnumResponseToView.UPDATE_DATA_SOURCE.rawValue {
-                self?.navigationItem.title = "\(String(describing: self!.saveViewModel.countItemSelected)) selected"
+                self?.navigationItem.title = "\(String(describing: self!.saveViewModel.countItemSelected)) \(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Selected)!))"
                 self?.updateDataSource()
             }
         }
@@ -97,12 +96,12 @@ extension ChooseSaveVC  {
         self.navigationController?.navigationBar.tintColor = .white
         let menuButtonRightDel = UIButton(type: .system)
         menuButtonRightDel.setImage(UIImage(named: AppImages.IC_DELETE), for: .normal)
-
+        
         menuButtonRightDel.addTarget(self, action: #selector(doDeleteItem), for: .touchUpInside)
         let menuButtonRightSelectAll = UIButton(type: .system)
         menuButtonRightSelectAll.setImage(UIImage(named: AppImages.IC_SELECT_ALL), for: .normal)
         menuButtonRightSelectAll.addTarget(self, action: #selector(doSelectAll), for: .touchUpInside)
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView:menuButtonRightSelectAll),UIBarButtonItem(customView: menuButtonRightDel)]
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRightDel),UIBarButtonItem(customView:menuButtonRightSelectAll)]
     }
     
     func bindTableView(){
@@ -141,7 +140,7 @@ extension ChooseSaveVC  {
         item.icon?.withTintColor(.white)
         item.title = LanguageHelper.getTranslationByKey(LanguageKey.Csv)
         item.handler = { item in
-             self.getCSVSave(listValue: self.saveViewModel.listSave)
+            self.getCSVSave(listValue: self.saveViewModel.listSave)
         }
         
         let item_select = FloatyItem()

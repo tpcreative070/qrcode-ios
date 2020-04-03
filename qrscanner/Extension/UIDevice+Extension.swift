@@ -158,5 +158,6 @@ extension UIDevice {
     func currentUUID() -> String {
         return UIDevice.current.identifierForVendor!.uuidString
     }
+    
 }
 

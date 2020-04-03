@@ -14,7 +14,6 @@ class UserService: APIClient {
   init(configuration: URLSessionConfiguration) {
     self.session = URLSession(configuration: configuration)
   }
-  
   convenience init() {
     self.init(configuration: .default)
   }

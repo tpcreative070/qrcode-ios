@@ -31,7 +31,7 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
         if let value = coable.get(value: QRCodeViewModel.self){
             //    Utils.logMessage(object: listSave)
             for (index, element) in listItem.enumerated() {
-                if element.imgCodeView == value.imgCodeView {
+                if element.identify == value.identify {
                     debugPrint(index)
                     let mObject = listItem[index]
                     mObject.check = !value.check
@@ -53,15 +53,13 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
         }
     }
     func convertStringToQRCode(mValue : [ZXResult]){
-        for item in mValue {
-            print(item.text)
-            listItem.append(QRCodeViewModel(imgCode: item.text, stringCode: item.text, typeCode: Int(item.barcodeFormat.rawValue), check: false, dateTime: ""))
+        for (index, item) in mValue.enumerated() {
+            listItem.append(QRCodeViewModel(identify: index, imgCode: item.text, stringCode: item.text, typeCode: Int(item.barcodeFormat.rawValue), check: false, dateTime: ""))
         }
          responseToView!(EnumResponseToView.GET_DATA_SOURCE.rawValue)
     }
     func doConvertQRtoString(){
         for item in listItemSelected {
-            print(item.stringCode)
             if item.check == true{
                 scannerResult(mValue: item.stringCode!)
             }
@@ -325,7 +323,7 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
             {
                 let createDateTime = Date().millisecondsSince1970
                 print("value dateTime: \(dateTime)")
-                let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!))
+                let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: ""))
                 
             }
         }

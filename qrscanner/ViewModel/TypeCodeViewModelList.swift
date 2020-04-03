@@ -17,7 +17,7 @@ class TypeCodeViewModelList : TypeCodeViewModelListDelegate {
     func getList(){
        for index in 0...8 {
          let menu = TypeCodeOption(rawValue: index)
-         let menuModel = TypeCodeModel(identify: index, name: menu!.name, icon: menu!.iconName)
+        let menuModel = TypeCodeModel(identify: index, name: menu!.name, icon: menu!.iconName, description : menu!.description)
          let menuVM = TypeCodeViewModel(data: menuModel)
         listTypeCondeViewModel.append(menuVM);
        }

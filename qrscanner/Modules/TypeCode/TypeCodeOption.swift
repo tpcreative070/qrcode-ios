@@ -20,15 +20,15 @@ enum TypeCodeOption: Int, CustomStringConvertible {
     case Url
     var name: String {
         switch self {
-        case .Email: return "Email"
-        case .Message: return "Message"
-        case .Location: return "Location"
-        case .Event: return "Event"
-        case .Contact: return "Contact"
-        case .Telephone: return "Telephone"
-        case .Text: return "Text"
-        case .Wifi: return "Wifi"
-        case .Url: return "Url"
+        case .Email: return EnumType.EMAIL.rawValue
+        case .Message: return EnumType.MESSAGE.rawValue
+        case .Location: return EnumType.LOCATION.rawValue
+        case .Event: return EnumType.EVENT.rawValue
+        case .Contact: return EnumType.CONTACT.rawValue
+        case .Telephone: return EnumType.TELEPHONE.rawValue
+        case .Text: return EnumType.TEXT.rawValue
+        case .Wifi: return EnumType.WIFI.rawValue
+        case .Url: return EnumType.URL.rawValue
             
         }
     }
@@ -51,15 +51,15 @@ enum TypeCodeOption: Int, CustomStringConvertible {
     
     var iconName: String {
         switch self {
-        case .Email: return "ic_email"
-        case .Message: return "ic_textsms"
-        case .Location: return "ic_location"
-        case .Event: return "ic_event"
-        case .Contact: return "ic_contact_calendar"
-        case .Telephone: return "ic_phone"
-        case .Text: return "ic_text"
-        case .Wifi: return "ic_wifi"
-        case .Url: return "ic_language"
+        case .Email: return AppImages.IC_EMAIL
+        case .Message: return AppImages.IC_SMS
+        case .Location: return AppImages.IC_LOCATION
+        case .Event: return AppImages.IC_EVENT
+        case .Contact: return AppImages.IC_CONTACT_CALENDAR
+        case .Telephone: return AppImages.IC_PHONE
+        case .Text: return AppImages.IC_TEXT
+        case .Wifi: return AppImages.IC_WIFI
+        case .Url: return AppImages.IC_LANGUAGE
         }
     }
     var viewType: Int {

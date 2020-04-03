@@ -23,7 +23,9 @@ class QRCodeViewModel : Codable , QRCodeViewModelDelegate{
     var stringCode: String?
     var check : Bool = false
     var typeCode: Int?
-    init(imgCode : String, stringCode: String, typeCode: Int, check : Bool, dateTime: String) {
+    var identify : Int?
+    init(identify: Int,imgCode : String, stringCode: String, typeCode: Int, check : Bool, dateTime: String) {
+        self.identify = identify
         self.imgCode = imgCode
         self.check = check
         self.typeCode = typeCode

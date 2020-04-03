@@ -1,9 +1,9 @@
 //
 //  ProgressHUD.swift
-//  qrscanner
+//  vietlifetravel
 //
-//  Created by Mac10 on 3/3/20.
-//  Copyright © 2020 thanhphong070. All rights reserved.
+//  Created by Mac10 on 6/26/19.
+//  Copyright © 2019 Mac10. All rights reserved.
 //
 
 import UIKit
@@ -56,6 +56,7 @@ class  ProgressHUD: UIView {
     }()
     
     public class func show() {
+        print("show progress")
         showInView(view: sharedView.getFrontWindow())
     }
     
@@ -73,6 +74,8 @@ class  ProgressHUD: UIView {
     }
     
     public class func dismiss() {
+        print("dismiss progress")
+
         UIView.animate(withDuration: 0.2, delay: 0, options: [.allowUserInteraction, .curveEaseOut], animations: {
             sharedView.indefiniteAnimatedView.alpha = 0
             sharedView.borderView.alpha = 0

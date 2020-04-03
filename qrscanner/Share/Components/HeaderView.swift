@@ -50,7 +50,7 @@ class HeaderView : UITableViewHeaderFooterView{
     
     // config view with Confirm
     func configView(view : GenerateViewModelDeletegate){
-        self.lbGroupName.text = view.typeCodeView
+        self.lbGroupName.text = LanguageHelper.getTranslationByKey(view.typeCodeView)
         self.lbGroupName.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoBold, size: AppFonts.LABEL_TITLE_FONT_SIZE)
     }
     /*

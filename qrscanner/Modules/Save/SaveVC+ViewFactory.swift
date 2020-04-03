@@ -186,7 +186,6 @@ extension SaveVC : TableViewCellDelegate{
         let typeCode = value_data?.typeCode.uppercased()
         let content = value_data!.content
         let stringContent = content.content?.data(using: .utf8 )
-        print(stringContent)
         if typeCode == EnumType.URL.rawValue{
             let urlModel : UrlViewModel = try! JSONDecoder().decode(UrlViewModel.self, from: stringContent!)
             let  vc = UrlGenerateVC()

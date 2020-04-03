@@ -408,7 +408,7 @@ struct Helper {
                      let content = ContentModel(data: (contentData.toObject(value: PhoneModel.self))!)
                      let stringContent = content.content?.data(using: .utf8 )
                      let phoneModel : PhoneModel = try! JSONDecoder().decode(PhoneModel.self, from: stringContent!)
-                     valueShowContent = "Phone: \(phoneModel.phone)"
+                     valueShowContent = "Phone: \(phoneModel.phone ?? "")"
                  }
                  else if typeCode == EnumType.CONTACT.rawValue{
                      

@@ -44,6 +44,11 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    var viewFooter : UIView = {
+          let view = UIView()
+          view.translatesAutoresizingMaskIntoConstraints = false
+          return view
+      }()
     var viewScan : ViewRectangleArea! = {
         let view = ViewRectangleArea()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -55,6 +60,27 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
         return lbScannerRectangle
     }()
     
+    lazy var lbTotal : ICLabel = {
+        let view = ICLabel()
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Total)
+        view.textColor = AppColors.WHITE_COLOR
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    lazy var lbTotalResult : ICLabel = {
+           let view = ICLabel()
+           view.text = "0"
+           view.translatesAutoresizingMaskIntoConstraints = false
+        
+           return view
+       }()
+    let btnOK: UIButton = {
+           let btn = UIButton()
+           btn.translatesAutoresizingMaskIntoConstraints = false
+           btn.setTitle(LanguageHelper.getTranslationByKey(LanguageKey.Done),for: .normal)
+        btn.setTitleColor(AppColors.WHITE_COLOR, for: .normal)
+           return btn
+       }()
     var viewScanBg : UIView! = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -124,11 +150,8 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
     let settingViewModel = SettingViewModel()
     var isFlash = false
     var isFront = false
-    let systemSoundID: SystemSoundID = SystemSoundID(AppConstants.soundID)
-
     var frontCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front)
     var backCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
-    
     var videoPreviewLayer : AVCaptureVideoPreviewLayer?
     var session : AVCaptureSession?
     
@@ -137,7 +160,6 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
         super.viewDidLoad()
         print("view did load")
         iniUI()
-        
         if #available(iOS 10.2, *){
             let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
             do{
@@ -158,7 +180,6 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
     
     
     @objc func actionFlash(sender : UITapGestureRecognizer){
-        print("actionFlash")
         GalleryHelper.flashlight()
         isFlash = !isFlash
         if isFlash{
@@ -179,14 +200,22 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
        
     }
     @objc func actionGallery(sender : UITapGestureRecognizer){
-        print("actionGallery")
         self.viewBackground.bringSubviewToFront(viewIcon)
         viewModel.defaultValue()
+       // ProgressHUD.showInView(view: self.view)
         onTakeGallery()
     }
-    
+    @objc func doneScanner(){
+        self.viewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
+        viewModel.isScanner = true
+        print(viewModel.listScanner)
+        for item in viewModel.listScanner {
+            self.viewModel.scannerResult(mValue: item)
+        }
+        viewModel.doGetListTransaction()
+        lbTotalResult.text =  "\(viewModel.listScanner.count)"
+       }
     @objc func actionHelp(sender : UITapGestureRecognizer){
-        print("actionScanQR")
         let vc = HelpVC()
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -196,10 +225,12 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
     
   
     override func viewWillAppear(_ animated: Bool) {
+        ProgressHUD.dismiss()
         print("viewWillAppear")
     }
     override func viewDidAppear(_ animated: Bool) {
         print("viewDidAppear11")
+        ProgressHUD.dismiss()
         session?.startRunning()
     }
     

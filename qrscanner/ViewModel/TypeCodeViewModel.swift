@@ -9,7 +9,7 @@
 import UIKit
 class TypeCodeViewModel : Codable , TypeCodeViewModelDelegate{
     var nameView: String{
-        return name ?? ""
+        return description ?? ""
     }
     
     var imgIconView: String{
@@ -19,13 +19,15 @@ class TypeCodeViewModel : Codable , TypeCodeViewModelDelegate{
   var identify: Int?
   var name : String?
   var iconName: String?
+var description : String?
+
   
   
   init(data: TypeCodeModel) {
     self.identify = data.identify
     self.name = data.name
     self.iconName = data.iconImage
-   
+    self.description = data.description
   }
     
   var icon: UIImage {

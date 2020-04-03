@@ -44,6 +44,10 @@ protocol HistoryViewModelListDeletegate  : BaseViewModel{
     var responseToView : ((String) ->())? {get set}
     var isSelected : Bindable<Bool> {get}
 }
+protocol ChangeColorViewModelDelegate {
+     var imgQRView : String {get}
+       var isSelectedView : Bool {get}
+}
 protocol AlertViewModelListDeletegate  : BaseViewModel{
     var navigate: (() -> ())?  { get }
     var listItem : [AlertViewModel] {get}
@@ -145,13 +149,16 @@ protocol GenerateViewModelDelegate  {
 protocol ResultViewModelDelegate  {
     var navigate: (() -> ())?  { get set }
     var responseToView : ((String) ->())? {get set}
-    
-    
-    
 }
 protocol TypeCodeViewModelListDelegate {
     var listTypeCondeViewModel : [TypeCodeViewModel] {get}
     var responseToView : ((String) ->())? {get set}
+}
+protocol ChangeColorViewModelListDelegate  {
+    var navigate :(() -> ())?  { get }
+     var responseToView : ((String) ->())? {get set}
+    var listColor : [ChangeColorViewModel] {get}
+    var isSelected : Bindable<Bool> {get}
     
 }
 protocol QRCodeViewModelListDelegate {
@@ -163,6 +170,10 @@ protocol QRCodeViewModelListDelegate {
 protocol AlertViewModelListDelegate {
     var listAlertViewModel : [AlertViewModel] {get}
     var responseToView : ((String) ->())? {get set}
+}
+protocol CollectionViewCellDelegate {
+    func cellViewSelected(cell: CollectionViewCell)
+    func cellCodable(codable : Codable)
 }
 protocol TableViewCellDelegate {
     func cellViewSelected(cell: TableViewCell)

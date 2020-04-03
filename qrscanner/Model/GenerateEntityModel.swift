@@ -16,6 +16,7 @@ class GenerateEntityModel : Codable {
     var updatedDateTime: Int64?
     var bookMark: Bool?
     var transactionID: String?
+    var isCode: String?
 
     init(data: UrlModel) {
         self.typeCode = EnumType.URL.rawValue
@@ -55,7 +56,7 @@ class GenerateEntityModel : Codable {
            self.typeCode = EnumType.WIFI.rawValue
            self.content = JSONSerializerHelper.toJson(data)
        }
-    init(typeCode : String, content : String, isHistory : Bool, isSave : Bool, bookMark: Bool, transactionID : String) {
+    init(typeCode : String, content : String, isHistory : Bool, isSave : Bool, bookMark: Bool, transactionID : String, isCode : String) {
         let time = TimeHelper.getString(time: Date(), dateFormat: TimeHelper.FormatDateTime)
         self.createdDateTime = Int64(time)
         self.typeCode = typeCode
@@ -65,8 +66,9 @@ class GenerateEntityModel : Codable {
         self.updatedDateTime = Int64(time)
         self.bookMark = bookMark
         self.transactionID = transactionID
+        self.isCode = isCode
     }
-    init(createdDateTime: Int,typeCode : String, content : String, isHistory : Bool, isSave : Bool, updatedDateTime: Int, bookMark: Bool, transactionID: String) {
+    init(createdDateTime: Int,typeCode : String, content : String, isHistory : Bool, isSave : Bool, updatedDateTime: Int, bookMark: Bool, transactionID: String, isCode: String) {
         self.createdDateTime = Int64(createdDateTime)
         self.typeCode = typeCode
         self.content = content
@@ -75,7 +77,7 @@ class GenerateEntityModel : Codable {
         self.updatedDateTime = Int64(updatedDateTime)
         self.bookMark = bookMark
         self.transactionID = transactionID
-
+        self.isCode = isCode
     }
     init() {
           

@@ -218,4 +218,48 @@ extension UIViewController {
               print("error creating file")
           }
     }
+    func changeColorQRCode(imgQRCode : UIImageView){
+           imgQRCode.image = imgQRCode.image?.withRenderingMode(.alwaysTemplate)
+        let value = String(CommonService.getUserDefault(key: KeyUserDefault.ChangeColor) ?? ColorString.Black.rawValue)
+           if value == ColorString.Black.rawValue{
+               
+               imgQRCode.tintColor = AppColors.BLACK_COLOR
+                    
+                  }
+                  else if value == ColorString.Blue.rawValue {
+                      imgQRCode.tintColor = AppColors.BLUE_IN_COLOR
+                  }
+                  else if value == ColorString.DarkGreen.rawValue {
+                      imgQRCode.tintColor = AppColors.DARK_GREEN_COLOR
+                  }
+                  else if value == ColorString.Pink.rawValue {
+                      imgQRCode.tintColor = AppColors.PINK_COLOR
+                  }
+                  else if value == ColorString.LightPurple.rawValue {
+                      imgQRCode.tintColor = AppColors.LIGHT_PURPLE_COLOR
+                  }
+                  else if value == ColorString.Purple.rawValue {
+                      imgQRCode.tintColor = AppColors.PURPLE_COLOR
+                  }
+                  else if value == ColorString.Indigo.rawValue {
+                      imgQRCode.tintColor = AppColors.INDIGO_COLOR
+                  }
+                  else if value == ColorString.BlackGreen.rawValue {
+                      imgQRCode.tintColor = AppColors.BLACK_GREEN_COLOR
+                  }
+                  else if value == ColorString.Cyan.rawValue {
+                      imgQRCode.tintColor = AppColors.CYAN_COLOR
+                  }
+                  else if value == ColorString.MossGreen.rawValue {
+                      imgQRCode.tintColor = AppColors.MOSS_GREEN_COLOR
+                  }
+                  else if value == ColorString.Orange.rawValue {
+                      imgQRCode.tintColor = AppColors.ORANGE_IN_COLOR
+                  }
+                  else if value == ColorString.Brown.rawValue {
+                     imgQRCode.tintColor = AppColors.BROWN_COLOR
+                  }
+                  
+       }
+
 }

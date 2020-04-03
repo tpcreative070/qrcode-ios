@@ -240,13 +240,13 @@ class GenerateViewModel : GenerateViewModelDelegate {
             errorMessages.value[GenerateViewModelKey.URL] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorUrlRequired) ?? ""
         }
         else if !verifyUrl(urlString: url) {
-                     errorMessages.value[GenerateViewModelKey.URL] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorUrlInvalid) ?? ""
+            errorMessages.value[GenerateViewModelKey.URL] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorUrlInvalid) ?? ""
         }
         else {
             errorMessages.value.removeValue(forKey: GenerateViewModelKey.URL)
         }
     }
-   func verifyUrl (urlString: String?) -> Bool {
+    func verifyUrl (urlString: String?) -> Bool {
         if let urlString = urlString {
             if let url = NSURL(string: urlString) {
                 return UIApplication.shared.canOpenURL(url as URL)
@@ -441,8 +441,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
      ValidateEndTime
      */
     func validateEndTimeEvent(){
-        print(endTimeEvent)
-        if beginTimeEvent == nil {
+        if beginTimeEvent?.date == nil {
             errorMessages.value[GenerateViewModelKey.ENDTIME_EVENT] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorEndTimeRequired) ?? ""
         }
         else if (beginTimeEvent != nil && beginTimeEvent! > endTimeEvent!){
@@ -623,22 +622,66 @@ class GenerateViewModel : GenerateViewModelDelegate {
         }
         
     }
-    func generateDataQRCode(from string: String) -> UIImage? {
-        do {
-            let writer = ZXMultiFormatWriter()
-            let hints = ZXEncodeHints() as ZXEncodeHints
-            hints.encoding = String.Encoding.utf8.rawValue
-            let result = try writer.encode(string, format: kBarcodeFormatQRCode, width: 500, height: 500, hints: hints)
-            if let imageRef = ZXImage.init(matrix: result, on: UIColor.blue.cgColor, offColor: nil) {
-                if let image = imageRef.cgimage {
-                    
-                    return UIImage.init(cgImage: image)
-                }
+    func getColor (value: String) -> UIColor{
+        var color = UIColor()
+        if value == ColorString.Black.rawValue{
+            color = AppColors.BLACK_COLOR
+        }
+        else if value == ColorString.Blue.rawValue {
+            color = AppColors.BLUE_IN_COLOR
+        }
+        else if value == ColorString.DarkGreen.rawValue {
+            color = AppColors.DARK_GREEN_COLOR
+        }
+        else if value == ColorString.Pink.rawValue {
+            color = AppColors.PINK_COLOR
+        }
+        else if value == ColorString.LightPurple.rawValue {
+            color = AppColors.LIGHT_PURPLE_COLOR
+        }
+        else if value == ColorString.Purple.rawValue {
+            color = AppColors.PURPLE_COLOR
+        }
+        else if value == ColorString.Indigo.rawValue {
+            color = AppColors.INDIGO_COLOR
+        }
+        else if value == ColorString.BlackGreen.rawValue {
+            color = AppColors.BLACK_GREEN_COLOR
+        }
+        else if value == ColorString.Cyan.rawValue {
+            color = AppColors.CYAN_COLOR
+        }
+        else if value == ColorString.MossGreen.rawValue {
+            color = AppColors.MOSS_GREEN_COLOR
+        }
+        else if value == ColorString.Orange.rawValue {
+            color = AppColors.ORANGE_IN_COLOR
+        }
+        else if value == ColorString.Brown.rawValue {
+            color = AppColors.BROWN_COLOR
+        }
+        return color
+        
+    }
+    
+
+func generateDataQRCode(from string: String) -> UIImage? {
+    let valueColor = String(CommonService.getUserDefault(key: KeyUserDefault.ChangeColor) ?? ColorString.Black.rawValue)
+    do {
+        let writer = ZXMultiFormatWriter()
+        let hints = ZXEncodeHints() as ZXEncodeHints
+        hints.encoding = String.Encoding.utf8.rawValue
+        let result = try writer.encode(string, format: kBarcodeFormatQRCode, width: 500, height: 500, hints: hints)
+        if let imageRef = ZXImage.init(matrix: result, on: getColor(value: valueColor).cgColor, offColor: nil) {
+            if let image = imageRef.cgimage {
+                
+                return UIImage.init(cgImage: image)
             }
         }
-        catch {
-            print(error)
-        }
-        return nil
     }
+    catch {
+        print(error)
+    }
+    return nil
+}
 }
