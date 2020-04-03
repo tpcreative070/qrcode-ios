@@ -68,19 +68,19 @@ class AlertVC: BaseViewController {
         initUI()
         bindViewModel()
         print(viewModel.listItem)
-        
+        checkAutoCopy()
     }
     @objc func closeAlert(sender: UITapGestureRecognizer){
        
          self.navigationController?.popViewController(animated: false)
     }
-    
+   
     @objc func copyItem(sender: UITapGestureRecognizer){
         var stringValue = ""
         if viewModel.countItemSelected > 0{
         if viewModel.listItem.count > 0 {
             for item in viewModel.listItem {
-                stringValue += "\(item)\n"
+                stringValue += "\(item.nameItemView)\n"
             }
             print(stringValue)
             let pasteboard = UIPasteboard.general

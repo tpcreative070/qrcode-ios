@@ -11,7 +11,6 @@ import Floaty
 extension ChooseSaveVC  {
     func initUI(){
         setupNavItems()
-        
         /*SetupScrollView*/
         self.view.addSubview(scrollView)
         NSLayoutConstraint.activate([

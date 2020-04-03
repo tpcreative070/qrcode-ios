@@ -41,6 +41,7 @@
 		289204D924196B1600AD3F49 /* TextGenerateVC+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289204D824196B1600AD3F49 /* TextGenerateVC+ViewFactory.swift */; };
 		28925607240DF6F400D05B17 /* GenerateEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28925606240DF6F400D05B17 /* GenerateEntity.swift */; };
 		2892D4F7240F7A8100E84F4A /* TableViewCell+History+ViewFatory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2892D4F6240F7A8100E84F4A /* TableViewCell+History+ViewFatory.swift */; };
+		289308CE2437147300680BF3 /* UIView+setAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289308CD2437147300680BF3 /* UIView+setAnchor.swift */; };
 		289371262428525500E40471 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289371252428525500E40471 /* DetailVC.swift */; };
 		289371282428526400E40471 /* DetailVC+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289371272428526400E40471 /* DetailVC+ViewFactory.swift */; };
 		2893712C2428689700E40471 /* ContentViewModelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2893712B2428689700E40471 /* ContentViewModelList.swift */; };
@@ -308,6 +309,7 @@
 		289204D824196B1600AD3F49 /* TextGenerateVC+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextGenerateVC+ViewFactory.swift"; sourceTree = "<group>"; };
 		28925606240DF6F400D05B17 /* GenerateEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateEntity.swift; sourceTree = "<group>"; };
 		2892D4F6240F7A8100E84F4A /* TableViewCell+History+ViewFatory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewCell+History+ViewFatory.swift"; sourceTree = "<group>"; };
+		289308CD2437147300680BF3 /* UIView+setAnchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+setAnchor.swift"; sourceTree = "<group>"; };
 		289371252428525500E40471 /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 		289371272428526400E40471 /* DetailVC+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailVC+ViewFactory.swift"; sourceTree = "<group>"; };
 		2893712B2428689700E40471 /* ContentViewModelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModelList.swift; sourceTree = "<group>"; };
@@ -1010,6 +1012,7 @@
 				2894D6C5241C9280009E1659 /* UIImage+CGImage.swift */,
 				289749162429B81B00717701 /* UIFont.swift */,
 				28390CD9242E4C9500383427 /* UIView+ToImage.swift */,
+				289308CD2437147300680BF3 /* UIView+setAnchor.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1602,6 +1605,7 @@
 				28D81D3C24162493007834F0 /* LocationModel.swift in Sources */,
 				2894E12B24213C7800263637 /* TableViewCell+Email+ViewFactory.swift in Sources */,
 				2865AA2724124E4A00C1F207 /* ValidatorHelper.swift in Sources */,
+				289308CE2437147300680BF3 /* UIView+setAnchor.swift in Sources */,
 				28998A38242CA3F800C6837D /* AlertViewModel.swift in Sources */,
 				D2BA0A62240966D20074C7A1 /* TableViewDataSource.swift in Sources */,
 				28969F98241B6C4400F30A29 /* UIView+Draggable.swift in Sources */,

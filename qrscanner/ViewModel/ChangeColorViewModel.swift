@@ -23,4 +23,7 @@ class ChangeColorViewModel : ChangeColorViewModelDelegate , Codable {
         self.position = position
         self.isSelected = isSelected
     }
+    init() {
+        
+    }
 }

@@ -17,30 +17,30 @@ class AlertViewModelList : AlertViewModelListDeletegate{
     var isVisible: Bindable<Bool> = Bindable(false)
     var countItemSelected: Int = 0
     var navigate: (() -> ())?
-     func doSelectItem(coable : Codable){
-          if let value = coable.get(value: AlertViewModel.self){
-              //    Utils.logMessage(object: listSave)
-              for (index, element) in listItem.enumerated() {
+    func doSelectItem(coable : Codable){
+        if let value = coable.get(value: AlertViewModel.self){
+            //    Utils.logMessage(object: listSave)
+            for (index, element) in listItem.enumerated() {
                 if element.nameItemView == value.nameItemView {
-                      debugPrint(index)
-                      let mObject = listItem[index]
-                      mObject.check = !value.check
-                       if mObject.check == true {
-                                                             countItemSelected += 1
-                                                             
-                                                         }
-                                                         else{
-                                                             if countItemSelected > 0
-                                                             {
-                                                                 countItemSelected -= 1
-                                                             }
-                                                         }
-                                   
-                print(listItem)
-                responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
-              }
-          }
-      }
+                    debugPrint(index)
+                    let mObject = listItem[index]
+                    mObject.check = !value.check
+                    if mObject.check == true {
+                        countItemSelected += 1
+                        
+                    }
+                    else{
+                        if countItemSelected > 0
+                        {
+                            countItemSelected -= 1
+                        }
+                    }
+                    
+                    print(listItem)
+                    responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
+                }
+            }
+        }
     }
 }
 

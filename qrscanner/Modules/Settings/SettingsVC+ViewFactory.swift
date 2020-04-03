@@ -574,6 +574,7 @@ extension SettingsVC {
         viewHelp.isUserInteractionEnabled  = true
         self.viewSupport.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showSupport(sender:))))
         viewHelp.isUserInteractionEnabled  = true
+        changeColorQRCode(imgQRCode: imgQRCode)
     }
     func setupEndedUpScrollView(){
         viewBackground.addSubview(endedUpScrollViewContainerView)
@@ -604,6 +605,7 @@ extension SettingsVC {
            if UserDefaults.standard.bool(forKey:KeyUserDefault.OpenWeb){
                        switchOpen.isOn = true
                   }
+        
        }
     func switchDefaultConfig(switchView: ICSwitchButton) {
       switchView.onTintColor = AppConstants.SWITCH_ON_TINT_COLOR
@@ -618,10 +620,10 @@ extension SettingsVC {
     func bindViewModel(){
         self.switchDefaultConfig(switchView: switchMultiScan)
         self.switchDefaultConfig(switchView: switchMultiLoad)
-
         self.switchDefaultConfig(switchView: switchVibrate)
         self.switchDefaultConfig(switchView: switchOpen)
         self.switchDefaultConfig(switchView: switchBeep)
         self.switchDefaultConfig(switchView: switchCopy)
     }
+    
 }

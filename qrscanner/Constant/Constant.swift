@@ -61,6 +61,8 @@ struct AppConstants {
     static let WIDTH_BORDER = CGFloat(1)
       static let WIDTH_BORDER_SCAN = CGFloat(2)
     static let CORNER_RADIUS = CGFloat(10)
+    static let SPACING = CGFloat(10)
+
     static let LARGE_SIZE = 200
     static let MEDIUM_SIZE = 50
     static let SMALL_SIZE = 20
@@ -76,6 +78,8 @@ struct AppConstants {
     static let HEIGHT_BACKGROUND = CGFloat(130)
     static let HEIGHT_IMAGE_HELP = CGFloat(200)
     static let HEIGHT_IMAGE_SETTING = CGFloat(50)
+    static let HEIGHT_IMAGE_QR = CGFloat(300)
+    static let HEIGHT_IMAGE_COLOR = CGFloat(70)
 
     static let WIDTH_BUTTON_DEFAULT = CGFloat(120)
     static let IC_DEFAULT = CFloat(25)
@@ -86,6 +90,8 @@ struct AppConstants {
     static let MARGIN_LEFT_SETTING = CGFloat(5)
     static let MARGIN_LEFT = CGFloat(20)
     static let MARGIN_LEFT_HELP = CGFloat(10)
+    
+    static let DEFAULT_CONSTRAINT = CGFloat(0)
     
     static let MARGIN_LEFT_ICON = CGFloat(30)
     static let MARGIN_LEFT_ALERT_BTN = CGFloat(100)
@@ -463,10 +469,13 @@ struct KeyUserDefault{
      static let MultiLoad = "MultiLoad"
      static let Copy = "Copy"
     static let OpenWeb = "OpenWeb"
+     static let ChangeColor = "ChangeColor"
 }
 struct LanguageKey {
-
-    
+    //Link
+    static let Link_Privacy = "http://sites.google.com/view/tpcreative/home"
+    static let Email_Help = "care@tpcreative.me"
+    static let Link_Share = "https://play.google.com/store/apps/detail?id=tpcreative.co.qrscanner"
     //Scanner
     static let Aztec = "Aztec"
     static let CODABAR = "CODABAR"
@@ -634,7 +643,7 @@ struct LanguageKey {
     static let Total = "TOTAL"
     static let Sms = "SMS"
     static let Email = "EMAIL"
-    static let Email_Help = "care@tpcreative.me"
+
     static let Message = "MESSAGE"
     static let Location = "LOCATION"
     static let Event = "EVENT"

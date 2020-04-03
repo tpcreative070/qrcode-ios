@@ -10,10 +10,26 @@ import UIKit
 import GoogleSignIn
 import Firebase
 import ZXingObjC
-class CommonService {
+
+
+
+
+
+class CommonService  {
+   
+    
     
     static let isInput = true
-    
+    static func getUserDefault<T>(key: String) -> T? {
+          
+        return (UserDefaults.standard.object(forKey: key)) as? T
+
+       }
+
+       static  func setUserDefault<T>( key: String, value: T) {
+           print(value)
+           UserDefaults.standard.set(value, forKey: key)
+       }
     
     /**
      getConfigurationData
@@ -332,10 +348,6 @@ class CommonService {
         }
     }
     
-    //    static func sendDataToContactEntities(data : ContactsEntityModel, isResponse : Bool){
-    //        ShareSyncContactSingleton.shared.set(value: PassDataViewModel(identifier: EnumPassdata.CONTACT_ENTITIES,contact: data))
-    //        if isResponse {
-    //            ShareSyncContactSingleton.shared.bindData()
-    //        }
-    //    }
+   
 }
+

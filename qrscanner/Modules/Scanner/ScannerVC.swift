@@ -180,7 +180,6 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
     
     
     @objc func actionFlash(sender : UITapGestureRecognizer){
-        print("actionFlash")
         GalleryHelper.flashlight()
         isFlash = !isFlash
         if isFlash{
@@ -201,14 +200,12 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
        
     }
     @objc func actionGallery(sender : UITapGestureRecognizer){
-        print("actionGallery")
         self.viewBackground.bringSubviewToFront(viewIcon)
         viewModel.defaultValue()
        // ProgressHUD.showInView(view: self.view)
         onTakeGallery()
     }
     @objc func doneScanner(){
-           print("printO")
         self.viewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
         viewModel.isScanner = true
         print(viewModel.listScanner)
@@ -219,7 +216,6 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
         lbTotalResult.text =  "\(viewModel.listScanner.count)"
        }
     @objc func actionHelp(sender : UITapGestureRecognizer){
-        print("actionScanQR")
         let vc = HelpVC()
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -230,13 +226,11 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
   
     override func viewWillAppear(_ animated: Bool) {
         ProgressHUD.dismiss()
-
         print("viewWillAppear")
     }
     override func viewDidAppear(_ animated: Bool) {
         print("viewDidAppear11")
         ProgressHUD.dismiss()
-
         session?.startRunning()
     }
     

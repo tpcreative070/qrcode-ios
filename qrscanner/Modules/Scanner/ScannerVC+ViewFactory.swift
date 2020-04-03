@@ -322,11 +322,7 @@ extension ScannerVC {
     func bindViewModel() {
         
         self.viewModel.showLoading.bind { visible in
-            print(visible)
-            //   visible ? ProgressHUD.show(): ProgressHUD.dismiss()
             if visible{
-                //   self.viewBackground.bringSubviewToFront(self.wrapperFirstView)
-                //  self.view.backgroundColor = .blue
                 ProgressHUD.showInView(view: self.view)
             }
             else{
@@ -348,7 +344,6 @@ extension ScannerVC {
             print(self!.viewModel.listResult.count)
             if self!.viewModel.listResult.count > 1{
                 self?.viewModel.listResult.removeAll()
-                // self?.viewModel.defaultValue()
             }
             else{
                 let  vc = DetailVC()
@@ -363,13 +358,6 @@ extension ScannerVC {
             //            self.present(alert,animated: true,completion: nil)
         }
         
-        //        viewModel.cameraBinding.bind {[weak self] value in
-        //            DispatchQueue.main.async {
-        //                if !value {
-        //                      self?.doAlertMessage(permission: "Camera")
-        //                }
-        //            }
-        //        }
     }
     
     
@@ -462,16 +450,14 @@ extension ScannerVC {
             let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject
             if object?.stringValue != nil
             {
-                print(AppConstants.isVibrate)
-                if  UserDefaults.standard.bool(forKey:KeyUserDefault.Vibrate)
+                if  Bool(truncating: CommonService.getUserDefault(key: KeyUserDefault.Vibrate) ?? false)
                 {
                     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
                 }
-                if  UserDefaults.standard.bool(forKey: KeyUserDefault.Beep) {
+                if  Bool(truncating: CommonService.getUserDefault(key: KeyUserDefault.Beep) ?? false) {
                     SoundHelper.shared.play()
                 }
-                print(UserDefaults.standard.bool(forKey:KeyUserDefault.MultiScan))
-                if UserDefaults.standard.bool(forKey:KeyUserDefault.MultiScan){
+                if Bool(truncating: CommonService.getUserDefault(key: KeyUserDefault.MultiScan) ?? false){
                     viewFooter.isHidden = false
                     setupFooter()
                     self.viewBackground.bringSubviewToFront(viewFooter)
@@ -530,12 +516,9 @@ extension ScannerVC : OpalImagePickerControllerDelegate {
         
     }
     func imagePicker(_ picker: OpalImagePickerController, didFinishPickingAssets assets: [PHAsset]) {
-        print("didF")
         ProgressHUD.showInView(view: self.view)
-        // ProgressHUD.dismiss()
     }
     func imagePickerDidCancel(_ picker: OpalImagePickerController) {
-        print("cancel")
         ProgressHUD.dismiss()
     }
     

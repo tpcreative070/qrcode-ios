@@ -141,7 +141,17 @@ extension AlertVC {
         self.tableView.dataSource = self.dataSource
         self.tableView.delegate = self.dataSource
     }
-    
+    func checkAutoCopy(){
+           if Bool(CommonService.getUserDefault(key: KeyUserDefault.Copy) ?? false){
+           var string = ""
+           for item in viewModel.listItem {
+            string += "\(item.nameItemView)\n"
+           }
+           let pasteboard = UIPasteboard.general
+           pasteboard.string = string
+           }
+           else{}
+       }
     func setupTableView(){
         tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.Alert.rawValue)
         tableView.backgroundColor = .white

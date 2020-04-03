@@ -391,7 +391,6 @@ class SettingsVC : BaseViewController {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.image = UIImage(named: AppImages.IC_QRCODE)
-        view.tintColor = AppColors.BLACK_COLOR
         return view
     }()
     lazy var imgCopy : UIImageView = {
@@ -465,45 +464,53 @@ class SettingsVC : BaseViewController {
         bindViewModel()
         checkIsOnSwitch()
     }
-   
+    
     @objc func switchVibrateDidChange (_ : ICSwitchButton){
         
         //ScannerVC().viewModel.isVibrate = switchVibrate.isOn
         if switchVibrate.isOn{
             switchVibrate.isOn = true
-            UserDefaults.standard.set(true, forKey: KeyUserDefault.Vibrate)
+            CommonService.setUserDefault(key: KeyUserDefault.Vibrate, value: true)
         }
         else {
             switchVibrate.isOn = false
-            UserDefaults.standard.set(false, forKey: KeyUserDefault.Vibrate)
+            CommonService.setUserDefault(key: KeyUserDefault.Vibrate, value: false)
         }
-        //self.viewModel.isQRCode =  switchVibrate.isOn
+        
     }
     @objc func switchOpenDidChange (_ : ICSwitchButton){
         if switchOpen.isOn{
             switchOpen.isOn = true
-            UserDefaults.standard.set(true, forKey: KeyUserDefault.OpenWeb)
+            CommonService.setUserDefault(key: KeyUserDefault.OpenWeb, value: true)
+            
             
         }
         else {
             switchOpen.isOn = false
-            UserDefaults.standard.set(false, forKey: KeyUserDefault.OpenWeb)
+            CommonService.setUserDefault(key: KeyUserDefault.OpenWeb, value: false)
             
         }
     }
     @objc func switchBeepDidChange (_ : ICSwitchButton){
         if switchBeep.isOn{
             switchBeep.isOn = true
-            UserDefaults.standard.set(true, forKey: KeyUserDefault.Beep)
+            CommonService.setUserDefault(key: KeyUserDefault.Beep, value: true)
             
         }
         else {
             switchBeep.isOn = false
-            UserDefaults.standard.set(false, forKey: KeyUserDefault.Beep)
+            CommonService.setUserDefault(key: KeyUserDefault.Beep, value: false)
         }
     }
     @objc func switchCopyDidChange (_ : ICSwitchButton){
-        print(switchCopy.isOn)
+        if switchCopy.isOn{
+                  switchCopy.isOn = true
+                  CommonService.setUserDefault(key: KeyUserDefault.Copy, value: true)
+              }
+              else {
+                  switchCopy.isOn = false
+                  CommonService.setUserDefault(key: KeyUserDefault.Copy, value: false)
+              }
         //self.viewModel.isQRCode =  switchVibrate.isOn
     }
     @objc func doChangeLanguage (sender : UITapGestureRecognizer){
@@ -511,21 +518,16 @@ class SettingsVC : BaseViewController {
         let somethingAction = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.English), style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in
             CommonService.setMultipleLanguages(value: LanguageCode.English)
             self.navigationController?.pushViewController(MainVC(), animated: false)
-            //                            let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
-            //                            appDelegate?.initTabBarController(selectedIndex: 0)
             self.dismiss()
             
         })
         let somethingAction1 = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Vietnamese), style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in
             CommonService.setMultipleLanguages(value: LanguageCode.Vietnamese)
             self.navigationController?.pushViewController(MainVC(), animated: false)
-            //                                             let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
-            //                                             appDelegate?.initTabBarController(selectedIndex: 0)
             self.dismiss()
             
         })
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: {(alert: UIAlertAction!) in
-            print("cancel")
+        let cancelAction = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Cancel), style: UIAlertAction.Style.cancel, handler: {(alert: UIAlertAction!) in
             self.dismiss()
         })
         
@@ -540,62 +542,61 @@ class SettingsVC : BaseViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     @objc func showPermission (sender : UITapGestureRecognizer){
-           let alert = UIAlertController(title: LanguageHelper.getTranslationByKey(LanguageKey.AppPermission), message:"\(LanguageHelper.getTranslationByKey(LanguageKey.AppPermissonContent1)!)\n \(LanguageHelper.getTranslationByKey(LanguageKey.AppPermissonContent2)!)\n \(LanguageHelper.getTranslationByKey(LanguageKey.AppPermissonContent3)!) \n \(LanguageHelper.getTranslationByKey(LanguageKey.AppPermissonContent4)!)\n \(LanguageHelper.getTranslationByKey(LanguageKey.AppPermissonContent5)!)\n \(LanguageHelper.getTranslationByKey(LanguageKey.AppPermissonContent6)!)\n", preferredStyle: UIAlertController.Style.alert)
-
-                         alert.addAction(UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Ok), style: UIAlertAction.Style.default, handler: nil))
+        let alert = UIAlertController(title: LanguageHelper.getTranslationByKey(LanguageKey.AppPermission), message:"\(LanguageHelper.getTranslationByKey(LanguageKey.AppPermissonContent1)!)\n \(LanguageHelper.getTranslationByKey(LanguageKey.AppPermissonContent2)!)\n \(LanguageHelper.getTranslationByKey(LanguageKey.AppPermissonContent3)!) \n \(LanguageHelper.getTranslationByKey(LanguageKey.AppPermissonContent4)!)\n \(LanguageHelper.getTranslationByKey(LanguageKey.AppPermissonContent5)!)\n \(LanguageHelper.getTranslationByKey(LanguageKey.AppPermissonContent6)!)\n", preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Ok), style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
-       }
+    }
     @objc func switchMultiScanDidChange (_ : ICSwitchButton){
-                if switchMultiScan.isOn{
-                    switchMultiScan.isOn = true
-                      UserDefaults.standard.set(true, forKey: KeyUserDefault.MultiScan)
-//                      let vc = MainVC()
-//                             self.navigationController?.pushViewController(vc, animated: false)
-                  }
-                  else {
-                     switchMultiScan.isOn = false
-                      UserDefaults.standard.set(false, forKey: KeyUserDefault.MultiScan)
-//                      let vc = MainVC()
-//                             self.navigationController?.pushViewController(vc, animated: false)
-                  }
-           }
+        if switchMultiScan.isOn{
+            switchMultiScan.isOn = true
+            CommonService.setUserDefault(key: KeyUserDefault.MultiScan, value: true)
+        }
+        else {
+            switchMultiScan.isOn = false
+            CommonService.setUserDefault(key: KeyUserDefault.MultiScan, value: false)
+        }
+    }
     @objc func switchMultiLoadDidChange (_ : ICSwitchButton){
-                  if switchMultiLoad.isOn{
-                     switchMultiLoad.isOn = true
-                      UserDefaults.standard.set(true, forKey: KeyUserDefault.MultiLoad)
-                      
-                  }
-                  else {
-                    switchMultiLoad.isOn = false
-                      UserDefaults.standard.set(false, forKey: KeyUserDefault.MultiLoad)
-                      
-                  }
-           }
+        if switchMultiLoad.isOn{
+            switchMultiLoad.isOn = true
+            CommonService.setUserDefault(key: KeyUserDefault.MultiLoad, value: true)
+            
+        }
+        else {
+            switchMultiLoad.isOn = false
+            CommonService.setUserDefault(key: KeyUserDefault.MultiLoad, value: false)
+            
+        }
+    }
     @objc func showPrivacy (sender : UITapGestureRecognizer){
-        let string = "http://sites.google.com/view/tpcreative/home"
-           if let url = NSURL(string: string) {
-                          UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
-                          
-                      }
-       }
+        let string = LanguageKey.Link_Privacy
+        if let url = NSURL(string: string) {
+            UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+            
+        }
+    }
     @objc func showShare (sender : UITapGestureRecognizer){
-        let share = "https://play.google.com/store/apps/detail?id=tpcreative.co.qrscanner"
-          let activiController = UIActivityViewController(activityItems: [share], applicationActivities: nil)
-          self.present(activiController,animated: true, completion: nil)
-       }
+        let share = LanguageKey.Link_Share
+        let activiController = UIActivityViewController(activityItems: [share], applicationActivities: nil)
+        self.present(activiController,animated: true, completion: nil)
+    }
     @objc func showHelp (sender : UITapGestureRecognizer){
-           let vc = HelpVC()
-           self.navigationController?.pushViewController(vc, animated: true)
-       }
+        let vc = HelpVC()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     @objc func showSupport (sender : UITapGestureRecognizer){
-         let email = LanguageKey.Email_Help
-           if let url = URL(string: "mailto:\(email)") {
-              if #available(iOS 10.0, *) {
+        let email = LanguageKey.Email_Help
+        if let url = URL(string: "mailto:\(email)") {
+            if #available(iOS 10.0, *) {
                 UIApplication.shared.open(url)
-              } else {
+            } else {
                 UIApplication.shared.openURL(url)
-              }
             }
-       }
- 
+        }
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        changeColorQRCode(imgQRCode: imgQRCode)
+    }
+    
 }

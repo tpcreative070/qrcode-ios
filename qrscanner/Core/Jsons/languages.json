@@ -26,7 +26,7 @@
         "COPY_CLIPBOARD_CONTENT" : "Content of code will be saved automatically to clipboard",
         "OPEN_WEB" : "Open websites automatically",
         "OPEN_WEB_CONTENT" : "URI format: Auto navigate to Web Browser",
-        "APP_PERMISSION" : "App permission",
+        "APP_PERMISSION" : "App permissions",
         "PRIVACY" : "Privacy policy",
         "RATE" : "Rate 5 stars",
         "SUPPORT" : "Support",
@@ -450,12 +450,12 @@
         "RENEW_NOT_ALLOW" : "The OTP code is still valid, OTP sending failed"
     },
     "vi" : {
-        "APPPERMISSIONCONTENT1":"1. WRITE_EXTERNAL_STORAGE: Save QRCode to SDCard",
-               "APPPERMISSIONCONTENT2":"2. READ_EXTERNAL_STORAGE: Load QRCode from SDCard",
-               "APPPERMISSIONCONTENT3":"3. ACCESS_FINE_LOCATION: Getting longtitude and latitude for QRCode type of location",
-               "APPPERMISSIONCONTENT4":"4. CAMERA PERMISSION: Scanner code",
-               "APPPERMISSIONCONTENT5":"5. CALL_PHONE: Share QRCode to your call",
-               "APPPERMISSIONCONTENT6":"6. CONTACT: Add new contact on your phone",
+        "APPPERMISSIONCONTENT1":"1. WRITE_EXTERNAL_STORAGE: Lưu mã QR vào SDCard",
+               "APPPERMISSIONCONTENT2":"2. READ_EXTERNAL_STORAGE: Tải mã QR từ SDCard",
+               "APPPERMISSIONCONTENT3":"3. ACCESS_FINE_LOCATION: Lấy kinh độ và vĩ độ cho loại vị trí Mã QR",
+               "APPPERMISSIONCONTENT4":"4. CAMERA PERMISSION: Quét mã",
+               "APPPERMISSIONCONTENT5":"5. CALL_PHONE: Chia sẻ mã QR cho cuộc gọi của bạn",
+               "APPPERMISSIONCONTENT6":"6. CONTACT: Thêm liên hệ mới trên điện thoại của bạn",
      
         "CHOOSE_ONE_QRCODE": "Chỉ được chọn 1 ảnh, nếu muốn chọn nhiều ảnh vào Cài đặt -> Bật chọn nhiêù ảnh",
         "MULTI_SCAN" : "Scanner nhiều ảnh",

@@ -9,56 +9,50 @@
 import UIKit
 extension ChangeColorVC{
     func initUI(){
-        view.backgroundColor = .white
-       // view.addSubview(imgQRCode)
-        view.addSubview(collectionView)
-//        NSLayoutConstraint.activate([
-//            imgQRCode.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-//                        imgQRCode.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT_HELP),
-//                        imgQRCode.widthAnchor.constraint(equalToConstant: 80),
-//                        imgQRCode.heightAnchor.constraint(equalToConstant: 100)
-//                    ])
+        setupNavItems()
+        self.view.addSubview(imgQRCode)
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: AppConstants.MARGIN_TOP),
-              collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                  collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-                   ])
+            imgQRCode.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: AppConstants.MARGIN_TOP),
+            imgQRCode.widthAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND),
+            imgQRCode.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND),
+            imgQRCode.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        self.view.addSubview(collectionView)
+        collectionView.setAnchor(top: imgQRCode.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: AppConstants.MARGIN_TOP, paddingLeft: AppConstants.MARGIN_LEFT_HELP, paddingBottom: AppConstants.DEFAULT_CONSTRAINT, paddingRight: AppConstants.MARGIN_RIGHT_HELP)
+        changeColorQRCode(imgQRCode: imgQRCode)
         setupCollectionView()
-             bindCollectionView()
+        bindCollectionView()
+        
     }
     func updateCollectionViewDataSource() {
         print(viewModel.listColor)
-             self.collectionViewDataSource.items = self.viewModel.listColor
-             self.collectionView.reloadData()
-             debugPrint("updateCollectionViewDataSource")
-       }
-
-       func bindCollectionView(){
-           /*Setup collectionview*/
-        viewModel.getListColor()
-        print(viewModel.listColor)
-        self.collectionViewDataSource = CollectionViewDataSource(cellIdentifier: EnumIdentifier.ChangeColor.rawValue,size: 70, items: self.viewModel.listColor){ cell , vm in
+        self.collectionViewDataSource.items = self.viewModel.listColor
+        self.collectionView.reloadData()
+        changeColorQRCode(imgQRCode: imgQRCode)
+    }
+    
+    func bindCollectionView(){
+        self.collectionViewDataSource = CollectionViewDataSource(cellIdentifier: EnumIdentifier.ChangeColor.rawValue,size: Int(AppConstants.MARGIN_RIGHT_ITEM_HIS), items: self.viewModel.listColor){ cell , vm in
             cell.configView(view: vm)
-                 cell.delegate = self
-                 
-           }
-           self.collectionView.dataSource = self.collectionViewDataSource
-           self.collectionView.delegate = self.collectionViewDataSource
-       }
-       
+            cell.delegate = self
+        }
+        self.collectionView.dataSource = self.collectionViewDataSource
+        self.collectionView.delegate = self.collectionViewDataSource
+    }
+    
     func setupCollectionView(){
-          collectionView.showsHorizontalScrollIndicator = false
-          collectionView.isPagingEnabled = true
-          collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: EnumIdentifier.ChangeColor.rawValue)
-      }
+        collectionView.backgroundColor = .white
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.isPagingEnabled = true
+        collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: EnumIdentifier.ChangeColor.rawValue)
+    }
     func setupNavItems() {
-          
-          self.view.backgroundColor = .white
-          self.navigationController?.setNavigationBarHidden(false, animated: true)
-         
-      }
-     
+        self.view.backgroundColor = .white
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
+        self.navigationController?.navigationBar.tintColor = .white
+    }
+    
     func bindViewModel() {
         self.viewModel.showLoading.bind { visible in
             visible ? ProgressHUD.show(): ProgressHUD.dismiss()
@@ -68,14 +62,13 @@ extension ChangeColorVC{
         }
         
         self.viewModel.responseToView = {[weak self] value in
-            if value == EnumResponseToView.UPDATE_DATA_SOURCE.rawValue {
+            if value == EnumResponseToView.UPDATE_DATA_SOURCE_COLLECTION_VIEW.rawValue {
                 self?.updateCollectionViewDataSource()
             }
-         
+            
         }
-      
         
-        self.viewModel.getListColor()
+        self.viewModel.setListColor()
     }
 }
 extension ChangeColorVC: SingleButtonDialogPresenter { }
@@ -84,9 +77,9 @@ extension ChangeColorVC : CollectionViewCellDelegate{
     func cellCodable(codable: Codable) {
         
     }
-    
     func cellViewSelected(cell: CollectionViewCell) {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
-      //  self.viewModel.doSelectItem(index: indexPath.row)
+        print(indexPath.row)
+        self.viewModel.doSelectItem(mindex: indexPath.row)
     }
 }

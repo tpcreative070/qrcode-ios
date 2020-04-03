@@ -77,8 +77,6 @@ class ChooseSaveVC : UIViewController,UIViewControllerTransitioningDelegate, UIN
         
         self.saveViewModel.doGetListSave()
         self.saveViewModel.isSelected.value = false
-        
-        print("into ViewDidAppear History")
     }
     
     override func viewWillAppear(_ animated: Bool) {

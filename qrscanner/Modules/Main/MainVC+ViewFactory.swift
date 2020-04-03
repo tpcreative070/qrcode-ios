@@ -10,14 +10,7 @@ import UIKit
 extension MainVC  {
     
     func initUI(){
-        //        mHistory = HistoryVC()
-        //        self.mHistory?.title.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector (actionScanner(sender:))))
-        //        options.tabView.style = .segmented
-        //        options.tabView.itemView.selectedTextColor = AppColors.BLUE
-        //        options.tabView.itemView.textColor = AppColors.GRAY
-        //        options.tabView.additionView.backgroundColor = AppColors.BLUE
-        //        swipeMenuView.reloadData(options: options)
-        //        self.navigationController?.isNavigationBarHidden = true
+    
     }
     
     func addedView(){

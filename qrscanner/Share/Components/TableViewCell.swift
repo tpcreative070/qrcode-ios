@@ -142,39 +142,38 @@ class TableViewCell : UITableViewCell{
     }
     
     func set(image : String, typeformat : Int) -> UIImage{
-           print(image)
-           do{
-               let writer = ZXMultiFormatWriter()
-               let hints = ZXEncodeHints() as ZXEncodeHints
-               hints.encoding = String.Encoding.utf8.rawValue
-               let typeformat = ZXBarcodeFormat.init(UInt32(typeformat))
-               if let result : ZXBitMatrix = try writer.encode(image, format: typeformat, width: 300, height: 300,hints: hints){
-                   let image : ZXImage = ZXImage(matrix: result)
-                   let barcode : UIImage = UIImage(cgImage: image.cgimage)
-                   return barcode
-               }
-               else
-               {
-                   print("nil barcode")
-                return UIImage(named: "ic_help")!
-               }
-           }
-           catch{
-               print("error \(error)")
-            return UIImage(named: "ic_help")!
-
-           }
-       }
+        print(image)
+        do{
+            let writer = ZXMultiFormatWriter()
+            let hints = ZXEncodeHints() as ZXEncodeHints
+            hints.encoding = String.Encoding.utf8.rawValue
+            let typeformat = ZXBarcodeFormat.init(UInt32(typeformat))
+            if let result : ZXBitMatrix = try writer.encode(image, format: typeformat, width: Int32(AppConstants.HEIGHT_IMAGE_QR), height: Int32(AppConstants.HEIGHT_IMAGE_QR),hints: hints){
+                let image : ZXImage = ZXImage(matrix: result)
+                let barcode : UIImage = UIImage(cgImage: image.cgimage)
+                return barcode
+            }
+            else
+            {
+                return UIImage(named: AppImages.IC_HELP)!
+            }
+        }
+        catch{
+            print("error \(error)")
+            return UIImage(named: AppImages.IC_HELP)!
+            
+        }
+    }
     func configView(view : ContentViewModelDeletegate){
         if view.typeCodeView.uppercased() == EnumType.URL.rawValue{
             let jsonData = view.contentView.data(using: .utf8)!
             let urlData = try! JSONDecoder().decode(UrlModel.self, from: jsonData)
             configView(viewModel: UrlViewModel(url: urlData.url!))
-            if  UserDefaults.standard.bool(forKey: KeyUserDefault.OpenWeb)
-{
+            if  Bool(truncating: CommonService.getUserDefault(key: KeyUserDefault.OpenWeb) ?? false)
+            {
                 if let url = URL(string: urlData.url!) {
-                               UIApplication.shared.open(url)
-                           }
+                    UIApplication.shared.open(url)
+                }
             }
         }
         if view.typeCodeView.uppercased() == EnumType.EMAIL.rawValue{
@@ -317,8 +316,8 @@ class TableViewCell : UITableViewCell{
             self.checkBox.isChecked = !self.checkBox.isChecked
         }
         if identifier == EnumIdentifier.Alert {
-                   self.checkBox.isChecked = !self.checkBox.isChecked
-               }
+            self.checkBox.isChecked = !self.checkBox.isChecked
+        }
         
     }
     @objc func actionCellViewLongPress(sender : UILongPressGestureRecognizer){
@@ -367,7 +366,7 @@ class TableViewCell : UITableViewCell{
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -416,7 +415,7 @@ class TableViewCell : UITableViewCell{
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -425,7 +424,7 @@ class TableViewCell : UITableViewCell{
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -434,7 +433,7 @@ class TableViewCell : UITableViewCell{
         view.backgroundColor = AppColors.GRAY_LIGHT_90
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
+        view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -753,26 +752,26 @@ class TableViewCell : UITableViewCell{
         if let data = codable {
             self.delegate?.cellViewSelected(cell: data)
         }
-       /* if let data = codable {
-            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
-            let value_data = valueContentView?.content
-            let jsonData = value_data!.data(using: .utf8)!
-            let value = try! JSONDecoder().decode(MessageModel.self, from: jsonData)
-            var vc = AlertVC(listItem: [AlertViewModel(name: value.message!)])
-            //let alert = CustomAlert(title: "Hello there!! 👋🏻👋🏻", image: UIImage(named: "img")!)
-                  vc.show(animated: true)
-//        var alrController = UIAlertController(title: "\n\n\n\n\n\n", message: nil, preferredStyle: UIAlertController.Style.alert)
-//        alrController.view.addSubview(vc)
-//
-//        let somethingAction = UIAlertAction(title: "Something", style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in print("something")})
-//
-//        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: {(alert: UIAlertAction!) in print("cancel")})
-//
-//        alrController.addAction(somethingAction)
-//        alrController.addAction(cancelAction)
-//        self.window?.rootViewController?.present(alrController, animated: true, completion: nil)
-        }
- */
+        /* if let data = codable {
+         let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
+         let value_data = valueContentView?.content
+         let jsonData = value_data!.data(using: .utf8)!
+         let value = try! JSONDecoder().decode(MessageModel.self, from: jsonData)
+         var vc = AlertVC(listItem: [AlertViewModel(name: value.message!)])
+         //let alert = CustomAlert(title: "Hello there!! 👋🏻👋🏻", image: UIImage(named: "img")!)
+         vc.show(animated: true)
+         //        var alrController = UIAlertController(title: "\n\n\n\n\n\n", message: nil, preferredStyle: UIAlertController.Style.alert)
+         //        alrController.view.addSubview(vc)
+         //
+         //        let somethingAction = UIAlertAction(title: "Something", style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in print("something")})
+         //
+         //        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: {(alert: UIAlertAction!) in print("cancel")})
+         //
+         //        alrController.addAction(somethingAction)
+         //        alrController.addAction(cancelAction)
+         //        self.window?.rootViewController?.present(alrController, animated: true, completion: nil)
+         }
+         */
     }
     @objc func addContactAction(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
@@ -899,18 +898,14 @@ class TableViewCell : UITableViewCell{
                     let event:EKEvent = EKEvent(eventStore: eventStore)
                     
                     event.title = value_data!.title
-                    print(value_data?.beginTime)
                     event.startDate = TimeHelper.getDateTime(timeString: value_data!.beginTime!) ?? Date()
-                    
                     event.endDate = TimeHelper.getDateTime(timeString: value_data!.endTime!) ?? Date()
                     event.notes = value_data?.description ?? ""
                     event.location = value_data?.location ?? ""
                     event.calendar = eventStore.defaultCalendarForNewEvents
                     do {
                         try eventStore.save(event, span: .thisEvent)
-                        
-                        
-                        DispatchQueue.main.async(execute: {
+                         DispatchQueue.main.async(execute: {
                             UIApplication.shared.registerForRemoteNotifications()
                             guard let url = URL(string: "calshow://") else { return }
                             UIApplication.shared.open(url, options: [:], completionHandler: nil)

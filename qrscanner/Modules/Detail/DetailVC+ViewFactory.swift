@@ -247,7 +247,6 @@ extension DetailVC : TableViewCellDelegate {
             vc.viewModel.listItem.append(AlertViewModel(name: model.emailContact ?? "" ))
             vc.viewModel.listItem.append(AlertViewModel(name: model.addressContact ?? "" ))
             vc.viewModel.listItem.append(AlertViewModel(name: model.phoneContact ?? "" ))
-            
             self.navigationController?.pushViewController(vc, animated: false)
         }
        

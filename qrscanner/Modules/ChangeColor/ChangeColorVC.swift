@@ -22,20 +22,17 @@ class ChangeColorVC: UIViewController {
           }()
     lazy var collectionView :UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 10
-        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = AppConstants.SPACING
+        layout.scrollDirection = .vertical
         let vc = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        vc.backgroundColor = .red
         return vc
     }()
     var collectionViewDataSource :CollectionViewDataSource<CollectionViewCell,ChangeColorViewModel>!
      let viewModel = ChangeColorViewModelList()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         initUI()
-      //  bindViewModel()
-        // Do any additional setup after loading the view.
+        bindViewModel()
     }
     
     
@@ -50,4 +47,5 @@ class ChangeColorVC: UIViewController {
            self.navigationController?.isNavigationBarHidden = true
            
        }
+  
 }

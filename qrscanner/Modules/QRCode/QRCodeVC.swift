@@ -88,6 +88,5 @@ class QRCodeVC: BaseViewController {
               viewModel.doSelectedAll(isValue: false)
           }
      //   viewModel.doGetListTransaction()
-
       }
 }
