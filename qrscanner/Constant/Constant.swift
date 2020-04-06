@@ -115,7 +115,7 @@ static let IC_DEFAULT_DROP = CGFloat(18)
     static let MARGIN_RIGHT_ITEM_HIS = CGFloat(80)
     static let MARGIN_TOP_ALERT = CGFloat(130)
     static let MARGIN_BOTTOM_ALERT = CGFloat(-130)
-    static let SWITCH_HEIGHT_DEFAULT = CGFloat(15)
+    static let SWITCH_HEIGHT_DEFAULT = CGFloat(17)
     static let SWITCH_WIDTH_DEFAULT = CGFloat(45)
     static let MARGIN_TOP_ITEM = CGFloat(12)
     static let MARGIN_TOP_ITEM_SETTING = CGFloat(8)
@@ -649,7 +649,7 @@ struct LanguageKey {
     static let PayVTVCab = "PAYVTVCAB"
     static let ActiveAccountNow = "ACTIVE_ACCOUNT_NOW"
     //typeCode
-    
+     static let Back = "BACK"
     static let ProductID = "PRODUCTID"
 
     static let Total = "TOTAL"

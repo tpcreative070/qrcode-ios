@@ -81,7 +81,7 @@ class BarcodeVC: BaseViewController {
         generateViewModel = GenerateViewModel()
         self.barcodeViewModel.typeBarcode = BarcodeType.EAN_8.rawValue
         self.bindViewModel()
-        self.addLeftBackButton()
+       // self.addLeftBackButton()
         self.checkIsSeenDetail()
         
     }
@@ -106,6 +106,10 @@ class BarcodeVC: BaseViewController {
     override func closeButtonPress() {
         dismiss()
     }
+    @objc func doBack() {
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+        }
     @objc func doGenerate() {
         print("done")
         self.defineValue()
@@ -124,19 +128,20 @@ class BarcodeVC: BaseViewController {
             self.lbType.text = self.setTextLabel(mString: String(describing: type.rawValue))
             
         }
-        controller.preferredContentSize = CGSize(width: 300, height: 200)
+        controller.preferredContentSize = CGSize(width: 300, height: 95)
         showPopup(controller, sourceView: sender)
     }
     private func showPopup(_ controller: UIViewController, sourceView: UIView) {
         let presentationController = AlwaysPresentAsPopover.configurePresentation(forController: controller)
         presentationController.sourceView = sourceView
         presentationController.sourceRect = sourceView.bounds
-        presentationController.permittedArrowDirections = [.down, .up]
+        presentationController.permittedArrowDirections = [.up]
         self.present(controller, animated: true)
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         lbType.text = setTextLabel(mString: self.barcodeViewModel.typeBarcode ?? "")
+        self.generateViewModel?.errorMessages.value[GenerateViewModelKey.PRODUCTID] = ""
         if barcodeViewModel.typeBarcode == BarcodeType.EAN_8.rawValue{
             textFieldProduct.placeholder = LanguageHelper.getTranslationByKey(LanguageKey.Placeholder_Ean8)
         }
