@@ -40,6 +40,20 @@ class Navigator {
         return T()
     }
     
+    // Make sure setup get call pushPopupPresent
+    static func getPopupViewControler<T: BaseViewController>(identifier : String, isPresentFullScreen: Bool? = false) -> T {
+          if let value = getViewController()[identifier]{
+              let storyboard = value.storyBoard
+              let popup = storyboard.instantiateViewController(withIdentifier: value.identifier) as! T
+              popup.modalPresentationStyle = .overCurrentContext
+              if (isPresentFullScreen != nil && isPresentFullScreen == true) {
+                   popup.modalPresentationStyle = .fullScreen
+              }
+              return popup
+          }
+          return T()
+    }
+    
     static func pushPopupPresent<F: BaseViewController, T: BaseViewController>(viewController: F, popupController: inout T){
         viewController.present(popupController, animated: true)
     }
