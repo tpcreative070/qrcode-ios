@@ -18,10 +18,10 @@ class BaseViewController: UIViewController {
     var isAuto : Bool = true
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(handleUnauthorized), name: .didRecieveUnauthorized, object: nil)
-        registerEventBus()
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-        self.view.addGestureRecognizer(tap)
+//        NotificationCenter.default.addObserver(self, selector: #selector(handleUnauthorized), name: .didRecieveUnauthorized, object: nil)
+//        registerEventBus()
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+//        self.view.addGestureRecognizer(tap)
     }
  
     func registerEventBus(){

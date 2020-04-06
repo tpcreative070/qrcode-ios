@@ -129,16 +129,14 @@ class TimeHelper {
         return runningString.trimmingCharacters(in: .whitespaces)
     }
     static func getDate(timeString: String) -> String? {
+       let timeString = timeString.trimmingCharacters(in: .whitespacesAndNewlines)
         if timeString.contains("T") {
             let arr_date = timeString.split(separator: "T")
             let year = arr_date[0].prefix(4)
-            print(year)
             let month_start = arr_date[0].index(arr_date[0].startIndex,offsetBy: 4)
             let month_end = arr_date[0].index(arr_date[0].endIndex,offsetBy: -2)
             let month = arr_date[0][month_start..<month_end]
-            print(month)
             let day = arr_date[0].suffix(2)
-            print(day)
             let hour = arr_date[1].prefix(2)
             let minute_start = arr_date[1].index(arr_date[1].startIndex,offsetBy: 2)
             let minute_end = arr_date[1].index(arr_date[1].endIndex,offsetBy: -2)

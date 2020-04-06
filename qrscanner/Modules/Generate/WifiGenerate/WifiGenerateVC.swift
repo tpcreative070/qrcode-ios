@@ -224,7 +224,7 @@ class WifiGenerateVC: BaseViewController {
     @objc func doGenerate() {
         print("done")
         self.defineValue()
-        generateViewModel?.doGenerateValue();
+        generateViewModel?.doGenerateQRValue();
     }
     @objc func inputFieldEditingDidEnd(textField: UITextField){
         self.generateViewModel?.focusTextField = textField

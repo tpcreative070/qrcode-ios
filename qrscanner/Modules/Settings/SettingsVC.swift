@@ -515,25 +515,38 @@ class SettingsVC : BaseViewController {
     }
     @objc func doChangeLanguage (sender : UITapGestureRecognizer){
         let alrController = UIAlertController(title: LanguageHelper.getTranslationByKey(LanguageKey.Language), message: LanguageHelper.getTranslationByKey(LanguageKey.ChooseYourLanguage), preferredStyle: UIAlertController.Style.actionSheet)
-        let somethingAction = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.English), style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in
+        let enlishAc = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.English), style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in
             CommonService.setMultipleLanguages(value: LanguageCode.English)
             self.navigationController?.pushViewController(MainVC(), animated: false)
             self.dismiss()
             
         })
-        let somethingAction1 = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Vietnamese), style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in
+        let vietnamAc = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Vietnamese), style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in
             CommonService.setMultipleLanguages(value: LanguageCode.Vietnamese)
             self.navigationController?.pushViewController(MainVC(), animated: false)
             self.dismiss()
             
         })
+        let esAc = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Spanish), style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in
+                   CommonService.setMultipleLanguages(value: LanguageCode.Spanish)
+                   self.navigationController?.pushViewController(MainVC(), animated: false)
+                   self.dismiss()
+
+               })
+//               let ptAc = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Portuguese), style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in
+//                   CommonService.setMultipleLanguages(value: LanguageCode.Portuguese)
+//                   self.navigationController?.pushViewController(MainVC(), animated: false)
+//                   self.dismiss()
+//
+//               })
         let cancelAction = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Cancel), style: UIAlertAction.Style.cancel, handler: {(alert: UIAlertAction!) in
             self.dismiss()
         })
         
-        alrController.addAction(somethingAction)
-        alrController.addAction(somethingAction1)
-        
+        alrController.addAction(enlishAc)
+        alrController.addAction(vietnamAc)
+          alrController.addAction(esAc)
+//          alrController.addAction(ptAc)
         alrController.addAction(cancelAction)
         self.present(alrController, animated: true, completion: nil)
     }

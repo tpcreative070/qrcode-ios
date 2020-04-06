@@ -164,6 +164,10 @@ extension TypeCodeVC : TableViewCellDelegate {
               vc = ContactGenerateVC()
 
               }
+        else if typeCode == EnumType.BARCODE.rawValue{
+                     vc = BarcodeVC()
+
+                     }
       self.navigationController?.pushViewController(vc!, animated: true)
     }
     func setupEndedUpScrollView(){

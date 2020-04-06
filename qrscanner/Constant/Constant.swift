@@ -49,6 +49,8 @@ public struct KeychainSwiftConstants {
 
 
 struct AppConstants {
+    static let sharedIndentifier = "group.com.example.democarthage"
+    static let shareKey = "Images"
     static var ischoose = 0
     static var isVibrate = 0
     static var isBeep = 0
@@ -69,6 +71,9 @@ struct AppConstants {
     static let MAX_LENGHT_QRCODE = 1000
     static let MAX_LENGHT = 250
     static let MIN_LENGHT = 1
+    static let EQUAL_LENGHT_8 = 8
+    static let EQUAL_LENGHT_13 = 8
+
     static let MAX_CASH_AMOUNT = 1000
     static let FLOAT_LABEL_MARGIN_LEFT = CGFloat(30)
     static let FLOAT_LABEL_HEIGHT = CGFloat(25)
@@ -80,9 +85,11 @@ struct AppConstants {
     static let HEIGHT_IMAGE_SETTING = CGFloat(50)
     static let HEIGHT_IMAGE_QR = CGFloat(300)
     static let HEIGHT_IMAGE_COLOR = CGFloat(70)
-
+    static let HEIGHT_BACKGROUND_BAR = CGFloat(175)
+    static let HEIGHT_BACKGROUND_ITEM_BAR = CGFloat(140)
+static let IC_DEFAULT_DROP = CGFloat(18)
     static let WIDTH_BUTTON_DEFAULT = CGFloat(120)
-    static let IC_DEFAULT = CFloat(25)
+    static let IC_DEFAULT = CGFloat(25)
     static let ICON_WIDTH_HEIGHT = CGFloat(30)
     static let ICON_SCAN_WIDTH_HEIGHT = CGFloat(30)
     static let IC_CLOSE_WIDTH = CFloat(30)
@@ -289,7 +296,7 @@ struct AppImages {
     static let IC_FLASH_OFF = "ic_flash_off"
     static let IC_FLASH_ON = "ic_flash_on"
     static let IC_PRINT = "ic_print"
-    
+    static let IC_BARCODE = "ic_barcode"
     static let IC_FLIP_CAMERA = "ic_flip_camera"
     static let IC_HELP = "ic_help"
     static let IC_IMAGE = "ic_image"
@@ -330,7 +337,7 @@ struct AppImages {
     static let IC_LOGO = "ic_logo"
     static let IC_USER = "ic_user"
     static let IC_PASSWORD = "ic_password"
-    static let IC_DROPDOWN = "ic_drop_down"
+    static let IC_DROPDOWN = "ic_dropdown"
     static let IC_CIRCLE_CASH_IN = "ic_circle_cash_in"
     static let IC_CIRCLE_CASH_OUT = "ic_circle_cash_out"
     static let IC_CIRCLE_CASH_CHANGE = "ic_circle_cash_change"
@@ -477,14 +484,17 @@ struct LanguageKey {
     static let Email_Help = "care@tpcreative.me"
     static let Link_Share = "https://play.google.com/store/apps/detail?id=tpcreative.co.qrscanner"
     //Scanner
+    static let Placeholder_Ean8 = "PLACEHOLDER_EAN8"
+    static let Placeholder_Ean13 = "PLACEHOLDER_EAN13"
+
     static let Aztec = "Aztec"
     static let CODABAR = "CODABAR"
     static let Code_39 = "Code 39"
     static let Code_93 = "Code 93"
     static let Code_128 = "Code 128"
     static let Data_Matrix = "Data Matrix"
-    static let EAN_8 = "EAN-8"
-    static let EAN_13 = "EAN-13"
+    static let EAN_8 = "EAN_8"
+    static let EAN_13 = "EAN_13"
     static let ITF = "ITF"
     static let PDF417 = "PDF417"
     static let QR_Code = "QR Code"
@@ -640,10 +650,12 @@ struct LanguageKey {
     static let ActiveAccountNow = "ACTIVE_ACCOUNT_NOW"
     //typeCode
     
+    static let ProductID = "PRODUCTID"
+
     static let Total = "TOTAL"
     static let Sms = "SMS"
     static let Email = "EMAIL"
-
+    static let Barcode = "BARCODE"
     static let Message = "MESSAGE"
     static let Location = "LOCATION"
     static let Event = "EVENT"
@@ -749,6 +761,8 @@ struct LanguageKey {
     static let ErrorUrlRequired = "ERROR_URL_REQUIRED"
     static let ErrorUrlInvalid = "ERROR_URL_INVALID"
     static let ErrorTextRequired = "ERROR_TEXT_REQUIRED"
+     static let ErrorProductRequired8 = "ERROR_PRODUCT_REQUIRED8"
+      static let ErrorProductRequired13 = "ERROR_PRODUCT_REQUIRED13"
     static let ErrorObjectEmailRequired = "ERROR_OBJECT_EMAIL_REQUIRED"
     static let ErrorMessageEmailRequired = "ERROR_MESSAGE_EMAIL_REQUIRED"
     static let ErrorFullNameContactRequired = "ERROR_FULLNAME_CONTACT_REQUIRED"
@@ -932,6 +946,8 @@ struct LanguageKey {
     static let ChooseYourLanguage = "CHOOSE_YOUR_LANGUAGE"
     static let Vietnamese = "VIETNAMESE"
     static let English = "English"
+    static let Spanish = "SPANISH"
+    static let Portuguese = "PORTUGUESE"
     static let Language =  "LANGUAGE"
     //My QRCode
     static let ScanQRCodeLetToEWallet = "SCANQRCODELETTOADDEWALLET"
@@ -980,6 +996,8 @@ struct LanguageKey {
 struct LanguageCode {
     static let English = "en"
     static let Vietnamese = "vi"
+      static let Spanish = "es"
+      static let Portuguese = "pt"
 }
 
 struct StorageKey {
@@ -1159,6 +1177,7 @@ enum EnumIdentifier : String {
     case TransfereCashToeCash = "transferecashtoecash"
     case WithdrawMultipleeCash = "WithdrawMultipleeCash"
     case History = "history"
+    case Dropdown = "dropdown"
     case HistoryChoose = "history_choose"
     case SaveChoose = "save_choose"
     case Save = "save"
@@ -1195,6 +1214,7 @@ enum EnumIdentifier : String {
     case ReceiveLixiOptions = "ReceiveLixiOptions"
 }
 enum EnumType : String {
+    case BARCODE = "BARCODE"
     case URL = "URL"
     case TEXT = "TEXT"
     case TELEPHONE = "TELEPHONE"
@@ -1204,6 +1224,10 @@ enum EnumType : String {
     case LOCATION = "LOCATION"
     case MESSAGE = "MESSAGE"
     case EVENT = "EVENT"
+}
+enum BarcodeType : String {
+   case EAN_8, EAN_13
+static var allValues = [BarcodeType.EAN_8, .EAN_13]
 }
 enum ColorString : String {
     case Black = "Black"

@@ -112,6 +112,7 @@ protocol GenerateViewModelDelegate  {
     var to: String? { get }
     var message: String? { get }
     var url: String? {get}
+    var productID: String? {get}
     var text: String? {get}
     var email: String? {get}
     var objectEmail: String? {get}
@@ -122,7 +123,10 @@ protocol GenerateViewModelDelegate  {
     var phoneContact: String? {get}
     var emailContact: String? {get}
     var typeCode : String{get}
-    
+    var typeBarcode : String?{get}
+
+    var typeBarcodeBinding : Bindable<String> {get}
+    var productIDBinding : Bindable<String> {get}
     var toBinding : Bindable<String> {get}
     var messageBinding : Bindable<String> {get}
     var urlBinding : Bindable<String> {get}
@@ -193,9 +197,12 @@ protocol DateTimePickerDelegate {
 /*Url Protocol*/
 protocol UrlViewModelDelegate {
     var urlTxtView : String{get}
-    
 }
-
+/*Barcode Protocol*/
+protocol BarcodeViewModelDelegate {
+    var barcodeView : String{get}
+    var typeBarcodeView: String{get}
+}
 protocol DetailViewModelListDelegate {
     var listurl : [UrlViewModel] {get}
     var listtext : [TextViewModel] {get}

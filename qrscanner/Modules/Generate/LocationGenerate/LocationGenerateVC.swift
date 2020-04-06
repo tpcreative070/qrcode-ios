@@ -155,7 +155,7 @@ class LocationGenerateVC: BaseViewController {
     @objc func doGenerate() {
         print("done")
         self.defineValue()
-        generateViewModel?.doGenerateValue();
+        generateViewModel?.doGenerateQRValue();
     }
     
     
