@@ -71,3 +71,8 @@ extension AppDelegate{
         }
     }
 }
+
+
+
+//         let popup: InfoTransactionOptionsVC = Navigator.getPopupViewControler(identifier: Controller.infoTransactionOptions)
+//         popup.delegate = self
