@@ -169,7 +169,7 @@ extension TypeCodeVC : TableViewCellDelegate {
                    let   vc  = BarcodeVC()
                    Navigator.pushViewController(from: self, to: vc, isNavigation: true, isTransparent: false)
               }
-      //self.navigationController?.pushViewController(vc!, animated: true)
+   //   self.navigationController?.pushViewController(vc!, animated: true)
     }
     func setupEndedUpScrollView(){
       wrapperView.addSubview(endedUpScrollViewContainerView)

@@ -66,4 +66,5 @@ class Navigator {
         }
           present ? ( isNavigation ? from.navigationController?.pushViewController(viewController, animated: true) : from.present(viewController, animated: true,completion: nil)) :  (isNavigation ? from.navigationController?.pushViewController(viewController, animated: true) : from.navigationController?.present(viewController, animated: true,completion: nil))
     }
+
 }

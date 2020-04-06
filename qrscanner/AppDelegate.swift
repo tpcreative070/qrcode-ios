@@ -55,18 +55,18 @@ extension AppDelegate{
             let enLang = languagesObject[LanguageCode.English] as! Dictionary<String, Any>
             let viLang = languagesObject[LanguageCode.Vietnamese] as! Dictionary<String, Any>
              let esLang = languagesObject[LanguageCode.Spanish] as! Dictionary<String, Any>
-         //   let ptLang = languagesObject[LanguageCode.Portuguese] as! Dictionary<String, Any>
+           let ptLang = languagesObject[LanguageCode.Portuguese] as! Dictionary<String, Any>
 
             // Store language to db
             LanguageHelper.storeLanguageByKey(LanguageCode.English, data: JSONHelper.convertDictionaryToJson(enLang) ?? "")
             LanguageHelper.storeLanguageByKey(LanguageCode.Vietnamese, data: JSONHelper.convertDictionaryToJson(viLang) ?? "")
             LanguageHelper.storeLanguageByKey(LanguageCode.Spanish, data: JSONHelper.convertDictionaryToJson(esLang) ?? "")
-         //   LanguageHelper.storeLanguageByKey(LanguageCode.Portuguese, data: JSONHelper.convertDictionaryToJson(viLang) ?? "")
+           LanguageHelper.storeLanguageByKey(LanguageCode.Portuguese, data: JSONHelper.convertDictionaryToJson(viLang) ?? "")
             // store language to global data
             GlobalVariableHelper.languages[LanguageCode.English] = enLang
             GlobalVariableHelper.languages[LanguageCode.Vietnamese] = viLang
             GlobalVariableHelper.languages[LanguageCode.Spanish] = esLang
-         //   GlobalVariableHelper.languages[LanguageCode.Portuguese] = ptLang
+            GlobalVariableHelper.languages[LanguageCode.Portuguese] = ptLang
 
         }
     }

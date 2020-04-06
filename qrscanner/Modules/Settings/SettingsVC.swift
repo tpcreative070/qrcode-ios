@@ -198,6 +198,11 @@ class SettingsVC : BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    lazy var lbCurrentLanguage : ICLabel = {
+           let view = ICLabel()
+           view.translatesAutoresizingMaskIntoConstraints = false
+           return view
+       }()
     lazy var lbLanguage : ICLabel = {
         let view = ICLabel()
         view.text = LanguageHelper.getTranslationByKey(LanguageKey.Language)
@@ -533,12 +538,12 @@ class SettingsVC : BaseViewController {
                    self.dismiss()
 
                })
-//               let ptAc = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Portuguese), style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in
-//                   CommonService.setMultipleLanguages(value: LanguageCode.Portuguese)
-//                   self.navigationController?.pushViewController(MainVC(), animated: false)
-//                   self.dismiss()
-//
-//               })
+               let ptAc = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Portuguese), style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in
+                   CommonService.setMultipleLanguages(value: LanguageCode.Portuguese)
+                   self.navigationController?.pushViewController(MainVC(), animated: false)
+                   self.dismiss()
+
+               })
         let cancelAction = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Cancel), style: UIAlertAction.Style.cancel, handler: {(alert: UIAlertAction!) in
             self.dismiss()
         })
@@ -546,7 +551,7 @@ class SettingsVC : BaseViewController {
         alrController.addAction(enlishAc)
         alrController.addAction(vietnamAc)
           alrController.addAction(esAc)
-//          alrController.addAction(ptAc)
+          alrController.addAction(ptAc)
         alrController.addAction(cancelAction)
         self.present(alrController, animated: true, completion: nil)
     }

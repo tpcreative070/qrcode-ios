@@ -135,25 +135,26 @@ extension HistoryVC  {
     }
     // MARK: - Floaty Delegate Methods
     func floatyWillOpen(_ floaty: Floaty) {
-        print("Floaty Will Open")
+        //print("Floaty Will Open")
     }
     
     func floatyDidOpen(_ floaty: Floaty) {
-        print("Floaty Did Open")
+        //print("Floaty Did Open")
     }
     
     func floatyWillClose(_ floaty: Floaty) {
-        print("Floaty Will Close")
+        //print("Floaty Will Close")
     }
     
     func floatyDidClose(_ floaty: Floaty) {
-        print("Foaty Did Close")
+        //print("Foaty Did Close")
     }
     
     
 }
 extension HistoryVC : TableViewCellDelegate{
     func cellViewLongSelected(cell: TableViewCell) {
+        
         navigationController?.pushViewController(ChooseHistoryVC(), animated: false)
     }
     

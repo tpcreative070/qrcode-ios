@@ -127,7 +127,7 @@ extension SettingsVC {
             self.stackViewMultiScan.leadingAnchor.constraint(equalTo: self.imgMultiScan.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
             self.stackViewMultiScan.topAnchor.constraint(equalTo: self.viewMultiScan.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
             self.stackViewMultiScan.centerYAnchor.constraint(equalTo: self.viewMultiScan.centerYAnchor),
-            self.stackViewMultiScan.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.5),
+            self.stackViewMultiScan.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.8),
             
         ])
         self.stackViewMultiScan.axis = .vertical
@@ -164,7 +164,7 @@ extension SettingsVC {
                  self.stackViewMultiLoad.leadingAnchor.constraint(equalTo: self.imgMultiLoad.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
                  self.stackViewMultiLoad.topAnchor.constraint(equalTo: self.viewMultiLoad.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
                  self.stackViewMultiLoad.centerYAnchor.constraint(equalTo: self.viewMultiLoad.centerYAnchor),
-                 self.stackViewMultiLoad.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.5),
+                 self.stackViewMultiLoad.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.8),
                  
              ])
              self.stackViewMultiLoad.axis = .vertical
@@ -201,7 +201,7 @@ extension SettingsVC {
             self.stackViewChangeColor.leadingAnchor.constraint(equalTo: self.imgChangeColor.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
             self.stackViewChangeColor.topAnchor.constraint(equalTo: self.viewChangeColor.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
             self.stackViewChangeColor.centerYAnchor.constraint(equalTo: self.viewChangeColor.centerYAnchor),
-            self.stackViewChangeColor.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.5),
+            self.stackViewChangeColor.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.8),
             
         ])
         self.stackViewChangeColor.axis = .vertical
@@ -238,7 +238,7 @@ extension SettingsVC {
             self.stackViewCopy.leadingAnchor.constraint(equalTo: self.imgCopy.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
             self.stackViewCopy.topAnchor.constraint(equalTo: self.viewCopy.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
             self.stackViewCopy.centerYAnchor.constraint(equalTo: self.viewCopy.centerYAnchor),
-            self.stackViewCopy.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.5),
+            self.stackViewCopy.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.8),
             
         ])
         self.stackViewCopy.axis = .vertical
@@ -275,7 +275,7 @@ extension SettingsVC {
             self.stackViewOpenWeb.leadingAnchor.constraint(equalTo: self.imgCopy.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
             self.stackViewOpenWeb.topAnchor.constraint(equalTo: self.viewOpenWeb.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
             self.stackViewOpenWeb.centerYAnchor.constraint(equalTo: self.viewOpenWeb.centerYAnchor),
-            self.stackViewOpenWeb.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.5),
+            self.stackViewOpenWeb.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.8),
             
         ])
         self.stackViewOpenWeb.axis = .vertical
@@ -313,7 +313,7 @@ extension SettingsVC {
             self.stackViewLanguage.leadingAnchor.constraint(equalTo: self.imgLanguage.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
             self.stackViewLanguage.topAnchor.constraint(equalTo: self.viewLanguage.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
             self.stackViewLanguage.centerYAnchor.constraint(equalTo: self.viewLanguage.centerYAnchor),
-            self.stackViewLanguage.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.5),
+            self.stackViewLanguage.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.8),
             
         ])
         self.stackViewLanguage.axis = .vertical
@@ -322,6 +322,13 @@ extension SettingsVC {
         self.stackViewLanguage.spacing = AppConstants.MARGIN_TOP_SUBITEM
         self.stackViewLanguage.addArrangedSubview(lbLanguage)
         self.stackViewLanguage.addArrangedSubview(lbLanguageContent)
+        self.viewLanguage.addSubview(self.lbCurrentLanguage)
+               NSLayoutConstraint.activate([
+                   lbCurrentLanguage.topAnchor.constraint(equalTo: viewLanguage.topAnchor, constant: AppConstants.MARGIN_TOP),
+                   lbCurrentLanguage.trailingAnchor.constraint(equalTo: viewLanguage.trailingAnchor),
+//                   lbCurrentLanguage.widthAnchor.constraint(equalToConstant: AppConstants.SWITCH_WIDTH_DEFAULT),
+                   lbCurrentLanguage.heightAnchor.constraint(equalToConstant: AppConstants.SWITCH_HEIGHT_DEFAULT),
+               ])
         self.viewLanguage.addSubview(self.viewUnderLineAdvance)
         NSLayoutConstraint.activate([
             self.viewUnderLineAdvance.leadingAnchor.constraint(equalTo: self.viewBackground.leadingAnchor),
@@ -473,7 +480,7 @@ extension SettingsVC {
          self.stackViewSupport.leadingAnchor.constraint(equalTo: self.imgSupport.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
          self.stackViewSupport.topAnchor.constraint(equalTo: self.viewSupport.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
          self.stackViewSupport.centerYAnchor.constraint(equalTo: self.viewSupport.centerYAnchor),
-         self.stackViewSupport.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.5),
+         self.stackViewSupport.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.8),
          
          ])
          self.stackViewSupport.axis = .vertical
@@ -504,7 +511,7 @@ extension SettingsVC {
          self.stackViewVersion.leadingAnchor.constraint(equalTo: self.imgVersion.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
          self.stackViewVersion.topAnchor.constraint(equalTo: self.viewVersion.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
          self.stackViewVersion.centerYAnchor.constraint(equalTo: self.viewVersion.centerYAnchor),
-         self.stackViewVersion.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.5),
+         self.stackViewVersion.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.8),
          
          ])
          self.stackViewVersion.axis = .vertical
@@ -575,6 +582,7 @@ extension SettingsVC {
         self.viewSupport.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showSupport(sender:))))
         viewHelp.isUserInteractionEnabled  = true
         changeColorQRCode(imgQRCode: imgQRCode)
+        getCurrenLang()
     }
     func setupEndedUpScrollView(){
         viewBackground.addSubview(endedUpScrollViewContainerView)
@@ -624,6 +632,24 @@ extension SettingsVC {
         self.switchDefaultConfig(switchView: switchOpen)
         self.switchDefaultConfig(switchView: switchBeep)
         self.switchDefaultConfig(switchView: switchCopy)
+    }
+    func getCurrenLang(){
+        var currentLang : String = ""
+        if let mData = CommonService.getMultipleLanguages(){
+            currentLang = mData
+        }
+        if currentLang == LanguageCode.Vietnamese{
+            lbCurrentLanguage.text = LanguageHelper.getTranslationByKey(LanguageKey.Vietnamese)
+        }
+        if currentLang == LanguageCode.English{
+                   lbCurrentLanguage.text = LanguageHelper.getTranslationByKey(LanguageKey.English)
+               }
+        if currentLang == LanguageCode.Spanish{
+                   lbCurrentLanguage.text = LanguageHelper.getTranslationByKey(LanguageKey.Spanish)
+               }
+        if currentLang == LanguageCode.Portuguese{
+                   lbCurrentLanguage.text = LanguageHelper.getTranslationByKey(LanguageKey.Portuguese)
+               }
     }
     
 }
