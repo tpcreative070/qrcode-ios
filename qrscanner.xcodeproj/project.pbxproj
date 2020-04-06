@@ -1990,14 +1990,14 @@
 				CODE_SIGN_ENTITLEMENTS = ShareImage/ShareImage.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 595CS9LN69;
+				DEVELOPMENT_TEAM = LKKQZ66NSP;
 				INFOPLIST_FILE = ShareImage/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.democarthage.ShareImage;
+				PRODUCT_BUNDLE_IDENTIFIER = test.co.tpcreative.qrscanner.share;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -2012,14 +2012,14 @@
 				CODE_SIGN_ENTITLEMENTS = ShareImage/ShareImage.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 595CS9LN69;
+				DEVELOPMENT_TEAM = LKKQZ66NSP;
 				INFOPLIST_FILE = ShareImage/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.democarthage.ShareImage;
+				PRODUCT_BUNDLE_IDENTIFIER = test.co.tpcreative.qrscanner.share;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -2034,14 +2034,14 @@
 				CODE_SIGN_ENTITLEMENTS = ShareImage/ShareImage.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 595CS9LN69;
+				DEVELOPMENT_TEAM = LKKQZ66NSP;
 				INFOPLIST_FILE = ShareImage/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.democarthage.ShareImage;
+				PRODUCT_BUNDLE_IDENTIFIER = test.co.tpcreative.qrscanner.share;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -2175,14 +2175,14 @@
 				CODE_SIGN_ENTITLEMENTS = qrscanner/qrscanner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"qrscanner/Preview Content\"";
-				DEVELOPMENT_TEAM = 595CS9LN69;
+				DEVELOPMENT_TEAM = LKKQZ66NSP;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = qrscanner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.democarthage;
+				PRODUCT_BUNDLE_IDENTIFIER = test.co.tpcreative.qrscanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2198,14 +2198,14 @@
 				CODE_SIGN_ENTITLEMENTS = qrscanner/qrscanner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"qrscanner/Preview Content\"";
-				DEVELOPMENT_TEAM = 595CS9LN69;
+				DEVELOPMENT_TEAM = LKKQZ66NSP;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = qrscanner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.democarthage;
+				PRODUCT_BUNDLE_IDENTIFIER = test.co.tpcreative.qrscanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2219,7 +2219,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AQHNXZHZ8T;
+				DEVELOPMENT_TEAM = LKKQZ66NSP;
 				INFOPLIST_FILE = qrscannerTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2242,7 +2242,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AQHNXZHZ8T;
+				DEVELOPMENT_TEAM = LKKQZ66NSP;
 				INFOPLIST_FILE = qrscannerTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2263,6 +2263,7 @@
 			baseConfigurationReference = 1E59C1D747076534360C168D /* Pods-qrscannerUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AQHNXZHZ8T;
 				INFOPLIST_FILE = qrscannerUITests/Info.plist;
@@ -2284,6 +2285,7 @@
 			baseConfigurationReference = 8503BE4DFD3E486C87A625B7 /* Pods-qrscannerUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AQHNXZHZ8T;
 				INFOPLIST_FILE = qrscannerUITests/Info.plist;
@@ -2370,14 +2372,14 @@
 				CODE_SIGN_ENTITLEMENTS = qrscanner/qrscanner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"qrscanner/Preview Content\"";
-				DEVELOPMENT_TEAM = 595CS9LN69;
+				DEVELOPMENT_TEAM = LKKQZ66NSP;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = qrscanner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.democarthage;
+				PRODUCT_BUNDLE_IDENTIFIER = test.co.tpcreative.qrscanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2391,7 +2393,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AQHNXZHZ8T;
+				DEVELOPMENT_TEAM = LKKQZ66NSP;
 				INFOPLIST_FILE = qrscannerTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2412,6 +2414,7 @@
 			baseConfigurationReference = 1451E2040DDC3AFCE5A076E3 /* Pods-qrscannerUITests.develop.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AQHNXZHZ8T;
 				INFOPLIST_FILE = qrscannerUITests/Info.plist;
