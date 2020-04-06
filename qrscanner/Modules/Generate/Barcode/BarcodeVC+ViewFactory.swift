@@ -81,17 +81,10 @@ extension BarcodeVC {
     }
     func setupNavItems() {
         self.view.backgroundColor = .white
-        navigationItem.title = LanguageHelper.getTranslationByKey(LanguageKey.Barcode)
-        let urlAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-        navigationController?.navigationBar.titleTextAttributes = urlAttributes
-      
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
-    let backButton = UIBarButtonItem()
- //   backButton.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
-    self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
-//        self.navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: , style: .plain, target: self, action: #selector(doBack))
-
         let menuButtonRight = UIButton(type: .system)
         menuButtonRight.setImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
         menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchUpInside)
@@ -125,14 +118,15 @@ extension BarcodeVC {
                     resVC.resultViewModel.createDateTime = (self?.barcodeViewModel.createDateTime)!
                     
                 }
-                self?.navigationController?.pushViewController(resVC, animated: true)
+                Navigator.pushViewController(from: self!, to: resVC, isNavigation: true, isTransparent: false)
+                //self?.navigationController?.pushViewController(resVC, animated: true)
             }
         }
         generateViewModel?.onShowError = { [weak self] alert in
             self?.clearDataurlfield()
             self?.presentSingleButtonDialog(alert: alert)
         }
-        generateViewModel?.urlBinding.bind({ (value) in
+        generateViewModel?.productIDBinding.bind({ (value) in
             self.textFieldProduct.text = value
         })
         self.generateViewModel?.errorMessages.value[GenerateViewModelKey.PRODUCTID] = ""

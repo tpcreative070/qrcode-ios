@@ -83,6 +83,7 @@ extension AlertVC {
         
         self.lbAleart.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoBold, size: AppFonts.LABEL_TITLE_FONT_SIZE)
         self.lbContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.lbContent.numberOfLines = 2
         let tapCopy = UITapGestureRecognizer(target: self, action: #selector(copyItem(sender:)))
         self.btnOK.addGestureRecognizer(tapCopy)
         let tapCancel = UITapGestureRecognizer(target: self, action: #selector(closeAlert(sender:)))

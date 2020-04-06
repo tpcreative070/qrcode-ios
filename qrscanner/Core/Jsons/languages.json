@@ -188,7 +188,9 @@
         "PORTUGUESE" : "Portuguese",
         "LANGUAGE" : "Language",
         "OK" : "Ok",
-        "SHARE": "Share"
+        "SHARE": "Share",
+        "DONE":"Done",
+        "SEARCH" : "Search"
     },
     "vi" : {
         "BACK": "Quay lại",
@@ -414,7 +416,10 @@
         "PORTUGUESE" : "Tiếng Bồ Đào Nha",
         "RECOVER_PASSWORD_SUCCESSFULLY" : "Khôi phục mật khẩu thành công",
         "LANGUAGE" : "Ngôn ngữ",
-        "SHARE": "Chia sẻ"
+         "OK" : "Ok",
+        "SHARE": "Chia sẻ",
+        "DONE" : "Xong",
+        "SEARCH" : "Tìm kiếm"
     },
    "es" : {
          "BACK" : "Atrás",
@@ -626,7 +631,10 @@
         "SPANISH" : "Espanol",
         "PORTUGUESE" : "Portugués",
         "LANGUAGE" : "Idioma",
-        "SHARE": "Para compartir"
+         "OK" : "Ok",
+        "SHARE": "Para compartir",
+        "DONE" :"Hecho",
+        "SEARCH" : "Buscar"
     },
    "pt" : {
        "BACK" : "Costa",
@@ -838,6 +846,9 @@
          "SPANISH" : "Espanhol",
          "PORTUGUESE" : "Português",
          "LANGUAGE" : "Língua",
-         "SHARE": "Compartilhar"
+          "OK" : "Ok",
+         "SHARE": "Compartilhar",
+         "DONE" : "Topo",
+         "SEARCH": "Procurar"
      },
 }

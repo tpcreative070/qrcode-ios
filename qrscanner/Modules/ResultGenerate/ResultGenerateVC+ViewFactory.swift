@@ -73,25 +73,17 @@ extension ResultGenerateVC {
             
         ])
         
-        setupNavItems()
+       setupNavItems()
         viewShare.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector(shareView(sender:))))
         viewSave.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector(saveView(sender:))))
     }
     func setupNavItems() {
         self.view.backgroundColor = .white
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationItem.title = resultViewModel.typeCode
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
-        navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
-        self.extendedLayoutIncludesOpaqueBars = true
-        
-        //        let menuButtonLeft = UIButton(type: .system)
-        //        menuButtonLeft.setImage(#imageLiteral(resourceName: "ic_back"), for: .normal)
-        //        menuButtonLeft.addTarget(self, action: #selector(returnScreen), for: .touchUpInside)
-        //        navigationItem.leftBarButtonItems = [UIBarButtonItem(customView: menuButtonLeft)]
+       self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
              let menuButtonRight = UIButton(type: .system)
         menuButtonRight.setImage(UIImage(named: AppImages.IC_PRINT), for: .normal)
              menuButtonRight.addTarget(self, action: #selector(printAction), for: .touchUpInside)

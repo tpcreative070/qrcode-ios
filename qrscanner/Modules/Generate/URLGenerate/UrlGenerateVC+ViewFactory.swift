@@ -60,24 +60,18 @@ extension UrlGenerateVC {
     }
     func setupNavItems() {
         self.view.backgroundColor = .white
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         navigationItem.title = LanguageHelper.getTranslationByKey(LanguageKey.Url)
         let urlAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = urlAttributes
-        //        navigationController?.navigationBar.prefersLargeTitles = DeviceHelper.isIpad() ? false : true
-        //        navigationItem.largeTitleDisplayMode = DeviceHelper.isIpad() ? .never : .automatic
+            self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
+            navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
+            self.navigationController?.navigationBar.tintColor = .white
+            let menuButtonRight = UIButton(type: .system)
+            menuButtonRight.setImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
+            menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchUpInside)
+            navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRight)]
         
-        navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
-        self.navigationController?.navigationBar.tintColor = .white
-        //      self.extendedLayoutIncludesOpaqueBars = true
-        
-        //        let menuButtonLeft = UIButton(type: .system)
-        //        menuButtonLeft.setImage(#imageLiteral(resourceName: "ic_back"), for: .normal)
-        //        menuButtonLeft.addTarget(self, action: #selector(returnScreen), for: .touchUpInside)
-        //        navigationItem.leftBarButtonItems = [UIBarButtonItem(customView: menuButtonLeft)]
-        let menuButtonRight = UIButton(type: .system)
-        menuButtonRight.setImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
-        menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchUpInside)
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRight)]
     }
     
     func bindViewModel() {

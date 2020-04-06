@@ -65,9 +65,7 @@ class UrlGenerateVC: BaseViewController {
    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        keyboardHelper?.registerKeyboardNotification()
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        
+        keyboardHelper?.registerKeyboardNotification()        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -32,14 +32,14 @@ class DetailVC : BaseViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
-        addLeftBackButton()
+       
         bindViewModel()
         contentViewModel.listContent = listContentViewModel
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardHelper?.registerKeyboardNotification()
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+       setupNavItems()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

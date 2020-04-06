@@ -128,11 +128,12 @@ extension QRCodeVC {
     }
     func setupNavItems() {
         self.view.backgroundColor = .white
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         let urlAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = urlAttributes
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
-        
+        self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
         let menuButtonRightSelectAll = UIButton(type: .system)
         menuButtonRightSelectAll.setImage(UIImage(named: AppImages.IC_SELECT_ALL), for: .normal)
         menuButtonRightSelectAll.addTarget(self, action: #selector(doSelectAll), for: .touchUpInside)

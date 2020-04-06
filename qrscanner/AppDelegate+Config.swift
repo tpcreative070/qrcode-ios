@@ -34,7 +34,7 @@ extension AppDelegate {
         
         if let _ = CommonService.getMultipleLanguages(){
         }else{
-            CommonService.setMultipleLanguages(value: LanguageCode.Vietnamese)
+            CommonService.setMultipleLanguages(value: LanguageCode.English)
         }
         
         SQLHelper.initCipher()

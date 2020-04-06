@@ -32,7 +32,7 @@ class CollectionViewCell : UICollectionViewCell{
         view.layer.borderWidth = 1
         view.layer.masksToBounds = false
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.cornerRadius = 35
+        view.layer.cornerRadius = 32
         view.clipsToBounds = true
         return view
     }()

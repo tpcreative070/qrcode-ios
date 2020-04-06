@@ -136,7 +136,8 @@ extension HelpVC {
         self.view.layoutIfNeeded()
     }
     func setupNavItems() {
-        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
         self.extendedLayoutIncludesOpaqueBars = true
