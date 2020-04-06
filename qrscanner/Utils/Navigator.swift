@@ -57,7 +57,13 @@ class Navigator {
     static func pushPopupPresent<F: BaseViewController, T: BaseViewController>(viewController: F, popupController: inout T){
         viewController.present(popupController, animated: true)
     }
-    static func pushViewController<T :UIViewController >( from: T,to : T) {
-       from.navigationController?.pushViewController(to, animated: true)
+    
+    static func pushViewController<T :UIViewController >(from : T, to : T, isNavigation : Bool = false, isTransparent : Bool = false, present : Bool = false) {
+        let viewController = to
+        viewController.modalPresentationStyle = .fullScreen
+        if isTransparent{
+            viewController.modalPresentationStyle = .overCurrentContext
+        }
+          present ? ( isNavigation ? from.navigationController?.pushViewController(viewController, animated: true) : from.present(viewController, animated: true,completion: nil)) :  (isNavigation ? from.navigationController?.pushViewController(viewController, animated: true) : from.navigationController?.present(viewController, animated: true,completion: nil))
     }
 }
