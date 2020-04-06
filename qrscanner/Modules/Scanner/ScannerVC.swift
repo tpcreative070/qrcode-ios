@@ -163,18 +163,16 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
         if #available(iOS 10.2, *){
             let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
             do{
-                
+
                 let input = try AVCaptureDeviceInput(device: captureDevice!)
                 session = AVCaptureSession()
                 session?.addInput(input)
                 setuplayoutCamera()
-                
             }
             catch {
                 print("error")
             }
         }
-        
         bindViewModel()
     }
     
@@ -221,6 +219,7 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
     }
     override func viewDidDisappear(_ animated: Bool) {
         session?.stopRunning()
+        UserDefaults(suiteName: AppConstants.sharedIndentifier)!.removeObject(forKey: AppConstants.shareKey)
        }
     
   
@@ -232,9 +231,10 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
         print("viewDidAppear11")
         ProgressHUD.dismiss()
         session?.startRunning()
+        fetchData()
     }
-    
- 
+    override func viewWillDisappear(_ animated: Bool) {
+        
+    }
 }
-
 

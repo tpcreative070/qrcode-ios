@@ -9,6 +9,7 @@
 import UIKit
 
 enum TypeCodeOption: Int, CustomStringConvertible {
+    case Barcode
     case Email
     case Message
     case Location
@@ -20,6 +21,7 @@ enum TypeCodeOption: Int, CustomStringConvertible {
     case Url
     var name: String {
         switch self {
+            case .Barcode: return EnumType.BARCODE.rawValue
         case .Email: return EnumType.EMAIL.rawValue
         case .Message: return EnumType.MESSAGE.rawValue
         case .Location: return EnumType.LOCATION.rawValue
@@ -34,6 +36,7 @@ enum TypeCodeOption: Int, CustomStringConvertible {
     }
     var description: String {
         switch self {
+             case .Barcode: return LanguageHelper.getTranslationByKey(LanguageKey.Barcode) ?? "Barcode"
         case .Email: return LanguageHelper.getTranslationByKey(LanguageKey.Email) ?? "Email"
         case .Message: return LanguageHelper.getTranslationByKey(LanguageKey.Message) ?? "Message"
         case .Location: return LanguageHelper.getTranslationByKey(LanguageKey.Location) ?? "Location"
@@ -51,6 +54,7 @@ enum TypeCodeOption: Int, CustomStringConvertible {
     
     var iconName: String {
         switch self {
+        case .Barcode: return AppImages.IC_BARCODE
         case .Email: return AppImages.IC_EMAIL
         case .Message: return AppImages.IC_SMS
         case .Location: return AppImages.IC_LOCATION
@@ -64,6 +68,7 @@ enum TypeCodeOption: Int, CustomStringConvertible {
     }
     var viewType: Int {
         switch self {
+            case .Barcode: return AppViewOptions.NAV_VIEW
         case .Email: return AppViewOptions.NAV_VIEW
         case .Message: return AppViewOptions.NAV_VIEW
         case .Location: return AppViewOptions.NAV_VIEW

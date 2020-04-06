@@ -347,9 +347,11 @@ extension ScannerVC {
             }
             else{
                 let  vc = DetailVC()
+              //  print((self?.viewModel.listTransaction[0].typeCode)!)
                 vc.listContentViewModel = (self?.viewModel.listTransaction)!
                 self?.navigationController?.pushViewController(vc, animated: true)
                 self?.viewModel.defaultValue()
+                UserDefaults(suiteName: AppConstants.sharedIndentifier)!.removeObject(forKey: AppConstants.shareKey)
             }
         }
         self.viewModel.resultScan.bind { value in
@@ -359,8 +361,24 @@ extension ScannerVC {
         }
         
     }
+    func fetchData(){
+        if let prefs = UserDefaults(suiteName: AppConstants.sharedIndentifier) {
+        if let imageData = prefs.object(forKey: AppConstants.shareKey) as? [Data] {
+            ProgressHUD.showInView(view: self.view)
+            print(imageData)
+            for item in imageData {
+                let rawImage = UIImage(data: item)
+                viewModel.listImage.append(rawImage!)
+            }
+            DispatchQueue.main.async(execute: { () -> Void in
+                self.viewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
+                self.viewModel.doAsync(list:self.viewModel.listImage)
+                self.viewModel.doGetListTransaction()
+            })
+        }
     
-    
+    }
+    }
     
     func onTakeGallery(){
         let imagePicker = OpalImagePickerController()

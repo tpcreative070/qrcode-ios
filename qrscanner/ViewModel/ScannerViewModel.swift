@@ -27,6 +27,10 @@ class ScannerViewModel : ScannerViewModelDelegate {
     var dateTime : String?
     var isVibrate: Bool?
     var listScanner : [String] = [String]()
+    var isChoosePhoto : Bool = false
+    var listImage : [UIImage] = [UIImage]()
+
+    
     
     let userService : UserService
     init(userService : UserService = UserService()) {
@@ -336,6 +340,10 @@ class ScannerViewModel : ScannerViewModelDelegate {
                 }
             }
             else{
+                print(createDateTime)
+                print(typeCode)
+                print(value_content)
+                print(dateTime!)
                 let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: ""))
                 if result {
                     print("insert success")
@@ -439,6 +447,9 @@ class ScannerViewModel : ScannerViewModelDelegate {
                     self.onShowError?(okAlert)
                 }
             }
+//        if isChoosePhoto{
+//        self.navigate?()
+//        }
         myGroup.notify(queue: .main) {
             print("Finished all requests.")
             self.navigate?()

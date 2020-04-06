@@ -13,6 +13,7 @@ struct GenerateViewModelKey {
     public static let TO = "to"
     public static let MESSAGE = "message"
     public static let URL = "url"
+    public static let PRODUCTID = "productID"
     public static let TEXT = "text"
     public static let EMAIL = "email"
     public static let OBJECT_EMAIL = "object_email"
@@ -36,6 +37,7 @@ struct GenerateViewModelKey {
     
 }
 class GenerateViewModel : GenerateViewModelDelegate {
+    
     var beginTime : Date?
     var endTime: Date?
     let regionMeter : Double = 10000.0
@@ -46,10 +48,12 @@ class GenerateViewModel : GenerateViewModelDelegate {
     var errorMessages: Bindable<Dictionary<String, String>> = Bindable(Dictionary<String, String>())
     var responseToView: ((String) -> ())?
     var focusTextField: UITextField?
-    var result : UIImage = UIImage()
+    var result : UIImage?
     var typeCode : String = ""
     var generateValue : GenerateEntityModel?
     var stringResult: String = ""
+    var productIDBinding : Bindable<String> = Bindable("")
+    var typeBarcodeBinding : Bindable<String> = Bindable("")
     var urlBinding : Bindable<String> = Bindable("")
     var textBinding : Bindable<String> = Bindable("")
     var emailBinding : Bindable<String> = Bindable("")
@@ -71,16 +75,31 @@ class GenerateViewModel : GenerateViewModelDelegate {
     var ssidBinding : Bindable<String> = Bindable("")
     var passwordBinding : Bindable<String> = Bindable("")
     var protectBinding : Bindable<String> = Bindable("")
+    var text: String?{
+          didSet {
+              validateText()
+          }
+      }
     var url: String?{
         didSet {
             validateUrl()
         }
     }
-    var text: String?{
+    var productID: String?{
         didSet {
-            validateText()
+            if typeBarcode == "EAN_8"{
+                validateProductID8()
+            }
+            else{
+                  validateProductID13()
+            }
         }
     }
+    var typeBarcode: String?{
+          didSet {
+              
+          }
+      }
     var email: String?{
         didSet {
             validateEmail()
@@ -265,6 +284,25 @@ class GenerateViewModel : GenerateViewModelDelegate {
             errorMessages.value.removeValue(forKey: GenerateViewModelKey.TEXT)
         }
     }
+    /**
+     ValidateProductID
+     */
+    func validateProductID8(){
+        if productID == nil || !ValidatorHelper.equalLength8(productID,ength: 7) || !ValidatorHelper.equalLength8(productID,ength: 8) {
+            errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequired8 ) ?? ""
+        }
+        else {
+            errorMessages.value.removeValue(forKey: GenerateViewModelKey.PRODUCTID)
+        }
+    }
+    func validateProductID13(){
+           if productID == nil || !ValidatorHelper.equalLength13(productID,ength: 12) || !ValidatorHelper.equalLength13(productID,ength: 13){
+               errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequired13 ) ?? ""
+           }
+           else {
+               errorMessages.value.removeValue(forKey: GenerateViewModelKey.PRODUCTID)
+           }
+       }
     /**
      Validation for email field
      */
@@ -503,7 +541,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
         self.protectBinding = Bindable("")
     }
     
-    func doGenerateValue(){
+    func doGenerateQRValue(){
         var value = ""
         print(typeCode)
         //typeCode = typeCode.uppercased()
@@ -567,9 +605,6 @@ class GenerateViewModel : GenerateViewModelDelegate {
                 //                       }
                 
             }
-            
-            
-            
         }
         else if typeCode == EnumType.MESSAGE.rawValue{
             validateTo()
@@ -615,12 +650,38 @@ class GenerateViewModel : GenerateViewModelDelegate {
             }
         }
         
+        
         result = generateDataQRCode(from: value)!
         if (result != nil) {
             stringResult = value
             responseToView!(EnumResponseToView.CREATE_SUCCESS.rawValue)
         }
         
+    }
+    func doGenerateBarCode(){
+        var value = ""
+        if typeCode == EnumType.BARCODE.rawValue{
+            if typeBarcode == "EAN_8"{
+                           validateProductID8()
+                       }
+                       else{
+                             validateProductID13()
+                       }
+            if ( errorMessages.value.count > 0 ) {
+                return
+            }
+            else{
+                value = "\(productID!)"
+                result = (generateDataBarcode(from: value, format: typeBarcode!))
+                if (result != nil) {
+                    stringResult = value
+                    responseToView!(EnumResponseToView.CREATE_SUCCESS.rawValue)
+                }
+                else{
+//                    errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequired ) ?? ""
+                }
+            }
+        }
     }
     func getColor (value: String) -> UIColor{
         var color = UIColor()
@@ -663,7 +724,33 @@ class GenerateViewModel : GenerateViewModelDelegate {
         return color
         
     }
-    
+    func generateDataBarcode(from string: String, format: String) -> UIImage? {
+         let valueColor = String(CommonService.getUserDefault(key: KeyUserDefault.ChangeColor) ?? ColorString.Black.rawValue)
+        var valueFormat : ZXBarcodeFormat = kBarcodeFormatEan8
+        if format == BarcodeType.EAN_8.rawValue{
+            valueFormat = kBarcodeFormatEan8
+        }
+        if format == BarcodeType.EAN_13.rawValue{
+            valueFormat = kBarcodeFormatEan13
+        }
+          do {
+              let writer = ZXMultiFormatWriter()
+              let hints = ZXEncodeHints() as ZXEncodeHints
+              hints.encoding = String.Encoding.utf8.rawValue
+            let result = try writer.encode(string, format: valueFormat, width: Int32(AppConstants.HEIGHT_IMAGE_QR), height: Int32(AppConstants.HEIGHT_IMAGE_QR), hints: hints)
+            
+              if let imageRef = ZXImage.init(matrix: result, on: getColor(value: valueColor).cgColor, offColor: nil) {
+                  if let image = imageRef.cgimage {
+                      return UIImage.init(cgImage: image)
+                  }
+              }
+          }
+          catch {
+              print(error)
+            return nil
+          }
+          return nil
+      }
 
 func generateDataQRCode(from string: String) -> UIImage? {
     let valueColor = String(CommonService.getUserDefault(key: KeyUserDefault.ChangeColor) ?? ColorString.Black.rawValue)
@@ -671,10 +758,9 @@ func generateDataQRCode(from string: String) -> UIImage? {
         let writer = ZXMultiFormatWriter()
         let hints = ZXEncodeHints() as ZXEncodeHints
         hints.encoding = String.Encoding.utf8.rawValue
-        let result = try writer.encode(string, format: kBarcodeFormatQRCode, width: 500, height: 500, hints: hints)
+        let result = try writer.encode(string, format: kBarcodeFormatQRCode, width: Int32(AppConstants.HEIGHT_IMAGE_QR), height: Int32(AppConstants.HEIGHT_IMAGE_QR), hints: hints)
         if let imageRef = ZXImage.init(matrix: result, on: getColor(value: valueColor).cgColor, offColor: nil) {
             if let image = imageRef.cgimage {
-                
                 return UIImage.init(cgImage: image)
             }
         }
