@@ -38,7 +38,6 @@ class ChangeColorVC: UIViewController {
     
        override func viewWillAppear(_ animated: Bool) {
            super.viewWillAppear(animated)
-           self.navigationController?.setNavigationBarHidden(false, animated: true)
         CollectionViewCell.identifier = EnumIdentifier.ChangeColor
        }
        

@@ -7,8 +7,15 @@
 //
 
 import Foundation
-class BarcodeModel {
-    var barcodetype = BarcodeType.EAN_8
+class BarcodeModel : Codable {
+    var barcodetype : String?
+    var productID : String?
+    
     init() {
+        
+    }
+    init(productID: String, type: String) {
+        self.productID = productID
+        self.barcodetype = type
     }
 }

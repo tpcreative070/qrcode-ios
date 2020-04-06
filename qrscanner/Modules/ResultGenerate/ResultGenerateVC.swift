@@ -65,9 +65,8 @@ class ResultGenerateVC: BaseViewController {
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        self.view.backgroundColor = .white
         initUI()
-        self.addLeftBackButton()
         imgQrcode.image = imgCode
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -79,7 +78,7 @@ class ResultGenerateVC: BaseViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         keyboardHelper?.deregisterKeyboardNotification()
-        self.navigationController?.isNavigationBarHidden = true
+      //  self.navigationController?.isNavigationBarHidden = true
         
     }
     @objc func shareView(sender : UITapGestureRecognizer){

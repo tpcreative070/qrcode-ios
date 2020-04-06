@@ -20,7 +20,7 @@ class ArrayChoiceTableViewController<Element> : UITableViewController {
         self.labels = labels
         super.init(style: .plain)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

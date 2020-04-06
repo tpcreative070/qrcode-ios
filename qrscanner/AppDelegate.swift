@@ -55,13 +55,13 @@ extension AppDelegate{
             let enLang = languagesObject[LanguageCode.English] as! Dictionary<String, Any>
             let viLang = languagesObject[LanguageCode.Vietnamese] as! Dictionary<String, Any>
              let esLang = languagesObject[LanguageCode.Spanish] as! Dictionary<String, Any>
-           let ptLang = languagesObject[LanguageCode.Portuguese] as! Dictionary<String, Any>
+            let ptLang = languagesObject[LanguageCode.Portuguese] as! Dictionary<String, Any>
 
             // Store language to db
             LanguageHelper.storeLanguageByKey(LanguageCode.English, data: JSONHelper.convertDictionaryToJson(enLang) ?? "")
             LanguageHelper.storeLanguageByKey(LanguageCode.Vietnamese, data: JSONHelper.convertDictionaryToJson(viLang) ?? "")
             LanguageHelper.storeLanguageByKey(LanguageCode.Spanish, data: JSONHelper.convertDictionaryToJson(esLang) ?? "")
-           LanguageHelper.storeLanguageByKey(LanguageCode.Portuguese, data: JSONHelper.convertDictionaryToJson(viLang) ?? "")
+            LanguageHelper.storeLanguageByKey(LanguageCode.Portuguese, data: JSONHelper.convertDictionaryToJson(ptLang) ?? "")
             // store language to global data
             GlobalVariableHelper.languages[LanguageCode.English] = enLang
             GlobalVariableHelper.languages[LanguageCode.Vietnamese] = viLang
@@ -71,8 +71,3 @@ extension AppDelegate{
         }
     }
 }
-
-
-
-//         let popup: InfoTransactionOptionsVC = Navigator.getPopupViewControler(identifier: Controller.infoTransactionOptions)
-//         popup.delegate = self

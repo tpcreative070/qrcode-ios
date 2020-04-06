@@ -18,7 +18,7 @@ extension ChangeColorVC{
             imgQRCode.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         self.view.addSubview(collectionView)
-        collectionView.setAnchor(top: imgQRCode.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: AppConstants.MARGIN_TOP, paddingLeft: AppConstants.MARGIN_LEFT_HELP, paddingBottom: AppConstants.DEFAULT_CONSTRAINT, paddingRight: AppConstants.MARGIN_RIGHT_HELP)
+        collectionView.setAnchor(top: imgQRCode.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: AppConstants.MARGIN_TOP, paddingLeft: AppConstants.DEFAULT_CONSTRAINT, paddingBottom: AppConstants.DEFAULT_CONSTRAINT, paddingRight: AppConstants.DEFAULT_CONSTRAINT)
         changeColorQRCode(imgQRCode: imgQRCode)
         setupCollectionView()
         bindCollectionView()
@@ -49,6 +49,7 @@ extension ChangeColorVC{
     func setupNavItems() {
         self.view.backgroundColor = .white
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
         self.navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
     }

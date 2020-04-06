@@ -84,7 +84,7 @@ struct AppConstants {
     static let HEIGHT_IMAGE_HELP = CGFloat(200)
     static let HEIGHT_IMAGE_SETTING = CGFloat(50)
     static let HEIGHT_IMAGE_QR = CGFloat(300)
-    static let HEIGHT_IMAGE_COLOR = CGFloat(70)
+    static let HEIGHT_IMAGE_COLOR = CGFloat(64)
     static let HEIGHT_BACKGROUND_BAR = CGFloat(175)
     static let HEIGHT_BACKGROUND_ITEM_BAR = CGFloat(140)
 static let IC_DEFAULT_DROP = CGFloat(18)
@@ -99,7 +99,8 @@ static let IC_DEFAULT_DROP = CGFloat(18)
     static let MARGIN_LEFT_HELP = CGFloat(10)
     
     static let DEFAULT_CONSTRAINT = CGFloat(0)
-    
+    static let MARGIN_LEFT_COLOR = CGFloat(10)
+
     static let MARGIN_LEFT_ICON = CGFloat(30)
     static let MARGIN_LEFT_ALERT_BTN = CGFloat(100)
     static let MARGIN_RIGHT_SETTING = CGFloat(-5)
@@ -107,12 +108,13 @@ static let IC_DEFAULT_DROP = CGFloat(18)
     static let MARGIN_RIGHT = CGFloat(-20)
     static let MARGIN_RIGHT_ALERT_BTN = CGFloat(-100)
     static let MARGIN_RIGHT_HELP = CGFloat(-10)
-    
+    static let MARGIN_RIGHT_COLOR = CGFloat(-10)
+
     static let MARGIN_RIGHT_ITEMPLUS = CGFloat(-40)
     
     static let MARGIN_TOP = CGFloat(20)
     static let MARGIN_LEFT_ITEM_HIS = CGFloat(-80)
-    static let MARGIN_RIGHT_ITEM_HIS = CGFloat(80)
+    static let MARGIN_RIGHT_ITEM_HIS = CGFloat(70)
     static let MARGIN_TOP_ALERT = CGFloat(130)
     static let MARGIN_BOTTOM_ALERT = CGFloat(-130)
     static let SWITCH_HEIGHT_DEFAULT = CGFloat(17)
@@ -486,7 +488,7 @@ struct LanguageKey {
     //Scanner
     static let Placeholder_Ean8 = "PLACEHOLDER_EAN8"
     static let Placeholder_Ean13 = "PLACEHOLDER_EAN13"
-
+    static let Back = "BACK"
     static let Aztec = "Aztec"
     static let CODABAR = "CODABAR"
     static let Code_39 = "Code 39"
@@ -649,7 +651,7 @@ struct LanguageKey {
     static let PayVTVCab = "PAYVTVCAB"
     static let ActiveAccountNow = "ACTIVE_ACCOUNT_NOW"
     //typeCode
-     static let Back = "BACK"
+    
     static let ProductID = "PRODUCTID"
 
     static let Total = "TOTAL"

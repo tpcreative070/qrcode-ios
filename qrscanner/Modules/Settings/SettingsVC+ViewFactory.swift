@@ -583,6 +583,8 @@ extension SettingsVC {
         viewHelp.isUserInteractionEnabled  = true
         changeColorQRCode(imgQRCode: imgQRCode)
         getCurrenLang()
+        let version = Helper.getVersion()
+        lbQrCodeContent.text = "Version: \(String(describing: version!))"
     }
     func setupEndedUpScrollView(){
         viewBackground.addSubview(endedUpScrollViewContainerView)

@@ -92,10 +92,12 @@ extension ChooseHistoryVC  {
     }
     func setupNavItems() {
         self.view.backgroundColor = .white
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
-        
+        self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
         
         let menuButtonRightDel = UIButton(type: .system)
         menuButtonRightDel.setImage(UIImage(named: AppImages.IC_DELETE), for: .normal)

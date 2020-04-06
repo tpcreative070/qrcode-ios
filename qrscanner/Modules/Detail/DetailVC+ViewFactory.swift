@@ -43,7 +43,7 @@ extension DetailVC {
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
         setupEndedUpScrollView()
-        setupNavItems()
+      //  setupNavItems()
         setupTableView()
         bindTableView()
         
@@ -51,11 +51,10 @@ extension DetailVC {
     func setupNavItems() {
         
         self.view.backgroundColor = .white
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+                      self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
-        
-        self.extendedLayoutIncludesOpaqueBars = true
-        
         let menuButtonRight = UIButton(type: .system)
         menuButtonRight.setImage(UIImage(named: AppImages.IC_SUPPORT), for: .normal)
         menuButtonRight.addTarget(self, action: #selector(actionHelp), for: .touchUpInside)

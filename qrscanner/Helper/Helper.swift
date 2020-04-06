@@ -171,7 +171,6 @@ struct Helper {
     
     static func addLeftBackButton(_ viewToAdd: UIView?) -> UIButton? {
         let backButton = ICBackBlueButton(type: .system)
-        backButton.setTitle("Trơ về", for: .normal)
         backButton.translatesAutoresizingMaskIntoConstraints = false
         viewToAdd?.addSubview(backButton)
         let marginTop = CGFloat(10)
@@ -420,7 +419,9 @@ struct Helper {
                  }
            return valueShowContent
        }
-    
+    static func getVersion() -> String? {
+        return "CFBundleShortVersionString".infoForKey()
+    }
 }
 
 

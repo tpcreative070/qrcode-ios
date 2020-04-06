@@ -131,22 +131,13 @@ extension ContactGenerateVC{
         self.navigationItem.title = LanguageHelper.getTranslationByKey(LanguageKey.Contact)
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
-        self.navigationController?.navigationBar.isTranslucent = true
-        //        navigationController?.navigationBar.prefersLargeTitles = DeviceHelper.isIpad() ? false : true
-        //        navigationItem.largeTitleDisplayMode = DeviceHelper.isIpad() ? .never : .automatic
-        
-        self.navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
+        self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
+        navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
-        self.extendedLayoutIncludesOpaqueBars = true
-        
-        //        let menuButtonLeft = UIButton(type: .system)
-        //        menuButtonLeft.setImage(#imageLiteral(resourceName: "ic_back"), for: .normal)
-        //        menuButtonLeft.addTarget(self, action: #selector(returnScreen), for: .touchUpInside)
-        //        navigationItem.leftBarButtonItems = [UIBarButtonItem(customView: menuButtonLeft)]
         let menuButtonRight = UIButton(type: .system)
         menuButtonRight.setImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
         menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchUpInside)
-        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRight)]
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRight)]
     }
     
     func bindViewModel() {

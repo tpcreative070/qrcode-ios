@@ -41,12 +41,7 @@ class GenerateEntity{
 
                 print("create table")
                 
-                insert(db: db, data: GenerateEntityModel(createdDateTime: 1584363456017, typeCode: "text", content: "{\"text\":\"hello\"}", isHistory: true, isSave: true, updatedDateTime: 1584363456017, bookMark : false, transactionID : "1", isCode: ""))
-                insert(db: db, data: GenerateEntityModel(createdDateTime: 1584363493871, typeCode: "url", content: "{\"url\":\"http://gg.com\"}", isHistory: true, isSave: true, updatedDateTime: 1584363493871, bookMark : false, transactionID : "2", isCode: ""))
-                insert(db: db, data: GenerateEntityModel(createdDateTime: 1584363509600, typeCode: "url", content: "{\"url\":\"http://gedfg.com\"}", isHistory: true, isSave: true, updatedDateTime: 1584363509600, bookMark : false, transactionID : "2", isCode: ""))
-                insert(db: db, data: GenerateEntityModel(createdDateTime: 1584363516788, typeCode: "text", content: "{\"text\":\"dfdfsdf\"}", isHistory: true, isSave: true, updatedDateTime: 1584363516788, bookMark : false, transactionID : "2", isCode: ""))
-                //                    insert(db: db, data: ScannerEntityModel(createdDateTime: "222", typeCode: "url", content: "{\"url\":\"gg.com\"}", isHistory: 1, isSave: 0, updateDateTime: "222"))
-                //                    insert(db: db, data: ScannerEntityModel(createdDateTime: "333", typeCode: "Event", content: "{\"title\":\"event to night\",\"loaction\":\"new york\",\"description\":\"\",\"begin\":\"25 thg 3 2020 15:19\",\"end\":\"25 thg 2 2020 22:00\"}", isHistory: 1, isSave: 0, updateDateTime: "333"))
+             
             })
         }catch {
             debugPrint(error)
