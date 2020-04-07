@@ -1,5 +1,9 @@
 {
     "en": {
+        "ERROR_PRODUCT_INVALID" :"ProductId is require",
+        "CONTACT": "Contact",
+        "INVALID_QRCODE":"QRCode or Barcode is invalid",
+        "BARCODE": "Barcode",
         "BACK" : "Back",
         "ERROR_PRODUCT_REQUIRED8": "Invalid for the format EAN 8",
         "ERROR_PRODUCT_REQUIRED13": "Invalid for the format EAN 13",
@@ -104,6 +108,7 @@
         "ERROR_EMAIL_REQUIRED": "Email is required",
         "ERROR_EMAIL_INVALID": "Email is invalid",
         "ERROR_EMAIL_INVALIDED": "Email is invalid",
+        
         "ERROR_USERNAME_REQUIRED": "Username is required",
         "ERROR_USERNAME_INVALID": "Username is invalid",
         "ERROR_FIRSTNAME_REQUIRED" : "FirtName is required",
@@ -193,6 +198,10 @@
         "SEARCH" : "Search"
     },
     "vi" : {
+        "ERROR_PRODUCT_INVALID" :"Yêu cầu nhập mã sản phẩm",
+          "CONTACT": "Liên hệ",
+        "INVALID_QRCODE":"QRCode or Barcode không hợp lệ",
+        "BARCODE": "Barcode",
         "BACK": "Quay lại",
         "ERROR_PRODUCT_REQUIRED8": "Không hợp lệ cho định dạng EAN 8",
         "ERROR_PRODUCT_REQUIRED13": "Không hợp lệ cho định dạng EAN 13",
@@ -313,9 +322,9 @@
         "ERROR_LAT_INVALID" : "Vĩ độ không hợp lệ",
         "ERROR_LON_INVALID" : "Kinh độ không hợp lệ",
         "ERROR_BEGINDAY_GREATER_ENDDAY" : "Thời gian bắt đầu nhỏ hơn thời gian kết thúc",
-        "ERROR_TO_REQUIRED" : "Yêu cầu nhập To",
-        "ERROR_URL_REQUIRED" : "Yêu cầu nhập Url",
-        "ERROR_TEXT_REQUIRED" : "Yêu cầu nhập Text",
+        "ERROR_TO_REQUIRED" : "Yêu cầu nhập đến",
+        "ERROR_URL_REQUIRED" : "Yêu cầu nhập địa chỉ Web",
+        "ERROR_TEXT_REQUIRED" : "Yêu cầu nhập văn bản",
         "ERROR_OBJECT_EMAIL_REQUIRED" : "Yêu cầu nhập chủ đề",
         "ERROR_TEXT_REQUIRED" : "Yêu cầu nhập văn bản",
         "ERROR_MESSAGE_EMAIL_REQUIRED" : "Yêu cầu nhập tin nhắn",
@@ -422,6 +431,10 @@
         "SEARCH" : "Tìm kiếm"
     },
    "es" : {
+       "ERROR_PRODUCT_INVALID" :"Se requiere identificación del producto",
+         "CONTACT": "Contacto",
+       "INVALID_QRCODE":"QRCode o Barcode no es válido",
+       "BARCODE": "Código de barras",
          "BACK" : "Atrás",
         "ERROR_PRODUCT_REQUIRED8": "No es válido para el formato EAN 8",
         "ERROR_PRODUCT_REQUIRED13": "No es válido para el formato EAN 13",
@@ -637,6 +650,10 @@
         "SEARCH" : "Buscar"
     },
    "pt" : {
+       "ERROR_PRODUCT_INVALID" :"O ID do produto é obrigatório",
+       "CONTACT": "Contato",
+        "INVALID_QRCODE":"QRCode ou código de barras inválido",
+       "BARCODE":"Código de barras",
        "BACK" : "Costa",
          "ERROR_PRODUCT_REQUIRED8": "Não é válido para o formato EAN 8",
          "ERROR_PRODUCT_REQUIRED13": "Não é válido para o formato EAN 13",

@@ -26,6 +26,7 @@ class SaveViewModelList : SaveViewModelListDeletegate{
                 return SaveViewModel(data:  data)
             })
         }
+        Utils.logMessage(object: listSave)
         listSave = listSave.sorted {$0.updatedDateTime > $1.updatedDateTime}
         responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
     }

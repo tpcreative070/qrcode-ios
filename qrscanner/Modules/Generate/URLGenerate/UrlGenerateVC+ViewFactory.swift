@@ -9,9 +9,6 @@
 import UIKit
 extension UrlGenerateVC {
     func initUI() {
-//        print(view.frame.height)
-//        let gety = view.frame.height * 1.4/7
-//        let value_item = view.frame.height/7
         self.view.addSubview(scrollView)
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),

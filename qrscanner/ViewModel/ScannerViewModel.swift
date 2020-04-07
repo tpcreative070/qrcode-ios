@@ -63,13 +63,11 @@ class ScannerViewModel : ScannerViewModelDelegate {
         var typeCode = ""
         var value_content = ""
         listTransaction.removeAll()
-        print(mValue)
         if mValue.contains("http://") || mValue.contains("https://"){
             typeCode = EnumType.URL.rawValue
             let content = UrlModel(url: mValue)
             let jsonData = try! JSONEncoder().encode(content)
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-            print(value_content)
         }
         else if (mValue.contains("geo")) {
             typeCode = EnumType.LOCATION.rawValue
@@ -89,7 +87,6 @@ class ScannerViewModel : ScannerViewModelDelegate {
                                 let content = LocationModel(latitude: lat, longtitude: lon, query: String(query))
                                 let jsonData = try! JSONEncoder().encode(content)
                                 value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-                                print(value_content)
                             }
                         }
                     }
@@ -133,7 +130,6 @@ class ScannerViewModel : ScannerViewModelDelegate {
             let content = EmailModel(email: String(email ), objectEmail: String(sub), messageEmail: String(body))
             let jsonData = try! JSONEncoder().encode(content)
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-            print(value_content)
             
         }
         else if (mValue.contains("BEGIN:VCALENDAR")) || (mValue.contains("BEGIN:VEVENT")){
@@ -153,7 +149,6 @@ class ScannerViewModel : ScannerViewModelDelegate {
             
             if arr_space.count > 0{
                 for item in arr_space {
-                    print("Item value : \(item)")
                     if(item.contains("SUMMARY")){
                         summary = String((item.split(separator: ":"))[1])
                     }
@@ -172,15 +167,12 @@ class ScannerViewModel : ScannerViewModelDelegate {
                     }
                 }
             }
-            print(dtstart)
-            print(dtstart)
             
             let datestart = TimeHelper.getDate(timeString: dtstart)!
             let dateend = TimeHelper.getDate(timeString: dtend)!
             let content = EventModel(title: summary, location: location, description: description, beginTime: datestart, endTime: dateend)
             let jsonData = try! JSONEncoder().encode(content)
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-            print(value_content)
             
         }
         else if ((mValue.range(of: "SMS", options: .caseInsensitive)) != nil)
@@ -190,7 +182,6 @@ class ScannerViewModel : ScannerViewModelDelegate {
             let content = MessageModel(to: String(arr_mess[1]) , message: String(arr_mess[2]))
             let jsonData = try! JSONEncoder().encode(content)
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-            print(value_content)
             
         }
         else if ((mValue.range(of: "WIFI", options: .caseInsensitive)) != nil) {
@@ -222,7 +213,6 @@ class ScannerViewModel : ScannerViewModelDelegate {
             let content = WifiModel(ssid: ssid, password: pass, protect: protect)
             let jsonData = try! JSONEncoder().encode(content)
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-            print(value_content)
             
         }
         else if (mValue.contains("MECARD")) || (mValue.contains("VCARD")) || (mValue.contains("MCARD")) {
@@ -281,7 +271,6 @@ class ScannerViewModel : ScannerViewModelDelegate {
             let content = ContactModel(fullNameContact: fullName, addressContact: address, phoneContact: phone, emailContact: email)
             let jsonData = try! JSONEncoder().encode(content)
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-            print(value_content)
             
         }
         else if (mValue.caseInsensitiveCompare("tel") == .orderedSame || (mValue.range(of: "TEL", options: .caseInsensitive)) != nil) {
@@ -290,7 +279,6 @@ class ScannerViewModel : ScannerViewModelDelegate {
             let content = PhoneModel(phone: tel)
             let jsonData = try! JSONEncoder().encode(content)
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-            print(value_content)
             
         }
             
@@ -300,7 +288,6 @@ class ScannerViewModel : ScannerViewModelDelegate {
             let content = TextModel(text: mValue)
             let jsonData = try! JSONEncoder().encode(content)
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-            print(value_content)
             
         }
         
@@ -316,7 +303,6 @@ class ScannerViewModel : ScannerViewModelDelegate {
         else
         {
             
-            print("value insert: \(value_content)")
             let createDateTime = Date().millisecondsSince1970
             if isScanner {
                 if UserDefaults.standard.bool(forKey:KeyUserDefault.MultiScan){
@@ -333,17 +319,11 @@ class ScannerViewModel : ScannerViewModelDelegate {
                     let content = itemScanner.content
                     let value = ContentViewModel(data: ContentModel(typeCode : typeCode!, content: content!))
                     listTransaction.append(value)
-                    print(listTransaction)
                     self.navigate?()
-                    //  self.navigate?()
                 }
                 }
             }
             else{
-                print(createDateTime)
-                print(typeCode)
-                print(value_content)
-                print(dateTime!)
                 let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: ""))
                 if result {
                     print("insert success")
@@ -365,6 +345,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
         defaultValue()
         self.showLoading.value = true
         var valueResult: [ZXResult]? = []
+        var flag : Bool = false
         var vstring: String?
         let myGroup = DispatchGroup()
         if list.count > 0{
@@ -374,7 +355,8 @@ class ScannerViewModel : ScannerViewModelDelegate {
                 if let mData = index.toCGImage(){
                     CommonService.onReaderQRcode(tempImage: mData, countList : list.count) { (value) in
                         if value == nil {
-                        valueResult = value
+                            //valueResult?.append(contentsOf: value)
+                            flag = true
                         }
                         if let mValue = value {
                             if mValue.count > 1
@@ -429,7 +411,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
         }
             else{
                 print(listResult)
-                if valueResult == nil {
+            if flag {
                     let okAlert = SingleButtonAlert(
                         title: LanguageHelper.getTranslationByKey(LanguageKey.Alert) ?? "Error",
                         message: LanguageHelper.getTranslationByKey(LanguageKey.InvalidQRCode),
@@ -447,9 +429,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
                     self.onShowError?(okAlert)
                 }
             }
-//        if isChoosePhoto{
-//        self.navigate?()
-//        }
+
         myGroup.notify(queue: .main) {
             print("Finished all requests.")
             self.navigate?()
@@ -459,7 +439,6 @@ class ScannerViewModel : ScannerViewModelDelegate {
     }
     func doGetListTransaction(){
         listTransaction.removeAll()
-        print(dateTime)
         if let mList = SQLHelper.getListTransaction(transaction: dateTime!){
             var index = 0
             self.listTransaction = mList.map({ (data) -> ContentViewModel in
@@ -467,7 +446,6 @@ class ScannerViewModel : ScannerViewModelDelegate {
                 return ContentViewModel(typeCode: data.typeCode!, content: data.content!)
             })
         }
-        print(listTransaction)
         listScanner.removeAll()
         self.navigate?()
     }

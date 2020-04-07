@@ -22,7 +22,6 @@ class AlertViewModelList : AlertViewModelListDeletegate{
             //    Utils.logMessage(object: listSave)
             for (index, element) in listItem.enumerated() {
                 if element.nameItemView == value.nameItemView {
-                    debugPrint(index)
                     let mObject = listItem[index]
                     mObject.check = !value.check
                     if mObject.check == true {
@@ -36,7 +35,6 @@ class AlertViewModelList : AlertViewModelListDeletegate{
                         }
                     }
                     
-                    print(listItem)
                     responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
                 }
             }

@@ -42,6 +42,8 @@ extension TableViewCell {
             setupMessageView()
         case .Event:
             setupEventView()
+            case .Barcode:
+            setupBarcodeView()
             case .Alert:
             setupAlertSubView()
             case .QRCodeList:

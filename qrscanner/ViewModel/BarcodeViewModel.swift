@@ -6,7 +6,7 @@ class BarcodeViewModel : Codable , BarcodeViewModelDelegate{
     
     var typeBarcodeView: String
     {
-        return typeCode ?? ""
+        return typeBarcode ?? ""
     }
     var createDateTime: Int?
     var typeCode : String?
@@ -19,6 +19,10 @@ class BarcodeViewModel : Codable , BarcodeViewModelDelegate{
         self.barcode = barcode
         self.typeBarcode = typeBarcode
     }
+    init(data: BarcodeModel) {
+        self.barcode = data.productID
+        self.typeBarcode = data.barcodetype
+       }
     init() {
     }
     init(data: ValuePushModel) {

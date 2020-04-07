@@ -103,23 +103,23 @@ extension HelpVC {
         imgThirdText.image = UIImage(named: AppImages.BG3)
         self.lbFirstTitle.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE_HELP)
         self.lbFirstTitle.textColor = AppColors.COLOR_ACCENT
-        self.lbFirstTitle.numberOfLines = 2
+        self.lbFirstTitle.numberOfLines = 3
         
         self.lbFirstText.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-        self.lbFirstText.numberOfLines = 3
+        self.lbFirstText.numberOfLines = 4
         
         self.lbSecondText.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-        self.lbSecondText.numberOfLines = 3
+        self.lbSecondText.numberOfLines = 4
         
         self.lbSecondTitle.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE_HELP)
         self.lbSecondTitle.textColor = AppColors.COLOR_ACCENT
-        self.lbSecondTitle.numberOfLines = 2
+        self.lbSecondTitle.numberOfLines = 3
         
         self.lbThirdText.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-        self.lbThirdText.numberOfLines = 2
+        self.lbThirdText.numberOfLines = 3
         
         self.lbFourText.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-        self.lbFourText.numberOfLines = 2
+        self.lbFourText.numberOfLines = 3
         
         setupEndedUpScrollView()
         setupNavItems()

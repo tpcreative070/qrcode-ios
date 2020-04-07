@@ -422,6 +422,7 @@ struct Helper {
     static func getVersion() -> String? {
         return "CFBundleShortVersionString".infoForKey()
     }
+   
 }
 
 

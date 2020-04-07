@@ -111,7 +111,6 @@ class BarcodeVC: BaseViewController {
         dismiss(animated: true, completion: nil)
         }
     @objc func doGenerate() {
-        print("done")
         self.defineValue()
         generateViewModel?.doGenerateBarCode();
     }

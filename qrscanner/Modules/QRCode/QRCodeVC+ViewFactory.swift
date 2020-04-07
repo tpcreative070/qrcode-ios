@@ -49,7 +49,6 @@ extension QRCodeVC {
             tableView.topAnchor.constraint(equalTo: lbTitle.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM)
         ])
         //  btnDone.addTarget(self, action: #selector(getListSelectedItem), for: .touchUpInside)
-        setupNavItems()
         setupEndedUpScrollView()
         setupTableView()
         bindTableView()
@@ -79,6 +78,7 @@ extension QRCodeVC {
             vc.listContentViewModel = ((self?.viewModel.listTransaction)!)
             self?.navigationController?.pushViewController(vc, animated: true)
             self?.navigationController?.viewControllers.remove(at: 1)
+            
             }
             else{
                 let alert = UIAlertController(title: LanguageHelper.getTranslationByKey(LanguageKey.Alert), message:LanguageHelper.getTranslationByKey(LanguageKey.ChooseQRCode) , preferredStyle: UIAlertController.Style.alert)
@@ -155,17 +155,14 @@ extension QRCodeVC : TableViewCellDelegate {
     }
     
     func cellViewSelected(cell: TableViewCell) {
-        print("\(cell.identifier) -- \(cell.lbTitle)")
         
     }
     
     func cellViewSelected(cell: TableViewCell, countSelected: Int) {
-        print("\(cell.identifier) -- \(cell.lbTitle)")
         
     }
     
     func cellViewSelected(cell: Codable) {
-        print(cell)
         //        if let data = JSONHelper.get(value: QRCodeViewModel.self,anyObject: cell){
         //            print(data.imgCodeView)
         //               }
@@ -174,7 +171,6 @@ extension QRCodeVC : TableViewCellDelegate {
     }
     
     func cellCodable(codable: Codable) {
-        print("cellCodable")
     }
     func cellViewSelected(cell: TableViewCell, action: EnumResponseToView) {
         print("\(cell.identifier) -- \(cell.lbTitle)")

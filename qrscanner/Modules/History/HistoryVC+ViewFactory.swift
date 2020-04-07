@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Floaty
 extension HistoryVC  {
     func initUI(){
         /*SetupScrollView*/
@@ -79,7 +78,6 @@ extension HistoryVC  {
     }
     
     func bindTableView(){
-        print(self.historyViewModel.listHistories)
         self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.History.rawValue, items: self.historyViewModel.listHistories,sections: self.sections, height: AppConstants.TABLE_ROW_HEIGHT,isSelectionStype: false){ cell, vm in
             cell.configView(view: vm)
             cell.configData(viewModel: vm)
@@ -135,19 +133,15 @@ extension HistoryVC  {
     }
     // MARK: - Floaty Delegate Methods
     func floatyWillOpen(_ floaty: Floaty) {
-        //print("Floaty Will Open")
     }
     
     func floatyDidOpen(_ floaty: Floaty) {
-        //print("Floaty Did Open")
     }
     
     func floatyWillClose(_ floaty: Floaty) {
-        //print("Floaty Will Close")
     }
     
     func floatyDidClose(_ floaty: Floaty) {
-        //print("Foaty Did Close")
     }
     
     
@@ -167,7 +161,6 @@ extension HistoryVC : TableViewCellDelegate{
     func cellViewSelected(cell: TableViewCell, countSelected: Int) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         let result = self.historyViewModel.listHistories[indexPath.row]
-        print("history select: \(result)")
     }
     
     func cellViewSelected(cell: Codable) {
@@ -194,6 +187,5 @@ extension HistoryVC : SingleButtonDialogPresenter{
 
 extension HistoryVC : HeaderSectionDelegate {
     func cellSectionSelected(codable: Codable) {
-        print(codable)
     }
 }

@@ -43,7 +43,6 @@ class DetailVC : BaseViewController{
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("will appear")
         self.navigationController?.isNavigationBarHidden = true
         keyboardHelper?.deregisterKeyboardNotification()
     }

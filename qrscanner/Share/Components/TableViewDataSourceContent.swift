@@ -47,8 +47,6 @@ class TableViewDataSourceContent<Cell: UITableViewCell,ViewModel, HeaderInSectio
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
             let item = self.items[indexPath.row]
-        print(item.typeCode!)
-        print((item.typeCode?.uppercased())!)
         let cell = tableView.dequeueReusableCell(withIdentifier: (item.typeCode?.uppercased())! , for: indexPath) as! Cell
             self.configureCell(cell,item)
             if indexPath.row == self.items.count - 1 && self.items.count > 0  {

@@ -39,7 +39,6 @@ class GenerateEntity{
                 t.column(transactionID)
                 t.column(isCode)
 
-                print("create table")
                 
              
             })

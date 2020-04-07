@@ -45,9 +45,7 @@ class QRCodeVC: BaseViewController {
         var dataSource :TableViewDataSource<TableViewCell,QRCodeViewModel,HeaderView>!
         override func viewDidLoad() {
             super.viewDidLoad()
-            print ("view didload typecode")
             initUI()
-            print(viewModel.listQRResult)
             bindViewModel()
         }
         override func actionLeft() {
@@ -55,7 +53,8 @@ class QRCodeVC: BaseViewController {
         }
     override func viewWillAppear(_ animated: Bool) {
            super.viewWillAppear(animated)
-           
+           setupNavItems()
+
        }
        
        override func viewWillDisappear(_ animated: Bool) {

@@ -113,6 +113,13 @@ class SaveViewModel  : Codable ,GenerateViewModelDeletegate{
               let contactModel : ContactModel = try! JSONDecoder().decode(ContactModel.self, from: stringContent!)
               valueShowContent = contactModel.fullNameContact ?? ""
           }
+        else if typeCode == EnumType.BARCODE.rawValue{
+                     
+                     self.content = ContentModel(data: (data.content?.toObject(value: BarcodeModel.self))!)
+                     let stringContent = content.content?.data(using: .utf8 )
+                     let contactModel : BarcodeModel = try! JSONDecoder().decode(BarcodeModel.self, from: stringContent!)
+            valueShowContent = "\(contactModel.productID ?? "")"
+                 }
         
       }
 }

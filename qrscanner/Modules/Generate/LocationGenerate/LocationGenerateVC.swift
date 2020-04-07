@@ -112,7 +112,6 @@ class LocationGenerateVC: BaseViewController {
             let locationInView = sender.location(in: viewMap)
             let locationOnMap = viewMap.convert(locationInView, toCoordinateFrom: viewMap)
             let locationCoordinate = viewMap.convert(locationInView, toCoordinateFrom: viewMap)
-            // print("Tapped at lat: \(locationCoordinate.latitude) long: \(locationCoordinate.longitude)")
             textFieldLatitude.text = String (locationCoordinate.latitude)
             textFieldLongtitude.text = String(locationCoordinate.longitude)
             addAnnotation(location: locationOnMap)
@@ -152,7 +151,6 @@ class LocationGenerateVC: BaseViewController {
         dismiss()
     }
     @objc func doGenerate() {
-        print("done")
         self.defineValue()
         generateViewModel?.doGenerateQRValue();
     }

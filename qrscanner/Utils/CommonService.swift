@@ -296,7 +296,8 @@ class CommonService  {
                        }
                }
                catch {
-                   completion(nil)
+                print("not qrcode")
+                   //completion(nil)
                }
         do {
             //Decode multibarcode

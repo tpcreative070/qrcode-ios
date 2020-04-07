@@ -50,6 +50,10 @@ class ContentModel : Codable {
           self.typeCode = EnumType.WIFI.rawValue
           self.content = JSONSerializerHelper.toJson(data)
       }
+    init(data: BarcodeModel) {
+             self.typeCode = EnumType.BARCODE.rawValue
+             self.content = JSONSerializerHelper.toJson(data)
+         }
     init(typeCode: String, content : String) {
         self.typeCode = typeCode
         self.content = content

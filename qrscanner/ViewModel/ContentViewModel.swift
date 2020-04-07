@@ -63,7 +63,10 @@ class ContentViewModel  : Codable ,ContentViewModelDeletegate{
         self.typeCode = EnumType.WIFI.rawValue
         self.content = JSONSerializerHelper.toJson(data)
     }
-    
+    init(data: BarcodeModel) {
+        self.typeCode = EnumType.BARCODE.rawValue
+        self.content = JSONSerializerHelper.toJson(data)
+    }
     init() {
     }
     

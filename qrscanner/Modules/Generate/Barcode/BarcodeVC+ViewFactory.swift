@@ -80,15 +80,18 @@ extension BarcodeVC {
         productField.addTarget(self, action: #selector(inputFieldEditingDidEnd), for: .editingDidEnd)
     }
     func setupNavItems() {
-        self.view.backgroundColor = .white
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
-        navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
-        self.navigationController?.navigationBar.tintColor = .white
-        let menuButtonRight = UIButton(type: .system)
-        menuButtonRight.setImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
-        menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchUpInside)
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRight)]
+         self.view.backgroundColor = .white
+              self.navigationController?.setNavigationBarHidden(false, animated: true)
+              navigationItem.title = LanguageHelper.getTranslationByKey(LanguageKey.Barcode)
+              let urlAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+              navigationController?.navigationBar.titleTextAttributes = urlAttributes
+                  self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
+                  navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
+                  self.navigationController?.navigationBar.tintColor = .white
+                  let menuButtonRight = UIButton(type: .system)
+                  menuButtonRight.setImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
+                  menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchUpInside)
+                  navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRight)]
     }
     
     func bindViewModel() {
@@ -110,8 +113,8 @@ extension BarcodeVC {
         generateViewModel?.responseToView = { [weak self] value in
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
                 let resVC = ResultGenerateVC()
-                resVC.contentViewModel = ContentViewModel(data: UrlModel(url: (self?.textFieldProduct.text)!))
-                resVC.resultViewModel.typeCode = EnumType.URL.rawValue
+                resVC.contentViewModel = ContentViewModel(data: BarcodeModel(productID: (self?.textFieldProduct.text)!, type: (self?.generateViewModel?.typeBarcode)!))
+                resVC.resultViewModel.typeCode = EnumType.BARCODE.rawValue
                 resVC.imgCode = (self?.generateViewModel?.result)!
                 if (self?.barcodeViewModel.isSeen)! == AppConstants.ISSEEN {
                     resVC.resultViewModel.isUpdate = AppConstants.ISUPDATE

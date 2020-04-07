@@ -56,7 +56,6 @@ class CollectionViewDataSource <Cell: UICollectionViewCell,ViewModel> : NSObject
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        print("\(section)")
         return .zero
     }
     

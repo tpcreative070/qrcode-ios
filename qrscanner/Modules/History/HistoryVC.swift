@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Floaty
 class HistoryVC : UIViewController,UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -49,10 +48,8 @@ class HistoryVC : UIViewController,UIViewControllerTransitioningDelegate, UINavi
         self.historyViewModel.isSelected.value = false
         self.navigationController?.isNavigationBarHidden = true
 
-        print("into ViewDidAppear History")
     }
     override func viewWillAppear(_ animated: Bool) {
-        print("into viewWillAppear History")
         
     }
     

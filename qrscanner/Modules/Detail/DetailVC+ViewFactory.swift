@@ -118,7 +118,8 @@ extension DetailVC {
         tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.Contact.rawValue)
         tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.Telephone.rawValue)
         tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.Wifi.rawValue)
-        
+        tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.Barcode.rawValue)
+
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
@@ -155,12 +156,10 @@ extension DetailVC : TableViewCellDelegate {
     
     
     func cellViewSelected(cell: TableViewCell) {
-        print("\(cell.identifier) -- \(cell.lbTitle)")
         
     }
     
     func cellViewSelected(cell: TableViewCell, countSelected: Int) {
-        print("\(cell.identifier) -- \(cell.lbTitle)")
         
     }
     
@@ -248,8 +247,26 @@ extension DetailVC : TableViewCellDelegate {
             vc.viewModel.listItem.append(AlertViewModel(name: model.phoneContact ?? "" ))
             self.navigationController?.pushViewController(vc, animated: false)
         }
-       
+       else if typeCode == EnumType.BARCODE.rawValue{
+           
+           let model : BarcodeModel = try! JSONDecoder().decode(BarcodeModel.self, from: stringContent)
+           let vc = AlertVC()
+            vc.viewModel.listItem.append(AlertViewModel(name: setTextLabel(mString: model.barcodetype ?? "") ))
+           vc.viewModel.listItem.append(AlertViewModel(name: model.productID ?? "" ))
+           self.navigationController?.pushViewController(vc, animated: false)
+       }
     }
+    func setTextLabel(mString: String) -> String{
+                  if mString == BarcodeType.EAN_8.rawValue{
+                      return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8)!
+                  }
+                  else if mString == BarcodeType.EAN_13.rawValue{
+                      return LanguageHelper.getTranslationByKey(LanguageKey.EAN_13)!
+                  }
+                  else{
+                      return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8)!
+                  }
+              }
 }
 
 
