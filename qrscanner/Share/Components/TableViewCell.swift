@@ -105,11 +105,8 @@ class TableViewCell : UITableViewCell{
     //config with history
     func configView(view : GenerateViewModelDeletegate){
         self.lbTypeCode.text = "\(view.typeCodeView)"
-        print("\(view.typeCodeView)")
         self.lbCreatedDate.text = String(view.createdDateTimeView)
-        print("\(view.createdDateTimeView)")
         self.lbContent.text = view.contentView
-        print("\(view.contentView)")
         self.lbContent.textColor = AppColors.GRAY
         self.checkBox.borderStyle = .square
         self.checkBox.checkmarkStyle = .tick
@@ -121,7 +118,6 @@ class TableViewCell : UITableViewCell{
     }
     func configView(view : AlertViewModelDeletegate){
         self.lbTitle.text = String(view.nameItemView)
-        print(String(view.nameItemView))
         self.checkBox.borderStyle = .square
         self.checkBox.checkmarkStyle = .tick
         self.checkBox.borderWidth = 2
@@ -142,7 +138,6 @@ class TableViewCell : UITableViewCell{
     }
     
     func set(image : String, typeformat : Int) -> UIImage{
-        print(image)
         do{
             let writer = ZXMultiFormatWriter()
             let hints = ZXEncodeHints() as ZXEncodeHints
@@ -216,6 +211,11 @@ class TableViewCell : UITableViewCell{
             let data = try! JSONDecoder().decode(WifiModel.self, from: jsonData)
             configView(viewModel: WifiViewModel(data: data))
         }
+        if view.typeCodeView.uppercased() == EnumType.BARCODE.rawValue{
+            let jsonData = view.contentView.data(using: .utf8)!
+            let data = try! JSONDecoder().decode(BarcodeModel.self, from: jsonData)
+            configView(viewModel: BarcodeViewModel(data: data))
+        }
     }
     func configViewSave(view : GenerateViewModelDeletegate){
         self.lbTypeCode.text = "\(view.typeCodeView)"
@@ -281,6 +281,9 @@ class TableViewCell : UITableViewCell{
         }
         else if reuseIdentifier == EnumIdentifier.Event.rawValue {
             identifier = EnumIdentifier.Event
+        }
+        else if reuseIdentifier == EnumIdentifier.Barcode.rawValue {
+            identifier = EnumIdentifier.Barcode
         }
         else if reuseIdentifier == EnumIdentifier.HistoryChoose.rawValue {
             identifier = EnumIdentifier.HistoryChoose
@@ -632,6 +635,25 @@ class TableViewCell : UITableViewCell{
         self.textFieldValueSecond.text = viewModel.messageView
         
     }
+    /*Barcode*/
+    func configView(viewModel : BarcodeViewModel){
+        self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.ProductID)
+        self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Search)
+        self.textFieldValueFirst.text = viewModel.barcodeView
+        self.textFieldValueSecond.text = setTextLabel(mString: viewModel.typeBarcodeView)
+        
+    }
+    func setTextLabel(mString: String) -> String{
+            if mString == BarcodeType.EAN_8.rawValue{
+                return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8)!
+            }
+            else if mString == BarcodeType.EAN_13.rawValue{
+                return LanguageHelper.getTranslationByKey(LanguageKey.EAN_13)!
+            }
+            else{
+                return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8)!
+            }
+        }
     /*calendar*/
     lazy var imgEvent : UIImageView = {
         let view = UIImageView()
@@ -702,6 +724,20 @@ class TableViewCell : UITableViewCell{
             UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
         }
     }
+    @objc func searchBarcodeAction(sender : UITapGestureRecognizer){
+        
+        self.delegate?.cellViewSelected(cell: self)
+        if let data = codable {
+            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
+            let value_data = valueContentView?.content
+            let jsonData = value_data!.data(using: .utf8)!
+            let value = try! JSONDecoder().decode(BarcodeModel.self, from: jsonData)
+            let text = value.productID ?? ""
+            let  query = text.replacingOccurrences(of: " ", with: "+")
+            let url = "https://www.google.co.in/search?q=" + query
+            UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
+        }
+    }
     @objc func textAction(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
@@ -722,7 +758,6 @@ class TableViewCell : UITableViewCell{
             let jsonData = value_data!.data(using: .utf8)!
             let value = try! JSONDecoder().decode(PhoneModel.self, from: jsonData)
             let textValue = value.phone ?? ""
-            print(textValue)
             if let url = URL(string: "tel://\(textValue)"), UIApplication.shared.canOpenURL(url) {
                 if #available(iOS 10, *) {
                     UIApplication.shared.open(url)
@@ -752,26 +787,7 @@ class TableViewCell : UITableViewCell{
         if let data = codable {
             self.delegate?.cellViewSelected(cell: data)
         }
-        /* if let data = codable {
-         let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
-         let value_data = valueContentView?.content
-         let jsonData = value_data!.data(using: .utf8)!
-         let value = try! JSONDecoder().decode(MessageModel.self, from: jsonData)
-         var vc = AlertVC(listItem: [AlertViewModel(name: value.message!)])
-         //let alert = CustomAlert(title: "Hello there!! 👋🏻👋🏻", image: UIImage(named: "img")!)
-         vc.show(animated: true)
-         //        var alrController = UIAlertController(title: "\n\n\n\n\n\n", message: nil, preferredStyle: UIAlertController.Style.alert)
-         //        alrController.view.addSubview(vc)
-         //
-         //        let somethingAction = UIAlertAction(title: "Something", style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in print("something")})
-         //
-         //        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: {(alert: UIAlertAction!) in print("cancel")})
-         //
-         //        alrController.addAction(somethingAction)
-         //        alrController.addAction(cancelAction)
-         //        self.window?.rootViewController?.present(alrController, animated: true, completion: nil)
-         }
-         */
+     
     }
     @objc func addContactAction(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
@@ -893,7 +909,6 @@ class TableViewCell : UITableViewCell{
             eventStore.requestAccess(to: .event) { (granted, error) in
                 
                 if (granted) && (error == nil) {
-                    print("granted \(granted)")
                     
                     let event:EKEvent = EKEvent(eventStore: eventStore)
                     
@@ -905,7 +920,7 @@ class TableViewCell : UITableViewCell{
                     event.calendar = eventStore.defaultCalendarForNewEvents
                     do {
                         try eventStore.save(event, span: .thisEvent)
-                         DispatchQueue.main.async(execute: {
+                        DispatchQueue.main.async(execute: {
                             UIApplication.shared.registerForRemoteNotifications()
                             guard let url = URL(string: "calshow://") else { return }
                             UIApplication.shared.open(url, options: [:], completionHandler: nil)

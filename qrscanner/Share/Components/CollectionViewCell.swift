@@ -58,7 +58,6 @@ class CollectionViewCell : UICollectionViewCell{
     }
     
     func configView(view : ChangeColorViewModelDelegate){
-        print(view.imgQRView)
         if view.imgQRView == ColorString.Black.rawValue{
             self.imgIcon.backgroundColor = AppColors.BLACK_COLOR
         }

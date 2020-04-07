@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Floaty
 extension ChooseHistoryVC  {
     func initUI(){
         
@@ -65,7 +64,6 @@ extension ChooseHistoryVC  {
     }
     func bindViewModel() {
         self.historyViewModel.showLoading.bind { visible in
-            print(visible)
             visible ? ProgressHUD.show(): ProgressHUD.dismiss()
         }
         self.historyViewModel.onShowError = { [weak self] alert in
@@ -171,19 +169,15 @@ extension ChooseHistoryVC  {
     }
     // MARK: - Floaty Delegate Methods
     func floatyWillOpen(_ floaty: Floaty) {
-        print("Floaty Will Open")
     }
     
     func floatyDidOpen(_ floaty: Floaty) {
-        print("Floaty Did Open")
     }
     
     func floatyWillClose(_ floaty: Floaty) {
-        print("Floaty Will Close")
     }
     
     func floatyDidClose(_ floaty: Floaty) {
-        print("Foaty Did Close")
     }
     
 }
@@ -223,6 +217,5 @@ extension ChooseHistoryVC : SingleButtonDialogPresenter{
 
 extension ChooseHistoryVC : HeaderSectionDelegate {
     func cellSectionSelected(codable: Codable) {
-        print(codable)
     }
 }

@@ -82,7 +82,6 @@ class UrlGenerateVC: BaseViewController {
         dismiss()
     }
     @objc func doGenerate() {
-        print("done")
         self.defineValue()
         generateViewModel?.doGenerateQRValue();
     }

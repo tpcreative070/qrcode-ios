@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Floaty
 extension SaveVC  {
     func initUI(){
         /*SetupScrollView*/
@@ -154,25 +153,22 @@ extension SaveVC  {
 }
 extension SaveVC : TableViewCellDelegate{
     func cellViewLongSelected(cell: TableViewCell) {
-        navigationController?.pushViewController(ChooseHistoryVC(), animated: false)
+        navigationController?.pushViewController(ChooseSaveVC(), animated: false)
     }
     
     func cellViewSelected(cell: TableViewCell) {
         
     }
     func cellViewLongSelected(cell: Codable) {
-        navigationController?.pushViewController(ChooseHistoryVC(), animated: false)
+        navigationController?.pushViewController(ChooseSaveVC(), animated: false)
     }
     func cellViewSelected(cell: TableViewCell, countSelected: Int) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         let result = self.viewModel.listSave[indexPath.row]
-        print("save select: \(result)")
     }
     
     func cellViewSelected(cell: Codable) {
         if let data = JSONHelper.get(value: SaveViewModel.self,anyObject: cell){
-            print(data.typeCode)
-            print(data.content.content!)
             let value = data.content
             let  vc = DetailVC()
             vc.listContentViewModel = [ContentViewModel(data: value)]
@@ -259,6 +255,15 @@ extension SaveVC : TableViewCellDelegate{
             vc.emailViewModel.createDateTime = value_data!.createdDateTime
             self.navigationController?.pushViewController(vc, animated: true)
         }
+        if typeCode == EnumType.BARCODE.rawValue{
+                   var barcodeModel : BarcodeViewModel = BarcodeViewModel()
+                   barcodeModel = try! JSONDecoder().decode(BarcodeViewModel.self, from: stringContent!)
+                   let  vc = BarcodeVC()
+                   vc.barcodeViewModel = barcodeModel
+                   vc.barcodeViewModel.isSeen = AppConstants.ISSEEN
+                   vc.barcodeViewModel.createDateTime = value_data!.createdDateTime
+                   self.navigationController?.pushViewController(vc, animated: true)
+               }
     }
     func cellViewSelected(cell: TableViewCell, action: EnumResponseToView) {
         

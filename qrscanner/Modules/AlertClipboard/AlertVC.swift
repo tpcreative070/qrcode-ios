@@ -64,10 +64,8 @@ class AlertVC: BaseViewController {
     var dataSource :TableViewDataSource<TableViewCell,AlertViewModel,HeaderView>!
     override func viewDidLoad() {
         super.viewDidLoad()
-        print ("view didload typecode")
         initUI()
         bindViewModel()
-        print(viewModel.listItem)
         checkAutoCopy()
     }
     @objc func closeAlert(sender: UITapGestureRecognizer){
@@ -82,7 +80,6 @@ class AlertVC: BaseViewController {
             for item in viewModel.listItem {
                 stringValue += "\(item.nameItemView)\n"
             }
-            print(stringValue)
             let pasteboard = UIPasteboard.general
             pasteboard.string = stringValue
             showToast(message: LanguageHelper.getTranslationByKey(LanguageKey.Copy_Item_Success)!)

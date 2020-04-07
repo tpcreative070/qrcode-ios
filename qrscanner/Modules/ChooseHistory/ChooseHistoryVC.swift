@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Floaty
 class ChooseHistoryVC : UIViewController,UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -37,7 +36,6 @@ class ChooseHistoryVC : UIViewController,UIViewControllerTransitioningDelegate, 
     var floaty = Floaty()
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("into ViewDidLoad History")
         self.sections = TableSection.group(rowItems: self.historyViewModel.listHistories, by: { (headline) in
             return headline.typeCode
         })
@@ -58,7 +56,6 @@ class ChooseHistoryVC : UIViewController,UIViewControllerTransitioningDelegate, 
             Utils.logMessage(object: historyViewModel.listHistories)
             if index.check == true {
                 historyViewModel.countItemSelected += 1
-                print(index.content)
                 self.historyViewModel.doDeleteHistory(mData: index)
             }
         }
@@ -79,7 +76,6 @@ class ChooseHistoryVC : UIViewController,UIViewControllerTransitioningDelegate, 
     override func viewDidAppear(_ animated: Bool) {
         self.historyViewModel.doGetListHistories()
         self.historyViewModel.isSelected.value = false
-        print("into ViewDidAppear History")
     }
     
     override func viewWillAppear(_ animated: Bool) {

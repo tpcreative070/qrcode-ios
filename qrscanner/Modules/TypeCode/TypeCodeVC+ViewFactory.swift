@@ -127,7 +127,6 @@ extension TypeCodeVC : TableViewCellDelegate {
     }
     
     func cellCodable(codable: Codable) {
-        print("cellCodable")
     }
     func cellViewSelected(cell: TableViewCell, action: EnumResponseToView) {
           print("\(cell.identifier) -- \(cell.lbTitle)")

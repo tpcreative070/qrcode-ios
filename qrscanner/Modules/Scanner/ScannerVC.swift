@@ -158,7 +158,6 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("view did load")
         iniUI()
         if #available(iOS 10.2, *){
             let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
@@ -206,7 +205,6 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
     @objc func doneScanner(){
         self.viewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
         viewModel.isScanner = true
-        print(viewModel.listScanner)
         for item in viewModel.listScanner {
             self.viewModel.scannerResult(mValue: item)
         }
@@ -225,10 +223,8 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
   
     override func viewWillAppear(_ animated: Bool) {
         ProgressHUD.dismiss()
-        print("viewWillAppear")
     }
     override func viewDidAppear(_ animated: Bool) {
-        print("viewDidAppear11")
         ProgressHUD.dismiss()
         session?.startRunning()
         fetchData()

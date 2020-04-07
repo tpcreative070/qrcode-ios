@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Floaty
 class ChooseSaveVC : UIViewController,UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -36,7 +35,6 @@ class ChooseSaveVC : UIViewController,UIViewControllerTransitioningDelegate, UIN
     var floaty = Floaty()
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("into ViewDidLoad Save")
         self.sections = TableSection.group(rowItems: self.saveViewModel.listSave, by: { (headline) in
             return headline.typeCode
         })
@@ -56,7 +54,6 @@ class ChooseSaveVC : UIViewController,UIViewControllerTransitioningDelegate, UIN
             Utils.logMessage(object: saveViewModel.listSave)
             if index.check == true {
                 saveViewModel.countItemSelected += 1
-                print(index.content)
                 self.saveViewModel.doDeleteSave(mData: index)
             }
         }

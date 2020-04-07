@@ -220,7 +220,6 @@ class GenerateViewModel : GenerateViewModelDelegate {
             errorMessages.value[GenerateViewModelKey.PHONE_TELEPHONE] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorPhoneNumberInvalid) ?? ""
         }
         else {
-            debugPrint("Verified phone number...")
             errorMessages.value.removeValue(forKey: GenerateViewModelKey.PHONE_TELEPHONE)
         }
     }
@@ -233,7 +232,6 @@ class GenerateViewModel : GenerateViewModelDelegate {
         }
             
         else {
-            debugPrint("Verified to...")
             errorMessages.value.removeValue(forKey: GenerateViewModelKey.TO)
         }
     }
@@ -246,7 +244,6 @@ class GenerateViewModel : GenerateViewModelDelegate {
         }
             
         else {
-            debugPrint("Verified message...")
             errorMessages.value.removeValue(forKey: GenerateViewModelKey.MESSAGE)
         }
     }
@@ -288,16 +285,25 @@ class GenerateViewModel : GenerateViewModelDelegate {
      ValidateProductID
      */
     func validateProductID8(){
-        if productID == nil || !ValidatorHelper.equalLength8(productID,ength: 7) || !ValidatorHelper.equalLength8(productID,ength: 8) {
-            errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequired8 ) ?? ""
+        if productID == nil || productID == ""{
+            errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductInvalid ) ?? ""
         }
-        else {
-            errorMessages.value.removeValue(forKey: GenerateViewModelKey.PRODUCTID)
-        }
+        else if (  !ValidatorHelper.equalLength8(productID,ength: 7) || !ValidatorHelper.equalLength8(productID,ength: 8))
+        {
+                     errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequired8 ) ?? ""
+          
+           }
+           else {
+               errorMessages.value.removeValue(forKey: GenerateViewModelKey.PRODUCTID)
+           }
     }
     func validateProductID13(){
-           if productID == nil || !ValidatorHelper.equalLength13(productID,ength: 12) || !ValidatorHelper.equalLength13(productID,ength: 13){
-               errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequired13 ) ?? ""
+        if productID == nil || productID == ""{
+            errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductInvalid ) ?? ""
+        }
+        else if (  !ValidatorHelper.equalLength13(productID,ength: 12) || !ValidatorHelper.equalLength13(productID,ength: 13))
+        {
+                     errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequired13 ) ?? ""
            }
            else {
                errorMessages.value.removeValue(forKey: GenerateViewModelKey.PRODUCTID)
@@ -397,7 +403,6 @@ class GenerateViewModel : GenerateViewModelDelegate {
             errorMessages.value[GenerateViewModelKey.LAT] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorLatInvalid ) ?? ""
         }
         else {
-            debugPrint("Verified to...")
             errorMessages.value.removeValue(forKey: GenerateViewModelKey.LAT)
         }
     }
@@ -412,7 +417,6 @@ class GenerateViewModel : GenerateViewModelDelegate {
             errorMessages.value[GenerateViewModelKey.LON] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorLonInvalid ) ?? ""
         }
         else {
-            debugPrint("Verified to...")
             errorMessages.value.removeValue(forKey: GenerateViewModelKey.LON)
         }
     }
@@ -505,7 +509,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
      */
     func validatePassword(){
         if password == nil || !ValidatorHelper.minLength(password,minLength: 1) {
-            errorMessages.value[GenerateViewModelKey.SSID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorPassWordWifiRequired) ?? ""
+            errorMessages.value[GenerateViewModelKey.PASSWORD] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorPassWordWifiRequired) ?? ""
         }
         else {
             errorMessages.value.removeValue(forKey: GenerateViewModelKey.PASSWORD)
@@ -543,7 +547,6 @@ class GenerateViewModel : GenerateViewModelDelegate {
     
     func doGenerateQRValue(){
         var value = ""
-        print(typeCode)
         //typeCode = typeCode.uppercased()
         if typeCode == EnumType.URL.rawValue{
             validateUrl()
@@ -609,7 +612,6 @@ class GenerateViewModel : GenerateViewModelDelegate {
         else if typeCode == EnumType.MESSAGE.rawValue{
             validateTo()
             validateMessage()
-            print(errorMessages.value)
             if ( errorMessages.value.count > 0 ) {
                 return
             }
@@ -661,7 +663,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
     func doGenerateBarCode(){
         var value = ""
         if typeCode == EnumType.BARCODE.rawValue{
-            if typeBarcode == "EAN_8"{
+            if typeBarcode == LanguageKey.EAN_8{
                            validateProductID8()
                        }
                        else{

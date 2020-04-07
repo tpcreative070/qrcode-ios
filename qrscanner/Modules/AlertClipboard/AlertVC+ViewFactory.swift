@@ -114,7 +114,6 @@ extension AlertVC {
     
     func updateDataSource() {
         self.dataSource.items = self.viewModel.listItem
-        print(viewModel.listItem)
         self.dataSource.configureSwipeCell = { cell,vm in
             //   self.log(object: vm)
             self.viewModel.currentCell = vm
@@ -170,12 +169,10 @@ extension AlertVC : TableViewCellDelegate {
     }
     
     func cellViewSelected(cell: TableViewCell) {
-        print("\(cell.identifier) -- \(cell.lbTitle)")
         
     }
     
     func cellViewSelected(cell: TableViewCell, countSelected: Int) {
-        print("\(cell.identifier) -- \(cell.lbTitle)")
         
     }
     
@@ -184,10 +181,8 @@ extension AlertVC : TableViewCellDelegate {
     }
     
     func cellCodable(codable: Codable) {
-        print("cellCodable")
     }
     func cellViewSelected(cell: TableViewCell, action: EnumResponseToView) {
-        print("\(cell.identifier) -- \(cell.lbTitle)")
     }
     
     func setupEndedUpScrollView(){

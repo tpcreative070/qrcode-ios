@@ -32,7 +32,6 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
             //    Utils.logMessage(object: listSave)
             for (index, element) in listItem.enumerated() {
                 if element.identify == value.identify {
-                    debugPrint(index)
                     let mObject = listItem[index]
                     mObject.check = !value.check
                     if mObject.check == true {
@@ -46,7 +45,6 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
                         }
                     }
                     
-                    print(listItem)
                     responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
                 }
             }
@@ -69,13 +67,11 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
       func scannerResult(mValue : String){
             var typeCode = ""
             var value_content = ""
-            print(mValue)
             if mValue.contains("http://") || mValue.contains("https://"){
                 typeCode = EnumType.URL.rawValue
                 let content = UrlModel(url: mValue)
                 let jsonData = try! JSONEncoder().encode(content)
                 value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-                print(value_content)
             }
             else if (mValue.contains("geo")) {
                 typeCode = EnumType.LOCATION.rawValue
@@ -95,7 +91,6 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
                                     let content = LocationModel(latitude: lat, longtitude: lon, query: String(query))
                                     let jsonData = try! JSONEncoder().encode(content)
                                     value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-                                    print(value_content)
                                 }
                             }
                         }
@@ -139,7 +134,6 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
                 let content = EmailModel(email: String(email ), objectEmail: String(sub), messageEmail: String(body))
                 let jsonData = try! JSONEncoder().encode(content)
                 value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-                print(value_content)
                 
             }
             else if (mValue.contains("BEGIN:VCALENDAR")) || (mValue.contains("BEGIN:VEVENT")){
@@ -159,7 +153,6 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
                 
                 if arr_space.count > 0{
                     for item in arr_space {
-                        print("Item value : \(item)")
                         if(item.contains("SUMMARY")){
                             summary = String((item.split(separator: ":"))[1])
                         }
@@ -178,15 +171,13 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
                         }
                     }
                 }
-                print(dtstart)
-                print(dtstart)
+
 
                 let datestart = TimeHelper.getDate(timeString: dtstart)!
                 let dateend = TimeHelper.getDate(timeString: dtend)!
                 let content = EventModel(title: summary, location: location, description: description, beginTime: datestart, endTime: dateend)
                 let jsonData = try! JSONEncoder().encode(content)
                 value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-                print(value_content)
                 
             }
             else if ((mValue.range(of: "SMS", options: .caseInsensitive)) != nil)
@@ -196,8 +187,6 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
                 let content = MessageModel(to: String(arr_mess[1]) , message: String(arr_mess[2]))
                 let jsonData = try! JSONEncoder().encode(content)
                 value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-                print(value_content)
-                
             }
             else if ((mValue.range(of: "WIFI", options: .caseInsensitive)) != nil) {
                 typeCode = EnumType.WIFI.rawValue
@@ -228,7 +217,6 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
                 let content = WifiModel(ssid: ssid, password: pass, protect: protect)
                 let jsonData = try! JSONEncoder().encode(content)
                 value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-                print(value_content)
                 
             }
             else if (mValue.contains("MECARD")) || (mValue.contains("VCARD")) || (mValue.contains("MCARD")) {
@@ -287,7 +275,6 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
                 let content = ContactModel(fullNameContact: fullName, addressContact: address, phoneContact: phone, emailContact: email)
                 let jsonData = try! JSONEncoder().encode(content)
                 value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-                print(value_content)
                 
             }
             else if (mValue.caseInsensitiveCompare("tel") == .orderedSame || (mValue.range(of: "TEL", options: .caseInsensitive)) != nil) {
@@ -296,7 +283,6 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
                 let content = PhoneModel(phone: tel)
                 let jsonData = try! JSONEncoder().encode(content)
                 value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-                print(value_content)
                 
             }
                 
@@ -306,24 +292,23 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
                 let content = TextModel(text: mValue)
                 let jsonData = try! JSONEncoder().encode(content)
                 value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-                print(value_content)
                 
             }
             
             //        if let json = try? JSONSerialization.data(withJSONObject: mValue) {
             //        if let content = String(data: json, encoding: .utf8) {
-            //            print(content)
             //        }
             //        }
             if (typeCode == nil || value_content == nil || typeCode == "" || value_content == "")
             {
-                print("Empty value")
             }
             else
             {
                 let createDateTime = Date().millisecondsSince1970
-                print("value dateTime: \(dateTime)")
                 let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: ""))
+                if result{
+                    debugPrint("success")
+                }
                 
             }
         }
@@ -336,7 +321,6 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
                 return ContentViewModel(typeCode: data.typeCode!, content: data.content!)
                })
            }
-           print(listTransaction)
         self.navigate?()
        }
      func doSelectedAll(isValue : Bool){

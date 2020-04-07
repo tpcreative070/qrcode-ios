@@ -25,7 +25,6 @@ extension ChangeColorVC{
         
     }
     func updateCollectionViewDataSource() {
-        print(viewModel.listColor)
         self.collectionViewDataSource.items = self.viewModel.listColor
         self.collectionView.reloadData()
         changeColorQRCode(imgQRCode: imgQRCode)
@@ -80,7 +79,6 @@ extension ChangeColorVC : CollectionViewCellDelegate{
     }
     func cellViewSelected(cell: CollectionViewCell) {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
-        print(indexPath.row)
         self.viewModel.doSelectItem(mindex: indexPath.row)
     }
 }

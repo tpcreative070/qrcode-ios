@@ -79,6 +79,7 @@ extension ResultGenerateVC {
     }
     func setupNavItems() {
         self.view.backgroundColor = .white
+      
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR

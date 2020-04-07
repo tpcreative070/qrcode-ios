@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Floaty
 class SaveVC : UIViewController,UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -55,10 +54,8 @@ class SaveVC : UIViewController,UIViewControllerTransitioningDelegate, UINavigat
         self.viewModel.doGetListSave()
         self.viewModel.isSelected.value = false
         self.navigationController?.isNavigationBarHidden = true
-        print("into ViewDidAppear Save")
     }
     override func viewWillAppear(_ animated: Bool) {
-        print("into viewWillAppear Save")
         
     }
 }

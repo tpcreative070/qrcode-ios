@@ -56,7 +56,6 @@ class  ProgressHUD: UIView {
     }()
     
     public class func show() {
-        print("show progress")
         showInView(view: sharedView.getFrontWindow())
     }
     
@@ -74,7 +73,6 @@ class  ProgressHUD: UIView {
     }
     
     public class func dismiss() {
-        print("dismiss progress")
 
         UIView.animate(withDuration: 0.2, delay: 0, options: [.allowUserInteraction, .curveEaseOut], animations: {
             sharedView.indefiniteAnimatedView.alpha = 0

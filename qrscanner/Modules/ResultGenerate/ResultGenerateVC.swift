@@ -90,7 +90,6 @@ class ResultGenerateVC: BaseViewController {
     @objc func saveView(sender : UITapGestureRecognizer){
         UIImageWriteToSavedPhotosAlbum(imgQrcode.image!, nil, nil, nil)
         showToast(message: LanguageHelper.getTranslationByKey(LanguageKey.SaveSuccess)!)
-        print(resultViewModel.typeCode!.uppercased())
         let jsonData = contentViewModel!.content!.data(using: .utf8)!
         if resultViewModel.typeCode!.uppercased() == EnumType.URL.rawValue {
             let valueData = try! JSONDecoder().decode(UrlModel.self, from: jsonData)
@@ -191,7 +190,17 @@ class ResultGenerateVC: BaseViewController {
                 resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData))
             }
         }
-        
+        else if resultViewModel.typeCode!.uppercased() == EnumType.BARCODE.rawValue {
+                   let valueData = try! JSONDecoder().decode(BarcodeModel.self, from: jsonData)
+                   if resultViewModel.isUpdate != AppConstants.ISUPDATE
+                   {
+                       resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData))
+                   }
+                   else
+                   {
+                       resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData))
+                   }
+               }
     }
     @objc func printAction(sender : UITapGestureRecognizer){
         self.printImage()

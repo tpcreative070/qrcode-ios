@@ -223,7 +223,6 @@ extension ScannerVC {
     }
     
     func applyRectOfInterest(orientation: UIInterfaceOrientation) {
-        print(viewScan.frame)
         
         guard var transformedVideoRect = viewScan?.frame,
             let cameraSessionPreset = capture?.sessionPreset
@@ -341,13 +340,11 @@ extension ScannerVC {
             }
         }
         self.viewModel.navigate = { [weak self] in
-            print(self!.viewModel.listResult.count)
             if self!.viewModel.listResult.count > 1{
                 self?.viewModel.listResult.removeAll()
             }
             else{
                 let  vc = DetailVC()
-              //  print((self?.viewModel.listTransaction[0].typeCode)!)
                 vc.listContentViewModel = (self?.viewModel.listTransaction)!
                 self?.navigationController?.pushViewController(vc, animated: true)
                 self?.viewModel.defaultValue()
@@ -365,7 +362,6 @@ extension ScannerVC {
         if let prefs = UserDefaults(suiteName: AppConstants.sharedIndentifier) {
         if let imageData = prefs.object(forKey: AppConstants.shareKey) as? [Data] {
             ProgressHUD.showInView(view: self.view)
-            print(imageData)
             for item in imageData {
                 let rawImage = UIImage(data: item)
                 viewModel.listImage.append(rawImage!)
@@ -416,7 +412,6 @@ extension ScannerVC {
                 session = AVCaptureSession()
                 session?.addInput(input)
                 setuplayoutCamera()
-                print(view.layer.bounds)
             }
             catch{
                 print(error)
@@ -500,7 +495,6 @@ extension ScannerVC {
                 
             }
             else{
-                print("nil object")
             }
             
         }
@@ -512,7 +506,6 @@ extension ScannerVC {
 extension ScannerVC : OpalImagePickerControllerDelegate {
     func imagePicker(_ picker: OpalImagePickerController, didFinishPickingImages images: [UIImage]) {
         self.viewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
-        print(UserDefaults.standard.bool(forKey:KeyUserDefault.MultiLoad))
         if  UserDefaults.standard.bool(forKey:KeyUserDefault.MultiLoad){
             self.viewModel.doAsync(list: images)
             viewModel.doGetListTransaction()

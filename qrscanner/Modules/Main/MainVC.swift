@@ -50,25 +50,23 @@ class MainVC : SwipeMenuViewController {
     // MARK: - SwipeMenuViewDelegate
     override func swipeMenuView(_ swipeMenuView: SwipeMenuView, viewWillSetupAt currentIndex: Int) {
         super.swipeMenuView(swipeMenuView, viewWillSetupAt: currentIndex)
-               print("will setup SwipeMenuView")
     }
     
     override func swipeMenuView(_ swipeMenuView: SwipeMenuView, viewDidSetupAt currentIndex: Int) {
         super.swipeMenuView(swipeMenuView, viewDidSetupAt: currentIndex)
-        print("currentIndex : \(currentIndex)")
-        print("did setup SwipeMenuView")
+       // print("currentIndex : \(currentIndex)")
        
       //  reload()
     }
     
     override func swipeMenuView(_ swipeMenuView: SwipeMenuView, willChangeIndexFrom fromIndex: Int, to toIndex: Int) {
         super.swipeMenuView(swipeMenuView, willChangeIndexFrom: fromIndex, to: toIndex)
-        print("will change from section\(fromIndex + 1)  to section\(toIndex + 1)")
+       // print("will change from section\(fromIndex + 1)  to section\(toIndex + 1)")
     }
     
     override func swipeMenuView(_ swipeMenuView: SwipeMenuView, didChangeIndexFrom fromIndex: Int, to toIndex: Int) {
         super.swipeMenuView(swipeMenuView, didChangeIndexFrom: fromIndex, to: toIndex)
-        print("did change from section\(fromIndex + 1)  to section\(toIndex + 1)")
+      //  print("did change from section\(fromIndex + 1)  to section\(toIndex + 1)")
         
     }
     

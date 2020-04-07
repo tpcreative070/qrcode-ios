@@ -56,6 +56,10 @@ class GenerateEntityModel : Codable {
            self.typeCode = EnumType.WIFI.rawValue
            self.content = JSONSerializerHelper.toJson(data)
        }
+    init(data: BarcodeModel) {
+             self.typeCode = EnumType.BARCODE.rawValue
+             self.content = JSONSerializerHelper.toJson(data)
+         }
     init(typeCode : String, content : String, isHistory : Bool, isSave : Bool, bookMark: Bool, transactionID : String, isCode : String) {
         let time = TimeHelper.getString(time: Date(), dateFormat: TimeHelper.FormatDateTime)
         self.createdDateTime = Int64(time)
