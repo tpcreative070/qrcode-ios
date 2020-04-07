@@ -11,7 +11,7 @@ import Social
 import MobileCoreServices
 
 class ShareViewController: SLComposeServiceViewController {
-    var sharedindentifier = "group.test.co.tpcreative.share"
+    var sharedindentifier = "group.co.tpcreative.qrscanner.share"
     var shareKey = "Images"
     var seletedImage : UIImage!
     var maxCharacterCount = 100

@@ -49,7 +49,7 @@ public struct KeychainSwiftConstants {
 
 
 struct AppConstants {
-    static let sharedIndentifier = "group.test.co.tpcreative.share"
+    static let sharedIndentifier = "group.co.tpcreative.qrscanner.share"
     static let shareKey = "Images"
     static var ischoose = 0
     static var isVibrate = 0
