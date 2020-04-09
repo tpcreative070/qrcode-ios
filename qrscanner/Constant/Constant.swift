@@ -73,6 +73,8 @@ struct AppConstants {
     static let MIN_LENGHT = 1
     static let EQUAL_LENGHT_8 = 8
     static let EQUAL_LENGHT_13 = 8
+    
+    static let WIDTH_HEIGHT_RADIO = CGFloat(17)
 
     static let MAX_CASH_AMOUNT = 1000
     static let FLOAT_LABEL_MARGIN_LEFT = CGFloat(30)
@@ -123,7 +125,7 @@ static let IC_DEFAULT_DROP = CGFloat(18)
     static let MARGIN_TOP_ITEM_SETTING = CGFloat(8)
 
     static let MARGIN_TOP_SUBITEM = CGFloat(5)
-    static let MARGIN_TOP_CONTAINER = CGFloat(30)
+    static let MARGIN_TOP_CONTAINER = CGFloat(20)
     static let MARGIN_LEFT_CONTAINER = CGFloat(60)
     
     static let MARGIN_BOTTOM_ITEM = CGFloat(-12)

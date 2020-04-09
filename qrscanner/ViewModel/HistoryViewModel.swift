@@ -30,7 +30,7 @@ class HistoryViewModel  : Codable ,GenerateViewModelDeletegate{
     var isSave: Bool
     var typeCode: String
     var bookMark : Bool
-    var content = ContentModel()
+    var content = ContentViewModel()
     var createdDateTime : Int
     var updatedDateTime: Int
     var check : Bool = false
@@ -41,13 +41,15 @@ class HistoryViewModel  : Codable ,GenerateViewModelDeletegate{
     
     var updatedDateTimeView : String
     {
-        return TimeHelper.getTimeSince1970(time:Int(createdDateTime))
+        return TimeHelper.getTimeSince1970(time:Int(updatedDateTime))
     }
     var createdDateTimeView: String {
-        return TimeHelper.getTimeSince1970(time:Int(updatedDateTime))
+        return TimeHelper.getTimeSince1970(time:Int(createdDateTime))
     }
     
     init(data : GenerateEntityModel) {
+        print(data.createdDateTime!)
+        print(data.updatedDateTime!)
         self.typeCode = data.typeCode?.uppercased() ?? ""
         self.createdDateTime = Int(data.createdDateTime!)
         self.updatedDateTime = Int(data.updatedDateTime!)
@@ -55,33 +57,34 @@ class HistoryViewModel  : Codable ,GenerateViewModelDeletegate{
         self.isSave = data.isSave!
         self.bookMark = data.bookMark!
         if typeCode == EnumType.URL.rawValue{
-            self.content = ContentModel(data :(data.content?.toObject(value: UrlModel.self))!)
+            self.content = ContentViewModel(data :(data.content?.toObject(value: UrlModel.self))!)
             let stringContent = content.content?.data(using: .utf8 )
             let urlModel : UrlModel = try! JSONDecoder().decode(UrlModel.self, from: stringContent!)
             valueShowContent = urlModel.url ?? ""
             
         }
         else if typeCode == EnumType.TEXT.rawValue{
-            self.content = ContentModel(data: (data.content?.toObject(value: TextModel.self))!)
+            self.content = ContentViewModel(data: (data.content?.toObject(value: TextModel.self))!)
             let stringContent = content.content?.data(using: .utf8 )
+            print(content.content)
             let textModel : TextModel = try! JSONDecoder().decode(TextModel.self, from: stringContent!)
             valueShowContent = textModel.text ?? ""
         }
         else if typeCode == EnumType.LOCATION.rawValue{
-            self.content = ContentModel(data: (data.content?.toObject(value: LocationModel.self))!)
+            self.content = ContentViewModel(data: (data.content?.toObject(value: LocationModel.self))!)
             let stringContent = content.content?.data(using: .utf8 )
             let locationModel : LocationModel = try! JSONDecoder().decode(LocationModel.self, from: stringContent!)
             valueShowContent = "\(locationModel.latitude ?? 0),\(locationModel.longtitude ?? 0),(\(locationModel.query ?? ""))"
         }
         else if typeCode == EnumType.EMAIL.rawValue{
-            self.content = ContentModel(data: (data.content?.toObject(value: EmailModel.self))!)
+            self.content = ContentViewModel(data: (data.content?.toObject(value: EmailModel.self))!)
             let stringContent = content.content?.data(using: .utf8 )
             let emailModel : EmailModel = try! JSONDecoder().decode(EmailModel.self, from: stringContent!)
             valueShowContent = emailModel.email ?? ""
         }
         else if typeCode == EnumType.EVENT.rawValue{
             
-            self.content = ContentModel(data: (data.content?.toObject(value: EventModel.self))!)
+            self.content = ContentViewModel(data: (data.content?.toObject(value: EventModel.self))!)
             let stringContent = content.content?.data(using: .utf8 )
             let eventModel : EventModel = try! JSONDecoder().decode(EventModel.self, from: stringContent!)
             valueShowContent = eventModel.title ?? ""
@@ -89,28 +92,28 @@ class HistoryViewModel  : Codable ,GenerateViewModelDeletegate{
         }
         else if typeCode == EnumType.MESSAGE.rawValue{
             
-            self.content = ContentModel(data: (data.content?.toObject(value: MessageModel.self))!)
+            self.content = ContentViewModel(data: (data.content?.toObject(value: MessageModel.self))!)
             let stringContent = content.content?.data(using: .utf8 )
             let messageModel : MessageModel = try! JSONDecoder().decode(MessageModel.self, from: stringContent!)
             valueShowContent = messageModel.message ?? ""
         }
         else if typeCode == EnumType.WIFI.rawValue{
             
-            self.content = ContentModel(data: (data.content?.toObject(value: WifiModel.self))!)
+            self.content = ContentViewModel(data: (data.content?.toObject(value: WifiModel.self))!)
             let stringContent = content.content?.data(using: .utf8 )
             let wifiModel : WifiModel = try! JSONDecoder().decode(WifiModel.self, from: stringContent!)
             valueShowContent = wifiModel.ssid ?? ""
         }
         else if typeCode == EnumType.TELEPHONE.rawValue{
             
-            self.content = ContentModel(data: (data.content?.toObject(value: PhoneModel.self))!)
+            self.content = ContentViewModel(data: (data.content?.toObject(value: PhoneModel.self))!)
             let stringContent = content.content?.data(using: .utf8 )
             let phoneModel : PhoneModel = try! JSONDecoder().decode(PhoneModel.self, from: stringContent!)
             valueShowContent = phoneModel.phone ?? ""
         }
         else if typeCode == EnumType.CONTACT.rawValue{
             
-            self.content = ContentModel(data: (data.content?.toObject(value: ContactModel.self))!)
+            self.content = ContentViewModel(data: (data.content?.toObject(value: ContactModel.self))!)
             let stringContent = content.content?.data(using: .utf8 )
             let contactModel : ContactModel = try! JSONDecoder().decode(ContactModel.self, from: stringContent!)
             valueShowContent = contactModel.fullNameContact ?? ""

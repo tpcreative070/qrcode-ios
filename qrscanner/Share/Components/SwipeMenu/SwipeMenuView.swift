@@ -210,7 +210,7 @@ open class SwipeMenuView: UIView {
     fileprivate var isPortrait: Bool = true
 
     /// The index of the front page in `SwipeMenuView` (read only).
-    open private(set) var currentIndex: Int = 2
+    open private(set) var currentIndex: Int = 0
     private var jumpingToIndex: Int?
 
     public init(frame: CGRect, options: SwipeMenuViewOptions? = nil) {

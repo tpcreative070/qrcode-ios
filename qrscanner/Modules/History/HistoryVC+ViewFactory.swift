@@ -26,7 +26,7 @@ extension HistoryVC  {
             viewWrapper.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
         ])
         /*TableView*/
-        tableView = UITableView()
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height), style: .grouped)
         tableView.allowsSelection = true
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
@@ -153,21 +153,25 @@ extension HistoryVC : TableViewCellDelegate{
     }
     
     func cellViewSelected(cell: TableViewCell) {
-        
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        print(indexPath.row)
+               let result = self.historyViewModel.listHistories[indexPath.row]
+      //  Utils.logMessage(object: result)
     }
     func cellViewLongSelected(cell: Codable) {
         navigationController?.pushViewController(ChooseHistoryVC(), animated: false)
     }
     func cellViewSelected(cell: TableViewCell, countSelected: Int) {
-        guard let indexPath = tableView.indexPath(for: cell) else { return }
-        let result = self.historyViewModel.listHistories[indexPath.row]
+       
     }
     
     func cellViewSelected(cell: Codable) {
+        Utils.logMessage(object: cell)
         if let data = JSONHelper.get(value: HistoryViewModel.self,anyObject: cell){
             let value = data.content
+            print(value)
             let  vc = DetailVC()
-            vc.listContentViewModel = [ContentViewModel(data: value)]
+            vc.listContentViewModel = [data.content]
             self.navigationController?.pushViewController(vc, animated: true)
             
         }

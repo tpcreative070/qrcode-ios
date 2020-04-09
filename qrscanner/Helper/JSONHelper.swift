@@ -113,6 +113,7 @@ class JSONHelper {
     class func get<T : Codable>(value : T.Type,anyObject : Codable) ->T?{
         do{
             let jsonData = JSONSerializerHelper.toJson(anyObject).data(using: .utf8)
+            print(jsonData)
             if let jsonDataValue = jsonData{
                 return try JSONDecoder().decode(value.self, from: jsonDataValue)
             }

@@ -43,14 +43,13 @@ extension SettingsVC {
             self.imgVibrate.leadingAnchor.constraint(equalTo: self.viewVibrate.leadingAnchor),
             self.imgVibrate.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
             self.imgVibrate.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
-            self.imgVibrate.centerYAnchor.constraint(equalTo: self.viewVibrate.centerYAnchor)
+        
         ])
         
         self.viewVibrate.addSubview(self.lbVibrate)
         NSLayoutConstraint.activate([
             self.lbVibrate.leadingAnchor.constraint(equalTo: self.imgVibrate.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
             self.lbVibrate.topAnchor.constraint(equalTo: self.viewVibrate.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
-            self.lbVibrate.centerYAnchor.constraint(equalTo: self.viewVibrate.centerYAnchor),
             self.lbVibrate.bottomAnchor.constraint(equalTo: self.viewVibrate.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
         ])
         self.viewVibrate.addSubview(self.switchVibrate)
@@ -74,14 +73,12 @@ extension SettingsVC {
             self.imgBeep.leadingAnchor.constraint(equalTo: self.viewBeep.leadingAnchor),
             self.imgBeep.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
             self.imgBeep.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
-            self.imgBeep.centerYAnchor.constraint(equalTo: self.viewBeep.centerYAnchor)
         ])
         
         self.viewBeep.addSubview(self.lbBeep)
         NSLayoutConstraint.activate([
             self.lbBeep.leadingAnchor.constraint(equalTo: self.imgBeep.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
             self.lbBeep.topAnchor.constraint(equalTo: self.viewBeep.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
-            self.lbBeep.centerYAnchor.constraint(equalTo: self.viewBeep.centerYAnchor),
             self.lbBeep.bottomAnchor.constraint(equalTo: self.viewBeep.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
         ])
         self.viewBeep.addSubview(self.switchBeep)
@@ -356,14 +353,12 @@ extension SettingsVC {
          self.imgAppPermission.leadingAnchor.constraint(equalTo: self.viewAppPermission.leadingAnchor),
          self.imgAppPermission.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
          self.imgAppPermission.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
-         self.imgAppPermission.centerYAnchor.constraint(equalTo: self.viewAppPermission.centerYAnchor)
          ])
          
          self.viewAppPermission.addSubview(self.lbAppPermission)
          NSLayoutConstraint.activate([
          self.lbAppPermission.leadingAnchor.constraint(equalTo: self.imgAppPermission.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
          self.lbAppPermission.topAnchor.constraint(equalTo: self.viewAppPermission.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
-         self.lbAppPermission.centerYAnchor.constraint(equalTo: self.viewAppPermission.centerYAnchor),
          self.lbAppPermission.bottomAnchor.constraint(equalTo: self.viewAppPermission.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
          ])
          self.viewBackground.addSubview(viewPrivacy)
@@ -379,14 +374,12 @@ extension SettingsVC {
          self.imgPrivacy.leadingAnchor.constraint(equalTo: self.viewPrivacy.leadingAnchor),
          self.imgPrivacy.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
          self.imgPrivacy.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
-         self.imgPrivacy.centerYAnchor.constraint(equalTo: self.viewPrivacy.centerYAnchor)
          ])
          
          self.viewPrivacy.addSubview(self.lbPrivacy)
          NSLayoutConstraint.activate([
          self.lbPrivacy.leadingAnchor.constraint(equalTo: self.imgPrivacy.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
          self.lbPrivacy.topAnchor.constraint(equalTo: self.viewPrivacy.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
-         self.lbPrivacy.centerYAnchor.constraint(equalTo: self.viewPrivacy.centerYAnchor),
          self.lbPrivacy.bottomAnchor.constraint(equalTo: self.viewPrivacy.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
          ])
          self.viewBackground.addSubview(viewRate)
@@ -402,14 +395,12 @@ extension SettingsVC {
          self.imgRate.leadingAnchor.constraint(equalTo: self.viewRate.leadingAnchor),
          self.imgRate.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
          self.imgRate.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
-         self.imgRate.centerYAnchor.constraint(equalTo: self.viewRate.centerYAnchor)
          ])
          
          self.viewRate.addSubview(self.lbRating)
          NSLayoutConstraint.activate([
          self.lbRating.leadingAnchor.constraint(equalTo: self.imgRate.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
          self.lbRating.topAnchor.constraint(equalTo: self.viewRate.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
-         self.lbRating.centerYAnchor.constraint(equalTo: self.viewRate.centerYAnchor),
          self.lbRating.bottomAnchor.constraint(equalTo: self.viewRate.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
          ])
          self.viewBackground.addSubview(viewShare)
@@ -425,14 +416,12 @@ extension SettingsVC {
          self.imgShare.leadingAnchor.constraint(equalTo: self.viewShare.leadingAnchor),
          self.imgShare.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
          self.imgShare.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
-         self.imgShare.centerYAnchor.constraint(equalTo: self.viewShare.centerYAnchor)
          ])
          
          self.viewShare.addSubview(self.lbShare)
          NSLayoutConstraint.activate([
          self.lbShare.leadingAnchor.constraint(equalTo: self.imgShare.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
          self.lbShare.topAnchor.constraint(equalTo: self.viewShare.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
-         self.lbShare.centerYAnchor.constraint(equalTo: self.viewShare.centerYAnchor),
          self.lbShare.bottomAnchor.constraint(equalTo: self.viewShare.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
          ])
          self.viewBackground.addSubview(viewHelp)
@@ -448,14 +437,12 @@ extension SettingsVC {
          self.imgHelp.leadingAnchor.constraint(equalTo: self.viewHelp.leadingAnchor),
          self.imgHelp.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
          self.imgHelp.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
-         self.imgHelp.centerYAnchor.constraint(equalTo: self.viewHelp.centerYAnchor)
          ])
          
          self.viewHelp.addSubview(self.lbHelp)
          NSLayoutConstraint.activate([
          self.lbHelp.leadingAnchor.constraint(equalTo: self.imgHelp.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
          self.lbHelp.topAnchor.constraint(equalTo: self.viewHelp.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
-         self.lbHelp.centerYAnchor.constraint(equalTo: self.viewHelp.centerYAnchor),
          self.lbHelp.bottomAnchor.constraint(equalTo: self.viewHelp.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
          ])
          
@@ -584,7 +571,13 @@ extension SettingsVC {
         changeColorQRCode(imgQRCode: imgQRCode)
         getCurrenLang()
         let version = Helper.getVersion()
-        lbQrCodeContent.text = "Version: \(String(describing: version!))"
+        lbQrCodeContent.text = "\(LanguageHelper.getTranslationByKey(LanguageKey.QRVersion)!) \(String(describing: version!))"
+        switchVibrate.onTintColor = AppColors.COLOR_ACCENT
+        switchBeep.onTintColor = AppColors.COLOR_ACCENT
+        switchCopy.onTintColor = AppColors.COLOR_ACCENT
+        switchOpen.onTintColor = AppColors.COLOR_ACCENT
+         switchMultiLoad.onTintColor = AppColors.COLOR_ACCENT
+        switchMultiScan.onTintColor = AppColors.COLOR_ACCENT
     }
     func setupEndedUpScrollView(){
         viewBackground.addSubview(endedUpScrollViewContainerView)
@@ -594,7 +587,7 @@ extension SettingsVC {
             endedUpScrollViewContainerView.trailingAnchor.constraint(equalTo: viewBackground.trailingAnchor),
             endedUpScrollViewContainerView.bottomAnchor.constraint(equalTo: viewBackground.bottomAnchor)
         ])
-        self.view.layoutIfNeeded()
+       // self.view.layoutIfNeeded()
     }
     func checkIsOnSwitch(){
            if UserDefaults.standard.bool(forKey:KeyUserDefault.MultiScan){
@@ -615,25 +608,25 @@ extension SettingsVC {
            if UserDefaults.standard.bool(forKey:KeyUserDefault.OpenWeb){
                        switchOpen.isOn = true
                   }
-        
+
        }
-    func switchDefaultConfig(switchView: ICSwitchButton) {
-      switchView.onTintColor = AppConstants.SWITCH_ON_TINT_COLOR
-      switchView.offTintColor = AppConstants.SWITCH_OFF_TINT_COLOR
-      switchView.cornerRadius = AppConstants.SWITCH_CORNER_RADIUS
-      switchView.thumbCornerRadius = AppConstants.SWITCH_THUMB_CORNER_RADIUS
-      switchView.thumbSize = CGSize(width: AppConstants.SWITCH_THUMB_SIZE_WIDTH, height: AppConstants.SWITCH_THUMB_SIZE_HEIGHT)
-      switchView.thumbTintOnColor = AppConstants.SWITCH_THUMB_ON_TINT_COLOR
-      switchView.thumbTintOffColor = AppConstants.SWITCH_THUMB_OFF_TINT_COLOR
-      switchView.animationDuration = AppConstants.SWITCH_ANIMATION_DURATION
+    func switchDefaultConfig(switchView: UISwitch) {
+//      switchView.onTintColor = AppConstants.SWITCH_ON_TINT_COLOR
+//      switchView.offTintColor = AppConstants.SWITCH_OFF_TINT_COLOR
+//      switchView.cornerRadius = AppConstants.SWITCH_CORNER_RADIUS
+//      switchView.thumbCornerRadius = AppConstants.SWITCH_THUMB_CORNER_RADIUS
+//      switchView.thumbSize = CGSize(width: AppConstants.SWITCH_THUMB_SIZE_WIDTH, height: AppConstants.SWITCH_THUMB_SIZE_HEIGHT)
+//      switchView.thumbTintOnColor = AppConstants.SWITCH_THUMB_ON_TINT_COLOR
+//      switchView.thumbTintOffColor = AppConstants.SWITCH_THUMB_OFF_TINT_COLOR
+//      switchView.animationDuration = AppConstants.SWITCH_ANIMATION_DURATION
     }
     func bindViewModel(){
-        self.switchDefaultConfig(switchView: switchMultiScan)
-        self.switchDefaultConfig(switchView: switchMultiLoad)
-        self.switchDefaultConfig(switchView: switchVibrate)
-        self.switchDefaultConfig(switchView: switchOpen)
-        self.switchDefaultConfig(switchView: switchBeep)
-        self.switchDefaultConfig(switchView: switchCopy)
+//        self.switchDefaultConfig(switchView: switchMultiScan)
+//        self.switchDefaultConfig(switchView: switchMultiLoad)
+//        self.switchDefaultConfig(switchView: switchVibrate)
+//        self.switchDefaultConfig(switchView: switchOpen)
+//        self.switchDefaultConfig(switchView: switchBeep)
+//        self.switchDefaultConfig(switchView: switchCopy)
     }
     func getCurrenLang(){
         var currentLang : String = ""

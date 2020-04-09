@@ -13,7 +13,7 @@ open class ContentScrollView: UIScrollView {
 
     fileprivate var pageViews: [UIView] = []
 
-    fileprivate var currentIndex: Int = 2
+    fileprivate var currentIndex: Int = 0
 
     fileprivate var options: SwipeMenuViewOptions.ContentScrollView = SwipeMenuViewOptions.ContentScrollView()
 
@@ -41,21 +41,22 @@ open class ContentScrollView: UIScrollView {
 
     override open func layoutSubviews() {
         super.layoutSubviews()
-
         self.contentSize = CGSize(width: frame.width * CGFloat(pageViews.count), height: frame.height)
     }
 
     public func reset() {
         pageViews = []
-        currentIndex = 2
+        currentIndex = 0
     }
 
     public func reload() {
         self.didMoveToSuperview()
     }
+
     public func update(_ newIndex: Int) {
         currentIndex = newIndex
     }
+
     // MARK: - Setup
 
     fileprivate func setup() {
@@ -102,7 +103,8 @@ open class ContentScrollView: UIScrollView {
                 pageView.leadingAnchor.constraint(equalTo: leadingAnchor)
             ])
         }
-
+        print(currentIndex)
+        print(dataSource.numberOfPages)
         guard currentIndex < dataSource.numberOfPages(in: self) else { return }
         for i in (currentIndex + 1)..<dataSource.numberOfPages(in: self) {
             guard let pageView = dataSource.contentScrollView(self, viewForPageAt: i) else { return }
@@ -116,6 +118,7 @@ open class ContentScrollView: UIScrollView {
                 pageView.heightAnchor.constraint(equalTo: self.heightAnchor),
                 pageView.leadingAnchor.constraint(equalTo: pageViews[i - 1].trailingAnchor)
             ])
+            
         }
     }
 }

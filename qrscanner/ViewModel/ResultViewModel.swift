@@ -23,6 +23,8 @@ class ResultViewModel : ResultViewModelDelegate {
         }
     }
     func doUpdate(mCreateDateTime: Int,mValue : GenerateEntityModel){
+        print(mCreateDateTime)
+        print(Date().millisecondsSince1970)
          SQLHelper.updatedScanner(data: GenerateEntityModel(createdDateTime: mCreateDateTime, typeCode: typeCode ?? "", content: mValue.content!, isHistory: false, isSave: true, updatedDateTime: Date().millisecondsSince1970, bookMark: false, transactionID: "", isCode: ""))
        
     }

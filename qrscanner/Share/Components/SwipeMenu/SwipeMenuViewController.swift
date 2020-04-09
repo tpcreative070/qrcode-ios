@@ -1,6 +1,7 @@
 import UIKit
 
-class SwipeMenuViewController: UIViewController, SwipeMenuViewDelegate, SwipeMenuViewDataSource {
+open class SwipeMenuViewController: UIViewController, SwipeMenuViewDelegate, SwipeMenuViewDataSource {
+ 
 
     open var swipeMenuView: SwipeMenuView!
 
@@ -25,17 +26,18 @@ class SwipeMenuViewController: UIViewController, SwipeMenuViewDelegate, SwipeMen
     }
 
     private func addSwipeMenuViewConstraints() {
+
         swipeMenuView.translatesAutoresizingMaskIntoConstraints = false
         if #available(iOS 11.0, *), view.hasSafeAreaInsets, swipeMenuView.options.tabView.isSafeAreaEnabled {
             NSLayoutConstraint.activate([
-                swipeMenuView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 0),
+                swipeMenuView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
                 swipeMenuView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 swipeMenuView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 swipeMenuView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
         } else {
             NSLayoutConstraint.activate([
-                swipeMenuView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor ,constant: 0),
+                swipeMenuView.topAnchor.constraint(equalTo: topLayoutGuide.topAnchor),
                 swipeMenuView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 swipeMenuView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 swipeMenuView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -56,14 +58,13 @@ class SwipeMenuViewController: UIViewController, SwipeMenuViewDelegate, SwipeMen
     }
 
     open func swipeMenuView(_ swipeMenuView: SwipeMenuView, titleForPageAt index: Int) -> String {
-        return children[index].navigationItem.title ?? ""
+        return children[index].title ?? ""
     }
-    
-    open func swipeMenuView(_ swipeMenuView: SwipeMenuView, imageForPageAt index: Int) -> UIImageView {
-        return children[index].navigationItem.titleView as! UIImageView ?? UIImageView.init(image: UIImage(named: AppImages.IC_HELP))
-          }
+    public func swipeMenuView(_ swipeMenuView: SwipeMenuView, imageForPageAt index: Int) -> UIImageView {
+          return children[index].navigationItem.titleView as! UIImageView ?? UIImageView.init(image: UIImage(named: AppImages.IC_HELP))
 
-    
+     }
+     
     open func swipeMenuView(_ swipeMenuView: SwipeMenuView, viewControllerForPageAt index: Int) -> UIViewController {
         let vc = children[index]
         vc.didMove(toParent: self)

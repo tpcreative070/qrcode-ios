@@ -46,7 +46,6 @@ class LanguageHelper {
             langData = data
         } else {
             var currentLang = LanguageCode.English
-            print(currentLang)
             if let mData = CommonService.getMultipleLanguages(){
                 currentLang = mData
             }

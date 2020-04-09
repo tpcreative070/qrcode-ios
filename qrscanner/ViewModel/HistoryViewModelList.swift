@@ -13,6 +13,7 @@ class HistoryViewModelList : HistoryViewModelListDeletegate{
     var showLoading: Bindable<Bool> = Bindable(false)
     var responseToView: ((String) -> ())?
     var listHistories: [HistoryViewModel] = [HistoryViewModel]()
+    var listHistoriesBytype: [HistoryViewModel] = [HistoryViewModel]()
     var currentCell: HistoryViewModel?
     var isVisible: Bindable<Bool> = Bindable(false)
     var countItemSelected: Int = 0
@@ -27,12 +28,25 @@ class HistoryViewModelList : HistoryViewModelListDeletegate{
                 return HistoryViewModel(data:  data)
             })
         }
-        print(listHistories)
+      
         listHistories = listHistories.sorted {$0.updatedDateTime > $1.updatedDateTime}
         
         responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
     }
-    
+    func doGetListHistoriesType(mtype: String){
+           self.showLoading.value = true
+        if let mList = SQLHelper.getListHistoriesByType(typecode: mtype){
+               var index = 0
+               self.listHistoriesBytype = mList.map({ (data) -> HistoryViewModel in
+                   index += 1
+                   return HistoryViewModel(data:  data)
+               })
+           }
+           print(listHistories)
+           listHistoriesBytype = listHistoriesBytype.sorted {$0.updatedDateTime > $1.updatedDateTime}
+           
+         //  responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
+       }
     func doSelectItem(coable : Codable){
         if let value = coable.get(value: HistoryViewModel.self){
             //    Utils.logMessage(object: listHistories)
@@ -89,7 +103,7 @@ class HistoryViewModelList : HistoryViewModelListDeletegate{
             }else{
                 isVisible.value = false
             }
-            Utils.logMessage(object: listHistories)
+           // Utils.logMessage(object: listHistories)
         }
     }
 
