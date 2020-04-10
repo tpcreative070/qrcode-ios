@@ -27,7 +27,7 @@ extension ChooseHistoryVC  {
             viewWrapper.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
         ])
         /*TableView*/
-        tableView = UITableView()
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height), style: .grouped)
         tableView.allowsSelection = true
         
         tableView.backgroundColor = .white

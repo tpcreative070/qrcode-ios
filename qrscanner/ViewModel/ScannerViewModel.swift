@@ -285,9 +285,11 @@ class ScannerViewModel : ScannerViewModelDelegate {
         else
         {
             typeCode = EnumType.TEXT.rawValue
-            let content = TextModel(text: mValue)
+            print(String(mValue))
+            let content = TextModel(text: String(mValue))
             let jsonData = try! JSONEncoder().encode(content)
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+          //  value_content = "{\"text\":\"{\"text\":\"hi\"}\"}"
             
         }
         
@@ -317,6 +319,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
                     itemScanner = SQLHelper.getItemScanner(createDateTime: createDateTime)!
                     let typeCode = itemScanner.typeCode?.lowercased()
                     let content = itemScanner.content
+                    print(content)
                     let value = ContentViewModel(data: ContentModel(typeCode : typeCode!, content: content!))
                     listTransaction.append(value)
                     self.navigate?()
@@ -443,6 +446,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
             var index = 0
             self.listTransaction = mList.map({ (data) -> ContentViewModel in
                 index += 1
+                print(data.content!)
                 return ContentViewModel(typeCode: data.typeCode!, content: data.content!)
             })
         }

@@ -39,13 +39,15 @@ class SaveViewModel  : Codable ,GenerateViewModelDeletegate{
       
       var updatedDateTimeView : String
       {
-          return TimeHelper.getTimeSince1970(time:Int(createdDateTime))
+          return TimeHelper.getTimeSince1970(time:Int(updatedDateTime))
       }
       var createdDateTimeView: String {
-          return TimeHelper.getTimeSince1970(time:Int(updatedDateTime))
+          return TimeHelper.getTimeSince1970(time:Int(createdDateTime))
       }
       
       init(data : GenerateEntityModel) {
+        print(data.createdDateTime!)
+        print(data.updatedDateTime!)
           self.typeCode = data.typeCode?.uppercased() ?? ""
           self.createdDateTime = Int(data.createdDateTime!)
           self.updatedDateTime = Int(data.updatedDateTime!)

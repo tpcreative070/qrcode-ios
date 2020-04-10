@@ -131,6 +131,8 @@ class SQLHelper {
            guard let db = connection() else {
                return
            }
+        print(data.createdDateTime)
+        print(data.updatedDateTime)
         return GenerateEntity.instance.update(db: db, data : data)
        }
        
@@ -151,7 +153,13 @@ class SQLHelper {
          GenerateEntity.instance.delete(db: db, value: false)
         return GenerateEntity.instance.getListHistory(db: db)
     }
-    
+    /*Get list histories type*/
+    class open func getListHistoriesByType(typecode: String) -> [GenerateEntityModel]?{
+        guard let db = connection() else {
+            return nil
+        }
+        return GenerateEntity.instance.getListHistoryByType(db: db, typecode: typecode)
+    }
     /*Get list save*/
     class open func getListSave() -> [GenerateEntityModel]?{
         guard let db = connection() else {

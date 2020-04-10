@@ -38,9 +38,7 @@ extension MainVC  {
         addChild(mSave ?? SaveVC())
         addChild(mSettings ?? SettingsVC())
     }
-    private func reload() {
-          swipeMenuView.reloadData(options: options)
-      }
+   
       func setupStatusBar(){
              if #available(iOS 13.0, *) {
                        let app = UIApplication.shared

@@ -34,6 +34,7 @@ class TableViewDataSource<Cell: UITableViewCell,ViewModel, HeaderInSection : UIT
         self.height = height
         self.configureCell = configureCell
         self.isSelectionStype = isSelectionStype
+        
     }
    
     func numberOfSections(in tableView: UITableView) -> Int {

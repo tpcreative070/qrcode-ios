@@ -86,6 +86,21 @@ class GenerateEntity{
         }
         return nil
     }
+    func getListHistoryByType(db : Connection, typecode: String) -> [GenerateEntityModel]?{
+           do{
+               let query = table.select(table[*])  // SELECT "email" FROM "users"
+                   .filter(isHistory == true)
+                    .filter(typeCode == typeCode)
+                   .order(updatedDateTime.asc)
+               let response = try db.prepare(query).map({(event) -> GenerateEntityModel in
+                   return GenerateEntityModel(createdDateTime: event[createdDateTime], typeCode: event[typeCode],content: event[content], isHistory: event[isHistory], isSave: event[isSave], updatedDateTime: event[updatedDateTime], bookMark: event[bookMark], transactionID: event[transactionID], isCode: event[isCode])
+               })
+               return response
+           }catch {
+               debugPrint(error)
+           }
+           return nil
+       }
     func getListSave(db : Connection) -> [GenerateEntityModel]?{
         do{
             let query = table.select(table[*])  // SELECT "email" FROM "users"
@@ -127,7 +142,8 @@ class GenerateEntity{
     }
     
     func update(db : Connection, data: GenerateEntityModel){
-        let request = table.filter(createdDateTime == Int(data.createdDateTime!)).update(updatedDateTime <- Int(data.createdDateTime!), content <- (data.content)!)
+        
+        let request = table.filter(createdDateTime == Int(data.createdDateTime!)).update(updatedDateTime <- Int(data.updatedDateTime!), content <- (data.content)!)
         do{
             try db.run(request)
             debugPrint("Updated successfully")

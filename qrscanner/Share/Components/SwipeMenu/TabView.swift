@@ -41,7 +41,7 @@ open class TabView: UIScrollView {
 
     fileprivate var additionView: UIView = .init()
 
-    fileprivate var currentIndex: Int = 2
+    fileprivate var currentIndex: Int = 0
 
     fileprivate(set) var options: SwipeMenuViewOptions.TabView = SwipeMenuViewOptions.TabView()
 

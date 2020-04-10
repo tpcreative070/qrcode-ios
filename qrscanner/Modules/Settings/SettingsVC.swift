@@ -299,38 +299,38 @@ class SettingsVC : BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var switchVibrate: ICSwitchButton = {
-        let switchView = ICSwitchButton()
+    lazy var switchVibrate: UISwitch = {
+        let switchView = UISwitch()
         switchView.isOn = false
         switchView.translatesAutoresizingMaskIntoConstraints = false;
         return switchView
     }()
-    lazy var switchMultiScan: ICSwitchButton = {
-        let switchView = ICSwitchButton()
+    lazy var switchMultiScan: UISwitch = {
+        let switchView = UISwitch()
         switchView.isOn = false
         switchView.translatesAutoresizingMaskIntoConstraints = false;
         return switchView
     }()
-    lazy var switchMultiLoad: ICSwitchButton = {
-        let switchView = ICSwitchButton()
+    lazy var switchMultiLoad: UISwitch = {
+        let switchView = UISwitch()
         switchView.isOn = false
         switchView.translatesAutoresizingMaskIntoConstraints = false;
         return switchView
     }()
-    lazy var switchBeep: ICSwitchButton = {
-        let switchView = ICSwitchButton()
+    lazy var switchBeep: UISwitch = {
+        let switchView = UISwitch()
         switchView.isOn = false
         switchView.translatesAutoresizingMaskIntoConstraints = false;
         return switchView
     }()
-    lazy var switchCopy: ICSwitchButton = {
-        let switchView = ICSwitchButton()
+    lazy var switchCopy: UISwitch = {
+        let switchView = UISwitch()
         switchView.isOn = false
         switchView.translatesAutoresizingMaskIntoConstraints = false;
         return switchView
     }()
-    lazy var switchOpen: ICSwitchButton = {
-        let switchView = ICSwitchButton()
+    lazy var switchOpen: UISwitch = {
+        let switchView = UISwitch()
         switchView.isOn = false
         switchView.translatesAutoresizingMaskIntoConstraints = false;
         return switchView
@@ -470,7 +470,7 @@ class SettingsVC : BaseViewController {
         checkIsOnSwitch()
     }
     
-    @objc func switchVibrateDidChange (_ : ICSwitchButton){
+    @objc func switchVibrateDidChange (_ : UISwitch){
         
         //ScannerVC().viewModel.isVibrate = switchVibrate.isOn
         if switchVibrate.isOn{
@@ -483,7 +483,7 @@ class SettingsVC : BaseViewController {
         }
         
     }
-    @objc func switchOpenDidChange (_ : ICSwitchButton){
+    @objc func switchOpenDidChange (_ : UISwitch){
         if switchOpen.isOn{
             switchOpen.isOn = true
             CommonService.setUserDefault(key: KeyUserDefault.OpenWeb, value: true)
@@ -496,7 +496,7 @@ class SettingsVC : BaseViewController {
             
         }
     }
-    @objc func switchBeepDidChange (_ : ICSwitchButton){
+    @objc func switchBeepDidChange (_ : UISwitch){
         if switchBeep.isOn{
             switchBeep.isOn = true
             CommonService.setUserDefault(key: KeyUserDefault.Beep, value: true)
@@ -507,7 +507,7 @@ class SettingsVC : BaseViewController {
             CommonService.setUserDefault(key: KeyUserDefault.Beep, value: false)
         }
     }
-    @objc func switchCopyDidChange (_ : ICSwitchButton){
+    @objc func switchCopyDidChange (_ : UISwitch){
         if switchCopy.isOn{
                   switchCopy.isOn = true
                   CommonService.setUserDefault(key: KeyUserDefault.Copy, value: true)
@@ -565,7 +565,7 @@ class SettingsVC : BaseViewController {
         alert.addAction(UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Ok), style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-    @objc func switchMultiScanDidChange (_ : ICSwitchButton){
+    @objc func switchMultiScanDidChange (_ : UISwitch){
         if switchMultiScan.isOn{
             switchMultiScan.isOn = true
             CommonService.setUserDefault(key: KeyUserDefault.MultiScan, value: true)
@@ -575,7 +575,7 @@ class SettingsVC : BaseViewController {
             CommonService.setUserDefault(key: KeyUserDefault.MultiScan, value: false)
         }
     }
-    @objc func switchMultiLoadDidChange (_ : ICSwitchButton){
+    @objc func switchMultiLoadDidChange (_ : UISwitch){
         if switchMultiLoad.isOn{
             switchMultiLoad.isOn = true
             CommonService.setUserDefault(key: KeyUserDefault.MultiLoad, value: true)
