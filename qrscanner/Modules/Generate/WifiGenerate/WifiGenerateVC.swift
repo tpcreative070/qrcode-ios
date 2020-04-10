@@ -113,9 +113,10 @@ class WifiGenerateVC: BaseViewController {
     }()
     
     lazy var radioWPA : RadioButton = {
-        let radio = RadioButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        let radio = RadioButton(frame: CGRect(x: 0, y: 0, width: 15, height: 15))
         radio.innerCircleCircleColor = UIColor.black
         radio.outerCircleColor = UIColor.gray
+        radio.translatesAutoresizingMaskIntoConstraints = false
         radio.addTarget(self, action: #selector(actionRadioWPA(sender:)), for: .touchUpInside)
         return radio
     }()
@@ -141,9 +142,10 @@ class WifiGenerateVC: BaseViewController {
     }()
     
     lazy var radioWEP : RadioButton = {
-        let radio = RadioButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        let radio = RadioButton(frame: CGRect(x: 0, y: 0, width: 15, height: 15))
         radio.innerCircleCircleColor = UIColor.black
         radio.outerCircleColor = UIColor.gray
+         radio.translatesAutoresizingMaskIntoConstraints = false
         radio.addTarget(self, action: #selector(actionRadioWEP(sender:)), for: .touchUpInside)
         return radio
     }()
@@ -161,9 +163,10 @@ class WifiGenerateVC: BaseViewController {
     }()
     
     lazy var radioNone : RadioButton = {
-        let radio = RadioButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        let radio = RadioButton(frame: CGRect(x: 0, y: 0, width: 15, height: 15))
         radio.innerCircleCircleColor = UIColor.black
         radio.outerCircleColor = UIColor.gray
+        radio.translatesAutoresizingMaskIntoConstraints = false
         radio.addTarget(self, action: #selector(actionRadioNone(sender:)), for: .touchUpInside)
         return radio
     }()

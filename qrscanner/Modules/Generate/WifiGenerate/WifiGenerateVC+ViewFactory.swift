@@ -74,7 +74,7 @@ extension WifiGenerateVC {
         ])
         viewWPAContainer.addSubview(radioWPA)
         NSLayoutConstraint.activate([
-            radioWPA.leadingAnchor.constraint(equalTo: viewWPAContainer.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            radioWPA.leadingAnchor.constraint(equalTo: viewWPAContainer.leadingAnchor),
             radioWPA.topAnchor.constraint(equalTo: viewWPAContainer.topAnchor),
             radioWPA.bottomAnchor.constraint(equalTo: viewWPAContainer.bottomAnchor),
         ])
@@ -114,7 +114,7 @@ extension WifiGenerateVC {
         NSLayoutConstraint.activate([
             radioNone.leadingAnchor.constraint(equalTo: viewNoneContainer.leadingAnchor),
             radioNone.topAnchor.constraint(equalTo: viewNoneContainer.topAnchor),
-            radioNone.bottomAnchor.constraint(equalTo: viewNoneContainer.bottomAnchor)
+            radioNone.bottomAnchor.constraint(equalTo: viewNoneContainer.bottomAnchor),
         ])
         viewNoneContainer.addSubview(lbNone)
         NSLayoutConstraint.activate([
@@ -146,6 +146,7 @@ extension WifiGenerateVC {
         textField.addTarget(self, action: #selector(inputFieldEditingDidEnd), for: .editingDidEnd)
     }
     func defineValue(){
+        print(textFieldPass.text)
         self.generateViewModel?.typeCode = EnumType.WIFI.rawValue
         self.generateViewModel?.ssid = textFieldSsid.text
         self.generateViewModel?.password = textFieldPass.text
@@ -237,7 +238,7 @@ extension WifiGenerateVC {
     func checkIsSeenDetail(){
         if wifiViewModel.isSeen == AppConstants.ISSEEN {
             textFieldSsid.text = wifiViewModel.ssid ?? ""
-            textFieldPass.text = wifiViewModel.protect ?? ""
+            textFieldPass.text = wifiViewModel.passwordView ?? ""
             if wifiViewModel.protect == LanguageHelper.getTranslationByKey(LanguageKey.WPA){
                 radioWEP.isSelected = false
                 radioNone.isSelected = false

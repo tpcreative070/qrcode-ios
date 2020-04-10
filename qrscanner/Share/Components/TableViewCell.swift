@@ -218,6 +218,7 @@ class TableViewCell : UITableViewCell{
         }
     }
     func configViewSave(view : GenerateViewModelDeletegate){
+        print(view.updatedDateTimeView)
         self.lbTypeCode.text = "\(view.typeCodeView)"
         self.lbCreatedDate.text = String(view.updatedDateTimeView)
         self.lbContent.text = view.contentView
@@ -309,6 +310,7 @@ class TableViewCell : UITableViewCell{
     
     @objc func actionCellViewTap(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
+       // self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
             self.delegate?.cellViewSelected(cell: data)
         }
@@ -342,12 +344,12 @@ class TableViewCell : UITableViewCell{
     @objc func actionImageViewTap(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
-            //  self.delegate?.cellViewSelected(cell: data)
+              self.delegate?.cellViewSelected(cell: data)
             let value_data = JSONHelper.get(value: HistoryViewModel.self,anyObject: data)
             if value_data != nil{
-                let valueShare = Helper.getValueShareContent(typeCode: value_data!.typeCode, contentData: value_data!.content.content!)
-                let activiController = UIActivityViewController(activityItems: [valueShare], applicationActivities: nil)
-                UIApplication.shared.keyWindow?.rootViewController?.present(activiController,animated: true, completion: nil)
+//                let valueShare = Helper.getValueShareContent(typeCode: value_data!.typeCode, contentData: value_data!.content.content!)
+//                let activiController = UIActivityViewController(activityItems: [valueShare], applicationActivities: nil)
+//                UIApplication.shared.keyWindow?.rootViewController?.present(activiController,animated: true, completion: nil)
                 
             }
         }
@@ -510,6 +512,7 @@ class TableViewCell : UITableViewCell{
     }()
     
     func configView(viewModel : TextViewModelDelegate){
+        print(viewModel.textTxtView)
         self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.Text)
         self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Text)
         self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Search)
@@ -714,14 +717,24 @@ class TableViewCell : UITableViewCell{
         
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
+          //  Utils.logMessage(object: data)
             let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
             let value_data = valueContentView?.content
             let jsonData = value_data!.data(using: .utf8)!
             let value = try! JSONDecoder().decode(TextModel.self, from: jsonData)
             let text = value.text ?? ""
             let  query = text.replacingOccurrences(of: " ", with: "+")
-            let url = "https://www.google.co.in/search?q=" + query
-            UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
+            let encoded =
+            query.addingPercentEncoding(withAllowedCharacters:
+            .urlFragmentAllowed)
+//
+//                       if let encodedurl = URL(string: encoded!) {
+//                       UIApplication.shared.open(encodedurl, options: [:], completionHandler: nil)
+                        
+            let url1 = "https://www.google.co.in/search?q=\(encoded!)"
+            if let url = URL(string: url1) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
         }
     }
     @objc func searchBarcodeAction(sender : UITapGestureRecognizer){

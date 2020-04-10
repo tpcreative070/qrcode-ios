@@ -25,7 +25,6 @@ extension ScannerVC {
             wrapperFirstView.topAnchor.constraint(equalTo: viewBackground.topAnchor),
             wrapperFirstView.leftAnchor.constraint(equalTo: viewBackground.leftAnchor),
             wrapperFirstView.rightAnchor.constraint(equalTo: viewBackground.rightAnchor),
-            wrapperFirstView.widthAnchor.constraint(equalToConstant: viewBackground.frame.width),
             wrapperFirstView.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/4)
         ])
         
@@ -58,7 +57,6 @@ extension ScannerVC {
             wrapperSecondView.topAnchor.constraint(equalTo: lbScannerRectangle.bottomAnchor),
             wrapperSecondView.leftAnchor.constraint(equalTo: viewBackground.leftAnchor),
             wrapperSecondView.rightAnchor.constraint(equalTo: viewBackground.rightAnchor),
-            wrapperSecondView.widthAnchor.constraint(equalToConstant: viewBackground.frame.width),
             wrapperSecondView.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/4)
         ])
         viewBackground.addSubview(wrapperThirdView)
@@ -66,7 +64,6 @@ extension ScannerVC {
             wrapperThirdView.topAnchor.constraint(equalTo: wrapperFirstView.bottomAnchor),
             wrapperThirdView.leftAnchor.constraint(equalTo: viewBackground.leftAnchor),
             wrapperThirdView.rightAnchor.constraint(equalTo: lbScannerRectangle.leftAnchor),
-            wrapperThirdView.widthAnchor.constraint(equalToConstant: viewBackground.frame.width),
             wrapperThirdView.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2)
         ])
         viewBackground.addSubview(wrapperFourView)
@@ -74,7 +71,6 @@ extension ScannerVC {
             wrapperFourView.topAnchor.constraint(equalTo: wrapperFirstView.bottomAnchor),
             wrapperFourView.leftAnchor.constraint(equalTo: lbScannerRectangle.rightAnchor),
             wrapperFourView.rightAnchor.constraint(equalTo: viewBackground.rightAnchor),
-            wrapperFourView.widthAnchor.constraint(equalToConstant: viewBackground.frame.width),
             wrapperFourView.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2)
         ])
         viewIcon.addSubview(viewFlipCamera)

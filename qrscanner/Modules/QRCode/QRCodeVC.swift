@@ -68,7 +68,7 @@ class QRCodeVC: BaseViewController {
         self.viewModel.listContent.removeAll()
         
         for index in viewModel.listItem {
-            Utils.logMessage(object: viewModel.listItem)
+            //Utils.logMessage(object: viewModel.listItem)
             if index.check == true {
                 viewModel.scannerResult(mValue: index.stringCode!)
             }

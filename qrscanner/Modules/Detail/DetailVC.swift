@@ -32,7 +32,6 @@ class DetailVC : BaseViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
-       
         bindViewModel()
         contentViewModel.listContent = listContentViewModel
     }

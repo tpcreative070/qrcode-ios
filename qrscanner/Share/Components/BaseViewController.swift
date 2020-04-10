@@ -108,11 +108,11 @@ class BaseViewController: UIViewController {
     }
 
     @objc func log(message : String){
-        Utils.logMessage(message: message)
+       // Utils.logMessage(message: message)
     }
 
     @objc func log(object : Any){
-        Utils.logMessage(object:object)
+      //  Utils.logMessage(object:object)
     }
 
     func addCloseRightBlackButton(){

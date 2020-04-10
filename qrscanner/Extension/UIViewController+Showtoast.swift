@@ -33,7 +33,7 @@ extension UIViewController {
         for i in listValue {
             var dct = Dictionary<String, AnyObject>()
             dct.updateValue(i.createdDateTimeView as AnyObject, forKey: "createDateTime")
-            dct.updateValue(i.content.typeCode as AnyObject, forKey: "typeCode")
+            dct.updateValue(i.typeCode as AnyObject, forKey: "typeCode")
             dct.updateValue(("") as AnyObject, forKey: "productID")
             dct.updateValue(("") as AnyObject, forKey: "ISBN")
             dct.updateValue(("") as AnyObject, forKey: "url")
