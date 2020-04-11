@@ -36,7 +36,6 @@ class SaveViewModelList : SaveViewModelListDeletegate{
             //    Utils.logMessage(object: listSave)
             for (index, element) in listSave.enumerated() {
                 if element.createdDateTime == value.createdDateTime {
-                    debugPrint(index)
                     let mObject = listSave[index]
                     mObject.check = !value.check
                    if mObject.check == true {
@@ -56,7 +55,24 @@ class SaveViewModelList : SaveViewModelListDeletegate{
             }
         }
     }
-        
+      
+    func delete(){
+           self.showLoading.value = true
+           let dispathGroup = DispatchGroup()
+           DispatchQueue.main.async(execute: { () -> Void in
+               dispathGroup.enter()
+               for index in self.listSave {
+                   if index.check == true {
+                       self.countItemSelected += 1
+                       self.doDeleteSave(mData: index)
+                   }
+               }
+               dispathGroup.leave()
+           })
+           dispathGroup.notify(queue: .main) {
+               self.showLoading.value = false
+           }
+       }
         func doDeleteSave(mData : SaveViewModel){
             countItemSelected = 0
             
@@ -87,7 +103,7 @@ class SaveViewModelList : SaveViewModelListDeletegate{
             }else{
                 isVisible.value = false
             }
-            Utils.logMessage(object: listSave)
+          //  Utils.logMessage(object: listSave)
         }
     }
 

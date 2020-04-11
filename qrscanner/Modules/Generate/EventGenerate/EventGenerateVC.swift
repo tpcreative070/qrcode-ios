@@ -139,10 +139,19 @@ class EventGenerateVC: BaseViewController {
         view.alpha = AppConstants.ALPHA_DISBALE
         return view
     }()
+    lazy var datePicker: UIDatePicker = {
+        let view = UIDatePicker()
+          view.translatesAutoresizingMaskIntoConstraints = false
+          return view
+      }()
+    lazy var toolBar: UIToolbar = {
+        let view = UIToolbar(frame: CGRect(x: 0, y: 0, width: viewBackground.frame.size.width, height: AppConstants.HEIGHT_DATEPICKER))
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
        var eventViewModel = EventViewModel()
     var generateViewModel : GenerateViewModel?
-    var toolBar = UIToolbar()
-    var datePicker = UIDatePicker()
+   
   
     override func viewDidLoad() {
         super.viewDidLoad()

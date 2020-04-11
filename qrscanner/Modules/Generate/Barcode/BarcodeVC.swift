@@ -79,7 +79,7 @@ class BarcodeVC: BaseViewController {
         super.viewDidLoad()
         initUI()
         generateViewModel = GenerateViewModel()
-        self.barcodeViewModel.typeBarcode = BarcodeType.EAN_8.rawValue
+        
         self.bindViewModel()
         self.checkIsSeenDetail()
         
@@ -123,7 +123,7 @@ class BarcodeVC: BaseViewController {
     }
     @objc func actionDropDown(sender : UIView){
         let controller = ArrayChoiceTableViewController(BarcodeType.allValues) { (type) in
-            self.barcodeViewModel.typeBarcode = type.rawValue
+            self.barcodeViewModel.barcodetype = type.rawValue
             self.lbType.text = self.setTextLabel(mString: String(describing: type.rawValue))
             
         }
@@ -139,9 +139,9 @@ class BarcodeVC: BaseViewController {
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        lbType.text = setTextLabel(mString: self.barcodeViewModel.typeBarcode ?? "")
+        lbType.text = setTextLabel(mString: self.barcodeViewModel.barcodetype ?? "")
         self.generateViewModel?.errorMessages.value[GenerateViewModelKey.PRODUCTID] = ""
-        if barcodeViewModel.typeBarcode == BarcodeType.EAN_8.rawValue{
+        if barcodeViewModel.barcodetype == BarcodeType.EAN_8.rawValue{
             textFieldProduct.placeholder = LanguageHelper.getTranslationByKey(LanguageKey.Placeholder_Ean8)
         }
         else{

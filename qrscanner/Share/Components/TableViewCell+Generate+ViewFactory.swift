@@ -30,7 +30,7 @@ extension TableViewCell {
         ])
         
         
-        
+
         self.viewRoot.addSubview(self.lbTitle)
         NSLayoutConstraint.activate([
             self.lbTitle.leadingAnchor.constraint(equalTo: self.imgIcon.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
@@ -41,7 +41,6 @@ extension TableViewCell {
         ])
         self.viewRoot.addSubview(self.viewSub)
         NSLayoutConstraint.activate([
-            self.viewSub.leadingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor),
             self.viewSub.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor, constant: AppConstants.MARGIN_RIGHT),
             self.viewSub.topAnchor.constraint(equalTo: self.viewRoot.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM),
             self.viewSub.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM)
@@ -56,18 +55,7 @@ extension TableViewCell {
             self.imgPlusIcon.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
             self.imgPlusIcon.centerYAnchor.constraint(equalTo: self.viewRoot.centerYAnchor)
         ])
-        self.viewRoot.addSubview(self.stackView)
-        NSLayoutConstraint.activate([
-            self.stackView.leadingAnchor.constraint(equalTo: self.imgIcon.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
-            self.stackView.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor,constant: AppConstants.MARGIN_RIGHT),
-            self.stackView.topAnchor.constraint(equalTo: self.lbTitle.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM),
-            self.stackView.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM)
-        ])
-        
-        self.stackView.axis = .horizontal
-        self.stackView.alignment = .fill
-        self.stackView.distribution = UIStackView.Distribution.fillEqually
-        self.stackView.spacing = 0
+
         self.viewRoot.addSubview(self.viewUnderLine)
         NSLayoutConstraint.activate([
             self.viewUnderLine.leadingAnchor.constraint(equalTo: self.viewRoot.leadingAnchor),
@@ -77,6 +65,7 @@ extension TableViewCell {
         ])
         self.viewUnderLine.backgroundColor = AppColors.GRAY_LIGHT
          self.lbTitle.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+
     }
    
 }

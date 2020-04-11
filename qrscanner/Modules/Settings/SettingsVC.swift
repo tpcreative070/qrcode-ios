@@ -38,6 +38,11 @@ class SettingsVC : BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    lazy var viewSubMultiScan: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     lazy var viewMultiLoad: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -103,8 +108,8 @@ class SettingsVC : BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var stackViewMultiScan : StackView = {
-        let view = StackView()
+    var stackViewMultiScan : UIStackView = {
+        let view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -293,44 +298,49 @@ class SettingsVC : BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    lazy var lbContent : ICLabel = {
+        let view = ICLabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     lazy var lbMultiLoadContent : ICLabel = {
         let view = ICLabel()
         view.text = LanguageHelper.getTranslationByKey(LanguageKey.MultiLoadContent)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var switchVibrate: UISwitch = {
-        let switchView = UISwitch()
+    lazy var switchVibrate: ICSwitchButton = {
+        let switchView = ICSwitchButton()
         switchView.isOn = false
         switchView.translatesAutoresizingMaskIntoConstraints = false;
         return switchView
     }()
-    lazy var switchMultiScan: UISwitch = {
-        let switchView = UISwitch()
+    lazy var switchMultiScan: ICSwitchButton = {
+        let switchView = ICSwitchButton()
         switchView.isOn = false
         switchView.translatesAutoresizingMaskIntoConstraints = false;
         return switchView
     }()
-    lazy var switchMultiLoad: UISwitch = {
-        let switchView = UISwitch()
+    lazy var switchMultiLoad: ICSwitchButton = {
+        let switchView = ICSwitchButton()
         switchView.isOn = false
         switchView.translatesAutoresizingMaskIntoConstraints = false;
         return switchView
     }()
-    lazy var switchBeep: UISwitch = {
-        let switchView = UISwitch()
+    lazy var switchBeep: ICSwitchButton = {
+        let switchView = ICSwitchButton()
         switchView.isOn = false
         switchView.translatesAutoresizingMaskIntoConstraints = false;
         return switchView
     }()
-    lazy var switchCopy: UISwitch = {
-        let switchView = UISwitch()
+    lazy var switchCopy: ICSwitchButton = {
+        let switchView = ICSwitchButton()
         switchView.isOn = false
         switchView.translatesAutoresizingMaskIntoConstraints = false;
         return switchView
     }()
-    lazy var switchOpen: UISwitch = {
-        let switchView = UISwitch()
+    lazy var switchOpen: ICSwitchButton = {
+        let switchView = ICSwitchButton()
         switchView.isOn = false
         switchView.translatesAutoresizingMaskIntoConstraints = false;
         return switchView
@@ -470,7 +480,7 @@ class SettingsVC : BaseViewController {
         checkIsOnSwitch()
     }
     
-    @objc func switchVibrateDidChange (_ : UISwitch){
+    @objc func switchVibrateDidChange (_ : ICSwitchButton){
         
         //ScannerVC().viewModel.isVibrate = switchVibrate.isOn
         if switchVibrate.isOn{
@@ -483,7 +493,7 @@ class SettingsVC : BaseViewController {
         }
         
     }
-    @objc func switchOpenDidChange (_ : UISwitch){
+    @objc func switchOpenDidChange (_ : ICSwitchButton){
         if switchOpen.isOn{
             switchOpen.isOn = true
             CommonService.setUserDefault(key: KeyUserDefault.OpenWeb, value: true)
@@ -496,7 +506,7 @@ class SettingsVC : BaseViewController {
             
         }
     }
-    @objc func switchBeepDidChange (_ : UISwitch){
+    @objc func switchBeepDidChange (_ : ICSwitchButton){
         if switchBeep.isOn{
             switchBeep.isOn = true
             CommonService.setUserDefault(key: KeyUserDefault.Beep, value: true)
@@ -507,7 +517,7 @@ class SettingsVC : BaseViewController {
             CommonService.setUserDefault(key: KeyUserDefault.Beep, value: false)
         }
     }
-    @objc func switchCopyDidChange (_ : UISwitch){
+    @objc func switchCopyDidChange (_ : ICSwitchButton){
         if switchCopy.isOn{
                   switchCopy.isOn = true
                   CommonService.setUserDefault(key: KeyUserDefault.Copy, value: true)
@@ -524,13 +534,13 @@ class SettingsVC : BaseViewController {
             CommonService.setMultipleLanguages(value: LanguageCode.English)
             self.navigationController?.pushViewController(MainVC(), animated: false)
             self.dismiss()
-            
+
         })
         let vietnamAc = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Vietnamese), style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in
             CommonService.setMultipleLanguages(value: LanguageCode.Vietnamese)
             self.navigationController?.pushViewController(MainVC(), animated: false)
             self.dismiss()
-            
+
         })
         let esAc = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Spanish), style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in
                    CommonService.setMultipleLanguages(value: LanguageCode.Spanish)
@@ -547,12 +557,13 @@ class SettingsVC : BaseViewController {
         let cancelAction = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Cancel), style: UIAlertAction.Style.cancel, handler: {(alert: UIAlertAction!) in
             self.dismiss()
         })
-        
+
         alrController.addAction(enlishAc)
         alrController.addAction(vietnamAc)
           alrController.addAction(esAc)
           alrController.addAction(ptAc)
         alrController.addAction(cancelAction)
+         alrController.pruneNegativeWidthConstraints()
         self.present(alrController, animated: true, completion: nil)
     }
     @objc func doChangeColor (sender : UITapGestureRecognizer){
@@ -565,7 +576,7 @@ class SettingsVC : BaseViewController {
         alert.addAction(UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Ok), style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-    @objc func switchMultiScanDidChange (_ : UISwitch){
+    @objc func switchMultiScanDidChange (_ : ICSwitchButton){
         if switchMultiScan.isOn{
             switchMultiScan.isOn = true
             CommonService.setUserDefault(key: KeyUserDefault.MultiScan, value: true)
@@ -575,7 +586,7 @@ class SettingsVC : BaseViewController {
             CommonService.setUserDefault(key: KeyUserDefault.MultiScan, value: false)
         }
     }
-    @objc func switchMultiLoadDidChange (_ : UISwitch){
+    @objc func switchMultiLoadDidChange (_ : ICSwitchButton){
         if switchMultiLoad.isOn{
             switchMultiLoad.isOn = true
             CommonService.setUserDefault(key: KeyUserDefault.MultiLoad, value: true)

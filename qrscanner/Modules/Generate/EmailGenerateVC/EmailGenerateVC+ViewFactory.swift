@@ -63,26 +63,26 @@ extension EmailGenerateVC {
             textFieldObjectEmail.leadingAnchor.constraint(equalTo: viewObjectEmailBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             textFieldObjectEmail.trailingAnchor.constraint(equalTo: viewObjectEmailBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-        
         viewBackground.addSubview(viewMessageBg)
-        NSLayoutConstraint.activate([
-            viewMessageBg.topAnchor.constraint(equalTo: viewObjectEmailBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            viewMessageBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewMessageBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewMessageBg.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM)
-        ])
-        viewMessageBg.addSubview(lbMessageEmail)
-        NSLayoutConstraint.activate([
-            lbMessageEmail.topAnchor.constraint(equalTo: viewMessageBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            lbMessageEmail.leadingAnchor.constraint(equalTo: viewMessageBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            lbMessageEmail.trailingAnchor.constraint(equalTo: viewMessageBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
-        ])
-        viewMessageBg.addSubview(textFieldMessageEmail)
-        NSLayoutConstraint.activate([
-            textFieldMessageEmail.topAnchor.constraint(equalTo: lbMessageEmail.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
-            textFieldMessageEmail.leadingAnchor.constraint(equalTo: viewMessageBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            textFieldMessageEmail.trailingAnchor.constraint(equalTo: viewMessageBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
-        ])
+               NSLayoutConstraint.activate([
+                   viewMessageBg.topAnchor.constraint(equalTo: viewObjectEmailBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
+                   viewMessageBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+                   viewMessageBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+                   viewMessageBg.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM)
+               ])
+               viewMessageBg.addSubview(lbMessageEmail)
+               NSLayoutConstraint.activate([
+                   lbMessageEmail.topAnchor.constraint(equalTo: viewMessageBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
+                   lbMessageEmail.leadingAnchor.constraint(equalTo: viewMessageBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+                   lbMessageEmail.trailingAnchor.constraint(equalTo: viewMessageBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+               ])
+               viewMessageBg.addSubview(textFieldMessageEmail)
+               NSLayoutConstraint.activate([
+                   textFieldMessageEmail.topAnchor.constraint(equalTo: lbMessageEmail.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
+                   textFieldMessageEmail.leadingAnchor.constraint(equalTo: viewMessageBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+                   textFieldMessageEmail.trailingAnchor.constraint(equalTo: viewMessageBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+               ])
+       
         self.lbEmail.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
         self.lbObjectEmail.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
         self.lbMessageEmail.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
@@ -96,6 +96,7 @@ extension EmailGenerateVC {
         addTarget(textFieldEmail)
         addTarget(textFieldObjectEmail)
         addTarget(textFieldMessageEmail)
+        
     }
     func addTarget(_ textField: UITextField) {
         textField.addTarget(self, action: #selector(inputFieldEditingDidEnd), for: .editingDidEnd)

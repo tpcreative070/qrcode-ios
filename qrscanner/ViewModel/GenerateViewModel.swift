@@ -626,7 +626,6 @@ class GenerateViewModel : GenerateViewModelDelegate {
                 return
             }
             else{
-                print(password!)
                 value = "WIFI:T:\(protect!);S:\(ssid!);P:\(password!);;"
             }
             

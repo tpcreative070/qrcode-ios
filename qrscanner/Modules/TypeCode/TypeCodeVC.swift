@@ -34,8 +34,6 @@ class TypeCodeVC : BaseViewController{
         bindViewModel()
       
     }
-    override func actionLeft() {
-        dismiss()
-    }
+   
     
 }

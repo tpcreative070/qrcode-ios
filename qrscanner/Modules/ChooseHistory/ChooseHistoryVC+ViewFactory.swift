@@ -63,9 +63,9 @@ extension ChooseHistoryVC  {
         tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: EnumIdentifier.HistoryChoose.rawValue)
     }
     func bindViewModel() {
-//        self.historyViewModel.showLoading.bind { visible in
-//            visible ? ProgressHUD.show(): ProgressHUD.dismiss()
-//        }
+        self.historyViewModel.showLoading.bind { visible in
+            visible ? ProgressHUD.show(): ProgressHUD.dismiss()
+        }
         self.historyViewModel.onShowError = { [weak self] alert in
             self?.presentSingleButtonDialog(alert: alert)
         }
@@ -197,7 +197,7 @@ extension ChooseHistoryVC : TableViewCellDelegate{
     func cellViewSelected(cell: TableViewCell, countSelected: Int) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         let result = self.historyViewModel.listHistories[indexPath.row]
-        print("history select: \(result)")
+       // print("history select: \(result)")
     }
     
     func cellViewSelected(cell: Codable) {

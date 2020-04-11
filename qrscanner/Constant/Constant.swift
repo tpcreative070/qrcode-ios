@@ -58,6 +58,8 @@ struct AppConstants {
 
     static let soundID = 1057
     static let ISSEEN = 1
+    static let NUMBER_OF_LINE = 2
+
     static let ISUPDATE = 2
     static let ISCHOOSE = 1
     static let WIDTH_BORDER = CGFloat(1)
@@ -75,6 +77,7 @@ struct AppConstants {
     static let EQUAL_LENGHT_13 = 8
     
     static let WIDTH_HEIGHT_RADIO = CGFloat(17)
+    static let HEIGHT_DATEPICKER = CGFloat(35)
 
     static let MAX_CASH_AMOUNT = 1000
     static let FLOAT_LABEL_MARGIN_LEFT = CGFloat(30)
@@ -99,7 +102,8 @@ static let IC_DEFAULT_DROP = CGFloat(18)
     static let MARGIN_LEFT_SETTING = CGFloat(5)
     static let MARGIN_LEFT = CGFloat(20)
     static let MARGIN_LEFT_HELP = CGFloat(10)
-    
+    static let MARGIN_LEFT_SCAN = CGFloat(15)
+
     static let DEFAULT_CONSTRAINT = CGFloat(0)
     static let MARGIN_LEFT_COLOR = CGFloat(10)
 

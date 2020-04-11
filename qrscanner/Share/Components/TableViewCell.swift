@@ -246,7 +246,6 @@ class TableViewCell : UITableViewCell{
         }
     }
     func configViewSave(view : GenerateViewModelDeletegate){
-        print(view.updatedDateTimeView)
         self.lbTypeCode.text = "\(view.typeCodeView)"
         self.lbCreatedDate.text = String(view.updatedDateTimeView)
         self.lbContent.text = view.contentView
@@ -377,6 +376,7 @@ class TableViewCell : UITableViewCell{
             if value_data != nil{
                 let valueShare = Helper.getValueShareContent(typeCode: value_data!.typeCode, contentData: value_data!.content.content!)
                 let activiController = UIActivityViewController(activityItems: [valueShare], applicationActivities: nil)
+                activiController.pruneNegativeWidthConstraints()
                 UIApplication.shared.keyWindow?.rootViewController?.present(activiController,animated: true, completion: nil)
                 
             }
@@ -546,7 +546,6 @@ class TableViewCell : UITableViewCell{
     }()
     
     func configView(viewModel : TextViewModelDelegate){
-        print(viewModel.textTxtView)
         self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.Text)
         self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Text)
         self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Search)
@@ -798,6 +797,9 @@ class TableViewCell : UITableViewCell{
             self.window?.rootViewController!.present(activiController, animated: true, completion: nil)
         }
     }
+    @objc func textHideAction(sender : UITapGestureRecognizer){
+        textViewValueFirst.endEditing(true)
+       }
     @objc func phoneAction(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {

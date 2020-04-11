@@ -1,27 +1,27 @@
 import UIKit
 class BarcodeViewModel : Codable , BarcodeViewModelDelegate{
     var barcodeView: String{
-        return barcode ?? ""
+        return productID ?? ""
     }
     
     var typeBarcodeView: String
     {
-        return typeBarcode ?? ""
+        return barcodetype ?? ""
     }
     var createDateTime: Int?
     var typeCode : String?
     var isSeen : Int? = 0
     var isUpdate: Int?
     
-    var barcode: String?
-    var typeBarcode: String?
-    init(barcode: String, typeBarcode: String) {
-        self.barcode = barcode
-        self.typeBarcode = typeBarcode
+    var barcodetype: String?
+    var productID: String?
+    init(barcodetype: String,productID: String) {
+        self.productID = productID
+        self.barcodetype = barcodetype
     }
     init(data: BarcodeModel) {
-        self.barcode = data.productID
-        self.typeBarcode = data.barcodetype
+        self.productID = data.productID
+        self.barcodetype = data.barcodetype
        }
     init() {
     }

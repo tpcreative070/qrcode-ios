@@ -145,9 +145,6 @@ extension TableViewCell  {
             self.lbClipboard.centerYAnchor.constraint(equalTo: self.viewClipboard.centerYAnchor)
             
         ])
-        
-        
-        
         self.viewBackgroundSecond.addSubview(self.viewUnderLine)
         NSLayoutConstraint.activate([
             self.viewUnderLine.topAnchor.constraint(equalTo: self.viewClipboard.bottomAnchor, constant: AppConstants.MARGIN_TOP),
@@ -165,5 +162,8 @@ extension TableViewCell  {
         viewClipboard.isUserInteractionEnabled  = true
         self.textViewValueFirst.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
         self.scrollView.showsVerticalScrollIndicator = false
+        self.scrollView.isScrollEnabled = true
+        textViewValueFirst.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(textHideAction(sender:))))
+        textViewValueFirst.isUserInteractionEnabled  = true
     }
 }

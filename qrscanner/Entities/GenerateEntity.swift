@@ -43,7 +43,7 @@ class GenerateEntity{
              
             })
         }catch {
-            debugPrint(error)
+           // debugPrint(error)
         }
     }
     
@@ -64,10 +64,10 @@ class GenerateEntity{
         do{
             //let insert = try table.insert(data)
             try db.run(request)
-            debugPrint("Inserted contact successfully")
+           // debugPrint("Inserted contact successfully")
             return true
         }catch {
-            debugPrint(error)
+           // debugPrint(error)
         }
         return false
     }
@@ -82,7 +82,7 @@ class GenerateEntity{
             })
             return response
         }catch {
-            debugPrint(error)
+           // debugPrint(error)
         }
         return nil
     }
@@ -97,7 +97,7 @@ class GenerateEntity{
                })
                return response
            }catch {
-               debugPrint(error)
+               //debugPrint(error)
            }
            return nil
        }
@@ -111,7 +111,7 @@ class GenerateEntity{
             })
             return response
         }catch {
-            debugPrint(error)
+           // debugPrint(error)
         }
         return nil
     }
@@ -123,7 +123,7 @@ class GenerateEntity{
                 .filter(isHistory == value)   // WHERE "name" IS NOT NULL
                 .filter(isSave == value)
             try db.run(query.delete())
-            debugPrint("Deleted successfully")
+           // debugPrint("Deleted successfully")
             return true
         }catch {
             debugPrint(error)
@@ -135,7 +135,7 @@ class GenerateEntity{
         do{
             let query = table.select(table[*])  // SELECT "email" FROM "users"
             try db.run(query.delete())
-            debugPrint("Deleted successfully")
+           // debugPrint("Deleted successfully")
         }catch {
             debugPrint(error)
         }
@@ -146,10 +146,10 @@ class GenerateEntity{
         let request = table.filter(createdDateTime == Int(data.createdDateTime!)).update(updatedDateTime <- Int(data.updatedDateTime!), content <- (data.content)!)
         do{
             try db.run(request)
-            debugPrint("Updated successfully")
+           // debugPrint("Updated successfully")
             
         }catch {
-            debugPrint(error)
+           // debugPrint(error)
         }
     }
     func updateHistory(db : Connection,mcreateDatetime : Int , value : Bool) -> Bool{
@@ -167,10 +167,10 @@ class GenerateEntity{
         let request = table.filter(createdDateTime == mcreateDatetime).update(isSave <- value)
         do{
             try db.run(request)
-            debugPrint("Updated successfully")
+           // debugPrint("Updated successfully")
             return true
         }catch {
-            debugPrint(error)
+           // debugPrint(error)
             return false
         }
     }
@@ -187,7 +187,7 @@ class GenerateEntity{
             }
             return nil
         }catch {
-            debugPrint(error)
+          //  debugPrint(error)
         }
         return nil
     }
@@ -201,7 +201,7 @@ class GenerateEntity{
                      })
                      return response
                  }catch {
-                     debugPrint(error)
+                   //  debugPrint(error)
                  }
                  return nil
        }
