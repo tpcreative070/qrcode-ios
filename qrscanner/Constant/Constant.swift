@@ -54,7 +54,7 @@ struct AppConstants {
     static var ischoose = 0
     static var isVibrate = 0
     static var isBeep = 0
-    static var isOpen = 0
+    static var isCam = 0
 
     static let soundID = 1057
     static let ISSEEN = 1

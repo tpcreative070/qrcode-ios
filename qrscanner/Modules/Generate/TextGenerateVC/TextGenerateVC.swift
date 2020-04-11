@@ -40,9 +40,14 @@ class TextGenerateVC: BaseViewController {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
-        
         return view
     }()
+    lazy var textViewText: TextView = {
+           let view = TextView()
+           view.translatesAutoresizingMaskIntoConstraints = false
+           view.alpha = AppConstants.ALPHA_DISBALE
+           return view
+       }()
     var textViewModel = TextViewModel()
     var generateViewModel : GenerateViewModel?
     override func viewDidLoad() {

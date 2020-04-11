@@ -155,8 +155,7 @@ extension HistoryVC : TableViewCellDelegate{
     func cellViewSelected(cell: TableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         print(indexPath.row)
-               let result = self.historyViewModel.listHistories[indexPath.row]
-      //  Utils.logMessage(object: result)
+    
     }
     func cellViewLongSelected(cell: Codable) {
         navigationController?.pushViewController(ChooseHistoryVC(), animated: false)
@@ -167,14 +166,17 @@ extension HistoryVC : TableViewCellDelegate{
     
     func cellViewSelected(cell: Codable) {
         Utils.logMessage(object: cell)
+       
+       
         if let data = JSONHelper.get(value: HistoryViewModel.self,anyObject: cell){
             let value = data.content
             print(value)
             let  vc = DetailVC()
             vc.listContentViewModel = [data.content]
             self.navigationController?.pushViewController(vc, animated: true)
-            
+
         }
+
     }
     
     func cellCodable(codable: Codable) {

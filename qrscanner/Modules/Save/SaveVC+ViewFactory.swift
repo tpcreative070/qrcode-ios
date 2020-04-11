@@ -164,16 +164,13 @@ extension SaveVC : TableViewCellDelegate{
     }
     func cellViewSelected(cell: TableViewCell, countSelected: Int) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
-        let result = self.viewModel.listSave[indexPath.row]
     }
     
     func cellViewSelected(cell: Codable) {
         if let data = JSONHelper.get(value: SaveViewModel.self,anyObject: cell){
-            let value = data.content
             let  vc = DetailVC()
-            vc.listContentViewModel = [ContentViewModel(data: value)]
+            vc.listContentViewModel = [data.content]
             self.navigationController?.pushViewController(vc, animated: true)
-            
         }
     }
     

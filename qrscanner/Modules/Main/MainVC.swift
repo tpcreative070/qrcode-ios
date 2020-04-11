@@ -7,9 +7,9 @@
 //
 
 import UIKit
-
+import ZXingObjC
 class MainVC : SwipeMenuViewController {
-   
+   var session : AVCaptureSession?
     var options = SwipeMenuViewOptions()
     var mSave : SaveVC?
     var mHistory : HistoryVC?
@@ -22,7 +22,19 @@ class MainVC : SwipeMenuViewController {
         initUI()
         addedView()
         setupStatusBar()
-        
+        if #available(iOS 10.2, *){
+                   let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
+                   do{
+
+                       let input = try AVCaptureDeviceInput(device: captureDevice!)
+                       session = AVCaptureSession()
+                       session?.addInput(input)
+                    session?.startRunning()
+                   }
+                   catch {
+                       print("error")
+                   }
+               }
           
 
         super.viewDidLoad()
@@ -66,8 +78,14 @@ class MainVC : SwipeMenuViewController {
     
     override func swipeMenuView(_ swipeMenuView: SwipeMenuView, didChangeIndexFrom fromIndex: Int, to toIndex: Int) {
         super.swipeMenuView(swipeMenuView, didChangeIndexFrom: fromIndex, to: toIndex)
-      //  print("did change from section\(fromIndex + 1)  to section\(toIndex + 1)")
-        
+        print("did change from section\(fromIndex + 1)  to section\(toIndex + 1)")
+        if toIndex != 2 {
+            AppConstants.isCam = 1
+        }
+        if toIndex == 2{
+            AppConstants.isCam = 0
+            session?.startRunning()
+        }
     }
     
     // MARK - SwipeMenuViewDataSource
