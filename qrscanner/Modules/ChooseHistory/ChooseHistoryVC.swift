@@ -51,15 +51,23 @@ class ChooseHistoryVC : UIViewController,UIViewControllerTransitioningDelegate, 
         
     }
     @objc func doDeleteItem() {
-        ProgressHUD.showInView(view: self.view)
-        for index in historyViewModel.listHistories {
-            Utils.logMessage(object: historyViewModel.listHistories)
+        let dispathGroup = DispatchGroup()
+//
+       ProgressHUD.showInView(view: self.view)
+        DispatchQueue.main.async(execute: { () -> Void in
+            dispathGroup.enter()
+            for index in self.historyViewModel.listHistories {
             if index.check == true {
-                historyViewModel.countItemSelected += 1
+                self.historyViewModel.countItemSelected += 1
                 self.historyViewModel.doDeleteHistory(mData: index)
             }
         }
+            dispathGroup.leave()
+    })
+     //
+        dispathGroup.notify(queue: .main) {
         ProgressHUD.dismiss()
+        }
     }
     @objc func doSelectAll(_ sender: UIButton) {
         if !sender.isSelected {
@@ -80,6 +88,7 @@ class ChooseHistoryVC : UIViewController,UIViewControllerTransitioningDelegate, 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

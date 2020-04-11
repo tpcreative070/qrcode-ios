@@ -63,9 +63,9 @@ extension ChooseHistoryVC  {
         tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: EnumIdentifier.HistoryChoose.rawValue)
     }
     func bindViewModel() {
-        self.historyViewModel.showLoading.bind { visible in
-            visible ? ProgressHUD.show(): ProgressHUD.dismiss()
-        }
+//        self.historyViewModel.showLoading.bind { visible in
+//            visible ? ProgressHUD.show(): ProgressHUD.dismiss()
+//        }
         self.historyViewModel.onShowError = { [weak self] alert in
             self?.presentSingleButtonDialog(alert: alert)
         }

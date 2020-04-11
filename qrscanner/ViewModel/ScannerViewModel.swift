@@ -289,7 +289,6 @@ class ScannerViewModel : ScannerViewModelDelegate {
             let content = TextModel(text: String(mValue))
             let jsonData = try! JSONEncoder().encode(content)
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-          //  value_content = "{\"text\":\"{\"text\":\"hi\"}\"}"
             
         }
         
@@ -304,7 +303,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
         }
         else
         {
-            
+            print("giatr :\(value_content)")
             let createDateTime = Date().millisecondsSince1970
             if isScanner {
                 if UserDefaults.standard.bool(forKey:KeyUserDefault.MultiScan){

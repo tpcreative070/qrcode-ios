@@ -49,9 +49,9 @@ extension TypeCodeVC {
     }
 
     func bindViewModel() {
-        self.viewModel.showLoading.bind { visible in
-            visible ? ProgressHUD.show(): ProgressHUD.dismiss()
-        }
+//        self.viewModel.showLoading.bind { visible in
+//            visible ? ProgressHUD.show(): ProgressHUD.dismiss()
+//        }
         self.viewModel.onShowError = { [weak self] alert in
             self?.presentSingleButtonDialog(alert: alert)
         }

@@ -124,7 +124,6 @@ extension TextGenerateVC {
     func checkIsSeenDetail(){
         if textViewModel.isSeen == AppConstants.ISSEEN {
             textFieldText.text = String(textViewModel.text ?? "")
-            
         }
     }
 }

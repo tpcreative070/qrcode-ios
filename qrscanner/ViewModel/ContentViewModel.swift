@@ -30,6 +30,7 @@ class ContentViewModel  : Codable ,ContentViewModelDeletegate{
         self.content = JSONSerializerHelper.toJson(data)
     }
     init(data: TextModel) {
+        
         self.content = JSONSerializerHelper.toJson(data)
         self.typeCode = EnumType.TEXT.rawValue
     }

@@ -74,14 +74,15 @@ extension TableViewCell {
         //  self.viewUnderLine.backgroundColor = .gray
          self.lbCreatedDate.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE)
          self.lbContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(actionImageViewTap(sender:)))
-        imgIcon.addGestureRecognizer(tapGesture)
+        let tapGestureImg = UITapGestureRecognizer(target: self, action: #selector(actionImageViewTap(sender:)))
+        imgIcon.addGestureRecognizer(tapGestureImg)
         imgIcon.isUserInteractionEnabled  = true
         let tapGestureView = UITapGestureRecognizer(target: self, action: #selector(actionCellViewTap(sender:)))
              viewRoot.addGestureRecognizer(tapGestureView)
              viewRoot.isUserInteractionEnabled  = true
      let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(actionCellViewLongPress))
         self.viewRoot.addGestureRecognizer(longPressRecognizer)
+
     }
 }
 

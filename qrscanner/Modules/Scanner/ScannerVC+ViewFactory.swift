@@ -445,6 +445,7 @@ extension ScannerVC {
         
         session?.startRunning()
     }
+  
     
     func clearInput(){
         if let inputs = session?.inputs as? [AVCaptureDeviceInput] {
@@ -455,6 +456,9 @@ extension ScannerVC {
         session?.stopRunning()
     }
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        if AppConstants.isCam == 1{
+        }
+        else{
         if metadataObjects != nil && metadataObjects.count != 0 {
             let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject
             if object?.stringValue != nil
@@ -486,6 +490,7 @@ extension ScannerVC {
                     isScanning = false
                     viewModel.isScanner = true
                     viewModel.scannerResult(mValue: "\(String(describing: (object?.stringValue)!))")
+                    print(session)
                     session?.stopRunning()
                 }
                 
@@ -497,6 +502,7 @@ extension ScannerVC {
         else{
             
         }
+    }
     }
 }
 extension ScannerVC : OpalImagePickerControllerDelegate {

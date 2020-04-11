@@ -16,6 +16,16 @@ class TableViewCell : UITableViewCell{
     var delegate : TableViewCellDelegate?
     var identifier =  EnumIdentifier.None
     var codable : Codable?
+    lazy var scrollView: UIScrollView = {
+           let scrollView = UIScrollView()
+           scrollView.translatesAutoresizingMaskIntoConstraints = false
+           return scrollView
+       }()
+       lazy var endedUpScrollViewContainerView : UIView = {
+           let view = UIView()
+           view.translatesAutoresizingMaskIntoConstraints = false
+           return view
+       }()
     let viewBackground : UIView = {
         let view = UIView()
         //        view.backgroundColor = .clear
@@ -28,6 +38,24 @@ class TableViewCell : UITableViewCell{
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    let viewBackgroundTextView : UIView = {
+           let view = UIView()
+           //        view.backgroundColor = .clear
+           view.translatesAutoresizingMaskIntoConstraints = false
+           return view
+       }()
+    let viewBackgroundTextView1 : UIView = {
+              let view = UIView()
+              //        view.backgroundColor = .clear
+              view.translatesAutoresizingMaskIntoConstraints = false
+              return view
+          }()
+    let viewBackgroundTextView2 : UIView = {
+              let view = UIView()
+              //        view.backgroundColor = .clear
+              view.translatesAutoresizingMaskIntoConstraints = false
+              return view
+          }()
     lazy var viewUnderLine : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -342,14 +370,14 @@ class TableViewCell : UITableViewCell{
         
     }
     @objc func actionImageViewTap(sender : UITapGestureRecognizer){
-        self.delegate?.cellViewSelected(cell: self)
+       // self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
-              self.delegate?.cellViewSelected(cell: data)
+            //  self.delegate?.cellViewSelected(cell: data)
             let value_data = JSONHelper.get(value: HistoryViewModel.self,anyObject: data)
             if value_data != nil{
-//                let valueShare = Helper.getValueShareContent(typeCode: value_data!.typeCode, contentData: value_data!.content.content!)
-//                let activiController = UIActivityViewController(activityItems: [valueShare], applicationActivities: nil)
-//                UIApplication.shared.keyWindow?.rootViewController?.present(activiController,animated: true, completion: nil)
+                let valueShare = Helper.getValueShareContent(typeCode: value_data!.typeCode, contentData: value_data!.content.content!)
+                let activiController = UIActivityViewController(activityItems: [valueShare], applicationActivities: nil)
+                UIApplication.shared.keyWindow?.rootViewController?.present(activiController,animated: true, completion: nil)
                 
             }
         }
@@ -378,6 +406,12 @@ class TableViewCell : UITableViewCell{
     lazy var lbTitleFirst : ICLabel = {
         let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    lazy var textViewValueFirst: UITextView = {
+        let view = UITextView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.alpha = AppConstants.ALPHA_DISBALE
         return view
     }()
     lazy var textFieldValueFirst: ICTextFieldNoneIcon = {
@@ -516,7 +550,8 @@ class TableViewCell : UITableViewCell{
         self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.Text)
         self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Text)
         self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Search)
-        self.textFieldValueFirst.text = viewModel.textTxtView
+        self.textViewValueFirst.text = viewModel.textTxtView
+       
     }
     /*phone*/
     lazy var imgPhone : UIImageView = {
