@@ -141,12 +141,18 @@ extension BarcodeVC {
     }
     func checkIsSeenDetail(){
         if barcodeViewModel.isSeen == AppConstants.ISSEEN {
-            textFieldProduct.text = barcodeViewModel.barcode ?? ""
+            textFieldProduct.text = barcodeViewModel.productID ?? ""
+            print(barcodeViewModel.barcodetype)
+            lbType.text = setTextLabel(mString: barcodeViewModel.barcodetype ?? "")
+        
+        }
+        else{
+            self.barcodeViewModel.barcodetype = BarcodeType.EAN_8.rawValue
         }
     }
     func defineValue(){
         self.generateViewModel?.typeCode = EnumType.BARCODE.rawValue
-         self.generateViewModel?.typeBarcode = barcodeViewModel.typeBarcode!
+         self.generateViewModel?.typeBarcode = barcodeViewModel.barcodetype!
               self.generateViewModel?.productID = textFieldProduct.text
     }
     func setTextLabel(mString: String) -> String{

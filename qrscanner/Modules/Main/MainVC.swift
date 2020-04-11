@@ -9,33 +9,33 @@
 import UIKit
 import ZXingObjC
 class MainVC : SwipeMenuViewController {
-   var session : AVCaptureSession?
-    var options = SwipeMenuViewOptions()
+  
     var mSave : SaveVC?
     var mHistory : HistoryVC?
     var mGenerate : TypeCodeVC?
     var mScanner : ScannerVC?
     var mSettings : SettingsVC?
     var dataCount: Int = 5
+    private var datas: [String] = ["Bulbasaur","Caterpie","Denci"]
 
     override func viewDidLoad() {
         initUI()
         addedView()
         setupStatusBar()
-        if #available(iOS 10.2, *){
-                   let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
-                   do{
+//       let vc = TypeCodeVC()
+//           vc.title = datas[0]
+//       vc.navigationItem.titleView = UIImageView.init(image: UIImage(named: "ic_history"))
+//
+//           self.addChild(vc)
+//       let vc1 = HistoryVC()
+//                 vc1.title = datas[1]
+//         vc1.navigationItem.titleView = UIImageView.init(image: UIImage(named: "ic_history"))
+//                 self.addChild(vc1)
+//       let vc2 = SettingsVC()
+//          vc2.title = datas[2]
+//         vc2.navigationItem.titleView = UIImageView.init(image: UIImage(named: "ic_history"))
+//         self.addChild(vc2)
 
-                       let input = try AVCaptureDeviceInput(device: captureDevice!)
-                       session = AVCaptureSession()
-                       session?.addInput(input)
-                    session?.startRunning()
-                   }
-                   catch {
-                       print("error")
-                   }
-               }
-          
 
         super.viewDidLoad()
    //     UIFont.availableFonts()
@@ -46,14 +46,7 @@ class MainVC : SwipeMenuViewController {
 //        mScanner = ScannerVC()
 //        show(mScanner!, sender: nil)
     }
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "popupSegue" {
-//            let vc = segue.destination as! PopupViewController
-//            vc.options = options
-//            vc.dataCount = dataCount
-//            vc.reloadClosure = { self.reload() }
-//        }
-//    }
+
 
   
     override func viewDidAppear(_ animated: Bool) {
@@ -84,7 +77,6 @@ class MainVC : SwipeMenuViewController {
         }
         if toIndex == 2{
             AppConstants.isCam = 0
-            session?.startRunning()
         }
     }
     

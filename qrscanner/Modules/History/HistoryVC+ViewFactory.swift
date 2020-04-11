@@ -169,8 +169,6 @@ extension HistoryVC : TableViewCellDelegate{
        
        
         if let data = JSONHelper.get(value: HistoryViewModel.self,anyObject: cell){
-            let value = data.content
-            print(value)
             let  vc = DetailVC()
             vc.listContentViewModel = [data.content]
             self.navigationController?.pushViewController(vc, animated: true)

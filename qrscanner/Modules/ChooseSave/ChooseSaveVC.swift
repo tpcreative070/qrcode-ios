@@ -50,14 +50,7 @@ class ChooseSaveVC : UIViewController,UIViewControllerTransitioningDelegate, UIN
         
     }
     @objc func doDeleteItem() {
-        for index in saveViewModel.listSave {
-           // Utils.logMessage(object: saveViewModel.listSave)
-            if index.check == true {
-                saveViewModel.countItemSelected += 1
-                self.saveViewModel.doDeleteSave(mData: index)
-            }
-        }
-        
+               saveViewModel.delete()
     }
     @objc func doSelectAll(_ sender: UIButton) {
         if !sender.isSelected {

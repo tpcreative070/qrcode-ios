@@ -146,7 +146,6 @@ extension WifiGenerateVC {
         textField.addTarget(self, action: #selector(inputFieldEditingDidEnd), for: .editingDidEnd)
     }
     func defineValue(){
-        print(textFieldPass.text)
         self.generateViewModel?.typeCode = EnumType.WIFI.rawValue
         self.generateViewModel?.ssid = textFieldSsid.text
         self.generateViewModel?.password = textFieldPass.text

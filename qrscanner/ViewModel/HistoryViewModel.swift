@@ -48,8 +48,6 @@ class HistoryViewModel  : Codable ,GenerateViewModelDeletegate{
     }
     
     init(data : GenerateEntityModel) {
-        print(data.createdDateTime!)
-        print(data.updatedDateTime!)
         self.typeCode = data.typeCode?.uppercased() ?? ""
         self.createdDateTime = Int(data.createdDateTime!)
         self.updatedDateTime = Int(data.updatedDateTime!)

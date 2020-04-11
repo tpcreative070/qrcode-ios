@@ -17,8 +17,6 @@ extension ScannerVC {
             viewBackground.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor),
             viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor),
-            viewBackground.widthAnchor.constraint(equalToConstant: view.frame.width),
-            viewBackground.heightAnchor.constraint(equalToConstant: view.frame.height)
         ])
         viewBackground.addSubview(wrapperFirstView)
         NSLayoutConstraint.activate([
@@ -75,7 +73,7 @@ extension ScannerVC {
         ])
         viewIcon.addSubview(viewFlipCamera)
         NSLayoutConstraint.activate([
-            
+
             viewFlipCamera.topAnchor.constraint(equalTo: viewIcon.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewFlipCamera.leadingAnchor.constraint(equalTo: viewIcon.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             viewFlipCamera.widthAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT),
@@ -84,13 +82,13 @@ extension ScannerVC {
         viewFlipCamera.addSubview(imgFlipCamera)
         NSLayoutConstraint.activate([
             imgFlipCamera.topAnchor.constraint(equalTo: viewFlipCamera.topAnchor),
-            imgFlipCamera.leadingAnchor.constraint(equalTo: viewFlipCamera.leadingAnchor, constant: AppConstants.MARGIN_LEFT_HELP),
+            imgFlipCamera.leadingAnchor.constraint(equalTo: viewFlipCamera.leadingAnchor, constant: AppConstants.MARGIN_LEFT_SCAN),
             imgFlipCamera.widthAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT),
             imgFlipCamera.heightAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT)
         ])
         viewIcon.addSubview(viewFlashBg)
         NSLayoutConstraint.activate([
-            
+
             viewFlashBg.topAnchor.constraint(equalTo: viewIcon.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewFlashBg.leadingAnchor.constraint(equalTo: viewFlipCamera.trailingAnchor, constant: AppConstants.MARGIN_LEFT_ICON),
             viewFlashBg.widthAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT),
@@ -110,7 +108,7 @@ extension ScannerVC {
             viewHelpBg.widthAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT),
             viewHelpBg.heightAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT)
         ])
-        
+
         viewHelpBg.addSubview(imgHelp)
         NSLayoutConstraint.activate([
             imgHelp.topAnchor.constraint(equalTo: viewHelpBg.topAnchor),
@@ -120,7 +118,7 @@ extension ScannerVC {
         ])
         viewIcon.addSubview(viewScanBg)
         NSLayoutConstraint.activate([
-            
+
             viewScanBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewScanBg.leadingAnchor.constraint(equalTo: viewHelpBg.trailingAnchor, constant: AppConstants.MARGIN_LEFT_ICON),
             viewScanBg.widthAnchor.constraint(equalToConstant: AppConstants.ICON_SCAN_WIDTH_HEIGHT),
@@ -490,7 +488,6 @@ extension ScannerVC {
                     isScanning = false
                     viewModel.isScanner = true
                     viewModel.scannerResult(mValue: "\(String(describing: (object?.stringValue)!))")
-                    print(session)
                     session?.stopRunning()
                 }
                 

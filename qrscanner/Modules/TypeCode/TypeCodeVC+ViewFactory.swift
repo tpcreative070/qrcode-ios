@@ -67,12 +67,10 @@ extension TypeCodeVC {
     func updateDataSource() {
          self.dataSource.items = self.viewModel.listTypeCondeViewModel
         self.dataSource.configureSwipeCell = { cell,vm in
-            self.log(object: vm)
             self.viewModel.currentCell = vm
         }
         self.tableView.reloadData()
-        log(message: "List typecode available...")
-        log(object: self.viewModel.listTypeCondeViewModel)
+
     }
     
     //set dataSource fo tableView
@@ -83,12 +81,10 @@ extension TypeCodeVC {
             cell.delegate = self
         }
         self.dataSource.configureSwipeCell = { cell,vm in
-            self.log(object: vm)
             self.viewModel.currentCell = vm
         }
       //  self.dataSource.swipeActionRight = swipeActionRight()
         self.dataSource.loadMore = {
-            self.log(message: "Loading more")
         }
         self.tableView.dataSource = self.dataSource
         self.tableView.delegate = self.dataSource

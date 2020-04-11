@@ -358,7 +358,7 @@ open class SwipeMenuView: UIView {
     private func reset() {
 
         if !isLayoutingSubviews {
-            currentIndex = 2
+            currentIndex = 0
         }
 
         if let tabView = tabView, let contentScrollView = contentScrollView {

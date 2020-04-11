@@ -138,7 +138,9 @@ extension EventGenerateVC {
         addTarget(textFieldTitle)
         addTarget(textFieldDescription)
         addTarget(textFieldLocation)
-
+        textFieldTitle.autocorrectionType = .no
+               textFieldDescription.autocorrectionType = .no
+               textFieldLocation.autocorrectionType = .no
     }
     func setupEndedUpScrollView(){
         viewBackground.addSubview(endedUpScrollViewContainerView)
@@ -265,9 +267,7 @@ extension EventGenerateVC {
         self.generateViewModel?.locationEvent = textFieldLocation.text
         self.generateViewModel?.descriptionEvent = textFieldDescription.text
         self.generateViewModel?.beginTimeEvent = generateViewModel?.beginTime
-        self.generateViewModel?.endTimeEvent = generateViewModel?.endTime
-        
-        
+        self.generateViewModel?.endTimeEvent = generateViewModel?.endTime        
     }
     func checkIsSeenDetail(){
         if eventViewModel.isSeen == AppConstants.ISSEEN {

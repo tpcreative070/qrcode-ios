@@ -134,6 +134,11 @@
 		289CC9712434F74D0073CEBA /* CollectionViewCell+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289CC9702434F74D0073CEBA /* CollectionViewCell+ViewFactory.swift */; };
 		289CC973243500FE0073CEBA /* ChangeColorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289CC972243500FE0073CEBA /* ChangeColorViewModel.swift */; };
 		289CC975243502050073CEBA /* ChangeColorViewModelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289CC974243502050073CEBA /* ChangeColorViewModelList.swift */; };
+		289FAB6E2441B59600781A81 /* Demo1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289FAB6D2441B59600781A81 /* Demo1ViewController.swift */; };
+		289FAB702441B5AE00781A81 /* Demo2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289FAB6F2441B5AE00781A81 /* Demo2ViewController.swift */; };
+		289FAB722441B5CD00781A81 /* Demo3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289FAB712441B5CD00781A81 /* Demo3ViewController.swift */; };
+		289FAB74244201DA00781A81 /* UIAlertController+pushPresent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289FAB73244201DA00781A81 /* UIAlertController+pushPresent.swift */; };
+		289FAB762442102900781A81 /* UIActivityViewController+present.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289FAB752442102800781A81 /* UIActivityViewController+present.swift */; };
 		28A0392D2438253800888582 /* BarcodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A0392C2438253800888582 /* BarcodeViewModel.swift */; };
 		28A039542438AFB700888582 /* DPDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A039532438AFB700888582 /* DPDConstants.swift */; };
 		28A039562438AFD400888582 /* DPDKeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A039552438AFD400888582 /* DPDKeyboardListener.swift */; };
@@ -448,6 +453,11 @@
 		289CC9702434F74D0073CEBA /* CollectionViewCell+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionViewCell+ViewFactory.swift"; sourceTree = "<group>"; };
 		289CC972243500FE0073CEBA /* ChangeColorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeColorViewModel.swift; sourceTree = "<group>"; };
 		289CC974243502050073CEBA /* ChangeColorViewModelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeColorViewModelList.swift; sourceTree = "<group>"; };
+		289FAB6D2441B59600781A81 /* Demo1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Demo1ViewController.swift; sourceTree = "<group>"; };
+		289FAB6F2441B5AE00781A81 /* Demo2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Demo2ViewController.swift; sourceTree = "<group>"; };
+		289FAB712441B5CD00781A81 /* Demo3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Demo3ViewController.swift; sourceTree = "<group>"; };
+		289FAB73244201DA00781A81 /* UIAlertController+pushPresent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+pushPresent.swift"; sourceTree = "<group>"; };
+		289FAB752442102800781A81 /* UIActivityViewController+present.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityViewController+present.swift"; sourceTree = "<group>"; };
 		28A0392C2438253800888582 /* BarcodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeViewModel.swift; sourceTree = "<group>"; };
 		28A039532438AFB700888582 /* DPDConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPDConstants.swift; sourceTree = "<group>"; };
 		28A039552438AFD400888582 /* DPDKeyboardListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPDKeyboardListener.swift; sourceTree = "<group>"; };
@@ -1149,6 +1159,8 @@
 				289749162429B81B00717701 /* UIFont.swift */,
 				28390CD9242E4C9500383427 /* UIView+ToImage.swift */,
 				289308CD2437147300680BF3 /* UIView+setAnchor.swift */,
+				289FAB73244201DA00781A81 /* UIAlertController+pushPresent.swift */,
+				289FAB752442102800781A81 /* UIActivityViewController+present.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1361,6 +1373,9 @@
 			children = (
 				D2BA0AE1240A732A0074C7A1 /* MainVC.swift */,
 				D2BA0AEC240A74D70074C7A1 /* MainVC+ViewFactory.swift */,
+				289FAB6D2441B59600781A81 /* Demo1ViewController.swift */,
+				289FAB6F2441B5AE00781A81 /* Demo2ViewController.swift */,
+				289FAB712441B5CD00781A81 /* Demo3ViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1733,6 +1748,7 @@
 				D2BA0A6E240969A90074C7A1 /* Helper.swift in Sources */,
 				D27F115C23FF9487001D175F /* SceneDelegate.swift in Sources */,
 				28D81D46241630D5007834F0 /* String+Data.swift in Sources */,
+				289FAB702441B5AE00781A81 /* Demo2ViewController.swift in Sources */,
 				28DD5034241161350080A059 /* ICTextField.swift in Sources */,
 				2894D6B7241C8F1D009E1659 /* ImagePickerCollectionViewCell.swift in Sources */,
 				2894B5992423C9F500E958DC /* ChooseHistoryVC+ViewFactory.swift in Sources */,
@@ -1851,6 +1867,7 @@
 				28A4E1C52432E89D00DDD4A1 /* TransactionViewModel.swift in Sources */,
 				28A039672438C79D00888582 /* ArrayChoiceTableViewController.swift in Sources */,
 				28DD50362411619C0080A059 /* TextField.swift in Sources */,
+				289FAB6E2441B59600781A81 /* Demo1ViewController.swift in Sources */,
 				D2BA0ACA240A68E90074C7A1 /* ShareSingleton.swift in Sources */,
 				288591D5241A49890081DB79 /* PhoneGenerateVC+ViewFactory.swift in Sources */,
 				2894B58E242320F300E958DC /* HistoryViewModel.swift in Sources */,
@@ -1865,6 +1882,7 @@
 				28DD502724113E080080A059 /* UIStoryboard+List.swift in Sources */,
 				D2BA0ABB240A61540074C7A1 /* UserResponseModel.swift in Sources */,
 				D2BA0AC0240A61D70074C7A1 /* UserRequestModel.swift in Sources */,
+				289FAB74244201DA00781A81 /* UIAlertController+pushPresent.swift in Sources */,
 				28A039582438AFEC00888582 /* DPDUIView+Extension.swift in Sources */,
 				2897F7B224224C7100ED0A60 /* TableViewCell+Event+ViewFactory.swift in Sources */,
 				289CC96F2434F6990073CEBA /* CollectionViewCell.swift in Sources */,
@@ -1886,6 +1904,7 @@
 				2897F7AA2422001900ED0A60 /* TableViewCell+Location+ViewHistory.swift in Sources */,
 				28A0572E240E413A00AD5353 /* ICStepper.swift in Sources */,
 				28D81D342416229C007834F0 /* TextModel.swift in Sources */,
+				289FAB762442102900781A81 /* UIActivityViewController+present.swift in Sources */,
 				2897F7A22421D61000ED0A60 /* WifiViewModel.swift in Sources */,
 				D2BA0A6C240969440074C7A1 /* Constant.swift in Sources */,
 				289767542414D4D500AD0D78 /* ScannerViewModel.swift in Sources */,
@@ -1906,6 +1925,7 @@
 				D2BA0A7F24096A5E0074C7A1 /* ICCloseWhiteButton.swift in Sources */,
 				281247FF243C822200D565B1 /* FloatyItem.swift in Sources */,
 				289767562414D85100AD0D78 /* GrantPermission.swift in Sources */,
+				289FAB722441B5CD00781A81 /* Demo3ViewController.swift in Sources */,
 				2865AA2E2412BB5B00C1F207 /* ICTextFieldNoneIcon.swift in Sources */,
 				28A039562438AFD400888582 /* DPDKeyboardListener.swift in Sources */,
 				2893EF2A2419DC72004D58C6 /* LocationGenerateVC+ViewFactory.swift in Sources */,
