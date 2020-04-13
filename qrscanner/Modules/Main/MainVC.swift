@@ -70,13 +70,6 @@ class MainVC : SwipeMenuViewController {
         return vc
     
     }
-//   override func swipeMenuView(_ swipeMenuView: SwipeMenuView, viewWillSetupAt currentIndex: Int) -> UIViewController {
-//        super.swipeMenuView(swipeMenuView, viewWillSetupAt: currentIndex)
-//       let vc = children[currentIndex]
-//       vc.didMove(toParent: self)
-//       return vc
-//        print("will setup SwipeMenuView")
-//    }
 
    
 }
