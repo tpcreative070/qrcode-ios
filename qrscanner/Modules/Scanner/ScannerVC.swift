@@ -162,7 +162,6 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
         if #available(iOS 10.2, *){
             let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
             do{
-
                 let input = try AVCaptureDeviceInput(device: captureDevice!)
                 session = AVCaptureSession()
                 session?.addInput(input)
@@ -206,7 +205,7 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
         self.viewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
         viewModel.isScanner = true
         for item in viewModel.listScanner {
-            self.viewModel.scannerResult(mValue: item)
+            self.viewModel.scannerResult(mValue: item.value!, mType: item.typeScan!)
         }
         viewModel.doGetListTransaction()
         lbTotalResult.text =  "\(viewModel.listScanner.count)"

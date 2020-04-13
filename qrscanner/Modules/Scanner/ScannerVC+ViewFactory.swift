@@ -258,60 +258,7 @@ extension ScannerVC {
     }
     
     
-    func barcodeFormatToString(format: ZXBarcodeFormat) -> String {
-        switch (format) {
-        case kBarcodeFormatAztec:
-            return LanguageKey.Aztec
-            
-        case kBarcodeFormatCodabar:
-            return LanguageKey.CODABAR
-            
-        case kBarcodeFormatCode39:
-            return LanguageKey.Code_39
-            
-        case kBarcodeFormatCode93:
-            return LanguageKey.Code_93
-            
-        case kBarcodeFormatCode128:
-            return LanguageKey.Code_128
-            
-        case kBarcodeFormatDataMatrix:
-            return LanguageKey.Data_Matrix
-            
-        case kBarcodeFormatEan8:
-            return LanguageKey.EAN_8
-            
-        case kBarcodeFormatEan13:
-            return LanguageKey.EAN_13
-            
-        case kBarcodeFormatITF:
-            return LanguageKey.ITF
-            
-        case kBarcodeFormatPDF417:
-            return LanguageKey.PDF417
-            
-        case kBarcodeFormatQRCode:
-            return LanguageKey.QR_Code
-            
-        case kBarcodeFormatRSS14:
-            return LanguageKey.RSS_14
-            
-        case kBarcodeFormatRSSExpanded:
-            return LanguageKey.RSS_Expanded
-            
-        case kBarcodeFormatUPCA:
-            return LanguageKey.UPCA
-            
-        case kBarcodeFormatUPCE:
-            return LanguageKey.UPCE
-            
-        case kBarcodeFormatUPCEANExtension:
-            return LanguageKey.UPC_EAN_extension
-            
-        default:
-            return LanguageKey.Unknown
-        }
-    }
+    
     func bindViewModel() {
         
         self.viewModel.showLoading.bind { visible in
@@ -364,12 +311,13 @@ extension ScannerVC {
                 self.viewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
                 self.viewModel.doAsync(list:self.viewModel.listImage)
                 self.viewModel.doGetListTransaction()
+                
             })
         }
     
     }
     }
-    
+ 
     func onTakeGallery(){
         let imagePicker = OpalImagePickerController()
         imagePicker.imagePickerDelegate = self
@@ -472,8 +420,8 @@ extension ScannerVC {
                     viewFooter.isHidden = false
                     setupFooter()
                     self.viewBackground.bringSubviewToFront(viewFooter)
-                    
-                    viewModel.listScanner.append("\(String(describing: (object?.stringValue)!))")
+                    let scanner = ScannerModel(value: (String(describing: (object?.stringValue)!)), typeScan: (object?.type.rawValue)!)
+                    viewModel.listScanner.append(scanner)
                     lbTotalResult.text =  "\(viewModel.listScanner.count)"
                     session?.stopRunning()
                     
@@ -487,10 +435,9 @@ extension ScannerVC {
                     lbTotalResult.text =  "\(viewModel.listScanner.count)"
                     isScanning = false
                     viewModel.isScanner = true
-                    viewModel.scannerResult(mValue: "\(String(describing: (object?.stringValue)!))")
+                    viewModel.scannerResult(mValue: "\(String(describing: (object?.stringValue)!))", mType: (object?.type.rawValue)!)
                     session?.stopRunning()
                 }
-                
             }
             else{
             }
@@ -506,6 +453,7 @@ extension ScannerVC : OpalImagePickerControllerDelegate {
     func imagePicker(_ picker: OpalImagePickerController, didFinishPickingImages images: [UIImage]) {
         self.viewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
         if  UserDefaults.standard.bool(forKey:KeyUserDefault.MultiLoad){
+           
             self.viewModel.doAsync(list: images)
             viewModel.doGetListTransaction()
         }
@@ -518,6 +466,7 @@ extension ScannerVC : OpalImagePickerControllerDelegate {
                 
             }
             else{
+                
                 self.viewModel.doAsync(list: images)
                 viewModel.doGetListTransaction()
             }
@@ -540,12 +489,12 @@ extension ScannerVC: ZXCaptureDelegate {
     }
     
     func captureResult(_ capture: ZXCapture!, result: ZXResult!) {
-        guard let _result = result, isScanning == true else { return }
+       // guard let _result = result, isScanning == true else { return }
         
         capture?.stop()
         isScanning = false
         viewModel.isScanner = true
-        viewModel.scannerResult(mValue: "\(result!)")
+   //     viewModel.scannerResult(mValue: "\(result!)")
         
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in

@@ -10,22 +10,7 @@ import UIKit
 extension ChooseHistoryVC  {
     func initUI(){
         
-        /*SetupScrollView*/
-        self.view.addSubview(scrollView)
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-        ])
-        self.scrollView.addSubview(viewWrapper)
-        NSLayoutConstraint.activate([
-            viewWrapper.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor),
-            viewWrapper.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: AppConstants.MARGIN_BOTTOM),
-            viewWrapper.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            viewWrapper.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            viewWrapper.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-        ])
+       
         /*TableView*/
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height), style: .grouped)
         tableView.allowsSelection = true
@@ -35,7 +20,7 @@ extension ChooseHistoryVC  {
         
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
         tableView.sectionFooterHeight = 0
-        viewWrapper.addSubview(tableView)
+        view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -45,7 +30,6 @@ extension ChooseHistoryVC  {
         ])
         setupNavItems()
         setupFloatButton()
-        setupEndedUpScrollView()
         setupTableView()
         bindTableView()
         
@@ -72,6 +56,7 @@ extension ChooseHistoryVC  {
         
         self.historyViewModel.responseToView = {[weak self] value in
             if value == EnumResponseToView.UPDATE_DATA_SOURCE.rawValue {
+                 self?.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
                 self?.navigationItem.title = "\(String(describing: self!.historyViewModel.countItemSelected)) \(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Selected)!))"
                 self?.updateDataSource()
             }
@@ -91,7 +76,6 @@ extension ChooseHistoryVC  {
     func setupNavItems() {
         self.view.backgroundColor = .white
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
@@ -164,7 +148,7 @@ extension ChooseHistoryVC  {
         floaty.tintColor = .white
         floaty.addItem(item: item_select)
         floaty.addItem(item: item)
-        self.viewWrapper.addSubview(floaty)
+        self.view.addSubview(floaty)
         
     }
     // MARK: - Floaty Delegate Methods
@@ -196,7 +180,7 @@ extension ChooseHistoryVC : TableViewCellDelegate{
     
     func cellViewSelected(cell: TableViewCell, countSelected: Int) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
-        let result = self.historyViewModel.listHistories[indexPath.row]
+      //  let result = self.historyViewModel.listHistories[indexPath.row]
        // print("history select: \(result)")
     }
     

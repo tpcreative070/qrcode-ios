@@ -36,43 +36,18 @@ extension TableViewCell  {
             lbTitleFirst.leadingAnchor.constraint(equalTo: viewRoot.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             lbTitleFirst.trailingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-        self.viewRoot.addSubview(scrollView)
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: self.lbTitleFirst.bottomAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: self.viewRoot.leadingAnchor),
-            scrollView.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND)
-
-        ])
-        scrollView.addSubview(viewBackgroundTextView)
-        NSLayoutConstraint.activate([
-            viewBackgroundTextView.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: AppConstants.MARGIN_TOP),
-            viewBackgroundTextView.leftAnchor.constraint(equalTo: viewRoot.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewBackgroundTextView.rightAnchor.constraint(equalTo: viewRoot.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewBackgroundTextView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            viewBackgroundTextView.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND)
-        ])
-        viewBackgroundTextView.addSubview(viewBackgroundTextView1)
-        NSLayoutConstraint.activate([
-            viewBackgroundTextView1.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
-            viewBackgroundTextView1.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewBackgroundTextView1.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewBackgroundTextView1.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM)
-        ])
-        viewBackgroundTextView1.addSubview(textViewValueFirst)
-        NSLayoutConstraint.activate([
-            textViewValueFirst.topAnchor.constraint(equalTo: lbTitleFirst.bottomAnchor),
-            textViewValueFirst.leadingAnchor.constraint(equalTo: viewBackgroundTextView1.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            textViewValueFirst.trailingAnchor.constraint(equalTo: viewBackgroundTextView1.trailingAnchor, constant: AppConstants.MARGIN_RIGHT),
-            textViewValueFirst.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND)
-        ])
-        
+        viewRoot.addSubview(lbValueFirst)
+                            NSLayoutConstraint.activate([
+                                lbValueFirst.topAnchor.constraint(equalTo: lbTitleFirst.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
+                                lbValueFirst.leadingAnchor.constraint(equalTo: viewRoot.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+                                lbValueFirst.trailingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant: AppConstants.MARGIN_RIGHT),
+                            ])
+             
         self.viewBackgroundSecond.addSubview(viewBackgroundThird)
         NSLayoutConstraint.activate([
             self.viewBackgroundThird.leadingAnchor.constraint(equalTo: self.viewRoot.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
             self.viewBackgroundThird.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor,constant:  AppConstants.MARGIN_RIGHT),
-            self.viewBackgroundThird.topAnchor.constraint(equalTo: self.viewBackgroundTextView1.bottomAnchor,constant: AppConstants.MARGIN_TOP),
+            self.viewBackgroundThird.topAnchor.constraint(equalTo: self.lbValueFirst.bottomAnchor,constant: AppConstants.MARGIN_TOP),
         ])
         viewBackgroundThird.addSubview(imgSearch)
         NSLayoutConstraint.activate([
@@ -160,10 +135,10 @@ extension TableViewCell  {
         viewBackgroundFour.isUserInteractionEnabled  = true
         viewClipboard.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(clipboardAction(sender:))))
         viewClipboard.isUserInteractionEnabled  = true
-        self.textViewValueFirst.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+       
         self.scrollView.showsVerticalScrollIndicator = false
         self.scrollView.isScrollEnabled = true
-        textViewValueFirst.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(textHideAction(sender:))))
-        textViewValueFirst.isUserInteractionEnabled  = true
+      
     }
 }
+

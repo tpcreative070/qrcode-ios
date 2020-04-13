@@ -9,24 +9,7 @@
 import UIKit
 extension SaveVC  {
     func initUI(){
-        /*SetupScrollView*/
-        self.view.addSubview(scrollView)
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-        ])
-        self.scrollView.addSubview(wrapperView)
-        NSLayoutConstraint.activate([
-            wrapperView.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor),
-            wrapperView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: AppConstants.MARGIN_BOTTOM),
-            wrapperView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            wrapperView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            wrapperView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-        ])
         
-        /*TableView*/
          tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height), style: .grouped)
         tableView.allowsSelection = true
         
@@ -35,7 +18,7 @@ extension SaveVC  {
         
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
         tableView.sectionFooterHeight = 0
-        wrapperView.addSubview(tableView)
+        self.view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -44,12 +27,26 @@ extension SaveVC  {
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
         
-        setupEndedUpScrollView()
         setupTableView()
         bindTableView()
         
     }
-    
+    func setupLbNoItem(){
+           if viewModel.listSave.count == 0{
+               self.view.addSubview(lbNoItem)
+                     NSLayoutConstraint.activate([
+                      lbNoItem.topAnchor.constraint(equalTo: view.topAnchor),
+                       lbNoItem.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                         lbNoItem.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                         lbNoItem.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+                     ])
+               self.lbNoItem.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE_HELP)
+               lbNoItem.isHidden = false
+           }
+           else{
+               lbNoItem.isHidden = true
+           }
+       }
     //Mark: - setUpTableView()
     func setupTableView(){
         
@@ -86,6 +83,7 @@ extension SaveVC  {
         self.tableView.reloadData()
         //        log(message: "List available...")
         //        log(object: self.viewModel.listHistories)
+        setupLbNoItem()
     }
     
     func bindTableView(){
@@ -109,16 +107,7 @@ extension SaveVC  {
         self.tableView.dataSource = self.dataSource
         self.tableView.delegate = self.dataSource
     }
-    func setupEndedUpScrollView(){
-        wrapperView.addSubview(endedUpScrollViewContainerView)
-        NSLayoutConstraint.activate([
-            endedUpScrollViewContainerView.topAnchor.constraint(equalTo: tableView.bottomAnchor),
-            endedUpScrollViewContainerView.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor),
-            endedUpScrollViewContainerView.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor),
-            endedUpScrollViewContainerView.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor)
-        ])
-        //          self.view.layoutIfNeeded()
-    }
+ 
     func setupFloatButton(){
         let item = FloatyItem()
         item.hasShadow = false
@@ -148,7 +137,7 @@ extension SaveVC  {
         floaty.tintColor = .white
         floaty.addItem(item: item_select)
         floaty.addItem(item: item)
-        self.wrapperView.addSubview(floaty)
+        self.view.addSubview(floaty)
     }
 }
 extension SaveVC : TableViewCellDelegate{

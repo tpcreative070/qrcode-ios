@@ -72,13 +72,14 @@ class ResultGenerateVC: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardHelper?.registerKeyboardNotification()
+        self.navigationController?.viewControllers.remove(at: 1)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         keyboardHelper?.deregisterKeyboardNotification()
-      //  self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true
         
     }
     @objc func shareView(sender : UITapGestureRecognizer){

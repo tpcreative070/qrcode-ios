@@ -20,6 +20,7 @@ class HistoryViewModelList : HistoryViewModelListDeletegate{
     var historyArray:[Dictionary<String, AnyObject>] =  Array()
     var navigate: (() -> ())?
     func doGetListHistories(){
+    //    self.showLoading.value = true
         if let mList = SQLHelper.getListHistories(){
             var index = 0
             self.listHistories = mList.map({ (data) -> HistoryViewModel in
@@ -28,23 +29,11 @@ class HistoryViewModelList : HistoryViewModelListDeletegate{
             })
         }
         listHistories = listHistories.sorted {$0.updatedDateTime > $1.updatedDateTime}
+       // self.showLoading.value = false
         responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
         
     }
-    
-    func doGetListHistoriesType(mtype: String){
-        self.showLoading.value = true
-        if let mList = SQLHelper.getListHistoriesByType(typecode: mtype){
-            var index = 0
-            self.listHistoriesBytype = mList.map({ (data) -> HistoryViewModel in
-                index += 1
-                return HistoryViewModel(data:  data)
-            })
-        }
-        listHistoriesBytype = listHistoriesBytype.sorted {$0.updatedDateTime > $1.updatedDateTime}
-        
-        //  responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
-    }
+   
     func doSelectItem(coable : Codable){
         if let value = coable.get(value: HistoryViewModel.self){
             //    Utils.logMessage(object: listHistories)

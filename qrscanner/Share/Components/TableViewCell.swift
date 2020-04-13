@@ -78,7 +78,8 @@ class TableViewCell : UITableViewCell{
     lazy var lbTitle : ICLabel = {
         let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
-        
+        view.lineBreakMode = .byWordWrapping
+        view.numberOfLines = 0
         return view
     }()
     /*history*/
@@ -244,6 +245,16 @@ class TableViewCell : UITableViewCell{
             let data = try! JSONDecoder().decode(BarcodeModel.self, from: jsonData)
             configView(viewModel: BarcodeViewModel(data: data))
         }
+        if view.typeCodeView.uppercased() == EnumType.EAN_8.rawValue{
+            let jsonData = view.contentView.data(using: .utf8)!
+            let data = try! JSONDecoder().decode(BarcodeModel.self, from: jsonData)
+            configView(viewModel: BarcodeViewModel(data: data))
+        }
+        if view.typeCodeView.uppercased() == EnumType.EAN_13.rawValue{
+            let jsonData = view.contentView.data(using: .utf8)!
+            let data = try! JSONDecoder().decode(BarcodeModel.self, from: jsonData)
+            configView(viewModel: BarcodeViewModel(data: data))
+        }
     }
     func configViewSave(view : GenerateViewModelDeletegate){
         self.lbTypeCode.text = "\(view.typeCodeView)"
@@ -313,6 +324,12 @@ class TableViewCell : UITableViewCell{
         else if reuseIdentifier == EnumIdentifier.Barcode.rawValue {
             identifier = EnumIdentifier.Barcode
         }
+        else if reuseIdentifier == EnumIdentifier.EAN_8.rawValue {
+                       identifier = EnumIdentifier.Barcode
+                   }
+        else if reuseIdentifier == EnumIdentifier.EAN_13.rawValue {
+                       identifier = EnumIdentifier.Barcode
+                   }
         else if reuseIdentifier == EnumIdentifier.HistoryChoose.rawValue {
             identifier = EnumIdentifier.HistoryChoose
         }
@@ -376,7 +393,6 @@ class TableViewCell : UITableViewCell{
             if value_data != nil{
                 let valueShare = Helper.getValueShareContent(typeCode: value_data!.typeCode, contentData: value_data!.content.content!)
                 let activiController = UIActivityViewController(activityItems: [valueShare], applicationActivities: nil)
-                activiController.pruneNegativeWidthConstraints()
                 UIApplication.shared.keyWindow?.rootViewController?.present(activiController,animated: true, completion: nil)
                 
             }
@@ -408,45 +424,49 @@ class TableViewCell : UITableViewCell{
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    lazy var textViewValueFirst: UITextView = {
-        let view = UITextView()
+   
+    lazy var lbValueFirst: ICLabel = {
+        let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
+        view.lineBreakMode = .byWordWrapping
+        view.numberOfLines = 0
+        view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
         return view
     }()
-    lazy var textFieldValueFirst: ICTextFieldNoneIcon = {
-        let view = ICTextFieldNoneIcon()
+    lazy var lbValueSecond: ICLabel = {
+        let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
-        
+        view.lineBreakMode = .byWordWrapping
+        view.numberOfLines = 0
+        view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
         return view
     }()
-    lazy var textFieldValueSecond: ICTextFieldNoneIcon = {
-        let view = ICTextFieldNoneIcon()
+    lazy var lbValueThird: ICLabel = {
+        let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
-        
+        view.lineBreakMode = .byWordWrapping
+        view.numberOfLines = 0
         return view
     }()
-    lazy var textFieldValueThird: ICTextFieldNoneIcon = {
-        let view = ICTextFieldNoneIcon()
+    lazy var lbValueFour: ICLabel = {
+        let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
-        
+        view.lineBreakMode = .byWordWrapping
+        view.numberOfLines = 0
+        view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
         return view
     }()
-    lazy var textFieldValueFour: ICTextFieldNoneIcon = {
-        let view = ICTextFieldNoneIcon()
+    lazy var lbValueFive: ICLabel = {
+        let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
-        
-        return view
-    }()
-    lazy var textFieldValueFive: ICTextFieldNoneIcon = {
-        let view = ICTextFieldNoneIcon()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.alpha = AppConstants.ALPHA_DISBALE
-        
+        view.lineBreakMode = .byWordWrapping
+        view.numberOfLines = 0
+        view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
         return view
     }()
     var viewBackgroundThird: UIView = {
@@ -533,7 +553,7 @@ class TableViewCell : UITableViewCell{
         self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.Url)
         self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Url)
         self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Search)
-        self.textFieldValueFirst.text = viewModel.urlTxtView
+        self.lbValueFirst.text = viewModel.urlTxtView
         
     }
     /*text*/
@@ -549,7 +569,7 @@ class TableViewCell : UITableViewCell{
         self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.Text)
         self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Text)
         self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Search)
-        self.textViewValueFirst.text = viewModel.textTxtView
+        self.lbValueFirst.text = viewModel.textTxtView
        
     }
     /*phone*/
@@ -564,7 +584,7 @@ class TableViewCell : UITableViewCell{
     func configView(viewModel : PhoneViewModelDelegate){
         self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.Phone)
         self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Phone)
-        self.textFieldValueFirst.text = viewModel.phoneTxtView
+        self.lbValueFirst.text = viewModel.phoneTxtView
     }
     /*email*/
     lazy var imgEmail : UIImageView = {
@@ -581,9 +601,9 @@ class TableViewCell : UITableViewCell{
         self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Message)
         self.lbTitleFour.text = LanguageHelper.getTranslationByKey(LanguageKey.Email)
         
-        self.textFieldValueFirst.text = viewModel.toTxtView
-        self.textFieldValueSecond.text = viewModel.subjectView
-        self.textFieldValueThird.text = viewModel.messageView
+        self.lbValueFirst.text = viewModel.toTxtView
+        self.lbValueSecond.text = viewModel.subjectView
+        self.lbValueThird.text = viewModel.messageView
     }
     /*wifi*/
     lazy var imgWifi : UIImageView = {
@@ -601,14 +621,14 @@ class TableViewCell : UITableViewCell{
         self.lbTitleFour.text = LanguageHelper.getTranslationByKey(LanguageKey.Hidden)
         self.lbTitleFive.text = LanguageHelper.getTranslationByKey(LanguageKey.Wifi)
         
-        self.textFieldValueFirst.text = viewModel.ssidView
-        self.textFieldValueSecond.text = viewModel.passwordView
-        self.textFieldValueThird.text = viewModel.networkView
+        self.lbValueFirst.text = viewModel.ssidView
+        self.lbValueSecond.text = viewModel.passwordView
+        self.lbValueThird.text = viewModel.networkView
         if viewModel.hiddenView {
-            self.textFieldValueFour.text = LanguageKey.True
+            self.lbValueFour.text = LanguageKey.True
         }
         if !(viewModel.hiddenView) {
-            self.textFieldValueFour.text = LanguageKey.False
+            self.lbValueFour.text = LanguageKey.False
         }
         
     }
@@ -628,10 +648,10 @@ class TableViewCell : UITableViewCell{
         self.lbTitleFour.text = LanguageHelper.getTranslationByKey(LanguageKey.Email)
         self.lbTitleFive.text = LanguageHelper.getTranslationByKey(LanguageKey.AddressBook)
         
-        self.textFieldValueFirst.text = viewModel.fullnameView
-        self.textFieldValueSecond.text = viewModel.addressView
-        self.textFieldValueThird.text = viewModel.phoneView
-        self.textFieldValueFour.text = viewModel.emailView
+        self.lbValueFirst.text = viewModel.fullnameView
+        self.lbValueSecond.text = viewModel.addressView
+        self.lbValueThird.text = viewModel.phoneView
+        self.lbValueFour.text = viewModel.emailView
         
     }
     /*location*/
@@ -649,9 +669,9 @@ class TableViewCell : UITableViewCell{
         self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Query)
         self.lbTitleFour.text = LanguageHelper.getTranslationByKey(LanguageKey.Location)
         
-        self.textFieldValueFirst.text = viewModel.latView
-        self.textFieldValueSecond.text = viewModel.longView
-        self.textFieldValueThird.text = viewModel.query
+        self.lbValueFirst.text = viewModel.latView
+        self.lbValueSecond.text = viewModel.longView
+        self.lbValueThird.text = viewModel.query
         
     }
     /*message*/
@@ -668,27 +688,27 @@ class TableViewCell : UITableViewCell{
         self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Message)
         self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Sms)
         
-        self.textFieldValueFirst.text = viewModel.toView
-        self.textFieldValueSecond.text = viewModel.messageView
+        self.lbValueFirst.text = viewModel.toView
+        self.lbValueSecond.text = viewModel.messageView
         
     }
     /*Barcode*/
     func configView(viewModel : BarcodeViewModel){
         self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.ProductID)
         self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Search)
-        self.textFieldValueFirst.text = viewModel.barcodeView
-        self.textFieldValueSecond.text = setTextLabel(mString: viewModel.typeBarcodeView)
+        self.lbValueFirst.text = viewModel.barcodeView
+        self.lbValueSecond.text = setTextLabel(mString: viewModel.typeBarcodeView)
         
     }
     func setTextLabel(mString: String) -> String{
             if mString == BarcodeType.EAN_8.rawValue{
-                return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8)!
+                return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8) ?? "EAN 8"
             }
             else if mString == BarcodeType.EAN_13.rawValue{
-                return LanguageHelper.getTranslationByKey(LanguageKey.EAN_13)!
+                return LanguageHelper.getTranslationByKey(LanguageKey.EAN_13) ?? "EAN 13"
             }
             else{
-                return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8)!
+                return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8) ?? "EAN 8"
             }
         }
     /*calendar*/
@@ -710,11 +730,11 @@ class TableViewCell : UITableViewCell{
         
         
         
-        self.textFieldValueFirst.text = viewModel.titleView
-        self.textFieldValueSecond.text = viewModel.locationView
-        self.textFieldValueThird.text = viewModel.descriptionView
-        self.textFieldValueFour.text = viewModel.beginView
-        self.textFieldValueFive.text = viewModel.endView
+        self.lbValueFirst.text = viewModel.titleView
+        self.lbValueSecond.text = viewModel.locationView
+        self.lbValueThird.text = viewModel.descriptionView
+        self.lbValueFour.text = viewModel.beginView
+        self.lbValueFive.text = viewModel.endView
         
         
     }
@@ -797,9 +817,7 @@ class TableViewCell : UITableViewCell{
             self.window?.rootViewController!.present(activiController, animated: true, completion: nil)
         }
     }
-    @objc func textHideAction(sender : UITapGestureRecognizer){
-        textViewValueFirst.endEditing(true)
-       }
+ 
     @objc func phoneAction(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {

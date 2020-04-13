@@ -90,7 +90,7 @@ extension BarcodeVC {
                   self.navigationController?.navigationBar.tintColor = .white
                   let menuButtonRight = UIButton(type: .system)
                   menuButtonRight.setImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
-                  menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchUpInside)
+        menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchDown)
                   navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRight)]
     }
     
@@ -121,8 +121,9 @@ extension BarcodeVC {
                     resVC.resultViewModel.createDateTime = (self?.barcodeViewModel.createDateTime)!
                     
                 }
+             
                 Navigator.pushViewController(from: self!, to: resVC, isNavigation: true, isTransparent: false)
-                //self?.navigationController?.pushViewController(resVC, animated: true)
+              
             }
         }
         generateViewModel?.onShowError = { [weak self] alert in
@@ -142,7 +143,6 @@ extension BarcodeVC {
     func checkIsSeenDetail(){
         if barcodeViewModel.isSeen == AppConstants.ISSEEN {
             textFieldProduct.text = barcodeViewModel.productID ?? ""
-            print(barcodeViewModel.barcodetype)
             lbType.text = setTextLabel(mString: barcodeViewModel.barcodetype ?? "")
         
         }
@@ -157,13 +157,13 @@ extension BarcodeVC {
     }
     func setTextLabel(mString: String) -> String{
            if mString == BarcodeType.EAN_8.rawValue{
-               return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8)!
+               return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8) ?? "EAN 8"
            }
            else if mString == BarcodeType.EAN_13.rawValue{
-               return LanguageHelper.getTranslationByKey(LanguageKey.EAN_13)!
+               return LanguageHelper.getTranslationByKey(LanguageKey.EAN_13) ?? "EAN 13"
            }
            else{
-               return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8)!
+               return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8) ?? "EAN 8"
            }
        }
 }

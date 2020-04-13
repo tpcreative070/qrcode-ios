@@ -44,6 +44,10 @@ extension TableViewCell {
             setupEventView()
             case .Barcode:
             setupBarcodeView()
+            case .EAN_8:
+            setupBarcodeView()
+            case .EAN_13:
+            setupBarcodeView()
             case .Alert:
             setupAlertSubView()
             case .QRCodeList:

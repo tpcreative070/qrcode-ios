@@ -26,7 +26,6 @@ class ShareViewController: SLComposeServiceViewController {
     }
     func checkFlag(){
         if flag {
-                   
                    self.openURL(url:NSURL(string:"myapp://com.example.democarthage")!)
                }
     }

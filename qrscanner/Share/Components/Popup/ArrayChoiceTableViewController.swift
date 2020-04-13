@@ -41,13 +41,13 @@ class ArrayChoiceTableViewController<Element> : UITableViewController {
     }
     func setTextLabel(mString: String) -> String{
            if mString == BarcodeType.EAN_8.rawValue{
-               return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8)!
+               return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8) ?? "EAN 8"
            }
            else if mString == BarcodeType.EAN_13.rawValue{
-               return LanguageHelper.getTranslationByKey(LanguageKey.EAN_13)!
+               return LanguageHelper.getTranslationByKey(LanguageKey.EAN_13) ?? "EAN 13"
            }
            else{
-               return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8)!
+               return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8) ?? "EAN 8"
            }
        }
 }

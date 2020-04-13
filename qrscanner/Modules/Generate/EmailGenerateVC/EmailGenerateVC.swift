@@ -115,9 +115,6 @@ class EmailGenerateVC: BaseViewController {
         super.viewWillDisappear(animated)
         self.navigationController?.isNavigationBarHidden = true
         keyboardHelper?.deregisterKeyboardNotification()
-        textFieldEmail.autocorrectionType = .no
-        textFieldObjectEmail.autocorrectionType = .no
-        textFieldObjectEmail.autocorrectionType = .no
     }
     func defineValue(){
         self.generateViewModel?.typeCode = EnumType.EMAIL.rawValue

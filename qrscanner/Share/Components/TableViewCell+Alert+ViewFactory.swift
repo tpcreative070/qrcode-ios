@@ -20,51 +20,30 @@ extension TableViewCell {
             
         ])
         //        viewRoot.backgroundColor = .yellow
-        self.viewRoot.addSubview(stackView)
+        self.viewRoot.addSubview(lbTitle)
         NSLayoutConstraint.activate([
-            self.stackView.leadingAnchor.constraint(equalTo: self.viewRoot.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
-            self.stackView.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor,constant:   (AppConstants.MARGIN_RIGHT)),
-            self.stackView.topAnchor.constraint(equalTo: self.viewRoot.topAnchor),
-            self.stackView.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor)
+            self.lbTitle.leadingAnchor.constraint(equalTo: self.viewRoot.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
+         
+            self.lbTitle.topAnchor.constraint(equalTo: self.viewRoot.topAnchor),
+            self.lbTitle.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor)
             
         ])
-        self.stackView.axis = .horizontal
-        self.stackView.spacing = AppConstants.MARGIN_TOP_SUBITEM
-        
-        self.stackView.addArrangedSubview(lbTitle)
-//        NSLayoutConstraint.activate([
-//            self.lbTitle.leadingAnchor.constraint(equalTo: self.stackView.leadingAnchor),
-//            self.lbTitle.widthAnchor.constraint(equalTo: self.stackView.widthAnchor,multiplier: 5/6),
-//             self.lbTitle.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor,constant:   (AppConstants.MARGIN_RIGHT)),
-//            self.lbTitle.topAnchor.constraint(equalTo: self.stackView.topAnchor),
-//
-//        ])
-        
-        self.stackView.addArrangedSubview(viewSub)
+
+        self.viewRoot.addSubview(viewSub)
         NSLayoutConstraint.activate([
-            self.viewSub.leadingAnchor.constraint(equalTo: self.lbTitle.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
-            self.viewSub.trailingAnchor.constraint(equalTo: self.stackView.trailingAnchor,constant:   (AppConstants.MARGIN_RIGHT)),
-            self.viewSub.topAnchor.constraint(equalTo: self.stackView.topAnchor),
-            self.viewSub.bottomAnchor.constraint(equalTo: self.stackView.bottomAnchor)
+            self.viewSub.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor,constant:   (AppConstants.MARGIN_RIGHT)),
+            self.viewSub.topAnchor.constraint(equalTo: self.viewRoot.topAnchor),
+            self.viewSub.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor)
             
         ])
-        
-      
             self.viewSub.addSubview(checkBox)
             NSLayoutConstraint.activate([
                 self.checkBox.widthAnchor.constraint(equalToConstant: AppConstants.MARGIN_LEFT),
                 self.checkBox.heightAnchor.constraint(equalToConstant: AppConstants.MARGIN_LEFT),
-                self.checkBox.centerYAnchor.constraint(equalTo: self.stackView.centerYAnchor),
-                self.checkBox.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor,constant: AppConstants.MARGIN_RIGHT)
+                self.checkBox.centerYAnchor.constraint(equalTo: self.viewSub.centerYAnchor),
             ])
       
-        self.viewRoot.addSubview(self.viewUnderLine)
-        NSLayoutConstraint.activate([
-            self.viewUnderLine.leadingAnchor.constraint(equalTo: self.viewRoot.leadingAnchor),
-            self.viewUnderLine.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor),
-            self.viewUnderLine.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor),
-            self.viewUnderLine.heightAnchor.constraint(equalToConstant: 1)
-        ])
+       
      
     }
 }

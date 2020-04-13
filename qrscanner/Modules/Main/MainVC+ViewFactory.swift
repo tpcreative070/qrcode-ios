@@ -44,6 +44,7 @@ extension MainVC  {
                        let app = UIApplication.shared
                        let statusBarHeight: CGFloat = app.statusBarFrame.size.height
                        let statusbarView = UIView()
+                        statusbarView.tintColor = AppColors.WHITE_COLOR
                        statusbarView.backgroundColor = AppColors.PRIMARY_COLOR_DARK
                        view.addSubview(statusbarView)
                        statusbarView.translatesAutoresizingMaskIntoConstraints = false

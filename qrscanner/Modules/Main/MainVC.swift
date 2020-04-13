@@ -16,42 +16,14 @@ class MainVC : SwipeMenuViewController {
     var mScanner : ScannerVC?
     var mSettings : SettingsVC?
     var dataCount: Int = 5
-    private var datas: [String] = ["Bulbasaur","Caterpie","Denci"]
 
     override func viewDidLoad() {
         initUI()
         addedView()
         setupStatusBar()
-//       let vc = TypeCodeVC()
-//           vc.title = datas[0]
-//       vc.navigationItem.titleView = UIImageView.init(image: UIImage(named: "ic_history"))
-//
-//           self.addChild(vc)
-//       let vc1 = HistoryVC()
-//                 vc1.title = datas[1]
-//         vc1.navigationItem.titleView = UIImageView.init(image: UIImage(named: "ic_history"))
-//                 self.addChild(vc1)
-//       let vc2 = SettingsVC()
-//          vc2.title = datas[2]
-//         vc2.navigationItem.titleView = UIImageView.init(image: UIImage(named: "ic_history"))
-//         self.addChild(vc2)
-
-
         super.viewDidLoad()
-   //     UIFont.availableFonts()
-
-        //self.view.backgroundColor = .white
-      //  let vc = ScannerVC()
-       // self.navigationController?.pushViewController(vc, animated: false)
-//        mScanner = ScannerVC()
-//        show(mScanner!, sender: nil)
     }
 
-
-  
-    override func viewDidAppear(_ animated: Bool) {
-      
-    }
     // MARK: - SwipeMenuViewDelegate
     override func swipeMenuView(_ swipeMenuView: SwipeMenuView, viewWillSetupAt currentIndex: Int) {
         super.swipeMenuView(swipeMenuView, viewWillSetupAt: currentIndex)
@@ -105,5 +77,7 @@ class MainVC : SwipeMenuViewController {
 //       return vc
 //        print("will setup SwipeMenuView")
 //    }
+
+   
 }
 

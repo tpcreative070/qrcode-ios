@@ -141,7 +141,7 @@ extension QRCodeVC {
         
         let menuButtonRight = UIButton(type: .system)
         menuButtonRight.setImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
-        menuButtonRight.addTarget(self, action: #selector(getListSelectedItem), for: .touchUpInside)
+        menuButtonRight.addTarget(self, action: #selector(getListSelectedItem), for: .touchDown)
         navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRight), UIBarButtonItem(customView: menuButtonRightSelectAll)]
     }
 }

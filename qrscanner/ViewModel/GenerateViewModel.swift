@@ -216,9 +216,9 @@ class GenerateViewModel : GenerateViewModelDelegate {
         if phoneTelephone == nil || !ValidatorHelper.minLength(phoneTelephone) {
             errorMessages.value[GenerateViewModelKey.PHONE_TELEPHONE] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorPhoneNumberRequired) ?? ""
         }
-        else if !ValidatorHelper.minLength(phoneTelephone, minLength: 10) || !ValidatorHelper.maxLength(phoneTelephone, maxLength: 10){
-            errorMessages.value[GenerateViewModelKey.PHONE_TELEPHONE] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorPhoneNumberInvalid) ?? ""
-        }
+//        else if !ValidatorHelper.minLength(phoneTelephone, minLength: 10) || !ValidatorHelper.maxLength(phoneTelephone, maxLength: 10){
+//            errorMessages.value[GenerateViewModelKey.PHONE_TELEPHONE] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorPhoneNumberInvalid) ?? ""
+//        }
         else {
             errorMessages.value.removeValue(forKey: GenerateViewModelKey.PHONE_TELEPHONE)
         }
@@ -470,7 +470,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
      */
     func validateBeginTimeEvent(){
         if beginTimeEvent == nil {
-            errorMessages.value[GenerateViewModelKey.BEGINTIME_EVENT] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorQueryRequired) ?? ""
+            errorMessages.value[GenerateViewModelKey.BEGINTIME_EVENT] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorBeginTimeRequired) ?? ""
         }
         else if (endTimeEvent != nil && beginTimeEvent! > endTimeEvent!){
             errorMessages.value[GenerateViewModelKey.BEGINTIME_EVENT] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorBeginDateGreaterEndDate) ?? ""
@@ -663,7 +663,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
     func doGenerateBarCode(){
         var value = ""
         if typeCode == EnumType.BARCODE.rawValue{
-            if typeBarcode == LanguageKey.EAN_8{
+            if typeBarcode == EnumType.EAN_8.rawValue{
                            validateProductID8()
                        }
                        else{

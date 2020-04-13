@@ -34,18 +34,18 @@ extension TableViewCell  {
             lbTitleFirst.leadingAnchor.constraint(equalTo: viewRoot.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             lbTitleFirst.trailingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-        viewRoot.addSubview(textFieldValueFirst)
+        viewRoot.addSubview(lbValueFirst)
         NSLayoutConstraint.activate([
-            textFieldValueFirst.topAnchor.constraint(equalTo: lbTitleFirst.bottomAnchor),
-            textFieldValueFirst.leadingAnchor.constraint(equalTo: viewRoot.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            textFieldValueFirst.trailingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant: AppConstants.MARGIN_RIGHT)
+            lbValueFirst.topAnchor.constraint(equalTo: lbTitleFirst.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
+            lbValueFirst.leadingAnchor.constraint(equalTo: viewRoot.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbValueFirst.trailingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant: AppConstants.MARGIN_RIGHT)
         ])
         
         self.viewBackgroundSecond.addSubview(viewBackgroundThird)
         NSLayoutConstraint.activate([
             self.viewBackgroundThird.leadingAnchor.constraint(equalTo: self.viewRoot.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
             self.viewBackgroundThird.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor,constant:  AppConstants.MARGIN_RIGHT),
-            self.viewBackgroundThird.topAnchor.constraint(equalTo: self.textFieldValueFirst.bottomAnchor,constant: AppConstants.MARGIN_TOP),
+            self.viewBackgroundThird.topAnchor.constraint(equalTo: self.lbValueFirst.bottomAnchor,constant: AppConstants.MARGIN_TOP),
         ])
         viewBackgroundThird.addSubview(imgSearch)
         NSLayoutConstraint.activate([

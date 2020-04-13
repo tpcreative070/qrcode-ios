@@ -1,6 +1,7 @@
 {
     "en": {
-        "ERROR_PRODUCT_INVALID" :"ProductId is require",
+        "NO_ITEM" : "No items found",
+        "ERROR_PRODUCT_INVALID" :"Product Id is require",
         "CONTACT": "Contact",
         "INVALID_QRCODE":"QRCode or Barcode is invalid",
         "BARCODE": "Barcode",
@@ -9,7 +10,7 @@
         "ERROR_PRODUCT_REQUIRED13": "Invalid for the format EAN 13",
         "EAN_8": "EAN 8",
         "EAN_13": "EAN 13",
-        "PRODUCTID" : "Product ID",
+        "PRODUCTID" : "Product Id",
         "PLACEHOLDER_EAN8" : "7 digits + 1 checksum digit",
         "PLACEHOLDER_EAN13" : "12 digits + 1 checksum digit",
         "APPPERMISSIONCONTENT1":"1. WRITE_EXTERNAL_STORAGE: Save QRCode to SDCard",
@@ -32,7 +33,7 @@
         "VIBRATE" : "Vibrate",
         "BEEP" : "Beep",
         "CHANGE_CODE_COLOR" : "Change code color",
-        "CHANGE_CODE_COLOR_CONTENT" : "Make QR codes in multi colors",
+        "CHANGE_CODE_COLOR_CONTENT" : "Make QR codes in multiple colors",
         "COPY_CLIPBOARD" : "Copy to clipboard",
         "COPY_CLIPBOARD_CONTENT" : "Content of code will be saved automatically to clipboard",
         "OPEN_WEB" : "Open websites automatically",
@@ -57,7 +58,7 @@
         "COPY": "COPY",
         "CONTENT_COPY" : "Select which items you want to copy.",
         "COPY_ITEMS" : "Copy items",
-        "SAVE_SUCCESS" : "Save success",
+        "SAVE_SUCCESS" : "Saved successfully",
         "SAVE" : "Save",
         "CSV" : "Csv",
         "SELECT": "Select",
@@ -198,6 +199,7 @@
         "SEARCH" : "Search"
     },
     "vi" : {
+         "NO_ITEM" : "Không có giá trị",
         "ERROR_PRODUCT_INVALID" :"Yêu cầu nhập mã sản phẩm",
           "CONTACT": "Liên hệ",
         "INVALID_QRCODE":"QRCode or Barcode không hợp lệ",
@@ -431,8 +433,9 @@
         "SEARCH" : "Tìm kiếm"
     },
    "es" : {
+        "NO_ITEM": "Nenhum item encontrado",
        "ERROR_PRODUCT_INVALID" :"Se requiere identificación del producto",
-         "CONTACT": "Contacto",
+       "CONTACT": "Contacto",
        "INVALID_QRCODE":"QRCode o Barcode no es válido",
        "BARCODE": "Código de barras",
          "BACK" : "Atrás",
@@ -650,6 +653,7 @@
         "SEARCH" : "Buscar"
     },
    "pt" : {
+       "NO_ITEM": "No se encontraron elementos",
        "ERROR_PRODUCT_INVALID" :"O ID do produto é obrigatório",
        "CONTACT": "Contato",
         "INVALID_QRCODE":"QRCode ou código de barras inválido",

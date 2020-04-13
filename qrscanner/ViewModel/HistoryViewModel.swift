@@ -81,6 +81,9 @@ class HistoryViewModel  : Codable ,GenerateViewModelDeletegate{
         else if typeCode == EnumType.CONTACT.rawValue{
             self.content = ContentViewModel(data: (data.content?.toObject(value: ContactModel.self))!)
         }
+        else if typeCode == EnumType.BARCODE.rawValue{
+                   self.content = ContentViewModel(data: (data.content?.toObject(value: BarcodeModel.self))!)
+               }
 
     }
     func getValueContent(typeCode: String, content: ContentViewModel) -> String? {
@@ -137,6 +140,11 @@ class HistoryViewModel  : Codable ,GenerateViewModelDeletegate{
                    let contactModel : ContactModel = try! JSONDecoder().decode(ContactModel.self, from: stringContent!)
                 return contactModel.fullNameContact ?? ""
                }
+            else if typeCode == EnumType.BARCODE.rawValue{
+                              let stringContent = content.content?.data(using: .utf8 )
+                              let contactModel : BarcodeModel = try! JSONDecoder().decode(BarcodeModel.self, from: stringContent!)
+            return contactModel.productID ?? ""
+                          }
         else{
             return "No value"
         }

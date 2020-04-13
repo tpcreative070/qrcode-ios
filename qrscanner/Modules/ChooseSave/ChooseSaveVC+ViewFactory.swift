@@ -10,22 +10,7 @@ import UIKit
 extension ChooseSaveVC  {
     func initUI(){
         setupNavItems()
-        /*SetupScrollView*/
-        self.view.addSubview(scrollView)
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-        ])
-        self.scrollView.addSubview(viewWrapper)
-        NSLayoutConstraint.activate([
-            viewWrapper.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor),
-            viewWrapper.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: AppConstants.MARGIN_BOTTOM),
-            viewWrapper.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            viewWrapper.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            viewWrapper.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-        ])
+       
         /*TableView*/
          tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height), style: .grouped)
         tableView.allowsSelection = true
@@ -35,7 +20,7 @@ extension ChooseSaveVC  {
         
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
         tableView.sectionFooterHeight = 0
-        viewWrapper.addSubview(tableView)
+        view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -45,7 +30,6 @@ extension ChooseSaveVC  {
         ])
         
         setupFloatButton()
-        setupEndedUpScrollView()
         setupTableView()
         bindTableView()
         
@@ -74,6 +58,7 @@ extension ChooseSaveVC  {
         
         self.saveViewModel.responseToView = {[weak self] value in
             if value == EnumResponseToView.UPDATE_DATA_SOURCE.rawValue {
+                self?.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
                 self?.navigationItem.title = "\(String(describing: self!.saveViewModel.countItemSelected)) \(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Selected)!))"
                 self?.updateDataSource()
             }
@@ -122,15 +107,7 @@ extension ChooseSaveVC  {
         self.tableView.dataSource = self.dataSource
         self.tableView.delegate = self.dataSource
     }
-    func setupEndedUpScrollView(){
-        viewWrapper.addSubview(endedUpScrollViewContainerView)
-        NSLayoutConstraint.activate([
-            endedUpScrollViewContainerView.topAnchor.constraint(equalTo: tableView.bottomAnchor),
-            endedUpScrollViewContainerView.leadingAnchor.constraint(equalTo: viewWrapper.leadingAnchor),
-            endedUpScrollViewContainerView.trailingAnchor.constraint(equalTo: viewWrapper.trailingAnchor),
-            endedUpScrollViewContainerView.bottomAnchor.constraint(equalTo: viewWrapper.bottomAnchor)
-        ])
-    }
+ 
     func setupFloatButton(){
         let item = FloatyItem()
         item.hasShadow = false
@@ -158,7 +135,7 @@ extension ChooseSaveVC  {
         floaty.addItem(item: item_select)
         floaty.addItem(item: item)
         
-        self.viewWrapper.addSubview(floaty)
+        self.view.addSubview(floaty)
         
     }
     // MARK: - Floaty Delegate Methods
@@ -188,7 +165,7 @@ extension ChooseSaveVC : TableViewCellDelegate{
     
     func cellViewSelected(cell: TableViewCell, countSelected: Int) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
-        let result = self.saveViewModel.listSave[indexPath.row]
+     //   let result = self.saveViewModel.listSave[indexPath.row]
     }
     
     func cellViewSelected(cell: Codable) {
