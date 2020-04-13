@@ -120,6 +120,7 @@ extension BarcodeVC {
                     resVC.resultViewModel.isUpdate = AppConstants.ISUPDATE
                     resVC.resultViewModel.createDateTime = (self?.barcodeViewModel.createDateTime)!
                     
+                    
                 }
              
                 Navigator.pushViewController(from: self!, to: resVC, isNavigation: true, isTransparent: false)

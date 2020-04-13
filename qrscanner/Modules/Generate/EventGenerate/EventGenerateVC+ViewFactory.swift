@@ -139,6 +139,7 @@ extension EventGenerateVC {
         addTarget(textFieldDescription)
         addTarget(textFieldLocation)
 
+        
     }
     func setupEndedUpScrollView(){
         viewBackground.addSubview(endedUpScrollViewContainerView)
