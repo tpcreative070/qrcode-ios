@@ -33,41 +33,41 @@ extension TableViewCell  {
             lbTitleFirst.leadingAnchor.constraint(equalTo: viewRoot.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             lbTitleFirst.trailingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-        viewRoot.addSubview(textFieldValueFirst)
+        viewRoot.addSubview(lbValueFirst)
         NSLayoutConstraint.activate([
-            textFieldValueFirst.topAnchor.constraint(equalTo: lbTitleFirst.bottomAnchor, constant: 0),
-            textFieldValueFirst.leadingAnchor.constraint(equalTo: viewRoot.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            textFieldValueFirst.trailingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            lbValueFirst.topAnchor.constraint(equalTo: lbTitleFirst.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
+            lbValueFirst.leadingAnchor.constraint(equalTo: viewRoot.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbValueFirst.trailingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewRoot.addSubview(lbTitleSecond)
         NSLayoutConstraint.activate([
-            lbTitleSecond.topAnchor.constraint(equalTo: textFieldValueFirst.bottomAnchor, constant: AppConstants.MARGIN_TOP),
+            lbTitleSecond.topAnchor.constraint(equalTo: lbValueFirst.bottomAnchor, constant: AppConstants.MARGIN_TOP),
             lbTitleSecond.leadingAnchor.constraint(equalTo: viewRoot.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             lbTitleSecond.trailingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-        viewRoot.addSubview(textFieldValueSecond)
+        viewRoot.addSubview(lbValueSecond)
         NSLayoutConstraint.activate([
-            textFieldValueSecond.topAnchor.constraint(equalTo: lbTitleSecond.bottomAnchor),
-            textFieldValueSecond.leadingAnchor.constraint(equalTo: viewRoot.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            textFieldValueSecond.trailingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            lbValueSecond.topAnchor.constraint(equalTo: lbTitleSecond.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
+            lbValueSecond.leadingAnchor.constraint(equalTo: viewRoot.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbValueSecond.trailingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewRoot.addSubview(lbTitleThird)
         NSLayoutConstraint.activate([
-            lbTitleThird.topAnchor.constraint(equalTo: textFieldValueSecond.bottomAnchor, constant: AppConstants.MARGIN_TOP),
+            lbTitleThird.topAnchor.constraint(equalTo: lbValueSecond.bottomAnchor, constant: AppConstants.MARGIN_TOP),
             lbTitleThird.leadingAnchor.constraint(equalTo: viewRoot.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             lbTitleThird.trailingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-        viewRoot.addSubview(textFieldValueThird)
+        viewRoot.addSubview(lbValueThird)
         NSLayoutConstraint.activate([
-            textFieldValueThird.topAnchor.constraint(equalTo: lbTitleThird.bottomAnchor),
-            textFieldValueThird.leadingAnchor.constraint(equalTo: viewRoot.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            textFieldValueThird.trailingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            lbValueThird.topAnchor.constraint(equalTo: lbTitleThird.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
+            lbValueThird.leadingAnchor.constraint(equalTo: viewRoot.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbValueThird.trailingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         self.viewBackgroundSecond.addSubview(viewBackgroundThird)
         NSLayoutConstraint.activate([
             self.viewBackgroundThird.leadingAnchor.constraint(equalTo: self.viewRoot.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
             self.viewBackgroundThird.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor,constant:  AppConstants.MARGIN_RIGHT),
-            self.viewBackgroundThird.topAnchor.constraint(equalTo: self.textFieldValueThird.bottomAnchor,constant: AppConstants.MARGIN_TOP),
+            self.viewBackgroundThird.topAnchor.constraint(equalTo: self.lbValueThird.bottomAnchor,constant: AppConstants.MARGIN_TOP),
             
         ])
         

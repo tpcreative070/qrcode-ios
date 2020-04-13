@@ -25,6 +25,13 @@ class HistoryVC : UIViewController,UIViewControllerTransitioningDelegate, UINavi
         lbTittle.translatesAutoresizingMaskIntoConstraints = false
         return lbTittle
     }()
+    lazy var lbNoItem : ICLabel = {
+        let view = ICLabel()
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.NoItem)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.alpha = AppConstants.ALPHA_DISBALE
+        return view
+    }()
     lazy var endedUpScrollViewContainerView : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -43,11 +50,9 @@ class HistoryVC : UIViewController,UIViewControllerTransitioningDelegate, UINavi
         bindViewModel()
     }
     override func viewDidAppear(_ animated: Bool) {
-        
         self.historyViewModel.doGetListHistories()
         self.historyViewModel.isSelected.value = false
         self.navigationController?.isNavigationBarHidden = true
-
     }
     override func viewWillAppear(_ animated: Bool) {
         

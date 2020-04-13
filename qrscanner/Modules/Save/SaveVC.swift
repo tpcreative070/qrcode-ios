@@ -20,10 +20,12 @@ class SaveVC : UIViewController,UIViewControllerTransitioningDelegate, UINavigat
         return parentView
     }()
     var tableView : UITableView!
-    lazy var lbTittle : ICLabel = {
-        let lbTittle = ICLabel()
-        lbTittle.translatesAutoresizingMaskIntoConstraints = false
-        return lbTittle
+   lazy var lbNoItem : ICLabel = {
+        let view = ICLabel()
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.NoItem)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.alpha = AppConstants.ALPHA_DISBALE
+        return view
     }()
     lazy var endedUpScrollViewContainerView : UIView = {
         let view = UIView()

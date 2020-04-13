@@ -16,20 +16,20 @@ import ZXingObjC
 
 
 class CommonService  {
-   
+    
     
     
     static let isInput = true
     static func getUserDefault<T>(key: String) -> T? {
-          
+        
         return (UserDefaults.standard.object(forKey: key)) as? T
-
-       }
-
-       static  func setUserDefault<T>( key: String, value: T) {
-           print(value)
-           UserDefaults.standard.set(value, forKey: key)
-       }
+        
+    }
+    
+    static  func setUserDefault<T>( key: String, value: T) {
+        print(value)
+        UserDefaults.standard.set(value, forKey: key)
+    }
     
     /**
      getConfigurationData
@@ -271,52 +271,45 @@ class CommonService  {
         let readersqrcode = ZXQRCodeMultiReader()
         let readerbarcode = ZXGenericMultipleBarcodeReader(delegate:reader)
         do{
-                   let  array_resultqr =  try readersqrcode.decodeMultiple(bitmap!, hints: hints) as! [ZXResult]
-                   if (array_resultqr.count > 1 )
-                   {
-                       if countList == 1 {
-                           for item in array_resultqr{
-                               completion([item])
-                           }
-                       }
-                       else{
-                           for item in array_resultqr{
-                               print("\(item)  ---  \(item.barcodeFormat)")
-                               listMultiResult.append(item)
-                           }
-                           completion(listMultiResult)
-                       }
-                   }
+            let  array_resultqr =  try readersqrcode.decodeMultiple(bitmap!, hints: hints) as! [ZXResult]
+            if (array_resultqr.count > 1 )
+            {
+                    for item in array_resultqr{
+                        print("\(item)  ---  \(item.barcodeFormat)")
+                        listMultiResult.append(item)
+                    }
+                    completion(listMultiResult)
+                
+            }
             if array_resultqr.count == 1 {
-                           // let text = array_resultbar[0].text ?? "Unknow"
-                           //                completion(text)
-                           listSingleResult.append(array_resultqr[0])
-                           completion(listSingleResult)
-                           return
-                       }
-               }
-               catch {
-                print("not qrcode")
-                   //completion(nil)
-               }
+                // let text = array_resultbar[0].text ?? "Unknow"
+                //                completion(text)
+                listSingleResult.append(array_resultqr[0])
+                completion(listSingleResult)
+                return
+            }
+        }
+        catch {
+            print("not qrcode")
+            //completion(nil)
+        }
         do {
             //Decode multibarcode
             let array_resultbar = try readerbarcode?.decodeMultiple(bitmap!, hints: hints) as! [ZXResult]
             if (array_resultbar.count > 1)
             {
-                if countList == 1 {
-                    for item in array_resultbar{
-                        completion([item])
-                    }
-                }
-                else{
+//                if countList == 1 {
+//                    for item in array_resultbar{
+//                        completion([item])
+//                    }
+//                }
+//                else{
                     for item in array_resultbar{
                         print("\(item)  ---  \(item.barcodeFormat)")
                         listMultiResult.append(item)
                     }
                     completion(listMultiResult)
-                }
-                
+//                }
             }
             if array_resultbar.count == 1 {
                 // let text = array_resultbar[0].text ?? "Unknow"
@@ -325,7 +318,6 @@ class CommonService  {
                 completion(listSingleResult)
                 return
             }
-            
         }catch {
             completion(nil)
         }
@@ -349,6 +341,6 @@ class CommonService  {
         }
     }
     
-   
+    
 }
 

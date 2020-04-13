@@ -138,9 +138,8 @@ extension EventGenerateVC {
         addTarget(textFieldTitle)
         addTarget(textFieldDescription)
         addTarget(textFieldLocation)
-        textFieldTitle.autocorrectionType = .no
-               textFieldDescription.autocorrectionType = .no
-               textFieldLocation.autocorrectionType = .no
+
+        
     }
     func setupEndedUpScrollView(){
         viewBackground.addSubview(endedUpScrollViewContainerView)
@@ -166,7 +165,7 @@ extension EventGenerateVC {
         self.navigationController?.navigationBar.tintColor = .white
         let menuButtonRight = UIButton(type: .system)
         menuButtonRight.setImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
-        menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchUpInside)
+        menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchDown)
         navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRight)]
     }
     

@@ -26,7 +26,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
     var isQRCode : Int = 0
     var dateTime : String?
     var isVibrate: Bool?
-    var listScanner : [String] = [String]()
+    var listScanner : [ScannerModel] = [ScannerModel]()
     var isChoosePhoto : Bool = false
     var listImage : [UIImage] = [UIImage]()
 
@@ -59,11 +59,15 @@ class ScannerViewModel : ScannerViewModelDelegate {
     func openAppSetting() {
         UIApplication.shared.open(URL.init(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
     }
-    func scannerResult(mValue : String){
+    func scannerResult(mValue : String, mType: String){
+        print(mValue)
+        print(mType)
         var typeCode = ""
         var value_content = ""
         listTransaction.removeAll()
-        if mValue.contains("http://") || mValue.contains("https://"){
+        
+        if ((mValue.range(of: "http://", options: .caseInsensitive)) != nil || (mValue.range(of: "https://", options: .caseInsensitive)) != nil)
+        {
             typeCode = EnumType.URL.rawValue
             let content = UrlModel(url: mValue)
             let jsonData = try! JSONEncoder().encode(content)
@@ -102,10 +106,12 @@ class ScannerViewModel : ScannerViewModelDelegate {
             if ((mValue.range(of: "MATMSG", options: .caseInsensitive)) != nil) {
                 let arr_semi_colon = mValue.split(separator: ";")
                 let arr_first = arr_semi_colon[0].split(separator: ":")
+                if arr_first.count > 2
+                {
                 email = String(arr_first[2])
                 sub = String((arr_semi_colon[1].split(separator: ":"))[1])
                 body = String((arr_semi_colon[2]).split(separator: ":")[1])
-                
+                }
                 
             }
             if ((mValue.range(of: "mailto", options: .caseInsensitive)) != nil) {
@@ -114,7 +120,6 @@ class ScannerViewModel : ScannerViewModelDelegate {
                     email = String((arr_ques[0].split(separator: ":"))[1])
                     if arr_ques.count > 1{
                         if arr_ques[1].contains("&"){
-                            
                             let arr_and = arr_ques[1].split(separator: "&")
                             sub = String((arr_and[0].split(separator: "="))[1])
                             if (arr_and.count > 1 && arr_and.contains("=")){
@@ -150,20 +155,35 @@ class ScannerViewModel : ScannerViewModelDelegate {
             if arr_space.count > 0{
                 for item in arr_space {
                     if(item.contains("SUMMARY")){
+                        if item.split(separator: ":").count > 1
+                        {
                         summary = String((item.split(separator: ":"))[1])
+                        }
                     }
                     if(item.contains("LOCATION"))
                     {
+                        if item.split(separator: ":").count > 1
+                        {
                         location = String(item.split(separator: ":")[1])
+                        }
                     }
                     if(item.contains("DESCRIPTION")){
+                        if item.split(separator: ":").count > 1
+                        {
                         description = String(item.split(separator: ":")[1])
+                        }
                     }
                     if (item.contains("DTSTART")){
+                        if item.split(separator: ":").count > 1
+                        {
                         dtstart = String((item.split(separator: ":"))[1])
+                        }
                     }
                     if (item.contains("DTEND")){
+                        if item.split(separator: ":").count > 1
+                        {
                         dtend = String((item.split(separator: ":"))[1])
+                        }
                     }
                 }
             }
@@ -177,9 +197,17 @@ class ScannerViewModel : ScannerViewModelDelegate {
         }
         else if ((mValue.range(of: "SMS", options: .caseInsensitive)) != nil)
         {
+            var to : String = ""
+             var message : String = ""
             typeCode = EnumType.MESSAGE.rawValue
             let arr_mess = mValue.split(separator: ":")
-            let content = MessageModel(to: String(arr_mess[1]) , message: String(arr_mess[2]))
+            if arr_mess.count > 1 {
+                to = String(arr_mess[1])
+            }
+            if arr_mess.count > 2 {
+                 message = String(arr_mess[2])
+            }
+            let content = MessageModel(to: to , message: message)
             let jsonData = try! JSONEncoder().encode(content)
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
             
@@ -195,19 +223,27 @@ class ScannerViewModel : ScannerViewModelDelegate {
             let new_mValue = String(mValue[start..<end])
             let arr_semi_colon = new_mValue.split(separator: ";")
             for item in arr_semi_colon {
+                print(item)
                 if (item.contains("S"))
                 {
+                    if item.split(separator: ":").count > 1
+                    {
                     ssid = String((item.split(separator: ":"))[1])
+                    }
                 }
                 if (item.contains("T"))
                 {
+                    if item.split(separator: ":").count > 1
+                    {
                     protect = String((item.split(separator: ":"))[1])
-                    
+                    }
                 }
                 if (item.contains("P"))
                 {
+                    if item.split(separator: ":").count > 1
+                    {
                     pass = String((item.split(separator: ":"))[1])
-                    
+                    }
                 }
             }
             let content = WifiModel(ssid: ssid, password: pass, protect: protect)
@@ -228,6 +264,8 @@ class ScannerViewModel : ScannerViewModelDelegate {
                 let new_mValue = String(mValue[start..<end])
                 let arr_semi_colon = new_mValue.split(separator: ";")
                 for item in arr_semi_colon {
+                    if item.split(separator: ":").count > 1
+                    {
                     if (item.contains("N"))
                     {
                         fullName = String((item.split(separator: ":"))[1])
@@ -244,12 +282,15 @@ class ScannerViewModel : ScannerViewModelDelegate {
                     {
                         address = String((item.split(separator: ":"))[1])
                     }
+                    }
                 }
             }
             if mValue.contains("VCARD"){
                 let arr_space = mValue.split(separator: "\n")
                 if arr_space.count > 0{
                     for item in arr_space {
+                        if item.split(separator: ":").count > 1
+                        {
                         if(item == "N"){
                             fullName = String((item.split(separator: ":"))[1])
                         }
@@ -263,7 +304,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
                         if (item.contains("ADR")){
                             address = String((item.split(separator: ":"))[1])
                         }
-                        
+                        }
                     }
                 }
                 
@@ -275,13 +316,28 @@ class ScannerViewModel : ScannerViewModelDelegate {
         }
         else if (mValue.caseInsensitiveCompare("tel") == .orderedSame || (mValue.range(of: "TEL", options: .caseInsensitive)) != nil) {
             typeCode = EnumType.TELEPHONE.rawValue
-            let tel = String(mValue.split(separator: ":")[1])
+            var tel : String = ""
+            if mValue.split(separator: ":").count > 1
+            {
+                tel = String(mValue.split(separator: ":")[1])
+            }
             let content = PhoneModel(phone: tel)
             let jsonData = try! JSONEncoder().encode(content)
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
             
         }
-            
+        else if ((mType.range(of: "EAN-13", options: .caseInsensitive)) != nil){
+            typeCode = EnumType.BARCODE.rawValue
+            let content = BarcodeModel(productID: mValue, type: EnumType.EAN_13.rawValue)
+            let jsonData = try! JSONEncoder().encode(content)
+            value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+        }
+        else if ((mType.range(of: "EAN-8", options: .caseInsensitive)) != nil){
+                  typeCode = EnumType.BARCODE.rawValue
+                  let content = BarcodeModel(productID: mValue, type: EnumType.EAN_8.rawValue)
+                  let jsonData = try! JSONEncoder().encode(content)
+                  value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+              }
         else
         {
             typeCode = EnumType.TEXT.rawValue
@@ -343,8 +399,8 @@ class ScannerViewModel : ScannerViewModelDelegate {
     }
     func doAsync(list : [UIImage]){
         defaultValue()
+         AppConstants.isCam = 1
         self.showLoading.value = true
-        var valueResult: [ZXResult]? = []
         var flag : Bool = false
         var vstring: String?
         let myGroup = DispatchGroup()
@@ -355,7 +411,6 @@ class ScannerViewModel : ScannerViewModelDelegate {
                 if let mData = index.toCGImage(){
                     CommonService.onReaderQRcode(tempImage: mData, countList : list.count) { (value) in
                         if value == nil {
-                            //valueResult?.append(contentsOf: value)
                             flag = true
                         }
                         if let mValue = value {
@@ -363,13 +418,13 @@ class ScannerViewModel : ScannerViewModelDelegate {
                             {
                                 if list.count > 0{
                                     self.listResult.append(contentsOf: mValue)
-                                    //
                                 }
                             }
                             else if mValue.count == 1
                             {
                                 vstring = mValue[0].text
-                                self.scannerResult(mValue: mValue[0].text)
+                                let type = self.barcodeFormatToString(format: ZXBarcodeFormat(rawValue: mValue[0].barcodeFormat.rawValue))
+                                self.scannerResult(mValue: mValue[0].text, mType:type)
                             }
                             else{
                                 
@@ -449,5 +504,58 @@ class ScannerViewModel : ScannerViewModelDelegate {
         listScanner.removeAll()
         self.navigate?()
     }
-    
+    func barcodeFormatToString(format: ZXBarcodeFormat) -> String {
+        switch (format) {
+        case kBarcodeFormatAztec:
+            return LanguageKey.Aztec
+            
+        case kBarcodeFormatCodabar:
+            return LanguageKey.CODABAR
+            
+        case kBarcodeFormatCode39:
+            return LanguageKey.Code_39
+            
+        case kBarcodeFormatCode93:
+            return LanguageKey.Code_93
+            
+        case kBarcodeFormatCode128:
+            return LanguageKey.Code_128
+            
+        case kBarcodeFormatDataMatrix:
+            return LanguageKey.Data_Matrix
+            
+        case kBarcodeFormatEan8:
+            return LanguageKey.EAN_8
+            
+        case kBarcodeFormatEan13:
+            return LanguageKey.EAN_13
+            
+        case kBarcodeFormatITF:
+            return LanguageKey.ITF
+            
+        case kBarcodeFormatPDF417:
+            return LanguageKey.PDF417
+            
+        case kBarcodeFormatQRCode:
+            return LanguageKey.QR_Code
+            
+        case kBarcodeFormatRSS14:
+            return LanguageKey.RSS_14
+            
+        case kBarcodeFormatRSSExpanded:
+            return LanguageKey.RSS_Expanded
+            
+        case kBarcodeFormatUPCA:
+            return LanguageKey.UPCA
+            
+        case kBarcodeFormatUPCE:
+            return LanguageKey.UPCE
+            
+        case kBarcodeFormatUPCEANExtension:
+            return LanguageKey.UPC_EAN_extension
+            
+        default:
+            return LanguageKey.Unknown
+        }
+    }
 }

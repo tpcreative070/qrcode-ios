@@ -119,6 +119,8 @@ extension DetailVC {
         tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.Telephone.rawValue)
         tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.Wifi.rawValue)
         tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.Barcode.rawValue)
+        tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.EAN_8.rawValue)
+        tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.EAN_13.rawValue)
 
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none

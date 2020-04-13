@@ -13,7 +13,6 @@ target 'qrscanner' do
   #pod 'SQLite.swift/SQLCipher','~> 0.12.2'
   pod 'SQLite.swift','~> 0.12.2'
   pod 'ZXingObjC', '~> 3.6.4'
-  pod 'Floaty', '~> 4.2.0'
   target 'qrscannerTests' do
     inherit! :search_paths
     # Pods for testing

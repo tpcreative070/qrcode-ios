@@ -9,30 +9,14 @@
 import UIKit
 extension HistoryVC  {
     func initUI(){
-        /*SetupScrollView*/
-        self.view.addSubview(scrollView)
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-        ])
-        self.scrollView.addSubview(viewWrapper)
-        NSLayoutConstraint.activate([
-            viewWrapper.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor),
-            viewWrapper.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: AppConstants.MARGIN_BOTTOM),
-            viewWrapper.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            viewWrapper.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            viewWrapper.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-        ])
-        /*TableView*/
+
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height), style: .grouped)
         tableView.allowsSelection = true
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
         tableView.sectionFooterHeight = 0
-        viewWrapper.addSubview(tableView)
+        view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -40,12 +24,28 @@ extension HistoryVC  {
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
+
         setupFloatButton()
-        setupEndedUpScrollView()
         setupTableView()
         bindTableView()
+        
     }
-    
+    func setupLbNoItem(){
+        if historyViewModel.listHistories.count == 0{
+            self.view.addSubview(lbNoItem)
+                  NSLayoutConstraint.activate([
+                   lbNoItem.topAnchor.constraint(equalTo: view.topAnchor),
+                    lbNoItem.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                      lbNoItem.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                      lbNoItem.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+                  ])
+            self.lbNoItem.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE_HELP)
+            lbNoItem.isHidden = false
+        }
+        else{
+            lbNoItem.isHidden = true
+        }
+    }
     //Mark: - setUpTableView()
     func setupTableView(){
         
@@ -75,6 +75,7 @@ extension HistoryVC  {
         self.dataSource.items = self.historyViewModel.listHistories
         self.tableView.reloadData()
         self.historyViewModel.showLoading.value = false
+        setupLbNoItem()
     }
     
     func bindTableView(){
@@ -93,15 +94,6 @@ extension HistoryVC  {
         }
         self.tableView.dataSource = self.dataSource
         self.tableView.delegate = self.dataSource
-    }
-    func setupEndedUpScrollView(){
-        viewWrapper.addSubview(endedUpScrollViewContainerView)
-        NSLayoutConstraint.activate([
-            endedUpScrollViewContainerView.topAnchor.constraint(equalTo: tableView.bottomAnchor),
-            endedUpScrollViewContainerView.leadingAnchor.constraint(equalTo: viewWrapper.leadingAnchor),
-            endedUpScrollViewContainerView.trailingAnchor.constraint(equalTo: viewWrapper.trailingAnchor),
-            endedUpScrollViewContainerView.bottomAnchor.constraint(equalTo: viewWrapper.bottomAnchor)
-        ])
     }
 
    
@@ -128,7 +120,7 @@ extension HistoryVC  {
         floaty.tintColor = .white
         floaty.addItem(item: item_select)
         floaty.addItem(item: item)
-        self.viewWrapper.addSubview(floaty)
+        self.view.addSubview(floaty)
         
     }
     // MARK: - Floaty Delegate Methods

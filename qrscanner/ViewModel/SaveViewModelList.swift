@@ -19,6 +19,7 @@ class SaveViewModelList : SaveViewModelListDeletegate{
     
     var navigate: (() -> ())?
     func doGetListSave(){
+        self.showLoading.value = true
         if let mList = SQLHelper.getListSave(){
             var index = 0
             self.listSave = mList.map({ (data) -> SaveViewModel in
@@ -28,6 +29,7 @@ class SaveViewModelList : SaveViewModelListDeletegate{
         }
        // Utils.logMessage(object: listSave)
         listSave = listSave.sorted {$0.updatedDateTime > $1.updatedDateTime}
+        self.showLoading.value = false
         responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
     }
     

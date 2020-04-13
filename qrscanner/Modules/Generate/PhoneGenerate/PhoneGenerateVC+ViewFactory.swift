@@ -65,7 +65,7 @@ extension PhoneGenerateVC {
         self.navigationController?.navigationBar.tintColor = .white
         let menuButtonRight = UIButton(type: .system)
         menuButtonRight.setImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
-        menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchUpInside)
+        menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchDown)
         navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRight)]
     }
     

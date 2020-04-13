@@ -58,7 +58,7 @@ struct AppConstants {
 
     static let soundID = 1057
     static let ISSEEN = 1
-    static let NUMBER_OF_LINE = 2
+    static let NUMBER_OF_LINE = 3
 
     static let ISUPDATE = 2
     static let ISCHOOSE = 1
@@ -501,11 +501,11 @@ struct LanguageKey {
     static let Code_93 = "Code 93"
     static let Code_128 = "Code 128"
     static let Data_Matrix = "Data Matrix"
-    static let EAN_8 = "EAN_8"
-    static let EAN_13 = "EAN_13"
+    static let EAN_8 = "EAN-8"
+    static let EAN_13 = "EAN-13"
     static let ITF = "ITF"
     static let PDF417 = "PDF417"
-    static let QR_Code = "QR Code"
+    static let QR_Code = "QRCode"
     static let RSS_14 = "RSS 14"
     static let RSS_Expanded = "RSS Expanded"
     static let UPCA = "UPCA"
@@ -672,6 +672,7 @@ struct LanguageKey {
     static let Text = "TEXT"
     static let Wifi = "WIFI"
     static let Url = "URL"
+    static let NoItem = "NO_ITEM"
     static let True = "TRUE"
     static let False = "FALSE"
     static let Copy_item = "COPY_ITEMS"
@@ -1202,6 +1203,8 @@ enum EnumIdentifier : String {
     case Location = "LOCATION"
     case Message = "MESSAGE"
     case Event = "EVENT"
+     case EAN_8 = "EAN_8"
+     case EAN_13 = "EAN_13"
     case Barcode = "BARCODE"
     case Detail = "detail"
     case Content = "content"
@@ -1234,6 +1237,8 @@ enum EnumType : String {
     case LOCATION = "LOCATION"
     case MESSAGE = "MESSAGE"
     case EVENT = "EVENT"
+     case EAN_8 = "EAN_8"
+     case EAN_13 = "EAN_13"
 }
 enum BarcodeType : String {
    case EAN_8, EAN_13
