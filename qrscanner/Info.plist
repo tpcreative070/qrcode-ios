@@ -17,20 +17,20 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>$(APP_VERSION_STRING)</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.example.democarthage</string>
+			<string>co.tpcreative.qrscanner</string>
 			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>myapp</string>
-			</array>
+			<array/>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>$(APP_VERSION)</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED</key>
 	<string>YES</string>
 	<key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
