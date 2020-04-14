@@ -10,8 +10,8 @@ import Firebase
 extension AppDelegate  {
     
     func initGoogleServices(){
+        
         FirebaseConfiguration.shared.setLoggerLevel(FirebaseLoggerLevel.min)
         FirebaseApp.configure()
-     //   GIDSignIn.sharedInstance()?.clientID = ConfigKey.GoogleClientId.infoForKey() ?? ""
     }
 }
