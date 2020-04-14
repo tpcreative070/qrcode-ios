@@ -9,20 +9,24 @@
 import UIKit
 extension TableViewCell {
     func setupView(){
-        self.setupBackgroud()
         switch identifier {
         case .History:
+            self.setupBackgroud()
             setupHistorySubView()
             break
         case .HistoryChoose:
+            self.setupBackgroud()
             setupChooseHistorySubView()
             break
         case .SaveChoose:
+            self.setupBackgroud()
             setupChooseHistorySubView()
             break
         case .Generate:
+            self.setupBackgroud()
             setupGenerateSubView()
         case .Save:
+            self.setupBackgroud()
             setupSaveSubView()
         case .Url:
             setupUrlView()
@@ -42,15 +46,17 @@ extension TableViewCell {
             setupMessageView()
         case .Event:
             setupEventView()
-            case .Barcode:
+        case .Barcode:
             setupBarcodeView()
-            case .EAN_8:
+        case .EAN_8:
             setupBarcodeView()
-            case .EAN_13:
+        case .EAN_13:
             setupBarcodeView()
-            case .Alert:
+        case .Alert:
+            self.setupBackgroud()
             setupAlertSubView()
-            case .QRCodeList:
+        case .QRCodeList:
+            self.setupBackgroud()
             setupQRCodeSubView()
         default :
             break

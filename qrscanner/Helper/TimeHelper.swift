@@ -130,6 +130,7 @@ class TimeHelper {
     }
     static func getDate(timeString: String) -> String? {
        let timeString = timeString.trimmingCharacters(in: .whitespacesAndNewlines)
+        if timeString != "" {
         if timeString.contains("T") {
             let arr_date = timeString.split(separator: "T")
             let year = arr_date[0].prefix(4)
@@ -162,6 +163,9 @@ class TimeHelper {
             let date = "\(day)-\(month)-\(year) \(hour):\(mini)"
             return date
         }
-        
+        }
+        else{
+            return TimeHelper.getString(time: Date(), dateFormat: TimeHelper.FormatDateTime)
+        }
     }
 }

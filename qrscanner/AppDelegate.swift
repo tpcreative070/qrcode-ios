@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().tintColor = AppColors.PRIMARY_COLOR
         UITabBar.appearance().barTintColor = AppColors.GRAY_LIGHT
         UITabBar.appearance().unselectedItemTintColor = AppColors.GRAY
-        
+        self.initGoogleServices()
         self.initLanguage()
         self.initConfig()
         // self.initTabBarController(selectedIndex: 2)
@@ -69,5 +69,15 @@ extension AppDelegate{
             GlobalVariableHelper.languages[LanguageCode.Portuguese] = ptLang
 
         }
+    }
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        let message = url.host?.removingPercentEncoding
+           let alertController = UIAlertController(title: "Incoming Message", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+           alertController.addAction(okAction)
+           
+           window?.rootViewController?.present(alertController, animated: true, completion: nil)
+           
+           return true
     }
 }

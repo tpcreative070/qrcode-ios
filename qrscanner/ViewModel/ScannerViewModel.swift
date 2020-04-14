@@ -63,7 +63,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
         print(mValue)
         print(mType)
         var typeCode = ""
-        var value_content = ""
+        var value_content : String = ""
         listTransaction.removeAll()
         
         if ((mValue.range(of: "http://", options: .caseInsensitive)) != nil || (mValue.range(of: "https://", options: .caseInsensitive)) != nil)
@@ -109,10 +109,14 @@ class ScannerViewModel : ScannerViewModelDelegate {
                 if arr_first.count > 2
                 {
                 email = String(arr_first[2])
-                sub = String((arr_semi_colon[1].split(separator: ":"))[1])
-                body = String((arr_semi_colon[2]).split(separator: ":")[1])
+               
                 }
-                
+                if arr_semi_colon.count > 1 {
+                sub = String((arr_semi_colon[1].split(separator: ":"))[1])
+                    if arr_semi_colon.count > 2{
+                    body = String((arr_semi_colon[2]).split(separator: ":")[1])
+                    }
+                }
             }
             if ((mValue.range(of: "mailto", options: .caseInsensitive)) != nil) {
                 if mValue.contains("?"){
@@ -128,6 +132,11 @@ class ScannerViewModel : ScannerViewModelDelegate {
                             }
                             
                         }
+                    }
+                }
+                else{
+                    if mValue.split(separator: ":").count > 1 {
+                    email = String(mValue.split(separator: ":")[1])
                     }
                 }
                 
@@ -368,7 +377,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
                                    }
                 }
                 else{
-                let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: "", isCode: ""))
+                    let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: "", isCode: ""))
                 if result {
                     itemScanner = SQLHelper.getItemScanner(createDateTime: createDateTime)!
                     let typeCode = itemScanner.typeCode?.lowercased()

@@ -169,8 +169,8 @@ extension DetailVC : TableViewCellDelegate {
         //  self.viewModel.doSelectItem(coable: cell)
         
         let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: cell)
-        let value_data = valueContentView?.content
-        let stringContent = value_data!.data(using: .utf8)!
+        let value_data = valueContentView?.content ?? ""
+        let stringContent = value_data.data(using: .utf8)!
         let typeCode = valueContentView?.typeCode?.uppercased()
         if typeCode == EnumType.URL.rawValue{
             let urlModel : UrlModel = try! JSONDecoder().decode(UrlModel.self, from: stringContent)
