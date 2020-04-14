@@ -420,7 +420,7 @@ extension ScannerVC {
                     viewFooter.isHidden = false
                     setupFooter()
                     self.viewBackground.bringSubviewToFront(viewFooter)
-                    let scanner = ScannerModel(value: (String(describing: (object?.stringValue)!)), typeScan: (object?.type.rawValue)!)
+                    let scanner = ScannerModel(value: (String((object?.stringValue)!)), typeScan: (object?.type.rawValue ?? ""))
                     viewModel.listScanner.append(scanner)
                     lbTotalResult.text =  "\(viewModel.listScanner.count)"
                     session?.stopRunning()
@@ -435,7 +435,7 @@ extension ScannerVC {
                     lbTotalResult.text =  "\(viewModel.listScanner.count)"
                     isScanning = false
                     viewModel.isScanner = true
-                    viewModel.scannerResult(mValue: "\(String(describing: (object?.stringValue)!))", mType: (object?.type.rawValue)!)
+                    viewModel.scannerResult(mValue: "\(String((object?.stringValue)!))", mType: (object?.type.rawValue ?? ""))
                     session?.stopRunning()
                 }
             }

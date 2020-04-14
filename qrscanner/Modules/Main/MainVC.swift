@@ -43,7 +43,7 @@ class MainVC : SwipeMenuViewController {
     
     override func swipeMenuView(_ swipeMenuView: SwipeMenuView, didChangeIndexFrom fromIndex: Int, to toIndex: Int) {
         super.swipeMenuView(swipeMenuView, didChangeIndexFrom: fromIndex, to: toIndex)
-        print("did change from section\(fromIndex + 1)  to section\(toIndex + 1)")
+       // print("did change from section\(fromIndex + 1)  to section\(toIndex + 1)")
         if toIndex != 2 {
             AppConstants.isCam = 1
         }

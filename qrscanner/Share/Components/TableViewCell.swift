@@ -850,8 +850,7 @@ class TableViewCell : UITableViewCell{
         }
     }
     @objc func clipboardAction(sender : UITapGestureRecognizer){
-        
-        self.delegate?.cellViewSelected(cell: self)
+       // self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
             self.delegate?.cellViewSelected(cell: data)
         }

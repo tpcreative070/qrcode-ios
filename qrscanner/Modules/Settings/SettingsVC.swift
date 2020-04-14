@@ -478,6 +478,7 @@ class SettingsVC : BaseViewController {
         initUI()
         bindViewModel()
         checkIsOnSwitch()
+      //  Fabric.sharedSDK().debug = true
     }
     
     @objc func switchVibrateDidChange (_ : ICSwitchButton){
@@ -611,6 +612,7 @@ class SettingsVC : BaseViewController {
         self.present(activiController,animated: true, completion: nil)
     }
     @objc func showHelp (sender : UITapGestureRecognizer){
+
         let vc = HelpVC()
         self.navigationController?.pushViewController(vc, animated: true)
     }
