@@ -2263,6 +2263,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.4;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = co.tpcreative.qrscanner;
 				PRODUCT_NAME = QRScanner;
 				PROVISIONING_PROFILE_SPECIFIER = "QRScanner Provisioning Product";
