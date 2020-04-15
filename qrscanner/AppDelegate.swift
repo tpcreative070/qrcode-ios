@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.initLanguage()
         self.initConfig()
         // self.initTabBarController(selectedIndex: 2)
-        
         return true
     }
     
