@@ -2219,7 +2219,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 48595E86E277F55EF3F1AB2C /* Pods-qrscanner.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = qrscanner/qrscanner.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -2247,7 +2247,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 25204941E7B604FC6E41DB00 /* Pods-qrscanner.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = qrscanner/qrscanner.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
@@ -2432,7 +2432,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 80658E423E6740937DAAAA73 /* Pods-qrscanner.develop.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = qrscanner/qrscanner.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

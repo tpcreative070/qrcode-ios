@@ -8,13 +8,13 @@
 
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
-APP_NAME = qrscanner develop
+APP_NAME = QRScanner Dev
 APP_VERSION = 1
 APP_VERSION_STRING = 0.0.9
 APP_BUNDLE_ID = co.tpcreative.qrscanner.app.develop
 APP_ICON = AppIcon
 APP_ROOT_URL = http:\/\/10.10.32.102:8013
-APP_GOOGLE_CLIENT_ID = 282746929551-dpeulobmspbguu8g2vm96ggc8r7epvhe.apps.googleusercontent.com
-APP_GOOGLE_REVERSED_CLIENT_ID = com.googleusercontent.apps.282746929551-dpeulobmspbguu8g2vm96ggc8r7epvhe
+APP_GOOGLE_CLIENT_ID = 369444282152-nmqq6gqom7ikjbta7ut160948gfnf71o.apps.googleusercontent.com
+APP_GOOGLE_REVERSED_CLIENT_ID = com.googleusercontent.apps.369444282152-nmqq6gqom7ikjbta7ut160948gfnf71o
 APP_WS_URL = ws:\/\/116.193.72.25:1959\/sync
 //co.tpcreative.qrscanner.app.develop.share
