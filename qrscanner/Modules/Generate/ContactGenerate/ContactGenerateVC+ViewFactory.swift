@@ -10,6 +10,7 @@ import UIKit
 extension ContactGenerateVC{
     func initUI(){
    
+        
         self.view.addSubview(scrollView)
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
