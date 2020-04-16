@@ -10,7 +10,11 @@ target 'qrscanner' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Crashlytics'
   pod 'Crashlytics', '~> 3.14.0'
+<<<<<<< HEAD
 #  pod 'GoogleSignIn' , '~> 4.4.0'
+=======
+  #pod 'GoogleSignIn' , '~> 4.4.0'
+>>>>>>> bcdb7255173e6b8198c23790229697e355520213
   #pod 'SQLite.swift/SQLCipher','~> 0.12.2'
   pod 'SQLite.swift','~> 0.12.2'
   pod 'ZXingObjC', '~> 3.6.4'

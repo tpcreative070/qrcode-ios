@@ -523,7 +523,7 @@
 		9F0B15510B02E715D6A95FB6 /* Pods-qrscannerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-qrscannerTests.release.xcconfig"; path = "Target Support Files/Pods-qrscannerTests/Pods-qrscannerTests.release.xcconfig"; sourceTree = "<group>"; };
 		A62B5D5BABACD7AF3CFE0CA5 /* Pods-qrscannerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-qrscannerTests.debug.xcconfig"; path = "Target Support Files/Pods-qrscannerTests/Pods-qrscannerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B336CD08F9B29BEDC7EE1C62 /* libPods-qrscannerUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-qrscannerUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D27F115623FF9487001D175F /* QRScanner Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QRScanner Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D27F115623FF9487001D175F /* QRScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QRScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D27F115923FF9487001D175F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D27F115B23FF9487001D175F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D27F115D23FF9487001D175F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -937,7 +937,7 @@
 		D27F115723FF9487001D175F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D27F115623FF9487001D175F /* QRScanner Debug.app */,
+				D27F115623FF9487001D175F /* QRScanner.app */,
 				D27F116C23FF9488001D175F /* qrscannerTests.xctest */,
 				D27F117723FF9488001D175F /* qrscannerUITests.xctest */,
 				289561612439CF3D005ECDD5 /* ShareImage.appex */,
@@ -1475,7 +1475,7 @@
 			);
 			name = qrscanner;
 			productName = qrscanner;
-			productReference = D27F115623FF9487001D175F /* QRScanner Debug.app */;
+			productReference = D27F115623FF9487001D175F /* QRScanner.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D27F116B23FF9488001D175F /* qrscannerTests */ = {
@@ -2030,7 +2030,7 @@
 				CODE_SIGN_ENTITLEMENTS = ShareImage/ShareImage.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = AQHNXZHZ8T;
 				INFOPLIST_FILE = ShareImage/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2039,7 +2039,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.0.2;
+				MARKETING_VERSION = 0.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = co.tpcreative.qrscanner.share;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2055,7 +2055,7 @@
 				CODE_SIGN_ENTITLEMENTS = ShareImage/ShareImage.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = AQHNXZHZ8T;
 				INFOPLIST_FILE = ShareImage/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2064,7 +2064,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.0.2;
+				MARKETING_VERSION = 0.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = co.tpcreative.qrscanner.app.develop.share;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "QRScanner Provisioning Share Develop";
@@ -2080,7 +2080,7 @@
 				CODE_SIGN_ENTITLEMENTS = ShareImage/ShareImage.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = AQHNXZHZ8T;
 				INFOPLIST_FILE = ShareImage/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2089,7 +2089,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.0.2;
+				MARKETING_VERSION = 0.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = co.tpcreative.qrscanner.share;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "QRScanner Provisioning Share";
@@ -2219,12 +2219,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 48595E86E277F55EF3F1AB2C /* Pods-qrscanner.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = qrscanner/qrscanner.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 6;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"qrscanner/Preview Content\"";
 				DEVELOPMENT_TEAM = AQHNXZHZ8T;
 				ENABLE_PREVIEWS = YES;
@@ -2234,9 +2235,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.2;
+				MARKETING_VERSION = 0.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = co.tpcreative.qrscanner;
-				PRODUCT_NAME = "$(APP_NAME)";
+				PRODUCT_NAME = QRScanner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2247,12 +2248,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 25204941E7B604FC6E41DB00 /* Pods-qrscanner.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = qrscanner/qrscanner.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 6;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"qrscanner/Preview Content\"";
 				DEVELOPMENT_TEAM = AQHNXZHZ8T;
 				ENABLE_PREVIEWS = YES;
@@ -2262,9 +2264,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.2;
+				MARKETING_VERSION = 0.0.6;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = co.tpcreative.qrscanner;
-				PRODUCT_NAME = "$(APP_NAME)";
+				PRODUCT_NAME = QRScanner;
 				PROVISIONING_PROFILE_SPECIFIER = "QRScanner Provisioning Product";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2432,12 +2435,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 80658E423E6740937DAAAA73 /* Pods-qrscanner.develop.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = qrscanner/qrscanner.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 6;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"qrscanner/Preview Content\"";
 				DEVELOPMENT_TEAM = AQHNXZHZ8T;
 				ENABLE_PREVIEWS = YES;
@@ -2447,9 +2451,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.2;
+				MARKETING_VERSION = 0.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = co.tpcreative.qrscanner.app.develop;
-				PRODUCT_NAME = "$(APP_NAME)";
+				PRODUCT_NAME = QRScanner;
 				PROVISIONING_PROFILE_SPECIFIER = "QRScanner Provisioning Develop";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
