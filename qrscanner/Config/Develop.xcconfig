@@ -8,7 +8,7 @@
 
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
-APP_NAME = QRScanner Dev
+APP_NAME = QR Develop
 APP_VERSION = 1
 APP_VERSION_STRING = 0.0.9
 APP_BUNDLE_ID = co.tpcreative.qrscanner.app.develop
