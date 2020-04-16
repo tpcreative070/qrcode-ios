@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 class MessageViewModel : Codable , MessageViewModelDelegate{
     var toView: String {
-        return toMessage ?? ""
+        return to ?? ""
     }
     
     var messageView: String {
         return message ?? ""
     }
-    var toMessage: String?
+    var to: String?
     var message: String?
     var createDateTime: Int?
     var typeCode : String?
@@ -24,7 +24,7 @@ class MessageViewModel : Codable , MessageViewModelDelegate{
     var isUpdate: Int?
     
     init(data: MessageModel) {
-        self.toMessage = data.to!
+        self.to = data.to!
         self.message = data.message!
         
     }

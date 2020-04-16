@@ -237,7 +237,7 @@ extension WifiGenerateVC {
     func checkIsSeenDetail(){
         if wifiViewModel.isSeen == AppConstants.ISSEEN {
             textFieldSsid.text = wifiViewModel.ssid ?? ""
-            textFieldPass.text = wifiViewModel.passwordView ?? ""
+            textFieldPass.text = wifiViewModel.passwordView 
             if wifiViewModel.protect == LanguageHelper.getTranslationByKey(LanguageKey.WPA){
                 radioWEP.isSelected = false
                 radioNone.isSelected = false

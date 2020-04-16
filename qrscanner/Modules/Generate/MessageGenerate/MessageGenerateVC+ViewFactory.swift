@@ -178,7 +178,7 @@ extension MessageGenerateVC {
     }
     func checkIsSeenDetail(){
         if messageViewModel.isSeen == AppConstants.ISSEEN {
-            textFieldTo.text = messageViewModel.toMessage ?? ""
+            textFieldTo.text = messageViewModel.to ?? ""
             textFieldMessage.text = messageViewModel.message ?? ""
             
         }

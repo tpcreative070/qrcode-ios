@@ -213,6 +213,7 @@ class EventGenerateVC: BaseViewController {
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .medium
         textFieldBeginTime.text = dateFormatter.string(from: datePicker.date)
+        print(datePicker.date)
         generateViewModel?.beginTime = datePicker.date
     }
     if textFieldEndTime.isFirstResponder {

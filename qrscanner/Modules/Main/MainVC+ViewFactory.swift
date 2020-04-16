@@ -32,6 +32,8 @@ extension MainVC  {
         mSettings = SettingsVC()
         mSettings?.title = LanguageHelper.getTranslationByKey(LanguageKey.Setting) ?? "Settings"
         mSettings?.navigationItem.titleView = UIImageView.init(image: UIImage(named: AppImages.IC_SETTINGS_WHITE))
+        
+    
         addChild(mHistory ?? HistoryVC())
         addChild(mGenerate ?? TypeCodeVC())
         addChild(mScanner ?? ScannerVC())

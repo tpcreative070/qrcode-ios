@@ -87,7 +87,7 @@ extension BarcodeVC {
               navigationController?.navigationBar.titleTextAttributes = urlAttributes
                   self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
                   navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
-                  self.navigationController?.navigationBar.tintColor = .white
+                  self.navigationController?.navigationBar.tintColor = .white        
                   let menuButtonRight = UIButton(type: .system)
                   menuButtonRight.setImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
         menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchDown)

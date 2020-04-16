@@ -217,9 +217,9 @@ extension SaveVC : TableViewCellDelegate{
             self.navigationController?.pushViewController(vc, animated: true)
         }
         if typeCode == EnumType.LOCATION.rawValue{
-            let locationModel : LocationViewModel = try! JSONDecoder().decode(LocationViewModel.self, from: stringContent!)
+            let locationModel : LocationModel = try! JSONDecoder().decode(LocationModel.self, from: stringContent!)
             let  vc = LocationGenerateVC()
-            vc.locationViewModel = locationModel
+            vc.locationViewModel = LocationViewModel(data: locationModel)
             vc.locationViewModel.isSeen = AppConstants.ISSEEN
             vc.locationViewModel.createDateTime = value_data!.createdDateTime
             self.navigationController?.pushViewController(vc, animated: true)

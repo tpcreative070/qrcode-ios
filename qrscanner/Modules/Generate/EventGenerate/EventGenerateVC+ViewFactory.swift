@@ -199,7 +199,10 @@ extension EventGenerateVC {
             
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
                 let resVC = ResultGenerateVC()
-                resVC.contentViewModel = ContentViewModel(data: EventModel(title: (self?.textFieldTitle.text)!, location: (self?.textFieldLocation.text)!, description: (self?.textFieldDescription.text)!, beginTime: (self?.textFieldBeginTime.text)!, endTime: (self?.textFieldEndTime.text)!))
+              
+                let startDate = TimeHelper.getString(time: (self?.generateViewModel?.beginTime)!, dateFormat: TimeHelper.FormatDateTime)
+                let endDate = TimeHelper.getString(time: (self?.generateViewModel?.endTime)!, dateFormat: TimeHelper.FormatDateTime)
+                resVC.contentViewModel = ContentViewModel(data: EventModel(title: (self?.textFieldTitle.text)!, location: (self?.textFieldLocation.text)!, description: (self?.textFieldDescription.text)!, beginTime: startDate, endTime: endDate))
                 resVC.imgCode = (self?.generateViewModel?.result)!
                 resVC.resultViewModel.typeCode = EnumType.EVENT.rawValue
                 if (self?.eventViewModel.isSeen)! == AppConstants.ISSEEN {

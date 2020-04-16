@@ -9,6 +9,7 @@ target 'qrscanner' do
   # Pods for ecast
   pod 'Firebase/Analytics'
   pod 'Firebase/Crashlytics'
+  pod 'Crashlytics', '~> 3.14.0'
 #  pod 'GoogleSignIn' , '~> 4.4.0'
   #pod 'SQLite.swift/SQLCipher','~> 0.12.2'
   pod 'SQLite.swift','~> 0.12.2'

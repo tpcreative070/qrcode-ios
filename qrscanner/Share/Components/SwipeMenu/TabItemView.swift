@@ -51,7 +51,7 @@ setupImage()
     private func setupLabel() {
         titleLabel = UILabel(frame: bounds)
         titleLabel.textAlignment = .center
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        titleLabel.font = DeviceHelper.isIpad() ? UIFont.boldSystemFont(ofSize: 16) : UIFont.boldSystemFont(ofSize: 14)
         titleLabel.textColor = UIColor(red: 140/255, green: 140/255, blue: 140/255, alpha: 1.0)
         titleLabel.backgroundColor = UIColor.clear
         addSubview(titleLabel)
