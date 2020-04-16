@@ -9,8 +9,6 @@
 import UIKit
 extension EventGenerateVC {
     func initUI() {
-//        let gety = view.frame.height * 5.8/7
-//        let value_item = view.frame.height/7
         self.view.addSubview(scrollView)
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
