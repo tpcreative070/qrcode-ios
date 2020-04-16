@@ -10,8 +10,7 @@ import Firebase
 extension AppDelegate  {
     
     func initGoogleServices(){
-        
-        FirebaseConfiguration.shared.setLoggerLevel(FirebaseLoggerLevel.min)
+        //FirebaseConfiguration.shared.setLoggerLevel(FirebaseLoggerLevel.min)
         FirebaseApp.configure()
     }
 }
