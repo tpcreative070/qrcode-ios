@@ -43,10 +43,6 @@ class ChooseHistoryVC : UIViewController,UIViewControllerTransitioningDelegate, 
         bindViewModel()
     }
     
-    @objc func closeButtonPress(){
-        self.dismiss(animated: false, completion: nil)
-    }
-    
     @objc func doShare(sender: UITapGestureRecognizer){
         
     }
@@ -68,6 +64,8 @@ class ChooseHistoryVC : UIViewController,UIViewControllerTransitioningDelegate, 
     override func viewDidAppear(_ animated: Bool) {
         self.historyViewModel.doGetListHistories()
         self.historyViewModel.isSelected.value = false
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,7 +74,9 @@ class ChooseHistoryVC : UIViewController,UIViewControllerTransitioningDelegate, 
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.isNavigationBarHidden = true
+       self.navigationController?.isNavigationBarHidden = true
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+
     }
-    
+  
 }

@@ -9,8 +9,6 @@
 import UIKit
 extension EventGenerateVC {
     func initUI() {
-//        let gety = view.frame.height * 5.8/7
-//        let value_item = view.frame.height/7
         self.view.addSubview(scrollView)
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
@@ -199,7 +197,10 @@ extension EventGenerateVC {
             
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
                 let resVC = ResultGenerateVC()
-                resVC.contentViewModel = ContentViewModel(data: EventModel(title: (self?.textFieldTitle.text)!, location: (self?.textFieldLocation.text)!, description: (self?.textFieldDescription.text)!, beginTime: (self?.textFieldBeginTime.text)!, endTime: (self?.textFieldEndTime.text)!))
+              
+                let startDate = TimeHelper.getString(time: (self?.generateViewModel?.beginTime)!, dateFormat: TimeHelper.FormatDateTime)
+                let endDate = TimeHelper.getString(time: (self?.generateViewModel?.endTime)!, dateFormat: TimeHelper.FormatDateTime)
+                resVC.contentViewModel = ContentViewModel(data: EventModel(title: (self?.textFieldTitle.text)!, location: (self?.textFieldLocation.text)!, description: (self?.textFieldDescription.text)!, beginTime: startDate, endTime: endDate))
                 resVC.imgCode = (self?.generateViewModel?.result)!
                 resVC.resultViewModel.typeCode = EnumType.EVENT.rawValue
                 if (self?.eventViewModel.isSeen)! == AppConstants.ISSEEN {

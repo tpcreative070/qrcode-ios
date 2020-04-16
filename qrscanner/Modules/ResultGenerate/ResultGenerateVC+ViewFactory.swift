@@ -12,8 +12,6 @@ extension ResultGenerateVC {
         view.addSubview(imgQrcode)
         NSLayoutConstraint.activate([
             imgQrcode.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant : AppConstants.MARGIN_TOP),
-//            imgQrcode.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-//            imgQrcode.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: AppConstants.MARGIN_RIGHT),
             imgQrcode.widthAnchor.constraint(equalToConstant: AppConstants.HEIGHT_IMAGE_QR),
             imgQrcode.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_IMAGE_QR),
             imgQrcode.centerXAnchor.constraint(equalTo: view.centerXAnchor)

@@ -70,6 +70,7 @@ class HistoryViewModelList : HistoryViewModelListDeletegate{
                     self.doDeleteHistory(mData: index)
                 }
             }
+            self.doGetListHistories()
             dispathGroup.leave()
         })
         dispathGroup.notify(queue: .main) {
@@ -81,7 +82,7 @@ class HistoryViewModelList : HistoryViewModelListDeletegate{
         countItemSelected = 0
         
         if SQLHelper.updateHistory(createDateTime: mData.createdDateTime, value: false){
-            doGetListHistories()
+            print("update success")
         }
     }
     

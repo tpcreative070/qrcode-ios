@@ -17,15 +17,15 @@ class TableViewCell : UITableViewCell{
     var identifier =  EnumIdentifier.None
     var codable : Codable?
     lazy var scrollView: UIScrollView = {
-           let scrollView = UIScrollView()
-           scrollView.translatesAutoresizingMaskIntoConstraints = false
-           return scrollView
-       }()
-       lazy var endedUpScrollViewContainerView : UIView = {
-           let view = UIView()
-           view.translatesAutoresizingMaskIntoConstraints = false
-           return view
-       }()
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    lazy var endedUpScrollViewContainerView : UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     let viewBackground : UIView = {
         let view = UIView()
         //        view.backgroundColor = .clear
@@ -39,23 +39,23 @@ class TableViewCell : UITableViewCell{
         return view
     }()
     let viewBackgroundTextView : UIView = {
-           let view = UIView()
-           //        view.backgroundColor = .clear
-           view.translatesAutoresizingMaskIntoConstraints = false
-           return view
-       }()
+        let view = UIView()
+        //        view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     let viewBackgroundTextView1 : UIView = {
-              let view = UIView()
-              //        view.backgroundColor = .clear
-              view.translatesAutoresizingMaskIntoConstraints = false
-              return view
-          }()
+        let view = UIView()
+        //        view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     let viewBackgroundTextView2 : UIView = {
-              let view = UIView()
-              //        view.backgroundColor = .clear
-              view.translatesAutoresizingMaskIntoConstraints = false
-              return view
-          }()
+        let view = UIView()
+        //        view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     lazy var viewUnderLine : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -325,11 +325,11 @@ class TableViewCell : UITableViewCell{
             identifier = EnumIdentifier.Barcode
         }
         else if reuseIdentifier == EnumIdentifier.EAN_8.rawValue {
-                       identifier = EnumIdentifier.Barcode
-                   }
+            identifier = EnumIdentifier.Barcode
+        }
         else if reuseIdentifier == EnumIdentifier.EAN_13.rawValue {
-                       identifier = EnumIdentifier.Barcode
-                   }
+            identifier = EnumIdentifier.Barcode
+        }
         else if reuseIdentifier == EnumIdentifier.HistoryChoose.rawValue {
             identifier = EnumIdentifier.HistoryChoose
         }
@@ -354,7 +354,7 @@ class TableViewCell : UITableViewCell{
     
     @objc func actionCellViewTap(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
-       // self.delegate?.cellViewSelected(cell: self)
+        // self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
             self.delegate?.cellViewSelected(cell: data)
         }
@@ -386,7 +386,7 @@ class TableViewCell : UITableViewCell{
         
     }
     @objc func actionImageViewTap(sender : UITapGestureRecognizer){
-       // self.delegate?.cellViewSelected(cell: self)
+        // self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
             //  self.delegate?.cellViewSelected(cell: data)
             let value_data = JSONHelper.get(value: HistoryViewModel.self,anyObject: data)
@@ -424,7 +424,7 @@ class TableViewCell : UITableViewCell{
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-   
+    
     lazy var lbValueFirst: ICLabel = {
         let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -570,7 +570,7 @@ class TableViewCell : UITableViewCell{
         self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Text)
         self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Search)
         self.lbValueFirst.text = viewModel.textTxtView
-       
+        
     }
     /*phone*/
     lazy var imgPhone : UIImageView = {
@@ -701,16 +701,16 @@ class TableViewCell : UITableViewCell{
         
     }
     func setTextLabel(mString: String) -> String{
-            if mString == BarcodeType.EAN_8.rawValue{
-                return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8) ?? "EAN 8"
-            }
-            else if mString == BarcodeType.EAN_13.rawValue{
-                return LanguageHelper.getTranslationByKey(LanguageKey.EAN_13) ?? "EAN 13"
-            }
-            else{
-                return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8) ?? "EAN 8"
-            }
+        if mString == BarcodeType.EAN_8.rawValue{
+            return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8) ?? "EAN 8"
         }
+        else if mString == BarcodeType.EAN_13.rawValue{
+            return LanguageHelper.getTranslationByKey(LanguageKey.EAN_13) ?? "EAN 13"
+        }
+        else{
+            return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8) ?? "EAN 8"
+        }
+    }
     /*calendar*/
     lazy var imgEvent : UIImageView = {
         let view = UIImageView()
@@ -771,7 +771,7 @@ class TableViewCell : UITableViewCell{
         
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
-          //  Utils.logMessage(object: data)
+            //  Utils.logMessage(object: data)
             let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
             let value_data = valueContentView?.content
             let jsonData = value_data!.data(using: .utf8)!
@@ -779,12 +779,12 @@ class TableViewCell : UITableViewCell{
             let text = value.text ?? ""
             let  query = text.replacingOccurrences(of: " ", with: "+")
             let encoded =
-            query.addingPercentEncoding(withAllowedCharacters:
-            .urlFragmentAllowed)
-//
-//                       if let encodedurl = URL(string: encoded!) {
-//                       UIApplication.shared.open(encodedurl, options: [:], completionHandler: nil)
-                        
+                query.addingPercentEncoding(withAllowedCharacters:
+                    .urlFragmentAllowed)
+            //
+            //                       if let encodedurl = URL(string: encoded!) {
+            //                       UIApplication.shared.open(encodedurl, options: [:], completionHandler: nil)
+            
             let url1 = "https://www.google.co.in/search?q=\(encoded!)"
             if let url = URL(string: url1) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
@@ -817,7 +817,7 @@ class TableViewCell : UITableViewCell{
             self.window?.rootViewController!.present(activiController, animated: true, completion: nil)
         }
     }
- 
+    
     @objc func phoneAction(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
@@ -850,11 +850,11 @@ class TableViewCell : UITableViewCell{
         }
     }
     @objc func clipboardAction(sender : UITapGestureRecognizer){
-       // self.delegate?.cellViewSelected(cell: self)
+        // self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
             self.delegate?.cellViewSelected(cell: data)
         }
-     
+        
     }
     @objc func addContactAction(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
@@ -870,39 +870,42 @@ class TableViewCell : UITableViewCell{
                     return
                 }
                 if granted{
-                    // Creating a new contact
-                    let newContact = CNMutableContact()
-                    newContact.givenName = value_data.fullNameContact!
-                    let email = CNLabeledValue(label: CNLabelHome, value: "\(value_data.emailContact!)" as NSString)
-                    newContact.emailAddresses = [email]
-                    let homeAddress = CNMutablePostalAddress()
-                    homeAddress.city = value_data.addressContact!
-                    newContact.postalAddresses = [CNLabeledValue(label:CNLabelHome, value:homeAddress)]
-                    newContact.phoneNumbers = [CNLabeledValue(
-                        label:CNLabelPhoneNumberiPhone,
-                        value:CNPhoneNumber(stringValue:value_data.phoneContact!))]
-                    
-                    
-                    // Saving contact
-                    let saveRequest = CNSaveRequest()
-                    saveRequest.add(newContact, toContainerWithIdentifier:nil)
-                    do{
-                        try store.execute(saveRequest)
-                        let alert = UIAlertController(title: "", message: "Saved", preferredStyle: .alert)
-                        let okAction = UIAlertAction(title: "OK", style: .default, handler: {(alert: UIAlertAction!) in })
-                        alert.addAction(okAction)
-                        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+                    DispatchQueue.main.async {
+                        // Creating a new contact
+                        let newContact = CNMutableContact()
+                        newContact.givenName = value_data.fullNameContact!
+                        let email = CNLabeledValue(label: CNLabelHome, value: "\(value_data.emailContact!)" as NSString)
+                        newContact.emailAddresses = [email]
+                        let homeAddress = CNMutablePostalAddress()
+                        homeAddress.city = value_data.addressContact!
+                        newContact.postalAddresses = [CNLabeledValue(label:CNLabelHome, value:homeAddress)]
+                        newContact.phoneNumbers = [CNLabeledValue(
+                            label:CNLabelPhoneNumberiPhone,
+                            value:CNPhoneNumber(stringValue:value_data.phoneContact!))]
                         
                         
+                        // Saving contact
+                        let saveRequest = CNSaveRequest()
+                        saveRequest.add(newContact, toContainerWithIdentifier:nil)
+                        do{
+                            try store.execute(saveRequest)
+                            let alert = UIAlertController(title: "", message: "Saved", preferredStyle: .alert)
+                            let okAction = UIAlertAction(title: "OK", style: .default, handler: {(alert: UIAlertAction!) in })
+                            alert.addAction(okAction)
+                            self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+                            
+                            
+                        }
+                        catch{
+                            let alert = UIAlertController(title: "Message", message: "Contact already exists", preferredStyle: .alert)
+                            let okAction = UIAlertAction(title: "OK", style: .default, handler: {(alert: UIAlertAction!) in })
+                            alert.addAction(okAction)
+                            self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+                            
+                            print(error)
+                        }
                     }
-                    catch{
-                        let alert = UIAlertController(title: "Message", message: "Contact already exists", preferredStyle: .alert)
-                        let okAction = UIAlertAction(title: "OK", style: .default, handler: {(alert: UIAlertAction!) in })
-                        alert.addAction(okAction)
-                        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
-                        
-                        print(error)
-                    }
+                    
                 }
                 else
                 {
@@ -935,11 +938,11 @@ class TableViewCell : UITableViewCell{
     }
     @objc func wifiAction(sender : UITapGestureRecognizer){
         guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-                  return
+            return
         }
         if UIApplication.shared.canOpenURL(settingsUrl) {
             UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                       print("Settings opened: \(success)") // Prints true
+                print("Settings opened: \(success)") // Prints true
             })
         }
     }

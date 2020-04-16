@@ -35,11 +35,7 @@ extension ChooseHistoryVC  {
         
     }
     
-    func setupLeftButton(){
-        let navButton = Helper.addLeftBackButton(self.view)
-        self.view.bringSubviewToFront(navButton!)
-        navButton?.addTarget(self, action: #selector(closeButtonPress), for: .touchUpInside)
-    }
+   
     
     //Mark: - setUpTableView()
     func setupTableView(){
@@ -48,7 +44,14 @@ extension ChooseHistoryVC  {
     }
     func bindViewModel() {
         self.historyViewModel.showLoading.bind { visible in
-            visible ? ProgressHUD.show(): ProgressHUD.dismiss()
+            if visible {
+                ProgressHUD.show()
+                self.view.isUserInteractionEnabled = false
+            }
+            else{
+                 ProgressHUD.dismiss()
+                self.view.isUserInteractionEnabled = true
+            }
         }
         self.historyViewModel.onShowError = { [weak self] alert in
             self?.presentSingleButtonDialog(alert: alert)
@@ -80,7 +83,7 @@ extension ChooseHistoryVC  {
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
-        
+
         let menuButtonRightDel = UIButton(type: .system)
         menuButtonRightDel.setImage(UIImage(named: AppImages.IC_DELETE), for: .normal)
         menuButtonRightDel.addTarget(self, action: #selector(doDeleteItem), for: .touchUpInside)

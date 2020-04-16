@@ -262,12 +262,7 @@ extension ScannerVC {
     func bindViewModel() {
         
         self.viewModel.showLoading.bind { visible in
-            if visible{
-                ProgressHUD.showInView(view: self.view)
-            }
-            else{
-                ProgressHUD.dismiss()
-            }
+            visible ? ProgressHUD.show(): ProgressHUD.dismiss()
         }
         self.viewModel.onShowError = { [weak self] alert in
             self?.presentSingleButtonDialog(alert: alert)
@@ -278,6 +273,8 @@ extension ScannerVC {
                 vc.viewModel.listQRResult = (self?.viewModel.listResult)!
                 vc.viewModel.dateTime = self?.viewModel.dateTime
                 self?.navigationController?.pushViewController(vc,animated: true)
+                UserDefaults(suiteName: AppConstants.sharedIndentifier)!.removeObject(forKey: AppConstants.shareKey)
+                UserDefaults.standard.removeObject(forKey: AppConstants.keyImageData)
             }
         }
         self.viewModel.navigate = { [weak self] in
@@ -289,7 +286,8 @@ extension ScannerVC {
                 vc.listContentViewModel = (self?.viewModel.listTransaction)!
                 self?.navigationController?.pushViewController(vc, animated: true)
                 self?.viewModel.defaultValue()
-                UserDefaults(suiteName: AppConstants.sharedIndentifier)!.removeObject(forKey: AppConstants.shareKey)
+               UserDefaults(suiteName: AppConstants.sharedIndentifier)!.removeObject(forKey: AppConstants.shareKey)
+                UserDefaults.standard.removeObject(forKey: AppConstants.keyImageData)
             }
         }
         self.viewModel.resultScan.bind { value in
@@ -300,10 +298,11 @@ extension ScannerVC {
         
     }
     func fetchData(){
-        if let prefs = UserDefaults(suiteName: AppConstants.sharedIndentifier) {
-        if let imageData = prefs.object(forKey: AppConstants.shareKey) as? [Data] {
-            ProgressHUD.showInView(view: self.view)
-            for item in imageData {
+        let arr = UserDefaults.standard.array(forKey: AppConstants.keyImageData) as? [Data]
+        if arr != nil {
+            if arr!.count > 0{
+                ProgressHUD.showInView(view: self.view)
+            for item in arr! {
                 let rawImage = UIImage(data: item)
                 viewModel.listImage.append(rawImage!)
             }
@@ -314,8 +313,7 @@ extension ScannerVC {
                 
             })
         }
-    
-    }
+        }
     }
  
     func onTakeGallery(){

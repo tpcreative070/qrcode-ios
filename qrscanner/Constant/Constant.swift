@@ -51,6 +51,7 @@ public struct KeychainSwiftConstants {
 struct AppConstants {
     static let sharedIndentifier = "group.co.tpcreative.qrscanner.share"
     static let shareKey = "Images"
+      static let keyImageData = "ImageDatas"
     static var ischoose = 0
     static var isVibrate = 0
     static var isBeep = 0
@@ -88,6 +89,8 @@ struct AppConstants {
     static let HEIGHT_BACKGROUND = CGFloat(130)
     static let HEIGHT_IMAGE_HELP = CGFloat(200)
     static let HEIGHT_IMAGE_SETTING = CGFloat(50)
+    static let HEIGHT_IMAGE_SETTING_IPAD = CGFloat(60)
+
     static let HEIGHT_IMAGE_QR = CGFloat(300)
     static let HEIGHT_IMAGE_COLOR = CGFloat(64)
     static let HEIGHT_BACKGROUND_BAR = CGFloat(175)
@@ -96,6 +99,7 @@ static let IC_DEFAULT_DROP = CGFloat(18)
     static let WIDTH_BUTTON_DEFAULT = CGFloat(120)
     static let IC_DEFAULT = CGFloat(25)
     static let ICON_WIDTH_HEIGHT = CGFloat(30)
+    static let ICON_WIDTH_HEIGHT_IPAD = CGFloat(37)
     static let ICON_SCAN_WIDTH_HEIGHT = CGFloat(30)
     static let IC_CLOSE_WIDTH = CFloat(30)
     static let IC_CLOSE_HEIGHT = CFloat(30)
@@ -123,8 +127,12 @@ static let IC_DEFAULT_DROP = CGFloat(18)
     static let MARGIN_RIGHT_ITEM_HIS = CGFloat(70)
     static let MARGIN_TOP_ALERT = CGFloat(130)
     static let MARGIN_BOTTOM_ALERT = CGFloat(-130)
-    static let SWITCH_HEIGHT_DEFAULT = CGFloat(17)
+    static let SWITCH_HEIGHT_DEFAULT = CGFloat(18)
+    static let SWITCH_HEIGHT_DEFAULT_IPAD = CGFloat(20)
+
     static let SWITCH_WIDTH_DEFAULT = CGFloat(45)
+     static let SWITCH_WIDTH_DEFAULT_IPAD = CGFloat(50)
+    
     static let MARGIN_TOP_ITEM = CGFloat(12)
     static let MARGIN_TOP_ITEM_SETTING = CGFloat(8)
 
@@ -244,6 +252,8 @@ struct AppFonts {
     
     static let LABEL_FONT_SIZE = CGFloat(16)
     static let LABEL_TITLE_FONT_SIZE = CGFloat(18)
+    static let LABEL_TITLE_FONT_SIZE_IPAD = CGFloat(18)
+
     static let LABEL_TITLE_FONT_SIZE_HELP = CGFloat(20)
     
     static let LABEL_DETAIL_ITEM_FONT_SIZE = CGFloat(14)

@@ -67,6 +67,8 @@ class ChooseSaveVC : UIViewController,UIViewControllerTransitioningDelegate, UIN
         
         self.saveViewModel.doGetListSave()
         self.saveViewModel.isSelected.value = false
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +77,8 @@ class ChooseSaveVC : UIViewController,UIViewControllerTransitioningDelegate, UIN
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.isNavigationBarHidden = true
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+
     }
     
 }

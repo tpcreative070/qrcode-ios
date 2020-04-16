@@ -21,6 +21,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Create the SwiftUI view that provides the window contents.
         //        let contentView = TestViewController()
+        
+     
+        
+        
+        
        let rootVC = UINavigationController(rootViewController: MainVC())
          rootVC.isNavigationBarHidden = true
          // Use a UIHostingController as window root view controller.
@@ -118,6 +123,23 @@ func sceneDidEnterBackground(_ scene: UIScene) {
     // Use this method to save data, release shared resources, and store enough scene-specific state information
     // to restore the scene back to its current state.
 }
-    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+            // Handle URL
+        if let prefs = UserDefaults(suiteName: AppConstants.sharedIndentifier) {
+               if let imageData = prefs.object(forKey: AppConstants.shareKey) as? [Data] {
+                print(imageData)
+                UserDefaults.standard.set(imageData,forKey: AppConstants.keyImageData)
+              let rootVC = UINavigationController(rootViewController: MainVC())
+                      rootVC.isNavigationBarHidden = true
+                      if let windowScene = scene as? UIWindowScene {
+                      let window = UIWindow(windowScene: windowScene)
+                      window.rootViewController = rootVC
+                      self.window = window
+                      window.makeKeyAndVisible()
+                }
+            }
+        }
+    }
+
 }
 

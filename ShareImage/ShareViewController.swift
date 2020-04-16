@@ -26,7 +26,14 @@ class ShareViewController: SLComposeServiceViewController {
     }
     func checkFlag(){
         if flag {
-                   self.openURL(url:NSURL(string:"qrscanner://co.tpcreative.qrscanner")!)
+//            let str = "hello"
+//              let message = str.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+//                   let secondPath = "qrscanner://\(message ?? "")"
+//                   let appUrl = URL(string: secondPath)
+                     //  application.open(appUrl!, options: [:], completionHandler: nil)
+                        self.openURL(url:NSURL(string:"qrscanner://co.tpcreative.qrscanner")!)
+//            openURL(appUrl!)
+        
                }
     }
    

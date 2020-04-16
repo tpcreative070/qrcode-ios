@@ -60,8 +60,8 @@ extension TableViewCell {
         self.viewSub.addSubview(imgIcon)
             self.imgIcon.centerYAnchor.constraint(equalTo: viewSub.centerYAnchor).isActive = true
         self.imgIcon.leadingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant: AppConstants.MARGIN_LEFT).isActive = true
-        self.imgIcon.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT).isActive = true
-        self.imgIcon.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT).isActive = true
+        self.imgIcon.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT).isActive = true
+        self.imgIcon.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT).isActive = true
         self.imgIcon.image = UIImage(named: AppImages.IC_SHARE)
         
         self.viewBackgroundSecond.addSubview(self.viewUnderLine)
@@ -72,8 +72,8 @@ extension TableViewCell {
             self.viewUnderLine.heightAnchor.constraint(equalToConstant: 1)
         ])
         //  self.viewUnderLine.backgroundColor = .gray
-         self.lbCreatedDate.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE)
-         self.lbContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+         self.lbCreatedDate.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE_HELP) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE)
+         self.lbContent.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
         let tapGestureImg = UITapGestureRecognizer(target: self, action: #selector(actionImageViewTap(sender:)))
         imgIcon.addGestureRecognizer(tapGestureImg)
         imgIcon.isUserInteractionEnabled  = true
