@@ -213,6 +213,14 @@ extension UIViewController {
               print(fileURL)
               try csvString.write(to: fileURL, atomically: true, encoding: .utf8)
               let activiController = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+            if DeviceHelper.isIpad(){
+                if let popoverController = activiController.popoverPresentationController {
+                           popoverController.sourceView = self.view //to set the source of your alert
+                           popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0) // you can set this as per your requirement.
+                    popoverController.permittedArrowDirections = [.up] //to hide the arrow of any particular direction
+                       }
+              //  self.present(activiController, animated: true, completion: nil)
+            }
               self.present(activiController,animated: true, completion: nil)
           } catch {
               print("error creating file")

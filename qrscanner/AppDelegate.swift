@@ -18,9 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         //   application.statusBarStyle = .lightContent
         
-        UITabBar.appearance().tintColor = AppColors.PRIMARY_COLOR
-        UITabBar.appearance().barTintColor = AppColors.GRAY_LIGHT
+        UITabBar.appearance().tintColor = AppColors.WHITE_COLOR
+        UITabBar.appearance().barTintColor = AppColors.PRIMARY_COLOR
         UITabBar.appearance().unselectedItemTintColor = AppColors.GRAY
+        
+         UITabBar.appearance().backgroundColor = AppColors.PRIMARY_COLOR
+       
+      
+
         self.initGoogleServices()
         self.initLanguage()
         self.initConfig()

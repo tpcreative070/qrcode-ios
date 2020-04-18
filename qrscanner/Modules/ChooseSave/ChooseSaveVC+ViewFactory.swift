@@ -60,6 +60,8 @@ extension ChooseSaveVC  {
             if value == EnumResponseToView.UPDATE_DATA_SOURCE.rawValue {
                 self?.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
                 self?.navigationItem.title = "\(String(describing: self!.saveViewModel.countItemSelected)) \(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Selected)!))"
+                let attributes = [NSAttributedString.Key.font: DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE), NSAttributedString.Key.foregroundColor:UIColor.white]
+                self?.navigationController?.navigationBar.titleTextAttributes = attributes
                 self?.updateDataSource()
             }
         }
@@ -80,14 +82,30 @@ extension ChooseSaveVC  {
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
-        let menuButtonRightDel = UIButton(type: .system)
-        menuButtonRightDel.setImage(UIImage(named: AppImages.IC_DELETE), for: .normal)
+        
+        let menuButtonRightDel = UIButton(frame: DeviceHelper.isIpad() ? CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT_IPAD, height: AppConstants.ICON_WIDTH_HEIGHT_IPAD) : CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT, height: AppConstants.ICON_WIDTH_HEIGHT))
+        menuButtonRightDel.setBackgroundImage(UIImage(named: AppImages.IC_DELETE), for: .normal)
         
         menuButtonRightDel.addTarget(self, action: #selector(doDeleteItem), for: .touchUpInside)
-        let menuButtonRightSelectAll = UIButton(type: .system)
-        menuButtonRightSelectAll.setImage(UIImage(named: AppImages.IC_SELECT_ALL), for: .normal)
+        let menuButtonRightSelectAll = UIButton(frame: DeviceHelper.isIpad() ? CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT_IPAD, height: AppConstants.ICON_WIDTH_HEIGHT_IPAD) : CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT, height: AppConstants.ICON_WIDTH_HEIGHT))
+        menuButtonRightSelectAll.setBackgroundImage(UIImage(named: AppImages.IC_SELECT_ALL), for: .normal)
         menuButtonRightSelectAll.addTarget(self, action: #selector(doSelectAll), for: .touchUpInside)
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRightDel),UIBarButtonItem(customView:menuButtonRightSelectAll)]
+        
+      if DeviceHelper.isIpad() {
+               navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRightDel),UIBarButtonItem(customView: menuButtonRightSelectAll)]
+           }
+           else{
+           
+        let stackview = UIStackView.init(arrangedSubviews: [menuButtonRightSelectAll,menuButtonRightDel])
+                  stackview.distribution = .fillEqually
+                  stackview.axis = .horizontal
+                  stackview.alignment = .fill
+                  stackview.spacing = 8
+               navigationItem.rightBarButtonItem = UIBarButtonItem(customView: stackview)
+           }
+        
+       
+        
     }
     
     func bindTableView(){

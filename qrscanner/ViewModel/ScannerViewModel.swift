@@ -406,6 +406,8 @@ class ScannerViewModel : ScannerViewModelDelegate {
         self.listResult.removeAll()
         self.isScanner = false
     }
+    
+    
     func doAsync(list : [UIImage]){
         defaultValue()
          AppConstants.isCam = 1
@@ -418,11 +420,13 @@ class ScannerViewModel : ScannerViewModelDelegate {
                 myGroup.enter()
                 //Do something and leave
                 if let mData = index.toCGImage(){
+                    print(mData)
                     CommonService.onReaderQRcode(tempImage: mData, countList : list.count) { (value) in
                         if value == nil {
                             flag = true
                         }
                         if let mValue = value {
+                            print(mValue.count)
                             if mValue.count > 1
                             {
                                 if list.count > 0{
@@ -432,8 +436,10 @@ class ScannerViewModel : ScannerViewModelDelegate {
                             else if mValue.count == 1
                             {
                                 vstring = mValue[0].text
-                                let type = self.barcodeFormatToString(format: ZXBarcodeFormat(rawValue: mValue[0].barcodeFormat.rawValue))
+                                
+                                let type = CommonService.barcodeFormatToString(format: ZXBarcodeFormat(rawValue: mValue[0].barcodeFormat.rawValue))
                                 self.scannerResult(mValue: mValue[0].text, mType:type)
+                                
                             }
                             else{
                                 
@@ -513,58 +519,5 @@ class ScannerViewModel : ScannerViewModelDelegate {
         listScanner.removeAll()
         self.navigate?()
     }
-    func barcodeFormatToString(format: ZXBarcodeFormat) -> String {
-        switch (format) {
-        case kBarcodeFormatAztec:
-            return LanguageKey.Aztec
-            
-        case kBarcodeFormatCodabar:
-            return LanguageKey.CODABAR
-            
-        case kBarcodeFormatCode39:
-            return LanguageKey.Code_39
-            
-        case kBarcodeFormatCode93:
-            return LanguageKey.Code_93
-            
-        case kBarcodeFormatCode128:
-            return LanguageKey.Code_128
-            
-        case kBarcodeFormatDataMatrix:
-            return LanguageKey.Data_Matrix
-            
-        case kBarcodeFormatEan8:
-            return LanguageKey.EAN_8
-            
-        case kBarcodeFormatEan13:
-            return LanguageKey.EAN_13
-            
-        case kBarcodeFormatITF:
-            return LanguageKey.ITF
-            
-        case kBarcodeFormatPDF417:
-            return LanguageKey.PDF417
-            
-        case kBarcodeFormatQRCode:
-            return LanguageKey.QR_Code
-            
-        case kBarcodeFormatRSS14:
-            return LanguageKey.RSS_14
-            
-        case kBarcodeFormatRSSExpanded:
-            return LanguageKey.RSS_Expanded
-            
-        case kBarcodeFormatUPCA:
-            return LanguageKey.UPCA
-            
-        case kBarcodeFormatUPCE:
-            return LanguageKey.UPCE
-            
-        case kBarcodeFormatUPCEANExtension:
-            return LanguageKey.UPC_EAN_extension
-            
-        default:
-            return LanguageKey.Unknown
-        }
-    }
+
 }

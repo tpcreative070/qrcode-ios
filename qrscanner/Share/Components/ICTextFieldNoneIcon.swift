@@ -98,7 +98,7 @@ open class ICTextFieldNoneIcon: UITextField { // swiftlint:disable:this type_bod
     }
 
     /// A UIFont value that determines the text font of the title label
-    @objc dynamic open var titleFont: UIFont = .systemFont(ofSize: 13) {
+    @objc dynamic open var titleFont: UIFont = DeviceHelper.isIpad() ? .systemFont(ofSize: 15):  .systemFont(ofSize: 13){
         didSet {
             updateTitleLabel()
         }

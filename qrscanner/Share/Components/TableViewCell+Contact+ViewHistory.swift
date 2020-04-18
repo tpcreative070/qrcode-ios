@@ -84,7 +84,7 @@ extension TableViewCell  {
         
         viewBackgroundThird.addSubview(imgContact)
         NSLayoutConstraint.activate([
-            imgContact.topAnchor.constraint(equalTo: viewBackgroundThird.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
+            imgContact.topAnchor.constraint(equalTo: viewBackgroundThird.topAnchor, constant: AppConstants.MARGIN_TOP),
             imgContact.leadingAnchor.constraint(equalTo: viewBackgroundThird.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             self.imgContact.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
             self.imgContact.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),

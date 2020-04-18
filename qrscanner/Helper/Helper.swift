@@ -359,7 +359,7 @@ struct Helper {
                      let content = ContentModel(data :(contentData.toObject(value: UrlModel.self))!)
                      let stringContent = content.content?.data(using: .utf8 )
                      let urlModel : UrlModel = try! JSONDecoder().decode(UrlModel.self, from: stringContent!)
-                     valueShowContent = "Url: \(urlModel.url ?? "")"
+            valueShowContent = "\(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Url)!)): \(urlModel.url ?? "")"
                      
                  }
                      //
@@ -367,26 +367,26 @@ struct Helper {
                      let content = ContentModel(data: (contentData.toObject(value: TextModel.self))!)
                      let stringContent = content.content?.data(using: .utf8 )
                      let textModel : TextModel = try! JSONDecoder().decode(TextModel.self, from: stringContent!)
-                     valueShowContent = "Text: \(textModel.text ?? "")"
+            valueShowContent = "\(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Text)!)): \(textModel.text ?? "")"
                  }
                  else if typeCode == EnumType.LOCATION.rawValue{
                      let content = ContentModel(data: (contentData.toObject(value: LocationModel.self))!)
                      let stringContent = content.content?.data(using: .utf8 )
                      let locationModel : LocationModel = try! JSONDecoder().decode(LocationModel.self, from: stringContent!)
-                     valueShowContent = "Latitude: \(locationModel.latitude ?? 0)\nLongtitude: \(locationModel.longtitude ?? 0)\nQuery: \(locationModel.query ?? "")"
+                     valueShowContent = "\(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Latitude)!)): \(locationModel.latitude ?? 0)\n\(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Longtitude)!)): \(locationModel.longtitude ?? 0)\n\(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Query)!)): \(locationModel.query ?? "")"
                  }
                  else if typeCode == EnumType.EMAIL.rawValue{
                      let content = ContentModel(data: (contentData.toObject(value: EmailModel.self))!)
                      let stringContent = content.content?.data(using: .utf8 )
                      let emailModel : EmailModel = try! JSONDecoder().decode(EmailModel.self, from: stringContent!)
-            valueShowContent = "Email: \(emailModel.email ?? "")\nSubject: \(emailModel.objectEmail ?? "")\nMessage:\(emailModel.messageEmail ?? "")"
+            valueShowContent = "\(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Email)!)): \(emailModel.email ?? "")\n\(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Subject)!)): \(emailModel.objectEmail ?? "")\n\(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Message)!)):\(emailModel.messageEmail ?? "")"
                  }
                  else if typeCode == EnumType.EVENT.rawValue{
                      
                      let content = ContentModel(data: (contentData.toObject(value: EventModel.self))!)
                      let stringContent = content.content?.data(using: .utf8 )
                      let eventModel : EventModel = try! JSONDecoder().decode(EventModel.self, from: stringContent!)
-            valueShowContent = "Title: \(eventModel.title ?? "")\nDescription: \(eventModel.description ?? "")\nLocation: \(eventModel.location ?? "")\nStart event: \(eventModel.beginTime ?? "")\nEnd event: \(eventModel.endTime ?? "")"
+            valueShowContent = "\(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Title)!)): \(eventModel.title ?? "")\n\(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Description)!)): \(eventModel.description ?? "")\n\(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Location)!)): \(eventModel.location ?? "")\n\(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.TimeBegin)!)): \(eventModel.beginTime ?? "")\n\(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.TimeEnd)!)): \(eventModel.endTime ?? "")"
                      
                  }
                  else if typeCode == EnumType.MESSAGE.rawValue{
@@ -394,29 +394,36 @@ struct Helper {
                      let content = ContentModel(data: (contentData.toObject(value: MessageModel.self))!)
                      let stringContent = content.content?.data(using: .utf8 )
                      let messageModel : MessageModel = try! JSONDecoder().decode(MessageModel.self, from: stringContent!)
-            valueShowContent = "Phone: \(messageModel.to ?? "")\nMessage: \(messageModel.message ?? "")"
+            valueShowContent = "\(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Phone)!)): \(messageModel.to ?? "")\n\(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Message)!)): \(messageModel.message ?? "")"
                  }
                  else if typeCode == EnumType.WIFI.rawValue{
                      
                      let content = ContentModel(data: (contentData.toObject(value: WifiModel.self))!)
                      let stringContent = content.content?.data(using: .utf8 )
                      let wifiModel : WifiModel = try! JSONDecoder().decode(WifiModel.self, from: stringContent!)
-            valueShowContent = "SSID: \(wifiModel.ssid ?? "")\nPassword: \(wifiModel.password ?? "")\nNetwork encryption: \(wifiModel.protect ?? "")\nHidden: \(wifiModel.hidden)"
+            valueShowContent = "\(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.SSID)!)): \(wifiModel.ssid ?? "")\n\(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Password)!)): \(wifiModel.password ?? "")\n\(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.NetworkEncryption)!)): \(wifiModel.protect ?? "")\n\(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Hidden)!)): \(wifiModel.hidden)"
                  }
                  else if typeCode == EnumType.TELEPHONE.rawValue{
                      
                      let content = ContentModel(data: (contentData.toObject(value: PhoneModel.self))!)
                      let stringContent = content.content?.data(using: .utf8 )
                      let phoneModel : PhoneModel = try! JSONDecoder().decode(PhoneModel.self, from: stringContent!)
-                     valueShowContent = "Phone: \(phoneModel.phone ?? "")"
+                     valueShowContent = "\(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Phone)!)): \(phoneModel.phone ?? "")"
                  }
                  else if typeCode == EnumType.CONTACT.rawValue{
                      
                      let content = ContentModel(data: (contentData.toObject(value: ContactModel.self))!)
                      let stringContent = content.content?.data(using: .utf8 )
                      let contactModel : ContactModel = try! JSONDecoder().decode(ContactModel.self, from: stringContent!)
-            valueShowContent = "Address: \(contactModel.addressContact ?? "")\nFullname: \(contactModel.fullNameContact ?? "")\nEmail: \(contactModel.emailContact ?? "")\nPhone: \(contactModel.phoneContact ?? "")"
+            valueShowContent = "\(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Address)!)): \(contactModel.addressContact ?? "")\n\(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.FullName)!)): \(contactModel.fullNameContact ?? "")\n\(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Email)!)): \(contactModel.emailContact ?? "")\n\(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Phone)!)): \(contactModel.phoneContact ?? "")"
                  }
+        else if typeCode == EnumType.BARCODE.rawValue{
+                          
+                          let content = ContentModel(data: (contentData.toObject(value: BarcodeModel.self))!)
+                          let stringContent = content.content?.data(using: .utf8 )
+                          let contactModel : BarcodeModel = try! JSONDecoder().decode(BarcodeModel.self, from: stringContent!)
+                 valueShowContent = "\(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.ProductID)!)): \(contactModel.productID ?? "")\n \(contactModel.barcodetype ?? "")"
+                      }
            return valueShowContent
        }
     static func getVersion() -> String? {

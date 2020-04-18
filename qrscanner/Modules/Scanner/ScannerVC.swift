@@ -229,6 +229,7 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
     override func viewDidAppear(_ animated: Bool) {
         ProgressHUD.dismiss()
         session?.startRunning()
+        AppConstants.isCam = 0
         fetchData()
     }
     override func viewWillDisappear(_ animated: Bool) {

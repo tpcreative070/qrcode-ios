@@ -66,11 +66,11 @@ class QRCodeVC: BaseViewController {
         viewModel.listItemSelected.removeAll()
         viewModel.listTransaction.removeAll()
         self.viewModel.listContent.removeAll()
-        
+        print(viewModel.listItem.count)
         for index in viewModel.listItem {
             //Utils.logMessage(object: viewModel.listItem)
             if index.check == true {
-                viewModel.scannerResult(mValue: index.stringCode!)
+                viewModel.scannerResult(mValue: index.stringCode!, mType: CommonService.barcodeFormatToString(format: ZXBarcodeFormat(rawValue: UInt32(Int(index.typeCode!)))))
             }
         }
         viewModel.doGetListTransaction()

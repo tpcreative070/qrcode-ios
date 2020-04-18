@@ -213,6 +213,8 @@ open class TabView: UIScrollView {
         var xPosition: CGFloat = 0
 
         for index in 0..<itemCount {
+   
+
             let tabItemView = TabItemView(frame: CGRect(x: xPosition, y: 0, width: options.itemView.width, height: containerView.frame.size.height))
             tabItemView.translatesAutoresizingMaskIntoConstraints = false
             tabItemView.clipsToBounds = options.clipsToBounds
@@ -224,6 +226,7 @@ open class TabView: UIScrollView {
             }
             if let imgg = dataSource.tabView(self, imageForItemAt: index){
                           tabItemView.imageIcon.image = imgg.image
+
                       }
             tabItemView.isSelected = index == currentIndex
 

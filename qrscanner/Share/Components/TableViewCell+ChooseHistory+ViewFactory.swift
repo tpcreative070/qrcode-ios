@@ -54,8 +54,8 @@ extension TableViewCell {
              self.viewSub.addSubview(checkBox)
                  self.checkBox.centerYAnchor.constraint(equalTo: viewSub.centerYAnchor).isActive = true
              self.checkBox.leadingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant: AppConstants.MARGIN_LEFT).isActive = true
-             self.checkBox.widthAnchor.constraint(equalToConstant: AppConstants.MARGIN_LEFT).isActive = true
-             self.checkBox.heightAnchor.constraint(equalToConstant: AppConstants.MARGIN_LEFT).isActive = true
+        self.checkBox.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.IC_DEFAULT : AppConstants.MARGIN_LEFT).isActive = true
+             self.checkBox.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.IC_DEFAULT : AppConstants.MARGIN_LEFT).isActive = true
              
              self.viewBackgroundSecond.addSubview(self.viewUnderLine)
              NSLayoutConstraint.activate([

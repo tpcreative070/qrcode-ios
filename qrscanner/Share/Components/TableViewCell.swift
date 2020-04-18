@@ -80,6 +80,7 @@ class TableViewCell : UITableViewCell{
         view.translatesAutoresizingMaskIntoConstraints = false
         view.lineBreakMode = .byWordWrapping
         view.numberOfLines = 0
+        view.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
         return view
     }()
     /*history*/
@@ -97,6 +98,7 @@ class TableViewCell : UITableViewCell{
     lazy var lbCreatedDate : ICLabel = {
         let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
         return view
     }()
     
@@ -109,6 +111,7 @@ class TableViewCell : UITableViewCell{
     lazy var lbContent : ICLabel = {
         let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
         return view
     }()
     lazy var lbTypeCode : ICLabel = {
@@ -172,6 +175,8 @@ class TableViewCell : UITableViewCell{
             let hints = ZXEncodeHints() as ZXEncodeHints
             hints.encoding = String.Encoding.utf8.rawValue
             let typeformat = ZXBarcodeFormat.init(UInt32(typeformat))
+            print(typeformat.rawValue);
+           
             if let result : ZXBitMatrix = try writer.encode(image, format: typeformat, width: Int32(AppConstants.HEIGHT_IMAGE_QR), height: Int32(AppConstants.HEIGHT_IMAGE_QR),hints: hints){
                 let image : ZXImage = ZXImage(matrix: result)
                 let barcode : UIImage = UIImage(cgImage: image.cgimage)
@@ -181,6 +186,7 @@ class TableViewCell : UITableViewCell{
             {
                 return UIImage(named: AppImages.IC_HELP)!
             }
+           
         }
         catch{
             print("error \(error)")
@@ -422,6 +428,7 @@ class TableViewCell : UITableViewCell{
     lazy var lbTitleFirst : ICLabel = {
         let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
         return view
     }()
     
@@ -431,7 +438,7 @@ class TableViewCell : UITableViewCell{
         view.alpha = AppConstants.ALPHA_DISBALE
         view.lineBreakMode = .byWordWrapping
         view.numberOfLines = 0
-        view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+       view.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
         return view
     }()
     lazy var lbValueSecond: ICLabel = {
@@ -440,7 +447,7 @@ class TableViewCell : UITableViewCell{
         view.alpha = AppConstants.ALPHA_DISBALE
         view.lineBreakMode = .byWordWrapping
         view.numberOfLines = 0
-        view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+view.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
         return view
     }()
     lazy var lbValueThird: ICLabel = {
@@ -457,7 +464,7 @@ class TableViewCell : UITableViewCell{
         view.alpha = AppConstants.ALPHA_DISBALE
         view.lineBreakMode = .byWordWrapping
         view.numberOfLines = 0
-        view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        view.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
         return view
     }()
     lazy var lbValueFive: ICLabel = {
@@ -466,7 +473,7 @@ class TableViewCell : UITableViewCell{
         view.alpha = AppConstants.ALPHA_DISBALE
         view.lineBreakMode = .byWordWrapping
         view.numberOfLines = 0
-        view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        view.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
         return view
     }()
     var viewBackgroundThird: UIView = {
@@ -506,6 +513,7 @@ class TableViewCell : UITableViewCell{
     lazy var lbTitleSecond : ICLabel = {
         let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
         return view
     }()
     lazy var imgUrl : UIImageView = {
@@ -519,21 +527,25 @@ class TableViewCell : UITableViewCell{
     lazy var lbTitleThird : ICLabel = {
         let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
         return view
     }()
     lazy var lbTitleFour : ICLabel = {
         let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
         return view
     }()
     lazy var lbTitleFive : ICLabel = {
         let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
         return view
     }()
     lazy var lbTitleSix : ICLabel = {
         let view = ICLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
         return view
     }()
     lazy var imgClipboard : UIImageView = {

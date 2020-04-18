@@ -83,10 +83,13 @@ extension ResultGenerateVC {
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
        self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
-             let menuButtonRight = UIButton(type: .system)
-        menuButtonRight.setImage(UIImage(named: AppImages.IC_PRINT), for: .normal)
+             let menuButtonRight = UIButton(frame: DeviceHelper.isIpad() ? CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT_IPAD, height: AppConstants.ICON_WIDTH_HEIGHT_IPAD) : CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT, height: AppConstants.ICON_WIDTH_HEIGHT))
+        menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_PRINT), for: .normal)
              menuButtonRight.addTarget(self, action: #selector(printAction), for: .touchUpInside)
             navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRight)]
+        
+        
+  
     }
     func printImage(){
         let borderWidth: CGFloat = 100.0

@@ -16,13 +16,13 @@ public struct SwipeMenuViewOptions {
         }
         public struct ItemView {
             /// ItemView width. Defaults to `100.0`.
-            public var width: CGFloat = 100
+            public var width: CGFloat = DeviceHelper.isIpad() ? 120 : 100
 
             /// ItemView side margin. Defaults to `5.0`.
             public var margin: CGFloat = 5.0
 
             /// ItemView font. Defaults to `14 pt as bold SystemFont`.
-            public var font: UIFont = UIFont.boldSystemFont(ofSize: 14)
+            public var font: UIFont = DeviceHelper.isIpad() ? UIFont.boldSystemFont(ofSize: 18) :  UIFont.boldSystemFont(ofSize: 14)
 
             /// ItemView clipsToBounds. Defaults to `true`.
             public var clipsToBounds: Bool = true
@@ -37,7 +37,7 @@ public struct SwipeMenuViewOptions {
             
             public struct Underline {
                 /// Underline height if addition style select `.underline`. Defaults to `2.0`.
-                public var height: CGFloat = 3.0
+                public var height: CGFloat = DeviceHelper.isIpad() ? 4.5 : 3.0
               
             }
             
@@ -68,7 +68,7 @@ public struct SwipeMenuViewOptions {
         }
 
         /// TabView height. Defaults to `44.0`.
-        public var height: CGFloat = 60.0
+        public var height: CGFloat = DeviceHelper.isIpad() ? 80.0 : 60
 
         /// TabView side margin. Defaults to `0.0`.
         public var margin: CGFloat = 0.0

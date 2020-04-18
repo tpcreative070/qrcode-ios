@@ -52,275 +52,339 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
     }
     func convertStringToQRCode(mValue : [ZXResult]){
         for (index, item) in mValue.enumerated() {
-            listItem.append(QRCodeViewModel(identify: index, imgCode: item.text, stringCode: item.text, typeCode: Int(item.barcodeFormat.rawValue), check: false, dateTime: ""))
+            listItem.append(QRCodeViewModel(identify: index, imgCode: item.text, stringCode: item.text, typeCode:  Int(item.barcodeFormat.rawValue), check: false, dateTime: ""))
         }
          responseToView!(EnumResponseToView.GET_DATA_SOURCE.rawValue)
     }
-    func doConvertQRtoString(){
-        for item in listItemSelected {
-            if item.check == true{
-                scannerResult(mValue: item.stringCode!)
-            }
-        }
-     //   self.navigate?()
-    }
-      func scannerResult(mValue : String){
-            var typeCode = ""
-            var value_content = ""
-            if mValue.contains("http://") || mValue.contains("https://"){
-                typeCode = EnumType.URL.rawValue
-                let content = UrlModel(url: mValue)
-                let jsonData = try! JSONEncoder().encode(content)
-                value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-            }
-            else if (mValue.contains("geo")) {
-                typeCode = EnumType.LOCATION.rawValue
-                if mValue != nil || mValue != "" {
-                    if mValue.contains(":") {
-                        let arr_split_colon = mValue.split(separator: ":")
-                        if arr_split_colon.count > 1 {
-                            let arr_split_comma = arr_split_colon[1].split(separator: ",")
-                            if arr_split_comma.count > 1{
-                                let arr_split_question = arr_split_comma[1].split(separator: "?")
-                                if arr_split_question.count > 1 {
-                                    let lat = Float(arr_split_comma[0]) ?? 0
-                                    let lon = Float(arr_split_question[0]) ?? 0
-                                    let arr_split_equal = arr_split_question[1].split(separator: "=")
-                                    let query = arr_split_equal[1]
-                                    
-                                    let content = LocationModel(latitude: lat, longtitude: lon, query: String(query))
-                                    let jsonData = try! JSONEncoder().encode(content)
-                                    value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-                                }
-                            }
-                        }
-                    }
-                }
-                
-            }
-            else if ((mValue.range(of: "mailto", options: .caseInsensitive)) != nil) || ((mValue.range(of: "MATMSG", options: .caseInsensitive)) != nil){
-                typeCode = EnumType.EMAIL.rawValue
-                var email : String = ""
-                var sub : String = ""
-                var body : String = ""
-                if ((mValue.range(of: "MATMSG", options: .caseInsensitive)) != nil) {
-                    let arr_semi_colon = mValue.split(separator: ";")
-                    let arr_first = arr_semi_colon[0].split(separator: ":")
-                    email = String(arr_first[2])
-                    sub = String((arr_semi_colon[1].split(separator: ":"))[1])
-                    body = String((arr_semi_colon[2]).split(separator: ":")[1])
-                    
-                    
-                }
-                if ((mValue.range(of: "mailto", options: .caseInsensitive)) != nil) {
-                    if mValue.contains("?"){
-                        let arr_ques = mValue.split(separator: "?")
-                        email = String((arr_ques[0].split(separator: ":"))[1])
-                        if arr_ques.count > 1{
-                            if arr_ques[1].contains("&"){
-                                
-                                let arr_and = arr_ques[1].split(separator: "&")
-                                sub = String((arr_and[0].split(separator: "="))[1])
-                                if (arr_and.count > 1 && arr_and.contains("=")){
-                                    body = String((arr_and[1].split(separator: "="))[1])
-                                    
-                                }
-                                
-                            }
-                        }
-                    }
-                    
-                }
-                let content = EmailModel(email: String(email ), objectEmail: String(sub), messageEmail: String(body))
-                let jsonData = try! JSONEncoder().encode(content)
-                value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-                
-            }
-            else if (mValue.contains("BEGIN:VCALENDAR")) || (mValue.contains("BEGIN:VEVENT")){
-                typeCode = EnumType.EVENT.rawValue
-                var summary : String = ""
-                var location : String = ""
-                var description : String = ""
-                var dtstart : String = ""
-                var dtend : String = ""
-                var arr_space : Array<Substring>
-                if  mValue.contains("\r"){
-                    arr_space = mValue.split(separator: "\r\n")
-                }
-                else {
-                    arr_space = mValue.split(separator: "\n")
-                }
-                
-                if arr_space.count > 0{
-                    for item in arr_space {
-                        if(item.contains("SUMMARY")){
-                            summary = String((item.split(separator: ":"))[1])
-                        }
-                        if(item.contains("LOCATION"))
-                        {
-                            location = String(item.split(separator: ":")[1])
-                        }
-                        if(item.contains("DESCRIPTION")){
-                            description = String(item.split(separator: ":")[1])
-                        }
-                        if (item.contains("DTSTART")){
-                            dtstart = String((item.split(separator: ":"))[1])
-                        }
-                        if (item.contains("DTEND")){
-                            dtend = String((item.split(separator: ":"))[1])
-                        }
-                    }
-                }
-
-
-                let datestart = TimeHelper.getDate(timeString: dtstart)!
-                let dateend = TimeHelper.getDate(timeString: dtend)!
-                let content = EventModel(title: summary, location: location, description: description, beginTime: datestart, endTime: dateend)
-                let jsonData = try! JSONEncoder().encode(content)
-                value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-                
-            }
-            else if ((mValue.range(of: "SMS", options: .caseInsensitive)) != nil)
-            {
-                typeCode = EnumType.MESSAGE.rawValue
-                let arr_mess = mValue.split(separator: ":")
-                let content = MessageModel(to: String(arr_mess[1]) , message: String(arr_mess[2]))
-                let jsonData = try! JSONEncoder().encode(content)
-                value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-            }
-            else if ((mValue.range(of: "WIFI", options: .caseInsensitive)) != nil) {
-                typeCode = EnumType.WIFI.rawValue
-                var ssid : String = ""
-                var protect : String = ""
-                var pass : String = ""
-                
-                let start = mValue.index(mValue.startIndex, offsetBy: 5)
-                let end = mValue.index(mValue.endIndex, offsetBy: 0)
-                let new_mValue = String(mValue[start..<end])
-                let arr_semi_colon = new_mValue.split(separator: ";")
-                for item in arr_semi_colon {
-                    if (item.contains("S"))
-                    {
-                        ssid = String((item.split(separator: ":"))[1])
-                    }
-                    if (item.contains("T"))
-                    {
-                        protect = String((item.split(separator: ":"))[1])
-                        
-                    }
-                    if (item.contains("P"))
-                    {
-                        pass = String((item.split(separator: ":"))[1])
-                        
-                    }
-                }
-                let content = WifiModel(ssid: ssid, password: pass, protect: protect)
-                let jsonData = try! JSONEncoder().encode(content)
-                value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-                
-            }
-            else if (mValue.contains("MECARD")) || (mValue.contains("VCARD")) || (mValue.contains("MCARD")) {
-                typeCode = EnumType.CONTACT.rawValue
-                var fullName : String = ""
-                var address : String = ""
-                var phone : String = ""
-                var email : String = ""
-                
-                if mValue.contains("MCARD") || mValue.contains("MECARD"){
-                    let start = mValue.index(mValue.startIndex, offsetBy: 6)
-                    let end = mValue.index(mValue.endIndex, offsetBy: 0)
-                    let new_mValue = String(mValue[start..<end])
-                    let arr_semi_colon = new_mValue.split(separator: ";")
-                    for item in arr_semi_colon {
-                        if (item.contains("N"))
-                        {
-                            fullName = String((item.split(separator: ":"))[1])
-                        }
-                        if (item.contains("TEL"))
-                        {
-                            phone = String((item.split(separator: ":"))[1])
-                        }
-                        if (item.contains("EMAIL"))
-                        {
-                            email = String((item.split(separator: ":"))[1])
-                        }
-                        if (item.contains("ADR"))
-                        {
-                            address = String((item.split(separator: ":"))[1])
-                        }
-                    }
-                }
-                if mValue.contains("VCARD"){
-                    let arr_space = mValue.split(separator: "\n")
-                    if arr_space.count > 0{
-                        for item in arr_space {
-                            if(item == "N"){
-                                fullName = String((item.split(separator: ":"))[1])
-                            }
-                            if(item.contains("EMAIL"))
-                            {
-                                email = String(item.split(separator: ":")[1])
-                            }
-                            if(item.contains("TEL")){
-                                phone += String(item.split(separator: ":")[1])
-                            }
-                            if (item.contains("ADR")){
-                                address = String((item.split(separator: ":"))[1])
-                            }
-                            
-                        }
-                    }
-                    
-                }
-                let content = ContactModel(fullNameContact: fullName, addressContact: address, phoneContact: phone, emailContact: email)
-                let jsonData = try! JSONEncoder().encode(content)
-                value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-                
-            }
-            else if (mValue.caseInsensitiveCompare("tel") == .orderedSame || (mValue.range(of: "TEL", options: .caseInsensitive)) != nil) {
-                typeCode = EnumType.TELEPHONE.rawValue
-                let tel = String(mValue.split(separator: ":")[1])
-                let content = PhoneModel(phone: tel)
-                let jsonData = try! JSONEncoder().encode(content)
-                value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-                
-            }
-                
-            else
-            {
-                typeCode = EnumType.TEXT.rawValue
-                let content = TextModel(text: mValue)
-                let jsonData = try! JSONEncoder().encode(content)
-                value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-                
-            }
-            
-            //        if let json = try? JSONSerialization.data(withJSONObject: mValue) {
-            //        if let content = String(data: json, encoding: .utf8) {
-            //        }
-            //        }
-            if (typeCode == nil || value_content == nil || typeCode == "" || value_content == "")
-            {
-            }
-            else
-            {
-                let createDateTime = Date().millisecondsSince1970
-                let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: ""))
-                if result{
-                    debugPrint("success")
-                }
-                
-            }
-        }
-    func doGetListTransaction(){
     
+    func scannerResult(mValue : String, mType: String){
+          print(mValue)
+          print(mType)
+          var typeCode = ""
+          var value_content : String = ""
+          listTransaction.removeAll()
+          
+          if ((mValue.range(of: "http://", options: .caseInsensitive)) != nil || (mValue.range(of: "https://", options: .caseInsensitive)) != nil)
+          {
+              typeCode = EnumType.URL.rawValue
+              let content = UrlModel(url: mValue)
+              let jsonData = try! JSONEncoder().encode(content)
+              value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+          }
+          else if (mValue.contains("geo")) {
+              typeCode = EnumType.LOCATION.rawValue
+              if mValue.count > 0 {
+                  if mValue.contains(":") {
+                      let arr_split_colon = mValue.split(separator: ":")
+                      if arr_split_colon.count > 1 {
+                          let arr_split_comma = arr_split_colon[1].split(separator: ",")
+                          if arr_split_comma.count > 1{
+                              let arr_split_question = arr_split_comma[1].split(separator: "?")
+                              if arr_split_question.count > 1 {
+                                  let lat = Float(arr_split_comma[0]) ?? 0
+                                  let lon = Float(arr_split_question[0]) ?? 0
+                                  let arr_split_equal = arr_split_question[1].split(separator: "=")
+                                  let query = arr_split_equal[1]
+                                  
+                                  let content = LocationModel(latitude: lat, longtitude: lon, query: String(query))
+                                  let jsonData = try! JSONEncoder().encode(content)
+                                  value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+                              }
+                          }
+                      }
+                  }
+              }
+              
+          }
+          else if ((mValue.range(of: "mailto", options: .caseInsensitive)) != nil) || ((mValue.range(of: "MATMSG", options: .caseInsensitive)) != nil){
+              typeCode = EnumType.EMAIL.rawValue
+              var email : String = ""
+              var sub : String = ""
+              var body : String = ""
+              if ((mValue.range(of: "MATMSG", options: .caseInsensitive)) != nil) {
+                  let arr_semi_colon = mValue.split(separator: ";")
+                  let arr_first = arr_semi_colon[0].split(separator: ":")
+                  if arr_first.count > 2
+                  {
+                  email = String(arr_first[2])
+                 
+                  }
+                  if arr_semi_colon.count > 1 {
+                  sub = String((arr_semi_colon[1].split(separator: ":"))[1])
+                      if arr_semi_colon.count > 2{
+                      body = String((arr_semi_colon[2]).split(separator: ":")[1])
+                      }
+                  }
+              }
+              if ((mValue.range(of: "mailto", options: .caseInsensitive)) != nil) {
+                  if mValue.contains("?"){
+                      let arr_ques = mValue.split(separator: "?")
+                      email = String((arr_ques[0].split(separator: ":"))[1])
+                      if arr_ques.count > 1{
+                          if arr_ques[1].contains("&"){
+                              let arr_and = arr_ques[1].split(separator: "&")
+                              sub = String((arr_and[0].split(separator: "="))[1])
+                              if (arr_and.count > 1 && arr_and.contains("=")){
+                                  body = String((arr_and[1].split(separator: "="))[1])
+                                  
+                              }
+                              
+                          }
+                      }
+                  }
+                  else{
+                      if mValue.split(separator: ":").count > 1 {
+                      email = String(mValue.split(separator: ":")[1])
+                      }
+                  }
+                  
+              }
+              let content = EmailModel(email: String(email ), objectEmail: String(sub), messageEmail: String(body))
+              let jsonData = try! JSONEncoder().encode(content)
+              value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+              
+          }
+          else if (mValue.contains("BEGIN:VCALENDAR")) || (mValue.contains("BEGIN:VEVENT")){
+              typeCode = EnumType.EVENT.rawValue
+              var summary : String = ""
+              var location : String = ""
+              var description : String = ""
+              var dtstart : String = ""
+              var dtend : String = ""
+              var arr_space : Array<Substring>
+              if  mValue.contains("\r"){
+                  arr_space = mValue.split(separator: "\r\n")
+              }
+              else {
+                  arr_space = mValue.split(separator: "\n")
+              }
+              
+              if arr_space.count > 0{
+                  for item in arr_space {
+                      if(item.contains("SUMMARY")){
+                          if item.split(separator: ":").count > 1
+                          {
+                          summary = String((item.split(separator: ":"))[1])
+                          }
+                      }
+                      if(item.contains("LOCATION"))
+                      {
+                          if item.split(separator: ":").count > 1
+                          {
+                          location = String(item.split(separator: ":")[1])
+                          }
+                      }
+                      if(item.contains("DESCRIPTION")){
+                          if item.split(separator: ":").count > 1
+                          {
+                          description = String(item.split(separator: ":")[1])
+                          }
+                      }
+                      if (item.contains("DTSTART")){
+                          if item.split(separator: ":").count > 1
+                          {
+                          dtstart = String((item.split(separator: ":"))[1])
+                          }
+                      }
+                      if (item.contains("DTEND")){
+                          if item.split(separator: ":").count > 1
+                          {
+                          dtend = String((item.split(separator: ":"))[1])
+                          }
+                      }
+                  }
+              }
+              
+              let datestart = TimeHelper.getDate(timeString: dtstart)!
+              let dateend = TimeHelper.getDate(timeString: dtend)!
+              let content = EventModel(title: summary, location: location, description: description, beginTime: datestart, endTime: dateend)
+              let jsonData = try! JSONEncoder().encode(content)
+              value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+              
+          }
+          else if ((mValue.range(of: "SMS", options: .caseInsensitive)) != nil)
+          {
+              var to : String = ""
+               var message : String = ""
+              typeCode = EnumType.MESSAGE.rawValue
+              let arr_mess = mValue.split(separator: ":")
+              if arr_mess.count > 1 {
+                  to = String(arr_mess[1])
+              }
+              if arr_mess.count > 2 {
+                   message = String(arr_mess[2])
+              }
+              let content = MessageModel(to: to , message: message)
+              let jsonData = try! JSONEncoder().encode(content)
+              value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+              
+          }
+          else if ((mValue.range(of: "WIFI", options: .caseInsensitive)) != nil) {
+              typeCode = EnumType.WIFI.rawValue
+              var ssid : String = ""
+              var protect : String = ""
+              var pass : String = ""
+              
+              let start = mValue.index(mValue.startIndex, offsetBy: 5)
+              let end = mValue.index(mValue.endIndex, offsetBy: 0)
+              let new_mValue = String(mValue[start..<end])
+              let arr_semi_colon = new_mValue.split(separator: ";")
+              for item in arr_semi_colon {
+                  print(item)
+                  if (item.contains("S"))
+                  {
+                      if item.split(separator: ":").count > 1
+                      {
+                      ssid = String((item.split(separator: ":"))[1])
+                      }
+                  }
+                  if (item.contains("T"))
+                  {
+                      if item.split(separator: ":").count > 1
+                      {
+                      protect = String((item.split(separator: ":"))[1])
+                      }
+                  }
+                  if (item.contains("P"))
+                  {
+                      if item.split(separator: ":").count > 1
+                      {
+                      pass = String((item.split(separator: ":"))[1])
+                      }
+                  }
+              }
+              let content = WifiModel(ssid: ssid, password: pass, protect: protect)
+              let jsonData = try! JSONEncoder().encode(content)
+              value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+              
+          }
+          else if (mValue.contains("MECARD")) || (mValue.contains("VCARD")) || (mValue.contains("MCARD")) {
+              typeCode = EnumType.CONTACT.rawValue
+              var fullName : String = ""
+              var address : String = ""
+              var phone : String = ""
+              var email : String = ""
+              
+              if mValue.contains("MCARD") || mValue.contains("MECARD"){
+                  let start = mValue.index(mValue.startIndex, offsetBy: 6)
+                  let end = mValue.index(mValue.endIndex, offsetBy: 0)
+                  let new_mValue = String(mValue[start..<end])
+                  let arr_semi_colon = new_mValue.split(separator: ";")
+                  for item in arr_semi_colon {
+                      if item.split(separator: ":").count > 1
+                      {
+                      if (item.contains("N"))
+                      {
+                          fullName = String((item.split(separator: ":"))[1])
+                      }
+                      if (item.contains("TEL"))
+                      {
+                          phone = String((item.split(separator: ":"))[1])
+                      }
+                      if (item.contains("EMAIL"))
+                      {
+                          email = String((item.split(separator: ":"))[1])
+                      }
+                      if (item.contains("ADR"))
+                      {
+                          address = String((item.split(separator: ":"))[1])
+                      }
+                      }
+                  }
+              }
+              if mValue.contains("VCARD"){
+                  let arr_space = mValue.split(separator: "\n")
+                  if arr_space.count > 0{
+                      for item in arr_space {
+                          if item.split(separator: ":").count > 1
+                          {
+                          if(item == "N"){
+                              fullName = String((item.split(separator: ":"))[1])
+                          }
+                          if(item.contains("EMAIL"))
+                          {
+                              email = String(item.split(separator: ":")[1])
+                          }
+                          if(item.contains("TEL")){
+                              phone += String(item.split(separator: ":")[1])
+                          }
+                          if (item.contains("ADR")){
+                              address = String((item.split(separator: ":"))[1])
+                          }
+                          }
+                      }
+                  }
+                  
+              }
+              let content = ContactModel(fullNameContact: fullName, addressContact: address, phoneContact: phone, emailContact: email)
+              let jsonData = try! JSONEncoder().encode(content)
+              value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+              
+          }
+          else if (mValue.caseInsensitiveCompare("tel") == .orderedSame || (mValue.range(of: "TEL", options: .caseInsensitive)) != nil) {
+              typeCode = EnumType.TELEPHONE.rawValue
+              var tel : String = ""
+              if mValue.split(separator: ":").count > 1
+              {
+                  tel = String(mValue.split(separator: ":")[1])
+              }
+              let content = PhoneModel(phone: tel)
+              let jsonData = try! JSONEncoder().encode(content)
+              value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+              
+          }
+          else if ((mType.range(of: "EAN-13", options: .caseInsensitive)) != nil){
+              typeCode = EnumType.BARCODE.rawValue
+              let content = BarcodeModel(productID: mValue, type: EnumType.EAN_13.rawValue)
+              let jsonData = try! JSONEncoder().encode(content)
+              value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+          }
+          else if ((mType.range(of: "EAN-8", options: .caseInsensitive)) != nil){
+                    typeCode = EnumType.BARCODE.rawValue
+                    let content = BarcodeModel(productID: mValue, type: EnumType.EAN_8.rawValue)
+                    let jsonData = try! JSONEncoder().encode(content)
+                    value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+                }
+          else
+          {
+              typeCode = EnumType.TEXT.rawValue
+              let content = TextModel(text: String(mValue))
+              let jsonData = try! JSONEncoder().encode(content)
+              value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+              
+          }
+          
+          //        if let json = try? JSONSerialization.data(withJSONObject: mValue) {
+          //        if let content = String(data: json, encoding: .utf8) {
+          //            print(content)
+          //        }
+          //        }
+          if (typeCode.count == 0 || value_content.count == 0 || typeCode == "" || value_content == "")
+          {
+              print("Empty value")
+          }
+          else
+          {
+              let createDateTime = Date().millisecondsSince1970
+              print(createDateTime)
+            print(dateTime)
+                  let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: ""))
+                  if result {
+                      print("insert success")
+                  }
+          }
+      }
+    func doGetListTransaction(){
+        print(dateTime!)
            if let mList = SQLHelper.getListTransaction(transaction: dateTime!){
                var index = 0
                self.listTransaction = mList.map({ (data) -> ContentViewModel in
                    index += 1
+                print(data.content)
                 return ContentViewModel(typeCode: data.typeCode!, content: data.content!)
                })
            }
+        print(self.listTransaction.count)
         self.navigate?()
        }
      func doSelectedAll(isValue : Bool){

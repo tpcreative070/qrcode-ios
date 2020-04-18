@@ -23,7 +23,7 @@ extension BarcodeVC {
             viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewBackground.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            viewBackground.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_BAR)
+            viewBackground.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.HEIGHT_BACKGROUND_BAR_IPAD : AppConstants.HEIGHT_BACKGROUND_BAR)
         ])
         
         viewBackground.addSubview(viewBarcodeBg)
@@ -31,44 +31,48 @@ extension BarcodeVC {
             viewBarcodeBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewBarcodeBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewBarcodeBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewBarcodeBg.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND_ITEM_BAR)
+            viewBarcodeBg.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.HEIGHT_BACKGROUND_ITEM_BAR_IPAD : AppConstants.HEIGHT_BACKGROUND_ITEM_BAR)
         ])
         
         viewBarcodeBg.addSubview(lbProductId)
         NSLayoutConstraint.activate([
             lbProductId.topAnchor.constraint(equalTo: viewBarcodeBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             lbProductId.leadingAnchor.constraint(equalTo: viewBarcodeBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            lbProductId.trailingAnchor.constraint(equalTo: viewBarcodeBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            lbProductId.trailingAnchor.constraint(equalTo: viewBarcodeBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT),
         ])
         viewBarcodeBg.addSubview(textFieldProduct)
         NSLayoutConstraint.activate([
             textFieldProduct.topAnchor.constraint(equalTo: lbProductId.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
             textFieldProduct.leadingAnchor.constraint(equalTo: viewBarcodeBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            textFieldProduct.trailingAnchor.constraint(equalTo: viewBarcodeBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            textFieldProduct.trailingAnchor.constraint(equalTo: viewBarcodeBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT),
+            
         ])
         viewBarcodeBg.addSubview(viewDropDown)
-               NSLayoutConstraint.activate([
-                   viewDropDown.topAnchor.constraint(equalTo: textFieldProduct.bottomAnchor, constant: AppConstants.MARGIN_TOP),
-                   viewDropDown.leadingAnchor.constraint(equalTo: viewBarcodeBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-                   viewDropDown.trailingAnchor.constraint(equalTo: viewBarcodeBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT),
-                   viewDropDown.heightAnchor.constraint(equalToConstant: 40)
-               ])
+        NSLayoutConstraint.activate([
+            viewDropDown.topAnchor.constraint(equalTo: textFieldProduct.bottomAnchor, constant: AppConstants.MARGIN_TOP),
+            viewDropDown.leadingAnchor.constraint(equalTo: viewBarcodeBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewDropDown.trailingAnchor.constraint(equalTo: viewBarcodeBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT),
+            viewDropDown.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_VIEW_DROPDOWN)
+        ])
         
-       viewDropDown.addSubview(lbType)
-                   NSLayoutConstraint.activate([
-                       lbType.topAnchor.constraint(equalTo: viewDropDown.topAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
-                       lbType.leadingAnchor.constraint(equalTo: viewBarcodeBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-                       lbType.bottomAnchor.constraint(equalTo: viewBarcodeBg.bottomAnchor, constant:  AppConstants.MARGIN_BOTTOM)
-                   ])
-    viewDropDown.addSubview(imgDropdown)
-    NSLayoutConstraint.activate([
-        imgDropdown.topAnchor.constraint(equalTo: viewDropDown.topAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
-        imgDropdown.trailingAnchor.constraint(equalTo: viewBarcodeBg.trailingAnchor, constant: AppConstants.MARGIN_RIGHT),
-        imgDropdown.bottomAnchor.constraint(equalTo: viewBarcodeBg.bottomAnchor, constant:  AppConstants.MARGIN_BOTTOM)
-    ])
+        viewDropDown.addSubview(lbType)
+        NSLayoutConstraint.activate([
+            lbType.topAnchor.constraint(equalTo: viewDropDown.topAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
+            lbType.leadingAnchor.constraint(equalTo: viewBarcodeBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbType.bottomAnchor.constraint(equalTo: viewBarcodeBg.bottomAnchor, constant:  AppConstants.MARGIN_BOTTOM)
+        ])
+        viewDropDown.addSubview(imgDropdown)
+        NSLayoutConstraint.activate([
+            imgDropdown.topAnchor.constraint(equalTo: viewDropDown.topAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
+            imgDropdown.trailingAnchor.constraint(equalTo: viewBarcodeBg.trailingAnchor, constant: AppConstants.MARGIN_RIGHT),
+            imgDropdown.bottomAnchor.constraint(equalTo: viewBarcodeBg.bottomAnchor, constant:  AppConstants.MARGIN_BOTTOM)
+        ])
         
-        self.lbProductId.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-         self.lbType.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.lbProductId.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.lbType.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        
+        self.textFieldProduct.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        
         self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
         self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
         setupNavItems()
@@ -80,18 +84,20 @@ extension BarcodeVC {
         productField.addTarget(self, action: #selector(inputFieldEditingDidEnd), for: .editingDidEnd)
     }
     func setupNavItems() {
-         self.view.backgroundColor = .white
-              self.navigationController?.setNavigationBarHidden(false, animated: true)
-              navigationItem.title = LanguageHelper.getTranslationByKey(LanguageKey.Barcode)
-              let urlAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-              navigationController?.navigationBar.titleTextAttributes = urlAttributes
-                  self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
-                  navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
-                  self.navigationController?.navigationBar.tintColor = .white        
-                  let menuButtonRight = UIButton(type: .system)
-                  menuButtonRight.setImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.view.backgroundColor = .white
+        navigationItem.title = LanguageHelper.getTranslationByKey(LanguageKey.Barcode)
+          self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
+        let textAttributes = [NSAttributedString.Key.font: DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE), NSAttributedString.Key.foregroundColor:UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+      
+        
+        navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
+        self.navigationController?.navigationBar.tintColor = .white
+        let menuButtonRight = UIButton(frame: DeviceHelper.isIpad() ? CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT_IPAD, height: AppConstants.ICON_WIDTH_HEIGHT_IPAD) : CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT, height: AppConstants.ICON_WIDTH_HEIGHT))
+        menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
         menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchDown)
-                  navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRight)]
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonRight)
     }
     
     func bindViewModel() {
@@ -122,9 +128,9 @@ extension BarcodeVC {
                     
                     
                 }
-             
+                
                 Navigator.pushViewController(from: self!, to: resVC, isNavigation: true, isTransparent: false)
-              
+                
             }
         }
         generateViewModel?.onShowError = { [weak self] alert in
@@ -145,7 +151,7 @@ extension BarcodeVC {
         if barcodeViewModel.isSeen == AppConstants.ISSEEN {
             textFieldProduct.text = barcodeViewModel.productID ?? ""
             lbType.text = setTextLabel(mString: barcodeViewModel.barcodetype ?? "")
-        
+            
         }
         else{
             self.barcodeViewModel.barcodetype = BarcodeType.EAN_8.rawValue
@@ -153,20 +159,20 @@ extension BarcodeVC {
     }
     func defineValue(){
         self.generateViewModel?.typeCode = EnumType.BARCODE.rawValue
-         self.generateViewModel?.typeBarcode = barcodeViewModel.barcodetype!
-              self.generateViewModel?.productID = textFieldProduct.text
+        self.generateViewModel?.typeBarcode = barcodeViewModel.barcodetype!
+        self.generateViewModel?.productID = textFieldProduct.text
     }
     func setTextLabel(mString: String) -> String{
-           if mString == BarcodeType.EAN_8.rawValue{
-               return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8) ?? "EAN 8"
-           }
-           else if mString == BarcodeType.EAN_13.rawValue{
-               return LanguageHelper.getTranslationByKey(LanguageKey.EAN_13) ?? "EAN 13"
-           }
-           else{
-               return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8) ?? "EAN 8"
-           }
-       }
+        if mString == BarcodeType.EAN_8.rawValue{
+            return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8) ?? "EAN 8"
+        }
+        else if mString == BarcodeType.EAN_13.rawValue{
+            return LanguageHelper.getTranslationByKey(LanguageKey.EAN_13) ?? "EAN 13"
+        }
+        else{
+            return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8) ?? "EAN 8"
+        }
+    }
 }
 extension BarcodeVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ productField: UITextField) -> Bool {

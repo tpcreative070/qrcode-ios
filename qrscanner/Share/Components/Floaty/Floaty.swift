@@ -37,7 +37,7 @@ open class Floaty: UIView {
   /**
    This object's button size.
    */
-  @objc open var size: CGFloat = 56 {
+    @objc open var size: CGFloat = DeviceHelper.isIpad() ? 75 : 56 {
     didSet {
       self.setNeedsDisplay()
       self.recalculateItemsOrigin()
@@ -80,7 +80,7 @@ open class Floaty: UIView {
    Degrees to rotate image
    */
   @objc @IBInspectable
-  open var rotationDegrees: CGFloat = -45
+  open var rotationDegrees: CGFloat = -180
   
   /**
    Animation speed of buttons
@@ -132,7 +132,7 @@ open class Floaty: UIView {
    Child item's default size.
    */
   @objc @IBInspectable
-  open var itemSize: CGFloat = 42 {
+  open var itemSize: CGFloat = DeviceHelper.isIpad() ? 60 : 42 {
     didSet {
       self.items.forEach { item in
         item.size = self.itemSize
@@ -693,7 +693,7 @@ open class Floaty: UIView {
     var imgPlayer : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.image = UIImage(named: "ic_menu")
+        view.image = UIImage(named: AppImages.IC_MENU)
         return view
     }()
   fileprivate func setPlusLayer() {
@@ -707,7 +707,7 @@ open class Floaty: UIView {
     
     let myLayer = CALayer()
     let myImage = UIImage(named: AppImages.IC_MENU)?.cgImage
-    myLayer.frame = CGRect(x: 10, y: 10, width: 2*size/3, height: 2*size/3)
+    myLayer.frame = DeviceHelper.isIpad() ? CGRect(x: 13, y: 13, width: 2*size/3, height: 2*size/3) : CGRect(x: 10, y: 10, width: 2*size/3, height: 2*size/3)
 
 
     myLayer.contents = myImage
