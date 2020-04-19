@@ -80,7 +80,11 @@ class ResultGenerateVC: BaseViewController {
         super.viewWillDisappear(animated)
         keyboardHelper?.deregisterKeyboardNotification()
         self.navigationController?.isNavigationBarHidden = true
-        
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     @objc func shareView(sender : UITapGestureRecognizer){
         let imageShare = [ imgCode ]

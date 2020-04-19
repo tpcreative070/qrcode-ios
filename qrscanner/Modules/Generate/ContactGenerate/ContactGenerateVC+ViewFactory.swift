@@ -21,101 +21,101 @@ extension ContactGenerateVC{
         scrollView.addSubview(viewBackground)
         NSLayoutConstraint.activate([
             viewBackground.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: AppConstants.MARGIN_TOP),
-            viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewBackground.leftAnchor.constraint(equalTo: view.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewBackground.rightAnchor.constraint(equalTo: view.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewBackground.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            viewBackground.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.HEIGHT_BACKGROUND_IPAD * 3.4 : AppConstants.HEIGHT_BACKGROUND * 3.4)
+            viewBackground.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND * 3.35)
         ])
         viewBackground.addSubview(viewFullNameContactBg)
         NSLayoutConstraint.activate([
             viewFullNameContactBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
-            viewFullNameContactBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewFullNameContactBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewFullNameContactBg.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.HEIGHT_BACKGROUND_ITEM_IPAD : AppConstants.HEIGHT_BACKGROUND_ITEM)
+            viewFullNameContactBg.leftAnchor.constraint(equalTo: viewBackground.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewFullNameContactBg.rightAnchor.constraint(equalTo: viewBackground.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewFullNameContactBg.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM)
         ])
         
         viewFullNameContactBg.addSubview(lbFullNameContact)
         NSLayoutConstraint.activate([
             lbFullNameContact.topAnchor.constraint(equalTo: viewFullNameContactBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            lbFullNameContact.leadingAnchor.constraint(equalTo: viewFullNameContactBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            lbFullNameContact.trailingAnchor.constraint(equalTo: viewFullNameContactBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            lbFullNameContact.leadingAnchor.constraint(equalTo: viewFullNameContactBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbFullNameContact.trailingAnchor.constraint(equalTo: viewFullNameContactBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewFullNameContactBg.addSubview(textFieldFullNameContact)
         NSLayoutConstraint.activate([
             textFieldFullNameContact.topAnchor.constraint(equalTo: lbFullNameContact.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
-            textFieldFullNameContact.leadingAnchor.constraint(equalTo: viewFullNameContactBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            textFieldFullNameContact.trailingAnchor.constraint(equalTo: viewFullNameContactBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            textFieldFullNameContact.leadingAnchor.constraint(equalTo: viewFullNameContactBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            textFieldFullNameContact.trailingAnchor.constraint(equalTo: viewFullNameContactBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         
         viewBackground.addSubview(viewAddressContactBg)
         NSLayoutConstraint.activate([
             viewAddressContactBg.topAnchor.constraint(equalTo: viewFullNameContactBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            viewAddressContactBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewAddressContactBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewAddressContactBg.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.HEIGHT_BACKGROUND_ITEM_IPAD : AppConstants.HEIGHT_BACKGROUND_ITEM)
+            viewAddressContactBg.leftAnchor.constraint(equalTo: viewBackground.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewAddressContactBg.rightAnchor.constraint(equalTo: viewBackground.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewAddressContactBg.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM)
         ])
         
         viewAddressContactBg.addSubview(lbAddressContact)
         NSLayoutConstraint.activate([
             lbAddressContact.topAnchor.constraint(equalTo: viewAddressContactBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            lbAddressContact.leadingAnchor.constraint(equalTo: viewAddressContactBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            lbAddressContact.trailingAnchor.constraint(equalTo: viewAddressContactBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            lbAddressContact.leadingAnchor.constraint(equalTo: viewAddressContactBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbAddressContact.trailingAnchor.constraint(equalTo: viewAddressContactBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewAddressContactBg.addSubview(textFieldAddressContact)
         NSLayoutConstraint.activate([
             textFieldAddressContact.topAnchor.constraint(equalTo: lbAddressContact.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
-            textFieldAddressContact.leadingAnchor.constraint(equalTo: viewAddressContactBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            textFieldAddressContact.trailingAnchor.constraint(equalTo: viewAddressContactBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            textFieldAddressContact.leadingAnchor.constraint(equalTo: viewAddressContactBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            textFieldAddressContact.trailingAnchor.constraint(equalTo: viewAddressContactBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         
         viewBackground.addSubview(viewPhoneContactBg)
         NSLayoutConstraint.activate([
             viewPhoneContactBg.topAnchor.constraint(equalTo: viewAddressContactBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            viewPhoneContactBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewPhoneContactBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewPhoneContactBg.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.HEIGHT_BACKGROUND_ITEM_IPAD : AppConstants.HEIGHT_BACKGROUND_ITEM)
+            viewPhoneContactBg.leftAnchor.constraint(equalTo: viewBackground.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewPhoneContactBg.rightAnchor.constraint(equalTo: viewBackground.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewPhoneContactBg.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM)
         ])
         
         viewPhoneContactBg.addSubview(lbPhoneContact)
         NSLayoutConstraint.activate([
             lbPhoneContact.topAnchor.constraint(equalTo: viewPhoneContactBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            lbPhoneContact.leadingAnchor.constraint(equalTo: viewPhoneContactBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            lbPhoneContact.trailingAnchor.constraint(equalTo: viewPhoneContactBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            lbPhoneContact.leadingAnchor.constraint(equalTo: viewPhoneContactBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbPhoneContact.trailingAnchor.constraint(equalTo: viewPhoneContactBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewPhoneContactBg.addSubview(textFieldPhoneContact)
         NSLayoutConstraint.activate([
             textFieldPhoneContact.topAnchor.constraint(equalTo: lbPhoneContact.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
-            textFieldPhoneContact.leadingAnchor.constraint(equalTo: viewPhoneContactBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            textFieldPhoneContact.trailingAnchor.constraint(equalTo: viewPhoneContactBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            textFieldPhoneContact.leadingAnchor.constraint(equalTo: viewPhoneContactBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            textFieldPhoneContact.trailingAnchor.constraint(equalTo: viewPhoneContactBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewBackground.addSubview(viewEmailContactBg)
         NSLayoutConstraint.activate([
             viewEmailContactBg.topAnchor.constraint(equalTo: viewPhoneContactBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            viewEmailContactBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewEmailContactBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewEmailContactBg.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.HEIGHT_BACKGROUND_ITEM_IPAD : AppConstants.HEIGHT_BACKGROUND_ITEM)
+            viewEmailContactBg.leftAnchor.constraint(equalTo: viewBackground.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewEmailContactBg.rightAnchor.constraint(equalTo: viewBackground.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewEmailContactBg.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM)
         ])
         
         viewEmailContactBg.addSubview(lbEmailContact)
         NSLayoutConstraint.activate([
             lbEmailContact.topAnchor.constraint(equalTo: viewEmailContactBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            lbEmailContact.leadingAnchor.constraint(equalTo: viewEmailContactBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            lbEmailContact.trailingAnchor.constraint(equalTo: viewEmailContactBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            lbEmailContact.leadingAnchor.constraint(equalTo: viewEmailContactBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbEmailContact.trailingAnchor.constraint(equalTo: viewEmailContactBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewEmailContactBg.addSubview(textFieldEmailContact)
         NSLayoutConstraint.activate([
             textFieldEmailContact.topAnchor.constraint(equalTo: lbEmailContact.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
-            textFieldEmailContact.leadingAnchor.constraint(equalTo: viewEmailContactBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            textFieldEmailContact.trailingAnchor.constraint(equalTo: viewEmailContactBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            textFieldEmailContact.leadingAnchor.constraint(equalTo: viewEmailContactBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            textFieldEmailContact.trailingAnchor.constraint(equalTo: viewEmailContactBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-        self.lbFullNameContact.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-        self.lbAddressContact.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-        self.lbPhoneContact.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-        self.lbEmailContact.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-        self.textFieldFullNameContact.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-        self.textFieldEmailContact.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-        self.textFieldPhoneContact.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-        self.textFieldAddressContact.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.lbFullNameContact.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbAddressContact.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbPhoneContact.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbEmailContact.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.textFieldFullNameContact.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.textFieldEmailContact.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.textFieldPhoneContact.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.textFieldAddressContact.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
 
         self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
         self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
@@ -135,12 +135,12 @@ extension ContactGenerateVC{
         self.view.backgroundColor = .white
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationItem.title = LanguageHelper.getTranslationByKey(LanguageKey.Contact)
-        let textAttributes = [NSAttributedString.Key.font: DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE), NSAttributedString.Key.foregroundColor:UIColor.white]
+        let textAttributes = [NSAttributedString.Key.font: AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE), NSAttributedString.Key.foregroundColor:UIColor.white]
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
         self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
-        let menuButtonRight = UIButton(frame: DeviceHelper.isIpad() ? CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT_IPAD, height: AppConstants.ICON_WIDTH_HEIGHT_IPAD) : CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT, height: AppConstants.ICON_WIDTH_HEIGHT))
+        let menuButtonRight = UIButton(frame: CGRect(x: 0, y: 0, width: DeviceHelper.Shared.ICON_WIDTH_HEIGHT, height: DeviceHelper.Shared.ICON_WIDTH_HEIGHT))
                menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
                menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchDown)
                self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonRight)

@@ -20,8 +20,8 @@ extension HelpVC {
         scrollView.addSubview(viewBackground)
         NSLayoutConstraint.activate([
             viewBackground.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT_HELP),
-            viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: AppConstants.MARGIN_RIGHT_HELP),
+            viewBackground.leftAnchor.constraint(equalTo: view.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT_HELP),
+            viewBackground.rightAnchor.constraint(equalTo: view.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT_HELP),
             viewBackground.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
         ])
         
@@ -47,7 +47,7 @@ extension HelpVC {
             imgFirstText.topAnchor.constraint(equalTo: lbFirstText.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             imgFirstText.leftAnchor.constraint(equalTo: viewBackground.leftAnchor),
             imgFirstText.rightAnchor.constraint(equalTo: viewBackground.rightAnchor),
-            imgFirstText.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_IMAGE_HELP)
+            imgFirstText.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_IMAGE_HELP)
         ])
         viewBackground.addSubview(lbSecondText)
         NSLayoutConstraint.activate([
@@ -73,7 +73,7 @@ extension HelpVC {
             imgSecondText.topAnchor.constraint(equalTo: lbThirdText.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             imgSecondText.leftAnchor.constraint(equalTo: viewBackground.leftAnchor),
             imgSecondText.rightAnchor.constraint(equalTo: viewBackground.rightAnchor),
-            imgSecondText.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_IMAGE_HELP)
+            imgSecondText.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_IMAGE_HELP)
             
         ])
         viewBackground.addSubview(lbFourText)
@@ -87,7 +87,7 @@ extension HelpVC {
             imgThirdText.topAnchor.constraint(equalTo: lbFourText.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             imgThirdText.leftAnchor.constraint(equalTo: viewBackground.leftAnchor),
             imgThirdText.rightAnchor.constraint(equalTo: viewBackground.rightAnchor),
-            imgThirdText.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_IMAGE_HELP)
+            imgThirdText.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_IMAGE_HELP)
             
         ])
         
@@ -101,24 +101,24 @@ extension HelpVC {
         imgSecondText.image = UIImage(named: AppImages.BG2)
         lbFourText.text = LanguageHelper.getTranslationByKey(LanguageKey.Title_Help_Content4)
         imgThirdText.image = UIImage(named: AppImages.BG3)
-        self.lbFirstTitle.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE_HELP_IPAD) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE_HELP)
+        self.lbFirstTitle.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_TITLE_FONT_SIZE_HELP)
         self.lbFirstTitle.textColor = AppColors.COLOR_ACCENT
         self.lbFirstTitle.numberOfLines = DeviceHelper.isIpad() ? 4 : 3
         
-        self.lbFirstText.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.lbFirstText.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.lbFirstText.numberOfLines = DeviceHelper.isIpad() ? 5 : 4
         
-        self.lbSecondText.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.lbSecondText.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.lbSecondText.numberOfLines = DeviceHelper.isIpad() ? 5 : 4
         
-        self.lbSecondTitle.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE_HELP_IPAD) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE_HELP)
+        self.lbSecondTitle.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_TITLE_FONT_SIZE_HELP)
         self.lbSecondTitle.textColor = AppColors.COLOR_ACCENT
         self.lbSecondTitle.numberOfLines = DeviceHelper.isIpad() ? 4 : 3
         
-        self.lbThirdText.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.lbThirdText.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.lbThirdText.numberOfLines = DeviceHelper.isIpad() ? 4 : 3
         
-        self.lbFourText.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.lbFourText.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.lbFourText.numberOfLines = DeviceHelper.isIpad() ? 4 : 3
         
         setupEndedUpScrollView()

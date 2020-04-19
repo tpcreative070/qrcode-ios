@@ -60,7 +60,8 @@ class QRCodeVC: BaseViewController {
        override func viewWillDisappear(_ animated: Bool) {
            super.viewWillDisappear(animated)
            self.navigationController?.isNavigationBarHidden = true
-           
+           navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+
        }
     @objc func getListSelectedItem(sender: UITapGestureRecognizer){
         viewModel.listItemSelected.removeAll()
@@ -87,4 +88,9 @@ class QRCodeVC: BaseViewController {
           }
      //   viewModel.doGetListTransaction()
       }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+    }
+
 }

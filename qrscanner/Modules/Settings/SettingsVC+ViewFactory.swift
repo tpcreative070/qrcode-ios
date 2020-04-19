@@ -21,8 +21,8 @@ extension SettingsVC {
         NSLayoutConstraint.activate([
             viewBackground.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewBackground.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: AppConstants.MARGIN_BOTTOM),
-            viewBackground.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: AppConstants.MARGIN_RIGHT_HELP),
-            viewBackground.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: AppConstants.MARGIN_LEFT_HELP),
+            viewBackground.trailingAnchor.constraint(equalTo: self.view.readableContentGuide.trailingAnchor, constant: AppConstants.MARGIN_RIGHT_HELP),
+            viewBackground.leadingAnchor.constraint(equalTo: self.view.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT_HELP),
         ])
         self.viewBackground.addSubview(lbScan)
         NSLayoutConstraint.activate([
@@ -42,8 +42,8 @@ extension SettingsVC {
             self.imgVibrate.topAnchor.constraint(equalTo: self.viewVibrate.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
             self.imgVibrate.bottomAnchor.constraint(equalTo: self.viewVibrate.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
             self.imgVibrate.leadingAnchor.constraint(equalTo: self.viewVibrate.leadingAnchor),
-            self.imgVibrate.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
-            self.imgVibrate.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgVibrate.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+            self.imgVibrate.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
             
         ])
         
@@ -57,8 +57,8 @@ extension SettingsVC {
         NSLayoutConstraint.activate([
             switchVibrate.topAnchor.constraint(equalTo: viewVibrate.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
             switchVibrate.trailingAnchor.constraint(equalTo: viewVibrate.trailingAnchor),
-            switchVibrate.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.SWITCH_WIDTH_DEFAULT_IPAD : AppConstants.SWITCH_WIDTH_DEFAULT),
-            switchVibrate.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.SWITCH_HEIGHT_DEFAULT_IPAD : AppConstants.SWITCH_HEIGHT_DEFAULT)
+            switchVibrate.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.SWITCH_WIDTH_DEFAULT),
+            switchVibrate.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.SWITCH_HEIGHT_DEFAULT)
         ])
         
         self.viewBackground.addSubview(viewBeep)
@@ -72,8 +72,8 @@ extension SettingsVC {
             self.imgBeep.topAnchor.constraint(equalTo: self.viewBeep.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
             self.imgBeep.bottomAnchor.constraint(equalTo: self.viewBeep.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
             self.imgBeep.leadingAnchor.constraint(equalTo: self.viewBeep.leadingAnchor),
-            self.imgBeep.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
-            self.imgBeep.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgBeep.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+            self.imgBeep.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
         ])
         
         self.viewBeep.addSubview(self.lbBeep)
@@ -86,8 +86,8 @@ extension SettingsVC {
         NSLayoutConstraint.activate([
             switchBeep.topAnchor.constraint(equalTo: viewBeep.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
             switchBeep.trailingAnchor.constraint(equalTo: viewBeep.trailingAnchor),
-            switchBeep.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.SWITCH_WIDTH_DEFAULT_IPAD : AppConstants.SWITCH_WIDTH_DEFAULT),
-            switchBeep.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.SWITCH_HEIGHT_DEFAULT_IPAD : AppConstants.SWITCH_HEIGHT_DEFAULT)
+            switchBeep.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.SWITCH_WIDTH_DEFAULT),
+            switchBeep.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.SWITCH_HEIGHT_DEFAULT)
         ])
         
         self.viewBeep.addSubview(self.viewUnderLineScan)
@@ -115,8 +115,8 @@ extension SettingsVC {
         NSLayoutConstraint.activate([
             self.imgMultiScan.topAnchor.constraint(equalTo: self.viewMultiScan.topAnchor, constant: AppConstants.MARGIN_TOP),
             self.imgMultiScan.leadingAnchor.constraint(equalTo: self.viewMultiScan.leadingAnchor),
-            self.imgMultiScan.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
-            self.imgMultiScan.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgMultiScan.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+            self.imgMultiScan.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
         ])
         self.viewMultiScan.addSubview(stackViewMultiScan)
         NSLayoutConstraint.activate([
@@ -137,8 +137,8 @@ extension SettingsVC {
         NSLayoutConstraint.activate([
             switchMultiScan.topAnchor.constraint(equalTo: viewMultiScan.topAnchor, constant: AppConstants.MARGIN_TOP),
             switchMultiScan.trailingAnchor.constraint(equalTo: viewMultiScan.trailingAnchor),
-            switchMultiScan.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.SWITCH_WIDTH_DEFAULT_IPAD : AppConstants.SWITCH_WIDTH_DEFAULT),
-            switchMultiScan.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.SWITCH_HEIGHT_DEFAULT_IPAD : AppConstants.SWITCH_HEIGHT_DEFAULT),
+            switchMultiScan.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.SWITCH_WIDTH_DEFAULT),
+            switchMultiScan.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.SWITCH_HEIGHT_DEFAULT),
         ])
         self.viewBackground.addSubview(viewMultiLoad)
         NSLayoutConstraint.activate([
@@ -151,8 +151,8 @@ extension SettingsVC {
         NSLayoutConstraint.activate([
             self.imgMultiLoad.topAnchor.constraint(equalTo: self.viewMultiLoad.topAnchor,constant: AppConstants.MARGIN_TOP),
             self.imgMultiLoad.leadingAnchor.constraint(equalTo: self.viewMultiLoad.leadingAnchor),
-            self.imgMultiLoad.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
-            self.imgMultiLoad.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgMultiLoad.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+            self.imgMultiLoad.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
         ])
         self.viewMultiLoad.addSubview(stackViewMultiLoad)
         NSLayoutConstraint.activate([
@@ -172,8 +172,8 @@ extension SettingsVC {
         NSLayoutConstraint.activate([
             switchMultiLoad.topAnchor.constraint(equalTo: viewMultiLoad.topAnchor, constant: AppConstants.MARGIN_TOP),
             switchMultiLoad.trailingAnchor.constraint(equalTo: viewMultiLoad.trailingAnchor),
-            switchMultiLoad.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.SWITCH_WIDTH_DEFAULT_IPAD : AppConstants.SWITCH_WIDTH_DEFAULT),
-            switchMultiLoad.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.SWITCH_HEIGHT_DEFAULT_IPAD : AppConstants.SWITCH_HEIGHT_DEFAULT),
+            switchMultiLoad.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.SWITCH_WIDTH_DEFAULT),
+            switchMultiLoad.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.SWITCH_HEIGHT_DEFAULT),
         ])
         self.viewBackground.addSubview(viewChangeColor)
         NSLayoutConstraint.activate([
@@ -186,8 +186,8 @@ extension SettingsVC {
         NSLayoutConstraint.activate([
             self.imgChangeColor.topAnchor.constraint(equalTo: self.viewChangeColor.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM),
             self.imgChangeColor.leadingAnchor.constraint(equalTo: self.viewChangeColor.leadingAnchor),
-            self.imgChangeColor.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
-            self.imgChangeColor.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgChangeColor.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+            self.imgChangeColor.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
         ])
         
         self.viewChangeColor.addSubview(stackViewChangeColor)
@@ -207,8 +207,8 @@ extension SettingsVC {
         NSLayoutConstraint.activate([
             imgQRCode.topAnchor.constraint(equalTo: viewChangeColor.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
             imgQRCode.trailingAnchor.constraint(equalTo: viewChangeColor.trailingAnchor),
-            imgQRCode.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.HEIGHT_IMAGE_SETTING_IPAD : AppConstants.HEIGHT_IMAGE_SETTING),
-            imgQRCode.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.HEIGHT_IMAGE_SETTING_IPAD : AppConstants.HEIGHT_IMAGE_SETTING)
+            imgQRCode.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_IMAGE_SETTING ),
+            imgQRCode.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_IMAGE_SETTING)
         ])
         self.viewBackground.addSubview(viewCopy)
         NSLayoutConstraint.activate([
@@ -221,8 +221,8 @@ extension SettingsVC {
         NSLayoutConstraint.activate([
             self.imgCopy.topAnchor.constraint(equalTo: self.viewCopy.topAnchor,constant: AppConstants.MARGIN_TOP),
             self.imgCopy.leadingAnchor.constraint(equalTo: self.viewChangeColor.leadingAnchor),
-            self.imgCopy.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
-            self.imgCopy.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgCopy.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+            self.imgCopy.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
         ])
         
         self.viewCopy.addSubview(stackViewCopy)
@@ -242,8 +242,8 @@ extension SettingsVC {
         NSLayoutConstraint.activate([
             switchCopy.topAnchor.constraint(equalTo: viewCopy.topAnchor, constant: AppConstants.MARGIN_TOP),
             switchCopy.trailingAnchor.constraint(equalTo: viewCopy.trailingAnchor),
-            switchCopy.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.SWITCH_WIDTH_DEFAULT_IPAD : AppConstants.SWITCH_WIDTH_DEFAULT),
-            switchCopy.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.SWITCH_HEIGHT_DEFAULT_IPAD : AppConstants.SWITCH_HEIGHT_DEFAULT),
+            switchCopy.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.SWITCH_WIDTH_DEFAULT),
+            switchCopy.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.SWITCH_HEIGHT_DEFAULT),
         ])
         self.viewBackground.addSubview(viewOpenWeb)
         NSLayoutConstraint.activate([
@@ -256,8 +256,8 @@ extension SettingsVC {
         NSLayoutConstraint.activate([
             self.imgWeb.topAnchor.constraint(equalTo: self.viewOpenWeb.topAnchor,constant: AppConstants.MARGIN_TOP),
             self.imgWeb.leadingAnchor.constraint(equalTo: self.viewOpenWeb.leadingAnchor),
-            self.imgWeb.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
-            self.imgWeb.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgWeb.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+            self.imgWeb.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
         ])
         
         self.viewOpenWeb.addSubview(stackViewOpenWeb)
@@ -277,8 +277,8 @@ extension SettingsVC {
         NSLayoutConstraint.activate([
             switchOpen.topAnchor.constraint(equalTo: viewOpenWeb.topAnchor, constant: AppConstants.MARGIN_TOP),
             switchOpen.trailingAnchor.constraint(equalTo: viewOpenWeb.trailingAnchor),
-            switchOpen.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.SWITCH_WIDTH_DEFAULT_IPAD : AppConstants.SWITCH_WIDTH_DEFAULT),
-            switchOpen.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.SWITCH_HEIGHT_DEFAULT_IPAD : AppConstants.SWITCH_HEIGHT_DEFAULT),
+            switchOpen.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.SWITCH_WIDTH_DEFAULT),
+            switchOpen.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.SWITCH_HEIGHT_DEFAULT),
         ])
         
         self.viewBackground.addSubview(viewLanguage)
@@ -292,8 +292,8 @@ extension SettingsVC {
         NSLayoutConstraint.activate([
             self.imgLanguage.topAnchor.constraint(equalTo: self.viewLanguage.topAnchor,constant: AppConstants.MARGIN_TOP),
             self.imgLanguage.leadingAnchor.constraint(equalTo: self.viewLanguage.leadingAnchor),
-            self.imgLanguage.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
-            self.imgLanguage.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgLanguage.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+            self.imgLanguage.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
         ])
         
         self.viewLanguage.addSubview(stackViewLanguage)
@@ -341,8 +341,8 @@ extension SettingsVC {
             self.imgAppPermission.topAnchor.constraint(equalTo: self.viewAppPermission.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
             self.imgAppPermission.bottomAnchor.constraint(equalTo: self.viewAppPermission.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
             self.imgAppPermission.leadingAnchor.constraint(equalTo: self.viewAppPermission.leadingAnchor),
-            self.imgAppPermission.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
-            self.imgAppPermission.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgAppPermission.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+            self.imgAppPermission.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
         ])
         
         self.viewAppPermission.addSubview(self.lbAppPermission)
@@ -362,8 +362,8 @@ extension SettingsVC {
             self.imgPrivacy.topAnchor.constraint(equalTo: self.viewPrivacy.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
             self.imgPrivacy.bottomAnchor.constraint(equalTo: self.viewPrivacy.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
             self.imgPrivacy.leadingAnchor.constraint(equalTo: self.viewPrivacy.leadingAnchor),
-            self.imgPrivacy.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
-            self.imgPrivacy.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgPrivacy.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+            self.imgPrivacy.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
         ])
         
         self.viewPrivacy.addSubview(self.lbPrivacy)
@@ -383,8 +383,8 @@ extension SettingsVC {
             self.imgRate.topAnchor.constraint(equalTo: self.viewRate.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
             self.imgRate.bottomAnchor.constraint(equalTo: self.viewRate.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
             self.imgRate.leadingAnchor.constraint(equalTo: self.viewRate.leadingAnchor),
-            self.imgRate.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
-            self.imgRate.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgRate.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+            self.imgRate.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
         ])
         
         self.viewRate.addSubview(self.lbRating)
@@ -404,8 +404,8 @@ extension SettingsVC {
             self.imgShare.topAnchor.constraint(equalTo: self.viewShare.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
             self.imgShare.bottomAnchor.constraint(equalTo: self.viewShare.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
             self.imgShare.leadingAnchor.constraint(equalTo: self.viewShare.leadingAnchor),
-            self.imgShare.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
-            self.imgShare.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgShare.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+            self.imgShare.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
         ])
         
         self.viewShare.addSubview(self.lbShare)
@@ -425,8 +425,8 @@ extension SettingsVC {
             self.imgHelp.topAnchor.constraint(equalTo: self.viewHelp.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
             self.imgHelp.bottomAnchor.constraint(equalTo: self.viewHelp.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
             self.imgHelp.leadingAnchor.constraint(equalTo: self.viewHelp.leadingAnchor),
-            self.imgHelp.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
-            self.imgHelp.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgHelp.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+            self.imgHelp.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
         ])
         
         self.viewHelp.addSubview(self.lbHelp)
@@ -448,8 +448,8 @@ extension SettingsVC {
             self.imgSupport.topAnchor.constraint(equalTo: self.viewSupport.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
             self.imgSupport.bottomAnchor.constraint(equalTo: self.viewSupport.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
             self.imgSupport.leadingAnchor.constraint(equalTo: self.viewSupport.leadingAnchor),
-            self.imgSupport.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
-            self.imgSupport.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgSupport.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+            self.imgSupport.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
         ])
         
         self.viewSupport.addSubview(stackViewSupport)
@@ -477,8 +477,8 @@ extension SettingsVC {
             self.imgVersion.topAnchor.constraint(equalTo: self.viewVersion.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
             self.imgVersion.bottomAnchor.constraint(equalTo: self.viewVersion.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
             self.imgVersion.leadingAnchor.constraint(equalTo: self.viewVersion.leadingAnchor),
-            self.imgVersion.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
-            self.imgVersion.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgVersion.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+            self.imgVersion.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
         ])
         
         self.viewVersion.addSubview(stackViewVersion)
@@ -497,27 +497,27 @@ extension SettingsVC {
         self.stackViewVersion.addArrangedSubview(lbQrCodeContent)
         
         
-        self.lbChangeColorContent.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.FLOAT_LABEL_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.FLOAT_PLACEHOLDER_FONT_SIZE)
+        self.lbChangeColorContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.CONTENT_FONT_SIZE)
         self.lbChangeColorContent.textColor = AppColors.GRAY
         
-        self.lbCopyContent.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.FLOAT_LABEL_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.FLOAT_PLACEHOLDER_FONT_SIZE)
+        self.lbCopyContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.CONTENT_FONT_SIZE)
         self.lbCopyContent.textColor = AppColors.GRAY
         
-        self.lbSupportContent.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.FLOAT_LABEL_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.FLOAT_PLACEHOLDER_FONT_SIZE)
+        self.lbSupportContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.CONTENT_FONT_SIZE)
         self.lbSupportContent.textColor = AppColors.GRAY
         
-        self.lbLanguageContent.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.FLOAT_LABEL_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.FLOAT_PLACEHOLDER_FONT_SIZE)
+        self.lbLanguageContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.CONTENT_FONT_SIZE)
         self.lbLanguageContent.textColor = AppColors.GRAY
         
-        self.lbQrCodeContent.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.FLOAT_LABEL_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.FLOAT_PLACEHOLDER_FONT_SIZE)
+        self.lbQrCodeContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.CONTENT_FONT_SIZE)
         self.lbQrCodeContent.textColor = AppColors.GRAY
         
-        self.lbOpenWebContent.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.FLOAT_LABEL_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.FLOAT_PLACEHOLDER_FONT_SIZE)
+        self.lbOpenWebContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.CONTENT_FONT_SIZE)
         self.lbOpenWebContent.textColor = AppColors.GRAY
         
-        self.lbMultiScanContent.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.FLOAT_LABEL_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.FLOAT_PLACEHOLDER_FONT_SIZE)
+        self.lbMultiScanContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.CONTENT_FONT_SIZE)
         self.lbMultiScanContent.textColor = AppColors.GRAY
-        self.lbMultiLoadContent.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.FLOAT_LABEL_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.FLOAT_PLACEHOLDER_FONT_SIZE)
+        self.lbMultiLoadContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.CONTENT_FONT_SIZE)
         self.lbMultiLoadContent.textColor = AppColors.GRAY
         self.lbCopyContent.numberOfLines = AppConstants.NUMBER_OF_LINE
         self.lbOpenWebContent.numberOfLines = AppConstants.NUMBER_OF_LINE
@@ -525,28 +525,28 @@ extension SettingsVC {
         self.lbMultiLoadContent.numberOfLines = AppConstants.NUMBER_OF_LINE
         self.lbMultiScanContent.numberOfLines = AppConstants.NUMBER_OF_LINE
 
-        self.lbVibrate.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-        self.lbBeep.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-        self.lbScanMulti.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-        self.lbLoadMulti.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-        self.lbChangeColor.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-        self.lbCopy.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-        self.lbOpenWeb.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-         self.lbLanguage.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-         self.lbAppPermission.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-         self.lbPrivacy.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-         self.lbRating.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-         self.lbShare.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-         self.lbHelp.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-         self.lbSupport.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-         self.lbQrCode.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-         self.lbCurrentLanguage.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.lbVibrate.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbBeep.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbScanMulti.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbLoadMulti.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbChangeColor.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbCopy.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbOpenWeb.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+         self.lbLanguage.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+         self.lbAppPermission.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+         self.lbPrivacy.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+         self.lbRating.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+         self.lbShare.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+         self.lbHelp.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+         self.lbSupport.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+         self.lbQrCode.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+         self.lbCurrentLanguage.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         
-        self.lbScan.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoSemiBold, size: AppFonts.LABEL_TITLE_FONT_SIZE_IPAD) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoSemiBold, size: AppFonts.LABEL_TITLE_FONT_SIZE)
+        self.lbScan.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoSemiBold, size: DeviceHelper.Shared.LABEL_TITLE_FONT_SIZE)
         self.lbScan.textColor = AppColors.PRIMARY_COLOR
-        self.lbAvanceFeatures.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoSemiBold, size: AppFonts.LABEL_TITLE_FONT_SIZE_IPAD) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoSemiBold, size: AppFonts.LABEL_TITLE_FONT_SIZE)
+        self.lbAvanceFeatures.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoSemiBold, size: DeviceHelper.Shared.LABEL_TITLE_FONT_SIZE)
         self.lbAvanceFeatures.textColor = AppColors.PRIMARY_COLOR
-        self.lbInformation.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoSemiBold, size: AppFonts.LABEL_TITLE_FONT_SIZE_IPAD) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoSemiBold, size: AppFonts.LABEL_TITLE_FONT_SIZE)
+        self.lbInformation.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoSemiBold, size: DeviceHelper.Shared.LABEL_TITLE_FONT_SIZE)
         self.lbInformation.textColor = AppColors.PRIMARY_COLOR
         setupEndedUpScrollView()
         

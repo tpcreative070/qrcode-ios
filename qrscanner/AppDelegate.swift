@@ -29,7 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.initGoogleServices()
         self.initLanguage()
         self.initConfig()
+        self.initDevice()
         // self.initTabBarController(selectedIndex: 2)
+
         return true
     }
     

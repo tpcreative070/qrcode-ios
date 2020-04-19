@@ -77,60 +77,60 @@ extension ScannerVC {
 
             viewFlipCamera.topAnchor.constraint(equalTo: viewIcon.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewFlipCamera.leadingAnchor.constraint(equalTo: viewIcon.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewFlipCamera.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_SCAN_WIDTH_HEIGHT_IPAD : AppConstants.ICON_SCAN_WIDTH_HEIGHT),
-            viewFlipCamera.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_SCAN_WIDTH_HEIGHT_IPAD : AppConstants.ICON_SCAN_WIDTH_HEIGHT)
+            viewFlipCamera.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT),
+            viewFlipCamera.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT)
         ])
         viewFlipCamera.addSubview(imgFlipCamera)
         NSLayoutConstraint.activate([
             imgFlipCamera.topAnchor.constraint(equalTo: viewFlipCamera.topAnchor),
             imgFlipCamera.leadingAnchor.constraint(equalTo: viewFlipCamera.leadingAnchor),
-            imgFlipCamera.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_SCAN_WIDTH_HEIGHT_IPAD : AppConstants.ICON_SCAN_WIDTH_HEIGHT),
-            imgFlipCamera.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_SCAN_WIDTH_HEIGHT_IPAD : AppConstants.ICON_SCAN_WIDTH_HEIGHT)
+            imgFlipCamera.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT),
+            imgFlipCamera.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT)
         ])
         viewIcon.addSubview(viewFlashBg)
         NSLayoutConstraint.activate([
 
             viewFlashBg.topAnchor.constraint(equalTo: viewIcon.topAnchor, constant: AppConstants.MARGIN_TOP),
-            viewFlashBg.leadingAnchor.constraint(equalTo: viewFlipCamera.trailingAnchor, constant: DeviceHelper.isIpad() ? AppConstants.MARGIN_LEFT_ICON_IPAD : AppConstants.MARGIN_LEFT_ICON),
-            viewFlashBg.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_SCAN_WIDTH_HEIGHT_IPAD : AppConstants.ICON_SCAN_WIDTH_HEIGHT),
-            viewFlashBg.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_SCAN_WIDTH_HEIGHT_IPAD : AppConstants.ICON_SCAN_WIDTH_HEIGHT)
+            viewFlashBg.leadingAnchor.constraint(equalTo: viewFlipCamera.trailingAnchor, constant: DeviceHelper.Shared.MARGIN_LEFT_ICON),
+            viewFlashBg.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT),
+            viewFlashBg.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT)
         ])
         viewFlashBg.addSubview(imgFlashOff)
         NSLayoutConstraint.activate([
             imgFlashOff.topAnchor.constraint(equalTo: viewFlashBg.topAnchor),
             imgFlashOff.leadingAnchor.constraint(equalTo: viewFlashBg.leadingAnchor),
-            imgFlashOff.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_SCAN_WIDTH_HEIGHT_IPAD : AppConstants.ICON_SCAN_WIDTH_HEIGHT),
-            imgFlashOff.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_SCAN_WIDTH_HEIGHT_IPAD : AppConstants.ICON_SCAN_WIDTH_HEIGHT)
+            imgFlashOff.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT),
+            imgFlashOff.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT)
         ])
         viewIcon.addSubview(viewScanBg)
                NSLayoutConstraint.activate([
 
                    viewScanBg.topAnchor.constraint(equalTo: viewIcon.topAnchor, constant: AppConstants.MARGIN_TOP),
                    viewScanBg.trailingAnchor.constraint(equalTo: viewIcon.trailingAnchor, constant: AppConstants.MARGIN_RIGHT),
-                   viewScanBg.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_SCAN_WIDTH_HEIGHT_IPAD : AppConstants.ICON_SCAN_WIDTH_HEIGHT),
-                   viewScanBg.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_SCAN_WIDTH_HEIGHT_IPAD : AppConstants.ICON_SCAN_WIDTH_HEIGHT)
+                   viewScanBg.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT),
+                   viewScanBg.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT)
                ])
                viewScanBg.addSubview(imgScan)
                NSLayoutConstraint.activate([
                    imgScan.topAnchor.constraint(equalTo: viewScanBg.topAnchor),
                    imgScan.leadingAnchor.constraint(equalTo: viewScanBg.leadingAnchor),
-                   imgScan.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_SCAN_WIDTH_HEIGHT_IPAD : AppConstants.ICON_SCAN_WIDTH_HEIGHT),
-                   imgScan.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_SCAN_WIDTH_HEIGHT_IPAD : AppConstants.ICON_SCAN_WIDTH_HEIGHT)
+                   imgScan.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT),
+                   imgScan.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT)
                ])
         viewIcon.addSubview(viewHelpBg)
         NSLayoutConstraint.activate([
             viewHelpBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
-            viewHelpBg.trailingAnchor.constraint(equalTo: viewScanBg.leadingAnchor, constant:  DeviceHelper.isIpad() ? AppConstants.MARGIN_RIGHT_ICON_IPAD : AppConstants.MARGIN_RIGHT_ICON),
-            viewHelpBg.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_SCAN_WIDTH_HEIGHT_IPAD : AppConstants.ICON_SCAN_WIDTH_HEIGHT),
-            viewHelpBg.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_SCAN_WIDTH_HEIGHT_IPAD : AppConstants.ICON_SCAN_WIDTH_HEIGHT)
+            viewHelpBg.trailingAnchor.constraint(equalTo: viewScanBg.leadingAnchor, constant:  DeviceHelper.Shared.MARGIN_RIGHT_ICON),
+            viewHelpBg.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT),
+            viewHelpBg.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT)
         ])
 
         viewHelpBg.addSubview(imgHelp)
         NSLayoutConstraint.activate([
             imgHelp.topAnchor.constraint(equalTo: viewHelpBg.topAnchor),
             imgHelp.leadingAnchor.constraint(equalTo: viewHelpBg.leadingAnchor),
-            imgHelp.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_SCAN_WIDTH_HEIGHT_IPAD : AppConstants.ICON_SCAN_WIDTH_HEIGHT),
-            imgHelp.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_SCAN_WIDTH_HEIGHT_IPAD : AppConstants.ICON_SCAN_WIDTH_HEIGHT)
+            imgHelp.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT),
+            imgHelp.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT)
         ])
        
         

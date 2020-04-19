@@ -25,8 +25,8 @@ extension TableViewCell {
             self.imgIcon.leadingAnchor.constraint(equalTo: self.viewRoot.leadingAnchor),
             self.imgIcon.topAnchor.constraint(equalTo: self.viewRoot.topAnchor),
             self.imgIcon.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor),
-            self.imgIcon.widthAnchor.constraint(equalToConstant: AppConstants.WIDTH_BUTTON_DEFAULT),
-            self.imgIcon.heightAnchor.constraint(equalToConstant: AppConstants.WIDTH_BUTTON_DEFAULT)
+            self.imgIcon.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.IMAGE_QR_WIDTH_HEIGHT),
+            self.imgIcon.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.IMAGE_QR_WIDTH_HEIGHT)
 
         ])
       
@@ -42,8 +42,8 @@ extension TableViewCell {
       
             self.viewSub.addSubview(checkBox)
             NSLayoutConstraint.activate([
-                self.checkBox.widthAnchor.constraint(equalToConstant: AppConstants.MARGIN_LEFT),
-                self.checkBox.heightAnchor.constraint(equalToConstant: AppConstants.MARGIN_LEFT),
+                self.checkBox.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.CHECKBOX_WIDTH_HEIGHT),
+                self.checkBox.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.CHECKBOX_WIDTH_HEIGHT),
                 self.checkBox.centerYAnchor.constraint(equalTo: self.viewSub.centerYAnchor),
                 self.checkBox.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor,constant: AppConstants.MARGIN_RIGHT)
             ])

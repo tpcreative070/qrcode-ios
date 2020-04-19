@@ -19,124 +19,124 @@ extension EventGenerateVC {
         scrollView.addSubview(viewBackground)
         NSLayoutConstraint.activate([
             viewBackground.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: AppConstants.MARGIN_TOP),
-            viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewBackground.leftAnchor.constraint(equalTo: view.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewBackground.rightAnchor.constraint(equalTo: view.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewBackground.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
 
-            viewBackground.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.HEIGHT_BACKGROUND_IPAD * 4.2 : AppConstants.HEIGHT_BACKGROUND * 4)
+            viewBackground.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND * 4.17)
 
         ])
         
         viewBackground.addSubview(viewTitleBg)
         NSLayoutConstraint.activate([
             viewTitleBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
-            viewTitleBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewTitleBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewTitleBg.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.HEIGHT_BACKGROUND_ITEM_IPAD : AppConstants.HEIGHT_BACKGROUND_ITEM)
+            viewTitleBg.leftAnchor.constraint(equalTo: viewBackground.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewTitleBg.rightAnchor.constraint(equalTo: viewBackground.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewTitleBg.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM)
         ])
         
         viewTitleBg.addSubview(lbTitle)
         NSLayoutConstraint.activate([
             lbTitle.topAnchor.constraint(equalTo: viewTitleBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            lbTitle.leadingAnchor.constraint(equalTo: viewTitleBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            lbTitle.trailingAnchor.constraint(equalTo: viewTitleBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            lbTitle.leadingAnchor.constraint(equalTo: viewTitleBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbTitle.trailingAnchor.constraint(equalTo: viewTitleBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewTitleBg.addSubview(textFieldTitle)
         NSLayoutConstraint.activate([
             textFieldTitle.topAnchor.constraint(equalTo: lbTitle.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
-            textFieldTitle.leadingAnchor.constraint(equalTo: viewTitleBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            textFieldTitle.trailingAnchor.constraint(equalTo: viewTitleBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            textFieldTitle.leadingAnchor.constraint(equalTo: viewTitleBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            textFieldTitle.trailingAnchor.constraint(equalTo: viewTitleBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewBackground.addSubview(viewLocationBg)
         NSLayoutConstraint.activate([
             viewLocationBg.topAnchor.constraint(equalTo: viewTitleBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            viewLocationBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewLocationBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewLocationBg.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.HEIGHT_BACKGROUND_ITEM_IPAD : AppConstants.HEIGHT_BACKGROUND_ITEM)
+            viewLocationBg.leftAnchor.constraint(equalTo: viewBackground.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewLocationBg.rightAnchor.constraint(equalTo: viewBackground.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewLocationBg.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM)
         ])
         viewLocationBg.addSubview(lbLocation)
         NSLayoutConstraint.activate([
             lbLocation.topAnchor.constraint(equalTo: viewLocationBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            lbLocation.leadingAnchor.constraint(equalTo: viewLocationBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            lbLocation.trailingAnchor.constraint(equalTo: viewLocationBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            lbLocation.leadingAnchor.constraint(equalTo: viewLocationBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbLocation.trailingAnchor.constraint(equalTo: viewLocationBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewLocationBg.addSubview(textFieldLocation)
         NSLayoutConstraint.activate([
             textFieldLocation.topAnchor.constraint(equalTo: lbLocation.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
-            textFieldLocation.leadingAnchor.constraint(equalTo: viewLocationBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            textFieldLocation.trailingAnchor.constraint(equalTo: viewLocationBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            textFieldLocation.leadingAnchor.constraint(equalTo: viewLocationBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            textFieldLocation.trailingAnchor.constraint(equalTo: viewLocationBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         
         viewBackground.addSubview(viewDescriptionBg)
         NSLayoutConstraint.activate([
             viewDescriptionBg.topAnchor.constraint(equalTo: viewLocationBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            viewDescriptionBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewDescriptionBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewDescriptionBg.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.HEIGHT_BACKGROUND_ITEM_IPAD : AppConstants.HEIGHT_BACKGROUND_ITEM)
+            viewDescriptionBg.leftAnchor.constraint(equalTo: viewBackground.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewDescriptionBg.rightAnchor.constraint(equalTo: viewBackground.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewDescriptionBg.heightAnchor.constraint(equalToConstant:DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM)
         ])
         viewDescriptionBg.addSubview(lbDescription)
         NSLayoutConstraint.activate([
             lbDescription.topAnchor.constraint(equalTo: viewDescriptionBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            lbDescription.leadingAnchor.constraint(equalTo: viewDescriptionBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            lbDescription.trailingAnchor.constraint(equalTo: viewDescriptionBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            lbDescription.leadingAnchor.constraint(equalTo: viewDescriptionBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbDescription.trailingAnchor.constraint(equalTo: viewDescriptionBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewDescriptionBg.addSubview(textFieldDescription)
         NSLayoutConstraint.activate([
             textFieldDescription.topAnchor.constraint(equalTo: lbDescription.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
-            textFieldDescription.leadingAnchor.constraint(equalTo: viewDescriptionBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            textFieldDescription.trailingAnchor.constraint(equalTo: viewDescriptionBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            textFieldDescription.leadingAnchor.constraint(equalTo: viewDescriptionBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            textFieldDescription.trailingAnchor.constraint(equalTo: viewDescriptionBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewBackground.addSubview(viewBeginBg)
         NSLayoutConstraint.activate([
             viewBeginBg.topAnchor.constraint(equalTo: viewDescriptionBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            viewBeginBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewBeginBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewBeginBg.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.HEIGHT_BACKGROUND_ITEM_IPAD : AppConstants.HEIGHT_BACKGROUND_ITEM)
+            viewBeginBg.leftAnchor.constraint(equalTo: viewBackground.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewBeginBg.rightAnchor.constraint(equalTo: viewBackground.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewBeginBg.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM)
         ])
         viewBeginBg.addSubview(lbBeginTime)
         NSLayoutConstraint.activate([
             lbBeginTime.topAnchor.constraint(equalTo: viewBeginBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            lbBeginTime.leadingAnchor.constraint(equalTo: viewBeginBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            lbBeginTime.trailingAnchor.constraint(equalTo: viewBeginBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            lbBeginTime.leadingAnchor.constraint(equalTo: viewBeginBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbBeginTime.trailingAnchor.constraint(equalTo: viewBeginBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewBeginBg.addSubview(textFieldBeginTime)
         NSLayoutConstraint.activate([
             textFieldBeginTime.topAnchor.constraint(equalTo: lbBeginTime.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
-            textFieldBeginTime.leadingAnchor.constraint(equalTo: viewBeginBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            textFieldBeginTime.trailingAnchor.constraint(equalTo: viewBeginBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            textFieldBeginTime.leadingAnchor.constraint(equalTo: viewBeginBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            textFieldBeginTime.trailingAnchor.constraint(equalTo: viewBeginBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewBackground.addSubview(viewEndBg)
         NSLayoutConstraint.activate([
             viewEndBg.topAnchor.constraint(equalTo: viewBeginBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            viewEndBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewEndBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewEndBg.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.HEIGHT_BACKGROUND_ITEM_IPAD : AppConstants.HEIGHT_BACKGROUND_ITEM)
+            viewEndBg.leftAnchor.constraint(equalTo: viewBackground.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewEndBg.rightAnchor.constraint(equalTo: viewBackground.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewEndBg.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM)
         ])
         viewEndBg.addSubview(lbEndTime)
         NSLayoutConstraint.activate([
             lbEndTime.topAnchor.constraint(equalTo: viewEndBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            lbEndTime.leadingAnchor.constraint(equalTo: viewEndBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            lbEndTime.trailingAnchor.constraint(equalTo: viewEndBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            lbEndTime.leadingAnchor.constraint(equalTo: viewEndBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbEndTime.trailingAnchor.constraint(equalTo: viewEndBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewEndBg.addSubview(textFieldEndTime)
         NSLayoutConstraint.activate([
             textFieldEndTime.topAnchor.constraint(equalTo: lbEndTime.bottomAnchor, constant: 5),
-            textFieldEndTime.leadingAnchor.constraint(equalTo: viewEndBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            textFieldEndTime.trailingAnchor.constraint(equalTo: viewEndBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            textFieldEndTime.leadingAnchor.constraint(equalTo: viewEndBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            textFieldEndTime.trailingAnchor.constraint(equalTo: viewEndBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-          self.lbTitle.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-          self.lbLocation.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-          self.lbDescription.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-         self.lbBeginTime.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-         self.lbEndTime.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-          self.textFieldTitle.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-        self.textFieldLocation.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+          self.lbTitle.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+          self.lbLocation.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+          self.lbDescription.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+         self.lbBeginTime.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+         self.lbEndTime.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+          self.textFieldTitle.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.textFieldLocation.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
 
-        self.textFieldDescription.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.textFieldDescription.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
 
-        self.textFieldBeginTime.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.textFieldBeginTime.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
 
-        self.textFieldEndTime.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.textFieldEndTime.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
 
         self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
         self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
@@ -165,12 +165,12 @@ extension EventGenerateVC {
         self.view.backgroundColor = .white
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         navigationItem.title = LanguageHelper.getTranslationByKey(LanguageKey.Event)
-        let textAttributes = [NSAttributedString.Key.font: DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE), NSAttributedString.Key.foregroundColor:UIColor.white]
+        let textAttributes = [NSAttributedString.Key.font: AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE), NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
-         let menuButtonRight = UIButton(frame: DeviceHelper.isIpad() ? CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT_IPAD, height: AppConstants.ICON_WIDTH_HEIGHT_IPAD) : CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT, height: AppConstants.ICON_WIDTH_HEIGHT))
+         let menuButtonRight = UIButton(frame: CGRect(x: 0, y: 0, width: DeviceHelper.Shared.ICON_WIDTH_HEIGHT, height: DeviceHelper.Shared.ICON_WIDTH_HEIGHT))
                menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
                menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchDown)
                self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonRight)

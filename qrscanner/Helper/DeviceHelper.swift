@@ -8,6 +8,7 @@
 
 import UIKit
 class DeviceHelper {
+    
     /**
      This function check current device is Iphone SE, Iphone 5, Iphone 5s
      */
@@ -78,7 +79,7 @@ class DeviceHelper {
     
     /**
      Check hasNotch Xr
-    */
+     */
     var hasNotch: Bool {
         let bottom = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
         return bottom > 0
@@ -86,7 +87,7 @@ class DeviceHelper {
     
     /**
      Fetch device's info
-    */
+     */
     static func getDeviceInfo() -> String{
         let device = UIDevice.current
         return device.type.rawValue
@@ -94,10 +95,122 @@ class DeviceHelper {
     
     /**
      Fetch device's unique id
-    */
+     */
     static func getUniqueId() ->String{
         let device = UIDevice.current
         return device.currentUUID()
     }
-    
+    struct Shared {
+        static var MARGIN_LEFT : CGFloat = CGFloat()
+        static var MARGIN_RIGHT : CGFloat = CGFloat()
+        static var HEIGHT_BACKGROUND_ITEM : CGFloat = CGFloat()
+        static var HEIGHT_BACKGROUND : CGFloat = CGFloat()
+        static var HEIGHT_IMAGE_SETTING : CGFloat = CGFloat()
+        static var HEIGHT_LABLE : CGFloat = CGFloat()
+        static var HEIGHT_BACKGROUND_BAR : CGFloat = CGFloat()
+        static var HEIGHT_BACKGROUND_ITEM_BAR : CGFloat = CGFloat()
+        static var HEIGHT_BGDROPDOWN : CGFloat = CGFloat()
+        static var ICON_WIDTH_HEIGHT : CGFloat = CGFloat()
+        static var ICON_SCAN_WIDTH_HEIGHT : CGFloat = CGFloat()
+        static var MARGIN_LEFT_ICON : CGFloat = CGFloat()
+        static var MARGIN_RIGHT_ICON : CGFloat = CGFloat()
+        static var SWITCH_HEIGHT_DEFAULT : CGFloat = CGFloat()
+        static var SWITCH_WIDTH_DEFAULT : CGFloat = CGFloat()
+        static var LABEL_TITLE_FONT_SIZE : CGFloat = CGFloat()
+        static var LABEL_TITLE_FONT_SIZE_HELP : CGFloat = CGFloat()
+        static var LABEL_FONT_SIZE : CGFloat = CGFloat()
+        static var CONTENT_FONT_SIZE : CGFloat = CGFloat()
+        static var HEIGHT_IMAGE_HELP : CGFloat = CGFloat()
+        static var CHECKBOX_WIDTH_HEIGHT : CGFloat = CGFloat()
+        static var TEXTFIELD_TITLE_FONT_SIZE : CGFloat = CGFloat()
+        static var ICON_SWIPE : CGFloat = CGFloat()
+        static var IMAGE_QR_WIDTH_HEIGHT : CGFloat = CGFloat()
+        static var ICON_QR_WIDTH_HEIGHT : CGFloat = CGFloat()
+
+
+        func isIpad() -> Bool {
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                return true
+            } else {
+                return false
+            }
+        }
+        func moderateScale(fontName: String = AppFonts.SFranciscoRegular, size: CGFloat = AppFonts.LABEL_FONT_SIZE, factor: CGFloat = 1)->UIFont{
+            let guidelineBaseWidth = CGFloat(375) // Scaling font for iPhone 5s, 5
+            let screenSize = UIScreen.main.bounds
+            let screenWidth = screenSize.width
+            _ = screenSize.height
+            let temp = (screenWidth / guidelineBaseWidth * size)
+            var font: UIFont?
+            if Helper.isIpad() {
+                font =  UIFont(name: fontName, size: (size * 1.2))!
+            } else {
+                
+                if screenWidth >= guidelineBaseWidth {
+                    font =  UIFont(name: fontName, size: (size + (temp - size) * factor))!
+                }else{
+                    font =  UIFont(name: fontName, size: (size + (temp - size) * 1))!
+                }
+            }
+            return font!
+        }
+        init() {
+            if isIpad(){
+                DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM = CGFloat(100)
+                DeviceHelper.Shared.HEIGHT_BACKGROUND = CGFloat(140)
+                DeviceHelper.Shared.HEIGHT_IMAGE_SETTING = CGFloat(60)
+                DeviceHelper.Shared.HEIGHT_LABLE = CGFloat(20)
+                DeviceHelper.Shared.HEIGHT_BACKGROUND_BAR = CGFloat(200)
+                DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM_BAR = CGFloat(160)
+                DeviceHelper.Shared.HEIGHT_BGDROPDOWN = CGFloat(100)
+                DeviceHelper.Shared.ICON_WIDTH_HEIGHT = CGFloat(37)
+                DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT = CGFloat(40)
+                DeviceHelper.Shared.MARGIN_LEFT_ICON = CGFloat(50)
+                DeviceHelper.Shared.MARGIN_RIGHT_ICON = CGFloat(-50)
+                DeviceHelper.Shared.SWITCH_HEIGHT_DEFAULT = CGFloat(20)
+                DeviceHelper.Shared.SWITCH_WIDTH_DEFAULT = CGFloat(50)
+                DeviceHelper.Shared.LABEL_TITLE_FONT_SIZE = CGFloat(20)
+                DeviceHelper.Shared.LABEL_TITLE_FONT_SIZE_HELP = CGFloat(22)
+                DeviceHelper.Shared.LABEL_FONT_SIZE = CGFloat(18)
+                DeviceHelper.Shared.CONTENT_FONT_SIZE = CGFloat(16)
+                DeviceHelper.Shared.HEIGHT_IMAGE_HELP = CGFloat(220)
+                DeviceHelper.Shared.CHECKBOX_WIDTH_HEIGHT = CGFloat(25)
+                DeviceHelper.Shared.TEXTFIELD_TITLE_FONT_SIZE = CGFloat(18)
+                DeviceHelper.Shared.ICON_SWIPE = CGFloat(35)
+                DeviceHelper.Shared.IMAGE_QR_WIDTH_HEIGHT = CGFloat(150)
+                DeviceHelper.Shared.ICON_QR_WIDTH_HEIGHT = CGFloat(300)
+
+            }
+              
+            else{
+                DeviceHelper.Shared.MARGIN_LEFT = CGFloat(20)
+                DeviceHelper.Shared.MARGIN_RIGHT = CGFloat(-20)
+                DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM = CGFloat(90)
+                DeviceHelper.Shared.HEIGHT_BACKGROUND = CGFloat(130)
+                DeviceHelper.Shared.HEIGHT_IMAGE_SETTING = CGFloat(50)
+                DeviceHelper.Shared.HEIGHT_LABLE = CGFloat(18)
+                DeviceHelper.Shared.HEIGHT_BACKGROUND_BAR = CGFloat(178)
+                DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM_BAR = CGFloat(140)
+                DeviceHelper.Shared.HEIGHT_BGDROPDOWN = CGFloat(95)
+                DeviceHelper.Shared.ICON_WIDTH_HEIGHT = CGFloat(30)
+                DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT = CGFloat(30)
+                DeviceHelper.Shared.MARGIN_LEFT_ICON = CGFloat(30)
+                DeviceHelper.Shared.MARGIN_RIGHT_ICON = CGFloat(-30)
+                DeviceHelper.Shared.SWITCH_HEIGHT_DEFAULT = CGFloat(18)
+                DeviceHelper.Shared.SWITCH_WIDTH_DEFAULT = CGFloat(45)
+                DeviceHelper.Shared.LABEL_TITLE_FONT_SIZE = CGFloat(18)
+                DeviceHelper.Shared.LABEL_TITLE_FONT_SIZE_HELP = CGFloat(20)
+                DeviceHelper.Shared.LABEL_FONT_SIZE = CGFloat(16)
+                DeviceHelper.Shared.CONTENT_FONT_SIZE = CGFloat(14)
+                DeviceHelper.Shared.HEIGHT_IMAGE_HELP = CGFloat(200)
+                DeviceHelper.Shared.CHECKBOX_WIDTH_HEIGHT = CGFloat(20)
+                DeviceHelper.Shared.TEXTFIELD_TITLE_FONT_SIZE = CGFloat(16)
+                DeviceHelper.Shared.ICON_SWIPE = CGFloat(25)
+                DeviceHelper.Shared.IMAGE_QR_WIDTH_HEIGHT = CGFloat(120)
+                DeviceHelper.Shared.ICON_QR_WIDTH_HEIGHT = CGFloat(250)
+
+            }
+        }
+        
+    }
 }

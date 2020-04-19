@@ -68,8 +68,12 @@ class TextGenerateVC: BaseViewController {
         super.viewWillDisappear(animated)
         self.navigationController?.isNavigationBarHidden = true
         keyboardHelper?.deregisterKeyboardNotification()
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+             super.viewDidAppear(animated)
+             navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+         }
     override func dismissKeyboard() {
         doDismiss()
     }

@@ -9,7 +9,7 @@
 import UIKit
 extension SaveVC  {
     func initUI(){
-        
+         view.backgroundColor = .white
          tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height), style: .grouped)
         tableView.allowsSelection = true
         
@@ -18,12 +18,13 @@ extension SaveVC  {
         
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
         tableView.sectionFooterHeight = 0
+        tableView.showsVerticalScrollIndicator = false
         self.view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.leftAnchor.constraint(equalTo: view.readableContentGuide.leftAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.readableContentGuide.rightAnchor),
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
         
@@ -40,7 +41,7 @@ extension SaveVC  {
                          lbNoItem.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                          lbNoItem.centerYAnchor.constraint(equalTo: view.centerYAnchor),
                      ])
-               self.lbNoItem.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE_HELP)
+            self.lbNoItem.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_TITLE_FONT_SIZE_HELP)
                lbNoItem.isHidden = false
            }
            else{

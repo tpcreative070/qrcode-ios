@@ -21,8 +21,8 @@ extension QRCodeVC {
         scrollView.addSubview(wrapperView)
         NSLayoutConstraint.activate([
             wrapperView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            wrapperView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT_HELP),
-            wrapperView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: AppConstants.MARGIN_RIGHT_HELP),
+            wrapperView.leftAnchor.constraint(equalTo: view.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT_HELP),
+            wrapperView.rightAnchor.constraint(equalTo: view.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT_HELP),
             wrapperView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
         ])
         wrapperView.addSubview(lbTitle)
@@ -43,9 +43,9 @@ extension QRCodeVC {
         wrapperView.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.leftAnchor.constraint(equalTo: view.readableContentGuide.leftAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.readableContentGuide.rightAnchor),
             tableView.topAnchor.constraint(equalTo: lbTitle.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM)
         ])
         //  btnDone.addTarget(self, action: #selector(getListSelectedItem), for: .touchUpInside)
@@ -134,12 +134,12 @@ extension QRCodeVC {
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
-        let menuButtonRightSelectAll = UIButton(frame: DeviceHelper.isIpad() ? CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT_IPAD, height: AppConstants.ICON_WIDTH_HEIGHT_IPAD) : CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT, height: AppConstants.ICON_WIDTH_HEIGHT))
+        let menuButtonRightSelectAll = UIButton(frame: CGRect(x: 0, y: 0, width: DeviceHelper.Shared.ICON_WIDTH_HEIGHT, height: DeviceHelper.Shared.ICON_WIDTH_HEIGHT))
         menuButtonRightSelectAll.setBackgroundImage(UIImage(named: AppImages.IC_SELECT_ALL), for: .normal)
         menuButtonRightSelectAll.addTarget(self, action: #selector(doSelectAll), for: .touchUpInside)
         
         
-        let menuButtonRight = UIButton(frame: DeviceHelper.isIpad() ? CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT_IPAD, height: AppConstants.ICON_WIDTH_HEIGHT_IPAD) : CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT, height: AppConstants.ICON_WIDTH_HEIGHT))
+        let menuButtonRight = UIButton(frame: CGRect(x: 0, y: 0, width: DeviceHelper.Shared.ICON_WIDTH_HEIGHT, height: DeviceHelper.Shared.ICON_WIDTH_HEIGHT))
         menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
         menuButtonRight.addTarget(self, action: #selector(getListSelectedItem), for: .touchDown)
         navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRight), UIBarButtonItem(customView: menuButtonRightSelectAll)]

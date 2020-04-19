@@ -13,12 +13,12 @@ extension ChangeColorVC{
         self.view.addSubview(imgQRCode)
         NSLayoutConstraint.activate([
             imgQRCode.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: AppConstants.MARGIN_TOP),
-            imgQRCode.widthAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND),
-            imgQRCode.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_BACKGROUND),
+            imgQRCode.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.IMAGE_QR_WIDTH_HEIGHT),
+            imgQRCode.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.IMAGE_QR_WIDTH_HEIGHT),
             imgQRCode.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         self.view.addSubview(collectionView)
-        collectionView.setAnchor(top: imgQRCode.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: AppConstants.MARGIN_TOP, paddingLeft: AppConstants.DEFAULT_CONSTRAINT, paddingBottom: AppConstants.DEFAULT_CONSTRAINT, paddingRight: AppConstants.DEFAULT_CONSTRAINT)
+        collectionView.setAnchor(top: imgQRCode.bottomAnchor, left: view.readableContentGuide.leftAnchor, bottom: view.bottomAnchor, right: view.readableContentGuide.rightAnchor, paddingTop: AppConstants.MARGIN_TOP, paddingLeft: AppConstants.DEFAULT_CONSTRAINT, paddingBottom: AppConstants.DEFAULT_CONSTRAINT, paddingRight: AppConstants.DEFAULT_CONSTRAINT)
         changeColorQRCode(imgQRCode: imgQRCode)
         setupCollectionView()
         bindCollectionView()
@@ -49,28 +49,7 @@ extension ChangeColorVC{
         self.view.backgroundColor = .white
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
-       
-//
-//        navigationItem.backBarButtonItem = UIBarButtonItem(title: " Quay lai", style: .plain, target: nil, action: nil)
-//
-//         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE), NSAttributedString.Key.foregroundColor:UIColor.white]
-//        let title = UIButton()
-//        title.titleLabel?.text = LanguageHelper.getTranslationByKey(LanguageKey.Back)
-//        title.titleLabel?.textColor = AppColors.WHITE_COLOR
-//        title.titleLabel?.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-//        title.addTarget(self, action: #selector(doBack), for: .touchUpInside)
-//        let menuButtonBack = UIButton(frame: DeviceHelper.isIpad() ? CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT_IPAD, height: AppConstants.ICON_WIDTH_HEIGHT_IPAD) : CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT, height: AppConstants.ICON_WIDTH_HEIGHT))
-//        menuButtonBack.setBackgroundImage(UIImage(named: AppImages.IC_BACK), for: .normal)
-//        menuButtonBack.addTarget(self, action: #selector(doBack), for: .touchDown)
-//
-//
-//        let stackview = UIStackView.init(arrangedSubviews: [menuButtonBack, title])
-//                 stackview.distribution = .equalSpacing
-//                 stackview.axis = .horizontal
-//            stackview.alignment = .center
-//                 stackview.spacing = 0
-       //       navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menuButtonBack)
-        
+
         self.navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
     }

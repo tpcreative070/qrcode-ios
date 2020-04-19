@@ -20,12 +20,14 @@ extension ChooseHistoryVC  {
         
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
         tableView.sectionFooterHeight = 0
+        tableView.showsVerticalScrollIndicator = false
+
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.leftAnchor.constraint(equalTo: view.readableContentGuide.leftAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.readableContentGuide.rightAnchor),
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
         setupNavItems()
@@ -61,7 +63,7 @@ extension ChooseHistoryVC  {
             if value == EnumResponseToView.UPDATE_DATA_SOURCE.rawValue {
                  self?.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
                 self?.navigationItem.title = "\(String(describing: self!.historyViewModel.countItemSelected)) \(String(describing: LanguageHelper.getTranslationByKey(LanguageKey.Selected)!))"
-                let attributes = [NSAttributedString.Key.font: DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE), NSAttributedString.Key.foregroundColor:UIColor.white]
+                let attributes = [NSAttributedString.Key.font: AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE), NSAttributedString.Key.foregroundColor:UIColor.white]
                 self?.navigationController?.navigationBar.titleTextAttributes = attributes
                 self?.updateDataSource()
                 
@@ -87,13 +89,13 @@ extension ChooseHistoryVC  {
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
 
-        let menuButtonRightDel = UIButton(frame: DeviceHelper.isIpad() ? CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT_IPAD, height: AppConstants.ICON_WIDTH_HEIGHT_IPAD) : CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT, height: AppConstants.ICON_WIDTH_HEIGHT))
+        let menuButtonRightDel = UIButton(frame: CGRect(x: 0, y: 0, width: DeviceHelper.Shared.ICON_WIDTH_HEIGHT, height: DeviceHelper.Shared.ICON_WIDTH_HEIGHT))
         menuButtonRightDel.setBackgroundImage(UIImage(named: AppImages.IC_DELETE), for: .normal)
         menuButtonRightDel.addTarget(self, action: #selector(doDeleteItem), for: .touchUpInside)
         
         
         
-        let menuButtonRightSelectAll = UIButton(frame: DeviceHelper.isIpad() ? CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT_IPAD, height: AppConstants.ICON_WIDTH_HEIGHT_IPAD) : CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT, height: AppConstants.ICON_WIDTH_HEIGHT))
+        let menuButtonRightSelectAll = UIButton(frame: CGRect(x: 0, y: 0, width: DeviceHelper.Shared.ICON_WIDTH_HEIGHT, height: DeviceHelper.Shared.ICON_WIDTH_HEIGHT))
         menuButtonRightSelectAll.setBackgroundImage(UIImage(named: AppImages.IC_SELECT_ALL), for: .normal)
         menuButtonRightSelectAll.addTarget(self, action: #selector(doSelectAll), for: .touchUpInside)
         if DeviceHelper.isIpad() {

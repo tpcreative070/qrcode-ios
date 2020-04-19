@@ -21,7 +21,6 @@ class GenerateEntity{
     private let transactionID = Expression<String>("transactionID")
     private let isCode = Expression<String>("isCode")
 
-    
     private init() {
         
     }
@@ -38,9 +37,6 @@ class GenerateEntity{
                 t.column(bookMark)
                 t.column(transactionID)
                 t.column(isCode)
-
-                
-             
             })
         }catch {
            // debugPrint(error)

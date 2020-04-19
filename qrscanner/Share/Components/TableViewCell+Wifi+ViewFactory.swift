@@ -86,8 +86,8 @@ extension TableViewCell  {
         NSLayoutConstraint.activate([
             imgWifi.topAnchor.constraint(equalTo: viewBackgroundThird.topAnchor, constant: AppConstants.MARGIN_TOP),
             imgWifi.leadingAnchor.constraint(equalTo: viewBackgroundThird.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            self.imgWifi.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
-            self.imgWifi.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgWifi.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+            self.imgWifi.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
             self.imgWifi.centerYAnchor.constraint(equalTo: self.viewBackgroundThird.centerYAnchor)
             
         ])
@@ -113,8 +113,8 @@ extension TableViewCell  {
         NSLayoutConstraint.activate([
             imgClipboard.topAnchor.constraint(equalTo: viewClipboard.topAnchor, constant:  AppConstants.MARGIN_TOP),
             imgClipboard.leadingAnchor.constraint(equalTo: viewClipboard.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            self.imgClipboard.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
-            self.imgClipboard.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgClipboard.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+            self.imgClipboard.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
             self.imgClipboard.centerYAnchor.constraint(equalTo: self.viewClipboard.centerYAnchor)
             
         ])

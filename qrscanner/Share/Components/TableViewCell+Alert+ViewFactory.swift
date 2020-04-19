@@ -31,15 +31,15 @@ extension TableViewCell {
 
         self.viewRoot.addSubview(viewSub)
         NSLayoutConstraint.activate([
-            self.viewSub.trailingAnchor.constraint(equalTo: self.viewRoot.trailingAnchor,constant:   (AppConstants.MARGIN_RIGHT)),
+            self.viewSub.trailingAnchor.constraint(equalTo: self.viewRoot.readableContentGuide.trailingAnchor,constant:   (AppConstants.MARGIN_RIGHT)),
             self.viewSub.topAnchor.constraint(equalTo: self.viewRoot.topAnchor),
             self.viewSub.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor)
             
         ])
             self.viewSub.addSubview(checkBox)
             NSLayoutConstraint.activate([
-                self.checkBox.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.IC_DEFAULT : AppConstants.MARGIN_LEFT),
-                self.checkBox.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.IC_DEFAULT : AppConstants.MARGIN_LEFT),
+                self.checkBox.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.CHECKBOX_WIDTH_HEIGHT ),
+                self.checkBox.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.CHECKBOX_WIDTH_HEIGHT),
                 self.checkBox.centerYAnchor.constraint(equalTo: self.viewSub.centerYAnchor),
             ])
       

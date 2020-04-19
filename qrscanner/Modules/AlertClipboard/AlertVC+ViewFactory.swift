@@ -23,8 +23,8 @@ extension AlertVC {
         NSLayoutConstraint.activate([
             wrapperView.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP_ALERT),
             wrapperView.bottomAnchor.constraint(equalTo: viewBackground.bottomAnchor, constant: AppConstants.MARGIN_BOTTOM_ALERT),
-            wrapperView.trailingAnchor.constraint(equalTo: viewBackground.trailingAnchor, constant: AppConstants.MARGIN_RIGHT),
-            wrapperView.leadingAnchor.constraint(equalTo: viewBackground.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            wrapperView.trailingAnchor.constraint(equalTo: viewBackground.readableContentGuide.trailingAnchor, constant: AppConstants.MARGIN_RIGHT),
+            wrapperView.leadingAnchor.constraint(equalTo: viewBackground.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
         ])
         
         self.wrapperView.addSubview(scrollView)
@@ -58,7 +58,7 @@ extension AlertVC {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tableView.leftAnchor.constraint(equalTo: wrapperView.leftAnchor),
-            tableView.rightAnchor.constraint(equalTo: wrapperView.rightAnchor),
+            tableView.rightAnchor.constraint(equalTo: wrapperView.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             tableView.topAnchor.constraint(equalTo: lbContent.bottomAnchor, constant: AppConstants.MARGIN_TOP)
         ])
         self.viewBackground.addSubview(btnCancel)
@@ -81,8 +81,8 @@ extension AlertVC {
         ])
         
         
-        self.lbAleart.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-        self.lbContent.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.lbAleart.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.lbContent.numberOfLines = AppConstants.NUMBER_OF_LINE
         let tapCopy = UITapGestureRecognizer(target: self, action: #selector(copyItem(sender:)))
         self.btnOK.addGestureRecognizer(tapCopy)

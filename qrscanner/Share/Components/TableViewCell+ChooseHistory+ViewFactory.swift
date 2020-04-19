@@ -13,7 +13,7 @@ extension TableViewCell {
         
            self.addSubview(self.viewBackgroundSecond)
                     NSLayoutConstraint.activate([
-                     self.viewBackgroundSecond.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+                        self.viewBackgroundSecond.trailingAnchor.constraint(equalTo: self.trailingAnchor),
                      self.viewBackgroundSecond.leadingAnchor.constraint(equalTo: self.leadingAnchor),
                      self.viewBackgroundSecond.topAnchor.constraint(equalTo: self.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
                      self.viewBackgroundSecond.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: AppConstants.MARGIN_BOTTOM_ITEM)
@@ -54,8 +54,8 @@ extension TableViewCell {
              self.viewSub.addSubview(checkBox)
                  self.checkBox.centerYAnchor.constraint(equalTo: viewSub.centerYAnchor).isActive = true
              self.checkBox.leadingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant: AppConstants.MARGIN_LEFT).isActive = true
-        self.checkBox.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.IC_DEFAULT : AppConstants.MARGIN_LEFT).isActive = true
-             self.checkBox.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.IC_DEFAULT : AppConstants.MARGIN_LEFT).isActive = true
+        self.checkBox.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.CHECKBOX_WIDTH_HEIGHT).isActive = true
+             self.checkBox.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.CHECKBOX_WIDTH_HEIGHT).isActive = true
              
              self.viewBackgroundSecond.addSubview(self.viewUnderLine)
              NSLayoutConstraint.activate([

@@ -19,33 +19,33 @@ extension TextGenerateVC {
         scrollView.addSubview(viewBackground)
         NSLayoutConstraint.activate([
             viewBackground.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: AppConstants.MARGIN_TOP),
-            viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewBackground.leftAnchor.constraint(equalTo: view.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewBackground.rightAnchor.constraint(equalTo: view.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewBackground.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            viewBackground.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.HEIGHT_BACKGROUND_IPAD : AppConstants.HEIGHT_BACKGROUND)
+            viewBackground.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND)
         ])
         viewBackground.addSubview(viewTextBg)
         NSLayoutConstraint.activate([
             viewTextBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
-            viewTextBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewTextBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewTextBg.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.HEIGHT_BACKGROUND_ITEM_IPAD : AppConstants.HEIGHT_BACKGROUND_ITEM)
+            viewTextBg.leftAnchor.constraint(equalTo: viewBackground.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewTextBg.rightAnchor.constraint(equalTo: viewBackground.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewTextBg.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM)
         ])
         
         viewTextBg.addSubview(lbText)
         NSLayoutConstraint.activate([
             lbText.topAnchor.constraint(equalTo: viewTextBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            lbText.leadingAnchor.constraint(equalTo: viewTextBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            lbText.trailingAnchor.constraint(equalTo: viewTextBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            lbText.leadingAnchor.constraint(equalTo: viewTextBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbText.trailingAnchor.constraint(equalTo: viewTextBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewTextBg.addSubview(textFieldText)
         NSLayoutConstraint.activate([
             textFieldText.topAnchor.constraint(equalTo: lbText.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
-            textFieldText.leadingAnchor.constraint(equalTo: viewTextBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            textFieldText.trailingAnchor.constraint(equalTo: viewTextBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            textFieldText.leadingAnchor.constraint(equalTo: viewTextBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            textFieldText.trailingAnchor.constraint(equalTo: viewTextBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-        self.lbText.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-         self.textFieldText.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.lbText.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+         self.textFieldText.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
         self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
         setupNavItems()
@@ -58,12 +58,12 @@ extension TextGenerateVC {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.view.backgroundColor = .white
         navigationItem.title = LanguageHelper.getTranslationByKey(LanguageKey.Text)
-        let textAttributes = [NSAttributedString.Key.font: DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE), NSAttributedString.Key.foregroundColor:UIColor.white]
+        let textAttributes = [NSAttributedString.Key.font: AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE), NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
        self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
-         let menuButtonRight = UIButton(frame: DeviceHelper.isIpad() ? CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT_IPAD, height: AppConstants.ICON_WIDTH_HEIGHT_IPAD) : CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT, height: AppConstants.ICON_WIDTH_HEIGHT))
+         let menuButtonRight = UIButton(frame: CGRect(x: 0, y: 0, width: DeviceHelper.Shared.ICON_WIDTH_HEIGHT, height: DeviceHelper.Shared.ICON_WIDTH_HEIGHT))
                menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
                menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchDown)
                self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonRight)

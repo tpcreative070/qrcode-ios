@@ -98,8 +98,8 @@
             NSLayoutConstraint.activate([
                 imgEvent.topAnchor.constraint(equalTo: viewBackgroundThird.topAnchor, constant: AppConstants.MARGIN_TOP),
                 imgEvent.leadingAnchor.constraint(equalTo: viewBackgroundThird.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-                self.imgEvent.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
-                self.imgEvent.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+                self.imgEvent.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+                self.imgEvent.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
                 self.imgEvent.centerYAnchor.constraint(equalTo: self.viewBackgroundThird.centerYAnchor)
                 
             ])
@@ -125,8 +125,8 @@
             NSLayoutConstraint.activate([
                 imgClipboard.topAnchor.constraint(equalTo: viewClipboard.topAnchor, constant:  AppConstants.MARGIN_TOP),
                 imgClipboard.leadingAnchor.constraint(equalTo: viewClipboard.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-                self.imgClipboard.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
-                self.imgClipboard.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+                self.imgClipboard.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+                self.imgClipboard.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
                 self.imgClipboard.centerYAnchor.constraint(equalTo: self.viewClipboard.centerYAnchor)
                 
             ])

@@ -12,15 +12,15 @@ extension ResultGenerateVC {
         view.addSubview(imgQrcode)
         NSLayoutConstraint.activate([
             imgQrcode.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant : AppConstants.MARGIN_TOP),
-            imgQrcode.widthAnchor.constraint(equalToConstant: AppConstants.HEIGHT_IMAGE_QR),
-            imgQrcode.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_IMAGE_QR),
+            imgQrcode.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_QR_WIDTH_HEIGHT),
+            imgQrcode.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_QR_WIDTH_HEIGHT),
             imgQrcode.centerXAnchor.constraint(equalTo: view.centerXAnchor)
             
         ])
         self.view.addSubview(viewShare)
         NSLayoutConstraint.activate([
-            self.viewShare.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
-            self.viewShare.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: AppConstants.MARGIN_RIGHT),
+            self.viewShare.leadingAnchor.constraint(equalTo: self.view.readableContentGuide.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
+            self.viewShare.trailingAnchor.constraint(equalTo: self.view.readableContentGuide.trailingAnchor,constant: AppConstants.MARGIN_RIGHT),
             self.viewShare.topAnchor.constraint(equalTo: self.imgQrcode.bottomAnchor,constant:  AppConstants.MARGIN_TOP),
             
         ])
@@ -30,8 +30,8 @@ extension ResultGenerateVC {
         NSLayoutConstraint.activate([
             imgShare.topAnchor.constraint(equalTo: viewShare.topAnchor, constant:  AppConstants.MARGIN_TOP),
             imgShare.leadingAnchor.constraint(equalTo: viewShare.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            self.imgShare.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
-            self.imgShare.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgShare.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+            self.imgShare.heightAnchor.constraint(equalToConstant:DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
             self.imgShare.centerYAnchor.constraint(equalTo: self.viewShare.centerYAnchor)
             
         ])
@@ -46,8 +46,8 @@ extension ResultGenerateVC {
         
         self.view.addSubview(viewSave)
         NSLayoutConstraint.activate([
-            self.viewSave.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
-            self.viewSave.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: AppConstants.MARGIN_RIGHT),
+            self.viewSave.leadingAnchor.constraint(equalTo: self.view.readableContentGuide.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
+            self.viewSave.trailingAnchor.constraint(equalTo: self.view.readableContentGuide.trailingAnchor,constant: AppConstants.MARGIN_RIGHT),
             self.viewSave.topAnchor.constraint(equalTo: self.viewShare.bottomAnchor,constant:  AppConstants.MARGIN_TOP),
             
         ])
@@ -57,8 +57,8 @@ extension ResultGenerateVC {
         NSLayoutConstraint.activate([
             imgSave.topAnchor.constraint(equalTo: viewSave.topAnchor, constant:  AppConstants.MARGIN_TOP),
             imgSave.leadingAnchor.constraint(equalTo: viewSave.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            self.imgSave.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
-            self.imgSave.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgSave.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+            self.imgSave.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
             self.imgSave.centerYAnchor.constraint(equalTo: self.viewSave.centerYAnchor)
             
         ])
@@ -83,7 +83,7 @@ extension ResultGenerateVC {
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
        self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
-             let menuButtonRight = UIButton(frame: DeviceHelper.isIpad() ? CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT_IPAD, height: AppConstants.ICON_WIDTH_HEIGHT_IPAD) : CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT, height: AppConstants.ICON_WIDTH_HEIGHT))
+             let menuButtonRight = UIButton(frame: CGRect(x: 0, y: 0, width: DeviceHelper.Shared.ICON_WIDTH_HEIGHT, height: DeviceHelper.Shared.ICON_WIDTH_HEIGHT))
         menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_PRINT), for: .normal)
              menuButtonRight.addTarget(self, action: #selector(printAction), for: .touchUpInside)
             navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRight)]
