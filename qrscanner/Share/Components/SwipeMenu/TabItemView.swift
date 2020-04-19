@@ -20,6 +20,7 @@ final class TabItemView: UIView {
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
+  
 setupImage()
         setupLabel()
     }
@@ -37,8 +38,11 @@ setupImage()
                imageIcon.topAnchor.constraint(equalTo: self.topAnchor,constant: 5),
          
                imageIcon.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-               imageIcon.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_TAB)
+//               imageIcon.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_TAB),
+               imageIcon.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? 35 : 25),
+                imageIcon.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? 35 : 25),
            ])
+
        }
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -51,7 +55,7 @@ setupImage()
     private func setupLabel() {
         titleLabel = UILabel(frame: bounds)
         titleLabel.textAlignment = .center
-        titleLabel.font = DeviceHelper.isIpad() ? UIFont.boldSystemFont(ofSize: 16) : UIFont.boldSystemFont(ofSize: 14)
+        titleLabel.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
         titleLabel.textColor = UIColor(red: 140/255, green: 140/255, blue: 140/255, alpha: 1.0)
         titleLabel.backgroundColor = UIColor.clear
         addSubview(titleLabel)

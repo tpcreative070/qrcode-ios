@@ -53,6 +53,7 @@ class BarcodeVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
         view.keyboardType = .numberPad
+        
         return view
     }()
     lazy var  viewDropDown : UIButton = {
@@ -89,8 +90,10 @@ class BarcodeVC: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
           keyboardHelper?.registerKeyboardNotification()
-       // self.navigationController?.setNavigationBarHidden(false, animated: true)
         
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -125,9 +128,8 @@ class BarcodeVC: BaseViewController {
         let controller = ArrayChoiceTableViewController(BarcodeType.allValues) { (type) in
             self.barcodeViewModel.barcodetype = type.rawValue
             self.lbType.text = self.setTextLabel(mString: String(describing: type.rawValue))
-            
         }
-        controller.preferredContentSize = CGSize(width: 300, height: 95)
+        controller.preferredContentSize = CGSize(width: view.frame.width, height: DeviceHelper.isIpad() ? AppConstants.HEIGHT_BGDROPDOWN_IPAD : AppConstants.HEIGHT_BGDROPDOWN)
         showPopup(controller, sourceView: sender)
     }
     private func showPopup(_ controller: UIViewController, sourceView: UIView) {

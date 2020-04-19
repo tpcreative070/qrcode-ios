@@ -339,7 +339,7 @@
         "ERROR_ENDTIME_REQUIRED" : "Yêu cầu nhập thời gian kết thúc",
         "ERROR_BEGINTIME_REQUIRED" : "Yêu cầu nhập thời gian bắt đầu",
         "ERROR_DESCRIPTION_EVENT_REQUIRED" : "Yêu cầu nhập mô tả",
-        "ERROR_LOCATION_EVENT_REQUIRED" : "Yêu cầu nhập địa chỉ",
+        "ERROR_LOCATION_EVENT_REQUIRED" : "Yêu cầu nhập vị trí",
         "ERROR_TITLE_EVENT_REQUIRED" : "Yêu cầu nhập tiêu đề",
         "ERROR_SSID_REQUIRED" : "Yêu cầu nhập SSID",
         "ERROR_PASS_WIFI_REQUIRED" : "Yêu cầu nhập mật khẩu",

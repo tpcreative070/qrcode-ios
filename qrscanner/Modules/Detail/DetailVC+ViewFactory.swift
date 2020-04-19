@@ -43,7 +43,7 @@ extension DetailVC {
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
         setupEndedUpScrollView()
-      //  setupNavItems()
+        //  setupNavItems()
         setupTableView()
         bindTableView()
         
@@ -52,13 +52,13 @@ extension DetailVC {
         
         self.view.backgroundColor = .white
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-                      self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
+        self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
-        let menuButtonRight = UIButton(type: .system)
-        menuButtonRight.setImage(UIImage(named: AppImages.IC_SUPPORT), for: .normal)
-        menuButtonRight.addTarget(self, action: #selector(actionHelp), for: .touchUpInside)
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRight)]
+        let menuButtonRight = UIButton(frame: DeviceHelper.isIpad() ? CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT_IPAD, height: AppConstants.ICON_WIDTH_HEIGHT_IPAD) : CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT, height: AppConstants.ICON_WIDTH_HEIGHT))
+        menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_SUPPORT), for: .normal)
+        menuButtonRight.addTarget(self, action: #selector(actionHelp), for: .touchDown)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonRight)
     }
     func bindViewModel() {
         self.contentViewModel.showLoading.bind { visible in
@@ -68,11 +68,11 @@ extension DetailVC {
             self?.presentSingleButtonDialog(alert: alert)
         }
         
-//        self.contentViewModel.responseToView = {[weak self] value in
-//            if value == EnumResponseToView.UPDATE_DATA_SOURCE.rawValue {
-//                   self?.updateDataSource()
-//            }
-//        }
+        //        self.contentViewModel.responseToView = {[weak self] value in
+        //            if value == EnumResponseToView.UPDATE_DATA_SOURCE.rawValue {
+        //                   self?.updateDataSource()
+        //            }
+        //        }
     }
     
     func updateDataSource() {
@@ -121,7 +121,7 @@ extension DetailVC {
         tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.Barcode.rawValue)
         tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.EAN_8.rawValue)
         tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.EAN_13.rawValue)
-
+        
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
@@ -249,26 +249,26 @@ extension DetailVC : TableViewCellDelegate {
             vc.viewModel.listItem.append(AlertViewModel(name: model.phoneContact ?? "" ))
             self.navigationController?.pushViewController(vc, animated: false)
         }
-       else if typeCode == EnumType.BARCODE.rawValue{
-           
-           let model : BarcodeModel = try! JSONDecoder().decode(BarcodeModel.self, from: stringContent)
-           let vc = AlertVC()
+        else if typeCode == EnumType.BARCODE.rawValue{
+            
+            let model : BarcodeModel = try! JSONDecoder().decode(BarcodeModel.self, from: stringContent)
+            let vc = AlertVC()
             vc.viewModel.listItem.append(AlertViewModel(name: setTextLabel(mString: model.barcodetype ?? "") ))
-           vc.viewModel.listItem.append(AlertViewModel(name: model.productID ?? "" ))
-           self.navigationController?.pushViewController(vc, animated: false)
-       }
+            vc.viewModel.listItem.append(AlertViewModel(name: model.productID ?? "" ))
+            self.navigationController?.pushViewController(vc, animated: false)
+        }
     }
     func setTextLabel(mString: String) -> String{
-                  if mString == BarcodeType.EAN_8.rawValue{
-                      return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8)!
-                  }
-                  else if mString == BarcodeType.EAN_13.rawValue{
-                      return LanguageHelper.getTranslationByKey(LanguageKey.EAN_13)!
-                  }
-                  else{
-                      return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8)!
-                  }
-              }
+        if mString == BarcodeType.EAN_8.rawValue{
+            return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8)!
+        }
+        else if mString == BarcodeType.EAN_13.rawValue{
+            return LanguageHelper.getTranslationByKey(LanguageKey.EAN_13)!
+        }
+        else{
+            return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8)!
+        }
+    }
 }
 
 

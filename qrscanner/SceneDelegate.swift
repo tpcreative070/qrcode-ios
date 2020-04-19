@@ -22,10 +22,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the SwiftUI view that provides the window contents.
         //        let contentView = TestViewController()
         
-     
-        
-        
-        
        let rootVC = UINavigationController(rootViewController: MainVC())
          rootVC.isNavigationBarHidden = true
          // Use a UIHostingController as window root view controller.

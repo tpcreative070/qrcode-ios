@@ -35,7 +35,10 @@ class ChangeColorVC: UIViewController {
         bindViewModel()
     }
     
-    
+    @objc func doBack() {
+           navigationController?.popViewController(animated: true)
+           dismiss(animated: true, completion: nil)
+           }
        override func viewWillAppear(_ animated: Bool) {
            super.viewWillAppear(animated)
         CollectionViewCell.identifier = EnumIdentifier.ChangeColor

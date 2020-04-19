@@ -571,7 +571,7 @@ class SettingsVC : BaseViewController {
                        popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0) // you can set this as per your requirement.
                 popoverController.permittedArrowDirections = [.up] //to hide the arrow of any particular direction
                    }
-
+            self.present(alrController, animated: true, completion: nil)
         }
         else{
             self.present(alrController, animated: true, completion: nil)

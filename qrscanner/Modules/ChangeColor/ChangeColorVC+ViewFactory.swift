@@ -49,6 +49,28 @@ extension ChangeColorVC{
         self.view.backgroundColor = .white
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
+       
+//
+//        navigationItem.backBarButtonItem = UIBarButtonItem(title: " Quay lai", style: .plain, target: nil, action: nil)
+//
+//         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE), NSAttributedString.Key.foregroundColor:UIColor.white]
+//        let title = UIButton()
+//        title.titleLabel?.text = LanguageHelper.getTranslationByKey(LanguageKey.Back)
+//        title.titleLabel?.textColor = AppColors.WHITE_COLOR
+//        title.titleLabel?.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+//        title.addTarget(self, action: #selector(doBack), for: .touchUpInside)
+//        let menuButtonBack = UIButton(frame: DeviceHelper.isIpad() ? CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT_IPAD, height: AppConstants.ICON_WIDTH_HEIGHT_IPAD) : CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT, height: AppConstants.ICON_WIDTH_HEIGHT))
+//        menuButtonBack.setBackgroundImage(UIImage(named: AppImages.IC_BACK), for: .normal)
+//        menuButtonBack.addTarget(self, action: #selector(doBack), for: .touchDown)
+//
+//
+//        let stackview = UIStackView.init(arrangedSubviews: [menuButtonBack, title])
+//                 stackview.distribution = .equalSpacing
+//                 stackview.axis = .horizontal
+//            stackview.alignment = .center
+//                 stackview.spacing = 0
+       //       navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menuButtonBack)
+        
         self.navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
     }
