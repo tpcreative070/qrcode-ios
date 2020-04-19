@@ -85,46 +85,22 @@ struct AppConstants {
     static let FLOAT_LABEL_HEIGHT = CGFloat(25)
     static let INPUT_FIELD_HEIGHT = CGFloat(30)
     static let HEIGHT_BUTTON_DEFAULT = CGFloat(50)
-    static var HEIGHT_BACKGROUND_ITEM = CGFloat(90)
     
-    static let HEIGHT_BACKGROUND_ITEM_IPAD = CGFloat(100)
-    static let HEIGHT_BACKGROUND_IPAD = CGFloat(140)
-    static let HEIGHT_IMAGE_SETTING_IPAD = CGFloat(60)
-    static let HEIGHT_BACKGROUND_BAR_IPAD = CGFloat(200)
-    static let HEIGHT_BACKGROUND_ITEM_BAR_IPAD = CGFloat(160)
-    static let HEIGHT_BGDROPDOWN_IPAD = CGFloat(100)
-    static let ICON_WIDTH_HEIGHT_IPAD = CGFloat(37)
-    static let ICON_SCAN_WIDTH_HEIGHT_IPAD = CGFloat(40)
-    static let MARGIN_LEFT_ICON_IPAD = CGFloat(50)
-    static let SWITCH_HEIGHT_DEFAULT_IPAD = CGFloat(20)
-    static let SWITCH_WIDTH_DEFAULT_IPAD = CGFloat(50)
-    static let MARGIN_RIGHT_ICON_IPAD = CGFloat(-50)
-    static let HEIGHT_LABLE_IPAD = CGFloat(20)
-  
+    
 
     
-    static var HEIGHT_BACKGROUND = CGFloat(130)
 
     static let HEIGHT_IMAGE_HELP = CGFloat(200)
-    static var HEIGHT_IMAGE_SETTING = CGFloat(50)
-    static var HEIGHT_LABLE = CGFloat(18)
 
     static let HEIGHT_IMAGE_QR = CGFloat(300)
     static let HEIGHT_IMAGE_COLOR = CGFloat(64)
-    
-    static var HEIGHT_BACKGROUND_BAR = CGFloat(175)
-    
-    static var HEIGHT_BACKGROUND_ITEM_BAR = CGFloat(140)
     static let HEIGHT_VIEW_DROPDOWN = CGFloat(40)
 
-    static var HEIGHT_BGDROPDOWN = CGFloat(95)
     static let HEIGHT_VIEWICON = CGFloat(40)
 
 static let IC_DEFAULT_DROP = CGFloat(18)
     static let WIDTH_BUTTON_DEFAULT = CGFloat(120)
     static let IC_DEFAULT = CGFloat(25)
-    static var ICON_WIDTH_HEIGHT = CGFloat(30)
-    static var ICON_SCAN_WIDTH_HEIGHT = CGFloat(30)
 
     static let IC_CLOSE_WIDTH = CFloat(30)
     static let IC_CLOSE_HEIGHT = CFloat(30)
@@ -136,11 +112,6 @@ static let IC_DEFAULT_DROP = CGFloat(18)
 
     static let DEFAULT_CONSTRAINT = CGFloat(0)
     static let MARGIN_LEFT_COLOR = CGFloat(10)
-
-    static var MARGIN_LEFT_ICON = CGFloat(30)
-
-    static var MARGIN_RIGHT_ICON = CGFloat(-30)
-
     static let MARGIN_LEFT_ALERT_BTN = CGFloat(100)
     static let MARGIN_RIGHT_SETTING = CGFloat(-5)
 
@@ -156,10 +127,6 @@ static let IC_DEFAULT_DROP = CGFloat(18)
     static let MARGIN_RIGHT_ITEM_HIS = CGFloat(70)
     static let MARGIN_TOP_ALERT = CGFloat(130)
     static let MARGIN_BOTTOM_ALERT = CGFloat(-130)
-    static var SWITCH_HEIGHT_DEFAULT = CGFloat(18)
-
-    static let SWITCH_WIDTH_DEFAULT = CGFloat(45)
-    
     static let MARGIN_TOP_ITEM = CGFloat(12)
     static let MARGIN_TOP_ITEM_SETTING = CGFloat(8)
 
@@ -264,8 +231,6 @@ static let IC_DEFAULT_DROP = CGFloat(18)
 }
 
 struct AppFonts {
-    static let LABEL_TITLE_FONT_SIZE_IPAD = CGFloat(18)
-      static let LABEL_TITLE_FONT_SIZE_HELP_IPAD = CGFloat(22)
     // official font
     static let SFranciscoSemiBold = "SFProText-Semibold"
     static let SFranciscoBold = "SFProText-Bold"
@@ -281,9 +246,6 @@ struct AppFonts {
     
     static let LABEL_FONT_SIZE = CGFloat(16)
     static var LABEL_TITLE_FONT_SIZE = CGFloat(18)
-
-    static var LABEL_TITLE_FONT_SIZE_HELP = CGFloat(20)
-
     static let LABEL_DETAIL_ITEM_FONT_SIZE = CGFloat(14)
     static let BUTTON_HEIGHT = CGFloat(45)
     static let TEXTFIELD_HEIGHT = CGFloat(50)

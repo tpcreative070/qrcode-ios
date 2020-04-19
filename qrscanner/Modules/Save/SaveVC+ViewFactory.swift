@@ -41,7 +41,7 @@ extension SaveVC  {
                          lbNoItem.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                          lbNoItem.centerYAnchor.constraint(equalTo: view.centerYAnchor),
                      ])
-               self.lbNoItem.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE_HELP)
+            self.lbNoItem.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_TITLE_FONT_SIZE_HELP)
                lbNoItem.isHidden = false
            }
            else{

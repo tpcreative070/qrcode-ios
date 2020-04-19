@@ -54,8 +54,8 @@ extension TableViewCell  {
                  NSLayoutConstraint.activate([
                      imgPhone.topAnchor.constraint(equalTo: viewBackgroundFour.topAnchor, constant:  AppConstants.MARGIN_TOP),
                      imgPhone.leadingAnchor.constraint(equalTo: viewBackgroundFour.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-                     self.imgPhone.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
-                     self.imgPhone.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+                     self.imgPhone.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+                     self.imgPhone.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
                      self.imgPhone.centerYAnchor.constraint(equalTo: self.viewBackgroundFour.centerYAnchor)
                      
                  ])
@@ -81,8 +81,8 @@ extension TableViewCell  {
                       NSLayoutConstraint.activate([
                           imgClipboard.topAnchor.constraint(equalTo: viewClipboard.topAnchor, constant:  AppConstants.MARGIN_TOP),
                           imgClipboard.leadingAnchor.constraint(equalTo: viewClipboard.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-                          self.imgClipboard.widthAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
-                          self.imgClipboard.heightAnchor.constraint(equalToConstant: AppConstants.ICON_WIDTH_HEIGHT),
+                          self.imgClipboard.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+                          self.imgClipboard.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
                           self.imgClipboard.centerYAnchor.constraint(equalTo: self.viewClipboard.centerYAnchor)
                           
                       ])
