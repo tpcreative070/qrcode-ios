@@ -11,8 +11,8 @@ extension TableViewCell {
     func setupGenerateSubView(){
         self.viewBackground.addSubview(self.viewRoot)
         NSLayoutConstraint.activate([
-            self.viewRoot.leadingAnchor.constraint(equalTo: self.viewBackground.leadingAnchor),
-            self.viewRoot.trailingAnchor.constraint(equalTo: self.viewBackground.trailingAnchor),
+            self.viewRoot.leadingAnchor.constraint(equalTo: self.viewBackground.readableContentGuide.leadingAnchor),
+            self.viewRoot.trailingAnchor.constraint(equalTo: self.viewBackground.readableContentGuide.trailingAnchor),
             self.viewRoot.topAnchor.constraint(equalTo: self.viewBackground.safeAreaLayoutGuide.topAnchor),
             self.viewRoot.bottomAnchor.constraint(equalTo: self.viewBackground.bottomAnchor)
         ])
@@ -24,8 +24,8 @@ extension TableViewCell {
             self.imgIcon.topAnchor.constraint(equalTo: self.viewRoot.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM),
             self.imgIcon.bottomAnchor.constraint(equalTo: self.viewRoot.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
             self.imgIcon.leadingAnchor.constraint(equalTo: self.viewRoot.leadingAnchor,constant: AppConstants.MARGIN_LEFT),
-            self.imgIcon.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
-            self.imgIcon.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgIcon.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+            self.imgIcon.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
             self.imgIcon.centerYAnchor.constraint(equalTo: self.viewRoot.centerYAnchor)
         ])
         
@@ -51,8 +51,8 @@ extension TableViewCell {
             self.imgPlusIcon.bottomAnchor.constraint(equalTo: self.viewSub.bottomAnchor),
             self.imgPlusIcon.leadingAnchor.constraint(equalTo: self.viewSub.leadingAnchor),
             self.imgPlusIcon.trailingAnchor.constraint(equalTo: self.viewSub.trailingAnchor),
-            self.imgPlusIcon.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
-            self.imgPlusIcon.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT),
+            self.imgPlusIcon.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+            self.imgPlusIcon.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
             self.imgPlusIcon.centerYAnchor.constraint(equalTo: self.viewRoot.centerYAnchor)
         ])
 
@@ -64,7 +64,7 @@ extension TableViewCell {
             self.viewUnderLine.heightAnchor.constraint(equalToConstant: 1)
         ])
         self.viewUnderLine.backgroundColor = AppColors.GRAY_LIGHT
-        self.lbTitle.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.lbTitle.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
 
     }
    

@@ -34,6 +34,10 @@ class TypeCodeVC : BaseViewController{
         bindViewModel()
       
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        ProgressHUD.dismiss()
+    }
    
     
 }

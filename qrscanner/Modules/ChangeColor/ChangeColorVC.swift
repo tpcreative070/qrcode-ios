@@ -47,7 +47,10 @@ class ChangeColorVC: UIViewController {
        override func viewWillDisappear(_ animated: Bool) {
            super.viewWillDisappear(animated)
            self.navigationController?.isNavigationBarHidden = true
-           
+           navigationController?.interactivePopGestureRecognizer?.isEnabled = true
        }
-  
+  override func viewDidAppear(_ animated: Bool) {
+      super.viewDidAppear(animated)
+      navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+  }
 }

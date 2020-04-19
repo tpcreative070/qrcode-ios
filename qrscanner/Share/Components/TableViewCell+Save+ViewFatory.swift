@@ -12,7 +12,7 @@ extension TableViewCell {
     func setupSaveSubView(){
       self.addSubview(self.viewBackgroundSecond)
                 NSLayoutConstraint.activate([
-                 self.viewBackgroundSecond.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+                    self.viewBackgroundSecond.trailingAnchor.constraint(equalTo: self.trailingAnchor),
                  self.viewBackgroundSecond.leadingAnchor.constraint(equalTo: self.leadingAnchor),
                  self.viewBackgroundSecond.topAnchor.constraint(equalTo: self.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
                  self.viewBackgroundSecond.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: AppConstants.MARGIN_BOTTOM_ITEM)
@@ -53,8 +53,8 @@ extension TableViewCell {
          self.viewSub.addSubview(imgIcon)
              self.imgIcon.centerYAnchor.constraint(equalTo: viewSub.centerYAnchor).isActive = true
          self.imgIcon.leadingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant: AppConstants.MARGIN_LEFT).isActive = true
-         self.imgIcon.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT).isActive = true
-         self.imgIcon.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.ICON_WIDTH_HEIGHT_IPAD : AppConstants.ICON_WIDTH_HEIGHT).isActive = true
+         self.imgIcon.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT).isActive = true
+        self.imgIcon.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT).isActive = true
          self.imgIcon.image = UIImage(named: AppImages.IC_CREATE)
          
          self.viewBackgroundSecond.addSubview(self.viewUnderLine)
@@ -65,8 +65,8 @@ extension TableViewCell {
              self.viewUnderLine.heightAnchor.constraint(equalToConstant: 1)
          ])
          //  self.viewUnderLine.backgroundColor = .gray
-          self.lbCreatedDate.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE_HELP) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE)
-          self.lbContent.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.lbCreatedDate.font =  AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_TITLE_FONT_SIZE)
+          self.lbContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(actionImgCreateViewTap(sender:)))
        imgIcon.addGestureRecognizer(tapGesture)
        imgIcon.isUserInteractionEnabled  = true

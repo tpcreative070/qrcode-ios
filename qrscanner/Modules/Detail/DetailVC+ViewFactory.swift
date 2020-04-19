@@ -37,9 +37,9 @@ extension DetailVC {
         viewWrapper.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.leftAnchor.constraint(equalTo: view.readableContentGuide.leftAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.readableContentGuide.rightAnchor),
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
         setupEndedUpScrollView()
@@ -55,7 +55,7 @@ extension DetailVC {
         self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
-        let menuButtonRight = UIButton(frame: DeviceHelper.isIpad() ? CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT_IPAD, height: AppConstants.ICON_WIDTH_HEIGHT_IPAD) : CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT, height: AppConstants.ICON_WIDTH_HEIGHT))
+        let menuButtonRight = UIButton(frame: CGRect(x: 0, y: 0, width: DeviceHelper.Shared.ICON_WIDTH_HEIGHT, height: DeviceHelper.Shared.ICON_WIDTH_HEIGHT))
         menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_SUPPORT), for: .normal)
         menuButtonRight.addTarget(self, action: #selector(actionHelp), for: .touchDown)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonRight)
@@ -258,17 +258,17 @@ extension DetailVC : TableViewCellDelegate {
             self.navigationController?.pushViewController(vc, animated: false)
         }
     }
-    func setTextLabel(mString: String) -> String{
-        if mString == BarcodeType.EAN_8.rawValue{
-            return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8)!
-        }
-        else if mString == BarcodeType.EAN_13.rawValue{
-            return LanguageHelper.getTranslationByKey(LanguageKey.EAN_13)!
-        }
-        else{
-            return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8)!
-        }
-    }
+   func setTextLabel(mString: String) -> String{
+           if mString == BarcodeType.EAN_8.rawValue{
+               return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8) ?? "EAN 8"
+           }
+           else if mString == BarcodeType.EAN_13.rawValue{
+               return LanguageHelper.getTranslationByKey(LanguageKey.EAN_13) ?? "EAN 13"
+           }
+           else{
+               return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8) ?? "EAN 8"
+           }
+       }
 }
 
 

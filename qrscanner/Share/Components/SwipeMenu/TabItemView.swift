@@ -39,8 +39,8 @@ setupImage()
          
                imageIcon.centerXAnchor.constraint(equalTo: self.centerXAnchor),
 //               imageIcon.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_TAB),
-               imageIcon.widthAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? 35 : 25),
-                imageIcon.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? 35 : 25),
+            imageIcon.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SWIPE),
+                imageIcon.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SWIPE),
            ])
 
        }
@@ -55,7 +55,7 @@ setupImage()
     private func setupLabel() {
         titleLabel = UILabel(frame: bounds)
         titleLabel.textAlignment = .center
-        titleLabel.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        titleLabel.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         titleLabel.textColor = UIColor(red: 140/255, green: 140/255, blue: 140/255, alpha: 1.0)
         titleLabel.backgroundColor = UIColor.clear
         addSubview(titleLabel)

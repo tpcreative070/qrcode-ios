@@ -9,45 +9,45 @@
 import UIKit
 extension PhoneGenerateVC {
     func initUI() {
-       
-         self.view.addSubview(scrollView)
-                    NSLayoutConstraint.activate([
-                        scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-                        scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-                        scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                        scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                    ])
+        
+        self.view.addSubview(scrollView)
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+        ])
         scrollView.addSubview(viewBackground)
-       NSLayoutConstraint.activate([
+        NSLayoutConstraint.activate([
             viewBackground.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: AppConstants.MARGIN_TOP),
-            viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewBackground.leftAnchor.constraint(equalTo: view.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewBackground.rightAnchor.constraint(equalTo: view.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewBackground.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-                        viewBackground.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.HEIGHT_BACKGROUND_IPAD : AppConstants.HEIGHT_BACKGROUND)
-
+            viewBackground.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND)
+            
         ])
         viewBackground.addSubview(viewPhoneBg)
         NSLayoutConstraint.activate([
             viewPhoneBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
-            viewPhoneBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewPhoneBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewPhoneBg.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.HEIGHT_BACKGROUND_ITEM_IPAD : AppConstants.HEIGHT_BACKGROUND_ITEM)
+            viewPhoneBg.leftAnchor.constraint(equalTo: viewBackground.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewPhoneBg.rightAnchor.constraint(equalTo: viewBackground.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewPhoneBg.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM)
         ])
         
         viewPhoneBg.addSubview(lbPhone)
         NSLayoutConstraint.activate([
             lbPhone.topAnchor.constraint(equalTo: viewPhoneBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            lbPhone.leadingAnchor.constraint(equalTo: viewPhoneBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            lbPhone.trailingAnchor.constraint(equalTo: viewPhoneBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            lbPhone.leadingAnchor.constraint(equalTo: viewPhoneBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbPhone.trailingAnchor.constraint(equalTo: viewPhoneBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewPhoneBg.addSubview(textFieldPhone)
         NSLayoutConstraint.activate([
             textFieldPhone.topAnchor.constraint(equalTo: lbPhone.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
-            textFieldPhone.leadingAnchor.constraint(equalTo: viewPhoneBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            textFieldPhone.trailingAnchor.constraint(equalTo: viewPhoneBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            textFieldPhone.leadingAnchor.constraint(equalTo: viewPhoneBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            textFieldPhone.trailingAnchor.constraint(equalTo: viewPhoneBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-         self.lbPhone.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-        self.textFieldPhone.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.lbPhone.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.textFieldPhone.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
         self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
         setupNavItems()
@@ -60,16 +60,16 @@ extension PhoneGenerateVC {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.view.backgroundColor = .white
         navigationItem.title = LanguageHelper.getTranslationByKey(LanguageKey.Telephone)
-
-          let textAttributes = [NSAttributedString.Key.font: DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE), NSAttributedString.Key.foregroundColor:UIColor.white]
+        
+        let textAttributes = [NSAttributedString.Key.font: AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE), NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
-         let menuButtonRight = UIButton(frame: DeviceHelper.isIpad() ? CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT_IPAD, height: AppConstants.ICON_WIDTH_HEIGHT_IPAD) : CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT, height: AppConstants.ICON_WIDTH_HEIGHT))
-               menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
-               menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchDown)
-               self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonRight)
+        let menuButtonRight = UIButton(frame: CGRect(x: 0, y: 0, width: DeviceHelper.Shared.ICON_WIDTH_HEIGHT, height: DeviceHelper.Shared.ICON_WIDTH_HEIGHT))
+        menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
+        menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchDown)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonRight)
     }
     
     func bindViewModel() {
@@ -98,7 +98,7 @@ extension PhoneGenerateVC {
                 if (self?.phoneViewModel.isSeen)! == AppConstants.ISSEEN {
                     resVC.resultViewModel.isUpdate = AppConstants.ISUPDATE
                     resVC.resultViewModel.createDateTime = (self?.phoneViewModel.createDateTime)!
-
+                    
                 }
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }

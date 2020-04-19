@@ -42,5 +42,8 @@ extension AppDelegate {
         SQLHelper.createTranlation()
     
     }
+    func initDevice(){
+        DeviceHelper.Shared.init()
+    }
     
 }

@@ -80,7 +80,6 @@ class BarcodeVC: BaseViewController {
         super.viewDidLoad()
         initUI()
         generateViewModel = GenerateViewModel()
-        
         self.bindViewModel()
         self.checkIsSeenDetail()
         
@@ -94,13 +93,15 @@ class BarcodeVC: BaseViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
            keyboardHelper?.deregisterKeyboardNotification()
         self.navigationController?.isNavigationBarHidden = true
-        
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+
     }
     
     override func dismissKeyboard() {
@@ -129,7 +130,7 @@ class BarcodeVC: BaseViewController {
             self.barcodeViewModel.barcodetype = type.rawValue
             self.lbType.text = self.setTextLabel(mString: String(describing: type.rawValue))
         }
-        controller.preferredContentSize = CGSize(width: view.frame.width, height: DeviceHelper.isIpad() ? AppConstants.HEIGHT_BGDROPDOWN_IPAD : AppConstants.HEIGHT_BGDROPDOWN)
+        controller.preferredContentSize = CGSize(width: view.frame.width, height: DeviceHelper.Shared.HEIGHT_BGDROPDOWN )
         showPopup(controller, sourceView: sender)
     }
     private func showPopup(_ controller: UIViewController, sourceView: UIView) {

@@ -19,59 +19,59 @@ extension WifiGenerateVC {
         scrollView.addSubview(viewBackground)
         NSLayoutConstraint.activate([
             viewBackground.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: AppConstants.MARGIN_TOP),
-            viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewBackground.leftAnchor.constraint(equalTo: view.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewBackground.rightAnchor.constraint(equalTo: view.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewBackground.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            viewBackground.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.HEIGHT_BACKGROUND_IPAD * 3.2 : AppConstants.HEIGHT_BACKGROUND * 3.2)
+            viewBackground.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND * 3.1)
         ])
         viewBackground.addSubview(viewSsidBg)
         NSLayoutConstraint.activate([
             viewSsidBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
-            viewSsidBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewSsidBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-              viewSsidBg.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.HEIGHT_BACKGROUND_ITEM_IPAD : AppConstants.HEIGHT_BACKGROUND_ITEM)
+            viewSsidBg.leftAnchor.constraint(equalTo: viewBackground.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewSsidBg.rightAnchor.constraint(equalTo: viewBackground.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+              viewSsidBg.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM)
         ])
         
         viewSsidBg.addSubview(lbSsid)
         NSLayoutConstraint.activate([
             lbSsid.topAnchor.constraint(equalTo: viewSsidBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            lbSsid.leadingAnchor.constraint(equalTo: viewSsidBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            lbSsid.trailingAnchor.constraint(equalTo: viewSsidBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            lbSsid.leadingAnchor.constraint(equalTo: viewSsidBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbSsid.trailingAnchor.constraint(equalTo: viewSsidBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewSsidBg.addSubview(textFieldSsid)
         NSLayoutConstraint.activate([
             textFieldSsid.topAnchor.constraint(equalTo: lbSsid.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
-            textFieldSsid.leadingAnchor.constraint(equalTo: viewSsidBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            textFieldSsid.trailingAnchor.constraint(equalTo: viewSsidBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            textFieldSsid.leadingAnchor.constraint(equalTo: viewSsidBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            textFieldSsid.trailingAnchor.constraint(equalTo: viewSsidBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewBackground.addSubview(viewPassBg)
         NSLayoutConstraint.activate([
             viewPassBg.topAnchor.constraint(equalTo: viewSsidBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            viewPassBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewPassBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewPassBg.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ? AppConstants.HEIGHT_BACKGROUND_ITEM_IPAD : AppConstants.HEIGHT_BACKGROUND_ITEM)
+            viewPassBg.leftAnchor.constraint(equalTo: viewBackground.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewPassBg.rightAnchor.constraint(equalTo: viewBackground.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewPassBg.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM)
         ])
         viewPassBg.addSubview(lbPass)
         NSLayoutConstraint.activate([
             lbPass.topAnchor.constraint(equalTo: viewPassBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            lbPass.leadingAnchor.constraint(equalTo: viewPassBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            lbPass.trailingAnchor.constraint(equalTo: viewPassBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            lbPass.leadingAnchor.constraint(equalTo: viewPassBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbPass.trailingAnchor.constraint(equalTo: viewPassBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewPassBg.addSubview(textFieldPass)
         NSLayoutConstraint.activate([
             textFieldPass.topAnchor.constraint(equalTo: lbPass.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
-            textFieldPass.leadingAnchor.constraint(equalTo: viewPassBg.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-            textFieldPass.trailingAnchor.constraint(equalTo: viewPassBg.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+            textFieldPass.leadingAnchor.constraint(equalTo: viewPassBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            textFieldPass.trailingAnchor.constraint(equalTo: viewPassBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         
         
         viewBackground.addSubview(viewProtectBg)
         NSLayoutConstraint.activate([
             viewProtectBg.topAnchor.constraint(equalTo: viewPassBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            viewProtectBg.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewProtectBg.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-            viewProtectBg.heightAnchor.constraint(equalToConstant: DeviceHelper.isIpad() ?
-                AppConstants.HEIGHT_BACKGROUND_ITEM_IPAD * 1.8 : AppConstants.HEIGHT_BACKGROUND_ITEM * 1.8)         ])
+            viewProtectBg.leftAnchor.constraint(equalTo: viewBackground.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewProtectBg.rightAnchor.constraint(equalTo: viewBackground.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewProtectBg.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM * 1.75)
+        ])
         viewWPAContainer.addSubview(radioWPA)
         NSLayoutConstraint.activate([
             radioWPA.leadingAnchor.constraint(equalTo: viewWPAContainer.leadingAnchor),
@@ -88,7 +88,7 @@ extension WifiGenerateVC {
         view.addSubview(viewWPAContainer)
         NSLayoutConstraint.activate([
             viewWPAContainer.topAnchor.constraint(equalTo: viewPassBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_CONTAINER),
-            viewWPAContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppConstants.MARGIN_LEFT_CONTAINER
+            viewWPAContainer.leadingAnchor.constraint(equalTo: view.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT_CONTAINER
             ),
         ])
         viewWEPContainer.addSubview(radioWEP)
@@ -107,7 +107,7 @@ extension WifiGenerateVC {
         view.addSubview(viewWEPContainer)
         NSLayoutConstraint.activate([
             viewWEPContainer.topAnchor.constraint(equalTo: viewWPAContainer.bottomAnchor, constant: AppConstants.MARGIN_TOP_CONTAINER),
-            viewWEPContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppConstants.MARGIN_LEFT_CONTAINER)
+            viewWEPContainer.leadingAnchor.constraint(equalTo: view.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT_CONTAINER)
             
         ])
         viewNoneContainer.addSubview(radioNone)
@@ -126,19 +126,19 @@ extension WifiGenerateVC {
         view.addSubview(viewNoneContainer)
         NSLayoutConstraint.activate([
             viewNoneContainer.topAnchor.constraint(equalTo: viewWEPContainer.bottomAnchor, constant: AppConstants.MARGIN_TOP_CONTAINER),
-            viewNoneContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppConstants.MARGIN_LEFT_CONTAINER)
+            viewNoneContainer.leadingAnchor.constraint(equalTo: view.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT_CONTAINER)
             
         ])
-         self.lbSsid.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-         self.lbPass.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-          self.lbNetwork.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-          self.lbHidden.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-          self.lbWPA.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-         self.lbWEP.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-         self.lbNone.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+         self.lbSsid.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+         self.lbPass.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+          self.lbNetwork.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+          self.lbHidden.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+          self.lbWPA.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+         self.lbWEP.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+         self.lbNone.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         
-        self.textFieldSsid.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
-        self.textFieldPass.font = DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE)
+        self.textFieldSsid.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.textFieldPass.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         
         
         self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
@@ -169,13 +169,13 @@ extension WifiGenerateVC {
         self.view.backgroundColor = .white
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         navigationItem.title = EnumType.WIFI.rawValue
-                let textAttributes = [NSAttributedString.Key.font: DeviceHelper.isIpad() ? AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_TITLE_FONT_SIZE) : AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: AppFonts.LABEL_FONT_SIZE), NSAttributedString.Key.foregroundColor:UIColor.white]
+                let textAttributes = [NSAttributedString.Key.font: AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE), NSAttributedString.Key.foregroundColor:UIColor.white]
 
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
-        let menuButtonRight = UIButton(frame: DeviceHelper.isIpad() ? CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT_IPAD, height: AppConstants.ICON_WIDTH_HEIGHT_IPAD) : CGRect(x: 0, y: 0, width: AppConstants.ICON_WIDTH_HEIGHT, height: AppConstants.ICON_WIDTH_HEIGHT))
+        let menuButtonRight = UIButton(frame: CGRect(x: 0, y: 0, width: DeviceHelper.Shared.ICON_WIDTH_HEIGHT, height: DeviceHelper.Shared.ICON_WIDTH_HEIGHT))
                menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
                menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchDown)
                self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonRight)
