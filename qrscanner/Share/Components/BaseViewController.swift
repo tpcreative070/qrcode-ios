@@ -208,6 +208,12 @@ class BaseViewController: UIViewController {
     func refreshToken(){
      
     }
+    
+    func alertMessage(){
+        let alert = UIAlertController(title: LanguageHelper.getTranslationByKey(LanguageKey.Alert), message: LanguageHelper.getTranslationByKey(LanguageKey.ThisFeatureComingSoon), preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 
     func onDoAlertExpiredSession(){
         let alertController = UIAlertController(title: LanguageHelper.getTranslationByKey(LanguageKey.Error), message: LanguageHelper.getTranslationByKey(LanguageKey.SessionExpried), preferredStyle: .alert)

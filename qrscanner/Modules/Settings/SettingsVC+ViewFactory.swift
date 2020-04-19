@@ -572,6 +572,8 @@ extension SettingsVC {
         viewHelp.isUserInteractionEnabled  = true
         self.viewSupport.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showSupport(sender:))))
         viewHelp.isUserInteractionEnabled  = true
+        self.viewRate.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showRating(sender:))))
+        viewRate.isUserInteractionEnabled  = true
         changeColorQRCode(imgQRCode: imgQRCode)
         getCurrenLang()
         let version = Helper.getVersion()

@@ -584,7 +584,7 @@ class SettingsVC : BaseViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     @objc func showPermission (sender : UITapGestureRecognizer){
-        let alert = UIAlertController(title: LanguageHelper.getTranslationByKey(LanguageKey.AppPermission), message:"\(LanguageHelper.getTranslationByKey(LanguageKey.AppPermissonContent1)!)\n \(LanguageHelper.getTranslationByKey(LanguageKey.AppPermissonContent2)!)\n \(LanguageHelper.getTranslationByKey(LanguageKey.AppPermissonContent3)!) \n \(LanguageHelper.getTranslationByKey(LanguageKey.AppPermissonContent4)!)\n \(LanguageHelper.getTranslationByKey(LanguageKey.AppPermissonContent5)!)\n \(LanguageHelper.getTranslationByKey(LanguageKey.AppPermissonContent6)!)\n", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: LanguageHelper.getTranslationByKey(LanguageKey.AppPermission), message:" \(LanguageHelper.getTranslationByKey(LanguageKey.AppPermissonContent3)!) \n \(LanguageHelper.getTranslationByKey(LanguageKey.AppPermissonContent4)!)\n \(LanguageHelper.getTranslationByKey(LanguageKey.AppPermissonContent5)!)\n \(LanguageHelper.getTranslationByKey(LanguageKey.AppPermissonContent6)!)\n", preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction(UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Ok), style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
@@ -618,11 +618,18 @@ class SettingsVC : BaseViewController {
             
         }
     }
+    
     @objc func showShare (sender : UITapGestureRecognizer){
-        let share = LanguageKey.Link_Share
-        let activiController = UIActivityViewController(activityItems: [share], applicationActivities: nil)
-        self.present(activiController,animated: true, completion: nil)
+//        let share = LanguageKey.Link_Share
+//        let activiController = UIActivityViewController(activityItems: [share], applicationActivities: nil)
+//        self.present(activiController,animated: true, completion: nil)
+        alertMessage()
     }
+    
+    @objc func showRating(sender : UITapGestureRecognizer){
+        alertMessage()
+    }
+    
     @objc func showHelp (sender : UITapGestureRecognizer){
 
         let vc = HelpVC()
