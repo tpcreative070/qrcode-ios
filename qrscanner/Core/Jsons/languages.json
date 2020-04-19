@@ -196,7 +196,8 @@
         "OK" : "Ok",
         "SHARE": "Share",
         "DONE":"Done",
-        "SEARCH" : "Search"
+        "SEARCH" : "Search",
+        "THIS_FEATURE_COMING_SOON" : "This feature will be coming soon"
     },
     "vi" : {
          "NO_ITEM" : "Không có giá trị",
@@ -430,7 +431,8 @@
          "OK" : "Ok",
         "SHARE": "Chia sẻ",
         "DONE" : "Xong",
-        "SEARCH" : "Tìm kiếm"
+        "SEARCH" : "Tìm kiếm",
+        "THIS_FEATURE_COMING_SOON" : "Tính năng này sẽ có trong tương lai"
     },
    "es" : {
         "NO_ITEM": "Nenhum item encontrado",
@@ -650,7 +652,8 @@
          "OK" : "Ok",
         "SHARE": "Para compartir",
         "DONE" :"Hecho",
-        "SEARCH" : "Buscar"
+        "SEARCH" : "Buscar",
+        "THIS_FEATURE_COMING_SOON" : "Esta característica estará disponible pronto",
     },
    "pt" : {
        "NO_ITEM": "No se encontraron elementos",
@@ -870,6 +873,7 @@
           "OK" : "Ok",
          "SHARE": "Compartilhar",
          "DONE" : "Topo",
-         "SEARCH": "Procurar"
+         "SEARCH": "Procurar",
+         "THIS_FEATURE_COMING_SOON" : "Este recurso estará disponível em breve"
      },
 }

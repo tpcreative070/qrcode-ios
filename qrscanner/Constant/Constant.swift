@@ -525,7 +525,7 @@ struct LanguageKey {
     //Link
     static let Link_Privacy = "http://sites.google.com/view/tpcreative/home"
     static let Email_Help = "care@tpcreative.me"
-    static let Link_Share = "https://play.google.com/store/apps/detail?id=tpcreative.co.qrscanner"
+    static let Link_Share = ""
     //Scanner
     static let Placeholder_Ean8 = "PLACEHOLDER_EAN8"
     static let Placeholder_Ean13 = "PLACEHOLDER_EAN13"
