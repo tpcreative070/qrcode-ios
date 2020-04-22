@@ -145,7 +145,7 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
     var isScanning: Bool?
     var isFirstApplyOrientation: Bool?
     var captureSizeTransform: CGAffineTransform?
-    let viewModel =  ScannerViewModel()
+    let scannerviewModel =  ScannerViewModel()
     let qrViewModel =  QRCodeViewModel()
     let settingViewModel = SettingViewModel()
     var isFlash = false
@@ -200,18 +200,18 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
     }
     @objc func actionGallery(sender : UITapGestureRecognizer){
         self.viewBackground.bringSubviewToFront(viewIcon)
-        viewModel.defaultValue()
+        scannerviewModel.defaultValue()
        // ProgressHUD.showInView(view: self.view)
         onTakeGallery()
     }
     @objc func doneScanner(){
-        self.viewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
-        viewModel.isScanner = true
-        for item in viewModel.listScanner {
-            self.viewModel.scannerResult(mValue: item.value!, mType: item.typeScan!)
+        self.scannerviewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
+        scannerviewModel.isScanner = true
+        for item in scannerviewModel.listScanner {
+            self.scannerviewModel.scannerResult(mValue: item.value!, mType: item.typeScan!)
         }
-        viewModel.doGetListTransaction()
-        lbTotalResult.text =  "\(viewModel.listScanner.count)"
+        scannerviewModel.doGetListTransaction()
+        lbTotalResult.text =  "\(scannerviewModel.listScanner.count)"
        }
     @objc func actionHelp(sender : UITapGestureRecognizer){
         let vc = HelpVC()
@@ -224,10 +224,10 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
     
   
     override func viewWillAppear(_ animated: Bool) {
-        ProgressHUD.dismiss()
+        //ProgressHUD.dismiss()
     }
     override func viewDidAppear(_ animated: Bool) {
-        ProgressHUD.dismiss()
+        //ProgressHUD.dismiss()
         session?.startRunning()
         AppConstants.isCam = 0
         fetchData()

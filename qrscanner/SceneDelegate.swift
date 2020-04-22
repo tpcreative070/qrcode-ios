@@ -135,6 +135,9 @@ func sceneDidEnterBackground(_ scene: UIScene) {
                 }
             }
         }
+        else{
+           UserDefaults.standard.removeObject(forKey: AppConstants.keyImageData)
+        }
     }
 
 }

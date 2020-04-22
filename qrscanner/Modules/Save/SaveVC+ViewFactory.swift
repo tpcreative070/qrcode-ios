@@ -56,9 +56,9 @@ extension SaveVC  {
         
     }
     func bindViewModel() {
-        self.viewModel.showLoading.bind { visible in
-            visible ? ProgressHUD.show(): ProgressHUD.dismiss()
-        }
+//        self.viewModel.showLoading.bind { visible in
+//            visible ? ProgressHUD.show(): ProgressHUD.dismiss()
+//        }
         self.viewModel.onShowError = { [weak self] alert in
             self?.presentSingleButtonDialog(alert: alert)
         }
@@ -79,6 +79,7 @@ extension SaveVC  {
         self.sections = TableSection.group(rowItems: self.viewModel.listSave, by: { (headline) in
             return headline.typeCode
         })
+        self.sections.sort { (lhs, rhs) in lhs.rowItems[0].updatedDateTime > rhs.rowItems[0].updatedDateTime }
         self.dataSource.sections = self.sections
         self.dataSource.items = self.viewModel.listSave
         self.tableView.reloadData()

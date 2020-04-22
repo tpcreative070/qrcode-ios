@@ -38,6 +38,7 @@ class ChooseSaveVC : UIViewController,UIViewControllerTransitioningDelegate, UIN
         self.sections = TableSection.group(rowItems: self.saveViewModel.listSave, by: { (headline) in
             return headline.typeCode
         })
+        self.sections.sort { (lhs, rhs) in lhs.rowItems[0].updatedDateTime > rhs.rowItems[0].updatedDateTime }
         initUI()
         bindViewModel()
     }

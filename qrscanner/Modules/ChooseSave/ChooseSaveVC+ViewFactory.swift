@@ -73,6 +73,8 @@ extension ChooseSaveVC  {
         self.sections = TableSection.group(rowItems: self.saveViewModel.listSave, by: { (headline) in
             return headline.typeCode
         })
+        self.sections.sort { (lhs, rhs) in lhs.rowItems[0].updatedDateTime > rhs.rowItems[0].updatedDateTime }
+
         self.dataSource.sections = self.sections
         self.dataSource.items = self.saveViewModel.listSave
         self.tableView.reloadData()

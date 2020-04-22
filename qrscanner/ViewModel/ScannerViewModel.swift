@@ -126,10 +126,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
                         if arr_ques[1].contains("&"){
                             let arr_and = arr_ques[1].split(separator: "&")
                             sub = String((arr_and[0].split(separator: "="))[1])
-                            if (arr_and.count > 1 && arr_and.contains("=")){
-                                body = String((arr_and[1].split(separator: "="))[1])
-                                
-                            }
+                            body = String((arr_and[1].split(separator: "="))[1])
                             
                         }
                     }
@@ -411,7 +408,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
     func doAsync(list : [UIImage]){
         defaultValue()
          AppConstants.isCam = 1
-        self.showLoading.value = true
+      //  self.showLoading.value = true
         var flag : Bool = false
         var vstring: String?
         let myGroup = DispatchGroup()
@@ -466,7 +463,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
             //            self.navigate?()
         }
         if listResult.count > 0{
-            self.showLoading.value = false
+          //  self.showLoading.value = false
             self.responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
 //            if valueResult == nil {
 //                let okAlert = SingleButtonAlert(
@@ -495,7 +492,8 @@ class ScannerViewModel : ScannerViewModelDelegate {
                             //self.defaultValue()
                         })
                     )
-                    self.showLoading.value = false
+                   
+                self.showLoading.value = false
                     self.onShowError?(okAlert)
                 }
             }
@@ -503,7 +501,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
         myGroup.notify(queue: .main) {
             print("Finished all requests.")
             self.navigate?()
-            self.showLoading.value = false
+          //  self.showLoading.value = false
         }
         
     }

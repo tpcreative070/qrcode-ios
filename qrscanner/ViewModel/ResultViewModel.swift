@@ -12,6 +12,7 @@ class ResultViewModel : ResultViewModelDelegate {
     var typeCode : String?
     var isSeen : Int?
     var isUpdate : Int?
+    var isSave : Bool = false
     var navigate: (() -> ())?
     var responseToView: ((String) -> ())?
     var showLoading: Bindable<Bool> = Bindable(false)

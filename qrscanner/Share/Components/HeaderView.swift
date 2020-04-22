@@ -50,6 +50,7 @@ class HeaderView : UITableViewHeaderFooterView{
     
     // config view with Confirm
     func configView(view : GenerateViewModelDeletegate){
+        print(view.typeCodeView)
         if view.typeCodeView == LanguageKey.Barcode {
             self.lbGroupName.text = LanguageHelper.getTranslationByKey(LanguageKey.ProductID)
         }
