@@ -72,15 +72,18 @@ class ResultGenerateVC: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardHelper?.registerKeyboardNotification()
-        self.navigationController?.viewControllers.remove(at: 1)
+//        self.navigationController?.viewControllers.remove(at: 1)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         keyboardHelper?.deregisterKeyboardNotification()
-        self.navigationController?.isNavigationBarHidden = true
+       // self.navigationController?.isNavigationBarHidden = true
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        if resultViewModel.isSave {
+            self.navigationController?.isNavigationBarHidden = true
+        }
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -93,6 +96,8 @@ class ResultGenerateVC: BaseViewController {
         self.present(activityViewController, animated: true, completion: nil)
     }
     @objc func saveView(sender : UITapGestureRecognizer){
+        resultViewModel.isSave =  true
+        self.navigationController?.viewControllers.remove(at: 1)
         UIImageWriteToSavedPhotosAlbum(imgQrcode.image!, nil, nil, nil)
         showToast(message: LanguageHelper.getTranslationByKey(LanguageKey.SaveSuccess)!)
         let jsonData = contentViewModel!.content!.data(using: .utf8)!

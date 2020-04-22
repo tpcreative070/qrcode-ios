@@ -21,8 +21,7 @@ class ShareViewController: SLComposeServiceViewController {
     override func viewDidLoad() {
         UserDefaults(suiteName: self.sharedindentifier)!.removeObject(forKey: "Images")
         self.getListImage()
-        
-       
+
     }
     func checkFlag(){
         if flag {
@@ -33,7 +32,8 @@ class ShareViewController: SLComposeServiceViewController {
                      //  application.open(appUrl!, options: [:], completionHandler: nil)
                         self.openURL(url:NSURL(string:"qrscanner://co.tpcreative.qrscanner")!)
 //            openURL(appUrl!)
-        
+        self.extensionContext?.completeRequest(returningItems: [], completionHandler: nil)
+
                }
     }
    

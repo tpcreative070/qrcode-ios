@@ -102,7 +102,11 @@ class DeviceHelper {
     }
     struct Shared {
         static var MARGIN_LEFT : CGFloat = CGFloat()
+        static var MARGIN_LEFT_SCAN : CGFloat = CGFloat()
+
         static var MARGIN_RIGHT : CGFloat = CGFloat()
+        static var MARGIN_RIGHT_SCAN : CGFloat = CGFloat()
+
         static var HEIGHT_BACKGROUND_ITEM : CGFloat = CGFloat()
         static var HEIGHT_BACKGROUND : CGFloat = CGFloat()
         static var HEIGHT_IMAGE_SETTING : CGFloat = CGFloat()
@@ -126,7 +130,6 @@ class DeviceHelper {
         static var ICON_SWIPE : CGFloat = CGFloat()
         static var IMAGE_QR_WIDTH_HEIGHT : CGFloat = CGFloat()
         static var ICON_QR_WIDTH_HEIGHT : CGFloat = CGFloat()
-
 
         func isIpad() -> Bool {
             if UIDevice.current.userInterfaceIdiom == .pad {
@@ -179,6 +182,8 @@ class DeviceHelper {
                 DeviceHelper.Shared.ICON_SWIPE = CGFloat(35)
                 DeviceHelper.Shared.IMAGE_QR_WIDTH_HEIGHT = CGFloat(150)
                 DeviceHelper.Shared.ICON_QR_WIDTH_HEIGHT = CGFloat(300)
+                DeviceHelper.Shared.MARGIN_LEFT_SCAN = CGFloat(35)
+                DeviceHelper.Shared.MARGIN_RIGHT_SCAN = CGFloat(-35)
 
             }
               
@@ -208,6 +213,8 @@ class DeviceHelper {
                 DeviceHelper.Shared.ICON_SWIPE = CGFloat(25)
                 DeviceHelper.Shared.IMAGE_QR_WIDTH_HEIGHT = CGFloat(120)
                 DeviceHelper.Shared.ICON_QR_WIDTH_HEIGHT = CGFloat(250)
+                DeviceHelper.Shared.MARGIN_LEFT_SCAN = CGFloat(30)
+                DeviceHelper.Shared.MARGIN_RIGHT_SCAN = CGFloat(-30)
 
             }
         }

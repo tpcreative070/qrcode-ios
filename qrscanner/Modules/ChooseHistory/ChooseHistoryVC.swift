@@ -39,6 +39,8 @@ class ChooseHistoryVC : UIViewController,UIViewControllerTransitioningDelegate, 
         self.sections = TableSection.group(rowItems: self.historyViewModel.listHistories, by: { (headline) in
             return headline.typeCode
         })
+        self.sections.sort { (lhs, rhs) in lhs.rowItems[0].updatedDateTime > rhs.rowItems[0].updatedDateTime }
+
         initUI()
         bindViewModel()
     }

@@ -530,28 +530,35 @@ class SettingsVC : BaseViewController {
         //self.viewModel.isQRCode =  switchVibrate.isOn
     }
     @objc func doChangeLanguage (sender : UITapGestureRecognizer){
+        print(self.navigationController?.viewControllers.count)
+
         let alrController = UIAlertController(title: LanguageHelper.getTranslationByKey(LanguageKey.Language), message: LanguageHelper.getTranslationByKey(LanguageKey.ChooseYourLanguage), preferredStyle: UIAlertController.Style.actionSheet)
         let enlishAc = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.English), style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in
             CommonService.setMultipleLanguages(value: LanguageCode.English)
             self.navigationController?.pushViewController(MainVC(), animated: false)
+            self.navigationController?.viewControllers.remove(at: 0)
+          //  self.navigationController?.viewControllers.removeAll()
             self.dismiss()
 
         })
         let vietnamAc = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Vietnamese), style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in
             CommonService.setMultipleLanguages(value: LanguageCode.Vietnamese)
             self.navigationController?.pushViewController(MainVC(), animated: false)
+            self.navigationController?.viewControllers.remove(at: 0)
             self.dismiss()
 
         })
         let esAc = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Spanish), style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in
                    CommonService.setMultipleLanguages(value: LanguageCode.Spanish)
                    self.navigationController?.pushViewController(MainVC(), animated: false)
+            self.navigationController?.viewControllers.remove(at: 0)
                    self.dismiss()
 
                })
                let ptAc = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Portuguese), style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in
                    CommonService.setMultipleLanguages(value: LanguageCode.Portuguese)
                    self.navigationController?.pushViewController(MainVC(), animated: false)
+                self.navigationController?.viewControllers.remove(at: 0)
                    self.dismiss()
 
                })
@@ -620,16 +627,15 @@ class SettingsVC : BaseViewController {
     }
     
     @objc func showShare (sender : UITapGestureRecognizer){
-//        let share = LanguageKey.Link_Share
-//        let activiController = UIActivityViewController(activityItems: [share], applicationActivities: nil)
-//        self.present(activiController,animated: true, completion: nil)
-        alertMessage()
+        let share = LanguageKey.Link_Share
+        let activiController = UIActivityViewController(activityItems: [share], applicationActivities: nil)
+        self.present(activiController,animated: true, completion: nil)
     }
     
     @objc func showRating(sender : UITapGestureRecognizer){
-        alertMessage()
+        UIApplication.shared.openURL(NSURL(string: LanguageKey.Link_Share)! as URL)
+
     }
-    
     @objc func showHelp (sender : UITapGestureRecognizer){
 
         let vc = HelpVC()

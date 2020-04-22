@@ -46,9 +46,11 @@ class TableViewDataSource<Cell: UITableViewCell,ViewModel, HeaderInSection : UIT
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: self.cellIdentifier) as! HeaderInSection
+        
         if let data = sections{
             let mSection = data[section]
             if mSection.rowItems.count>0 {
+                Utils.logMessage(object: mSection.rowItems[0])
                 self.headerSection!(headerView,mSection.rowItems[0])
             }
             return headerView

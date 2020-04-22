@@ -29,8 +29,8 @@ extension ScannerVC {
         viewBackground.addSubview(viewIcon)
         NSLayoutConstraint.activate([
             viewIcon.topAnchor.constraint(equalTo: viewBackground.topAnchor),
-            viewIcon.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewIcon.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewIcon.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: DeviceHelper.Shared.MARGIN_LEFT_SCAN),
+            viewIcon.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: DeviceHelper.Shared.MARGIN_RIGHT_SCAN),
             viewIcon.centerXAnchor.constraint(equalTo: viewBackground.centerXAnchor),
             viewIcon.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_VIEWICON)
         ])
@@ -38,16 +38,16 @@ extension ScannerVC {
         NSLayoutConstraint.activate([
             viewScan.centerXAnchor.constraint(equalTo: viewBackground.centerXAnchor),
             viewScan.centerYAnchor.constraint(equalTo: viewBackground.centerYAnchor),
-            viewScan.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            viewScan.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewScan.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: DeviceHelper.Shared.MARGIN_LEFT_SCAN),
+            viewScan.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: DeviceHelper.Shared.MARGIN_RIGHT_SCAN),
             viewScan.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2)
         ])
         viewBackground.addSubview(lbScannerRectangle)
         NSLayoutConstraint.activate([
             lbScannerRectangle.centerXAnchor.constraint(equalTo: viewBackground.centerXAnchor),
             lbScannerRectangle.centerYAnchor.constraint(equalTo: viewBackground.centerYAnchor),
-            lbScannerRectangle.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-            lbScannerRectangle.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            lbScannerRectangle.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: DeviceHelper.Shared.MARGIN_LEFT_SCAN),
+            lbScannerRectangle.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: DeviceHelper.Shared.MARGIN_RIGHT_SCAN),
             lbScannerRectangle.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2)
         ])
         viewBackground.addSubview(wrapperSecondView)
@@ -263,36 +263,36 @@ extension ScannerVC {
     
     func bindViewModel() {
         
-        self.viewModel.showLoading.bind { visible in
+        self.scannerviewModel.showLoading.bind { visible in
             visible ? ProgressHUD.show(): ProgressHUD.dismiss()
         }
-        self.viewModel.onShowError = { [weak self] alert in
+        self.scannerviewModel.onShowError = { [weak self] alert in
             self?.presentSingleButtonDialog(alert: alert)
         }
-        self.viewModel.responseToView = {[weak self] value in
+        self.scannerviewModel.responseToView = {[weak self] value in
             if value == EnumResponseToView.UPDATE_DATA_SOURCE.rawValue {
                 let vc = QRCodeVC()
-                vc.viewModel.listQRResult = (self?.viewModel.listResult)!
-                vc.viewModel.dateTime = self?.viewModel.dateTime
+                vc.viewModel.listQRResult = (self?.scannerviewModel.listResult)!
+                vc.viewModel.dateTime = self?.scannerviewModel.dateTime
                 self?.navigationController?.pushViewController(vc,animated: true)
                 UserDefaults(suiteName: AppConstants.sharedIndentifier)!.removeObject(forKey: AppConstants.shareKey)
                 UserDefaults.standard.removeObject(forKey: AppConstants.keyImageData)
             }
         }
-        self.viewModel.navigate = { [weak self] in
-            if self!.viewModel.listResult.count > 1{
-                self?.viewModel.listResult.removeAll()
+        self.scannerviewModel.navigate = { [weak self] in
+            if self!.scannerviewModel.listResult.count > 1{
+                self?.scannerviewModel.listResult.removeAll()
             }
             else{
                 let  vc = DetailVC()
-                vc.listContentViewModel = (self?.viewModel.listTransaction)!
+                vc.listContentViewModel = (self?.scannerviewModel.listTransaction)!
                 self?.navigationController?.pushViewController(vc, animated: true)
-                self?.viewModel.defaultValue()
+                self?.scannerviewModel.defaultValue()
                UserDefaults(suiteName: AppConstants.sharedIndentifier)!.removeObject(forKey: AppConstants.shareKey)
                 UserDefaults.standard.removeObject(forKey: AppConstants.keyImageData)
             }
         }
-        self.viewModel.resultScan.bind { value in
+        self.scannerviewModel.resultScan.bind { value in
             //            let alert = UIAlertController(title: "Result", message: value, preferredStyle: .alert)
             //            alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
             //            self.present(alert,animated: true,completion: nil)
@@ -300,21 +300,45 @@ extension ScannerVC {
         
     }
     func fetchData(){
+        
         let arr = UserDefaults.standard.array(forKey: AppConstants.keyImageData) as? [Data]
         if arr != nil {
+            print(arr!.count)
             if arr!.count > 0{
                 ProgressHUD.showInView(view: self.view)
             for item in arr! {
                 let rawImage = UIImage(data: item)
-                viewModel.listImage.append(rawImage!)
+                scannerviewModel.listImage.append(rawImage!)
             }
-            DispatchQueue.main.async(execute: { () -> Void in
-                self.viewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
-                self.viewModel.doAsync(list:self.viewModel.listImage)
-                self.viewModel.doGetListTransaction()
-                
-            })
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
+//                  DispatchQueue.main.async(execute: { () -> Void in
+                      self.scannerviewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
+                      self.scannerviewModel.doAsync(list:self.scannerviewModel.listImage)
+                      self.scannerviewModel.doGetListTransaction()
+//
+//                  })
+                }
         }
+        }
+        if let prefs = UserDefaults(suiteName: AppConstants.sharedIndentifier) {
+                      if let imageData = prefs.object(forKey: AppConstants.shareKey) as? [Data] {
+                         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                                          ProgressHUD.showInView(view: self.view)
+                                        }
+                                    for item in imageData {
+                                        let rawImage = UIImage(data: item)
+                                        scannerviewModel.listImage.append(rawImage!)
+                                    }
+                                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
+                        //                  DispatchQueue.main.async(execute: { () -> Void in
+                                              self.scannerviewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
+                                              self.scannerviewModel.doAsync(list:self.scannerviewModel.listImage)
+                                              self.scannerviewModel.doGetListTransaction()
+                        //
+                        //                  })
+                                        }
+            }
+            
         }
     }
  
@@ -421,8 +445,8 @@ extension ScannerVC {
                     setupFooter()
                     self.viewBackground.bringSubviewToFront(viewFooter)
                     let scanner = ScannerModel(value: (String((object?.stringValue)!)), typeScan: (object?.type.rawValue ?? ""))
-                    viewModel.listScanner.append(scanner)
-                    lbTotalResult.text =  "\(viewModel.listScanner.count)"
+                    scannerviewModel.listScanner.append(scanner)
+                    lbTotalResult.text =  "\(scannerviewModel.listScanner.count)"
                     session?.stopRunning()
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
@@ -430,12 +454,12 @@ extension ScannerVC {
                     }
                 }
                 else{
-                    viewModel.listScanner.removeAll()
+                    scannerviewModel.listScanner.removeAll()
                     viewFooter.isHidden = true
-                    lbTotalResult.text =  "\(viewModel.listScanner.count)"
+                    lbTotalResult.text =  "\(scannerviewModel.listScanner.count)"
                     isScanning = false
-                    viewModel.isScanner = true
-                    viewModel.scannerResult(mValue: "\(String((object?.stringValue)!))", mType: (object?.type.rawValue ?? ""))
+                    scannerviewModel.isScanner = true
+                    scannerviewModel.scannerResult(mValue: "\(String((object?.stringValue)!))", mType: (object?.type.rawValue ?? ""))
                     session?.stopRunning()
                 }
             }
@@ -451,24 +475,24 @@ extension ScannerVC {
 }
 extension ScannerVC : OpalImagePickerControllerDelegate {
     func imagePicker(_ picker: OpalImagePickerController, didFinishPickingImages images: [UIImage]) {
-        self.viewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
+        self.scannerviewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
         if  UserDefaults.standard.bool(forKey:KeyUserDefault.MultiLoad){
            
-            self.viewModel.doAsync(list: images)
-            viewModel.doGetListTransaction()
+            self.scannerviewModel.doAsync(list: images)
+            scannerviewModel.doGetListTransaction()
         }
         else{
             if images.count > 1{
                 let alert = UIAlertController(title: LanguageHelper.getTranslationByKey(LanguageKey.Alert), message:LanguageHelper.getTranslationByKey(LanguageKey.ChooseOneQRCode) , preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Ok), style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
-                ProgressHUD.dismiss()
+               ProgressHUD.dismiss()
                 
             }
             else{
                 
-                self.viewModel.doAsync(list: images)
-                viewModel.doGetListTransaction()
+                self.scannerviewModel.doAsync(list: images)
+                scannerviewModel.doGetListTransaction()
             }
         }
         
@@ -493,7 +517,7 @@ extension ScannerVC: ZXCaptureDelegate {
         
         capture?.stop()
         isScanning = false
-        viewModel.isScanner = true
+        scannerviewModel.isScanner = true
    //     viewModel.scannerResult(mValue: "\(result!)")
         
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)

@@ -43,11 +43,16 @@ class HistoryVC : UIViewController,UIViewControllerTransitioningDelegate, UINavi
     var floaty = Floaty()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.sections = TableSection.group(rowItems: self.historyViewModel.listHistories, by: { (headline) in
-            return headline.typeCode
-        })
+        
         initUI()
         bindViewModel()
+        self.sections = TableSection.group(rowItems: self.historyViewModel.listHistories, by: { (headline) in
+            print(headline.typeCode)
+            return String(headline.typeCode)
+        })
+        self.sections.sort { (lhs, rhs) in lhs.rowItems[0].updatedDateTime > rhs.rowItems[0].updatedDateTime }
+
+        Utils.logMessage(object: sections)
     }
     override func viewDidAppear(_ animated: Bool) {
         self.historyViewModel.doGetListHistories()
@@ -55,7 +60,6 @@ class HistoryVC : UIViewController,UIViewControllerTransitioningDelegate, UINavi
         self.navigationController?.isNavigationBarHidden = true
     }
     override func viewWillAppear(_ animated: Bool) {
-        
     }
     
 }

@@ -54,9 +54,9 @@ extension HistoryVC  {
         tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: EnumIdentifier.History.rawValue)
     }
     func bindViewModel() {
-        self.historyViewModel.showLoading.bind { visible in
-            visible ? ProgressHUD.show(): ProgressHUD.dismiss()
-        }
+//        self.historyViewModel.showLoading.bind { visible in
+//            visible ? ProgressHUD.show(): ProgressHUD.dismiss()
+//        }
         self.historyViewModel.onShowError = { [weak self] alert in
             self?.presentSingleButtonDialog(alert: alert)
         }
@@ -70,8 +70,9 @@ extension HistoryVC  {
     }
     func updateDataSource() {
         self.sections = TableSection.group(rowItems: self.historyViewModel.listHistories, by: { (headline) in
-            return headline.typeCode
+            return String(headline.typeCode)
         })
+        self.sections.sort { (lhs, rhs) in lhs.rowItems[0].updatedDateTime > rhs.rowItems[0].updatedDateTime }
         self.dataSource.sections = self.sections
         self.dataSource.items = self.historyViewModel.listHistories
         self.tableView.reloadData()
@@ -80,13 +81,18 @@ extension HistoryVC  {
     }
     
     func bindTableView(){
+          
         self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.History.rawValue, items: self.historyViewModel.listHistories,sections: self.sections, height: AppConstants.TABLE_ROW_HEIGHT,isSelectionStype: false){ cell, vm in
+            Utils.logMessage(object: self.historyViewModel.listHistories)
+            print("---------------")
+            Utils.logMessage(object: vm)
             cell.configView(view: vm)
             cell.configData(viewModel: vm)
             cell.delegate = self
         }
         
         self.dataSource.headerSection = { section, vm in
+            Utils.logMessage(object: vm)
             section.delegate = self
             section.configView(view: vm)
         }

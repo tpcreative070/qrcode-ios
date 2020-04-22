@@ -41,6 +41,7 @@ class SaveVC : UIViewController,UIViewControllerTransitioningDelegate, UINavigat
         self.sections = TableSection.group(rowItems: self.viewModel.listSave, by: { (headline) in
             return headline.typeCode
         })
+        self.sections.sort { (lhs, rhs) in lhs.rowItems[0].updatedDateTime > rhs.rowItems[0].updatedDateTime }
         initUI()
         setupFloatButton()
         bindViewModel()
