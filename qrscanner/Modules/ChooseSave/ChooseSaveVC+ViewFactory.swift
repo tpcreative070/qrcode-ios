@@ -186,7 +186,7 @@ extension ChooseSaveVC : TableViewCellDelegate{
     }
     
     func cellViewSelected(cell: TableViewCell, countSelected: Int) {
-        guard let indexPath = tableView.indexPath(for: cell) else { return }
+       // guard let indexPath = tableView.indexPath(for: cell) else { return }
      //   let result = self.saveViewModel.listSave[indexPath.row]
     }
     

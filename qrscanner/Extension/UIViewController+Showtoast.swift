@@ -102,7 +102,7 @@ extension UIViewController {
             }
             historyArray.add(value);
         }
-        Utils.logMessage(object: historyArray)
+       // Utils.logMessage(object: historyArray)
         createCSV(from: historyArray)
     }
     func createCSV(from historyArray: NSMutableArray ) {
@@ -119,7 +119,7 @@ extension UIViewController {
                 return
             }
             print("File Path: \(filePath)")
-            CSVExport.readCSVObject(filePath);
+            let _ = CSVExport.readCSVObject(filePath);
            // let request = NSURLRequest(url:  URL(fileURLWithPath: filePath) )
             //                      try csvString.write(to: fileURL, atomically: true, encoding: .utf8)
             let activiController = UIActivityViewController(activityItems: [URL(fileURLWithPath: filePath)], applicationActivities: nil)

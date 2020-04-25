@@ -52,7 +52,7 @@ class HistoryVC : UIViewController,UIViewControllerTransitioningDelegate, UINavi
         })
         self.sections.sort { (lhs, rhs) in lhs.rowItems[0].updatedDateTime > rhs.rowItems[0].updatedDateTime }
 
-        Utils.logMessage(object: sections)
+       // Utils.logMessage(object: sections)
     }
     override func viewDidAppear(_ animated: Bool) {
         self.historyViewModel.doGetListHistories()

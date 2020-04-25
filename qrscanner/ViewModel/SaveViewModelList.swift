@@ -52,7 +52,7 @@ class SaveViewModelList : SaveViewModelListDeletegate{
                                       }
                 }
                 
-                listSave = listSave.sorted {$0.createdDateTime > $1.createdDateTime}
+                listSave = listSave.sorted {$0.updatedDateTime > $1.updatedDateTime}
                 responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
             }
         }

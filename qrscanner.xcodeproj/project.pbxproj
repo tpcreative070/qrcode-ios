@@ -52,6 +52,11 @@
 		289308CE2437147300680BF3 /* UIView+setAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289308CD2437147300680BF3 /* UIView+setAnchor.swift */; };
 		289308D12437A1F400680BF3 /* BarcodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289308D02437A1F400680BF3 /* BarcodeVC.swift */; };
 		289308D32437A20400680BF3 /* BarcodeVC+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289308D22437A20400680BF3 /* BarcodeVC+ViewFactory.swift */; };
+		289334D22452C8B1000317A8 /* AppStoreReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289334D12452C8B1000317A8 /* AppStoreReviewManager.swift */; };
+		289334D42452C905000317A8 /* UserDefaults+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289334D32452C905000317A8 /* UserDefaults+Key.swift */; };
+		289334D62452DF9C000317A8 /* RateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289334D52452DF9C000317A8 /* RateVC.swift */; };
+		289334D82452E022000317A8 /* RateVC+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289334D72452E022000317A8 /* RateVC+ViewFactory.swift */; };
+		289334FC24534BAB000317A8 /* ContentDuplicateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289334FB24534BAB000317A8 /* ContentDuplicateViewModel.swift */; };
 		289371262428525500E40471 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289371252428525500E40471 /* DetailVC.swift */; };
 		289371282428526400E40471 /* DetailVC+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289371272428526400E40471 /* DetailVC+ViewFactory.swift */; };
 		2893712C2428689700E40471 /* ContentViewModelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2893712B2428689700E40471 /* ContentViewModelList.swift */; };
@@ -366,6 +371,11 @@
 		289308CD2437147300680BF3 /* UIView+setAnchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+setAnchor.swift"; sourceTree = "<group>"; };
 		289308D02437A1F400680BF3 /* BarcodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeVC.swift; sourceTree = "<group>"; };
 		289308D22437A20400680BF3 /* BarcodeVC+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BarcodeVC+ViewFactory.swift"; sourceTree = "<group>"; };
+		289334D12452C8B1000317A8 /* AppStoreReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReviewManager.swift; sourceTree = "<group>"; };
+		289334D32452C905000317A8 /* UserDefaults+Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Key.swift"; sourceTree = "<group>"; };
+		289334D52452DF9C000317A8 /* RateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateVC.swift; sourceTree = "<group>"; };
+		289334D72452E022000317A8 /* RateVC+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RateVC+ViewFactory.swift"; sourceTree = "<group>"; };
+		289334FB24534BAB000317A8 /* ContentDuplicateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDuplicateViewModel.swift; sourceTree = "<group>"; };
 		289371252428525500E40471 /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 		289371272428526400E40471 /* DetailVC+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailVC+ViewFactory.swift"; sourceTree = "<group>"; };
 		2893712B2428689700E40471 /* ContentViewModelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModelList.swift; sourceTree = "<group>"; };
@@ -846,6 +856,15 @@
 			path = ChangeColor;
 			sourceTree = "<group>";
 		};
+		289E50012451CCA600D4F21D /* Rate */ = {
+			isa = PBXGroup;
+			children = (
+				289334D52452DF9C000317A8 /* RateVC.swift */,
+				289334D72452E022000317A8 /* RateVC+ViewFactory.swift */,
+			);
+			path = Rate;
+			sourceTree = "<group>";
+		};
 		28A039522438AF9500888582 /* DropDown */ = {
 			isa = PBXGroup;
 			children = (
@@ -1105,6 +1124,7 @@
 				28A4E1BA2431D4F400DDD4A1 /* QRCodeViewModel.swift */,
 				28A4E1BC2431D60E00DDD4A1 /* QRCodeViewModelList.swift */,
 				28A4E1C42432E89D00DDD4A1 /* TransactionViewModel.swift */,
+				289334FB24534BAB000317A8 /* ContentDuplicateViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1184,6 +1204,8 @@
 				28969FC3241C08F900F30A29 /* GalleryHelper.swift */,
 				28A4E1CF24333D5200DDD4A1 /* PlaySoundManager.swift */,
 				28A4E1D124333E2A00DDD4A1 /* SoundHelper.swift */,
+				289334D12452C8B1000317A8 /* AppStoreReviewManager.swift */,
+				289334D32452C905000317A8 /* UserDefaults+Key.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1202,6 +1224,7 @@
 		D2BA0A502408DCF30074C7A1 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				289E50012451CCA600D4F21D /* Rate */,
 				289CC9692434F06E0073CEBA /* ChangeColor */,
 				28A4E1B52431D41700DDD4A1 /* QRCode */,
 				28390CC9242DDF7800383427 /* Help */,
@@ -1814,6 +1837,7 @@
 				D2BA0A7524096A1F0074C7A1 /* UIColor+HexToRGB.swift in Sources */,
 				28A039692438C7B700888582 /* AlwaysPresentAsPopover.swift in Sources */,
 				2897F7AE2422438500ED0A60 /* TableViewCell+Message+ViewFactory.swift in Sources */,
+				289334D62452DF9C000317A8 /* RateVC.swift in Sources */,
 				28A4E1BB2431D4F400DDD4A1 /* QRCodeViewModel.swift in Sources */,
 				D2BA0ADC240A69830074C7A1 /* UIColorExtension.swift in Sources */,
 				D2BA0AD8240A69830074C7A1 /* UIViewExtension.swift in Sources */,
@@ -1839,6 +1863,7 @@
 				D2BA0AC4240A62110074C7A1 /* SignInResponseModel.swift in Sources */,
 				28A4E1D224333E2A00DDD4A1 /* SoundHelper.swift in Sources */,
 				D2BA0A9324096ABC0074C7A1 /* LanguageHelper.swift in Sources */,
+				289334FC24534BAB000317A8 /* ContentDuplicateViewModel.swift in Sources */,
 				28A4E1CB24332BC400DDD4A1 /* SettingModel.swift in Sources */,
 				2894B6B824307E8900769F68 /* SettingsViewModelList.swift in Sources */,
 				2894D6BD241C9012009E1659 /* UIView+Helper.swift in Sources */,
@@ -1884,6 +1909,7 @@
 				2865AA302412BD1F00C1F207 /* UITextField+fixCaretPosition.swift in Sources */,
 				28998A3A242CA40900C6837D /* AlertViewModelList.swift in Sources */,
 				28969FC2241BF3A700F30A29 /* ICCheckBox.swift in Sources */,
+				289334D42452C905000317A8 /* UserDefaults+Key.swift in Sources */,
 				289371282428526400E40471 /* DetailVC+ViewFactory.swift in Sources */,
 				289B4BA224140B0E005BC714 /* RadioButton.swift in Sources */,
 				2897F7AC242242A700ED0A60 /* MessageViewModel.swift in Sources */,
@@ -1900,6 +1926,7 @@
 				28D81D342416229C007834F0 /* TextModel.swift in Sources */,
 				2897F7A22421D61000ED0A60 /* WifiViewModel.swift in Sources */,
 				D2BA0A6C240969440074C7A1 /* Constant.swift in Sources */,
+				289334D82452E022000317A8 /* RateVC+ViewFactory.swift in Sources */,
 				289767542414D4D500AD0D78 /* ScannerViewModel.swift in Sources */,
 				28A4E1C9243322E400DDD4A1 /* ICCustomThumbView.swift in Sources */,
 				28A0395C2438B01E00888582 /* DropDown+Appearance.swift in Sources */,
@@ -1943,6 +1970,7 @@
 				28BFA8EC240D4384002ECD93 /* Bindable.swift in Sources */,
 				28BFA8D8240CDC82002ECD93 /* TableViewCell+ViewFactory.swift in Sources */,
 				28A0396B2438CDF000888582 /* BarcodeModel.swift in Sources */,
+				289334D22452C8B1000317A8 /* AppStoreReviewManager.swift in Sources */,
 				D2BA0A7D24096A5E0074C7A1 /* ICBackBlueButton.swift in Sources */,
 				2893EF31241A19B2004D58C6 /* StackView.swift in Sources */,
 				D2BA0AFD240ABD260074C7A1 /* TypeCodeVC+ViewFactory.swift in Sources */,

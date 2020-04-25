@@ -30,7 +30,7 @@ class ChangeColorViewModelList: ChangeColorViewModelListDelegate {
         getCurrentItemSelect(mValue: value, listColor: listColor)
       }
     func getCurrentItemSelect(mValue: String, listColor: [ChangeColorViewModel]){
-        Utils.logMessage(object: listColor)
+       // Utils.logMessage(object: listColor)
 
         for (item) in listColor{
             if item.imgQRView == mValue {
@@ -53,7 +53,7 @@ class ChangeColorViewModelList: ChangeColorViewModelListDelegate {
                   item.isSelected = false
               }
           }
-         Utils.logMessage(object: listColor)
+        // Utils.logMessage(object: listColor)
           self.responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE_COLLECTION_VIEW.rawValue)
       }
 }

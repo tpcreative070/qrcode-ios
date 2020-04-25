@@ -103,6 +103,7 @@ class DeviceHelper {
     struct Shared {
         static var MARGIN_LEFT : CGFloat = CGFloat()
         static var MARGIN_LEFT_SCAN : CGFloat = CGFloat()
+        static var MARGIN_BOTTOM_SCAN : CGFloat = CGFloat()
 
         static var MARGIN_RIGHT : CGFloat = CGFloat()
         static var MARGIN_RIGHT_SCAN : CGFloat = CGFloat()
@@ -176,7 +177,7 @@ class DeviceHelper {
                 DeviceHelper.Shared.LABEL_TITLE_FONT_SIZE_HELP = CGFloat(22)
                 DeviceHelper.Shared.LABEL_FONT_SIZE = CGFloat(18)
                 DeviceHelper.Shared.CONTENT_FONT_SIZE = CGFloat(16)
-                DeviceHelper.Shared.HEIGHT_IMAGE_HELP = CGFloat(220)
+                DeviceHelper.Shared.HEIGHT_IMAGE_HELP = CGFloat(250)
                 DeviceHelper.Shared.CHECKBOX_WIDTH_HEIGHT = CGFloat(25)
                 DeviceHelper.Shared.TEXTFIELD_TITLE_FONT_SIZE = CGFloat(18)
                 DeviceHelper.Shared.ICON_SWIPE = CGFloat(35)
@@ -184,6 +185,7 @@ class DeviceHelper {
                 DeviceHelper.Shared.ICON_QR_WIDTH_HEIGHT = CGFloat(300)
                 DeviceHelper.Shared.MARGIN_LEFT_SCAN = CGFloat(35)
                 DeviceHelper.Shared.MARGIN_RIGHT_SCAN = CGFloat(-35)
+                DeviceHelper.Shared.MARGIN_BOTTOM_SCAN = CGFloat(-35)
 
             }
               
@@ -207,7 +209,7 @@ class DeviceHelper {
                 DeviceHelper.Shared.LABEL_TITLE_FONT_SIZE_HELP = CGFloat(20)
                 DeviceHelper.Shared.LABEL_FONT_SIZE = CGFloat(16)
                 DeviceHelper.Shared.CONTENT_FONT_SIZE = CGFloat(14)
-                DeviceHelper.Shared.HEIGHT_IMAGE_HELP = CGFloat(200)
+                DeviceHelper.Shared.HEIGHT_IMAGE_HELP = CGFloat(250)
                 DeviceHelper.Shared.CHECKBOX_WIDTH_HEIGHT = CGFloat(20)
                 DeviceHelper.Shared.TEXTFIELD_TITLE_FONT_SIZE = CGFloat(16)
                 DeviceHelper.Shared.ICON_SWIPE = CGFloat(25)
@@ -215,6 +217,7 @@ class DeviceHelper {
                 DeviceHelper.Shared.ICON_QR_WIDTH_HEIGHT = CGFloat(250)
                 DeviceHelper.Shared.MARGIN_LEFT_SCAN = CGFloat(30)
                 DeviceHelper.Shared.MARGIN_RIGHT_SCAN = CGFloat(-30)
+                DeviceHelper.Shared.MARGIN_BOTTOM_SCAN = CGFloat(-45)
 
             }
         }

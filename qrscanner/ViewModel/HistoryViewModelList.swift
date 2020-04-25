@@ -53,7 +53,7 @@ class HistoryViewModelList : HistoryViewModelListDeletegate{
                     }
                 }
                 
-                listHistories = listHistories.sorted {$0.createdDateTime > $1.createdDateTime}
+                listHistories = listHistories.sorted {$0.updatedDateTime > $1.updatedDateTime}
                 responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
             }
         }
@@ -110,5 +110,27 @@ class HistoryViewModelList : HistoryViewModelListDeletegate{
         }
         // Utils.logMessage(object: listHistories)
     }
+     func checkItemExist (mValue : GenerateEntityModel) -> Bool {
+              let result = SQLHelper.checkItemExist(data: mValue)
+              print(result)
+              if result > 0 {
+                  doUpdate(mCreateDateTime: Int(result), mValue: mValue)
+                  //self.responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
+    //              let okAlert = SingleButtonAlert(
+    //                  title: LanguageHelper.getTranslationByKey(LanguageKey.Alert) ?? "Error",
+    //                  message: LanguageHelper.getTranslationByKey(LanguageKey.InvalidQRCode),
+    //                  action: AlertAction(buttonTitle: "Ok", handler: {
+    //                      print("Ok pressed!")
+    //                  })
+    //              )
+    //              self.onShowError?(okAlert)
+                  return true
+              }
+              return false
+          }
+          func doUpdate(mCreateDateTime: Int,mValue : GenerateEntityModel){
+            SQLHelper.updatedScanner(data: GenerateEntityModel(createdDateTime: mCreateDateTime, typeCode: mValue.typeCode ?? "", content: mValue.content!, isHistory: true, isSave: false, updatedDateTime: Date().millisecondsSince1970, bookMark: false, transactionID: mValue.transactionID ?? "", isCode: mValue.isCode ?? ""))
+              
+          }
 }
 

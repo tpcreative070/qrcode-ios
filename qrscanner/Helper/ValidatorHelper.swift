@@ -166,4 +166,11 @@ class ValidatorHelper {
     static func isValidLon(_ lon : Float) -> Bool {
         return (lon < 180 && lon > -180)
     }
+    static func isValidNumber (_ num: String?) -> Bool {
+        guard num != nil else { return false }
+        let regEx = "[-+]?[0-9]+"
+        let pinTest = NSPredicate(format: "SELF MATCHES %@", regEx)
+        return pinTest.evaluate(with: num)
+    }
 }
+

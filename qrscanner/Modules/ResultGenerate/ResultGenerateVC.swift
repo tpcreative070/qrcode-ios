@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import PDFKit
+import Photos
 class ResultGenerateVC: BaseViewController {
     var viewShare: UIView = {
         let view = UIView()
@@ -57,6 +57,7 @@ class ResultGenerateVC: BaseViewController {
     }()
     var resultViewModel : ResultViewModel = ResultViewModel()
     var imgCode : UIImage = UIImage()
+    var dataImage : Data = Data()
     var contentViewModel : ContentViewModel?
     lazy var imgQrcode: UIImageView = {
         let imageView = UIImageView()
@@ -68,13 +69,15 @@ class ResultGenerateVC: BaseViewController {
         self.view.backgroundColor = .white
         initUI()
         imgQrcode.image = imgCode
+        print(dataImage)
+        print(imgCode)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardHelper?.registerKeyboardNotification()
 //        self.navigationController?.viewControllers.remove(at: 1)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        
+        bindViewModel()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -94,123 +97,127 @@ class ResultGenerateVC: BaseViewController {
         let activityViewController = UIActivityViewController(activityItems: imageShare , applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view
         self.present(activityViewController, animated: true, completion: nil)
+   
     }
     @objc func saveView(sender : UITapGestureRecognizer){
         resultViewModel.isSave =  true
         self.navigationController?.viewControllers.remove(at: 1)
         UIImageWriteToSavedPhotosAlbum(imgQrcode.image!, nil, nil, nil)
-        showToast(message: LanguageHelper.getTranslationByKey(LanguageKey.SaveSuccess)!)
         let jsonData = contentViewModel!.content!.data(using: .utf8)!
+        var isCode = "QRCode"
         if resultViewModel.typeCode!.uppercased() == EnumType.URL.rawValue {
             let valueData = try! JSONDecoder().decode(UrlModel.self, from: jsonData)
             if resultViewModel.isUpdate != AppConstants.ISUPDATE
             {
-                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData))
+                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode))
             }
             else
             {
-                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData))
+                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData, isCode: isCode))
             }
         }
         else if resultViewModel.typeCode!.uppercased() == EnumType.TEXT.rawValue {
             let valueData = try! JSONDecoder().decode(TextModel.self, from: jsonData)
             if resultViewModel.isUpdate != AppConstants.ISUPDATE
             {
-                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData))
+                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode))
             }
             else
             {
-                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData))
+                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData, isCode: isCode))
             }
         }
         else if resultViewModel.typeCode!.uppercased() == EnumType.WIFI.rawValue {
             let valueData = try! JSONDecoder().decode(WifiModel.self, from: jsonData)
             if resultViewModel.isUpdate != AppConstants.ISUPDATE
             {
-                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData))
+                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode))
             }
             else
             {
-                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData))
+                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData, isCode: isCode))
             }
         }
         else if resultViewModel.typeCode!.uppercased() == EnumType.TELEPHONE.rawValue {
             let valueData = try! JSONDecoder().decode(PhoneModel.self, from: jsonData)
             if resultViewModel.isUpdate != AppConstants.ISUPDATE
             {
-                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData))
+                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode))
             }
             else
             {
-                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData))
+                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData, isCode: isCode))
             }
         }
         else if resultViewModel.typeCode!.uppercased() == EnumType.CONTACT.rawValue {
             let valueData = try! JSONDecoder().decode(ContactModel.self, from: jsonData)
             if resultViewModel.isUpdate != AppConstants.ISUPDATE
             {
-                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData))
+                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode))
             }
             else
             {
-                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData))
+                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData, isCode: isCode))
             }
         }
         else if resultViewModel.typeCode!.uppercased() == EnumType.EVENT.rawValue {
             let valueData = try! JSONDecoder().decode(EventModel.self, from: jsonData)
             if resultViewModel.isUpdate != AppConstants.ISUPDATE
             {
-                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData))
+                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode))
             }
             else
             {
-                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData))
+                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData, isCode: isCode))
             }
         }
         else if resultViewModel.typeCode!.uppercased() == EnumType.LOCATION.rawValue {
             let valueData = try! JSONDecoder().decode(LocationModel.self, from: jsonData)
             if resultViewModel.isUpdate != AppConstants.ISUPDATE
             {
-                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData))
+                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode))
             }
             else
             {
-                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData))
+                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData, isCode: isCode))
             }
         }
         else if resultViewModel.typeCode!.uppercased() == EnumType.MESSAGE.rawValue {
             let valueData = try! JSONDecoder().decode(MessageModel.self, from: jsonData)
             if resultViewModel.isUpdate != AppConstants.ISUPDATE
             {
-                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData))
+                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode))
             }
             else
             {
-                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData))
+                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData, isCode: isCode))
             }
         }
         else if resultViewModel.typeCode!.uppercased() == EnumType.EMAIL.rawValue {
             let valueData = try! JSONDecoder().decode(EmailModel.self, from: jsonData)
             if resultViewModel.isUpdate != AppConstants.ISUPDATE
             {
-                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData))
+                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode))
             }
             else
             {
-                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData))
+                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData, isCode: isCode))
             }
         }
         else if resultViewModel.typeCode!.uppercased() == EnumType.BARCODE.rawValue {
                    let valueData = try! JSONDecoder().decode(BarcodeModel.self, from: jsonData)
+                    isCode = valueData.barcodetype ?? "Barcode"
                    if resultViewModel.isUpdate != AppConstants.ISUPDATE
                    {
-                       resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData))
+                    
+                    resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode))
                    }
                    else
                    {
-                       resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData))
+                       resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData, isCode: isCode))
                    }
                }
+        showToast(message: LanguageHelper.getTranslationByKey(LanguageKey.SaveSuccess)!)
     }
     @objc func printAction(sender : UITapGestureRecognizer){
         self.printImage()

@@ -23,7 +23,7 @@ extension ScannerVC {
             wrapperFirstView.topAnchor.constraint(equalTo: viewBackground.topAnchor),
             wrapperFirstView.leftAnchor.constraint(equalTo: viewBackground.leftAnchor),
             wrapperFirstView.rightAnchor.constraint(equalTo: viewBackground.rightAnchor),
-            wrapperFirstView.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/4)
+            wrapperFirstView.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/3.93)
         ])
         
         viewBackground.addSubview(viewIcon)
@@ -50,28 +50,29 @@ extension ScannerVC {
             lbScannerRectangle.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: DeviceHelper.Shared.MARGIN_RIGHT_SCAN),
             lbScannerRectangle.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2)
         ])
-        viewBackground.addSubview(wrapperSecondView)
-        NSLayoutConstraint.activate([
-            wrapperSecondView.topAnchor.constraint(equalTo: lbScannerRectangle.bottomAnchor),
-            wrapperSecondView.leftAnchor.constraint(equalTo: viewBackground.leftAnchor),
-            wrapperSecondView.rightAnchor.constraint(equalTo: viewBackground.rightAnchor),
-            wrapperSecondView.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/4)
-        ])
+        
+      
         viewBackground.addSubview(wrapperThirdView)
         NSLayoutConstraint.activate([
             wrapperThirdView.topAnchor.constraint(equalTo: wrapperFirstView.bottomAnchor),
             wrapperThirdView.leftAnchor.constraint(equalTo: viewBackground.leftAnchor),
-            wrapperThirdView.rightAnchor.constraint(equalTo: lbScannerRectangle.leftAnchor),
-            wrapperThirdView.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2)
+            wrapperThirdView.rightAnchor.constraint(equalTo: lbScannerRectangle.leftAnchor,constant: 2.5),
+            wrapperThirdView.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2.035)
         ])
         viewBackground.addSubview(wrapperFourView)
         NSLayoutConstraint.activate([
             wrapperFourView.topAnchor.constraint(equalTo: wrapperFirstView.bottomAnchor),
-            wrapperFourView.leftAnchor.constraint(equalTo: lbScannerRectangle.rightAnchor),
+            wrapperFourView.leftAnchor.constraint(equalTo: lbScannerRectangle.rightAnchor, constant: -2.5),
             wrapperFourView.rightAnchor.constraint(equalTo: viewBackground.rightAnchor),
-            wrapperFourView.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2)
+            wrapperFourView.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2.035)
         ])
-
+        viewBackground.addSubview(wrapperSecondView)
+              NSLayoutConstraint.activate([
+                  wrapperSecondView.topAnchor.constraint(equalTo: wrapperFourView.bottomAnchor),
+                  wrapperSecondView.leftAnchor.constraint(equalTo: viewBackground.leftAnchor),
+                  wrapperSecondView.rightAnchor.constraint(equalTo: viewBackground.rightAnchor),
+                  wrapperSecondView.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/3.5)
+              ])
         viewIcon.addSubview(viewFlipCamera)
         NSLayoutConstraint.activate([
 
@@ -307,6 +308,7 @@ extension ScannerVC {
             if arr!.count > 0{
                 ProgressHUD.showInView(view: self.view)
             for item in arr! {
+                print(item.base64EncodedString())
                 let rawImage = UIImage(data: item)
                 scannerviewModel.listImage.append(rawImage!)
             }
@@ -404,12 +406,13 @@ extension ScannerVC {
         self.viewBackground.bringSubviewToFront(wrapperSecondView)
         self.viewBackground.bringSubviewToFront(wrapperThirdView)
         self.viewBackground.bringSubviewToFront(wrapperFourView)
+        self.viewBackground.bringSubviewToFront(view1)
+
         self.lbScannerRectangle.backgroundColor = UIColor.white.withAlphaComponent(0)
         self.viewBackground.bringSubviewToFront(viewIcon)
         self.viewBackground.bringSubviewToFront(viewFlipCamera)
         self.viewBackground.bringSubviewToFront(viewHelpBg)
         self.viewBackground.bringSubviewToFront(viewFlashBg)
-        self.viewBackground.bringSubviewToFront(viewScan)
         self.viewBackground.bringSubviewToFront(viewScan)
         self.viewBackground.bringSubviewToFront(lbScannerRectangle)
         
@@ -459,6 +462,7 @@ extension ScannerVC {
                     lbTotalResult.text =  "\(scannerviewModel.listScanner.count)"
                     isScanning = false
                     scannerviewModel.isScanner = true
+                    self.scannerviewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
                     scannerviewModel.scannerResult(mValue: "\(String((object?.stringValue)!))", mType: (object?.type.rawValue ?? ""))
                     session?.stopRunning()
                 }
@@ -490,7 +494,6 @@ extension ScannerVC : OpalImagePickerControllerDelegate {
                 
             }
             else{
-                
                 self.scannerviewModel.doAsync(list: images)
                 scannerviewModel.doGetListTransaction()
             }
