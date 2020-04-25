@@ -49,6 +49,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
     var responseToView: ((String) -> ())?
     var focusTextField: UITextField?
     var result : UIImage?
+    var dataImage : Data?
     var typeCode : String = ""
     var generateValue : GenerateEntityModel?
     var stringResult: String = ""
@@ -288,6 +289,9 @@ class GenerateViewModel : GenerateViewModelDelegate {
         if productID == nil || productID == ""{
             errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductInvalid ) ?? ""
         }
+            else if !ValidatorHelper.isValidNumber(productID){
+                                 errorMessages.value[GenerateViewModelKey.PRODUCTID] = LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequired8) ?? ""
+                             }
         else if (  !ValidatorHelper.equalLength8(productID,ength: 7) || !ValidatorHelper.equalLength8(productID,ength: 8))
         {
                      errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequired8 ) ?? ""
@@ -301,6 +305,9 @@ class GenerateViewModel : GenerateViewModelDelegate {
         if productID == nil || productID == ""{
             errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductInvalid ) ?? ""
         }
+            else if !ValidatorHelper.isValidNumber(productID){
+                      errorMessages.value[GenerateViewModelKey.PRODUCTID] = LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequired13) ?? ""
+                  }
         else if (  !ValidatorHelper.equalLength13(productID,ength: 12) || !ValidatorHelper.equalLength13(productID,ength: 13))
         {
                      errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequired13 ) ?? ""
@@ -651,10 +658,11 @@ class GenerateViewModel : GenerateViewModelDelegate {
                 value = "MECARD:N:\(fullNameContact!);ADR:\(addressContact!);TEL:\(phoneContact!);EMAIL:\(emailContact!);;"
             }
         }
-        
-        
-        result = generateDataQRCode(from: value)!
+      result = generateDataQRCode(from: value)!
+        dataImage = result?.pngData()
         if (result != nil) {
+            let val = result?.pngData()?.base64EncodedString()
+            print(val!)
             stringResult = value
             responseToView!(EnumResponseToView.CREATE_SUCCESS.rawValue)
         }

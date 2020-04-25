@@ -43,7 +43,7 @@ extension AppDelegate {
     
     }
     func initDevice(){
-        DeviceHelper.Shared.init()
+        let _ = DeviceHelper.Shared.init()
     }
     
 }

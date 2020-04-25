@@ -205,6 +205,13 @@ class SQLHelper {
         }
         return GenerateEntity.instance.getTransaction(db: db, key: transaction)
     }
+    /*Check Item Exist*/
+         class open func checkItemExist(data : GenerateEntityModel) -> Int64{
+             guard let db = connection() else {
+                 return 0
+             }
+             return GenerateEntity.instance.checkObject(db: db, data: data)
+         }
 }
 
 

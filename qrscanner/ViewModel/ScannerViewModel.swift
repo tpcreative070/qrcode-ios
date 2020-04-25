@@ -20,6 +20,8 @@ class ScannerViewModel : ScannerViewModelDelegate {
     var listItemScanner : [GenerateEntityModel] = [GenerateEntityModel]()
     var listItemContent : [ContentViewModel] = [ContentViewModel]()
     var listTransaction : [ContentViewModel] = [ContentViewModel]()
+    var listResultScanner : [GenerateEntityModel] = [GenerateEntityModel]()
+    
     var listResult : [ZXResult] = [ZXResult]()
     var navigate: (() -> ())?
     var isScanner : Bool = false
@@ -29,7 +31,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
     var listScanner : [ScannerModel] = [ScannerModel]()
     var isChoosePhoto : Bool = false
     var listImage : [UIImage] = [UIImage]()
-
+    
     
     
     let userService : UserService
@@ -64,8 +66,9 @@ class ScannerViewModel : ScannerViewModelDelegate {
         print(mType)
         var typeCode = ""
         var value_content : String = ""
+        var isCode = "QRCode"
+        var flagDuplicate = false
         listTransaction.removeAll()
-        
         if ((mValue.range(of: "http://", options: .caseInsensitive)) != nil || (mValue.range(of: "https://", options: .caseInsensitive)) != nil)
         {
             typeCode = EnumType.URL.rawValue
@@ -108,13 +111,13 @@ class ScannerViewModel : ScannerViewModelDelegate {
                 let arr_first = arr_semi_colon[0].split(separator: ":")
                 if arr_first.count > 2
                 {
-                email = String(arr_first[2])
-               
+                    email = String(arr_first[2])
+                    
                 }
                 if arr_semi_colon.count > 1 {
-                sub = String((arr_semi_colon[1].split(separator: ":"))[1])
+                    sub = String((arr_semi_colon[1].split(separator: ":"))[1])
                     if arr_semi_colon.count > 2{
-                    body = String((arr_semi_colon[2]).split(separator: ":")[1])
+                        body = String((arr_semi_colon[2]).split(separator: ":")[1])
                     }
                 }
             }
@@ -133,7 +136,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
                 }
                 else{
                     if mValue.split(separator: ":").count > 1 {
-                    email = String(mValue.split(separator: ":")[1])
+                        email = String(mValue.split(separator: ":")[1])
                     }
                 }
                 
@@ -163,32 +166,32 @@ class ScannerViewModel : ScannerViewModelDelegate {
                     if(item.contains("SUMMARY")){
                         if item.split(separator: ":").count > 1
                         {
-                        summary = String((item.split(separator: ":"))[1])
+                            summary = String((item.split(separator: ":"))[1])
                         }
                     }
                     if(item.contains("LOCATION"))
                     {
                         if item.split(separator: ":").count > 1
                         {
-                        location = String(item.split(separator: ":")[1])
+                            location = String(item.split(separator: ":")[1])
                         }
                     }
                     if(item.contains("DESCRIPTION")){
                         if item.split(separator: ":").count > 1
                         {
-                        description = String(item.split(separator: ":")[1])
+                            description = String(item.split(separator: ":")[1])
                         }
                     }
                     if (item.contains("DTSTART")){
                         if item.split(separator: ":").count > 1
                         {
-                        dtstart = String((item.split(separator: ":"))[1])
+                            dtstart = String((item.split(separator: ":"))[1])
                         }
                     }
                     if (item.contains("DTEND")){
                         if item.split(separator: ":").count > 1
                         {
-                        dtend = String((item.split(separator: ":"))[1])
+                            dtend = String((item.split(separator: ":"))[1])
                         }
                     }
                 }
@@ -204,14 +207,14 @@ class ScannerViewModel : ScannerViewModelDelegate {
         else if ((mValue.range(of: "SMS", options: .caseInsensitive)) != nil)
         {
             var to : String = ""
-             var message : String = ""
+            var message : String = ""
             typeCode = EnumType.MESSAGE.rawValue
             let arr_mess = mValue.split(separator: ":")
             if arr_mess.count > 1 {
                 to = String(arr_mess[1])
             }
             if arr_mess.count > 2 {
-                 message = String(arr_mess[2])
+                message = String(arr_mess[2])
             }
             let content = MessageModel(to: to , message: message)
             let jsonData = try! JSONEncoder().encode(content)
@@ -234,21 +237,21 @@ class ScannerViewModel : ScannerViewModelDelegate {
                 {
                     if item.split(separator: ":").count > 1
                     {
-                    ssid = String((item.split(separator: ":"))[1])
+                        ssid = String((item.split(separator: ":"))[1])
                     }
                 }
                 if (item.contains("T"))
                 {
                     if item.split(separator: ":").count > 1
                     {
-                    protect = String((item.split(separator: ":"))[1])
+                        protect = String((item.split(separator: ":"))[1])
                     }
                 }
                 if (item.contains("P"))
                 {
                     if item.split(separator: ":").count > 1
                     {
-                    pass = String((item.split(separator: ":"))[1])
+                        pass = String((item.split(separator: ":"))[1])
                     }
                 }
             }
@@ -272,22 +275,22 @@ class ScannerViewModel : ScannerViewModelDelegate {
                 for item in arr_semi_colon {
                     if item.split(separator: ":").count > 1
                     {
-                    if (item.contains("N"))
-                    {
-                        fullName = String((item.split(separator: ":"))[1])
-                    }
-                    if (item.contains("TEL"))
-                    {
-                        phone = String((item.split(separator: ":"))[1])
-                    }
-                    if (item.contains("EMAIL"))
-                    {
-                        email = String((item.split(separator: ":"))[1])
-                    }
-                    if (item.contains("ADR"))
-                    {
-                        address = String((item.split(separator: ":"))[1])
-                    }
+                        if (item.contains("N"))
+                        {
+                            fullName = String((item.split(separator: ":"))[1])
+                        }
+                        if (item.contains("TEL"))
+                        {
+                            phone = String((item.split(separator: ":"))[1])
+                        }
+                        if (item.contains("EMAIL"))
+                        {
+                            email = String((item.split(separator: ":"))[1])
+                        }
+                        if (item.contains("ADR"))
+                        {
+                            address = String((item.split(separator: ":"))[1])
+                        }
                     }
                 }
             }
@@ -297,19 +300,19 @@ class ScannerViewModel : ScannerViewModelDelegate {
                     for item in arr_space {
                         if item.split(separator: ":").count > 1
                         {
-                        if(item == "N"){
-                            fullName = String((item.split(separator: ":"))[1])
-                        }
-                        if(item.contains("EMAIL"))
-                        {
-                            email = String(item.split(separator: ":")[1])
-                        }
-                        if(item.contains("TEL")){
-                            phone += String(item.split(separator: ":")[1])
-                        }
-                        if (item.contains("ADR")){
-                            address = String((item.split(separator: ":"))[1])
-                        }
+                            if(item == "N"){
+                                fullName = String((item.split(separator: ":"))[1])
+                            }
+                            if(item.contains("EMAIL"))
+                            {
+                                email = String(item.split(separator: ":")[1])
+                            }
+                            if(item.contains("TEL")){
+                                phone += String(item.split(separator: ":")[1])
+                            }
+                            if (item.contains("ADR")){
+                                address = String((item.split(separator: ":"))[1])
+                            }
                         }
                     }
                 }
@@ -337,13 +340,15 @@ class ScannerViewModel : ScannerViewModelDelegate {
             let content = BarcodeModel(productID: mValue, type: EnumType.EAN_13.rawValue)
             let jsonData = try! JSONEncoder().encode(content)
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+            isCode = "EAN_13"
         }
         else if ((mType.range(of: "EAN-8", options: .caseInsensitive)) != nil){
-                  typeCode = EnumType.BARCODE.rawValue
-                  let content = BarcodeModel(productID: mValue, type: EnumType.EAN_8.rawValue)
-                  let jsonData = try! JSONEncoder().encode(content)
-                  value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-              }
+            typeCode = EnumType.BARCODE.rawValue
+            let content = BarcodeModel(productID: mValue, type: EnumType.EAN_8.rawValue)
+            let jsonData = try! JSONEncoder().encode(content)
+            value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+            isCode = "EAN_8"
+        }
         else
         {
             typeCode = EnumType.TEXT.rawValue
@@ -365,37 +370,156 @@ class ScannerViewModel : ScannerViewModelDelegate {
         else
         {
             print("giatr :\(value_content)")
+            print(dateTime!)
             let createDateTime = Date().millisecondsSince1970
             if isScanner {
                 if UserDefaults.standard.bool(forKey:KeyUserDefault.MultiScan){
-                    let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: ""))
-                                   if result {
-                                       print("insert success")
-                                   }
+                    print(Bool(truncating: CommonService.getUserDefault(key: KeyUserDefault.Duplicate) ?? false))
+                    if Bool(truncating: CommonService.getUserDefault(key: KeyUserDefault.Duplicate) ?? false){
+                        print(listResultScanner.count)
+                        if listResultScanner.count > 0 {
+                            for item in listResultScanner {
+                                if !(item.content! == value_content && item.typeCode! == typeCode && item.isCode! == isCode){
+                                    
+                                    flagDuplicate = true
+                                    
+                                }
+                                else{
+                                    flagDuplicate = false
+                                    break
+                                }
+                                
+                            }
+                            if flagDuplicate {
+                                listResultScanner.append(GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode))
+                                let mValue = GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode)
+                                if !checkItemExist(mValue: mValue){
+                                    let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode))
+                                    if result {
+                                        print("insert success")
+                                    }
+                                }
+                                
+                            }
+                        }
+                        else{
+                            listResultScanner.append(GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode))
+                            let mValue = GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode)
+                            if !checkItemExist(mValue: mValue){
+                                let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode))
+                                if result {
+                                    print("insert success")
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode))
+                        if result {
+                            print("insert success")
+                        }
+                    }
+                    
+                    
                 }
                 else{
-                    let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: "", isCode: ""))
-                if result {
-                    itemScanner = SQLHelper.getItemScanner(createDateTime: createDateTime)!
-                    let typeCode = itemScanner.typeCode?.lowercased()
-                    let content = itemScanner.content
-                    let value = ContentViewModel(data: ContentModel(typeCode : typeCode!, content: content!))
-                    listTransaction.append(value)
-                    self.navigate?()
-                }
+                    if Bool(truncating: CommonService.getUserDefault(key: KeyUserDefault.Duplicate) ?? false){
+                        let mValue = GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: "", isCode: isCode)
+                        if !checkItemExist(mValue: mValue){
+                            let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode))
+                            if result {
+                                if result {
+                                    itemScanner = SQLHelper.getItemScanner(createDateTime: createDateTime)!
+                                    let typeCode = itemScanner.typeCode?.lowercased()
+                                    let content = itemScanner.content
+                                    let value = ContentViewModel(data: ContentModel(typeCode : typeCode!, content: content!))
+                                    listTransaction.append(value)
+                                    self.navigate?()
+                                }
+                            }
+                        }
+                        else{
+                            
+                            
+                            self.navigate?()
+                        }
+                        
+                    }
+                    else
+                    {
+                        let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode))
+                        if result {
+                            if result {
+                                itemScanner = SQLHelper.getItemScanner(createDateTime: createDateTime)!
+                                let typeCode = itemScanner.typeCode?.lowercased()
+                                let content = itemScanner.content
+                                let value = ContentViewModel(data: ContentModel(typeCode : typeCode!, content: content!))
+                                listTransaction.append(value)
+                                self.navigate?()
+                            }
+                        }
+                    }
                 }
             }
             else{
-                let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: ""))
-                if result {
-                    print("insert success")
+                //                let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode))
+                //                if result {
+                //                    print("insert success")
+                //                }
+                
+                
+                
+                if Bool(truncating: CommonService.getUserDefault(key: KeyUserDefault.Duplicate) ?? false){
+                    print(dateTime!)
+                    let mValue = GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode)
+                    if !checkItemExist(mValue: mValue){
+                        let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode))
+                        if result {
+                                            print("insert success")
+                                        }
+                    }
+                    else{
+                        
+                        
+                    }
+                    
+                }
+                else
+                {
+                    print(dateTime!)
+
+                                      let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode))
+                                                 if result {
+                                                     print("insert success")
+                                                 }
+                    
+                    
                 }
             }
         }
         
         
     }
-    
+    func checkItemExist (mValue : GenerateEntityModel) -> Bool {
+        let result = SQLHelper.checkItemExist(data: mValue)
+        print(result)
+        if result > 0 {
+            
+            doUpdate(mCreateDateTime: Int(result), mValue: mValue)
+            itemScanner = SQLHelper.getItemScanner(createDateTime: Int(result))!
+            let typeCode = itemScanner.typeCode?.lowercased()
+            let content = itemScanner.content
+            let value = ContentViewModel(data: ContentModel(typeCode : typeCode!, content: content!))
+            listTransaction.append(value)
+            return true
+        }
+        return false
+    }
+    func doUpdate(mCreateDateTime: Int,mValue : GenerateEntityModel){
+        SQLHelper.updatedScanner(data: GenerateEntityModel(createdDateTime: mCreateDateTime, typeCode: mValue.typeCode ?? "", content: mValue.content!, isHistory: true, isSave: false, updatedDateTime: Int(mValue.updatedDateTime ?? Int64(mCreateDateTime)), bookMark: false, transactionID: mValue.transactionID ?? "", isCode: mValue.isCode ?? ""))
+        
+    }
     func defaultValue(){
         self.itemScanner = GenerateEntityModel()
         self.listItemScanner.removeAll()
@@ -407,13 +531,14 @@ class ScannerViewModel : ScannerViewModelDelegate {
     
     func doAsync(list : [UIImage]){
         defaultValue()
-         AppConstants.isCam = 1
-      //  self.showLoading.value = true
+        AppConstants.isCam = 1
+        //  self.showLoading.value = true
         var flag : Bool = false
         var vstring: String?
         let myGroup = DispatchGroup()
         if list.count > 0{
             for index in list {
+                print(index.pngData()!.base64EncodedString())
                 myGroup.enter()
                 //Do something and leave
                 if let mData = index.toCGImage(){
@@ -463,59 +588,62 @@ class ScannerViewModel : ScannerViewModelDelegate {
             //            self.navigate?()
         }
         if listResult.count > 0{
-          //  self.showLoading.value = false
+            //  self.showLoading.value = false
             self.responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
-//            if valueResult == nil {
-//                let okAlert = SingleButtonAlert(
-//                    title: LanguageHelper.getTranslationByKey(LanguageKey.Alert) ?? "Error",
-//                    message: LanguageHelper.getTranslationByKey(LanguageKey.InvalidQRCode),
-//                    action: AlertAction(buttonTitle: "Ok", handler: {
-//                        print("Ok pressed!")
-//                    })
-//                )
-//                self.onShowError?(okAlert)
-//            }
+            //            if valueResult == nil {
+            //                let okAlert = SingleButtonAlert(
+            //                    title: LanguageHelper.getTranslationByKey(LanguageKey.Alert) ?? "Error",
+            //                    message: LanguageHelper.getTranslationByKey(LanguageKey.InvalidQRCode),
+            //                    action: AlertAction(buttonTitle: "Ok", handler: {
+            //                        print("Ok pressed!")
+            //                    })
+            //                )
+            //                self.onShowError?(okAlert)
+            //            }
         }
-            else{
-                print(listResult)
+        else{
+            print(listResult)
             if flag {
-                    let okAlert = SingleButtonAlert(
-                        title: LanguageHelper.getTranslationByKey(LanguageKey.Alert) ?? "Error",
-                        message: LanguageHelper.getTranslationByKey(LanguageKey.InvalidQRCode),
-                        action: AlertAction(buttonTitle: "Ok", handler: {
-                            print("Ok pressed!")
-                            
-                            if vstring != nil || vstring == ""{
-                                self.navigate?()
-                            }
-                            
-                            //self.defaultValue()
-                        })
-                    )
-                   
+                let okAlert = SingleButtonAlert(
+                    title: LanguageHelper.getTranslationByKey(LanguageKey.Alert) ?? "Error",
+                    message: LanguageHelper.getTranslationByKey(LanguageKey.InvalidQRCode),
+                    action: AlertAction(buttonTitle: "Ok", handler: {
+                        print("Ok pressed!")
+                        
+                        if vstring != nil || vstring == ""{
+                            self.navigate?()
+                        }
+                        
+                        //self.defaultValue()
+                    })
+                )
+                
                 self.showLoading.value = false
-                    self.onShowError?(okAlert)
-                }
+                self.onShowError?(okAlert)
             }
-
+        }
+        
         myGroup.notify(queue: .main) {
             print("Finished all requests.")
             self.navigate?()
-          //  self.showLoading.value = false
+            //  self.showLoading.value = false
         }
         
     }
     func doGetListTransaction(){
         listTransaction.removeAll()
+        print(dateTime!)
         if let mList = SQLHelper.getListTransaction(transaction: dateTime!){
             var index = 0
             self.listTransaction = mList.map({ (data) -> ContentViewModel in
                 index += 1
                 return ContentViewModel(typeCode: data.typeCode!, content: data.content!)
             })
+            
         }
+        print(listTransaction.count)
         listScanner.removeAll()
         self.navigate?()
     }
-
+    
 }

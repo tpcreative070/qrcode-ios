@@ -165,7 +165,7 @@ extension SettingsVC {
         self.stackViewMultiLoad.axis = .vertical
         self.stackViewMultiLoad.alignment = .fill
         self.stackViewMultiLoad.distribution = UIStackView.Distribution.fillEqually
-       // self.stackViewMultiLoad.spacing = AppConstants.MARGIN_TOP_SUBITEM
+        // self.stackViewMultiLoad.spacing = AppConstants.MARGIN_TOP_SUBITEM
         self.stackViewMultiLoad.addArrangedSubview(lbLoadMulti)
         self.stackViewMultiLoad.addArrangedSubview(lbMultiLoadContent)
         self.viewMultiLoad.addSubview(self.switchMultiLoad)
@@ -281,9 +281,46 @@ extension SettingsVC {
             switchOpen.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.SWITCH_HEIGHT_DEFAULT),
         ])
         
+        self.viewBackground.addSubview(viewDulplicate)
+        NSLayoutConstraint.activate([
+            viewDulplicate.topAnchor.constraint(equalTo: viewOpenWeb.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
+            viewDulplicate.trailingAnchor.constraint(equalTo: viewBackground.trailingAnchor, constant: AppConstants.MARGIN_RIGHT_SETTING),
+            viewDulplicate.leadingAnchor.constraint(equalTo: viewBackground.leadingAnchor, constant: AppConstants.MARGIN_LEFT_SETTING),
+            
+        ])
+        self.viewDulplicate.addSubview(imgDuplicate)
+        NSLayoutConstraint.activate([
+            self.imgDuplicate.topAnchor.constraint(equalTo: self.viewDulplicate.topAnchor,constant: AppConstants.MARGIN_TOP),
+            self.imgDuplicate.leadingAnchor.constraint(equalTo: self.viewDulplicate.leadingAnchor),
+            self.imgDuplicate.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+            self.imgDuplicate.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+        ])
+        
+        self.viewDulplicate.addSubview(stackViewDuplicate)
+        NSLayoutConstraint.activate([
+            self.stackViewDuplicate.leadingAnchor.constraint(equalTo: self.imgDuplicate.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
+            self.stackViewDuplicate.topAnchor.constraint(equalTo: self.viewDulplicate.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
+            self.stackViewDuplicate.centerYAnchor.constraint(equalTo: self.viewDulplicate.centerYAnchor),
+            self.stackViewDuplicate.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.7),
+            
+        ])
+        self.stackViewDuplicate.axis = .vertical
+        self.stackViewDuplicate.alignment = .fill
+        self.stackViewDuplicate.distribution = UIStackView.Distribution.fillEqually
+        self.stackViewDuplicate.addArrangedSubview(lbDuplicate)
+        self.stackViewDuplicate.addArrangedSubview(lbDuplicateContent)
+        self.viewDulplicate.addSubview(self.switchDuplicate)
+        NSLayoutConstraint.activate([
+            switchDuplicate.topAnchor.constraint(equalTo: viewDulplicate.topAnchor, constant: AppConstants.MARGIN_TOP),
+            switchDuplicate.trailingAnchor.constraint(equalTo: viewDulplicate.trailingAnchor),
+            switchDuplicate.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.SWITCH_WIDTH_DEFAULT),
+            switchDuplicate.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.SWITCH_HEIGHT_DEFAULT),
+        ])
+        
+        
         self.viewBackground.addSubview(viewLanguage)
         NSLayoutConstraint.activate([
-            viewLanguage.topAnchor.constraint(equalTo: viewOpenWeb.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
+            viewLanguage.topAnchor.constraint(equalTo: viewDulplicate.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
             viewLanguage.trailingAnchor.constraint(equalTo: viewBackground.trailingAnchor, constant: AppConstants.MARGIN_RIGHT_SETTING),
             viewLanguage.leadingAnchor.constraint(equalTo: viewBackground.leadingAnchor, constant: AppConstants.MARGIN_LEFT_SETTING),
             
@@ -314,7 +351,7 @@ extension SettingsVC {
             lbCurrentLanguage.topAnchor.constraint(equalTo: viewLanguage.topAnchor, constant: AppConstants.MARGIN_TOP),
             lbCurrentLanguage.trailingAnchor.constraint(equalTo: viewLanguage.trailingAnchor),
             lbCurrentLanguage.bottomAnchor.constraint(equalTo: viewLanguage.bottomAnchor)
-       //     lbCurrentLanguage.heightAnchor.constraint(equalToConstant: AppConstants.SWITCH_HEIGHT_DEFAULT),
+            //     lbCurrentLanguage.heightAnchor.constraint(equalToConstant: AppConstants.SWITCH_HEIGHT_DEFAULT),
         ])
         self.viewLanguage.addSubview(self.viewUnderLineAdvance)
         NSLayoutConstraint.activate([
@@ -500,6 +537,9 @@ extension SettingsVC {
         self.lbChangeColorContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.CONTENT_FONT_SIZE)
         self.lbChangeColorContent.textColor = AppColors.GRAY
         
+        self.lbDuplicateContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.CONTENT_FONT_SIZE)
+        self.lbDuplicateContent.textColor = AppColors.GRAY
+        
         self.lbCopyContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.CONTENT_FONT_SIZE)
         self.lbCopyContent.textColor = AppColors.GRAY
         
@@ -524,23 +564,26 @@ extension SettingsVC {
         self.lbLanguageContent.numberOfLines = AppConstants.NUMBER_OF_LINE
         self.lbMultiLoadContent.numberOfLines = AppConstants.NUMBER_OF_LINE
         self.lbMultiScanContent.numberOfLines = AppConstants.NUMBER_OF_LINE
-
+        self.lbDuplicateContent.numberOfLines = AppConstants.NUMBER_OF_LINE
+        
         self.lbVibrate.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbDuplicate.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        
         self.lbBeep.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.lbScanMulti.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.lbLoadMulti.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.lbChangeColor.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.lbCopy.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.lbOpenWeb.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-         self.lbLanguage.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-         self.lbAppPermission.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-         self.lbPrivacy.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-         self.lbRating.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-         self.lbShare.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-         self.lbHelp.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-         self.lbSupport.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-         self.lbQrCode.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-         self.lbCurrentLanguage.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbLanguage.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbAppPermission.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbPrivacy.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbRating.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbShare.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbHelp.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbSupport.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbQrCode.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbCurrentLanguage.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         
         self.lbScan.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoSemiBold, size: DeviceHelper.Shared.LABEL_TITLE_FONT_SIZE)
         self.lbScan.textColor = AppColors.PRIMARY_COLOR
@@ -555,6 +598,7 @@ extension SettingsVC {
         self.switchBeep.addTarget(self, action: #selector(switchBeepDidChange(_:)), for: .touchUpInside)
         self.switchCopy.addTarget(self, action: #selector(switchCopyDidChange(_:)), for: .touchUpInside)
         self.switchMultiScan.addTarget(self, action: #selector(switchMultiScanDidChange(_:)), for: .touchUpInside)
+        self.switchDuplicate.addTarget(self, action: #selector(switchDuplicateDidChange(_:)), for: .touchUpInside)
         
         self.switchMultiLoad.addTarget(self, action: #selector(switchMultiLoadDidChange(_:)), for: .touchUpInside)
         
@@ -608,6 +652,9 @@ extension SettingsVC {
         if UserDefaults.standard.bool(forKey:KeyUserDefault.OpenWeb){
             switchOpen.isOn = true
         }
+        if UserDefaults.standard.bool(forKey:KeyUserDefault.Duplicate){
+            switchDuplicate.isOn = true
+        }
         
     }
     func switchDefaultConfig(switchView: ICSwitchButton) {
@@ -627,6 +674,8 @@ extension SettingsVC {
         self.switchDefaultConfig(switchView: switchOpen)
         self.switchDefaultConfig(switchView: switchBeep)
         self.switchDefaultConfig(switchView: switchCopy)
+        self.switchDefaultConfig(switchView: switchDuplicate)
+        
     }
     func getCurrenLang(){
         var currentLang : String = ""

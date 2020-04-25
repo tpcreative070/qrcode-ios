@@ -64,7 +64,7 @@ struct AppConstants {
     static let ISUPDATE = 2
     static let ISCHOOSE = 1
     static let WIDTH_BORDER = CGFloat(1)
-      static let WIDTH_BORDER_SCAN = CGFloat(2)
+    static let WIDTH_BORDER_SCAN = CGFloat(3)
     static let CORNER_RADIUS = CGFloat(10)
     static let SPACING = CGFloat(10)
 
@@ -333,7 +333,7 @@ struct AppImages {
     static let IC_START = "ic_start"
     static let IC_PERMISSION = "ic_permission"
     static let IC_FLAG = "ic_flag"
-
+    static let IC_DUPLICATE = "ic_duplicate"
     
     static let IC_HOME = "ic_home"
     static let IC_CONTACT = "ic_contact"
@@ -485,6 +485,7 @@ struct KeyUserDefault{
      static let Copy = "Copy"
     static let OpenWeb = "OpenWeb"
      static let ChangeColor = "ChangeColor"
+    static let Duplicate = "Duplicate"
 }
 struct LanguageKey {
     //Link
@@ -564,6 +565,8 @@ struct LanguageKey {
     static let Change_code_color_content = "CHANGE_CODE_COLOR_CONTENT"
     static let CopyClipboard = "COPY_CLIPBOARD"
       static let CopyClipboard_Content = "COPY_CLIPBOARD_CONTENT"
+    static let Duplicate_Content = "DUPLICATE_CONTENT"
+
     static let  OpenWeb = "OPEN_WEB"
      static let  OpenWebContent = "OPEN_WEB_CONTENT"
     static let AppPermission = "APP_PERMISSION"
@@ -575,6 +578,8 @@ struct LanguageKey {
     static let QRVersionContent = "QR_VERSION_CONTENT"
     static let MultiScan = "MULTI_SCAN"
     static let MultiLoad = "MULTI_LOAD"
+    static let Duplicate = "DUPLICATE"
+
     static let MultiScanContent = "MULTI_SCAN_CONTENT"
     static let MultiLoadContent = "MULTI_LOAD_CONTENT"
 
@@ -876,6 +881,8 @@ struct LanguageKey {
     static let AskPermissionAlert = "ASK_PERMISSION_ALERT"
     static let QRCodeHasBeenReceivedBefore = "QRCODE_HAS_BEEN_RECEIVED_BEFORE"
     static let InvalidQRCode = "INVALID_QRCODE"
+    static let ExistQRCode = "EXIST_QRCODE"
+
     static let TransactionAreSentToAnother = "TRANSACTION_ARE_SENT_TO_ANOTHER"
     //Exchange eCash
     static let CashListAvailable = "CASH_LIST_AVAILABLE"

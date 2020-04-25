@@ -139,7 +139,7 @@ class GenerateEntity{
     
     func update(db : Connection, data: GenerateEntityModel){
         
-        let request = table.filter(createdDateTime == Int(data.createdDateTime!)).update(updatedDateTime <- Int(data.updatedDateTime!), content <- (data.content)!)
+        let request = table.filter(createdDateTime == Int(data.createdDateTime!)).update(updatedDateTime <- Int(data.updatedDateTime!), content <- (data.content)!, transactionID <- (data.transactionID ?? ""))
         do{
             try db.run(request)
            // debugPrint("Updated successfully")
@@ -187,6 +187,23 @@ class GenerateEntity{
         }
         return nil
     }
+    func checkObject(db : Connection, data : GenerateEntityModel) -> Int64{
+         do{
+                    let query = table.select(table[*])  // SELECT "email" FROM "users"
+                        .filter(typeCode == data.typeCode!)    // WHERE "name" IS NOT NULL
+                        .filter(content == data.content!)
+                        .filter(isCode == data.isCode!)
+                    let response = try db.prepare(query).map({(event) -> GenerateEntityModel in
+                        return GenerateEntityModel(createdDateTime: event[createdDateTime], typeCode: event[typeCode],content: event[content], isHistory: event[isHistory], isSave: event[isSave], updatedDateTime: event[updatedDateTime], bookMark: event[bookMark], transactionID: event[transactionID], isCode: event[isCode])
+                    })
+                    if response.count > 0{
+                        return response[0].createdDateTime!
+                    }
+                }catch {
+                  //  debugPrint(error)
+                }
+                return 0
+     }
     func getTransaction(db : Connection,key : String) -> [GenerateEntityModel]?{
           do{
                      let query = table.select(table[*])  // SELECT "email" FROM "users"

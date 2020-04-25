@@ -185,6 +185,10 @@ extension DetailVC : TableViewCellDelegate {
             let vc = AlertVC()
             vc.viewModel.listItem.append(AlertViewModel(name: textModel.text ?? ""))
             self.navigationController?.pushViewController(vc, animated: false)
+         //self.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
+         //   vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        //  vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+           // self.present(vc, animated: true, completion: nil)
         }
         else if typeCode == EnumType.LOCATION.rawValue{
             let locationModel : LocationModel = try! JSONDecoder().decode(LocationModel.self, from: stringContent)

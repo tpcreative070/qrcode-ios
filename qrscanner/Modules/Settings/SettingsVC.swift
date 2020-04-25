@@ -103,6 +103,11 @@ class SettingsVC : BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    lazy var viewDulplicate: UIView = {
+          let view = UIView()
+          view.translatesAutoresizingMaskIntoConstraints = false
+          return view
+      }()
     var stackViewChangeColor : StackView = {
         let view = StackView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -128,6 +133,11 @@ class SettingsVC : BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    var stackViewDuplicate : StackView = {
+           let view = StackView()
+           view.translatesAutoresizingMaskIntoConstraints = false
+           return view
+       }()
     var stackViewVersion : StackView = {
         let view = StackView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -167,6 +177,12 @@ class SettingsVC : BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    lazy var lbDuplicate : ICLabel = {
+           let view = ICLabel()
+           view.text = LanguageHelper.getTranslationByKey(LanguageKey.Duplicate)
+           view.translatesAutoresizingMaskIntoConstraints = false
+           return view
+       }()
     lazy var lbInformation : ICLabel = {
         let view = ICLabel()
         view.text = LanguageHelper.getTranslationByKey(LanguageKey.Information)
@@ -214,6 +230,12 @@ class SettingsVC : BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    lazy var lbDuplicateContent : ICLabel = {
+          let view = ICLabel()
+          view.text = LanguageHelper.getTranslationByKey(LanguageKey.Duplicate_Content)
+          view.translatesAutoresizingMaskIntoConstraints = false
+          return view
+      }()
     lazy var lbLanguageContent : ICLabel = {
         let view = ICLabel()
         view.text = LanguageHelper.getTranslationByKey(LanguageKey.ChooseYourLanguage)
@@ -327,6 +349,12 @@ class SettingsVC : BaseViewController {
         switchView.translatesAutoresizingMaskIntoConstraints = false;
         return switchView
     }()
+    lazy var switchDuplicate: ICSwitchButton = {
+           let switchView = ICSwitchButton()
+           switchView.isOn = false
+           switchView.translatesAutoresizingMaskIntoConstraints = false;
+           return switchView
+       }()
     lazy var switchBeep: ICSwitchButton = {
         let switchView = ICSwitchButton()
         switchView.isOn = false
@@ -359,6 +387,13 @@ class SettingsVC : BaseViewController {
         view.tintColor = AppColors.COLOR_ACCENT
         return view
     }()
+    lazy var imgDuplicate : UIImageView = {
+           let view = UIImageView()
+           view.translatesAutoresizingMaskIntoConstraints = false
+           view.image = UIImage(named: AppImages.IC_DUPLICATE)
+           view.tintColor = AppColors.COLOR_ACCENT
+           return view
+       }()
     lazy var imgVibrate : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -373,6 +408,7 @@ class SettingsVC : BaseViewController {
         view.tintColor = AppColors.COLOR_ACCENT
         return view
     }()
+   
     lazy var imgBeep : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -530,7 +566,6 @@ class SettingsVC : BaseViewController {
         //self.viewModel.isQRCode =  switchVibrate.isOn
     }
     @objc func doChangeLanguage (sender : UITapGestureRecognizer){
-        print(self.navigationController?.viewControllers.count)
 
         let alrController = UIAlertController(title: LanguageHelper.getTranslationByKey(LanguageKey.Language), message: LanguageHelper.getTranslationByKey(LanguageKey.ChooseYourLanguage), preferredStyle: UIAlertController.Style.actionSheet)
         let enlishAc = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.English), style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in
@@ -618,6 +653,18 @@ class SettingsVC : BaseViewController {
             
         }
     }
+    @objc func switchDuplicateDidChange (_ : ICSwitchButton){
+           if switchDuplicate.isOn{
+               switchDuplicate.isOn = true
+               CommonService.setUserDefault(key: KeyUserDefault.Duplicate, value: true)
+               
+           }
+           else {
+               switchDuplicate.isOn = false
+               CommonService.setUserDefault(key: KeyUserDefault.Duplicate, value: false)
+               
+           }
+       }
     @objc func showPrivacy (sender : UITapGestureRecognizer){
         let string = LanguageKey.Link_Privacy
         if let url = NSURL(string: string) {

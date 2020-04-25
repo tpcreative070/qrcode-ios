@@ -45,7 +45,8 @@ class SaveVC : UIViewController,UIViewControllerTransitioningDelegate, UINavigat
         initUI()
         setupFloatButton()
         bindViewModel()
-       
+       // RateView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)).showAlert()
+       // RateView.instance.showAlert()
     }
     
     

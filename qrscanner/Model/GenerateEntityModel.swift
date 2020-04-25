@@ -17,49 +17,65 @@ class GenerateEntityModel : Codable {
     var bookMark: Bool?
     var transactionID: String?
     var isCode: String?
-
-    init(data: UrlModel) {
+    
+    init(data: UrlModel, isCode: String) {
         self.typeCode = EnumType.URL.rawValue
         self.content = JSONSerializerHelper.toJson(data)
+        self.isCode = isCode
     }
-    init(data: TextModel) {
+    init(data: TextModel, isCode: String) {
         self.content = JSONSerializerHelper.toJson(data)
         self.typeCode = EnumType.TEXT.rawValue
+        self.isCode = isCode
     }
-    init(data: EmailModel) {
-   
+    init(data: EmailModel, isCode: String) {
+        
         self.typeCode = EnumType.EMAIL.rawValue
         self.content = JSONSerializerHelper.toJson(data)
-    
+        self.isCode = isCode
+        
     }
-    init(data: ContactModel) {
+    init(data: ContactModel, isCode: String) {
         self.typeCode = EnumType.CONTACT.rawValue
         self.content = JSONSerializerHelper.toJson(data)
+        self.isCode = isCode
     }
-    init(data: MessageModel) {
+    init(data: MessageModel, isCode: String) {
         self.typeCode = EnumType.MESSAGE.rawValue
         self.content = JSONSerializerHelper.toJson(data)
+        self.isCode = isCode
+        
     }
-     init(data: LocationModel) {
-           self.typeCode = EnumType.LOCATION.rawValue
-           self.content = JSONSerializerHelper.toJson(data)
-       }
-     init(data: EventModel) {
-           self.typeCode = EnumType.EVENT.rawValue
-           self.content = JSONSerializerHelper.toJson(data)
-       }
-     init(data: PhoneModel) {
-           self.typeCode = EnumType.TELEPHONE.rawValue
-           self.content = JSONSerializerHelper.toJson(data)
-       }
-     init(data: WifiModel) {
-           self.typeCode = EnumType.WIFI.rawValue
-           self.content = JSONSerializerHelper.toJson(data)
-       }
-    init(data: BarcodeModel) {
-             self.typeCode = EnumType.BARCODE.rawValue
-             self.content = JSONSerializerHelper.toJson(data)
-         }
+    init(data: LocationModel, isCode: String) {
+        self.typeCode = EnumType.LOCATION.rawValue
+        self.content = JSONSerializerHelper.toJson(data)
+        self.isCode = isCode
+        
+    }
+    init(data: EventModel, isCode: String) {
+        self.typeCode = EnumType.EVENT.rawValue
+        self.content = JSONSerializerHelper.toJson(data)
+        self.isCode = isCode
+        
+    }
+    init(data: PhoneModel, isCode: String) {
+        self.typeCode = EnumType.TELEPHONE.rawValue
+        self.content = JSONSerializerHelper.toJson(data)
+        self.isCode = isCode
+        
+    }
+    init(data: WifiModel, isCode: String) {
+        self.typeCode = EnumType.WIFI.rawValue
+        self.content = JSONSerializerHelper.toJson(data)
+        self.isCode = isCode
+        
+    }
+    init(data: BarcodeModel, isCode: String) {
+        self.typeCode = EnumType.BARCODE.rawValue
+        self.content = JSONSerializerHelper.toJson(data)
+        self.isCode = isCode
+        
+    }
     init(typeCode : String, content : String, isHistory : Bool, isSave : Bool, bookMark: Bool, transactionID : String, isCode : String) {
         let time = TimeHelper.getString(time: Date(), dateFormat: TimeHelper.FormatDateTime)
         self.createdDateTime = Int64(time)
@@ -84,6 +100,6 @@ class GenerateEntityModel : Codable {
         self.isCode = isCode
     }
     init() {
-          
-      }
+        
+    }
 }

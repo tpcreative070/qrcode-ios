@@ -89,6 +89,11 @@ protocol ContentViewModelDeletegate {
     var contentView : String {get}
     
 }
+protocol ContentDuplicateViewModelDeletegate {
+    var typeCodeView : String {get}
+    var contentView : String {get}
+    var isCodeView: String{get}
+}
 protocol TypeCodeViewModelDelegate {
     var nameView : String {get}
     var imgIconView : String{get}

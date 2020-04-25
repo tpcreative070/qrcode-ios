@@ -115,4 +115,19 @@ extension ResultGenerateVC {
             }
         }
     }
+    func bindViewModel() {
+           self.resultViewModel.showLoading.bind { visible in
+               visible ? ProgressHUD.show(): ProgressHUD.dismiss()
+           }
+           self.resultViewModel.onShowError = { [weak self] alert in
+               self?.presentSingleButtonDialog(alert: alert)
+           }
+           
+//           self.resultViewModel.responseToView = {[weak self] value in
+//               if value == EnumResponseToView.UPDATE_DATA_SOURCE.rawValue {
+//                   
+//               }
+//           }
+       }
 }
+extension ResultGenerateVC: SingleButtonDialogPresenter { }

@@ -93,6 +93,8 @@ extension TextGenerateVC {
                 let resVC = ResultGenerateVC()
                 resVC.contentViewModel = ContentViewModel(data: TextModel(text: (self?.textFieldText.text)!))
                 resVC.imgCode = (self?.generateViewModel?.result)!
+                resVC.dataImage = (self?.generateViewModel?.dataImage)!
+
                 resVC.resultViewModel.typeCode = EnumType.TEXT.rawValue
                 if (self?.textViewModel.isSeen)! == AppConstants.ISSEEN {
                     resVC.resultViewModel.isUpdate = AppConstants.ISUPDATE

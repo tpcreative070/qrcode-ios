@@ -8,6 +8,7 @@
 
 import UIKit
 import ZXingObjC
+import StoreKit
 class MainVC : SwipeMenuViewController {
   
     var mSave : SaveVC?
@@ -22,6 +23,13 @@ class MainVC : SwipeMenuViewController {
         addedView()
         setupStatusBar()
         super.viewDidLoad()
+//        if #available(iOS 10.3, *){
+//            AppStoreReviewManager.requestReviewIfAppropriate()
+//        }
+//        let myAlert = RateVC()
+//       myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+//        myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+//        self.present(myAlert, animated: true, completion: nil)
     }
 
     // MARK: - SwipeMenuViewDelegate

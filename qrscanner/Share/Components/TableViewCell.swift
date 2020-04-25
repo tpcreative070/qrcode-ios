@@ -137,7 +137,7 @@ class TableViewCell : UITableViewCell{
     //config with history
     func configView(view : GenerateViewModelDeletegate){
         self.lbTypeCode.text = "\(view.typeCodeView)"
-        self.lbCreatedDate.text = String(view.createdDateTimeView)
+        self.lbCreatedDate.text = String(view.updatedDateTimeView)
         self.lbContent.text = view.contentView
         self.lbContent.textColor = AppColors.GRAY
         self.checkBox.borderStyle = .square

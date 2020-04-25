@@ -83,16 +83,12 @@ extension HistoryVC  {
     func bindTableView(){
           
         self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.History.rawValue, items: self.historyViewModel.listHistories,sections: self.sections, height: AppConstants.TABLE_ROW_HEIGHT,isSelectionStype: false){ cell, vm in
-            Utils.logMessage(object: self.historyViewModel.listHistories)
-            print("---------------")
-            Utils.logMessage(object: vm)
             cell.configView(view: vm)
             cell.configData(viewModel: vm)
             cell.delegate = self
         }
         
         self.dataSource.headerSection = { section, vm in
-            Utils.logMessage(object: vm)
             section.delegate = self
             section.configView(view: vm)
         }
@@ -163,9 +159,7 @@ extension HistoryVC : TableViewCellDelegate{
        
     }
     
-    func cellViewSelected(cell: Codable) {
-        Utils.logMessage(object: cell)
-       
+    func cellViewSelected(cell: Codable) {       
        
         if let data = JSONHelper.get(value: HistoryViewModel.self,anyObject: cell){
             let  vc = DetailVC()

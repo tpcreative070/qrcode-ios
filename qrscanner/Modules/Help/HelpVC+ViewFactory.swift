@@ -87,8 +87,8 @@ extension HelpVC {
             imgThirdText.topAnchor.constraint(equalTo: lbFourText.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
             imgThirdText.leftAnchor.constraint(equalTo: viewBackground.leftAnchor),
             imgThirdText.rightAnchor.constraint(equalTo: viewBackground.rightAnchor),
-            imgThirdText.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_IMAGE_HELP)
-            
+            imgThirdText.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_IMAGE_HELP),
+            imgThirdText.bottomAnchor.constraint(equalTo: viewBackground.bottomAnchor, constant: DeviceHelper.Shared.MARGIN_BOTTOM_SCAN)
         ])
         
         lbFirstTitle.text = LanguageHelper.getTranslationByKey(LanguageKey.Title_Help1)

@@ -8,11 +8,18 @@
 
 import UIKit
 import ZXingObjC
+import  StoreKit
 class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
     var viewBackground : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         
+        return view
+    }()
+    var view1 : UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor(white: 0.3, alpha: 0.5)
         return view
     }()
     var wrapperFirstView : UIView = {
@@ -174,7 +181,10 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
                 print("error")
             }
         }
+        
         bindViewModel()
+        
+
     }
     
     
@@ -207,6 +217,7 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
     @objc func doneScanner(){
         self.scannerviewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
         scannerviewModel.isScanner = true
+        scannerviewModel.listResultScanner.removeAll()
         for item in scannerviewModel.listScanner {
             self.scannerviewModel.scannerResult(mValue: item.value!, mType: item.typeScan!)
         }
