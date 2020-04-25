@@ -1212,12 +1212,9 @@
 				28969FC3241C08F900F30A29 /* GalleryHelper.swift */,
 				28A4E1CF24333D5200DDD4A1 /* PlaySoundManager.swift */,
 				28A4E1D124333E2A00DDD4A1 /* SoundHelper.swift */,
-<<<<<<< HEAD
 				289334D12452C8B1000317A8 /* AppStoreReviewManager.swift */,
 				289334D32452C905000317A8 /* UserDefaults+Key.swift */,
-=======
 				D2E2E4A92451902500FE84E1 /* QRCodeHelper.swift */,
->>>>>>> 4102ca8b0bfa07f13341e4bd93ff63e441b32b4a
 			);
 			path = Helper;
 			sourceTree = "<group>";
