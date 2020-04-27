@@ -119,8 +119,6 @@ extension DetailVC {
         tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.Telephone.rawValue)
         tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.Wifi.rawValue)
         tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.Barcode.rawValue)
-        tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.EAN_8.rawValue)
-        tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.EAN_13.rawValue)
         
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
@@ -257,22 +255,12 @@ extension DetailVC : TableViewCellDelegate {
             
             let model : BarcodeModel = try! JSONDecoder().decode(BarcodeModel.self, from: stringContent)
             let vc = AlertVC()
-            vc.viewModel.listItem.append(AlertViewModel(name: setTextLabel(mString: model.barcodetype ?? "") ))
+            vc.viewModel.listItem.append(AlertViewModel(name: QRCodeHelper.shared.setTextLabel(mString: model.barcodetype ?? "No value") ))
             vc.viewModel.listItem.append(AlertViewModel(name: model.productID ?? "" ))
             self.navigationController?.pushViewController(vc, animated: false)
         }
     }
-   func setTextLabel(mString: String) -> String{
-           if mString == BarcodeType.EAN_8.rawValue{
-               return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8) ?? "EAN 8"
-           }
-           else if mString == BarcodeType.EAN_13.rawValue{
-               return LanguageHelper.getTranslationByKey(LanguageKey.EAN_13) ?? "EAN 13"
-           }
-           else{
-               return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8) ?? "EAN 8"
-           }
-       }
+   
 }
 
 

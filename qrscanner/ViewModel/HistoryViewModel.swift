@@ -87,7 +87,8 @@ class HistoryViewModel  : Codable ,GenerateViewModelDeletegate{
 
     }
     func getValueContent(typeCode: String, content: ContentViewModel) -> String? {
-        if typeCode == EnumType.URL.rawValue{
+        if typeCode.count > 0 && content.content != nil {
+                if typeCode == EnumType.URL.rawValue{
                    let stringContent = content.content?.data(using: .utf8 )
                    let urlModel : UrlModel = try! JSONDecoder().decode(UrlModel.self, from: stringContent!)
                     return urlModel.url ?? ""
@@ -148,6 +149,10 @@ class HistoryViewModel  : Codable ,GenerateViewModelDeletegate{
         else{
             return "No value"
         }
+            }
+        else{
+                   return "No value"
+               }
     }
     
 }

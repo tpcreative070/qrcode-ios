@@ -52,7 +52,6 @@
 		289308CE2437147300680BF3 /* UIView+setAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289308CD2437147300680BF3 /* UIView+setAnchor.swift */; };
 		289308D12437A1F400680BF3 /* BarcodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289308D02437A1F400680BF3 /* BarcodeVC.swift */; };
 		289308D32437A20400680BF3 /* BarcodeVC+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289308D22437A20400680BF3 /* BarcodeVC+ViewFactory.swift */; };
-		289334D22452C8B1000317A8 /* AppStoreReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289334D12452C8B1000317A8 /* AppStoreReviewManager.swift */; };
 		289334D42452C905000317A8 /* UserDefaults+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289334D32452C905000317A8 /* UserDefaults+Key.swift */; };
 		289334D62452DF9C000317A8 /* RateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289334D52452DF9C000317A8 /* RateVC.swift */; };
 		289334D82452E022000317A8 /* RateVC+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289334D72452E022000317A8 /* RateVC+ViewFactory.swift */; };
@@ -162,6 +161,7 @@
 		28A05735240E499400AD5353 /* SFProText-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 28A05731240E499300AD5353 /* SFProText-Regular.otf */; };
 		28A05736240E499400AD5353 /* SFProText-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 28A05732240E499400AD5353 /* SFProText-Semibold.otf */; };
 		28A05739240E968B00AD5353 /* AppDelegate+Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A05738240E968B00AD5353 /* AppDelegate+Config.swift */; };
+		28A097442455BB07008A2EDD /* CustomPhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A097432455BB07008A2EDD /* CustomPhotoAlbum.swift */; };
 		28A4E1B72431D44C00DDD4A1 /* QRCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4E1B62431D44C00DDD4A1 /* QRCodeVC.swift */; };
 		28A4E1B92431D47900DDD4A1 /* QRCodeVC+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4E1B82431D47900DDD4A1 /* QRCodeVC+ViewFactory.swift */; };
 		28A4E1BB2431D4F400DDD4A1 /* QRCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4E1BA2431D4F400DDD4A1 /* QRCodeViewModel.swift */; };
@@ -374,7 +374,6 @@
 		289308CD2437147300680BF3 /* UIView+setAnchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+setAnchor.swift"; sourceTree = "<group>"; };
 		289308D02437A1F400680BF3 /* BarcodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeVC.swift; sourceTree = "<group>"; };
 		289308D22437A20400680BF3 /* BarcodeVC+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BarcodeVC+ViewFactory.swift"; sourceTree = "<group>"; };
-		289334D12452C8B1000317A8 /* AppStoreReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReviewManager.swift; sourceTree = "<group>"; };
 		289334D32452C905000317A8 /* UserDefaults+Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Key.swift"; sourceTree = "<group>"; };
 		289334D52452DF9C000317A8 /* RateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateVC.swift; sourceTree = "<group>"; };
 		289334D72452E022000317A8 /* RateVC+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RateVC+ViewFactory.swift"; sourceTree = "<group>"; };
@@ -487,6 +486,7 @@
 		28A05731240E499300AD5353 /* SFProText-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Regular.otf"; sourceTree = "<group>"; };
 		28A05732240E499400AD5353 /* SFProText-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Semibold.otf"; sourceTree = "<group>"; };
 		28A05738240E968B00AD5353 /* AppDelegate+Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Config.swift"; sourceTree = "<group>"; };
+		28A097432455BB07008A2EDD /* CustomPhotoAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPhotoAlbum.swift; sourceTree = "<group>"; };
 		28A4E1B62431D44C00DDD4A1 /* QRCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeVC.swift; sourceTree = "<group>"; };
 		28A4E1B82431D47900DDD4A1 /* QRCodeVC+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QRCodeVC+ViewFactory.swift"; sourceTree = "<group>"; };
 		28A4E1BA2431D4F400DDD4A1 /* QRCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewModel.swift; sourceTree = "<group>"; };
@@ -1212,9 +1212,9 @@
 				28969FC3241C08F900F30A29 /* GalleryHelper.swift */,
 				28A4E1CF24333D5200DDD4A1 /* PlaySoundManager.swift */,
 				28A4E1D124333E2A00DDD4A1 /* SoundHelper.swift */,
-				289334D12452C8B1000317A8 /* AppStoreReviewManager.swift */,
 				289334D32452C905000317A8 /* UserDefaults+Key.swift */,
 				D2E2E4A92451902500FE84E1 /* QRCodeHelper.swift */,
+				28A097432455BB07008A2EDD /* CustomPhotoAlbum.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1982,7 +1982,6 @@
 				28BFA8EC240D4384002ECD93 /* Bindable.swift in Sources */,
 				28BFA8D8240CDC82002ECD93 /* TableViewCell+ViewFactory.swift in Sources */,
 				28A0396B2438CDF000888582 /* BarcodeModel.swift in Sources */,
-				289334D22452C8B1000317A8 /* AppStoreReviewManager.swift in Sources */,
 				D2BA0A7D24096A5E0074C7A1 /* ICBackBlueButton.swift in Sources */,
 				2893EF31241A19B2004D58C6 /* StackView.swift in Sources */,
 				D2BA0AFD240ABD260074C7A1 /* TypeCodeVC+ViewFactory.swift in Sources */,
@@ -1993,6 +1992,7 @@
 				2893EF2D241A117A004D58C6 /* EventGenerateVC.swift in Sources */,
 				28998A34242CA36F00C6837D /* AlertVC.swift in Sources */,
 				2897F7A82421FE6200ED0A60 /* LocationViewModel.swift in Sources */,
+				28A097442455BB07008A2EDD /* CustomPhotoAlbum.swift in Sources */,
 				2865AA2A24128DF000C1F207 /* ResultGenerateVC.swift in Sources */,
 				28D81D3A241623C2007834F0 /* ContactModel.swift in Sources */,
 				28124803243C825600D565B1 /* FloatyViewController.swift in Sources */,

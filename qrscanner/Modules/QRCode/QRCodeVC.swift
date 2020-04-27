@@ -67,7 +67,6 @@ class QRCodeVC: BaseViewController {
         viewModel.listItemSelected.removeAll()
         viewModel.listTransaction.removeAll()
         self.viewModel.listContent.removeAll()
-        print(viewModel.listItem.count)
         for index in viewModel.listItem {
             //Utils.logMessage(object: viewModel.listItem)
             if index.check == true {

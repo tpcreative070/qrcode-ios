@@ -251,16 +251,7 @@ class TableViewCell : UITableViewCell{
             let data = try! JSONDecoder().decode(BarcodeModel.self, from: jsonData)
             configView(viewModel: BarcodeViewModel(data: data))
         }
-        if view.typeCodeView.uppercased() == EnumType.EAN_8.rawValue{
-            let jsonData = view.contentView.data(using: .utf8)!
-            let data = try! JSONDecoder().decode(BarcodeModel.self, from: jsonData)
-            configView(viewModel: BarcodeViewModel(data: data))
-        }
-        if view.typeCodeView.uppercased() == EnumType.EAN_13.rawValue{
-            let jsonData = view.contentView.data(using: .utf8)!
-            let data = try! JSONDecoder().decode(BarcodeModel.self, from: jsonData)
-            configView(viewModel: BarcodeViewModel(data: data))
-        }
+
     }
     func configViewSave(view : GenerateViewModelDeletegate){
         self.lbTypeCode.text = "\(view.typeCodeView)"
@@ -328,12 +319,6 @@ class TableViewCell : UITableViewCell{
             identifier = EnumIdentifier.Event
         }
         else if reuseIdentifier == EnumIdentifier.Barcode.rawValue {
-            identifier = EnumIdentifier.Barcode
-        }
-        else if reuseIdentifier == EnumIdentifier.EAN_8.rawValue {
-            identifier = EnumIdentifier.Barcode
-        }
-        else if reuseIdentifier == EnumIdentifier.EAN_13.rawValue {
             identifier = EnumIdentifier.Barcode
         }
         else if reuseIdentifier == EnumIdentifier.HistoryChoose.rawValue {
@@ -709,20 +694,10 @@ view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: D
         self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.ProductID)
         self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Search)
         self.lbValueFirst.text = viewModel.barcodeView
-        self.lbValueSecond.text = setTextLabel(mString: viewModel.typeBarcodeView)
+        self.lbValueSecond.text = QRCodeHelper.shared.setTextLabel(mString: viewModel.typeBarcodeView)
         
     }
-    func setTextLabel(mString: String) -> String{
-        if mString == BarcodeType.EAN_8.rawValue{
-            return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8) ?? "EAN 8"
-        }
-        else if mString == BarcodeType.EAN_13.rawValue{
-            return LanguageHelper.getTranslationByKey(LanguageKey.EAN_13) ?? "EAN 13"
-        }
-        else{
-            return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8) ?? "EAN 8"
-        }
-    }
+    
     /*calendar*/
     lazy var imgEvent : UIImageView = {
         let view = UIImageView()
