@@ -1,7 +1,7 @@
 {
     "en": {
-        "EXIST_QRCODE" : "QRCode or Barcode codes already exist",
-        "DUPLICATE_CONTENT" : "Skip duplicate QRCode or Barcode",
+        "EXIST_QRCODE" : "The item already exist",
+        "DUPLICATE_CONTENT" : "Skip and remove duplicate QRCode or Barcode",
         "DUPLICATE": "Skip duplicate",
         "NO_ITEM" : "No items found",
         "ERROR_PRODUCT_INVALID" :"Product Id is require",
@@ -203,8 +203,8 @@
         "THIS_FEATURE_COMING_SOON" : "This feature will be coming soon"
     },
     "vi" : {
-        "EXIST_QRCODE" : "QR Code hoặc Barcode đã tồn tại",
-        "DUPLICATE_CONTENT" : "Bỏ qua các QRCode hoặc Barcode trùng lặp",
+        "EXIST_QRCODE" : "Các mục đã tồn tại",
+        "DUPLICATE_CONTENT" : "Bỏ qua và xoá các QRCode hoặc Barcode trùng lặp",
          "DUPLICATE": "Bỏ qua trùng lặp",
          "NO_ITEM" : "Không có giá trị",
         "ERROR_PRODUCT_INVALID" :"Yêu cầu nhập mã sản phẩm",
@@ -441,8 +441,8 @@
         "THIS_FEATURE_COMING_SOON" : "Tính năng này sẽ có trong tương lai"
     },
    "es" : {
-       "EXIST_QRCODE" : "El código QR o el código de barras ya existe",
-       "DUPLICATE_CONTENT" : "Ignorar código QR duplicado o código de barras",
+       "EXIST_QRCODE" : "El artículo ya existe",
+       "DUPLICATE_CONTENT" : "Ignorar y eliminar códigos QR duplicados o códigos de barras",
        "DUPLICATE": "Saltar duplicado",
         "NO_ITEM": "Nenhum item encontrado",
        "ERROR_PRODUCT_INVALID" :"Se requiere identificación del producto",
@@ -665,8 +665,8 @@
         "THIS_FEATURE_COMING_SOON" : "Esta característica estará disponible pronto",
     },
    "pt" : {
-         "EXIST_QRCODE" : "O código QR ou código de barras já existe",
-       "DUPLICATE_CONTENT" : "Ignorar QRCode ou código de barras duplicado",
+         "EXIST_QRCODE" : "O item já existe",
+       "DUPLICATE_CONTENT" : "Ignore e exclua códigos QR ou códigos de barras duplicados",
        "DUPLICATE": "Ignorar duplicado",
        "NO_ITEM": "No se encontraron elementos",
        "ERROR_PRODUCT_INVALID" :"O ID do produto é obrigatório",

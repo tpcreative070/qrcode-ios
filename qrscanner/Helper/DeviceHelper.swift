@@ -166,7 +166,7 @@ class DeviceHelper {
                 DeviceHelper.Shared.HEIGHT_LABLE = CGFloat(20)
                 DeviceHelper.Shared.HEIGHT_BACKGROUND_BAR = CGFloat(200)
                 DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM_BAR = CGFloat(160)
-                DeviceHelper.Shared.HEIGHT_BGDROPDOWN = CGFloat(100)
+                DeviceHelper.Shared.HEIGHT_BGDROPDOWN = CGFloat(120)
                 DeviceHelper.Shared.ICON_WIDTH_HEIGHT = CGFloat(37)
                 DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT = CGFloat(40)
                 DeviceHelper.Shared.MARGIN_LEFT_ICON = CGFloat(50)

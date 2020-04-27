@@ -77,10 +77,10 @@ class GenerateViewModel : GenerateViewModelDelegate {
     var passwordBinding : Bindable<String> = Bindable("")
     var protectBinding : Bindable<String> = Bindable("")
     var text: String?{
-          didSet {
-              validateText()
-          }
-      }
+        didSet {
+            validateText()
+        }
+    }
     var url: String?{
         didSet {
             validateUrl()
@@ -91,16 +91,19 @@ class GenerateViewModel : GenerateViewModelDelegate {
             if typeBarcode == "EAN_8"{
                 validateProductID8()
             }
+            else if typeBarcode == "EAN_13"{
+                validateProductID13()
+            }
             else{
-                  validateProductID13()
+                validateProductID()
             }
         }
     }
     var typeBarcode: String?{
-          didSet {
-              
-          }
-      }
+        didSet {
+            
+        }
+    }
     var email: String?{
         didSet {
             validateEmail()
@@ -217,9 +220,9 @@ class GenerateViewModel : GenerateViewModelDelegate {
         if phoneTelephone == nil || !ValidatorHelper.minLength(phoneTelephone) {
             errorMessages.value[GenerateViewModelKey.PHONE_TELEPHONE] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorPhoneNumberRequired) ?? ""
         }
-//        else if !ValidatorHelper.minLength(phoneTelephone, minLength: 10) || !ValidatorHelper.maxLength(phoneTelephone, maxLength: 10){
-//            errorMessages.value[GenerateViewModelKey.PHONE_TELEPHONE] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorPhoneNumberInvalid) ?? ""
-//        }
+            //        else if !ValidatorHelper.minLength(phoneTelephone, minLength: 10) || !ValidatorHelper.maxLength(phoneTelephone, maxLength: 10){
+            //            errorMessages.value[GenerateViewModelKey.PHONE_TELEPHONE] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorPhoneNumberInvalid) ?? ""
+            //        }
         else {
             errorMessages.value.removeValue(forKey: GenerateViewModelKey.PHONE_TELEPHONE)
         }
@@ -289,33 +292,41 @@ class GenerateViewModel : GenerateViewModelDelegate {
         if productID == nil || productID == ""{
             errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductInvalid ) ?? ""
         }
-            else if !ValidatorHelper.isValidNumber(productID){
-                                 errorMessages.value[GenerateViewModelKey.PRODUCTID] = LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequired8) ?? ""
-                             }
+        else if !ValidatorHelper.isValidNumber(productID){
+            errorMessages.value[GenerateViewModelKey.PRODUCTID] = LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequired8) ?? ""
+        }
         else if (  !ValidatorHelper.equalLength8(productID,ength: 7) || !ValidatorHelper.equalLength8(productID,ength: 8))
         {
-                     errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequired8 ) ?? ""
-          
-           }
-           else {
-               errorMessages.value.removeValue(forKey: GenerateViewModelKey.PRODUCTID)
-           }
+            errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequired8 ) ?? ""
+            
+        }
+        else {
+            errorMessages.value.removeValue(forKey: GenerateViewModelKey.PRODUCTID)
+        }
     }
     func validateProductID13(){
         if productID == nil || productID == ""{
             errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductInvalid ) ?? ""
         }
-            else if !ValidatorHelper.isValidNumber(productID){
-                      errorMessages.value[GenerateViewModelKey.PRODUCTID] = LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequired13) ?? ""
-                  }
+        else if !ValidatorHelper.isValidNumber(productID){
+            errorMessages.value[GenerateViewModelKey.PRODUCTID] = LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequired13) ?? ""
+        }
         else if (  !ValidatorHelper.equalLength13(productID,ength: 12) || !ValidatorHelper.equalLength13(productID,ength: 13))
         {
-                     errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequired13 ) ?? ""
-           }
-           else {
-               errorMessages.value.removeValue(forKey: GenerateViewModelKey.PRODUCTID)
-           }
-       }
+            errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequired13 ) ?? ""
+        }
+        else {
+            errorMessages.value.removeValue(forKey: GenerateViewModelKey.PRODUCTID)
+        }
+    }
+    func validateProductID(){
+        if productID == nil || productID == ""{
+            errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductInvalid) ?? ""
+        }
+        else {
+            errorMessages.value.removeValue(forKey: GenerateViewModelKey.PRODUCTID)
+        }
+    }
     /**
      Validation for email field
      */
@@ -658,11 +669,10 @@ class GenerateViewModel : GenerateViewModelDelegate {
                 value = "MECARD:N:\(fullNameContact!);ADR:\(addressContact!);TEL:\(phoneContact!);EMAIL:\(emailContact!);;"
             }
         }
-      result = generateDataQRCode(from: value)!
+        result = generateDataQRCode(from: value)!
         dataImage = result?.pngData()
         if (result != nil) {
-            let val = result?.pngData()?.base64EncodedString()
-            print(val!)
+            //            let val = result?.pngData()?.base64EncodedString()
             stringResult = value
             responseToView!(EnumResponseToView.CREATE_SUCCESS.rawValue)
         }
@@ -671,12 +681,15 @@ class GenerateViewModel : GenerateViewModelDelegate {
     func doGenerateBarCode(){
         var value = ""
         if typeCode == EnumType.BARCODE.rawValue{
-            if typeBarcode == EnumType.EAN_8.rawValue{
-                           validateProductID8()
-                       }
-                       else{
-                             validateProductID13()
-                       }
+            if typeBarcode == BarcodeType.EAN_8.rawValue{
+                validateProductID8()
+            }
+            else if typeBarcode == BarcodeType.EAN_13.rawValue{
+                validateProductID13()
+            }
+            else {
+                validateProductID()
+            }
             if ( errorMessages.value.count > 0 ) {
                 return
             }
@@ -688,7 +701,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
                     responseToView!(EnumResponseToView.CREATE_SUCCESS.rawValue)
                 }
                 else{
-//                    errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequired ) ?? ""
+                    //                    errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequired ) ?? ""
                 }
             }
         }
@@ -735,49 +748,55 @@ class GenerateViewModel : GenerateViewModelDelegate {
         
     }
     func generateDataBarcode(from string: String, format: String) -> UIImage? {
-         let valueColor = String(CommonService.getUserDefault(key: KeyUserDefault.ChangeColor) ?? ColorString.Black.rawValue)
+        let valueColor = String(CommonService.getUserDefault(key: KeyUserDefault.ChangeColor) ?? ColorString.Black.rawValue)
         var valueFormat : ZXBarcodeFormat = kBarcodeFormatEan8
         if format == BarcodeType.EAN_8.rawValue{
             valueFormat = kBarcodeFormatEan8
         }
-        if format == BarcodeType.EAN_13.rawValue{
+        else if format == BarcodeType.EAN_13.rawValue{
             valueFormat = kBarcodeFormatEan13
         }
-          do {
-              let writer = ZXMultiFormatWriter()
-              let hints = ZXEncodeHints() as ZXEncodeHints
-              hints.encoding = String.Encoding.utf8.rawValue
+        else if format == BarcodeType.PDF417.rawValue {
+            valueFormat = kBarcodeFormatPDF417
+        }
+        else if format == BarcodeType.Aztec.rawValue {
+            valueFormat = kBarcodeFormatAztec
+        }
+        do {
+            let writer = ZXMultiFormatWriter()
+            let hints = ZXEncodeHints() as ZXEncodeHints
+            hints.encoding = String.Encoding.utf8.rawValue
             let result = try writer.encode(string, format: valueFormat, width: Int32(AppConstants.HEIGHT_IMAGE_QR), height: Int32(AppConstants.HEIGHT_IMAGE_QR), hints: hints)
             
-              if let imageRef = ZXImage.init(matrix: result, on: getColor(value: valueColor).cgColor, offColor: nil) {
-                  if let image = imageRef.cgimage {
-                      return UIImage.init(cgImage: image)
-                  }
-              }
-          }
-          catch {
-              print(error)
-            return nil
-          }
-          return nil
-      }
-
-func generateDataQRCode(from string: String) -> UIImage? {
-    let valueColor = String(CommonService.getUserDefault(key: KeyUserDefault.ChangeColor) ?? ColorString.Black.rawValue)
-    do {
-        let writer = ZXMultiFormatWriter()
-        let hints = ZXEncodeHints() as ZXEncodeHints
-        hints.encoding = String.Encoding.utf8.rawValue
-        let result = try writer.encode(string, format: kBarcodeFormatQRCode, width: Int32(AppConstants.HEIGHT_IMAGE_QR), height: Int32(AppConstants.HEIGHT_IMAGE_QR), hints: hints)
-        if let imageRef = ZXImage.init(matrix: result, on: getColor(value: valueColor).cgColor, offColor: nil) {
-            if let image = imageRef.cgimage {
-                return UIImage.init(cgImage: image)
+            if let imageRef = ZXImage.init(matrix: result, on: getColor(value: valueColor).cgColor, offColor: nil) {
+                if let image = imageRef.cgimage {
+                    return UIImage.init(cgImage: image)
+                }
             }
         }
+        catch {
+            print(error)
+            return nil
+        }
+        return nil
     }
-    catch {
-        print(error)
+    
+    func generateDataQRCode(from string: String) -> UIImage? {
+        let valueColor = String(CommonService.getUserDefault(key: KeyUserDefault.ChangeColor) ?? ColorString.Black.rawValue)
+        do {
+            let writer = ZXMultiFormatWriter()
+            let hints = ZXEncodeHints() as ZXEncodeHints
+            hints.encoding = String.Encoding.utf8.rawValue
+            let result = try writer.encode(string, format: kBarcodeFormatQRCode, width: Int32(AppConstants.HEIGHT_IMAGE_QR), height: Int32(AppConstants.HEIGHT_IMAGE_QR), hints: hints)
+            if let imageRef = ZXImage.init(matrix: result, on: getColor(value: valueColor).cgColor, offColor: nil) {
+                if let image = imageRef.cgimage {
+                    return UIImage.init(cgImage: image)
+                }
+            }
+        }
+        catch {
+            print(error)
+        }
+        return nil
     }
-    return nil
-}
 }

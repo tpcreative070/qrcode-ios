@@ -47,7 +47,6 @@ class HistoryVC : UIViewController,UIViewControllerTransitioningDelegate, UINavi
         initUI()
         bindViewModel()
         self.sections = TableSection.group(rowItems: self.historyViewModel.listHistories, by: { (headline) in
-            print(headline.typeCode)
             return String(headline.typeCode)
         })
         self.sections.sort { (lhs, rhs) in lhs.rowItems[0].updatedDateTime > rhs.rowItems[0].updatedDateTime }

@@ -112,7 +112,7 @@ class GenerateEntity{
         return nil
     }
     
-    
+   
     func delete(db : Connection, value : Bool) ->Bool{
         do{
             let query = table.select(table[*])  // SELECT "email" FROM "users"
@@ -188,22 +188,48 @@ class GenerateEntity{
         return nil
     }
     func checkObject(db : Connection, data : GenerateEntityModel) -> Int64{
+        Utils.logMessage(object: data)
+        guard let isHis = data.isHistory else {return Int64(truncating: false)}
+        guard let isSa = data.isSave else {return Int64(truncating: false)}
+
          do{
                     let query = table.select(table[*])  // SELECT "email" FROM "users"
                         .filter(typeCode == data.typeCode!)    // WHERE "name" IS NOT NULL
                         .filter(content == data.content!)
                         .filter(isCode == data.isCode!)
-                    let response = try db.prepare(query).map({(event) -> GenerateEntityModel in
+                        .filter(isHistory == isHis)
+                        .filter(isSave == isSa)
+                        .order(updatedDateTime.desc)
+
+            var response = try db.prepare(query).map({(event) -> GenerateEntityModel in
                         return GenerateEntityModel(createdDateTime: event[createdDateTime], typeCode: event[typeCode],content: event[content], isHistory: event[isHistory], isSave: event[isSave], updatedDateTime: event[updatedDateTime], bookMark: event[bookMark], transactionID: event[transactionID], isCode: event[isCode])
                     })
-                    if response.count > 0{
+            print(response.count)
+                    if response.count > 1{
+                        let res :[GenerateEntityModel] = [response.removeFirst()]
+                        for (item) in res {
+                                let query = table.select(table[*])
+                                .filter(createdDateTime == Int(item.createdDateTime!))
+                                try db.run(query.delete())
+                                
+                            }
+                        
+                    
+                        return response[0].createdDateTime!
+
+                    }
+                    else if response.count == 1{
                         return response[0].createdDateTime!
                     }
+                    else {
+                        return 0
+            }
                 }catch {
                   //  debugPrint(error)
                 }
                 return 0
      }
+   
     func getTransaction(db : Connection,key : String) -> [GenerateEntityModel]?{
           do{
                      let query = table.select(table[*])  // SELECT "email" FROM "users"

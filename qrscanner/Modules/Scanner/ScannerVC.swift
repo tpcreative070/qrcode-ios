@@ -13,39 +13,14 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
     var viewBackground : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        
+       // view.backgroundColor = UIColor(white: 0.3, alpha: 0.5)
+
         return view
     }()
-    var view1 : UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(white: 0.3, alpha: 0.5)
-        return view
-    }()
-    var wrapperFirstView : UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(white: 0.3, alpha: 0.5)
-        return view
-    }()
-    var wrapperSecondView : UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(white: 0.3, alpha: 0.5)
-        return view
-    }()
-    var wrapperThirdView : UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(white: 0.3, alpha: 0.5)
-        return view
-    }()
-    var wrapperFourView : UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(white: 0.3, alpha: 0.5)
-        return view
-    }()
+    var fillLayer : CAShapeLayer = {
+           let view = CAShapeLayer()
+           return view
+       }()
     var viewIcon : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false

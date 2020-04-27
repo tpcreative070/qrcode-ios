@@ -333,18 +333,32 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
         }
         else if ((mType.range(of: "EAN-13", options: .caseInsensitive)) != nil){
             typeCode = EnumType.BARCODE.rawValue
-            let content = BarcodeModel(productID: mValue, type: EnumType.EAN_13.rawValue)
+            let content = BarcodeModel(productID: mValue, type: BarcodeType.EAN_13.rawValue)
             let jsonData = try! JSONEncoder().encode(content)
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
             isCode = "EAN_13"
         }
         else if ((mType.range(of: "EAN-8", options: .caseInsensitive)) != nil){
             typeCode = EnumType.BARCODE.rawValue
-            let content = BarcodeModel(productID: mValue, type: EnumType.EAN_8.rawValue)
+            let content = BarcodeModel(productID: mValue, type: BarcodeType.EAN_8.rawValue)
             let jsonData = try! JSONEncoder().encode(content)
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
             isCode = "EAN_8"
         }
+            else if ((mType.range(of: "PDF417", options: .caseInsensitive)) != nil){
+                                 typeCode = EnumType.BARCODE.rawValue
+                                 let content = BarcodeModel(productID: mValue, type: BarcodeType.PDF417.rawValue)
+                                 let jsonData = try! JSONEncoder().encode(content)
+                                 value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+                                 isCode = "PDF417"
+                             }
+            else if ((mType.range(of: "Aztec", options: .caseInsensitive)) != nil){
+                typeCode = EnumType.BARCODE.rawValue
+                let content = BarcodeModel(productID: mValue, type: BarcodeType.Aztec.rawValue)
+                let jsonData = try! JSONEncoder().encode(content)
+                value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+                isCode = "Aztec"
+            }
         else
         {
             typeCode = EnumType.TEXT.rawValue

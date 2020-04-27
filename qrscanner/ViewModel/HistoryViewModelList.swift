@@ -111,6 +111,7 @@ class HistoryViewModelList : HistoryViewModelListDeletegate{
         // Utils.logMessage(object: listHistories)
     }
      func checkItemExist (mValue : GenerateEntityModel) -> Bool {
+        Utils.logMessage(object: mValue)
               let result = SQLHelper.checkItemExist(data: mValue)
               print(result)
               if result > 0 {

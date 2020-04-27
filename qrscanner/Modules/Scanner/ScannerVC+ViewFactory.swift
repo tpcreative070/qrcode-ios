@@ -18,13 +18,7 @@ extension ScannerVC {
             viewBackground.leftAnchor.constraint(equalTo: view.leftAnchor),
             viewBackground.rightAnchor.constraint(equalTo: view.rightAnchor),
         ])
-        viewBackground.addSubview(wrapperFirstView)
-        NSLayoutConstraint.activate([
-            wrapperFirstView.topAnchor.constraint(equalTo: viewBackground.topAnchor),
-            wrapperFirstView.leftAnchor.constraint(equalTo: viewBackground.leftAnchor),
-            wrapperFirstView.rightAnchor.constraint(equalTo: viewBackground.rightAnchor),
-            wrapperFirstView.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/3.93)
-        ])
+        
         
         viewBackground.addSubview(viewIcon)
         NSLayoutConstraint.activate([
@@ -34,48 +28,26 @@ extension ScannerVC {
             viewIcon.centerXAnchor.constraint(equalTo: viewBackground.centerXAnchor),
             viewIcon.heightAnchor.constraint(equalToConstant: AppConstants.HEIGHT_VIEWICON)
         ])
-       viewBackground.addSubview(viewScan)
+        viewBackground.addSubview(viewScan)
         NSLayoutConstraint.activate([
             viewScan.centerXAnchor.constraint(equalTo: viewBackground.centerXAnchor),
             viewScan.centerYAnchor.constraint(equalTo: viewBackground.centerYAnchor),
-            viewScan.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: DeviceHelper.Shared.MARGIN_LEFT_SCAN),
-            viewScan.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: DeviceHelper.Shared.MARGIN_RIGHT_SCAN),
+            viewScan.widthAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2),
             viewScan.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2)
         ])
         viewBackground.addSubview(lbScannerRectangle)
         NSLayoutConstraint.activate([
             lbScannerRectangle.centerXAnchor.constraint(equalTo: viewBackground.centerXAnchor),
             lbScannerRectangle.centerYAnchor.constraint(equalTo: viewBackground.centerYAnchor),
-            lbScannerRectangle.leftAnchor.constraint(equalTo: viewBackground.leftAnchor, constant: DeviceHelper.Shared.MARGIN_LEFT_SCAN),
-            lbScannerRectangle.rightAnchor.constraint(equalTo: viewBackground.rightAnchor, constant: DeviceHelper.Shared.MARGIN_RIGHT_SCAN),
+            lbScannerRectangle.widthAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2),
             lbScannerRectangle.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2)
         ])
         
-      
-        viewBackground.addSubview(wrapperThirdView)
-        NSLayoutConstraint.activate([
-            wrapperThirdView.topAnchor.constraint(equalTo: wrapperFirstView.bottomAnchor),
-            wrapperThirdView.leftAnchor.constraint(equalTo: viewBackground.leftAnchor),
-            wrapperThirdView.rightAnchor.constraint(equalTo: lbScannerRectangle.leftAnchor,constant: 2.5),
-            wrapperThirdView.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2.035)
-        ])
-        viewBackground.addSubview(wrapperFourView)
-        NSLayoutConstraint.activate([
-            wrapperFourView.topAnchor.constraint(equalTo: wrapperFirstView.bottomAnchor),
-            wrapperFourView.leftAnchor.constraint(equalTo: lbScannerRectangle.rightAnchor, constant: -2.5),
-            wrapperFourView.rightAnchor.constraint(equalTo: viewBackground.rightAnchor),
-            wrapperFourView.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2.035)
-        ])
-        viewBackground.addSubview(wrapperSecondView)
-              NSLayoutConstraint.activate([
-                  wrapperSecondView.topAnchor.constraint(equalTo: wrapperFourView.bottomAnchor),
-                  wrapperSecondView.leftAnchor.constraint(equalTo: viewBackground.leftAnchor),
-                  wrapperSecondView.rightAnchor.constraint(equalTo: viewBackground.rightAnchor),
-                  wrapperSecondView.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/3.5)
-              ])
+        
+        
         viewIcon.addSubview(viewFlipCamera)
         NSLayoutConstraint.activate([
-
+            
             viewFlipCamera.topAnchor.constraint(equalTo: viewIcon.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewFlipCamera.leadingAnchor.constraint(equalTo: viewIcon.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             viewFlipCamera.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT),
@@ -90,7 +62,7 @@ extension ScannerVC {
         ])
         viewIcon.addSubview(viewFlashBg)
         NSLayoutConstraint.activate([
-
+            
             viewFlashBg.topAnchor.constraint(equalTo: viewIcon.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewFlashBg.leadingAnchor.constraint(equalTo: viewFlipCamera.trailingAnchor, constant: DeviceHelper.Shared.MARGIN_LEFT_ICON),
             viewFlashBg.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT),
@@ -104,20 +76,20 @@ extension ScannerVC {
             imgFlashOff.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT)
         ])
         viewIcon.addSubview(viewScanBg)
-               NSLayoutConstraint.activate([
-
-                   viewScanBg.topAnchor.constraint(equalTo: viewIcon.topAnchor, constant: AppConstants.MARGIN_TOP),
-                   viewScanBg.trailingAnchor.constraint(equalTo: viewIcon.trailingAnchor, constant: AppConstants.MARGIN_RIGHT),
-                   viewScanBg.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT),
-                   viewScanBg.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT)
-               ])
-               viewScanBg.addSubview(imgScan)
-               NSLayoutConstraint.activate([
-                   imgScan.topAnchor.constraint(equalTo: viewScanBg.topAnchor),
-                   imgScan.leadingAnchor.constraint(equalTo: viewScanBg.leadingAnchor),
-                   imgScan.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT),
-                   imgScan.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT)
-               ])
+        NSLayoutConstraint.activate([
+            
+            viewScanBg.topAnchor.constraint(equalTo: viewIcon.topAnchor, constant: AppConstants.MARGIN_TOP),
+            viewScanBg.trailingAnchor.constraint(equalTo: viewIcon.trailingAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewScanBg.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT),
+            viewScanBg.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT)
+        ])
+        viewScanBg.addSubview(imgScan)
+        NSLayoutConstraint.activate([
+            imgScan.topAnchor.constraint(equalTo: viewScanBg.topAnchor),
+            imgScan.leadingAnchor.constraint(equalTo: viewScanBg.leadingAnchor),
+            imgScan.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT),
+            imgScan.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT)
+        ])
         viewIcon.addSubview(viewHelpBg)
         NSLayoutConstraint.activate([
             viewHelpBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
@@ -125,7 +97,7 @@ extension ScannerVC {
             viewHelpBg.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT),
             viewHelpBg.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT)
         ])
-
+        
         viewHelpBg.addSubview(imgHelp)
         NSLayoutConstraint.activate([
             imgHelp.topAnchor.constraint(equalTo: viewHelpBg.topAnchor),
@@ -133,8 +105,9 @@ extension ScannerVC {
             imgHelp.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT),
             imgHelp.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT)
         ])
-       
         
+        self.view.layoutIfNeeded()
+        self.viewBackground.layoutIfNeeded()
         let tapScan = UITapGestureRecognizer(target: self, action: #selector(actionGallery(sender:)))
         self.viewScanBg.addGestureRecognizer(tapScan)
         let tapFrontCamera = UITapGestureRecognizer(target: self, action: #selector(actionFrontCamera(sender:)))
@@ -143,7 +116,40 @@ extension ScannerVC {
         self.viewHelpBg.addGestureRecognizer(tapHelp)
         let tapFlash = UITapGestureRecognizer(target: self, action: #selector(actionFlash(sender:)))
         self.viewFlashBg.addGestureRecognizer(tapFlash)
+        let pathBigRect = UIBezierPath(rect: viewBackground.frame)
+        let pathSmallRect = UIBezierPath(roundedRect: CGRect(x: self.viewScan.frame.origin.x + 20 , y: self.viewScan.frame.origin.y - 20, width: view.frame.height/2.27, height: view.frame.height/2.27), cornerRadius: 10)
+        pathBigRect.append(pathSmallRect)
+        pathBigRect.usesEvenOddFillRule = true
+        fillLayer.path = pathBigRect.cgPath
+        fillLayer.fillRule = CAShapeLayerFillRule.evenOdd
+        fillLayer.fillColor = UIColor(white: 0.3, alpha: 0.5).cgColor
         
+    }
+    func setuplayoutCamera(){
+        let output = AVCaptureMetadataOutput()
+        session?.addOutput(output)
+        output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+        output.metadataObjectTypes = [AVMetadataObject.ObjectType.qr, .code128, .code39, .code93,.dataMatrix,.ean13,.ean8,.aztec,.pdf417,.upce,.code39Mod43,.itf14]
+        video = AVCaptureVideoPreviewLayer(session: session!)
+        video.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        video.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
+        video.frame = view.layer.bounds
+        viewBackground.layer.addSublayer(video)
+        viewBackground.layer.addSublayer(fillLayer)
+        
+        lbScannerRectangle.layer.masksToBounds = true
+        lbScannerRectangle.layer.cornerRadius = self.regionCornerRadius
+        lbScannerRectangle.layer.borderColor = UIColor.white.cgColor
+        lbScannerRectangle.layer.borderWidth = AppConstants.WIDTH_BORDER_SCAN
+        viewScan.setFrameSize(roi: lbScannerRectangle)
+        viewScan.drawCorners()
+        self.viewBackground.bringSubviewToFront(viewIcon)
+        self.viewBackground.bringSubviewToFront(viewFlipCamera)
+        self.viewBackground.bringSubviewToFront(viewHelpBg)
+        self.viewBackground.bringSubviewToFront(viewFlashBg)
+        self.viewBackground.bringSubviewToFront(viewScan)
+        self.viewBackground.bringSubviewToFront(lbScannerRectangle)
+        session?.startRunning()
     }
     func setupFooter(){
         viewBackground.addSubview(viewFooter)
@@ -289,7 +295,7 @@ extension ScannerVC {
                 vc.listContentViewModel = (self?.scannerviewModel.listTransaction)!
                 self?.navigationController?.pushViewController(vc, animated: true)
                 self?.scannerviewModel.defaultValue()
-               UserDefaults(suiteName: AppConstants.sharedIndentifier)!.removeObject(forKey: AppConstants.shareKey)
+                UserDefaults(suiteName: AppConstants.sharedIndentifier)!.removeObject(forKey: AppConstants.shareKey)
                 UserDefaults.standard.removeObject(forKey: AppConstants.keyImageData)
             }
         }
@@ -304,46 +310,45 @@ extension ScannerVC {
         
         let arr = UserDefaults.standard.array(forKey: AppConstants.keyImageData) as? [Data]
         if arr != nil {
-            print(arr!.count)
             if arr!.count > 0{
                 ProgressHUD.showInView(view: self.view)
-            for item in arr! {
-                print(item.base64EncodedString())
-                let rawImage = UIImage(data: item)
-                scannerviewModel.listImage.append(rawImage!)
-            }
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
-//                  DispatchQueue.main.async(execute: { () -> Void in
-                      self.scannerviewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
-                      self.scannerviewModel.doAsync(list:self.scannerviewModel.listImage)
-                      self.scannerviewModel.doGetListTransaction()
-//
-//                  })
+                for item in arr! {
+                    print(item.base64EncodedString())
+                    let rawImage = UIImage(data: item)
+                    scannerviewModel.listImage.append(rawImage!)
                 }
-        }
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
+                    //                  DispatchQueue.main.async(execute: { () -> Void in
+                    self.scannerviewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
+                    self.scannerviewModel.doAsync(list:self.scannerviewModel.listImage)
+                    self.scannerviewModel.doGetListTransaction()
+                    //
+                    //                  })
+                }
+            }
         }
         if let prefs = UserDefaults(suiteName: AppConstants.sharedIndentifier) {
-                      if let imageData = prefs.object(forKey: AppConstants.shareKey) as? [Data] {
-                         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-                                          ProgressHUD.showInView(view: self.view)
-                                        }
-                                    for item in imageData {
-                                        let rawImage = UIImage(data: item)
-                                        scannerviewModel.listImage.append(rawImage!)
-                                    }
-                                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
-                        //                  DispatchQueue.main.async(execute: { () -> Void in
-                                              self.scannerviewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
-                                              self.scannerviewModel.doAsync(list:self.scannerviewModel.listImage)
-                                              self.scannerviewModel.doGetListTransaction()
-                        //
-                        //                  })
-                                        }
+            if let imageData = prefs.object(forKey: AppConstants.shareKey) as? [Data] {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                    ProgressHUD.showInView(view: self.view)
+                }
+                for item in imageData {
+                    let rawImage = UIImage(data: item)
+                    scannerviewModel.listImage.append(rawImage!)
+                }
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
+                    //                  DispatchQueue.main.async(execute: { () -> Void in
+                    self.scannerviewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
+                    self.scannerviewModel.doAsync(list:self.scannerviewModel.listImage)
+                    self.scannerviewModel.doGetListTransaction()
+                    //
+                    //                  })
+                }
             }
             
         }
     }
- 
+    
     func onTakeGallery(){
         let imagePicker = OpalImagePickerController()
         imagePicker.imagePickerDelegate = self
@@ -386,39 +391,8 @@ extension ScannerVC {
             }
         }
     }
-    func setuplayoutCamera(){
-        let output = AVCaptureMetadataOutput()
-        session?.addOutput(output)
-        output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-        output.metadataObjectTypes = [AVMetadataObject.ObjectType.qr, .code128, .code39, .code93,.dataMatrix,.ean13,.ean8,.aztec,.pdf417,.upce,.code39Mod43]
-        video = AVCaptureVideoPreviewLayer(session: session!)
-        video.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        video.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
-        video.frame = view.layer.bounds
-        viewBackground.layer.addSublayer(video)
-        lbScannerRectangle.layer.masksToBounds = true
-        lbScannerRectangle.layer.cornerRadius = self.regionCornerRadius
-        lbScannerRectangle.layer.borderColor = UIColor.white.cgColor
-        lbScannerRectangle.layer.borderWidth = AppConstants.WIDTH_BORDER_SCAN
-        viewScan.setFrameSize(roi: lbScannerRectangle)
-        viewScan.drawCorners()
-        self.viewBackground.bringSubviewToFront(wrapperFirstView)
-        self.viewBackground.bringSubviewToFront(wrapperSecondView)
-        self.viewBackground.bringSubviewToFront(wrapperThirdView)
-        self.viewBackground.bringSubviewToFront(wrapperFourView)
-        self.viewBackground.bringSubviewToFront(view1)
-
-        self.lbScannerRectangle.backgroundColor = UIColor.white.withAlphaComponent(0)
-        self.viewBackground.bringSubviewToFront(viewIcon)
-        self.viewBackground.bringSubviewToFront(viewFlipCamera)
-        self.viewBackground.bringSubviewToFront(viewHelpBg)
-        self.viewBackground.bringSubviewToFront(viewFlashBg)
-        self.viewBackground.bringSubviewToFront(viewScan)
-        self.viewBackground.bringSubviewToFront(lbScannerRectangle)
-        
-        session?.startRunning()
-    }
-  
+    
+    
     
     func clearInput(){
         if let inputs = session?.inputs as? [AVCaptureDeviceInput] {
@@ -432,56 +406,58 @@ extension ScannerVC {
         if AppConstants.isCam == 1{
         }
         else{
-        if metadataObjects != nil && metadataObjects.count != 0 {
-            let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject
-            if object?.stringValue != nil
-            {
-                if  Bool(truncating: CommonService.getUserDefault(key: KeyUserDefault.Vibrate) ?? false)
+            if metadataObjects != nil && metadataObjects.count != 0 {
+                let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject
+                print(object?.type.rawValue)
+
+                if object?.stringValue != nil
                 {
-                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                }
-                if  Bool(truncating: CommonService.getUserDefault(key: KeyUserDefault.Beep) ?? false) {
-                    SoundHelper.shared.play()
-                }
-                if Bool(truncating: CommonService.getUserDefault(key: KeyUserDefault.MultiScan) ?? false){
-                    viewFooter.isHidden = false
-                    setupFooter()
-                    self.viewBackground.bringSubviewToFront(viewFooter)
-                    let scanner = ScannerModel(value: (String((object?.stringValue)!)), typeScan: (object?.type.rawValue ?? ""))
-                    scannerviewModel.listScanner.append(scanner)
-                    lbTotalResult.text =  "\(scannerviewModel.listScanner.count)"
-                    session?.stopRunning()
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                        self.session?.startRunning()
+                    if  Bool(truncating: CommonService.getUserDefault(key: KeyUserDefault.Vibrate) ?? false)
+                    {
+                        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                    }
+                    if  Bool(truncating: CommonService.getUserDefault(key: KeyUserDefault.Beep) ?? false) {
+                        SoundHelper.shared.play()
+                    }
+                    if Bool(truncating: CommonService.getUserDefault(key: KeyUserDefault.MultiScan) ?? false){
+                        viewFooter.isHidden = false
+                        setupFooter()
+                        self.viewBackground.bringSubviewToFront(viewFooter)
+                        let scanner = ScannerModel(value: (String((object?.stringValue)!)), typeScan: (object?.type.rawValue ?? ""))
+                        scannerviewModel.listScanner.append(scanner)
+                        lbTotalResult.text =  "\(scannerviewModel.listScanner.count)"
+                        session?.stopRunning()
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                            self.session?.startRunning()
+                        }
+                    }
+                    else{
+                        scannerviewModel.listScanner.removeAll()
+                        viewFooter.isHidden = true
+                        lbTotalResult.text =  "\(scannerviewModel.listScanner.count)"
+                        isScanning = false
+                        scannerviewModel.isScanner = true
+                        self.scannerviewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
+                        scannerviewModel.scannerResult(mValue: "\(String((object?.stringValue)!))", mType: (object?.type.rawValue ?? ""))
+                        session?.stopRunning()
                     }
                 }
                 else{
-                    scannerviewModel.listScanner.removeAll()
-                    viewFooter.isHidden = true
-                    lbTotalResult.text =  "\(scannerviewModel.listScanner.count)"
-                    isScanning = false
-                    scannerviewModel.isScanner = true
-                    self.scannerviewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
-                    scannerviewModel.scannerResult(mValue: "\(String((object?.stringValue)!))", mType: (object?.type.rawValue ?? ""))
-                    session?.stopRunning()
                 }
+                
             }
             else{
+                
             }
-            
         }
-        else{
-            
-        }
-    }
     }
 }
 extension ScannerVC : OpalImagePickerControllerDelegate {
     func imagePicker(_ picker: OpalImagePickerController, didFinishPickingImages images: [UIImage]) {
         self.scannerviewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
         if  UserDefaults.standard.bool(forKey:KeyUserDefault.MultiLoad){
-           
+            
             self.scannerviewModel.doAsync(list: images)
             scannerviewModel.doGetListTransaction()
         }
@@ -490,7 +466,7 @@ extension ScannerVC : OpalImagePickerControllerDelegate {
                 let alert = UIAlertController(title: LanguageHelper.getTranslationByKey(LanguageKey.Alert), message:LanguageHelper.getTranslationByKey(LanguageKey.ChooseOneQRCode) , preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Ok), style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
-               ProgressHUD.dismiss()
+                ProgressHUD.dismiss()
                 
             }
             else{
@@ -516,12 +492,12 @@ extension ScannerVC: ZXCaptureDelegate {
     }
     
     func captureResult(_ capture: ZXCapture!, result: ZXResult!) {
-       // guard let _result = result, isScanning == true else { return }
+        // guard let _result = result, isScanning == true else { return }
         
         capture?.stop()
         isScanning = false
         scannerviewModel.isScanner = true
-   //     viewModel.scannerResult(mValue: "\(result!)")
+        //     viewModel.scannerResult(mValue: "\(result!)")
         
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
@@ -535,4 +511,3 @@ extension ScannerVC: ZXCaptureDelegate {
 extension ScannerVC : SingleButtonDialogPresenter {
     
 }
-

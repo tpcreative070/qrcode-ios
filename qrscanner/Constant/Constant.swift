@@ -1244,12 +1244,11 @@ enum EnumType : String {
     case LOCATION = "LOCATION"
     case MESSAGE = "MESSAGE"
     case EVENT = "EVENT"
-     case EAN_8 = "EAN_8"
-     case EAN_13 = "EAN_13"
+
 }
 enum BarcodeType : String {
-   case EAN_8, EAN_13
-static var allValues = [BarcodeType.EAN_8, .EAN_13]
+    case EAN_8, EAN_13, PDF417, Aztec, UPCE, UPCA, CODE128, CODE93, CODE39, ITF, CODABAR
+    static var allValues = [BarcodeType.EAN_8, .EAN_13 ]
 }
 enum ColorString : String {
     case Black = "Black"

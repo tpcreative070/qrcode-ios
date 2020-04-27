@@ -232,7 +232,6 @@ class ScannerViewModel : ScannerViewModelDelegate {
             let new_mValue = String(mValue[start..<end])
             let arr_semi_colon = new_mValue.split(separator: ";")
             for item in arr_semi_colon {
-                print(item)
                 if (item.contains("S"))
                 {
                     if item.split(separator: ":").count > 1
@@ -337,18 +336,32 @@ class ScannerViewModel : ScannerViewModelDelegate {
         }
         else if ((mType.range(of: "EAN-13", options: .caseInsensitive)) != nil){
             typeCode = EnumType.BARCODE.rawValue
-            let content = BarcodeModel(productID: mValue, type: EnumType.EAN_13.rawValue)
+            let content = BarcodeModel(productID: mValue, type: BarcodeType.EAN_13.rawValue)
             let jsonData = try! JSONEncoder().encode(content)
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
             isCode = "EAN_13"
         }
         else if ((mType.range(of: "EAN-8", options: .caseInsensitive)) != nil){
             typeCode = EnumType.BARCODE.rawValue
-            let content = BarcodeModel(productID: mValue, type: EnumType.EAN_8.rawValue)
+            let content = BarcodeModel(productID: mValue, type: BarcodeType.EAN_8.rawValue)
             let jsonData = try! JSONEncoder().encode(content)
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
             isCode = "EAN_8"
         }
+            else if ((mType.range(of: "PDF417", options: .caseInsensitive)) != nil){
+                      typeCode = EnumType.BARCODE.rawValue
+                      let content = BarcodeModel(productID: mValue, type: BarcodeType.PDF417.rawValue)
+                      let jsonData = try! JSONEncoder().encode(content)
+                      value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+                      isCode = "PDF417"
+                  }
+            else if ((mType.range(of: "Aztec", options: .caseInsensitive)) != nil){
+                                typeCode = EnumType.BARCODE.rawValue
+                                let content = BarcodeModel(productID: mValue, type: BarcodeType.Aztec.rawValue)
+                                let jsonData = try! JSONEncoder().encode(content)
+                                value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+                                isCode = "Aztec"
+                            }
         else
         {
             typeCode = EnumType.TEXT.rawValue
@@ -374,9 +387,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
             let createDateTime = Date().millisecondsSince1970
             if isScanner {
                 if UserDefaults.standard.bool(forKey:KeyUserDefault.MultiScan){
-                    print(Bool(truncating: CommonService.getUserDefault(key: KeyUserDefault.Duplicate) ?? false))
                     if Bool(truncating: CommonService.getUserDefault(key: KeyUserDefault.Duplicate) ?? false){
-                        print(listResultScanner.count)
                         if listResultScanner.count > 0 {
                             for item in listResultScanner {
                                 if !(item.content! == value_content && item.typeCode! == typeCode && item.isCode! == isCode){
@@ -471,7 +482,6 @@ class ScannerViewModel : ScannerViewModelDelegate {
                 
                 
                 if Bool(truncating: CommonService.getUserDefault(key: KeyUserDefault.Duplicate) ?? false){
-                    print(dateTime!)
                     let mValue = GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode)
                     if !checkItemExist(mValue: mValue){
                         let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode))
@@ -632,7 +642,6 @@ class ScannerViewModel : ScannerViewModelDelegate {
     }
     func doGetListTransaction(){
         listTransaction.removeAll()
-        print(dateTime!)
         if let mList = SQLHelper.getListTransaction(transaction: dateTime!){
             var index = 0
             self.listTransaction = mList.map({ (data) -> ContentViewModel in
@@ -641,7 +650,6 @@ class ScannerViewModel : ScannerViewModelDelegate {
             })
             
         }
-        print(listTransaction.count)
         listScanner.removeAll()
         self.navigate?()
     }
