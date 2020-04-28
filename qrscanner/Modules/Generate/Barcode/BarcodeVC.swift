@@ -52,6 +52,8 @@ class BarcodeVC: BaseViewController {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
+        view.lineColor = AppColors.COLOR_ACCENT
+        view.selectedLineColor = AppColors.COLOR_ACCENT
         return view
     }()
     lazy var  viewDropDown : UIButton = {
@@ -80,14 +82,14 @@ class BarcodeVC: BaseViewController {
         generateViewModel = GenerateViewModel()
         self.bindViewModel()
         self.checkIsSeenDetail()
-        
+        self.textFieldProduct.keyboardType = UIKeyboardType.numberPad
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-          keyboardHelper?.registerKeyboardNotification()
-
+        keyboardHelper?.registerKeyboardNotification()
+        
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -96,10 +98,10 @@ class BarcodeVC: BaseViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-           keyboardHelper?.deregisterKeyboardNotification()
+        keyboardHelper?.deregisterKeyboardNotification()
         self.navigationController?.isNavigationBarHidden = true
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-
+        
     }
     
     override func dismissKeyboard() {
@@ -111,7 +113,7 @@ class BarcodeVC: BaseViewController {
     @objc func doBack() {
         navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
-        }
+    }
     @objc func doGenerate() {
         self.defineValue()
         generateViewModel?.doGenerateBarCode();
@@ -127,65 +129,74 @@ class BarcodeVC: BaseViewController {
         let controller = ArrayChoiceTableViewController(BarcodeType.allValues) { (type) in
             self.barcodeViewModel.barcodetype = type.rawValue
             self.lbType.text = self.setTextLabel(mString: String(describing: type.rawValue))
+            
         }
         controller.preferredContentSize = CGSize(width: view.frame.width, height: DeviceHelper.Shared.HEIGHT_BGDROPDOWN )
         showPopup(controller, sourceView: sender)
     }
     private func showPopup(_ controller: UIViewController, sourceView: UIView) {
+        self.view.endEditing(true)
         let presentationController = AlwaysPresentAsPopover.configurePresentation(forController: controller)
         presentationController.sourceView = sourceView
         presentationController.sourceRect = sourceView.bounds
         presentationController.permittedArrowDirections = [.up]
         self.present(controller, animated: true)
     }
- func setTextLabel(mString: String) -> String{
+    func setTextLabel(mString: String) -> String{
         if mString == BarcodeType.EAN_8.rawValue{
             self.textFieldProduct.keyboardType = UIKeyboardType.numberPad
             return LanguageHelper.getTranslationByKey(LanguageKey.EAN_8) ?? "EAN 8"
         }
         else if mString == BarcodeType.EAN_13.rawValue{
-             self.textFieldProduct.keyboardType = UIKeyboardType.numberPad
+            self.textFieldProduct.keyboardType = UIKeyboardType.numberPad
             return LanguageHelper.getTranslationByKey(LanguageKey.EAN_13) ?? "EAN 13"
         }
-//        else if mString == BarcodeType.PDF417.rawValue{
-//            self.textFieldProduct.keyboardType = UIKeyboardType.alphabet
-//            return LanguageHelper.getTranslationByKey(LanguageKey.PDF417) ?? "PDF417"
-//
-//        }
-//        else if mString == BarcodeType.Aztec.rawValue{
-//            self.textFieldProduct.keyboardType = UIKeyboardType.default
-//            return LanguageHelper.getTranslationByKey(LanguageKey.Aztec) ?? "Aztec"
-//        }
-//        else if mString == BarcodeType.UPCE.rawValue{
-//            self.textFieldProduct.keyboardType = UIKeyboardType.default
-//            return LanguageHelper.getTranslationByKey(LanguageKey.UPCE) ?? "UPCE"
-//        }
-//        else if mString == BarcodeType.UPCA.rawValue{
-//            return LanguageHelper.getTranslationByKey(LanguageKey.UPCA) ?? "UPCA"
-//        }
-//        else if mString == BarcodeType.CODE128.rawValue{
-//            return LanguageHelper.getTranslationByKey(LanguageKey.Code_128) ?? "CODE 128"
-//        }
-//        else if mString == BarcodeType.CODE93.rawValue{
-//            return LanguageHelper.getTranslationByKey(LanguageKey.Code_93) ?? "CODE 93"
-//        }
-//        else if mString == BarcodeType.CODE39.rawValue{
-//            return LanguageHelper.getTranslationByKey(LanguageKey.Aztec) ?? "CODE 39"
-//        }
-//        else if mString == BarcodeType.ITF.rawValue{
-//            return LanguageHelper.getTranslationByKey(LanguageKey.ITF) ?? "ITF"
-//        }
-//        else if mString == BarcodeType.CODABAR.rawValue{
-//            return LanguageHelper.getTranslationByKey(LanguageKey.CODABAR) ?? "CODABAR"
-//        }
+        else if mString == BarcodeType.PDF417.rawValue{
+            self.textFieldProduct.keyboardType = UIKeyboardType.default
+            return LanguageHelper.getTranslationByKey(LanguageKey.PDF417) ?? "PDF417"
+            
+        }
+        else if mString == BarcodeType.Aztec.rawValue{
+            self.textFieldProduct.keyboardType = UIKeyboardType.default
+            return LanguageHelper.getTranslationByKey(LanguageKey.Aztec) ?? "Aztec"
+        }
+        else if mString == BarcodeType.UPCE.rawValue{
+            self.textFieldProduct.keyboardType = UIKeyboardType.numberPad
+            return LanguageHelper.getTranslationByKey(LanguageKey.UPCE) ?? "UPCE"
+        }
+        else if mString == BarcodeType.UPCA.rawValue{
+            self.textFieldProduct.keyboardType = UIKeyboardType.numberPad
+            return LanguageHelper.getTranslationByKey(LanguageKey.UPCA) ?? "UPCA"
+        }
+        else if mString == BarcodeType.CODE128.rawValue{
+            self.textFieldProduct.keyboardType = UIKeyboardType.default
+            return LanguageHelper.getTranslationByKey(LanguageKey.Code_128) ?? "CODE 128"
+        }
+        else if mString == BarcodeType.CODE93.rawValue{
+            self.textFieldProduct.keyboardType = UIKeyboardType.default
+            return LanguageHelper.getTranslationByKey(LanguageKey.Code_93) ?? "CODE 93"
+        }
+        else if mString == BarcodeType.CODE39.rawValue{
+            self.textFieldProduct.keyboardType = UIKeyboardType.default
+            
+            return LanguageHelper.getTranslationByKey(LanguageKey.Aztec) ?? "CODE 39"
+        }
+        else if mString == BarcodeType.ITF.rawValue{
+            self.textFieldProduct.keyboardType = UIKeyboardType.numberPad
+            return LanguageHelper.getTranslationByKey(LanguageKey.ITF) ?? "ITF"
+        }
+        else if mString == BarcodeType.CODABAR.rawValue{
+            self.textFieldProduct.keyboardType = UIKeyboardType.numberPad
+            return LanguageHelper.getTranslationByKey(LanguageKey.CODABAR) ?? "CODABAR"
+        }
         else{
+            self.textFieldProduct.keyboardType = UIKeyboardType.numberPad
             return LanguageHelper.getTranslationByKey(LanguageKey.NotFound) ?? "EAN 8"
         }
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         lbType.text = QRCodeHelper.shared.setTextLabel(mString: self.barcodeViewModel.barcodetype ?? "")
-        self.textFieldProduct.keyboardType = UIKeyboardType.numberPad
         self.generateViewModel?.errorMessages.value[GenerateViewModelKey.PRODUCTID] = ""
         if barcodeViewModel.barcodetype == BarcodeType.EAN_8.rawValue{
             textFieldProduct.placeholder = LanguageHelper.getTranslationByKey(LanguageKey.Placeholder_Ean8)
@@ -193,16 +204,34 @@ class BarcodeVC: BaseViewController {
         else if barcodeViewModel.barcodetype == BarcodeType.EAN_13.rawValue{
             textFieldProduct.placeholder = LanguageHelper.getTranslationByKey(LanguageKey.Placeholder_Ean13)                   }
         else if barcodeViewModel.barcodetype == BarcodeType.PDF417.rawValue{
-             textFieldProduct.placeholder = LanguageHelper.getTranslationByKey(LanguageKey.PDF417)
-
+            textFieldProduct.placeholder = LanguageHelper.getTranslationByKey(LanguageKey.PDF417)
+            
         }
             
         else if barcodeViewModel.barcodetype == BarcodeType.Aztec.rawValue{
-             textFieldProduct.placeholder = LanguageHelper.getTranslationByKey(LanguageKey.Aztec)
+            textFieldProduct.placeholder = LanguageHelper.getTranslationByKey(LanguageKey.Aztec)
         }
         else if barcodeViewModel.barcodetype == BarcodeType.UPCE.rawValue{
-                   textFieldProduct.placeholder = LanguageHelper.getTranslationByKey(LanguageKey.UPCE)
-              }
+            textFieldProduct.placeholder = LanguageHelper.getTranslationByKey(LanguageKey.Placeholder_UPCE)
+        }
+        else if barcodeViewModel.barcodetype == BarcodeType.UPCA.rawValue{
+            textFieldProduct.placeholder = LanguageHelper.getTranslationByKey(LanguageKey.Placeholder_UPCA)
+        }
+        else if barcodeViewModel.barcodetype == BarcodeType.CODE128.rawValue{
+            textFieldProduct.placeholder = LanguageHelper.getTranslationByKey(LanguageKey.Code_128)
+        }
+        else if barcodeViewModel.barcodetype == BarcodeType.CODE93.rawValue{
+            textFieldProduct.placeholder = LanguageHelper.getTranslationByKey(LanguageKey.Code_93)
+        }
+        else if barcodeViewModel.barcodetype == BarcodeType.CODE39.rawValue{
+            textFieldProduct.placeholder = LanguageHelper.getTranslationByKey(LanguageKey.Code_39)
+        }
+        else if barcodeViewModel.barcodetype == BarcodeType.CODABAR.rawValue{
+            textFieldProduct.placeholder = LanguageHelper.getTranslationByKey(LanguageKey.CODABAR)
+        }
+        else if barcodeViewModel.barcodetype == BarcodeType.ITF.rawValue{
+            textFieldProduct.placeholder = LanguageHelper.getTranslationByKey(LanguageKey.ITF)
+        }
     }
     
 }

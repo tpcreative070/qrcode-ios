@@ -108,24 +108,32 @@ class EventGenerateVC: BaseViewController {
         let titleTxt = ICTextFieldNoneIcon()
         titleTxt.translatesAutoresizingMaskIntoConstraints = false
         titleTxt.alpha = AppConstants.ALPHA_DISBALE
+        titleTxt.lineColor = AppColors.COLOR_ACCENT
+        titleTxt.selectedLineColor = AppColors.COLOR_ACCENT
         return titleTxt
     }()
     lazy var textFieldLocation: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
+        view.lineColor = AppColors.COLOR_ACCENT
+        view.selectedLineColor = AppColors.COLOR_ACCENT
         return view
     }()
     lazy var textFieldDescription: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
+        view.lineColor = AppColors.COLOR_ACCENT
+        view.selectedLineColor = AppColors.COLOR_ACCENT
         return view
     }()
     lazy var textFieldBeginTime: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
+        view.lineColor = AppColors.COLOR_ACCENT
+        view.selectedLineColor = AppColors.COLOR_ACCENT
         return view
     }()
     lazy var endedUpScrollViewContainerView : UIView = {
@@ -137,6 +145,8 @@ class EventGenerateVC: BaseViewController {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
+        view.lineColor = AppColors.COLOR_ACCENT
+        view.selectedLineColor = AppColors.COLOR_ACCENT
         return view
     }()
     lazy var datePicker: UIDatePicker = {

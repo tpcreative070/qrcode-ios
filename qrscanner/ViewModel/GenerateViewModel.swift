@@ -94,6 +94,24 @@ class GenerateViewModel : GenerateViewModelDelegate {
             else if typeBarcode == "EAN_13"{
                 validateProductID13()
             }
+            else if typeBarcode == BarcodeType.UPCE.rawValue{
+                validateProductUPCE()
+            }
+            else if typeBarcode == BarcodeType.UPCA.rawValue{
+                validateProductUPCA()
+            }
+            else if typeBarcode == BarcodeType.CODE39.rawValue{
+                validateProductCode39()
+            }
+            else if typeBarcode == BarcodeType.CODE93.rawValue{
+                validateProductCode93()
+            }
+            else if typeBarcode == BarcodeType.CODABAR.rawValue{
+                validateProductCodabar()
+            }
+            else if typeBarcode == BarcodeType.ITF.rawValue{
+                validateProductITF()
+            }
             else{
                 validateProductID()
             }
@@ -319,9 +337,89 @@ class GenerateViewModel : GenerateViewModelDelegate {
             errorMessages.value.removeValue(forKey: GenerateViewModelKey.PRODUCTID)
         }
     }
+    func validateProductUPCA(){
+        if productID == nil || productID == ""{
+            errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductInvalid ) ?? ""
+        }
+        else if !ValidatorHelper.isValidNumber(productID){
+            errorMessages.value[GenerateViewModelKey.PRODUCTID] = LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequiredUPCA) ?? ""
+        }
+        else if (  !ValidatorHelper.equalLengthUPCA(productID,ength: 11) || !ValidatorHelper.equalLengthUPCA(productID,ength: 12))
+        {
+            errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequiredUPCA) ?? ""
+        }
+        else {
+            errorMessages.value.removeValue(forKey: GenerateViewModelKey.PRODUCTID)
+        }
+    }
+    
+    func validateProductUPCE(){
+        if productID == nil || productID == ""{
+            errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductInvalid ) ?? ""
+        }
+        else if !ValidatorHelper.isValidNumber(productID){
+            errorMessages.value[GenerateViewModelKey.PRODUCTID] = LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequiredUPCE) ?? ""
+        }
+        else if (!ValidatorHelper.equalLengthUPCE(productID, ength: 7)) || (!ValidatorHelper.checkFirstValue(productID)) || (!ValidatorHelper.equalLengthUPCE(productID, ength: 8))
+        {
+            errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequiredUPCE ) ?? ""
+        }
+        else {
+            errorMessages.value.removeValue(forKey: GenerateViewModelKey.PRODUCTID)
+        }
+    }
     func validateProductID(){
         if productID == nil || productID == ""{
             errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductInvalid) ?? ""
+        }
+            
+        else {
+            errorMessages.value.removeValue(forKey: GenerateViewModelKey.PRODUCTID)
+        }
+    }
+    func validateProductCode39(){
+        if productID == nil || productID == ""{
+            errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductInvalid) ?? ""
+        }
+        else if (!ValidatorHelper.isValidCode(productID))
+        {
+            errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequiredCode39 ) ?? ""
+        }
+        else {
+            errorMessages.value.removeValue(forKey: GenerateViewModelKey.PRODUCTID)
+        }
+    }
+    func validateProductCode93(){
+        if productID == nil || productID == ""{
+            errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductInvalid) ?? ""
+        }
+        else if (!ValidatorHelper.isValidCode(productID))
+        {
+            errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequiredCode93) ?? ""
+        }
+        else {
+            errorMessages.value.removeValue(forKey: GenerateViewModelKey.PRODUCTID)
+        }
+    }
+    func validateProductITF(){
+        if productID == nil || productID == ""{
+            errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductInvalid) ?? ""
+        }
+        else if  (!ValidatorHelper.equalLengthITF(productID))
+        {
+            errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequiredITF) ?? ""
+        }
+        else {
+            errorMessages.value.removeValue(forKey: GenerateViewModelKey.PRODUCTID)
+        }
+    }
+    func validateProductCodabar(){
+        if productID == nil || productID == ""{
+            errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductInvalid) ?? ""
+        }
+        else if (!ValidatorHelper.isValidCodabar(productID))
+        {
+            errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequiredCodabar) ?? ""
         }
         else {
             errorMessages.value.removeValue(forKey: GenerateViewModelKey.PRODUCTID)
@@ -687,6 +785,24 @@ class GenerateViewModel : GenerateViewModelDelegate {
             else if typeBarcode == BarcodeType.EAN_13.rawValue{
                 validateProductID13()
             }
+            else if typeBarcode == BarcodeType.UPCE.rawValue{
+                validateProductUPCE()
+            }
+            else if typeBarcode == BarcodeType.UPCA.rawValue{
+                validateProductUPCA()
+            }
+            else if typeBarcode == BarcodeType.CODE39.rawValue{
+                validateProductCode39()
+            }
+            else if typeBarcode == BarcodeType.CODE93.rawValue{
+                validateProductCode93()
+            }
+            else if typeBarcode == BarcodeType.CODABAR.rawValue{
+                validateProductCodabar()
+            }
+            else if typeBarcode == BarcodeType.ITF.rawValue{
+                validateProductITF()
+            }
             else {
                 validateProductID()
             }
@@ -695,7 +811,10 @@ class GenerateViewModel : GenerateViewModelDelegate {
             }
             else{
                 value = "\(productID!)"
-                result = (generateDataBarcode(from: value, format: typeBarcode!))
+                guard let typeBarcode = typeBarcode else {
+                    return
+                }
+                result = (generateDataBarcode(from: value, format: typeBarcode))
                 if (result != nil) {
                     stringResult = value
                     responseToView!(EnumResponseToView.CREATE_SUCCESS.rawValue)
@@ -762,10 +881,32 @@ class GenerateViewModel : GenerateViewModelDelegate {
         else if format == BarcodeType.Aztec.rawValue {
             valueFormat = kBarcodeFormatAztec
         }
+        else if format == BarcodeType.UPCE.rawValue {
+            valueFormat = kBarcodeFormatUPCE
+        }
+        else if format == BarcodeType.UPCA.rawValue {
+            valueFormat = kBarcodeFormatUPCA
+        }
+        else if format == BarcodeType.CODE128.rawValue {
+            valueFormat = kBarcodeFormatCode128
+        }
+        else if format == BarcodeType.CODE39.rawValue {
+            valueFormat = kBarcodeFormatCode39
+        }
+        else if format == BarcodeType.CODE93.rawValue {
+            valueFormat = kBarcodeFormatCode93
+        }
+        else if format == BarcodeType.ITF.rawValue {
+            valueFormat = kBarcodeFormatITF
+        }
+        else if format == BarcodeType.CODABAR.rawValue {
+            valueFormat = kBarcodeFormatCodabar
+        }
+        let writer = ZXMultiFormatWriter()
+        let hints = ZXEncodeHints() as ZXEncodeHints
+        hints.encoding = String.Encoding.utf8.rawValue
         do {
-            let writer = ZXMultiFormatWriter()
-            let hints = ZXEncodeHints() as ZXEncodeHints
-            hints.encoding = String.Encoding.utf8.rawValue
+            
             let result = try writer.encode(string, format: valueFormat, width: Int32(AppConstants.HEIGHT_IMAGE_QR), height: Int32(AppConstants.HEIGHT_IMAGE_QR), hints: hints)
             
             if let imageRef = ZXImage.init(matrix: result, on: getColor(value: valueColor).cgColor, offColor: nil) {
