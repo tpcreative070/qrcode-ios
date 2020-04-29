@@ -73,7 +73,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
         {
             typeCode = EnumType.URL.rawValue
             let content = UrlModel(url: mValue)
-            let jsonData = try! JSONEncoder().encode(content)
+            guard let jsonData = try? JSONEncoder().encode(content) else {return}
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
         }
         else if (mValue.contains("geo")) {
@@ -92,7 +92,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
                                 let query = arr_split_equal[1]
                                 
                                 let content = LocationModel(latitude: lat, longtitude: lon, query: String(query))
-                                let jsonData = try! JSONEncoder().encode(content)
+                                guard let jsonData = try? JSONEncoder().encode(content) else {return}
                                 value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
                             }
                         }
@@ -142,7 +142,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
                 
             }
             let content = EmailModel(email: String(email ), objectEmail: String(sub), messageEmail: String(body))
-            let jsonData = try! JSONEncoder().encode(content)
+            guard let jsonData = try? JSONEncoder().encode(content) else {return}
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
             
         }
@@ -200,7 +200,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
             let datestart = TimeHelper.getDate(timeString: dtstart)!
             let dateend = TimeHelper.getDate(timeString: dtend)!
             let content = EventModel(title: summary, location: location, description: description, beginTime: datestart, endTime: dateend)
-            let jsonData = try! JSONEncoder().encode(content)
+            guard let jsonData = try? JSONEncoder().encode(content) else {return}
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
             
         }
@@ -217,7 +217,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
                 message = String(arr_mess[2])
             }
             let content = MessageModel(to: to , message: message)
-            let jsonData = try! JSONEncoder().encode(content)
+            guard let jsonData = try? JSONEncoder().encode(content) else {return}
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
             
         }
@@ -255,7 +255,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
                 }
             }
             let content = WifiModel(ssid: ssid, password: pass, protect: protect)
-            let jsonData = try! JSONEncoder().encode(content)
+            guard let jsonData = try? JSONEncoder().encode(content) else {return}
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
             
         }
@@ -318,7 +318,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
                 
             }
             let content = ContactModel(fullNameContact: fullName, addressContact: address, phoneContact: phone, emailContact: email)
-            let jsonData = try! JSONEncoder().encode(content)
+            guard let jsonData = try? JSONEncoder().encode(content) else {return}
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
             
         }
@@ -330,43 +330,92 @@ class ScannerViewModel : ScannerViewModelDelegate {
                 tel = String(mValue.split(separator: ":")[1])
             }
             let content = PhoneModel(phone: tel)
-            let jsonData = try! JSONEncoder().encode(content)
+            guard let jsonData = try? JSONEncoder().encode(content) else {return}
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
             
         }
         else if ((mType.range(of: "EAN-13", options: .caseInsensitive)) != nil){
             typeCode = EnumType.BARCODE.rawValue
             let content = BarcodeModel(productID: mValue, type: BarcodeType.EAN_13.rawValue)
-            let jsonData = try! JSONEncoder().encode(content)
+            guard let jsonData = try? JSONEncoder().encode(content) else {return}
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
             isCode = "EAN_13"
         }
         else if ((mType.range(of: "EAN-8", options: .caseInsensitive)) != nil){
             typeCode = EnumType.BARCODE.rawValue
             let content = BarcodeModel(productID: mValue, type: BarcodeType.EAN_8.rawValue)
-            let jsonData = try! JSONEncoder().encode(content)
+            guard let jsonData = try? JSONEncoder().encode(content) else {return}
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
             isCode = "EAN_8"
         }
-            else if ((mType.range(of: "PDF417", options: .caseInsensitive)) != nil){
-                      typeCode = EnumType.BARCODE.rawValue
-                      let content = BarcodeModel(productID: mValue, type: BarcodeType.PDF417.rawValue)
-                      let jsonData = try! JSONEncoder().encode(content)
-                      value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-                      isCode = "PDF417"
-                  }
-            else if ((mType.range(of: "Aztec", options: .caseInsensitive)) != nil){
-                                typeCode = EnumType.BARCODE.rawValue
-                                let content = BarcodeModel(productID: mValue, type: BarcodeType.Aztec.rawValue)
-                                let jsonData = try! JSONEncoder().encode(content)
-                                value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-                                isCode = "Aztec"
-                            }
+        else if ((mType.range(of: "PDF417", options: .caseInsensitive)) != nil){
+            typeCode = EnumType.BARCODE.rawValue
+            let content = BarcodeModel(productID: mValue, type: BarcodeType.PDF417.rawValue)
+            guard let jsonData = try? JSONEncoder().encode(content) else {return}
+            value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+            isCode = "PDF417"
+        }
+        else if ((mType.range(of: "Aztec", options: .caseInsensitive)) != nil){
+            typeCode = EnumType.BARCODE.rawValue
+            let content = BarcodeModel(productID: mValue, type: BarcodeType.Aztec.rawValue)
+            guard let jsonData = try? JSONEncoder().encode(content) else {return}
+            value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+            isCode = "Aztec"
+        }
+        else if ((mType.range(of: "UPCE", options: .caseInsensitive)) != nil){
+            typeCode = EnumType.BARCODE.rawValue
+            let content = BarcodeModel(productID: mValue, type: BarcodeType.UPCE.rawValue)
+            guard let jsonData = try? JSONEncoder().encode(content) else {return}
+            value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+            isCode = "UPCE"
+        }
+        else if ((mType.range(of: "UPCA", options: .caseInsensitive)) != nil){
+            typeCode = EnumType.BARCODE.rawValue
+            let content = BarcodeModel(productID: mValue, type: BarcodeType.UPCA.rawValue)
+            guard let jsonData = try? JSONEncoder().encode(content) else {return}
+            value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+            isCode = "UPCA"
+        }
+        else if ((mType.range(of: "Code 128", options: .caseInsensitive)) != nil){
+            typeCode = EnumType.BARCODE.rawValue
+            let content = BarcodeModel(productID: mValue, type: BarcodeType.CODE128.rawValue)
+            guard let jsonData = try? JSONEncoder().encode(content) else {return}
+            value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+            isCode = "Code 128"
+        }
+        else if ((mType.range(of: "Code 93", options: .caseInsensitive)) != nil){
+            typeCode = EnumType.BARCODE.rawValue
+            let content = BarcodeModel(productID: mValue, type: BarcodeType.CODE93.rawValue)
+            guard let jsonData = try? JSONEncoder().encode(content) else {return}
+            value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+            isCode = "Code 93"
+        }
+        else if ((mType.range(of: "Code 39", options: .caseInsensitive)) != nil){
+            typeCode = EnumType.BARCODE.rawValue
+            let content = BarcodeModel(productID: mValue, type: BarcodeType.CODE39.rawValue)
+            guard let jsonData = try? JSONEncoder().encode(content) else {return}
+            value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+            isCode = "Code 39"
+        }
+        else if ((mType.range(of: "Codabar", options: .caseInsensitive)) != nil){
+            typeCode = EnumType.BARCODE.rawValue
+            let content = BarcodeModel(productID: mValue, type: BarcodeType.CODABAR.rawValue)
+            guard let jsonData = try? JSONEncoder().encode(content) else {return}
+            value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+            isCode = "Codabar"
+        }
+        else if ((mType.range(of: "ITF", options: .caseInsensitive)) != nil){
+            typeCode = EnumType.BARCODE.rawValue
+            let content = BarcodeModel(productID: mValue, type: BarcodeType.ITF.rawValue)
+            guard let jsonData = try? JSONEncoder().encode(content) else {return}
+            value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
+            isCode = "ITF"
+        }
         else
         {
             typeCode = EnumType.TEXT.rawValue
             let content = TextModel(text: String(mValue))
-            let jsonData = try! JSONEncoder().encode(content)
+            guard let jsonData = try? JSONEncoder().encode(content) else {return}
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
             
         }
@@ -486,8 +535,8 @@ class ScannerViewModel : ScannerViewModelDelegate {
                     if !checkItemExist(mValue: mValue){
                         let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode))
                         if result {
-                                            print("insert success")
-                                        }
+                            print("insert success")
+                        }
                     }
                     else{
                         
@@ -498,11 +547,11 @@ class ScannerViewModel : ScannerViewModelDelegate {
                 else
                 {
                     print(dateTime!)
-
-                                      let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode))
-                                                 if result {
-                                                     print("insert success")
-                                                 }
+                    
+                    let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode))
+                    if result {
+                        print("insert success")
+                    }
                     
                     
                 }

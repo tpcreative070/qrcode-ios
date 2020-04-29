@@ -352,6 +352,9 @@ extension ScannerVC {
     func onTakeGallery(){
         let imagePicker = OpalImagePickerController()
         imagePicker.imagePickerDelegate = self
+        if  !UserDefaults.standard.bool(forKey:KeyUserDefault.MultiLoad){
+            imagePicker.maximumSelectionsAllowed = 1
+        }
         present(imagePicker, animated: true, completion: nil)
     }
     
@@ -455,9 +458,9 @@ extension ScannerVC {
 }
 extension ScannerVC : OpalImagePickerControllerDelegate {
     func imagePicker(_ picker: OpalImagePickerController, didFinishPickingImages images: [UIImage]) {
+        
         self.scannerviewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
         if  UserDefaults.standard.bool(forKey:KeyUserDefault.MultiLoad){
-            
             self.scannerviewModel.doAsync(list: images)
             scannerviewModel.doGetListTransaction()
         }
@@ -485,6 +488,7 @@ extension ScannerVC : OpalImagePickerControllerDelegate {
     }
     
 }
+
 // MARK: ZXCaptureDelegate
 extension ScannerVC: ZXCaptureDelegate {
     func captureCameraIsReady(_ capture: ZXCapture!) {

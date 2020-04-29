@@ -40,6 +40,8 @@ class TextGenerateVC: BaseViewController {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
+        view.lineColor = AppColors.COLOR_ACCENT
+        view.selectedLineColor = AppColors.COLOR_ACCENT
         return view
     }()
     lazy var textViewText: TextView = {

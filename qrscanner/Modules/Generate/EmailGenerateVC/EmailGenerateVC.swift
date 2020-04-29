@@ -70,19 +70,24 @@ class EmailGenerateVC: BaseViewController {
         emailTxt.translatesAutoresizingMaskIntoConstraints = false
         emailTxt.alpha = AppConstants.ALPHA_DISBALE
         emailTxt.keyboardType = UIKeyboardType.emailAddress
-        
+        emailTxt.lineColor = AppColors.COLOR_ACCENT
+        emailTxt.selectedLineColor = AppColors.COLOR_ACCENT
         return emailTxt
     }()
     lazy var textFieldObjectEmail: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
+        view.lineColor = AppColors.COLOR_ACCENT
+        view.selectedLineColor = AppColors.COLOR_ACCENT
         return view
     }()
     lazy var textFieldMessageEmail: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
+        view.lineColor = AppColors.COLOR_ACCENT
+        view.selectedLineColor = AppColors.COLOR_ACCENT
         return view
     }()
     

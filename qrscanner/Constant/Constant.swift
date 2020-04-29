@@ -76,7 +76,8 @@ struct AppConstants {
     static let MIN_LENGHT = 1
     static let EQUAL_LENGHT_8 = 8
     static let EQUAL_LENGHT_13 = 8
-    
+    static let EQUAL_LENGHT = 7
+
     static let WIDTH_HEIGHT_RADIO = CGFloat(17)
     static let HEIGHT_DATEPICKER = CGFloat(35)
 
@@ -495,6 +496,10 @@ struct LanguageKey {
     //Scanner
     static let Placeholder_Ean8 = "PLACEHOLDER_EAN8"
     static let Placeholder_Ean13 = "PLACEHOLDER_EAN13"
+    static let Placeholder_UPCA = "PLACEHOLDER_UPCA"
+    static let Placeholder_UPCE = "PLACEHOLDER_UPCE"
+    static let Placeholder_ITF = "Placeholder_ITF"
+
     static let Back = "BACK"
     static let Aztec = "Aztec"
     static let CODABAR = "CODABAR"
@@ -777,6 +782,13 @@ struct LanguageKey {
     static let ErrorTextRequired = "ERROR_TEXT_REQUIRED"
      static let ErrorProductRequired8 = "ERROR_PRODUCT_REQUIRED8"
       static let ErrorProductRequired13 = "ERROR_PRODUCT_REQUIRED13"
+    static let ErrorProductRequiredUPCE = "ERROR_PRODUCT_REQUIREDUPCE"
+    static let ErrorProductRequiredUPCA = "ERROR_PRODUCT_REQUIREDUPCA"
+    static let ErrorProductRequiredCode39 = "ERROR_PRODUCT_REQUIREDCODE39"
+    static let ErrorProductRequiredCode93 = "ERROR_PRODUCT_REQUIREDCODE93"
+    static let ErrorProductRequiredCodabar = "ERROR_PRODUCT_REQUIREDCODABAR"
+    static let ErrorProductRequiredITF = "ERROR_PRODUCT_REQUIREDITF"
+
     static let ErrorProductInvalid = "ERROR_PRODUCT_INVALID"
     static let ErrorObjectEmailRequired = "ERROR_OBJECT_EMAIL_REQUIRED"
     static let ErrorMessageEmailRequired = "ERROR_MESSAGE_EMAIL_REQUIRED"
@@ -1248,7 +1260,7 @@ enum EnumType : String {
 }
 enum BarcodeType : String {
     case EAN_8, EAN_13, PDF417, Aztec, UPCE, UPCA, CODE128, CODE93, CODE39, ITF, CODABAR
-    static var allValues = [BarcodeType.EAN_8, .EAN_13 ]
+    static var allValues = [BarcodeType.EAN_8, .EAN_13, .PDF417, .Aztec, .UPCE, .UPCA, .CODE128, .CODE39, .CODE93, .ITF, .CODABAR]
 }
 enum ColorString : String {
     case Black = "Black"

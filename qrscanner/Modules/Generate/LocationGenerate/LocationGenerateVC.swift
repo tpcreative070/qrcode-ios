@@ -74,13 +74,16 @@ class LocationGenerateVC: BaseViewController {
         latTxt.translatesAutoresizingMaskIntoConstraints = false
         latTxt.alpha = AppConstants.ALPHA_DISBALE
         latTxt.keyboardType = UIKeyboardType.numberPad
-        
+        latTxt.lineColor = AppColors.COLOR_ACCENT
+        latTxt.selectedLineColor = AppColors.COLOR_ACCENT
         return latTxt
     }()
     lazy var textFieldLongtitude: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
+        view.lineColor = AppColors.COLOR_ACCENT
+        view.selectedLineColor = AppColors.COLOR_ACCENT
         return view
     }()
     
@@ -88,6 +91,8 @@ class LocationGenerateVC: BaseViewController {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
+        view.lineColor = AppColors.COLOR_ACCENT
+        view.selectedLineColor = AppColors.COLOR_ACCENT
         return view
     }()
     lazy var viewMap: MKMapView = {

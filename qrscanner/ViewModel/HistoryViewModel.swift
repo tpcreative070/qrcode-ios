@@ -16,16 +16,16 @@ class HistoryViewModel  : Codable ,GenerateViewModelDeletegate{
     var contentView: String {
         return getValueContent(typeCode: typeCode, content: content) ?? ""
     }
-
+    
     var isHistoryView: Bool
     {
         return isHistory
     }
-
+    
     var isSaveView: Bool{
         return isSave
     }
-   var valueShowContent : String?
+    var valueShowContent : String?
     var isHistory: Bool
     var isSave: Bool
     var typeCode: String
@@ -34,7 +34,7 @@ class HistoryViewModel  : Codable ,GenerateViewModelDeletegate{
     var createdDateTime : Int
     var updatedDateTime: Int
     var check : Bool = false
-
+    
     var typeCodeView: String {
         return typeCode
     }
@@ -82,77 +82,77 @@ class HistoryViewModel  : Codable ,GenerateViewModelDeletegate{
             self.content = ContentViewModel(data: (data.content?.toObject(value: ContactModel.self))!)
         }
         else if typeCode == EnumType.BARCODE.rawValue{
-                   self.content = ContentViewModel(data: (data.content?.toObject(value: BarcodeModel.self))!)
-               }
-
+            self.content = ContentViewModel(data: (data.content?.toObject(value: BarcodeModel.self))!)
+        }
+        
     }
     func getValueContent(typeCode: String, content: ContentViewModel) -> String? {
         if typeCode.count > 0 && content.content != nil {
-                if typeCode == EnumType.URL.rawValue{
-                   let stringContent = content.content?.data(using: .utf8 )
-                   let urlModel : UrlModel = try! JSONDecoder().decode(UrlModel.self, from: stringContent!)
-                    return urlModel.url ?? ""
-               }
-               else if typeCode == EnumType.TEXT.rawValue{
-                   let stringContent = content.content?.data(using: .utf8 )
-                   let textModel : TextModel = try! JSONDecoder().decode(TextModel.self, from: stringContent!)
-            return textModel.text ?? ""
-               }
-               else if typeCode == EnumType.LOCATION.rawValue{
-                   let stringContent = content.content?.data(using: .utf8 )
-                   let locationModel : LocationModel = try! JSONDecoder().decode(LocationModel.self, from: stringContent!)
-                    return "\(locationModel.latitude ?? 0),\(locationModel.longtitude ?? 0),(\(locationModel.query ?? ""))"
-               }
-               else if typeCode == EnumType.EMAIL.rawValue{
-                   let stringContent = content.content?.data(using: .utf8 )
-                   let emailModel : EmailModel = try! JSONDecoder().decode(EmailModel.self, from: stringContent!)
+            if typeCode == EnumType.URL.rawValue{
+                let stringContent = content.content?.data(using: .utf8 )
+                guard let urlModel : UrlModel = try? JSONDecoder().decode(UrlModel.self, from: stringContent!) else {return ""}
+                return urlModel.url ?? ""
+            }
+            else if typeCode == EnumType.TEXT.rawValue{
+                let stringContent = content.content?.data(using: .utf8 )
+                guard let textModel : TextModel = try? JSONDecoder().decode(TextModel.self, from: stringContent!)else {return ""}
+                return textModel.text ?? ""
+            }
+            else if typeCode == EnumType.LOCATION.rawValue{
+                let stringContent = content.content?.data(using: .utf8 )
+                guard let locationModel : LocationModel = try? JSONDecoder().decode(LocationModel.self, from: stringContent!)else {return ""}
+                return "\(locationModel.latitude ?? 0),\(locationModel.longtitude ?? 0),(\(locationModel.query ?? ""))"
+            }
+            else if typeCode == EnumType.EMAIL.rawValue{
+                let stringContent = content.content?.data(using: .utf8 )
+                guard let emailModel : EmailModel = try? JSONDecoder().decode(EmailModel.self, from: stringContent!)else {return ""}
                 return emailModel.email ?? ""
-               }
-               else if typeCode == EnumType.EVENT.rawValue{
-                   
-
-                   let stringContent = content.content?.data(using: .utf8 )
-                   let eventModel : EventModel = try! JSONDecoder().decode(EventModel.self, from: stringContent!)
-               return eventModel.title ?? ""
-                   
-               }
-               else if typeCode == EnumType.MESSAGE.rawValue{
-                   
-
-                   let stringContent = content.content?.data(using: .utf8 )
-                   let messageModel : MessageModel = try! JSONDecoder().decode(MessageModel.self, from: stringContent!)
-             return messageModel.message ?? ""
-               }
-               else if typeCode == EnumType.WIFI.rawValue{
-                   
-                   let stringContent = content.content?.data(using: .utf8 )
-                   let wifiModel : WifiModel = try! JSONDecoder().decode(WifiModel.self, from: stringContent!)
+            }
+            else if typeCode == EnumType.EVENT.rawValue{
+                
+                
+                let stringContent = content.content?.data(using: .utf8 )
+                guard let  eventModel : EventModel = try? JSONDecoder().decode(EventModel.self, from: stringContent!)else {return ""}
+                return eventModel.title ?? ""
+                
+            }
+            else if typeCode == EnumType.MESSAGE.rawValue{
+                
+                
+                let stringContent = content.content?.data(using: .utf8 )
+                guard let messageModel : MessageModel = try? JSONDecoder().decode(MessageModel.self, from: stringContent!) else {return ""}
+                return messageModel.message ?? ""
+            }
+            else if typeCode == EnumType.WIFI.rawValue{
+                
+                let stringContent = content.content?.data(using: .utf8 )
+                guard let wifiModel : WifiModel = try? JSONDecoder().decode(WifiModel.self, from: stringContent!) else {return ""}
                 return wifiModel.ssid ?? ""
-               }
-               else if typeCode == EnumType.TELEPHONE.rawValue{
-                   
-
-                   let stringContent = content.content?.data(using: .utf8 )
-                   let phoneModel : PhoneModel = try! JSONDecoder().decode(PhoneModel.self, from: stringContent!)
+            }
+            else if typeCode == EnumType.TELEPHONE.rawValue{
+                
+                
+                let stringContent = content.content?.data(using: .utf8 )
+                guard let phoneModel : PhoneModel = try? JSONDecoder().decode(PhoneModel.self, from: stringContent!) else {return ""}
                 return phoneModel.phone ?? ""
-               }
-               else if typeCode == EnumType.CONTACT.rawValue{
-                   let stringContent = content.content?.data(using: .utf8 )
-                   let contactModel : ContactModel = try! JSONDecoder().decode(ContactModel.self, from: stringContent!)
+            }
+            else if typeCode == EnumType.CONTACT.rawValue{
+                let stringContent = content.content?.data(using: .utf8 )
+                guard let contactModel : ContactModel = try? JSONDecoder().decode(ContactModel.self, from: stringContent!) else {return ""}
                 return contactModel.fullNameContact ?? ""
-               }
+            }
             else if typeCode == EnumType.BARCODE.rawValue{
-                              let stringContent = content.content?.data(using: .utf8 )
-                              let contactModel : BarcodeModel = try! JSONDecoder().decode(BarcodeModel.self, from: stringContent!)
-            return contactModel.productID ?? ""
-                          }
+                let stringContent = content.content?.data(using: .utf8 )
+                guard let contactModel : BarcodeModel = try? JSONDecoder().decode(BarcodeModel.self, from: stringContent!) else {return ""}
+                return contactModel.productID ?? ""
+            }
+            else{
+                return "No value"
+            }
+        }
         else{
             return "No value"
         }
-            }
-        else{
-                   return "No value"
-               }
     }
     
 }

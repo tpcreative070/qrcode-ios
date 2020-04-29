@@ -88,13 +88,16 @@ class ContactGenerateVC: BaseViewController {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
-        
+        view.lineColor = AppColors.COLOR_ACCENT
+        view.selectedLineColor = AppColors.COLOR_ACCENT
         return view
     }()
     lazy var textFieldAddressContact: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
+        view.lineColor = AppColors.COLOR_ACCENT
+        view.selectedLineColor = AppColors.COLOR_ACCENT
         return view
     }()
     lazy var textFieldEmailContact: ICTextFieldNoneIcon = {
@@ -102,7 +105,8 @@ class ContactGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
         view.keyboardType = UIKeyboardType.emailAddress
-        
+        view.lineColor = AppColors.COLOR_ACCENT
+        view.selectedLineColor = AppColors.COLOR_ACCENT
         return view
     }()
     lazy var textFieldPhoneContact: ICTextFieldNoneIcon = {
@@ -110,7 +114,8 @@ class ContactGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
         view.keyboardType = UIKeyboardType.numberPad
-        
+        view.lineColor = AppColors.COLOR_ACCENT
+        view.selectedLineColor = AppColors.COLOR_ACCENT
         return view
     }()
     var contactViewModel = ContactViewModel()

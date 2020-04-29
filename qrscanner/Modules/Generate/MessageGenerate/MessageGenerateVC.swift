@@ -65,12 +65,16 @@ class MessageGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.keyboardType = .numberPad
         view.alpha = AppConstants.ALPHA_DISBALE
+        view.lineColor = AppColors.COLOR_ACCENT
+        view.selectedLineColor = AppColors.COLOR_ACCENT
         return view
     }()
     lazy var textFieldMessage: ICTextFieldNoneIcon = {
         let view = ICTextFieldNoneIcon()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
+        view.lineColor = AppColors.COLOR_ACCENT
+        view.selectedLineColor = AppColors.COLOR_ACCENT
         return view
     }()
     var messageViewModel = MessageViewModel()

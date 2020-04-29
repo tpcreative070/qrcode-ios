@@ -42,7 +42,8 @@ class PhoneGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
         view.keyboardType = UIKeyboardType.numberPad
-        
+        view.lineColor = AppColors.COLOR_ACCENT
+        view.selectedLineColor = AppColors.COLOR_ACCENT
         return view
     }()
     

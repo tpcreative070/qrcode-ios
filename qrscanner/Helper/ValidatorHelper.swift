@@ -29,7 +29,24 @@ class ValidatorHelper {
         let emailTest = NSPredicate(format: "SELF MATCHES %@", regEx)
         return emailTest.evaluate(with: email)
     }
-    
+    static func isValidCode(_ value: String?) -> Bool {
+        guard value != nil else { return false }
+        let characterset = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 -.$/+%")
+        if value!.rangeOfCharacter(from: characterset.inverted) != nil {
+            print("string contains special characters")
+            return false
+        }
+        return true
+    }
+    static func isValidCodabar(_ value: String?) -> Bool {
+        guard value != nil else { return false }
+        let characterset = CharacterSet(charactersIn: "0123456789-:$/+.")
+        if value!.rangeOfCharacter(from: characterset.inverted) != nil {
+            print("string contains special characters")
+            return false
+        }
+        return true
+    }
     /**
      Validate the birthday
      - parameter birthday: String - birthday value
@@ -77,6 +94,23 @@ class ValidatorHelper {
         }
         return true
     }
+    static func equalLength(_ str: String?, equalLength: Int = AppConstants.EQUAL_LENGHT) -> Bool {
+        guard str != nil else { return false }
+        if let countStr = str?.trimmingCharacters(in: .whitespacesAndNewlines), countStr.count != equalLength {
+            return false
+        }
+        return true
+    }
+    static func checkFirstValue(_ str: String?) -> Bool {
+        guard str != nil else { return false }
+        print(str!.trimmingCharacters(in: .whitespacesAndNewlines).first!)
+        
+        if let firstStr = str?.trimmingCharacters(in: .whitespacesAndNewlines).first, firstStr != "0" && firstStr != "1"{
+            print(firstStr)
+            return false
+        }
+        return true
+    }
     
     /**
      Validate min lenght of the string
@@ -90,6 +124,7 @@ class ValidatorHelper {
         }
         return true
     }
+  
     static func equalLength8(_ str: String?, ength: Int) -> Bool {
         guard str != nil else { return false }
         let countStr = str?.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -98,7 +133,7 @@ class ValidatorHelper {
             for (index,item) in countStr!.enumerated() {
                 print(item)
                 let i :Int = Int(String(item)) ?? 0
-
+                
                 if (index+1) % 2 == 0{
                     sum += i * 1
                 }
@@ -123,42 +158,88 @@ class ValidatorHelper {
         }
     }
     static func equalLength13(_ str: String?, ength: Int) -> Bool {
-           guard str != nil else { return false }
-           let countStr = str?.trimmingCharacters(in: .whitespacesAndNewlines)
-           var sumchan: Int = 0
+        guard str != nil else { return false }
+        let countStr = str?.trimmingCharacters(in: .whitespacesAndNewlines)
+        var sumchan: Int = 0
         var sumle: Int = 0
         var sum : Int = 0
-           if countStr!.count == 13{
-               for (index,item) in countStr!.enumerated() {
-                   print(item)
-                   let i :Int = Int(String(item)) ?? 0
-
-                   if (index+1) % 2 == 0{
-                       sumchan += i
-                        
-                   }
-                   else{
-                       sumle += i * 3
-                       
-                   }
-               }
+        print(ength)
+        print(countStr!.count)
+        
+        if countStr!.count == 13{
+            for (index,item) in countStr!.enumerated() {
+                let i :Int = Int(String(item)) ?? 0
+                
+                if (index+1) % 2 == 0{
+                    sumchan += i
+                }
+                else{
+                    sumle += i * 3
+                    
+                }
+            }
             sum = sumchan * 3 + sumle
-               print(sum)
-               if sum % 10 == 0{
-                   return true
-               }
-               else{
-                   return false
-               }
-           }
-           else if countStr!.count == 12{
-               return true
-           }
-           else{
-               return false
-           }
-       }
-       
+            if sum % 10 == 0{
+                return true
+            }
+            else{
+                return false
+            }
+        }
+        else if countStr!.count == 12 {
+            return true
+        }
+        else{
+            return false
+        }
+    }
+    static func equalLengthITF(_ str: String?) -> Bool {
+        guard str != nil else { return false }
+        let countStr = str?.trimmingCharacters(in: .whitespacesAndNewlines)
+        if countStr!.count % 2 == 0{
+            return true
+        }
+        else{
+            return false
+        }
+    }
+    static func equalLengthUPCA(_ str: String?, ength: Int) -> Bool {
+        guard str != nil else { return false }
+        let countStr = str?.trimmingCharacters(in: .whitespacesAndNewlines)
+        var sumchan: Int = 0
+        var sumle: Int = 0
+        var sum : Int = 0
+        print(ength)
+        print(countStr!.count)
+        
+        if countStr!.count == 12{
+            for (index,item) in countStr!.enumerated() {
+                let i :Int = Int(String(item)) ?? 0
+                
+                if (index+1) % 2 == 0{
+                    sumchan += i
+                }
+                else{
+                    sumle += i * 3
+                    
+                }
+            }
+            sum = sumchan + sumle
+            print(sum)
+            if sum % 10 == 0{
+                return true
+            }
+            else{
+                return false
+            }
+        }
+        else if countStr!.count == 11 {
+            return true
+        }
+        else{
+            return false
+        }
+    }
     
     static func isValidLat(_ lat: Float) -> Bool {
         return (lat < 90 && lat > -90)
@@ -172,5 +253,41 @@ class ValidatorHelper {
         let pinTest = NSPredicate(format: "SELF MATCHES %@", regEx)
         return pinTest.evaluate(with: num)
     }
+    static func equalLengthUPCE(_ str: String?, ength: Int) -> Bool {
+           guard str != nil else { return false }
+           let countStr = str?.trimmingCharacters(in: .whitespacesAndNewlines)
+           var sumchan: Int = 0
+           var sumle: Int = 0
+           var sum : Int = 0
+           print(ength)
+           print(countStr!.count)
+           
+           if countStr!.count == 8{
+               for (index,item) in countStr!.enumerated() {
+                   let i :Int = Int(String(item)) ?? 0
+                   
+                   if (index+1) % 2 == 0{
+                       sumchan += i
+                   }
+                   else{
+                       sumle += i * 3
+                       
+                   }
+               }
+               sum = sumchan + sumle
+               if sum % 10 == 0{
+                   return true
+               }
+               else{
+                   return false
+               }
+           }
+           else if countStr!.count == 7 {
+               return true
+           }
+           else{
+               return false
+           }
+       }
 }
 
