@@ -50,7 +50,7 @@ class DeviceHelper {
      */
     static func isMaxScreen() -> Bool {
         switch UIDevice().type {
-        case .iPhoneXSmax, .iPhoneXR, .iPhoneXS:
+        case  .iPhoneXS, .iPhoneX:
             return true
         default:
             return false
@@ -59,7 +59,7 @@ class DeviceHelper {
     
     static func isXSmax() -> Bool {
         switch UIDevice().type {
-        case .iPhoneXSmax:
+        case .iPhoneXSmax, .iPhoneXR:
             return true
         default:
             return false
@@ -104,10 +104,10 @@ class DeviceHelper {
         static var MARGIN_LEFT : CGFloat = CGFloat()
         static var MARGIN_LEFT_SCAN : CGFloat = CGFloat()
         static var MARGIN_BOTTOM_SCAN : CGFloat = CGFloat()
-
+        
         static var MARGIN_RIGHT : CGFloat = CGFloat()
         static var MARGIN_RIGHT_SCAN : CGFloat = CGFloat()
-
+        
         static var HEIGHT_BACKGROUND_ITEM : CGFloat = CGFloat()
         static var HEIGHT_BACKGROUND : CGFloat = CGFloat()
         static var HEIGHT_IMAGE_SETTING : CGFloat = CGFloat()
@@ -131,7 +131,9 @@ class DeviceHelper {
         static var ICON_SWIPE : CGFloat = CGFloat()
         static var IMAGE_QR_WIDTH_HEIGHT : CGFloat = CGFloat()
         static var ICON_QR_WIDTH_HEIGHT : CGFloat = CGFloat()
-
+        static var SCAN_WIDTH_HEIGHT : CGFloat = CGFloat()
+        static var HEIGHT_Y : CGFloat = CGFloat()
+        
         func isIpad() -> Bool {
             if UIDevice.current.userInterfaceIdiom == .pad {
                 return true
@@ -166,7 +168,7 @@ class DeviceHelper {
                 DeviceHelper.Shared.HEIGHT_LABLE = CGFloat(20)
                 DeviceHelper.Shared.HEIGHT_BACKGROUND_BAR = CGFloat(200)
                 DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM_BAR = CGFloat(160)
-                DeviceHelper.Shared.HEIGHT_BGDROPDOWN = CGFloat(150)
+                DeviceHelper.Shared.HEIGHT_BGDROPDOWN = CGFloat(160)
                 DeviceHelper.Shared.ICON_WIDTH_HEIGHT = CGFloat(37)
                 DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT = CGFloat(40)
                 DeviceHelper.Shared.MARGIN_LEFT_ICON = CGFloat(50)
@@ -186,10 +188,10 @@ class DeviceHelper {
                 DeviceHelper.Shared.MARGIN_LEFT_SCAN = CGFloat(35)
                 DeviceHelper.Shared.MARGIN_RIGHT_SCAN = CGFloat(-35)
                 DeviceHelper.Shared.MARGIN_BOTTOM_SCAN = CGFloat(-35)
-
+                DeviceHelper.Shared.HEIGHT_Y = CGFloat(50)
             }
-              
-            else{
+                
+            else if isNormalScreen (){
                 DeviceHelper.Shared.MARGIN_LEFT = CGFloat(20)
                 DeviceHelper.Shared.MARGIN_RIGHT = CGFloat(-20)
                 DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM = CGFloat(90)
@@ -198,7 +200,7 @@ class DeviceHelper {
                 DeviceHelper.Shared.HEIGHT_LABLE = CGFloat(18)
                 DeviceHelper.Shared.HEIGHT_BACKGROUND_BAR = CGFloat(178)
                 DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM_BAR = CGFloat(140)
-                DeviceHelper.Shared.HEIGHT_BGDROPDOWN = CGFloat(150)
+                DeviceHelper.Shared.HEIGHT_BGDROPDOWN = CGFloat(160)
                 DeviceHelper.Shared.ICON_WIDTH_HEIGHT = CGFloat(30)
                 DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT = CGFloat(30)
                 DeviceHelper.Shared.MARGIN_LEFT_ICON = CGFloat(30)
@@ -218,8 +220,72 @@ class DeviceHelper {
                 DeviceHelper.Shared.MARGIN_LEFT_SCAN = CGFloat(30)
                 DeviceHelper.Shared.MARGIN_RIGHT_SCAN = CGFloat(-30)
                 DeviceHelper.Shared.MARGIN_BOTTOM_SCAN = CGFloat(-45)
-
+                DeviceHelper.Shared.HEIGHT_Y = CGFloat(40)
             }
+            else if isMaxScreen(){
+                
+                DeviceHelper.Shared.MARGIN_LEFT = CGFloat(20)
+                DeviceHelper.Shared.MARGIN_RIGHT = CGFloat(-20)
+                DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM = CGFloat(90)
+                DeviceHelper.Shared.HEIGHT_BACKGROUND = CGFloat(130)
+                DeviceHelper.Shared.HEIGHT_IMAGE_SETTING = CGFloat(50)
+                DeviceHelper.Shared.HEIGHT_LABLE = CGFloat(18)
+                DeviceHelper.Shared.HEIGHT_BACKGROUND_BAR = CGFloat(178)
+                DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM_BAR = CGFloat(140)
+                DeviceHelper.Shared.HEIGHT_BGDROPDOWN = CGFloat(160)
+                DeviceHelper.Shared.ICON_WIDTH_HEIGHT = CGFloat(30)
+                DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT = CGFloat(30)
+                DeviceHelper.Shared.MARGIN_LEFT_ICON = CGFloat(30)
+                DeviceHelper.Shared.MARGIN_RIGHT_ICON = CGFloat(-30)
+                DeviceHelper.Shared.SWITCH_HEIGHT_DEFAULT = CGFloat(18)
+                DeviceHelper.Shared.SWITCH_WIDTH_DEFAULT = CGFloat(45)
+                DeviceHelper.Shared.LABEL_TITLE_FONT_SIZE = CGFloat(18)
+                DeviceHelper.Shared.LABEL_TITLE_FONT_SIZE_HELP = CGFloat(20)
+                DeviceHelper.Shared.LABEL_FONT_SIZE = CGFloat(16)
+                DeviceHelper.Shared.CONTENT_FONT_SIZE = CGFloat(14)
+                DeviceHelper.Shared.HEIGHT_IMAGE_HELP = CGFloat(250)
+                DeviceHelper.Shared.CHECKBOX_WIDTH_HEIGHT = CGFloat(20)
+                DeviceHelper.Shared.TEXTFIELD_TITLE_FONT_SIZE = CGFloat(16)
+                DeviceHelper.Shared.ICON_SWIPE = CGFloat(25)
+                DeviceHelper.Shared.IMAGE_QR_WIDTH_HEIGHT = CGFloat(120)
+                DeviceHelper.Shared.ICON_QR_WIDTH_HEIGHT = CGFloat(250)
+                DeviceHelper.Shared.MARGIN_LEFT_SCAN = CGFloat(30)
+                DeviceHelper.Shared.MARGIN_RIGHT_SCAN = CGFloat(-30)
+                DeviceHelper.Shared.MARGIN_BOTTOM_SCAN = CGFloat(-45)
+                DeviceHelper.Shared.HEIGHT_Y = CGFloat(50)
+            }
+            else {
+                DeviceHelper.Shared.MARGIN_LEFT = CGFloat(20)
+                DeviceHelper.Shared.MARGIN_RIGHT = CGFloat(-20)
+                DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM = CGFloat(90)
+                DeviceHelper.Shared.HEIGHT_BACKGROUND = CGFloat(130)
+                DeviceHelper.Shared.HEIGHT_IMAGE_SETTING = CGFloat(50)
+                DeviceHelper.Shared.HEIGHT_LABLE = CGFloat(18)
+                DeviceHelper.Shared.HEIGHT_BACKGROUND_BAR = CGFloat(178)
+                DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM_BAR = CGFloat(140)
+                DeviceHelper.Shared.HEIGHT_BGDROPDOWN = CGFloat(160)
+                DeviceHelper.Shared.ICON_WIDTH_HEIGHT = CGFloat(30)
+                DeviceHelper.Shared.ICON_SCAN_WIDTH_HEIGHT = CGFloat(30)
+                DeviceHelper.Shared.MARGIN_LEFT_ICON = CGFloat(30)
+                DeviceHelper.Shared.MARGIN_RIGHT_ICON = CGFloat(-30)
+                DeviceHelper.Shared.SWITCH_HEIGHT_DEFAULT = CGFloat(18)
+                DeviceHelper.Shared.SWITCH_WIDTH_DEFAULT = CGFloat(45)
+                DeviceHelper.Shared.LABEL_TITLE_FONT_SIZE = CGFloat(18)
+                DeviceHelper.Shared.LABEL_TITLE_FONT_SIZE_HELP = CGFloat(20)
+                DeviceHelper.Shared.LABEL_FONT_SIZE = CGFloat(16)
+                DeviceHelper.Shared.CONTENT_FONT_SIZE = CGFloat(14)
+                DeviceHelper.Shared.HEIGHT_IMAGE_HELP = CGFloat(250)
+                DeviceHelper.Shared.CHECKBOX_WIDTH_HEIGHT = CGFloat(20)
+                DeviceHelper.Shared.TEXTFIELD_TITLE_FONT_SIZE = CGFloat(16)
+                DeviceHelper.Shared.ICON_SWIPE = CGFloat(25)
+                DeviceHelper.Shared.IMAGE_QR_WIDTH_HEIGHT = CGFloat(120)
+                DeviceHelper.Shared.ICON_QR_WIDTH_HEIGHT = CGFloat(250)
+                DeviceHelper.Shared.MARGIN_LEFT_SCAN = CGFloat(30)
+                DeviceHelper.Shared.MARGIN_RIGHT_SCAN = CGFloat(-30)
+                DeviceHelper.Shared.MARGIN_BOTTOM_SCAN = CGFloat(-45)
+                DeviceHelper.Shared.HEIGHT_Y = CGFloat(50)
+            }
+           
         }
         
     }

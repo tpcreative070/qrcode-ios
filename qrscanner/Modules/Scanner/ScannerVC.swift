@@ -156,7 +156,8 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
                 print("error")
             }
         }
-        
+
+
         bindViewModel()
         
 

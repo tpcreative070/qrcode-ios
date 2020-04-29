@@ -11,6 +11,7 @@ import ZXingObjC
 import Photos
 extension ScannerVC {
     func iniUI(){
+        view.backgroundColor = .white
         view.addSubview(viewBackground)
         NSLayoutConstraint.activate([
             viewBackground.topAnchor.constraint(equalTo: view.topAnchor),
@@ -32,15 +33,15 @@ extension ScannerVC {
         NSLayoutConstraint.activate([
             viewScan.centerXAnchor.constraint(equalTo: viewBackground.centerXAnchor),
             viewScan.centerYAnchor.constraint(equalTo: viewBackground.centerYAnchor),
-            viewScan.widthAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2),
-            viewScan.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2)
+            viewScan.widthAnchor.constraint(equalTo: viewBackground.widthAnchor, multiplier: 3/4),
+            viewScan.heightAnchor.constraint(equalTo: viewBackground.widthAnchor, multiplier: 3/4)
         ])
         viewBackground.addSubview(lbScannerRectangle)
         NSLayoutConstraint.activate([
             lbScannerRectangle.centerXAnchor.constraint(equalTo: viewBackground.centerXAnchor),
             lbScannerRectangle.centerYAnchor.constraint(equalTo: viewBackground.centerYAnchor),
-            lbScannerRectangle.widthAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2),
-            lbScannerRectangle.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2)
+            lbScannerRectangle.widthAnchor.constraint(equalTo: viewBackground.widthAnchor, multiplier: 3/4),
+            lbScannerRectangle.heightAnchor.constraint(equalTo: viewBackground.widthAnchor, multiplier: 3/4)
         ])
         
         
@@ -117,13 +118,13 @@ extension ScannerVC {
         let tapFlash = UITapGestureRecognizer(target: self, action: #selector(actionFlash(sender:)))
         self.viewFlashBg.addGestureRecognizer(tapFlash)
         let pathBigRect = UIBezierPath(rect: viewBackground.frame)
-        let pathSmallRect = UIBezierPath(roundedRect: CGRect(x: self.viewScan.frame.origin.x + 20 , y: self.viewScan.frame.origin.y - 20, width: view.frame.height/2.27, height: view.frame.height/2.27), cornerRadius: 10)
+        
+        let pathSmallRect = UIBezierPath(roundedRect: CGRect(x: self.viewScan.frame.origin.x  , y: self.viewScan.frame.origin.y - DeviceHelper.Shared.HEIGHT_Y, width: viewBackground.frame.width * 3/4, height: viewBackground.frame.width * 3/4), cornerRadius: 10)
         pathBigRect.append(pathSmallRect)
         pathBigRect.usesEvenOddFillRule = true
         fillLayer.path = pathBigRect.cgPath
         fillLayer.fillRule = CAShapeLayerFillRule.evenOdd
         fillLayer.fillColor = UIColor(white: 0.3, alpha: 0.5).cgColor
-        
     }
     func setuplayoutCamera(){
         let output = AVCaptureMetadataOutput()
@@ -278,12 +279,14 @@ extension ScannerVC {
         }
         self.scannerviewModel.responseToView = {[weak self] value in
             if value == EnumResponseToView.UPDATE_DATA_SOURCE.rawValue {
+                
                 let vc = QRCodeVC()
                 vc.viewModel.listQRResult = (self?.scannerviewModel.listResult)!
                 vc.viewModel.dateTime = self?.scannerviewModel.dateTime
                 self?.navigationController?.pushViewController(vc,animated: true)
                 UserDefaults(suiteName: AppConstants.sharedIndentifier)!.removeObject(forKey: AppConstants.shareKey)
                 UserDefaults.standard.removeObject(forKey: AppConstants.keyImageData)
+                
             }
         }
         self.scannerviewModel.navigate = { [weak self] in
@@ -291,12 +294,27 @@ extension ScannerVC {
                 self?.scannerviewModel.listResult.removeAll()
             }
             else{
+                DispatchQueue.main.async {
+                    if (self?.scannerviewModel.isMultiLoad)!{
+                        let okAlert = SingleButtonAlert(
+                            title: LanguageHelper.getTranslationByKey(LanguageKey.Alert) ?? "Error",
+                            message: LanguageHelper.getTranslationByKey(LanguageKey.ChooseOneQRCode),
+                            action: AlertAction(buttonTitle: "Ok", handler: {
+                                print("Ok pressed!")
+                            })
+                        )
+                        self?.scannerviewModel.onShowError?(okAlert)
+                    }
+                }
                 let  vc = DetailVC()
                 vc.listContentViewModel = (self?.scannerviewModel.listTransaction)!
                 self?.navigationController?.pushViewController(vc, animated: true)
                 self?.scannerviewModel.defaultValue()
                 UserDefaults(suiteName: AppConstants.sharedIndentifier)!.removeObject(forKey: AppConstants.shareKey)
-                UserDefaults.standard.removeObject(forKey: AppConstants.keyImageData)
+                if (self?.isKeyPresentInUserDefaults(key: AppConstants.keyImageData))!{
+                    UserDefaults.standard.removeObject(forKey: AppConstants.keyImageData)
+                }
+                
             }
         }
         self.scannerviewModel.resultScan.bind { value in
@@ -306,15 +324,36 @@ extension ScannerVC {
         }
         
     }
+    func isKeyPresentInUserDefaults(key: String) -> Bool {
+                       return UserDefaults.standard.object(forKey: key) != nil
+                   }
     func fetchData(){
         
         let arr = UserDefaults.standard.array(forKey: AppConstants.keyImageData) as? [Data]
         if arr != nil {
             if arr!.count > 0{
                 ProgressHUD.showInView(view: self.view)
-                for item in arr! {
-                    print(item.base64EncodedString())
-                    let rawImage = UIImage(data: item)
+                
+                if arr!.count > 1{
+                    if  !UserDefaults.standard.bool(forKey:KeyUserDefault.MultiLoad){
+                        let rawImage = UIImage(data: arr![0])
+                        scannerviewModel.listImage.append(rawImage!)
+                        scannerviewModel.isMultiLoad = true
+                    }
+                    else{
+                        scannerviewModel.isMultiLoad = false
+                        
+                        for item in arr! {
+                            let rawImage = UIImage(data: item)
+                            scannerviewModel.listImage.append(rawImage!)
+                        }
+                        
+                    }
+                    
+                }
+                if arr!.count == 1{
+                    scannerviewModel.isMultiLoad = false
+                    let rawImage = UIImage(data: arr![0])
                     scannerviewModel.listImage.append(rawImage!)
                 }
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
@@ -332,15 +371,35 @@ extension ScannerVC {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
                     ProgressHUD.showInView(view: self.view)
                 }
-                for item in imageData {
-                    let rawImage = UIImage(data: item)
+                if imageData.count > 1{
+                    if  !UserDefaults.standard.bool(forKey:KeyUserDefault.MultiLoad){
+                        let rawImage = UIImage(data: imageData[0])
+                        scannerviewModel.listImage.append(rawImage!)
+                        scannerviewModel.isMultiLoad = true
+                    }
+                    else{
+                        scannerviewModel.isMultiLoad = false
+                        for item in imageData {
+                            if let rawImage = UIImage(data: item){
+                                 scannerviewModel.listImage.append(rawImage)
+                            }
+                            else{break}
+                        }
+                    }
+                }
+                else{
+                    let rawImage = UIImage(data: imageData[0])
                     scannerviewModel.listImage.append(rawImage!)
+                    scannerviewModel.isMultiLoad = false
+                    
                 }
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
                     //                  DispatchQueue.main.async(execute: { () -> Void in
                     self.scannerviewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
+                    if self.scannerviewModel.listImage.count > 0{
                     self.scannerviewModel.doAsync(list:self.scannerviewModel.listImage)
                     self.scannerviewModel.doGetListTransaction()
+                    }
                     //
                     //                  })
                 }
@@ -349,11 +408,16 @@ extension ScannerVC {
         }
     }
     
+    
+    
     func onTakeGallery(){
         let imagePicker = OpalImagePickerController()
         imagePicker.imagePickerDelegate = self
         if  !UserDefaults.standard.bool(forKey:KeyUserDefault.MultiLoad){
             imagePicker.maximumSelectionsAllowed = 1
+            let configuration = OpalImagePickerConfiguration()
+            configuration.maximumSelectionsAllowedMessage = NSLocalizedString("You cannot select more than an image!", comment: "")
+                imagePicker.configuration = configuration
         }
         present(imagePicker, animated: true, completion: nil)
     }
@@ -412,7 +476,7 @@ extension ScannerVC {
             if metadataObjects != nil && metadataObjects.count != 0 {
                 let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject
                 print(object?.type.rawValue)
-
+                
                 if object?.stringValue != nil
                 {
                     if  Bool(truncating: CommonService.getUserDefault(key: KeyUserDefault.Vibrate) ?? false)
