@@ -25,6 +25,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
     var listResult : [ZXResult] = [ZXResult]()
     var navigate: (() -> ())?
     var isScanner : Bool = false
+    var isMultiLoad : Bool = false
     var isQRCode : Int = 0
     var dateTime : String?
     var isVibrate: Bool?

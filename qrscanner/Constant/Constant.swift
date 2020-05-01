@@ -568,6 +568,8 @@ struct LanguageKey {
     static let Beep = "BEEP"
     static let Change_code_color = "CHANGE_CODE_COLOR"
     static let Change_code_color_content = "CHANGE_CODE_COLOR_CONTENT"
+    static let Advance_content = "ADVANCE_CONTENT"
+
     static let CopyClipboard = "COPY_CLIPBOARD"
       static let CopyClipboard_Content = "COPY_CLIPBOARD_CONTENT"
     static let Duplicate_Content = "DUPLICATE_CONTENT"
