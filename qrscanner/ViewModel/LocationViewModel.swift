@@ -24,6 +24,7 @@ class LocationViewModel : Codable , LocationViewModelDelegate{
     var isSeen : Int? = 0
     var isUpdate: Int?
     
+    
     init(data: ValuePushModel) {
         self.createDateTime = data.createDateTime
         self.typeCode = data.typeCode

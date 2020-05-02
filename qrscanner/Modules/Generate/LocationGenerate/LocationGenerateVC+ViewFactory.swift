@@ -253,8 +253,8 @@ extension LocationGenerateVC : CLLocationManagerDelegate{
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let region = MKCoordinateRegion.init(center: center, latitudinalMeters: generateViewModel!.regionMeter, longitudinalMeters: generateViewModel!.regionMeter)
         viewMap.setRegion(region, animated: true)
-        textFieldLatitude.text = String (location.coordinate.latitude)
-        textFieldLongtitude.text = String(location.coordinate.longitude)
+        textFieldLatitude.text = String (round(location.coordinate.latitude * 100000)/100000)
+        textFieldLongtitude.text = String(round(location.coordinate.longitude * 100000)/100000)
     }
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()

@@ -1,5 +1,8 @@
 {
     "en": {
+        "RATE_CONTENT": "Give us your feedback",
+        "SHARE_CONTENT": "Send the link to your friends",
+        "HELP_CONTENT": "Guidelines app",
         "EXIST_QRCODE" : "The item already exist",
         "DUPLICATE_CONTENT" : "Skip and remove duplicate QRCode or Barcode",
         "DUPLICATE": "Skip duplicate",
@@ -212,6 +215,9 @@
         "THIS_FEATURE_COMING_SOON" : "This feature will be coming soon"
     },
     "vi" : {
+        "RATE_CONTENT": "Hãy cho chúng tôi phản hồi của bạn",
+        "SHARE_CONTENT": "Gửi liên kết tới bạn bè của bạn",
+        "HELP_CONTENT": "Hướng dẫn ứng dụng",
         "EXIST_QRCODE" : "Các mục đã tồn tại",
         "DUPLICATE_CONTENT" : "Bỏ qua và xoá các QRCode hoặc Barcode trùng lặp",
          "DUPLICATE": "Bỏ qua trùng lặp",
@@ -459,6 +465,9 @@
         "THIS_FEATURE_COMING_SOON" : "Tính năng này sẽ có trong tương lai"
     },
    "es" : {
+       "RATE_CONTENT": "Danos tu opinión",
+       "SHARE_CONTENT": "Enviar el enlace a tus amigos",
+       "HELP_CONTENT": "Aplicación de directrices",
        "EXIST_QRCODE" : "El artículo ya existe",
        "DUPLICATE_CONTENT" : "Ignorar y eliminar códigos QR duplicados o códigos de barras",
        "DUPLICATE": "Saltar duplicado",
@@ -692,6 +701,9 @@
         "THIS_FEATURE_COMING_SOON" : "Esta característica estará disponible pronto",
     },
    "pt" : {
+       "RATE_CONTENT": "Envie seus comentários",
+       "SHARE_CONTENT": "Envie o link para seus amigos",
+       "HELP_CONTENT": "Aplicativo de diretrizes",
          "EXIST_QRCODE" : "O item já existe",
        "DUPLICATE_CONTENT" : "Ignore e exclua códigos QR ou códigos de barras duplicados",
        "DUPLICATE": "Ignorar duplicado",

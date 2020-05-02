@@ -423,13 +423,20 @@ extension SettingsVC {
             self.imgRate.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
             self.imgRate.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
         ])
+        self.viewRate.addSubview(stackViewRate)
+               NSLayoutConstraint.activate([
+                   self.stackViewRate.leadingAnchor.constraint(equalTo: self.imgRate.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
+                   self.stackViewRate.topAnchor.constraint(equalTo: self.viewRate.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
+                   self.stackViewRate.centerYAnchor.constraint(equalTo: self.viewRate.centerYAnchor),
+                   self.stackViewRate.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.8),
+                   
+               ])
+               self.stackViewRate.axis = .vertical
+               self.stackViewRate.alignment = .fill
+               self.stackViewRate.distribution = UIStackView.Distribution.fillEqually
+               self.stackViewRate.addArrangedSubview(lbRating)
+               self.stackViewRate.addArrangedSubview(lbRateContent)
         
-        self.viewRate.addSubview(self.lbRating)
-        NSLayoutConstraint.activate([
-            self.lbRating.leadingAnchor.constraint(equalTo: self.imgRate.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
-            self.lbRating.topAnchor.constraint(equalTo: self.viewRate.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
-            self.lbRating.bottomAnchor.constraint(equalTo: self.viewRate.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
-        ])
         self.viewBackground.addSubview(viewShare)
         NSLayoutConstraint.activate([
             viewShare.topAnchor.constraint(equalTo: viewRate.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
@@ -444,13 +451,20 @@ extension SettingsVC {
             self.imgShare.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
             self.imgShare.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
         ])
-        
-        self.viewShare.addSubview(self.lbShare)
+        self.viewShare.addSubview(stackViewShare)
         NSLayoutConstraint.activate([
-            self.lbShare.leadingAnchor.constraint(equalTo: self.imgShare.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
-            self.lbShare.topAnchor.constraint(equalTo: self.viewShare.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
-            self.lbShare.bottomAnchor.constraint(equalTo: self.viewShare.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
+            self.stackViewShare.leadingAnchor.constraint(equalTo: self.imgShare.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
+            self.stackViewShare.topAnchor.constraint(equalTo: self.viewShare.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
+            self.stackViewShare.centerYAnchor.constraint(equalTo: self.viewShare.centerYAnchor),
+            self.stackViewShare.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.8),
+            
         ])
+        self.stackViewShare.axis = .vertical
+        self.stackViewShare.alignment = .fill
+        self.stackViewShare.distribution = UIStackView.Distribution.fillEqually
+        self.stackViewShare.addArrangedSubview(lbShare)
+        self.stackViewShare.addArrangedSubview(lbShareContent)
+        
         self.viewBackground.addSubview(viewHelp)
         NSLayoutConstraint.activate([
             viewHelp.topAnchor.constraint(equalTo: viewShare.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
@@ -465,13 +479,20 @@ extension SettingsVC {
             self.imgHelp.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
             self.imgHelp.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
         ])
-        
-        self.viewHelp.addSubview(self.lbHelp)
-        NSLayoutConstraint.activate([
-            self.lbHelp.leadingAnchor.constraint(equalTo: self.imgHelp.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
-            self.lbHelp.topAnchor.constraint(equalTo: self.viewHelp.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
-            self.lbHelp.bottomAnchor.constraint(equalTo: self.viewHelp.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
-        ])
+        self.viewHelp.addSubview(stackViewHelp)
+               NSLayoutConstraint.activate([
+                   self.stackViewHelp.leadingAnchor.constraint(equalTo: self.imgHelp.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
+                   self.stackViewHelp.topAnchor.constraint(equalTo: self.viewHelp.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
+                   self.stackViewHelp.centerYAnchor.constraint(equalTo: self.viewHelp.centerYAnchor),
+                   self.stackViewHelp.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.8),
+                   
+               ])
+               self.stackViewHelp.axis = .vertical
+               self.stackViewHelp.alignment = .fill
+               self.stackViewHelp.distribution = UIStackView.Distribution.fillEqually
+               self.stackViewHelp.addArrangedSubview(lbHelp)
+               self.stackViewHelp.addArrangedSubview(lbHelpContent)
+      
         
         self.viewBackground.addSubview(viewSupport)
         NSLayoutConstraint.activate([
@@ -545,6 +566,15 @@ extension SettingsVC {
         
         self.lbSupportContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.CONTENT_FONT_SIZE)
         self.lbSupportContent.textColor = AppColors.GRAY
+        
+        self.lbHelpContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.CONTENT_FONT_SIZE)
+               self.lbHelpContent.textColor = AppColors.GRAY
+        
+        self.lbShareContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.CONTENT_FONT_SIZE)
+        self.lbShareContent.textColor = AppColors.GRAY
+        
+        self.lbRateContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.CONTENT_FONT_SIZE)
+        self.lbRateContent.textColor = AppColors.GRAY
         
         self.lbLanguageContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.CONTENT_FONT_SIZE)
         self.lbLanguageContent.textColor = AppColors.GRAY

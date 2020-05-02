@@ -581,6 +581,10 @@ struct LanguageKey {
     static let Rate = "RATE"
     static let Support = "SUPPORT"
     static let SupportContent = "SUPPORT_CONTENT"
+    static let HelpContent = "HELP_CONTENT"
+    static let ShareContent = "SHARE_CONTENT"
+    static let RateContent = "RATE_CONTENT"
+
     static let QRVersion = "QR_VERSION"
     static let QRVersionContent = "QR_VERSION_CONTENT"
     static let MultiScan = "MULTI_SCAN"

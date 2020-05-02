@@ -512,10 +512,10 @@ class GenerateViewModel : GenerateViewModelDelegate {
      Validatelat
      */
     func validateLat(){
-        if  !ValidatorHelper.minLength(String(lat!),minLength: 1) || lat == 0.0{
+        if lat == nil || !ValidatorHelper.minLength("\(String(describing: lat))",minLength: 1) || lat == 0.0{
             errorMessages.value[GenerateViewModelKey.LAT] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorLatRequired ) ?? ""
         }
-        else if !ValidatorHelper.isValidLat(lat!){
+        else if !ValidatorHelper.isValidLat(lat ?? 0.0){
             errorMessages.value[GenerateViewModelKey.LAT] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorLatInvalid ) ?? ""
         }
         else {
@@ -526,10 +526,11 @@ class GenerateViewModel : GenerateViewModelDelegate {
      ValidateLon
      */
     func validateLon(){
-        if  !ValidatorHelper.minLength(String(lat!),minLength: 1) || lon == 0.0{
-            errorMessages.value[GenerateViewModelKey.LON] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorLonRequired ) ?? ""
+        if lon == nil || !ValidatorHelper.minLength("\(String(describing: lon))",minLength: 1) || lon == 0.0 {
+             errorMessages.value[GenerateViewModelKey.LON] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorLonRequired ) ?? ""
         }
-        else if !ValidatorHelper.isValidLon(lon!){
+       
+        else if !ValidatorHelper.isValidLon(lon ?? 0.0){
             errorMessages.value[GenerateViewModelKey.LON] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorLonInvalid ) ?? ""
         }
         else {

@@ -21,7 +21,6 @@ class ShareViewController: SLComposeServiceViewController {
     override func viewDidLoad() {
         UserDefaults(suiteName: self.sharedindentifier)!.removeObject(forKey: "Images")
         self.getListImage()
-
     }
     func checkFlag(){
         if flag {
