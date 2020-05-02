@@ -418,7 +418,6 @@ extension SettingsVC {
         self.viewRate.addSubview(imgRate)
         NSLayoutConstraint.activate([
             self.imgRate.topAnchor.constraint(equalTo: self.viewRate.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
-            self.imgRate.bottomAnchor.constraint(equalTo: self.viewRate.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
             self.imgRate.leadingAnchor.constraint(equalTo: self.viewRate.leadingAnchor),
             self.imgRate.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
             self.imgRate.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
@@ -433,6 +432,7 @@ extension SettingsVC {
                ])
                self.stackViewRate.axis = .vertical
                self.stackViewRate.alignment = .fill
+                self.stackViewRate.spacing = 5
                self.stackViewRate.distribution = UIStackView.Distribution.fillEqually
                self.stackViewRate.addArrangedSubview(lbRating)
                self.stackViewRate.addArrangedSubview(lbRateContent)
@@ -446,7 +446,6 @@ extension SettingsVC {
         self.viewShare.addSubview(imgShare)
         NSLayoutConstraint.activate([
             self.imgShare.topAnchor.constraint(equalTo: self.viewShare.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
-            self.imgShare.bottomAnchor.constraint(equalTo: self.viewShare.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
             self.imgShare.leadingAnchor.constraint(equalTo: self.viewShare.leadingAnchor),
             self.imgShare.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
             self.imgShare.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
@@ -461,6 +460,7 @@ extension SettingsVC {
         ])
         self.stackViewShare.axis = .vertical
         self.stackViewShare.alignment = .fill
+        self.stackViewShare.spacing = 5
         self.stackViewShare.distribution = UIStackView.Distribution.fillEqually
         self.stackViewShare.addArrangedSubview(lbShare)
         self.stackViewShare.addArrangedSubview(lbShareContent)
@@ -474,7 +474,6 @@ extension SettingsVC {
         self.viewHelp.addSubview(imgHelp)
         NSLayoutConstraint.activate([
             self.imgHelp.topAnchor.constraint(equalTo: self.viewHelp.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
-            self.imgHelp.bottomAnchor.constraint(equalTo: self.viewHelp.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
             self.imgHelp.leadingAnchor.constraint(equalTo: self.viewHelp.leadingAnchor),
             self.imgHelp.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
             self.imgHelp.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
@@ -488,7 +487,8 @@ extension SettingsVC {
                    
                ])
                self.stackViewHelp.axis = .vertical
-               self.stackViewHelp.alignment = .fill
+                self.stackViewHelp.alignment = .fill
+                self.stackViewHelp.spacing = 5
                self.stackViewHelp.distribution = UIStackView.Distribution.fillEqually
                self.stackViewHelp.addArrangedSubview(lbHelp)
                self.stackViewHelp.addArrangedSubview(lbHelpContent)
@@ -504,7 +504,6 @@ extension SettingsVC {
         self.viewSupport.addSubview(imgSupport)
         NSLayoutConstraint.activate([
             self.imgSupport.topAnchor.constraint(equalTo: self.viewSupport.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
-            self.imgSupport.bottomAnchor.constraint(equalTo: self.viewSupport.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
             self.imgSupport.leadingAnchor.constraint(equalTo: self.viewSupport.leadingAnchor),
             self.imgSupport.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
             self.imgSupport.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
@@ -520,6 +519,7 @@ extension SettingsVC {
         ])
         self.stackViewSupport.axis = .vertical
         self.stackViewSupport.alignment = .fill
+        self.stackViewSupport.spacing = 5
         self.stackViewSupport.distribution = UIStackView.Distribution.fillEqually
         self.stackViewSupport.addArrangedSubview(lbSupport)
         self.stackViewSupport.addArrangedSubview(lbSupportContent)
@@ -533,7 +533,6 @@ extension SettingsVC {
         self.viewVersion.addSubview(imgVersion)
         NSLayoutConstraint.activate([
             self.imgVersion.topAnchor.constraint(equalTo: self.viewVersion.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
-            self.imgVersion.bottomAnchor.constraint(equalTo: self.viewVersion.bottomAnchor,constant: AppConstants.MARGIN_BOTTOM_ITEM),
             self.imgVersion.leadingAnchor.constraint(equalTo: self.viewVersion.leadingAnchor),
             self.imgVersion.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
             self.imgVersion.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
@@ -549,6 +548,7 @@ extension SettingsVC {
         ])
         self.stackViewVersion.axis = .vertical
         self.stackViewVersion.alignment = .fill
+        self.stackViewVersion.spacing = 5
         self.stackViewVersion.distribution = UIStackView.Distribution.fillEqually
         self.stackViewVersion.spacing = AppConstants.MARGIN_TOP_SUBITEM
         self.stackViewVersion.addArrangedSubview(lbQrCode)
