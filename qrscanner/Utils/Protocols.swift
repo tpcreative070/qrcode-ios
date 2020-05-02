@@ -114,6 +114,8 @@ protocol ScannerViewModelDelegate : BaseViewModel {
 protocol GenerateViewModelDelegate  {
     var navigate: (() -> ())?  { get set }
     var responseToView : ((String) ->())? {get set}
+    var lat: Float? { get }
+    var lon: Float? { get }
     var to: String? { get }
     var message: String? { get }
     var url: String? {get}
@@ -129,6 +131,7 @@ protocol GenerateViewModelDelegate  {
     var emailContact: String? {get}
     var typeCode : String{get}
     var typeBarcode : String?{get}
+    
 
     var typeBarcodeBinding : Bindable<String> {get}
     var productIDBinding : Bindable<String> {get}

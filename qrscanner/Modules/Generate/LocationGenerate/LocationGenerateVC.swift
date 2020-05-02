@@ -83,6 +83,7 @@ class LocationGenerateVC: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = AppConstants.ALPHA_DISBALE
         view.lineColor = AppColors.COLOR_ACCENT
+        view.keyboardType = UIKeyboardType.decimalPad
         view.selectedLineColor = AppColors.COLOR_ACCENT
         return view
     }()

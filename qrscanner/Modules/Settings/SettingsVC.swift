@@ -104,10 +104,10 @@ class SettingsVC : BaseViewController {
         return view
     }()
     lazy var viewDulplicate: UIView = {
-          let view = UIView()
-          view.translatesAutoresizingMaskIntoConstraints = false
-          return view
-      }()
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     var stackViewChangeColor : StackView = {
         let view = StackView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -134,10 +134,10 @@ class SettingsVC : BaseViewController {
         return view
     }()
     var stackViewDuplicate : StackView = {
-           let view = StackView()
-           view.translatesAutoresizingMaskIntoConstraints = false
-           return view
-       }()
+        let view = StackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     var stackViewVersion : StackView = {
         let view = StackView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -153,6 +153,21 @@ class SettingsVC : BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    var stackViewRate : StackView = {
+           let view = StackView()
+           view.translatesAutoresizingMaskIntoConstraints = false
+           return view
+       }()
+    var stackViewHelp : StackView = {
+           let view = StackView()
+           view.translatesAutoresizingMaskIntoConstraints = false
+           return view
+       }()
+    var stackViewShare : StackView = {
+           let view = StackView()
+           view.translatesAutoresizingMaskIntoConstraints = false
+           return view
+       }()
     lazy var lbScan : ICLabel = {
         let view = ICLabel()
         view.text = LanguageHelper.getTranslationByKey(LanguageKey.Scan)
@@ -178,11 +193,11 @@ class SettingsVC : BaseViewController {
         return view
     }()
     lazy var lbDuplicate : ICLabel = {
-           let view = ICLabel()
-           view.text = LanguageHelper.getTranslationByKey(LanguageKey.Duplicate)
-           view.translatesAutoresizingMaskIntoConstraints = false
-           return view
-       }()
+        let view = ICLabel()
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Duplicate)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     lazy var lbInformation : ICLabel = {
         let view = ICLabel()
         view.text = LanguageHelper.getTranslationByKey(LanguageKey.Information)
@@ -220,10 +235,10 @@ class SettingsVC : BaseViewController {
         return view
     }()
     lazy var lbCurrentLanguage : ICLabel = {
-           let view = ICLabel()
-           view.translatesAutoresizingMaskIntoConstraints = false
-           return view
-       }()
+        let view = ICLabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     lazy var lbLanguage : ICLabel = {
         let view = ICLabel()
         view.text = LanguageHelper.getTranslationByKey(LanguageKey.Language)
@@ -231,11 +246,11 @@ class SettingsVC : BaseViewController {
         return view
     }()
     lazy var lbDuplicateContent : ICLabel = {
-          let view = ICLabel()
-          view.text = LanguageHelper.getTranslationByKey(LanguageKey.Duplicate_Content)
-          view.translatesAutoresizingMaskIntoConstraints = false
-          return view
-      }()
+        let view = ICLabel()
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Duplicate_Content)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     lazy var lbLanguageContent : ICLabel = {
         let view = ICLabel()
         view.text = LanguageHelper.getTranslationByKey(LanguageKey.ChooseYourLanguage)
@@ -278,18 +293,36 @@ class SettingsVC : BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    lazy var lbRateContent : ICLabel = {
+           let view = ICLabel()
+           view.text = LanguageHelper.getTranslationByKey(LanguageKey.RateContent)
+           view.translatesAutoresizingMaskIntoConstraints = false
+           return view
+       }()
     lazy var lbShare : ICLabel = {
         let view = ICLabel()
         view.text = LanguageHelper.getTranslationByKey(LanguageKey.Share)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    lazy var lbShareContent : ICLabel = {
+            let view = ICLabel()
+            view.text = LanguageHelper.getTranslationByKey(LanguageKey.ShareContent)
+            view.translatesAutoresizingMaskIntoConstraints = false
+            return view
+        }()
     lazy var lbHelp : ICLabel = {
         let view = ICLabel()
         view.text = LanguageHelper.getTranslationByKey(LanguageKey.Help)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    lazy var lbHelpContent : ICLabel = {
+         let view = ICLabel()
+         view.text = LanguageHelper.getTranslationByKey(LanguageKey.HelpContent)
+         view.translatesAutoresizingMaskIntoConstraints = false
+         return view
+     }()
     lazy var lbSupport : ICLabel = {
         let view = ICLabel()
         view.text = LanguageHelper.getTranslationByKey(LanguageKey.Support)
@@ -350,11 +383,11 @@ class SettingsVC : BaseViewController {
         return switchView
     }()
     lazy var switchDuplicate: ICSwitchButton = {
-           let switchView = ICSwitchButton()
-           switchView.isOn = false
-           switchView.translatesAutoresizingMaskIntoConstraints = false;
-           return switchView
-       }()
+        let switchView = ICSwitchButton()
+        switchView.isOn = false
+        switchView.translatesAutoresizingMaskIntoConstraints = false;
+        return switchView
+    }()
     lazy var switchBeep: ICSwitchButton = {
         let switchView = ICSwitchButton()
         switchView.isOn = false
@@ -388,12 +421,12 @@ class SettingsVC : BaseViewController {
         return view
     }()
     lazy var imgDuplicate : UIImageView = {
-           let view = UIImageView()
-           view.translatesAutoresizingMaskIntoConstraints = false
-           view.image = UIImage(named: AppImages.IC_DUPLICATE)
-           view.tintColor = AppColors.COLOR_ACCENT
-           return view
-       }()
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.image = UIImage(named: AppImages.IC_DUPLICATE)
+        view.tintColor = AppColors.COLOR_ACCENT
+        return view
+    }()
     lazy var imgVibrate : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -408,7 +441,7 @@ class SettingsVC : BaseViewController {
         view.tintColor = AppColors.COLOR_ACCENT
         return view
     }()
-   
+    
     lazy var imgBeep : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -514,7 +547,7 @@ class SettingsVC : BaseViewController {
         initUI()
         bindViewModel()
         checkIsOnSwitch()
-      //  Fabric.sharedSDK().debug = true
+        //  Fabric.sharedSDK().debug = true
     }
     
     @objc func switchVibrateDidChange (_ : ICSwitchButton){
@@ -556,70 +589,70 @@ class SettingsVC : BaseViewController {
     }
     @objc func switchCopyDidChange (_ : ICSwitchButton){
         if switchCopy.isOn{
-                  switchCopy.isOn = true
-                  CommonService.setUserDefault(key: KeyUserDefault.Copy, value: true)
-              }
-              else {
-                  switchCopy.isOn = false
-                  CommonService.setUserDefault(key: KeyUserDefault.Copy, value: false)
-              }
+            switchCopy.isOn = true
+            CommonService.setUserDefault(key: KeyUserDefault.Copy, value: true)
+        }
+        else {
+            switchCopy.isOn = false
+            CommonService.setUserDefault(key: KeyUserDefault.Copy, value: false)
+        }
         //self.viewModel.isQRCode =  switchVibrate.isOn
     }
     @objc func doChangeLanguage (sender : UITapGestureRecognizer){
-
+        
         let alrController = UIAlertController(title: LanguageHelper.getTranslationByKey(LanguageKey.Language), message: LanguageHelper.getTranslationByKey(LanguageKey.ChooseYourLanguage), preferredStyle: UIAlertController.Style.actionSheet)
         let enlishAc = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.English), style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in
             CommonService.setMultipleLanguages(value: LanguageCode.English)
             self.navigationController?.pushViewController(MainVC(), animated: false)
             self.navigationController?.viewControllers.remove(at: 0)
-          //  self.navigationController?.viewControllers.removeAll()
+            //  self.navigationController?.viewControllers.removeAll()
             self.dismiss()
-
+            
         })
         let vietnamAc = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Vietnamese), style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in
             CommonService.setMultipleLanguages(value: LanguageCode.Vietnamese)
             self.navigationController?.pushViewController(MainVC(), animated: false)
             self.navigationController?.viewControllers.remove(at: 0)
             self.dismiss()
-
+            
         })
         let esAc = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Spanish), style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in
-                   CommonService.setMultipleLanguages(value: LanguageCode.Spanish)
-                   self.navigationController?.pushViewController(MainVC(), animated: false)
+            CommonService.setMultipleLanguages(value: LanguageCode.Spanish)
+            self.navigationController?.pushViewController(MainVC(), animated: false)
             self.navigationController?.viewControllers.remove(at: 0)
-                   self.dismiss()
-
-               })
-               let ptAc = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Portuguese), style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in
-                   CommonService.setMultipleLanguages(value: LanguageCode.Portuguese)
-                   self.navigationController?.pushViewController(MainVC(), animated: false)
-                self.navigationController?.viewControllers.remove(at: 0)
-                   self.dismiss()
-
-               })
+            self.dismiss()
+            
+        })
+        let ptAc = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Portuguese), style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in
+            CommonService.setMultipleLanguages(value: LanguageCode.Portuguese)
+            self.navigationController?.pushViewController(MainVC(), animated: false)
+            self.navigationController?.viewControllers.remove(at: 0)
+            self.dismiss()
+            
+        })
         let cancelAction = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Cancel), style: UIAlertAction.Style.cancel, handler: {(alert: UIAlertAction!) in
             self.dismiss()
         })
-
+        
         alrController.addAction(enlishAc)
         alrController.addAction(vietnamAc)
-          alrController.addAction(esAc)
-          alrController.addAction(ptAc)
+        alrController.addAction(esAc)
+        alrController.addAction(ptAc)
         alrController.addAction(cancelAction)
-         alrController.pruneNegativeWidthConstraints()
+        alrController.pruneNegativeWidthConstraints()
         if DeviceHelper.isIpad(){
             if let popoverController = alrController.popoverPresentationController {
-                       popoverController.sourceView = self.view //to set the source of your alert
-                       popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0) // you can set this as per your requirement.
+                popoverController.sourceView = self.view //to set the source of your alert
+                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0) // you can set this as per your requirement.
                 popoverController.permittedArrowDirections = [.up] //to hide the arrow of any particular direction
-                   }
+            }
             self.present(alrController, animated: true, completion: nil)
         }
         else{
             self.present(alrController, animated: true, completion: nil)
-
+            
         }
-       
+        
     }
     @objc func doChangeColor (sender : UITapGestureRecognizer){
         let vc = ChangeColorVC()
@@ -654,17 +687,17 @@ class SettingsVC : BaseViewController {
         }
     }
     @objc func switchDuplicateDidChange (_ : ICSwitchButton){
-           if switchDuplicate.isOn{
-               switchDuplicate.isOn = true
-               CommonService.setUserDefault(key: KeyUserDefault.Duplicate, value: true)
-               
-           }
-           else {
-               switchDuplicate.isOn = false
-               CommonService.setUserDefault(key: KeyUserDefault.Duplicate, value: false)
-               
-           }
-       }
+        if switchDuplicate.isOn{
+            switchDuplicate.isOn = true
+            CommonService.setUserDefault(key: KeyUserDefault.Duplicate, value: true)
+            
+        }
+        else {
+            switchDuplicate.isOn = false
+            CommonService.setUserDefault(key: KeyUserDefault.Duplicate, value: false)
+            
+        }
+    }
     @objc func showPrivacy (sender : UITapGestureRecognizer){
         let string = LanguageKey.Link_Privacy
         if let url = NSURL(string: string) {
@@ -676,15 +709,26 @@ class SettingsVC : BaseViewController {
     @objc func showShare (sender : UITapGestureRecognizer){
         let share = LanguageKey.Link_Share
         let activiController = UIActivityViewController(activityItems: [share], applicationActivities: nil)
-        self.present(activiController,animated: true, completion: nil)
+        if DeviceHelper.isIpad(){
+            if let popoverController = activiController.popoverPresentationController {
+                popoverController.sourceView = self.view //to set the source of your alert
+                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0) // you can set this as per your requirement.
+                popoverController.permittedArrowDirections = [.up] //to hide the arrow of any particular direction
+            }
+            self.present(activiController, animated: true, completion: nil)
+        }
+        else{
+            self.present(activiController, animated: true, completion: nil)
+            
+        }
     }
     
     @objc func showRating(sender : UITapGestureRecognizer){
         UIApplication.shared.openURL(NSURL(string: LanguageKey.Link_Share)! as URL)
-
+        
     }
     @objc func showHelp (sender : UITapGestureRecognizer){
-
+        
         let vc = HelpVC()
         self.navigationController?.pushViewController(vc, animated: true)
     }

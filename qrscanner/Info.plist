@@ -53,9 +53,9 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Use camera to scanner code</string>
 	<key>NSContactsUsageDescription</key>
-	<string>Need to access contact</string>
+	<string>Using contact to save QRCode contact</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Access location</string>
+	<string>Using location to make QRCode location format</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Our application needs permission to write photos..</string>
 	<key>NSPhotoLibraryUsageDescription</key>

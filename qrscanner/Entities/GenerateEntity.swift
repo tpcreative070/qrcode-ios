@@ -206,16 +206,17 @@ class GenerateEntity{
                     })
             print(response.count)
                     if response.count > 1{
-                        let res :[GenerateEntityModel] = [response.removeFirst()]
-                        for (item) in res {
+                        print(response.count)
+                      let res =  response.removeFirst()
+                        Utils.logMessage(object: response)
+                        for (item) in response {
+                            Utils.logMessage(object: item.createdDateTime)
                                 let query = table.select(table[*])
                                 .filter(createdDateTime == Int(item.createdDateTime!))
                                 try db.run(query.delete())
-                                
                             }
                         
-                    
-                        return response[0].createdDateTime!
+                            return res.createdDateTime!
 
                     }
                     else if response.count == 1{

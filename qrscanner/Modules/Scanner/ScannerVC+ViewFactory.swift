@@ -295,6 +295,7 @@ extension ScannerVC {
             }
             else{
                 DispatchQueue.main.async {
+                    print(self?.scannerviewModel.isMultiLoad)
                     if (self?.scannerviewModel.isMultiLoad)!{
                         let okAlert = SingleButtonAlert(
                             title: LanguageHelper.getTranslationByKey(LanguageKey.Alert) ?? "Error",
@@ -366,6 +367,7 @@ extension ScannerVC {
                 }
             }
         }
+        else{
         if let prefs = UserDefaults(suiteName: AppConstants.sharedIndentifier) {
             if let imageData = prefs.object(forKey: AppConstants.shareKey) as? [Data] {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
@@ -404,7 +406,7 @@ extension ScannerVC {
                     //                  })
                 }
             }
-            
+            }
         }
     }
     
