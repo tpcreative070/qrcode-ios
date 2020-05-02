@@ -200,6 +200,7 @@ extension SettingsVC {
         ])
         self.stackViewChangeColor.axis = .vertical
         self.stackViewChangeColor.alignment = .fill
+        self.stackViewChangeColor.spacing = 5
         self.stackViewChangeColor.distribution = UIStackView.Distribution.fillEqually
         self.stackViewChangeColor.addArrangedSubview(lbChangeColor)
         self.stackViewChangeColor.addArrangedSubview(lbChangeColorContent)
