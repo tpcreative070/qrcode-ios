@@ -59,7 +59,7 @@
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Our application needs permission to write photos..</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app needs to use Photo Library</string>
+	<string>This app needs to use Photo Library to save QR codes</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SFProText-Bold.otf</string>
