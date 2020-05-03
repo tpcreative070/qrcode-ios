@@ -21,7 +21,7 @@ class ICLabel : UILabel {
     func setupView() {
         self.textAlignment = .left
         self.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-        self.textColor = AppColors.BLACK_COLOR
+        self.textColor = .label
     }
     
     var isBold : Bool! {

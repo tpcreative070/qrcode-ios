@@ -15,7 +15,7 @@ extension ChooseHistoryVC  {
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height), style: .grouped)
         tableView.allowsSelection = true
         
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         tableView.separatorStyle = .none
         
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
@@ -84,7 +84,7 @@ extension ChooseHistoryVC  {
 
     }
     func setupNavItems() {
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR

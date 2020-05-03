@@ -13,13 +13,19 @@ class SettingModel : Codable {
     var color: String?
     var isCopy: Bool?
     var isOpenWeb: Bool?
-
-    init(isVibrate : Bool, isBeep: Bool, color: String, isCopy: Bool, isOpenWeb: Bool) {
+    var isMultiLoad: Bool?
+    var isMultiScan: Bool?
+    var isSkip: Bool?
+    
+    init(isVibrate : Bool, isBeep: Bool, color: String, isCopy: Bool, isOpenWeb: Bool, isMultiLoad: Bool, isMultiScan: Bool, isSkip: Bool) {
         self.isVibrate = isVibrate
         self.isBeep = isBeep
         self.color = color
         self.isCopy = isCopy
         self.isOpenWeb = isOpenWeb
+        self.isMultiLoad = isMultiLoad
+        self.isMultiScan = isMultiScan
+        self.isSkip = isSkip
     }
    
     

@@ -1,5 +1,11 @@
 {
     "en": {
+        "DARK_THEME": "Dark",
+        "LIGHT_THEME" : "Light",
+        "CHOOSE_YOUR_THEME": "Select the theme you want to change",
+        "CHANGE_THEME" : "Change Theme",
+        "THEME_CONTENT": "Choose dark or light theme",
+        "THEME": "Theme",
         "RATE_CONTENT": "Give us your feedback",
         "SHARE_CONTENT": "Send the link to your friends",
         "HELP_CONTENT": "Guidelines app",
@@ -60,7 +66,7 @@
         "SUPPORT_CONTENT" : "Report issues",
         "QR_VERSION" : "QRScanner version",
         "QR_VERSION_CONTENT" : "Version: ",
-        "AVANCE_FEATURE": "ADVANCE FEATURE",
+        "AVANCE_FEATURE": "ADVANCE FEATURES",
         "INFORMATION": "INFORMATION",
         "SCAN": "SCAN",
         "TITLE_HELP1": "Scan BarCode And QRCode Via Camera",
@@ -215,6 +221,12 @@
         "THIS_FEATURE_COMING_SOON" : "This feature will be coming soon"
     },
     "vi" : {
+        "DARK_THEME": "Tối",
+        "LIGHT_THEME" : "Sáng",
+        "CHOOSE_YOUR_THEME": "Chọn chủ đề bạn muốn thay đổi",
+        "CHANGE_THEME" : "Thay đổi màu chủ đề",
+        "THEME_CONTENT": "Chọn chủ đề tối hoặc sáng",
+        "THEME": "Chủ đề",
         "RATE_CONTENT": "Hãy cho chúng tôi phản hồi của bạn",
         "SHARE_CONTENT": "Gửi liên kết tới bạn bè của bạn",
         "HELP_CONTENT": "Hướng dẫn ứng dụng",
@@ -465,6 +477,12 @@
         "THIS_FEATURE_COMING_SOON" : "Tính năng này sẽ có trong tương lai"
     },
    "es" : {
+       "DARK_THEME": "Oscuro",
+       "LIGHT_THEME": "Light",
+       "CHOOSE_YOUR_THEME": "Seleccione el tema que desea cambiar",
+       "CHANGE_THEME": "Cambiar tema",
+       "THEME_CONTENT": "Elija un tema oscuro o claro",
+       "THEME": "Tema",
        "RATE_CONTENT": "Danos tu opinión",
        "SHARE_CONTENT": "Enviar el enlace a tus amigos",
        "HELP_CONTENT": "Aplicación de directrices",
@@ -701,6 +719,12 @@
         "THIS_FEATURE_COMING_SOON" : "Esta característica estará disponible pronto",
     },
    "pt" : {
+       "DARK_THEME": "Escuro",
+       "LIGHT_THEME": "Light",
+       "CHOOSE_YOUR_THEME": "Selecione o tópico que você deseja alterar",
+       "CHANGE_THEME": "Alterar tema",
+       "THEME_CONTENT": "Escolha um tema escuro ou claro",
+        "THEME": "Tema",
        "RATE_CONTENT": "Envie seus comentários",
        "SHARE_CONTENT": "Envie o link para seus amigos",
        "HELP_CONTENT": "Aplicativo de diretrizes",

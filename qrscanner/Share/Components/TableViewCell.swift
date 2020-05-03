@@ -28,13 +28,14 @@ class TableViewCell : UITableViewCell{
     }()
     let viewBackground : UIView = {
         let view = UIView()
+        view.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         //        view.backgroundColor = .clear
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     let viewBackgroundSecond : UIView = {
         let view = UIView()
-        //        view.backgroundColor = .clear
+                view.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -403,7 +404,7 @@ class TableViewCell : UITableViewCell{
     /*url detail */
     lazy  var viewUrlBg: UIView = {
         let view = UIView()
-        view.backgroundColor = AppColors.GRAY_LIGHT_90
+        view.backgroundColor = UIColor(named: AppColors.ColorViewBg)
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.borderWidth = 1
         view.layer.cornerRadius = AppConstants.CORNER_RADIUS
@@ -463,7 +464,7 @@ view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: D
     }()
     var viewBackgroundThird: UIView = {
         let view = UIView()
-        view.backgroundColor = AppColors.GRAY_LIGHT_90
+        view.backgroundColor = UIColor(named: AppColors.ColorViewBg)
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.borderWidth = 1
         view.layer.cornerRadius = AppConstants.CORNER_RADIUS
@@ -472,7 +473,7 @@ view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: D
     }()
     var viewBackgroundFour: UIView = {
         let view = UIView()
-        view.backgroundColor = AppColors.GRAY_LIGHT_90
+        view.backgroundColor = UIColor(named: AppColors.ColorViewBg)
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.borderWidth = 1
         view.layer.cornerRadius = AppConstants.CORNER_RADIUS
@@ -481,7 +482,7 @@ view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: D
     }()
     var viewClipboard: UIView = {
         let view = UIView()
-        view.backgroundColor = AppColors.GRAY_LIGHT_90
+        view.backgroundColor = UIColor(named: AppColors.ColorViewBg)
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.borderWidth = 1
         view.layer.cornerRadius = AppConstants.CORNER_RADIUS

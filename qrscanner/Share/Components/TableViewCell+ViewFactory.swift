@@ -64,7 +64,7 @@ extension TableViewCell {
     }
     
     func setupBackgroud(){
-        backgroundView?.backgroundColor = .red
+        
         self.addSubview(self.viewBackground)
         NSLayoutConstraint.activate([
             self.viewBackground.trailingAnchor.constraint(equalTo: self.trailingAnchor),

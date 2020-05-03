@@ -13,6 +13,9 @@ class SettingViewModel : Codable {
     var color: String?
     var isCopy: Bool?
     var isOpenWeb: Bool?
+    var isMultiLoad: Bool?
+    var isMultiScan: Bool?
+    var isSkip: Bool?
    
     init() {
         
@@ -24,6 +27,9 @@ class SettingViewModel : Codable {
         self.color = data.color
         self.isCopy = data.isCopy
         self.isOpenWeb = data.isOpenWeb
+        self.isMultiScan = data.isMultiScan
+        self.isMultiLoad = data.isMultiLoad
+        self.isSkip = data.isSkip
 
     }
     init(isVibrate : Bool) {
@@ -41,4 +47,13 @@ class SettingViewModel : Codable {
        init(isOpenWeb : Bool) {
              self.isOpenWeb = isOpenWeb
          }
+    init(isMultiScan : Bool) {
+               self.isMultiScan = isMultiScan
+           }
+         init(isMultiLoad : Bool) {
+               self.isMultiLoad = isMultiLoad
+           }
+         init(isSkip : Bool) {
+               self.isOpenWeb = isSkip
+           }
 }

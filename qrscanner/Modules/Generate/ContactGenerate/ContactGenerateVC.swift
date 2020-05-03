@@ -24,7 +24,7 @@ class ContactGenerateVC: BaseViewController {
     }()
     var viewFullNameContactBg: UIView = {
         let view = UIView()
-        view.backgroundColor = AppColors.GRAY_LIGHT_90
+        view.backgroundColor = UIColor(named: AppColors.ColorViewBg)
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.borderWidth = AppConstants.WIDTH_BORDER
         view.layer.cornerRadius = AppConstants.CORNER_RADIUS
@@ -33,7 +33,7 @@ class ContactGenerateVC: BaseViewController {
     }()
     var viewAddressContactBg: UIView = {
         let view = UIView()
-        view.backgroundColor = AppColors.GRAY_LIGHT_90
+        view.backgroundColor = UIColor(named: AppColors.ColorViewBg)
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.borderWidth = AppConstants.WIDTH_BORDER
         view.layer.cornerRadius = AppConstants.CORNER_RADIUS
@@ -42,7 +42,7 @@ class ContactGenerateVC: BaseViewController {
     }()
     var viewPhoneContactBg: UIView = {
         let view = UIView()
-        view.backgroundColor = AppColors.GRAY_LIGHT_90
+        view.backgroundColor = UIColor(named: AppColors.ColorViewBg)
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.borderWidth = AppConstants.WIDTH_BORDER
         view.layer.cornerRadius = AppConstants.CORNER_RADIUS
@@ -51,7 +51,7 @@ class ContactGenerateVC: BaseViewController {
     }()
     var viewEmailContactBg: UIView = {
         let view = UIView()
-        view.backgroundColor = AppColors.GRAY_LIGHT_90
+        view.backgroundColor = UIColor(named: AppColors.ColorViewBg)
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.borderWidth = AppConstants.WIDTH_BORDER
         view.layer.cornerRadius = AppConstants.CORNER_RADIUS

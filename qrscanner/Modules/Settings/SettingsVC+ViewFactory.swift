@@ -9,7 +9,8 @@
 import UIKit
 extension SettingsVC {
     func initUI(){
-        view.backgroundColor = .white
+        view.backgroundColor =  UIColor(named: AppColors.ColorAppearance)
+        viewWrapper.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         self.view.addSubview(scrollView)
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
@@ -17,7 +18,14 @@ extension SettingsVC {
             scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
         ])
-        self.scrollView.addSubview(viewBackground)
+        self.scrollView.addSubview(viewWrapper)
+        NSLayoutConstraint.activate([
+            viewWrapper.topAnchor.constraint(equalTo: view.topAnchor),
+            viewWrapper.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            viewWrapper.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            viewWrapper.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+        ])
+        self.viewWrapper.addSubview(viewBackground)
         NSLayoutConstraint.activate([
             viewBackground.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewBackground.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: AppConstants.MARGIN_BOTTOM),
@@ -317,11 +325,46 @@ extension SettingsVC {
             switchDuplicate.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.SWITCH_WIDTH_DEFAULT),
             switchDuplicate.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.SWITCH_HEIGHT_DEFAULT),
         ])
+        self.viewBackground.addSubview(viewTheme)
+        NSLayoutConstraint.activate([
+            viewTheme.topAnchor.constraint(equalTo: viewDulplicate.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
+            viewTheme.trailingAnchor.constraint(equalTo: viewBackground.trailingAnchor, constant: AppConstants.MARGIN_RIGHT_SETTING),
+            viewTheme.leadingAnchor.constraint(equalTo: viewBackground.leadingAnchor, constant: AppConstants.MARGIN_LEFT_SETTING),
+            
+        ])
+        self.viewTheme.addSubview(imgTheme)
+        NSLayoutConstraint.activate([
+            self.imgTheme.topAnchor.constraint(equalTo: self.viewTheme.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM),
+            self.imgTheme.leadingAnchor.constraint(equalTo: self.viewTheme.leadingAnchor),
+            self.imgTheme.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+            self.imgTheme.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT),
+        ])
         
+        self.viewTheme.addSubview(stackViewTheme)
+        NSLayoutConstraint.activate([
+            self.stackViewTheme.leadingAnchor.constraint(equalTo: self.imgTheme.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
+            self.stackViewTheme.topAnchor.constraint(equalTo: self.viewTheme.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
+            self.stackViewTheme.centerYAnchor.constraint(equalTo: self.viewTheme.centerYAnchor),
+            self.stackViewTheme.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.7),
+            
+        ])
+        self.stackViewTheme.axis = .vertical
+        self.stackViewTheme.alignment = .fill
+        self.stackViewTheme.spacing = 5
+        self.stackViewTheme.distribution = UIStackView.Distribution.fillEqually
+        self.stackViewTheme.addArrangedSubview(lbTheme)
+        self.stackViewTheme.addArrangedSubview(lbThemeContent)
+        self.viewTheme.addSubview(self.lbCurrentTheme)
+        NSLayoutConstraint.activate([
+            lbCurrentTheme.topAnchor.constraint(equalTo: viewTheme.topAnchor, constant: AppConstants.MARGIN_TOP),
+            lbCurrentTheme.trailingAnchor.constraint(equalTo: viewTheme.trailingAnchor),
+            lbCurrentTheme.bottomAnchor.constraint(equalTo: viewTheme.bottomAnchor)
+ 
+        ])
         
         self.viewBackground.addSubview(viewLanguage)
         NSLayoutConstraint.activate([
-            viewLanguage.topAnchor.constraint(equalTo: viewDulplicate.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
+            viewLanguage.topAnchor.constraint(equalTo: viewTheme.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
             viewLanguage.trailingAnchor.constraint(equalTo: viewBackground.trailingAnchor, constant: AppConstants.MARGIN_RIGHT_SETTING),
             viewLanguage.leadingAnchor.constraint(equalTo: viewBackground.leadingAnchor, constant: AppConstants.MARGIN_LEFT_SETTING),
             
@@ -580,6 +623,9 @@ extension SettingsVC {
         self.lbLanguageContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.CONTENT_FONT_SIZE)
         self.lbLanguageContent.textColor = AppColors.GRAY
         
+        self.lbThemeContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.CONTENT_FONT_SIZE)
+        self.lbThemeContent.textColor = AppColors.GRAY
+        
         self.lbQrCodeContent.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.CONTENT_FONT_SIZE)
         self.lbQrCodeContent.textColor = AppColors.GRAY
         
@@ -596,7 +642,7 @@ extension SettingsVC {
         self.lbMultiLoadContent.numberOfLines = AppConstants.NUMBER_OF_LINE
         self.lbMultiScanContent.numberOfLines = AppConstants.NUMBER_OF_LINE
         self.lbDuplicateContent.numberOfLines = AppConstants.NUMBER_OF_LINE
-        
+       
         self.lbVibrate.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.lbDuplicate.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         
@@ -649,8 +695,26 @@ extension SettingsVC {
         viewHelp.isUserInteractionEnabled  = true
         self.viewRate.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showRating(sender:))))
         viewRate.isUserInteractionEnabled  = true
+        self.viewVibrate.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(doSwitchVibrate(sender:))))
+        viewVibrate.isUserInteractionEnabled  = true
+        self.viewBeep.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(doSwitchBeep(sender:))))
+        viewBeep.isUserInteractionEnabled  = true
+        self.viewMultiScan.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(doSwitchMultiScan(sender:))))
+        viewMultiScan.isUserInteractionEnabled  = true
+        self.viewMultiLoad.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(doSwitchMultiLoad(sender:))))
+        viewMultiLoad.isUserInteractionEnabled  = true
+        self.viewCopy.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(doSwitchCopy(sender:))))
+        viewCopy.isUserInteractionEnabled  = true
+        self.viewDulplicate.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(doSwitchDulplicate(sender:))))
+        viewDulplicate.isUserInteractionEnabled  = true
+      self.viewOpenWeb.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(doSwitchOpenWeb(sender:))))
+             viewOpenWeb.isUserInteractionEnabled  = true
+        self.viewTheme.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(doChangeTheme(sender:))))
+        viewTheme.isUserInteractionEnabled  = true
+        
         changeColorQRCode(imgQRCode: imgQRCode)
         getCurrenLang()
+        getCurrentTheme()
         let version = Helper.getVersion()
         lbQrCodeContent.text = "\(LanguageHelper.getTranslationByKey(LanguageKey.QRVersion)!) \(String(describing: version!))"
     }
@@ -726,5 +790,16 @@ extension SettingsVC {
             lbCurrentLanguage.text = LanguageHelper.getTranslationByKey(LanguageKey.Portuguese)
         }
     }
-    
+    func getCurrentTheme(){
+           if Bool(CommonService.getUserDefault(key: KeyUserDefault.Theme) ?? false){
+            lbCurrentTheme.text = LanguageHelper.getTranslationByKey(LanguageKey.DarkTheme)
+            self.overrideUserInterfaceStyle = .dark
+          
+           }
+           else{
+            lbCurrentTheme.text = LanguageHelper.getTranslationByKey(LanguageKey.LightTheme)
+            self.overrideUserInterfaceStyle = .light
+            
+        }
+       }
 }

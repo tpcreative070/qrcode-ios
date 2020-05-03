@@ -14,7 +14,7 @@ class HeaderView : UITableViewHeaderFooterView{
     
     let backGroundView : UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

@@ -23,7 +23,7 @@ class TextGenerateVC: BaseViewController {
     }()
     lazy   var viewTextBg: UIView = {
         let view = UIView()
-        view.backgroundColor = AppColors.GRAY_LIGHT_90
+        view.backgroundColor = UIColor(named: AppColors.ColorViewBg)
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.borderWidth = 1
         view.layer.cornerRadius = 10

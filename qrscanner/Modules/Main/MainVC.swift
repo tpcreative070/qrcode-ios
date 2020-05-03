@@ -23,6 +23,11 @@ class MainVC : SwipeMenuViewController {
         addedView()
         setupStatusBar()
         super.viewDidLoad()
+        if Bool(CommonService.getUserDefault(key: KeyUserDefault.Theme) ?? false){
+                             UIApplication.shared.windows.forEach { window in
+                                 window.overrideUserInterfaceStyle = .dark
+                             }
+                         }
 //        if #available(iOS 10.3, *){
 //            AppStoreReviewManager.requestReviewIfAppropriate()
 //        }

@@ -76,7 +76,7 @@ extension ResultGenerateVC {
         viewSave.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector(saveView(sender:))))
     }
     func setupNavItems() {
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = UIColor(named: AppColors.ColorAppearance)
       
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
