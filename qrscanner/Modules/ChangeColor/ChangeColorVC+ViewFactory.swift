@@ -40,13 +40,13 @@ extension ChangeColorVC{
     }
     
     func setupCollectionView(){
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: EnumIdentifier.ChangeColor.rawValue)
     }
     func setupNavItems() {
-        self.view.backgroundColor = .white
+        self.view.backgroundColor =  UIColor(named: AppColors.ColorAppearance)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
 

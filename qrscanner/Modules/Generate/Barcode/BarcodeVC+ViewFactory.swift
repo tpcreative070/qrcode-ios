@@ -9,7 +9,7 @@
 import UIKit
 extension BarcodeVC {
     func initUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         self.view.addSubview(scrollView)
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
@@ -82,7 +82,7 @@ extension BarcodeVC {
     }
     func setupNavItems() {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         navigationItem.title = LanguageHelper.getTranslationByKey(LanguageKey.Barcode)
           self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
         let textAttributes = [NSAttributedString.Key.font: AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE), NSAttributedString.Key.foregroundColor:UIColor.white]

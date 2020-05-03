@@ -34,7 +34,7 @@ class AlertVC: BaseViewController {
     let wrapperView: UIView = {
         let parentView = UIView()
         parentView.translatesAutoresizingMaskIntoConstraints = false
-        parentView.backgroundColor = UIColor.white
+        parentView.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         parentView.layer.cornerRadius = AppConstants.CORNER_RADIUS
         parentView.layer.masksToBounds = true
         return parentView

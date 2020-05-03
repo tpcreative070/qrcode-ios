@@ -162,7 +162,7 @@ extension EventGenerateVC {
         textField.addTarget(self, action: #selector(inputFieldEditingDidEnd), for: .editingDidEnd)
     }
     func setupNavItems() {
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         navigationItem.title = LanguageHelper.getTranslationByKey(LanguageKey.Event)
         let textAttributes = [NSAttributedString.Key.font: AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE), NSAttributedString.Key.foregroundColor:UIColor.white]

@@ -292,6 +292,7 @@ struct AppImages {
     static let IC_HISTORY = "ic_history"
     static let IC_SCAN = "ic_scan"
     static let IC_SCAN_QR = "ic_scanqr"
+    static let IC_THEME = "ic_theme"
 
     static let IC_SAVE = "ic_save"
     static let IC_SETTING = "ic_settings_white"
@@ -408,6 +409,9 @@ struct AppImages {
 }
 
 struct AppColors {
+    static let ColorAppearance = "ColorAppearance"
+    static let ColorViewBg = "ColorViewBg"
+
     static let gray_default = UIColor.init(red: 178/255, green: 178/255, blue: 178/255, alpha: 1)
     static let gray_border = UIColor.init(red: 210/255, green: 207/255, blue: 208/255, alpha: 1)
     static let gray_background = UIColor.init(red: 234/255, green: 234/255, blue: 234/255, alpha: 1)
@@ -487,6 +491,8 @@ struct KeyUserDefault{
     static let OpenWeb = "OpenWeb"
      static let ChangeColor = "ChangeColor"
     static let Duplicate = "Duplicate"
+    static let Theme = "Theme"
+
 }
 struct LanguageKey {
     //Link
@@ -573,7 +579,8 @@ struct LanguageKey {
     static let CopyClipboard = "COPY_CLIPBOARD"
       static let CopyClipboard_Content = "COPY_CLIPBOARD_CONTENT"
     static let Duplicate_Content = "DUPLICATE_CONTENT"
-
+    static let Theme = "THEME"
+    static let ThemeContent = "THEME_CONTENT"
     static let  OpenWeb = "OPEN_WEB"
      static let  OpenWebContent = "OPEN_WEB_CONTENT"
     static let AppPermission = "APP_PERMISSION"
@@ -979,11 +986,17 @@ struct LanguageKey {
     static let RecoverPasswordSuccessfully = "RECOVER_PASSWORD_SUCCESSFULLY"
     //Mutiple languages
     static let ChooseYourLanguage = "CHOOSE_YOUR_LANGUAGE"
+    static let ChooseYourTheme = "CHOOSE_YOUR_THEME"
     static let Vietnamese = "VIETNAMESE"
     static let English = "English"
     static let Spanish = "SPANISH"
     static let Portuguese = "PORTUGUESE"
     static let Language =  "LANGUAGE"
+    //Theme
+    static let ChangeTheme =  "CHANGE_THEME"
+    static let LightTheme = "LIGHT_THEME"
+    static let DarkTheme = "DARK_THEME"
+
     //My QRCode
     static let ScanQRCodeLetToEWallet = "SCANQRCODELETTOADDEWALLET"
     static let CouldNotAddToItself  = "COULD_NOT_ADD_TO_ITSELF"

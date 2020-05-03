@@ -36,7 +36,7 @@ extension QRCodeVC {
         tableView = UITableView()
         tableView.allowsSelection = true
         tableView.isScrollEnabled = true
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         tableView.separatorStyle = .none
         //  tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
         tableView.sectionFooterHeight = 0
@@ -122,12 +122,12 @@ extension QRCodeVC {
     
     func setupTableView(){
         tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.QRCodeList.rawValue)
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
     }
     func setupNavItems() {
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         let urlAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = urlAttributes

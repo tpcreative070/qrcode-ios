@@ -50,7 +50,7 @@ extension AlertVC {
         tableView = UITableView()
         tableView.allowsSelection = true
         tableView.isScrollEnabled = true
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
         tableView.sectionFooterHeight = 0
@@ -154,7 +154,7 @@ extension AlertVC {
        }
     func setupTableView(){
         tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.Alert.rawValue)
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
     }

@@ -24,7 +24,7 @@ class PhoneGenerateVC: BaseViewController {
     }()
     lazy   var viewPhoneBg: UIView = {
         let view = UIView()
-        view.backgroundColor = AppColors.GRAY_LIGHT_90
+        view.backgroundColor = UIColor(named: AppColors.ColorViewBg)
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.borderWidth = AppConstants.WIDTH_BORDER
         view.layer.cornerRadius = AppConstants.CORNER_RADIUS

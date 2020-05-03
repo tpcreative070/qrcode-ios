@@ -11,7 +11,7 @@ import Photos
 class ResultGenerateVC: BaseViewController {
     var viewShare: UIView = {
         let view = UIView()
-        view.backgroundColor = AppColors.GRAY_LIGHT_90
+        view.backgroundColor = UIColor(named: AppColors.ColorViewBg)
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.borderWidth = AppConstants.WIDTH_BORDER
         view.layer.cornerRadius = AppConstants.CORNER_RADIUS
@@ -20,7 +20,7 @@ class ResultGenerateVC: BaseViewController {
     }()
     var viewSave: UIView = {
         let view = UIView()
-        view.backgroundColor = AppColors.GRAY_LIGHT_90
+        view.backgroundColor = UIColor(named: AppColors.ColorViewBg)
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.borderWidth = AppConstants.WIDTH_BORDER
         view.layer.cornerRadius = AppConstants.CORNER_RADIUS
@@ -66,7 +66,7 @@ class ResultGenerateVC: BaseViewController {
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         initUI()
         imgQrcode.image = imgCode
         

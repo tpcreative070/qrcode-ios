@@ -30,7 +30,7 @@ extension DetailVC {
         tableView = UITableView()
         tableView.allowsSelection = true
         tableView.isScrollEnabled = true
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
         tableView.sectionFooterHeight = 0
@@ -50,7 +50,7 @@ extension DetailVC {
     }
     func setupNavItems() {
         
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
@@ -120,7 +120,7 @@ extension DetailVC {
         tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.Wifi.rawValue)
         tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.Barcode.rawValue)
         
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
     }

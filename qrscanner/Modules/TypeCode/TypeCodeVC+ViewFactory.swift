@@ -9,6 +9,7 @@
 import UIKit
 extension TypeCodeVC {
     func initUI(){
+        view.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         self.navigationController?.isNavigationBarHidden = true
         /*SetupScrollView*/
         self.view.addSubview(scrollView)
@@ -30,7 +31,7 @@ extension TypeCodeVC {
         tableView = UITableView()
         tableView.allowsSelection = true
         tableView.isScrollEnabled = true
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
         tableView.sectionFooterHeight = 0
@@ -92,7 +93,7 @@ extension TypeCodeVC {
     
     func setupTableView(){
         tableView.register(TableViewCell.self, forCellReuseIdentifier: EnumIdentifier.Generate.rawValue)
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
     }

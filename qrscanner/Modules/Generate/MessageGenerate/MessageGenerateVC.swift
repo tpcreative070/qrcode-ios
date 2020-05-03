@@ -24,7 +24,7 @@ class MessageGenerateVC: BaseViewController {
     }()
     var stackViewTo : StackView = {
         let view = StackView()
-        view.backgroundColor = AppColors.GRAY_LIGHT_90
+        view.backgroundColor = UIColor(named: AppColors.ColorViewBg)
         view.layer.cornerRadius = AppConstants.CORNER_RADIUS
         view.layer.borderWidth = AppConstants.WIDTH_BORDER
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -32,7 +32,7 @@ class MessageGenerateVC: BaseViewController {
     }()
     var viewToBg: UIView = {
         let view = UIView()
-        view.backgroundColor = AppColors.GRAY_LIGHT_90
+        view.backgroundColor = UIColor(named: AppColors.ColorViewBg)
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.borderWidth = AppConstants.WIDTH_BORDER
         view.layer.cornerRadius = AppConstants.CORNER_RADIUS
@@ -41,7 +41,7 @@ class MessageGenerateVC: BaseViewController {
     }()
     var viewFromBg: UIView = {
         let view = UIView()
-        view.backgroundColor = AppColors.GRAY_LIGHT_90
+        view.backgroundColor = UIColor(named: AppColors.ColorViewBg)
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.borderWidth = AppConstants.WIDTH_BORDER
         view.layer.cornerRadius = AppConstants.CORNER_RADIUS

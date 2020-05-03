@@ -9,7 +9,7 @@
 import UIKit
 extension HelpVC {
     func initUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         self.view.addSubview(scrollView)
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),

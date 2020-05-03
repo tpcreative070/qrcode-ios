@@ -18,6 +18,11 @@ class SettingsVC : BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    lazy var viewWrapper: UIView = {
+          let view = UIView()
+          view.translatesAutoresizingMaskIntoConstraints = false
+          return view
+      }()
     lazy var viewBackground: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -74,6 +79,11 @@ class SettingsVC : BaseViewController {
         return view
     }()
     lazy var viewLanguage: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    lazy var viewTheme: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -148,26 +158,31 @@ class SettingsVC : BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    var stackViewTheme : StackView = {
+        let view = StackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     var stackViewSupport : StackView = {
         let view = StackView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     var stackViewRate : StackView = {
-           let view = StackView()
-           view.translatesAutoresizingMaskIntoConstraints = false
-           return view
-       }()
+        let view = StackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     var stackViewHelp : StackView = {
-           let view = StackView()
-           view.translatesAutoresizingMaskIntoConstraints = false
-           return view
-       }()
+        let view = StackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     var stackViewShare : StackView = {
-           let view = StackView()
-           view.translatesAutoresizingMaskIntoConstraints = false
-           return view
-       }()
+        let view = StackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     lazy var lbScan : ICLabel = {
         let view = ICLabel()
         view.text = LanguageHelper.getTranslationByKey(LanguageKey.Scan)
@@ -239,9 +254,26 @@ class SettingsVC : BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    lazy var lbCurrentTheme : ICLabel = {
+        let view = ICLabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     lazy var lbLanguage : ICLabel = {
         let view = ICLabel()
         view.text = LanguageHelper.getTranslationByKey(LanguageKey.Language)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    lazy var lbTheme : ICLabel = {
+        let view = ICLabel()
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.Theme)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    lazy var lbThemeContent : ICLabel = {
+        let view = ICLabel()
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.ThemeContent)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -294,11 +326,11 @@ class SettingsVC : BaseViewController {
         return view
     }()
     lazy var lbRateContent : ICLabel = {
-           let view = ICLabel()
-           view.text = LanguageHelper.getTranslationByKey(LanguageKey.RateContent)
-           view.translatesAutoresizingMaskIntoConstraints = false
-           return view
-       }()
+        let view = ICLabel()
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.RateContent)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     lazy var lbShare : ICLabel = {
         let view = ICLabel()
         view.text = LanguageHelper.getTranslationByKey(LanguageKey.Share)
@@ -306,11 +338,11 @@ class SettingsVC : BaseViewController {
         return view
     }()
     lazy var lbShareContent : ICLabel = {
-            let view = ICLabel()
-            view.text = LanguageHelper.getTranslationByKey(LanguageKey.ShareContent)
-            view.translatesAutoresizingMaskIntoConstraints = false
-            return view
-        }()
+        let view = ICLabel()
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.ShareContent)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     lazy var lbHelp : ICLabel = {
         let view = ICLabel()
         view.text = LanguageHelper.getTranslationByKey(LanguageKey.Help)
@@ -318,11 +350,11 @@ class SettingsVC : BaseViewController {
         return view
     }()
     lazy var lbHelpContent : ICLabel = {
-         let view = ICLabel()
-         view.text = LanguageHelper.getTranslationByKey(LanguageKey.HelpContent)
-         view.translatesAutoresizingMaskIntoConstraints = false
-         return view
-     }()
+        let view = ICLabel()
+        view.text = LanguageHelper.getTranslationByKey(LanguageKey.HelpContent)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     lazy var lbSupport : ICLabel = {
         let view = ICLabel()
         view.text = LanguageHelper.getTranslationByKey(LanguageKey.Support)
@@ -410,6 +442,13 @@ class SettingsVC : BaseViewController {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.image = UIImage(named: AppImages.IC_SCAN_QR)
+        view.tintColor = AppColors.COLOR_ACCENT
+        return view
+    }()
+    lazy var imgTheme : UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.image = UIImage(named: AppImages.IC_THEME)
         view.tintColor = AppColors.COLOR_ACCENT
         return view
     }()
@@ -547,7 +586,6 @@ class SettingsVC : BaseViewController {
         initUI()
         bindViewModel()
         checkIsOnSwitch()
-        //  Fabric.sharedSDK().debug = true
     }
     
     @objc func switchVibrateDidChange (_ : ICSwitchButton){
@@ -654,6 +692,53 @@ class SettingsVC : BaseViewController {
         }
         
     }
+    @objc func doChangeTheme (sender : UITapGestureRecognizer){
+        let alrController = UIAlertController(title: LanguageHelper.getTranslationByKey(LanguageKey.ChangeTheme), message: LanguageHelper.getTranslationByKey(LanguageKey.ChooseYourTheme), preferredStyle: UIAlertController.Style.actionSheet)
+        let lightTheme = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.LightTheme), style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in
+            
+            CommonService.setUserDefault(key: KeyUserDefault.Theme, value: false)
+            self.lbCurrentTheme.text = LanguageHelper.getTranslationByKey(LanguageKey.LightTheme)
+           // self.overrideUserInterfaceStyle = .light
+            UIApplication.shared.windows.forEach { window in
+                                      window.overrideUserInterfaceStyle = .light
+                                  }
+            self.viewWrapper.overrideUserInterfaceStyle = .light
+
+            self.dismiss()
+            
+        })
+        let darkTheme = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.DarkTheme), style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in
+            CommonService.setUserDefault(key: KeyUserDefault.Theme, value: true)
+            self.lbCurrentTheme.text = LanguageHelper.getTranslationByKey(LanguageKey.DarkTheme)
+            UIApplication.shared.windows.forEach { window in
+                                      window.overrideUserInterfaceStyle = .dark
+                                  }
+            self.viewWrapper.overrideUserInterfaceStyle = .dark
+
+            self.dismiss()
+        })
+        let cancelAction = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Cancel), style: UIAlertAction.Style.cancel, handler: {(alert: UIAlertAction!) in
+            self.dismiss()
+        })
+        
+        alrController.addAction(lightTheme)
+        alrController.addAction(darkTheme)
+        alrController.addAction(cancelAction)
+        alrController.pruneNegativeWidthConstraints()
+        if DeviceHelper.isIpad(){
+            if let popoverController = alrController.popoverPresentationController {
+                popoverController.sourceView = self.view //to set the source of your alert
+                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0) // you can set this as per your requirement.
+                popoverController.permittedArrowDirections = [.up] //to hide the arrow of any particular direction
+            }
+            self.present(alrController, animated: true, completion: nil)
+        }
+        else{
+            self.present(alrController, animated: true, completion: nil)
+            
+        }
+        
+    }
     @objc func doChangeColor (sender : UITapGestureRecognizer){
         let vc = ChangeColorVC()
         self.navigationController?.pushViewController(vc, animated: true)
@@ -720,6 +805,108 @@ class SettingsVC : BaseViewController {
         else{
             self.present(activiController, animated: true, completion: nil)
             
+        }
+    }
+    @objc func doSwitchVibrate (sender : UITapGestureRecognizer){
+        settingViewModel.isVibrate = !(Bool(CommonService.getUserDefault(key: KeyUserDefault.Vibrate) ?? false))
+        if settingViewModel.isVibrate ?? false {
+            switchVibrate.setOn(on: true, animated: true)
+            switchVibrate.isOn = true
+            CommonService.setUserDefault(key: KeyUserDefault.Vibrate, value: true)
+            
+        }
+        else {
+            switchVibrate.setOn(on: false, animated: true)
+            switchVibrate.isOn = false
+            CommonService.setUserDefault(key: KeyUserDefault.Vibrate, value: false)
+        }
+    }
+    
+    @objc func doSwitchBeep (sender : UITapGestureRecognizer){
+        settingViewModel.isBeep = !(Bool(CommonService.getUserDefault(key: KeyUserDefault.Beep) ?? false))
+        if settingViewModel.isBeep ?? false {
+            switchBeep.setOn(on: true, animated: true)
+            switchBeep.isOn = true
+            CommonService.setUserDefault(key: KeyUserDefault.Beep, value: true)
+            
+        }
+        else {
+            switchBeep.setOn(on: false, animated: true)
+            switchBeep.isOn = false
+            CommonService.setUserDefault(key: KeyUserDefault.Beep, value: false)
+        }
+    }
+    
+    @objc func doSwitchMultiScan (sender : UITapGestureRecognizer){
+        settingViewModel.isMultiScan = !(Bool(CommonService.getUserDefault(key: KeyUserDefault.MultiScan) ?? false))
+        if settingViewModel.isMultiScan ?? false {
+            switchMultiScan.setOn(on: true, animated: true)
+            switchMultiScan.isOn = true
+            CommonService.setUserDefault(key: KeyUserDefault.MultiScan, value: true)
+            
+        }
+        else {
+            switchMultiScan.setOn(on: false, animated: true)
+            switchMultiScan.isOn = false
+            CommonService.setUserDefault(key: KeyUserDefault.MultiScan, value: false)
+        }
+    }
+    
+    @objc func doSwitchMultiLoad (sender : UITapGestureRecognizer){
+        settingViewModel.isMultiLoad = !(Bool(CommonService.getUserDefault(key: KeyUserDefault.MultiLoad) ?? false))
+        if settingViewModel.isMultiLoad ?? false {
+            switchMultiLoad.setOn(on: true, animated: true)
+            switchMultiLoad.isOn = true
+            CommonService.setUserDefault(key: KeyUserDefault.MultiLoad, value: true)
+            
+        }
+        else {
+            switchMultiLoad.setOn(on: false, animated: true)
+            switchMultiLoad.isOn = false
+            CommonService.setUserDefault(key: KeyUserDefault.MultiLoad, value: false)
+        }
+    }
+    
+    @objc func doSwitchCopy (sender : UITapGestureRecognizer){
+        settingViewModel.isCopy = !(Bool(CommonService.getUserDefault(key: KeyUserDefault.Copy) ?? false))
+        if settingViewModel.isCopy ?? false {
+            switchCopy.setOn(on: true, animated: true)
+            switchCopy.isOn = true
+            CommonService.setUserDefault(key: KeyUserDefault.Copy, value: true)
+            
+        }
+        else {
+            switchCopy.setOn(on: false, animated: true)
+            switchCopy.isOn = false
+            CommonService.setUserDefault(key: KeyUserDefault.Copy, value: false)
+        }
+    }
+    @objc func doSwitchOpenWeb (sender : UITapGestureRecognizer){
+        settingViewModel.isOpenWeb = !(Bool(CommonService.getUserDefault(key: KeyUserDefault.OpenWeb) ?? false))
+        if settingViewModel.isOpenWeb ?? false {
+            switchOpen.setOn(on: true, animated: true)
+            switchOpen.isOn = true
+            CommonService.setUserDefault(key: KeyUserDefault.OpenWeb, value: true)
+            
+        }
+        else {
+            switchOpen.setOn(on: false, animated: true)
+            switchOpen.isOn = false
+            CommonService.setUserDefault(key: KeyUserDefault.OpenWeb, value: false)
+        }
+    }
+    @objc func doSwitchDulplicate (sender : UITapGestureRecognizer){
+        settingViewModel.isSkip = !(Bool(CommonService.getUserDefault(key: KeyUserDefault.Duplicate) ?? false))
+        if settingViewModel.isSkip ?? false {
+            switchDuplicate.setOn(on: true, animated: true)
+            switchDuplicate.isOn = true
+            CommonService.setUserDefault(key: KeyUserDefault.Duplicate, value: true)
+            
+        }
+        else {
+            switchDuplicate.setOn(on: false, animated: true)
+            switchDuplicate.isOn = false
+            CommonService.setUserDefault(key: KeyUserDefault.Duplicate, value: false)
         }
     }
     
