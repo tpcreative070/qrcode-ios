@@ -23,8 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().unselectedItemTintColor = AppColors.GRAY
         
          UITabBar.appearance().backgroundColor = AppColors.PRIMARY_COLOR
-       
-      
+
 
         self.initGoogleServices()
         self.initLanguage()

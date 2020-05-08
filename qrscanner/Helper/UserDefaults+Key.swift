@@ -12,12 +12,17 @@ extension UserDefaults {
   enum Key: String {
     case reviewWorthyActionCount
     case lastReviewRequestAppVersion
+    case pressNotNow
+     case pressSubmitFiveStar
+    case pressSubmitLittleFiveStar
   }
 
   func integer(forKey key: Key) -> Int {
     return integer(forKey: key.rawValue)
   }
-
+    func bool(forKey key: Key) -> Bool {
+       return bool(forKey: key.rawValue)
+     }
   func string(forKey key: Key) -> String? {
     return string(forKey: key.rawValue)
   }

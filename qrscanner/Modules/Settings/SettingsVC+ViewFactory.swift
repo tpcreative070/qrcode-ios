@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 extension SettingsVC {
     func initUI(){
         view.backgroundColor =  UIColor(named: AppColors.ColorAppearance)
@@ -801,5 +802,22 @@ extension SettingsVC {
             self.overrideUserInterfaceStyle = .light
             
         }
+       }
+    func configureMailController() -> MFMailComposeViewController{
+           let mailComposerVC = MFMailComposeViewController()
+           mailComposerVC.mailComposeDelegate = self
+           mailComposerVC.setToRecipients([LanguageKey.Email_Help])
+           mailComposerVC.setSubject(LanguageHelper.getTranslationByKey(LanguageKey.Help)!)
+           mailComposerVC.setMessageBody("", isHTML: false)
+           return mailComposerVC
+       }
+       func showMailError(){
+           let sendMailErrorAlert = UIAlertController(title: LanguageHelper.getTranslationByKey(LanguageKey.Alert), message: LanguageHelper.getTranslationByKey(LanguageKey.CanNotSendMail), preferredStyle: .alert)
+           let dismiss = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Ok), style: .default, handler: nil)
+           sendMailErrorAlert.addAction(dismiss)
+           self.present(sendMailErrorAlert, animated: true, completion: nil)
+       }
+       func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+           controller.dismiss(animated: true, completion: nil)
        }
 }

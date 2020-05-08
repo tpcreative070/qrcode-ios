@@ -198,13 +198,13 @@ class BaseViewController: UIViewController {
         return .default
     }
 
-    func addBackgroundStatusBar(){
+   /* func addBackgroundStatusBar(){
         let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
         let statusBarColor = AppColors.PRIMARY_COLOR_DARK
         statusBarView.backgroundColor = statusBarColor
         view.addSubview(statusBarView)
     }
-
+*/
     func refreshToken(){
      
     }
@@ -289,31 +289,7 @@ class BaseViewController: UIViewController {
     @objc func actionAlertNo(){
 
     }
-    func setupStatusBar(){
-        if #available(iOS 13.0, *) {
-                  let app = UIApplication.shared
-                  let statusBarHeight: CGFloat = app.statusBarFrame.size.height
-                  
-                  let statusbarView = UIView()
-                  statusbarView.backgroundColor = AppColors.PRIMARY_COLOR_DARK
-                  view.addSubview(statusbarView)
-                
-                  statusbarView.translatesAutoresizingMaskIntoConstraints = false
-                  statusbarView.heightAnchor
-                      .constraint(equalToConstant: statusBarHeight).isActive = true
-                  statusbarView.widthAnchor
-                      .constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
-                  statusbarView.topAnchor
-                      .constraint(equalTo: view.topAnchor).isActive = true
-                  statusbarView.centerXAnchor
-                      .constraint(equalTo: view.centerXAnchor).isActive = true
-                
-              } else {
-                  let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
-                  statusBar?.backgroundColor = AppColors.PRIMARY_COLOR_DARK
-              }
-
-    }
+    
     func showToast(message : String) {
 
         let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 120, y: self.view.frame.size.height-100, width: 220, height: 35))

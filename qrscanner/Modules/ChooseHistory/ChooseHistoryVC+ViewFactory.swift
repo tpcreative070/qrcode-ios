@@ -100,18 +100,9 @@ extension ChooseHistoryVC  {
         let menuButtonRightSelectAll = UIButton(frame: CGRect(x: 0, y: 0, width: DeviceHelper.Shared.ICON_WIDTH_HEIGHT, height: DeviceHelper.Shared.ICON_WIDTH_HEIGHT))
         menuButtonRightSelectAll.setBackgroundImage(UIImage(named: AppImages.IC_SELECT_ALL), for: .normal)
         menuButtonRightSelectAll.addTarget(self, action: #selector(doSelectAll), for: .touchUpInside)
-        if DeviceHelper.isIpad() {
-            navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRightDel),UIBarButtonItem(customView: menuButtonRightSelectAll)]
-        }
-        else{
-        
-     let stackview = UIStackView.init(arrangedSubviews: [menuButtonRightSelectAll,menuButtonRightDel])
-               stackview.distribution = .fillEqually
-               stackview.axis = .horizontal
-               stackview.alignment = .fill
-               stackview.spacing = 8
-            navigationItem.rightBarButtonItem = UIBarButtonItem(customView: stackview)
-        }
+        let space = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        space.width = DeviceHelper.Shared.SPACING_NAV
+           navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRightDel),space,UIBarButtonItem(customView: menuButtonRightSelectAll)]
     }
     
     func bindTableView(){

@@ -50,11 +50,11 @@ class SQLHelper {
     class open func writeFile(data : Data,isDelete : Bool? = nil){
         let fileName = "qrscanner.db"
         if let _ = isDelete {
-            DocumentHelper.createdFile(data: data, folderName: FolderName.db,fileName: fileName)
+            let _ = DocumentHelper.createdFile(data: data, folderName: FolderName.db,fileName: fileName)
             return
         }
         guard let _ = DocumentHelper.getFilePath(fileName: fileName,folderName: FolderName.db) else {
-            DocumentHelper.createdFile(data: data, folderName: FolderName.db,fileName: fileName)
+            let _ = DocumentHelper.createdFile(data: data, folderName: FolderName.db,fileName: fileName)
             debugPrint("qrscanner.db was created")
             return
         }
@@ -131,8 +131,6 @@ class SQLHelper {
            guard let db = connection() else {
                return
            }
-        print(data.createdDateTime)
-        print(data.updatedDateTime)
         return GenerateEntity.instance.update(db: db, data : data)
        }
        
@@ -150,7 +148,7 @@ class SQLHelper {
         guard let db = connection() else {
             return nil
         }
-         GenerateEntity.instance.delete(db: db, value: false)
+        let _ = GenerateEntity.instance.delete(db: db, value: false)
         return GenerateEntity.instance.getListHistory(db: db)
     }
     /*Get list histories type*/
@@ -165,7 +163,7 @@ class SQLHelper {
         guard let db = connection() else {
             return nil
         }
-        GenerateEntity.instance.delete(db: db, value: false)
+        let _ = GenerateEntity.instance.delete(db: db, value: false)
         return GenerateEntity.instance.getListSave(db: db)
     }
     /*Delete */

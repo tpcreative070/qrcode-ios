@@ -62,9 +62,49 @@ extension MainVC  {
                    } else {
                        let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
                        statusBar?.backgroundColor = AppColors.PRIMARY_COLOR_DARK
-                   }
+        }
+        
+    }
+                func showRating(){
+                     let minimumReviewWorthyActionCount = 3
 
-         }
+                    let defaults = UserDefaults.standard
+                    let bundle = Bundle.main
+
+                    var actionCount = defaults.integer(forKey: .reviewWorthyActionCount)
+                    actionCount += 1
+                    defaults.set(actionCount, forKey: .reviewWorthyActionCount)
+
+                   
+
+                    let bundleVersionKey = kCFBundleVersionKey as String
+                    let currentVersion = bundle.object(forInfoDictionaryKey: bundleVersionKey) as? String
+                    let lastVersion = defaults.string(forKey: .lastReviewRequestAppVersion)
+
+                    if lastVersion == nil || lastVersion != currentVersion {
+                        if actionCount >= minimumReviewWorthyActionCount {
+                            let myAlert = RateVC()
+                            myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+                            myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+                            self.present(myAlert, animated: true, completion: nil)
+                        }
+                          defaults.set(currentVersion, forKey: .lastReviewRequestAppVersion)
+                    }
+                    else{
+                        if actionCount >= minimumReviewWorthyActionCount && actionCount < 6 {
+                            let myAlert = RateVC()
+                            myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+                            myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+                            self.present(myAlert, animated: true, completion: nil)
+                        }
+                        else{
+                            defaults.set(0, forKey: .reviewWorthyActionCount)
+
+                        }
+                    }
+                    //....
+                    
+                }
 }
 
 

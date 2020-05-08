@@ -7,7 +7,8 @@
 //
 
 import UIKit
-class SettingsVC : BaseViewController {
+import MessageUI
+class SettingsVC : BaseViewController, MFMailComposeViewControllerDelegate {
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -911,8 +912,7 @@ class SettingsVC : BaseViewController {
     }
     
     @objc func showRating(sender : UITapGestureRecognizer){
-        UIApplication.shared.openURL(NSURL(string: LanguageKey.Link_Share)! as URL)
-        
+         CommonService.ratingApp()
     }
     @objc func showHelp (sender : UITapGestureRecognizer){
         
@@ -920,14 +920,12 @@ class SettingsVC : BaseViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     @objc func showSupport (sender : UITapGestureRecognizer){
-        let email = LanguageKey.Email_Help
-        if let url = URL(string: "mailto:\(email)") {
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url)
-            } else {
-                UIApplication.shared.openURL(url)
-            }
-        }
+        let mailComposer = configureMailController()
+                   if MFMailComposeViewController.canSendMail(){
+                       self.present(mailComposer,animated: true, completion: nil)
+                   }else{
+                       showMailError()
+                   }
     }
     override func viewDidAppear(_ animated: Bool) {
         changeColorQRCode(imgQRCode: imgQRCode)

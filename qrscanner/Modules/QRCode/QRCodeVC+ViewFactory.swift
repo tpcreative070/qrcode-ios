@@ -10,26 +10,12 @@ import UIKit
 extension QRCodeVC {
     func initUI(){
         self.navigationController?.isNavigationBarHidden = true
-        /*SetupScrollView*/
-        self.view.addSubview(scrollView)
+   
+        view.addSubview(lbTitle)
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-        ])
-        scrollView.addSubview(wrapperView)
-        NSLayoutConstraint.activate([
-            wrapperView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            wrapperView.leftAnchor.constraint(equalTo: view.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT_HELP),
-            wrapperView.rightAnchor.constraint(equalTo: view.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT_HELP),
-            wrapperView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-        ])
-        wrapperView.addSubview(lbTitle)
-        NSLayoutConstraint.activate([
-            lbTitle.topAnchor.constraint(equalTo: wrapperView.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-            lbTitle.leftAnchor.constraint(equalTo: wrapperView.leftAnchor, constant: AppConstants.MARGIN_LEFT_HELP),
-            lbTitle.centerXAnchor.constraint(equalTo: wrapperView.centerXAnchor)
+            lbTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
+            lbTitle.leftAnchor.constraint(equalTo: view.leftAnchor, constant: AppConstants.MARGIN_LEFT_HELP),
+            lbTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor)
             
         ])
         /*TableView*/
@@ -40,7 +26,7 @@ extension QRCodeVC {
         tableView.separatorStyle = .none
         //  tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
         tableView.sectionFooterHeight = 0
-        wrapperView.addSubview(tableView)
+        view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tableView.leftAnchor.constraint(equalTo: view.readableContentGuide.leftAnchor),
@@ -49,7 +35,6 @@ extension QRCodeVC {
             tableView.topAnchor.constraint(equalTo: lbTitle.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM)
         ])
         //  btnDone.addTarget(self, action: #selector(getListSelectedItem), for: .touchUpInside)
-        setupEndedUpScrollView()
         setupTableView()
         bindTableView()
         
@@ -78,8 +63,7 @@ extension QRCodeVC {
             vc.listContentViewModel = ((self?.viewModel.listTransaction)!)
             self?.navigationController?.pushViewController(vc, animated: true)
             self?.navigationController?.viewControllers.remove(at: 1)
-            
-            }
+        }
             else{
                 let alert = UIAlertController(title: LanguageHelper.getTranslationByKey(LanguageKey.Alert), message:LanguageHelper.getTranslationByKey(LanguageKey.ChooseQRCode) , preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Ok), style: UIAlertAction.Style.default, handler: nil))
@@ -138,19 +122,15 @@ extension QRCodeVC {
         menuButtonRightSelectAll.setBackgroundImage(UIImage(named: AppImages.IC_SELECT_ALL), for: .normal)
         menuButtonRightSelectAll.addTarget(self, action: #selector(doSelectAll), for: .touchUpInside)
         
+        let space = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        space.width = DeviceHelper.Shared.SPACING_NAV
         
         let menuButtonRight = UIButton(frame: CGRect(x: 0, y: 0, width: DeviceHelper.Shared.ICON_WIDTH_HEIGHT, height: DeviceHelper.Shared.ICON_WIDTH_HEIGHT))
         menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
         menuButtonRight.addTarget(self, action: #selector(getListSelectedItem), for: .touchDown)
         navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRight), UIBarButtonItem(customView: menuButtonRightSelectAll)]
-        
-        let stackview = UIStackView.init(arrangedSubviews: [menuButtonRightSelectAll,menuButtonRight])
-           stackview.distribution = .equalSpacing
-           stackview.axis = .horizontal
-           stackview.alignment = .center
-           stackview.spacing = 8
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: stackview)
-        
+
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRight),space,UIBarButtonItem(customView: menuButtonRightSelectAll)]
        
     }
 }
@@ -184,16 +164,7 @@ extension QRCodeVC : TableViewCellDelegate {
     func cellViewSelected(cell: TableViewCell, action: EnumResponseToView) {
         print("\(cell.identifier) -- \(cell.lbTitle)")
     }
-    
-    func setupEndedUpScrollView(){
-        wrapperView.addSubview(endedUpScrollViewContainerView)
-        NSLayoutConstraint.activate([
-            endedUpScrollViewContainerView.topAnchor.constraint(equalTo: tableView.bottomAnchor),
-            endedUpScrollViewContainerView.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor),
-            endedUpScrollViewContainerView.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor),
-            endedUpScrollViewContainerView.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor)
-        ])
-    }
+   
 }
 extension QRCodeVC : SingleButtonDialogPresenter {
     

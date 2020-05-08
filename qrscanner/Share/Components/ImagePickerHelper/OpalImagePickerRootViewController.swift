@@ -208,7 +208,7 @@ open class OpalImagePickerRootViewController: UIViewController {
         }
         
         NSLayoutConstraint.activate([
-            toolbar.constraintEqualTo(with: topLayoutGuide, receiverAttribute: .top, otherAttribute: .bottom),
+            toolbar.constraintEqualTo(with: view.safeAreaLayoutGuide, receiverAttribute: .top, otherAttribute: .bottom),
             toolbar.constraintEqualTo(with: view, attribute: .left),
             toolbar.constraintEqualTo(with: view, attribute: .right)
             ])

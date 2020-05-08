@@ -482,7 +482,6 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
                var index = 0
                self.listTransaction = mList.map({ (data) -> ContentViewModel in
                    index += 1
-                print(data.content)
                 return ContentViewModel(typeCode: data.typeCode!, content: data.content!)
                })
            }

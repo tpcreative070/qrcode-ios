@@ -260,7 +260,7 @@ class CommonService  {
     static func onReaderQRcode(tempImage : CGImage, countList: Int, completion : @escaping (_ result : [ZXResult]?) -> ()) {
         var listMultiResult : [ZXResult] = []
         var listSingleResult : [ZXResult] = []
-        var flagqrcode : Bool = false
+      //  var flagqrcode : Bool = false
         // initializers are imported without "initWith"
         let source: ZXLuminanceSource = ZXCGImageLuminanceSource(cgImage: tempImage)
         let binazer = ZXHybridBinarizer(source: source)
@@ -417,5 +417,16 @@ class CommonService  {
              return LanguageKey.Unknown
          }
      }
+    static func ratingApp(){
+        if let url = URL(string: LanguageKey.Link_Share), !url.absoluteString.isEmpty {
+                          UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                      }
+
+                      // or outside scope use this
+                      guard let url = URL(string: "\(LanguageKey.Link_Share)"), !url.absoluteString.isEmpty else {
+                         return
+                      }
+                       UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
 }
 

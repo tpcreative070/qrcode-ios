@@ -299,6 +299,7 @@ struct AppImages {
     
     static let IC_CONTACT_CALENDAR = "ic_contact_calendar"
     static let IC_COPY = "ic_copy"
+     static let IC_LAUNCH = "ic_launch"
     static let IC_CREATE = "ic_create"
     static let IC_DELETE = "ic_delete"
     static let IC_EMAIL = "ic_email"
@@ -505,6 +506,7 @@ struct LanguageKey {
     static let Placeholder_UPCA = "PLACEHOLDER_UPCA"
     static let Placeholder_UPCE = "PLACEHOLDER_UPCE"
     static let Placeholder_ITF = "Placeholder_ITF"
+    static let FeedBack = "FEEDBACK"
 
     static let Back = "BACK"
     static let Aztec = "Aztec"
@@ -560,6 +562,9 @@ struct LanguageKey {
     //Message
     static let To = "TO"
     static let Subject = "SUBJECT"
+    static let SubjectContent = "SUBJECTCONTENT"
+    static let ImproveApp = "IMPROVEAPP"
+
     //Text
     //Email
     static let EmailAddress = "EMAIL_ADDRESS"
@@ -732,10 +737,14 @@ struct LanguageKey {
     static let NoResult = "NORESULT"
     static let Cancel = "CANCEL"
     static let Copy = "COPY"
-    
+
     static let TryAgain = "TRY_AGAIN"
     static let Ok = "OK"
-    
+    static let Submit = "SUBMIT"
+    static let NotNow = "NOT_NOW"
+    static let NoThanks = "NO_THANKS"
+    static let CanNotSendMail = "CANNOTSENDMAIL"
+
     //SignIn
     static let TitleBrand = "ECASH"
     static let SignOut = "SIGNOUT"
@@ -1072,7 +1081,7 @@ struct StorageKey {
 }
 
 struct FolderName {
-    static let db = "db"
+    static let db = ".db"
     static let gallery = "gallery"
     static let png = "png"
 }
