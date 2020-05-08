@@ -148,7 +148,7 @@ extension HistoryVC : TableViewCellDelegate{
     }
     
     func cellViewSelected(cell: TableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        //guard let indexPath = tableView.indexPath(for: cell) else { return }
     
     }
     func cellViewLongSelected(cell: Codable) {

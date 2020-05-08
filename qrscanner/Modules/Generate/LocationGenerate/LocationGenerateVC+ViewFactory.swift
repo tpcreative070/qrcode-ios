@@ -293,6 +293,8 @@ extension LocationGenerateVC : CLLocationManagerDelegate{
             break
         case .authorizedAlways:
             break
+        default:
+            break
         }
     }
 }

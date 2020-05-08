@@ -29,8 +29,9 @@ class ShareViewController: SLComposeServiceViewController {
 //                   let secondPath = "qrscanner://\(message ?? "")"
 //                   let appUrl = URL(string: secondPath)
                      //  application.open(appUrl!, options: [:], completionHandler: nil)
-                        self.openURL(url:NSURL(string:"qrscanner://co.tpcreative.qrscanner")!)
+                      let _ =  self.openURL(url:NSURL(string:"qrscanner://co.tpcreative.qrscanner")!)
 //            openURL(appUrl!)
+           
         self.extensionContext?.completeRequest(returningItems: [], completionHandler: nil)
 
                }

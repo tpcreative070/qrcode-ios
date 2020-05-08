@@ -209,7 +209,6 @@ class ResultGenerateVC: BaseViewController {
         }
         else if resultViewModel.typeCode!.uppercased() == EnumType.BARCODE.rawValue {
                    let valueData = try! JSONDecoder().decode(BarcodeModel.self, from: jsonData)
-            print(valueData.barcodetype)
                     isCode = valueData.barcodetype ?? "Barcode"
                    if resultViewModel.isUpdate != AppConstants.ISUPDATE
                    {

@@ -1,5 +1,12 @@
 {
     "en": {
+        "CANNOTSENDMAIL" : "Unable to send mail. Please try again",
+        "NO_THANKS" : "No Thanks",
+        "IMPROVEAPP" : "Improve App",
+        "CONTENT" : "Content",
+        "FEEDBACK": "Feedback",
+        "NOT_NOW" : "Not now",
+        "SUBMIT" : "Submit",
         "DARK_THEME": "Dark",
         "LIGHT_THEME" : "Light",
         "CHOOSE_YOUR_THEME": "Select the theme you want to change",
@@ -173,7 +180,7 @@
         "SECONDS": "seconds",
         "FROM" : "From",
         
-        "CANCEL" : "CANCEL",
+        "CANCEL" : "Cancel",
         
         "HISTORY" : "History",
         
@@ -221,6 +228,13 @@
         "THIS_FEATURE_COMING_SOON" : "This feature will be coming soon"
     },
     "vi" : {
+        "CANNOTSENDMAIL" : "Không thể gửi mail. Vui lòng thử lại",
+        "NO_THANKS" : "Không, cảm ơn",
+        "IMPROVEAPP" : "Cải thiện ứng dụng",
+         "CONTENT" : "Nội dung",
+         "FEEDBACK": "Phản hồi",
+        "NOT_NOW": "Không phải bây giờ",
+        "SUBMIT" : "Gửi",
         "DARK_THEME": "Tối",
         "LIGHT_THEME" : "Sáng",
         "CHOOSE_YOUR_THEME": "Chọn chủ đề bạn muốn thay đổi",
@@ -402,7 +416,7 @@
         
         "TOTALMONEY" : "Tổng tiền",
         
-        "CANCEL" : "HUỶ",
+        "CANCEL" : "Huỷ",
         
         "HISTORY" : "Lịch sử",
         
@@ -477,6 +491,13 @@
         "THIS_FEATURE_COMING_SOON" : "Tính năng này sẽ có trong tương lai"
     },
    "es" : {
+       "CANNOTSENDMAIL": "No se puede enviar el correo. Vuelve a intentarlo",
+       "NO_THANKS": "No, gracias",
+       "IMPROVEAPP" : "Mejorar aplicación",
+        "CONTENT" : "Contenido",
+        "FEEDBACK": "Retroalimentación",
+       "NOT_NOW": "No ahora",
+       "SUBMIT" : "Enviar",
        "DARK_THEME": "Oscuro",
        "LIGHT_THEME": "Light",
        "CHOOSE_YOUR_THEME": "Seleccione el tema que desea cambiar",
@@ -719,6 +740,13 @@
         "THIS_FEATURE_COMING_SOON" : "Esta característica estará disponible pronto",
     },
    "pt" : {
+       "CANNOTSENDMAIL": "Não foi possível enviar e-mail. Tente novamente",
+       "NO_THANKS": "Não, obrigado",
+       "IMPROVEAPP" : "Aprimore o aplicativo",
+        "CONTENT" : "Conteúdo",
+        "FEEDBACK": "Feedback",
+       "NOT_NOW": "Agora não",
+       "SUBMIT" : "Enviar",
        "DARK_THEME": "Escuro",
        "LIGHT_THEME": "Light",
        "CHOOSE_YOUR_THEME": "Selecione o tópico que você deseja alterar",

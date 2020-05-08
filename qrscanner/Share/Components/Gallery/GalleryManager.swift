@@ -296,7 +296,7 @@ extension FDTakeController : UIImagePickerControllerDelegate, UINavigationContro
                 return
             }
             self.didGetPhoto?(imageToSave, info)
-            if UI_USER_INTERFACE_IDIOM() == .pad {
+            if ( UI_USER_INTERFACE_IDIOM() == .pad ){
                 self.imagePicker.dismiss(animated: true)
             }
         } else if mediaType == kUTTypeMovie as String {

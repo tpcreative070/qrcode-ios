@@ -154,7 +154,7 @@ extension SaveVC : TableViewCellDelegate{
         navigationController?.pushViewController(ChooseSaveVC(), animated: false)
     }
     func cellViewSelected(cell: TableViewCell, countSelected: Int) {
-        guard let indexPath = tableView.indexPath(for: cell) else { return }
+     //   guard let indexPath = tableView.indexPath(for: cell) else { return }
     }
     
     func cellViewSelected(cell: Codable) {

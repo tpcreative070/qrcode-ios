@@ -110,7 +110,13 @@ protocol ScannerViewModelDelegate : BaseViewModel {
     var transactionIdBinding : Bindable<String> {get}
     var cameraBinding : Bindable<Bool>{get set}
 }
-
+protocol FeedbackViewModelDelegate  {
+    var navigate: (() -> ())?  { get set }
+    var responseToView : ((String) ->())? {get set}
+    var email: String? {get}
+    var objectEmail: String? {get}
+    var contentEmail: String? {get}
+}
 protocol GenerateViewModelDelegate  {
     var navigate: (() -> ())?  { get set }
     var responseToView : ((String) ->())? {get set}

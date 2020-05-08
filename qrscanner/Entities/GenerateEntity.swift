@@ -204,13 +204,9 @@ class GenerateEntity{
             var response = try db.prepare(query).map({(event) -> GenerateEntityModel in
                         return GenerateEntityModel(createdDateTime: event[createdDateTime], typeCode: event[typeCode],content: event[content], isHistory: event[isHistory], isSave: event[isSave], updatedDateTime: event[updatedDateTime], bookMark: event[bookMark], transactionID: event[transactionID], isCode: event[isCode])
                     })
-            print(response.count)
                     if response.count > 1{
-                        print(response.count)
                       let res =  response.removeFirst()
-                        Utils.logMessage(object: response)
                         for (item) in response {
-                            Utils.logMessage(object: item.createdDateTime)
                                 let query = table.select(table[*])
                                 .filter(createdDateTime == Int(item.createdDateTime!))
                                 try db.run(query.delete())

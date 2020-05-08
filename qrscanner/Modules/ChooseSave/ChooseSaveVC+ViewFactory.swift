@@ -10,9 +10,9 @@ import UIKit
 extension ChooseSaveVC  {
     func initUI(){
         setupNavItems()
-       
+        
         /*TableView*/
-         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height), style: .grouped)
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height), style: .grouped)
         tableView.allowsSelection = true
         
         tableView.backgroundColor = UIColor(named: AppColors.ColorAppearance)
@@ -21,7 +21,7 @@ extension ChooseSaveVC  {
         tableView.estimatedRowHeight = AppConstants.TABLE_ROW_HEIGHT
         tableView.sectionFooterHeight = 0
         tableView.showsVerticalScrollIndicator = false
-
+        
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -74,7 +74,7 @@ extension ChooseSaveVC  {
             return headline.typeCode
         })
         self.sections.sort { (lhs, rhs) in lhs.rowItems[0].updatedDateTime > rhs.rowItems[0].updatedDateTime }
-
+        
         self.dataSource.sections = self.sections
         self.dataSource.items = self.saveViewModel.listSave
         self.tableView.reloadData()
@@ -94,23 +94,10 @@ extension ChooseSaveVC  {
         let menuButtonRightSelectAll = UIButton(frame: CGRect(x: 0, y: 0, width: DeviceHelper.Shared.ICON_WIDTH_HEIGHT, height: DeviceHelper.Shared.ICON_WIDTH_HEIGHT))
         menuButtonRightSelectAll.setBackgroundImage(UIImage(named: AppImages.IC_SELECT_ALL), for: .normal)
         menuButtonRightSelectAll.addTarget(self, action: #selector(doSelectAll), for: .touchUpInside)
-        
-      if DeviceHelper.isIpad() {
-               navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRightDel),UIBarButtonItem(customView: menuButtonRightSelectAll)]
-           }
-           else{
-           
-        let stackview = UIStackView.init(arrangedSubviews: [menuButtonRightSelectAll,menuButtonRightDel])
-                  stackview.distribution = .fillEqually
-                  stackview.axis = .horizontal
-                  stackview.alignment = .fill
-                  stackview.spacing = 8
-               navigationItem.rightBarButtonItem = UIBarButtonItem(customView: stackview)
-           }
-        
-       
-        
-    }
+        let space = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        space.width = DeviceHelper.Shared.SPACING_NAV
+           navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: menuButtonRightDel),space,UIBarButtonItem(customView: menuButtonRightSelectAll)]
+        }
     
     func bindTableView(){
         self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.SaveChoose.rawValue, items: self.saveViewModel.listSave,sections: self.sections, height: AppConstants.TABLE_ROW_HEIGHT,isSelectionStype: .none){ cell, vm in
@@ -129,7 +116,7 @@ extension ChooseSaveVC  {
         self.tableView.dataSource = self.dataSource
         self.tableView.delegate = self.dataSource
     }
- 
+    
     func setupFloatButton(){
         let item = FloatyItem()
         item.hasShadow = false
@@ -186,8 +173,8 @@ extension ChooseSaveVC : TableViewCellDelegate{
     }
     
     func cellViewSelected(cell: TableViewCell, countSelected: Int) {
-       // guard let indexPath = tableView.indexPath(for: cell) else { return }
-     //   let result = self.saveViewModel.listSave[indexPath.row]
+        // guard let indexPath = tableView.indexPath(for: cell) else { return }
+        //   let result = self.saveViewModel.listSave[indexPath.row]
     }
     
     func cellViewSelected(cell: Codable) {

@@ -34,7 +34,7 @@ class DocumentHelper {
     open class func getFilePath(fileName : String, folderName : String? = nil) -> URL?{
         let fileManager = FileManager.default
         do {
-            let documentDirectory = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:false)
+            let documentDirectory = try fileManager.url(for: .libraryDirectory, in: .userDomainMask, appropriateFor:nil, create:false)
             guard let mFolderName = folderName else {
                 let fileURL = documentDirectory.appendingPathComponent(fileName)
                 if fileManager.fileExists(atPath: fileURL.path){
@@ -57,9 +57,9 @@ class DocumentHelper {
     
     open class func getFile(folderName : String? = nil) -> [URL]?{
         let fileManager = FileManager.default
-        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let documentsURL = fileManager.urls(for: .libraryDirectory, in: .userDomainMask)[0]
         do {
-            var documentDirectory = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:false)
+            var documentDirectory = try fileManager.url(for: .libraryDirectory, in: .userDomainMask, appropriateFor:nil, create:false)
             guard let mFolder = folderName else {
                 return nil
             }
@@ -76,7 +76,7 @@ class DocumentHelper {
     open class func createdFile(data : Data, folderName : String? = nil,fileName : String)-> Bool{
         let fileManager = FileManager.default
         do {
-            var documentDirectory = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:false)
+            var documentDirectory = try fileManager.url(for: .libraryDirectory, in: .userDomainMask, appropriateFor:nil, create:false)
             guard let mFolder = folderName else {
                 let fileURL = documentDirectory.appendingPathComponent(fileName)
                 try data.write(to: fileURL)

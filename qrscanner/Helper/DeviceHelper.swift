@@ -133,7 +133,8 @@ class DeviceHelper {
         static var ICON_QR_WIDTH_HEIGHT : CGFloat = CGFloat()
         static var SCAN_WIDTH_HEIGHT : CGFloat = CGFloat()
         static var HEIGHT_Y : CGFloat = CGFloat()
-        
+        static var SPACING_NAV : CGFloat = CGFloat()
+
         func isIpad() -> Bool {
             if UIDevice.current.userInterfaceIdiom == .pad {
                 return true
@@ -189,6 +190,8 @@ class DeviceHelper {
                 DeviceHelper.Shared.MARGIN_RIGHT_SCAN = CGFloat(-35)
                 DeviceHelper.Shared.MARGIN_BOTTOM_SCAN = CGFloat(-35)
                 DeviceHelper.Shared.HEIGHT_Y = CGFloat(50)
+                DeviceHelper.Shared.SPACING_NAV = CGFloat(30)
+
             }
                 
             else if isNormalScreen (){
@@ -221,6 +224,8 @@ class DeviceHelper {
                 DeviceHelper.Shared.MARGIN_RIGHT_SCAN = CGFloat(-30)
                 DeviceHelper.Shared.MARGIN_BOTTOM_SCAN = CGFloat(-45)
                 DeviceHelper.Shared.HEIGHT_Y = CGFloat(40)
+                DeviceHelper.Shared.SPACING_NAV = CGFloat(20)
+
             }
             else if isMaxScreen(){
                 
@@ -253,6 +258,8 @@ class DeviceHelper {
                 DeviceHelper.Shared.MARGIN_RIGHT_SCAN = CGFloat(-30)
                 DeviceHelper.Shared.MARGIN_BOTTOM_SCAN = CGFloat(-45)
                 DeviceHelper.Shared.HEIGHT_Y = CGFloat(50)
+                DeviceHelper.Shared.SPACING_NAV = CGFloat(20)
+
             }
             else {
                 DeviceHelper.Shared.MARGIN_LEFT = CGFloat(20)
@@ -284,6 +291,8 @@ class DeviceHelper {
                 DeviceHelper.Shared.MARGIN_RIGHT_SCAN = CGFloat(-30)
                 DeviceHelper.Shared.MARGIN_BOTTOM_SCAN = CGFloat(-45)
                 DeviceHelper.Shared.HEIGHT_Y = CGFloat(50)
+                DeviceHelper.Shared.SPACING_NAV = CGFloat(20)
+
             }
            
         }

@@ -176,7 +176,6 @@ class TableViewCell : UITableViewCell{
             let hints = ZXEncodeHints() as ZXEncodeHints
             hints.encoding = String.Encoding.utf8.rawValue
             let typeformat = ZXBarcodeFormat.init(UInt32(typeformat))
-            print(typeformat.rawValue);
            
             if let result : ZXBitMatrix = try writer.encode(image, format: typeformat, width: Int32(AppConstants.HEIGHT_IMAGE_QR), height: Int32(AppConstants.HEIGHT_IMAGE_QR),hints: hints){
                 let image : ZXImage = ZXImage(matrix: result)
