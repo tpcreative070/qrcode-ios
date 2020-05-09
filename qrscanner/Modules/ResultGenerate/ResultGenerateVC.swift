@@ -94,8 +94,18 @@ class ResultGenerateVC: BaseViewController {
     @objc func shareView(sender : UITapGestureRecognizer){
         let imageShare = [ imgCode ]
         let activityViewController = UIActivityViewController(activityItems: imageShare , applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view
-        self.present(activityViewController, animated: true, completion: nil)
+   if DeviceHelper.isIpad(){
+       if let popoverController = activityViewController.popoverPresentationController {
+           popoverController.sourceView = self.view //to set the source of your alert
+           popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0) // you can set this as per your requirement.
+           popoverController.permittedArrowDirections = [.up] //to hide the arrow of any particular direction
+       }
+       self.present(activityViewController, animated: true, completion: nil)
+   }
+   else{
+       self.present(activityViewController, animated: true, completion: nil)
+
+   }
    
     }
     @objc func saveView(sender : UITapGestureRecognizer){

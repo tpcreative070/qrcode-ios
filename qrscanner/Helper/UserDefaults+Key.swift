@@ -13,8 +13,10 @@ extension UserDefaults {
     case reviewWorthyActionCount
     case lastReviewRequestAppVersion
     case pressNotNow
+     case pressNoThanks
      case pressSubmitFiveStar
     case pressSubmitLittleFiveStar
+      case flagRating
   }
 
   func integer(forKey key: Key) -> Int {

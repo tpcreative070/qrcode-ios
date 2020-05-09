@@ -16,73 +16,18 @@ class MainVC : SwipeMenuViewController {
     var mScanner : ScannerVC?
     var mSettings : SettingsVC?
     var dataCount: Int = 5
-    
     override func viewDidLoad() {
         initUI()
         addedView()
         setupStatusBar()
         super.viewDidLoad()
-        
-        //        if #available(iOS 10.3, *){
-        //            AppStoreReviewManager.requestReviewIfAppropriate()
-        //        }
-        //showRating()
-        let minimumReviewWorthyActionCount = 3
-        let defaults = UserDefaults.standard
-        let bundle = Bundle.main
-        
-        var actionCount = defaults.integer(forKey: .reviewWorthyActionCount)
-        if actionCount > 5 {
-            //defaults.set(0, forKey: .reviewWorthyActionCount)
-            return
-        }
-        else{
-        actionCount += 1
-        }
-        defaults.set(actionCount, forKey: .reviewWorthyActionCount)
+        if Bool(CommonService.getUserDefault(key: KeyUserDefault.Theme) ?? false){
+                                   UIApplication.shared.windows.forEach { window in
+                                       window.overrideUserInterfaceStyle = .dark
+                                   }
+                               }
+        showRating()
      
-        
-       let bundleVersionKey = kCFBundleVersionKey as String
-         let currentVersion = bundle.object(forInfoDictionaryKey: bundleVersionKey) as? String
-         let lastVersion = defaults.string(forKey: .lastReviewRequestAppVersion)
-         
-        if lastVersion == nil || lastVersion != currentVersion {
-            if !defaults.bool(forKey: .pressSubmitFiveStar) {
-                     if actionCount >= minimumReviewWorthyActionCount && actionCount <= 5 {
-                         let myAlert = RateVC()
-                         myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-                         myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-                         self.present(myAlert, animated: true, completion: nil)
-                         defaults.set(currentVersion, forKey: .lastReviewRequestAppVersion)
-                     }
-                     else {
-                         return
-                     }
-                 }
-            else{return}
-        }
-        else {
-            if defaults.bool(forKey: .pressSubmitFiveStar) {
-                return
-            }
-            else{
-                if actionCount >= minimumReviewWorthyActionCount && actionCount <= 5 {
-                                      let myAlert = RateVC()
-                                      myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-                                      myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-                                      self.present(myAlert, animated: true, completion: nil)
-                                      
-                                  }
-                                  else {
-                                      return
-                                  }
-            }
-         }
-         
-         
-        //  defaults.set(0, forKey: .reviewWorthyActionCount)
-         defaults.set(currentVersion, forKey: .lastReviewRequestAppVersion)
-         print(actionCount)
          
     }
     

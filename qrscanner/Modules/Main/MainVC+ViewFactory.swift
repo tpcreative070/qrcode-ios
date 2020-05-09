@@ -66,44 +66,79 @@ extension MainVC  {
         
     }
                 func showRating(){
-                     let minimumReviewWorthyActionCount = 3
+                       let minimumReviewWorthyActionCount = 3
+                          let defaults = UserDefaults.standard
+                          let bundle = Bundle.main
+                          
+                          var actionCount = defaults.integer(forKey: .reviewWorthyActionCount)
+                          if actionCount > 5 && !defaults.bool(forKey: .pressSubmitFiveStar) && defaults.bool(forKey: .pressNoThanks){
+                              actionCount = 0
+                              defaults.set(true, forKey: .flagRating)
+                              defaults.set(actionCount, forKey: .reviewWorthyActionCount)
+                              return
+                          }
+                          if actionCount > 5 && !defaults.bool(forKey: .pressSubmitFiveStar) && defaults.bool(forKey: .pressNotNow){
+                              actionCount = 0
+                              defaults.set(true, forKey: .flagRating)
+                              defaults.set(actionCount, forKey: .reviewWorthyActionCount)
+                              return
+                          }
+                          if actionCount > 5 && defaults.bool(forKey: .pressSubmitFiveStar){
+                              defaults.set(true, forKey: .flagRating)
+                              return
+                          }
+                          let flagRating =  defaults.bool(forKey: .flagRating)
+                          if !flagRating {
+                          if actionCount <= 5 {
+                          actionCount += 1
+                              defaults.set(actionCount, forKey: .reviewWorthyActionCount)
 
-                    let defaults = UserDefaults.standard
-                    let bundle = Bundle.main
-
-                    var actionCount = defaults.integer(forKey: .reviewWorthyActionCount)
-                    actionCount += 1
-                    defaults.set(actionCount, forKey: .reviewWorthyActionCount)
-
-                   
-
-                    let bundleVersionKey = kCFBundleVersionKey as String
-                    let currentVersion = bundle.object(forInfoDictionaryKey: bundleVersionKey) as? String
-                    let lastVersion = defaults.string(forKey: .lastReviewRequestAppVersion)
-
-                    if lastVersion == nil || lastVersion != currentVersion {
-                        if actionCount >= minimumReviewWorthyActionCount {
-                            let myAlert = RateVC()
-                            myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-                            myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-                            self.present(myAlert, animated: true, completion: nil)
-                        }
-                          defaults.set(currentVersion, forKey: .lastReviewRequestAppVersion)
-                    }
-                    else{
-                        if actionCount >= minimumReviewWorthyActionCount && actionCount < 6 {
-                            let myAlert = RateVC()
-                            myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-                            myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-                            self.present(myAlert, animated: true, completion: nil)
-                        }
-                        else{
-                            defaults.set(0, forKey: .reviewWorthyActionCount)
-
-                        }
-                    }
-                    //....
-                    
+                          }
+                          }
+                       
+                          
+                         let bundleVersionKey = kCFBundleVersionKey as String
+                           let currentVersion = bundle.object(forInfoDictionaryKey: bundleVersionKey) as? String
+                           let lastVersion = defaults.string(forKey: .lastReviewRequestAppVersion)
+                           
+                          if lastVersion == nil || lastVersion != currentVersion {
+                            defaults.set(false, forKey: .flagRating)
+                              if !defaults.bool(forKey: .pressSubmitFiveStar) {
+                                       if actionCount >= minimumReviewWorthyActionCount && actionCount <= 5 {
+                                           let myAlert = RateVC()
+                                           myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+                                           myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+                                           self.present(myAlert, animated: true, completion: nil)
+                                           defaults.set(currentVersion, forKey: .lastReviewRequestAppVersion)
+                                       }
+                                       else {
+                                           return
+                                       }
+                                   }
+                              else{return}
+                          }
+                          else {
+                              if defaults.bool(forKey: .pressSubmitFiveStar) {
+                                  return
+                              }
+                              else{
+                                  if actionCount >= minimumReviewWorthyActionCount && actionCount <= 5 {
+                                                        let myAlert = RateVC()
+                                                        myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+                                                        myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+                                                        self.present(myAlert, animated: true, completion: nil)
+                                                        
+                                                    }
+                                                    else {
+                                                        return
+                                                    }
+                              }
+                           }
+                           
+                           
+                          //  defaults.set(0, forKey: .reviewWorthyActionCount)
+                          // defaults.set(currentVersion, forKey: .lastReviewRequestAppVersion)
+                           print(actionCount)
                 }
 }
 

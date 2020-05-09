@@ -105,7 +105,7 @@ extension HistoryVC  {
         item.hasShadow = false
         item.buttonColor = AppColors.PRIMARY_COLOR
         item.titleLabelPosition = .left
-        item.icon = UIImage(named: AppImages.IC_KEYBOARD)
+        item.icon = UIImage(named: AppImages.IC_CSV)
         item.icon?.withTintColor(.white)
         item.title = LanguageHelper.getTranslationByKey(LanguageKey.Csv)
         item.handler = { item in
