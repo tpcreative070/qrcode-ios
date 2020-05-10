@@ -45,6 +45,7 @@ extension UIViewController {
             }
             if typeCode == EnumType.TEXT.rawValue{
                 let data : TextModel = try! JSONDecoder().decode(TextModel.self, from: stringContent)
+                print("\"\(data.text ?? "") \"")
                 value.setObject("\"\(data.text ?? "") \"", forKey: "Text" as NSCopying )
                 
             }
@@ -109,10 +110,12 @@ extension UIViewController {
         let header = ["FormatType", "Url", "Text", "ProductID", "ISBN","Phone","Email","Subject","Message","Latitude","Longtitude","Query","Title","Location","Description","StartEvent","EndEvent","FullName","Address","SSID","Password","NetworkEncryption","CreateDateTime"]
         let writeCSVObj = CSV()
         writeCSVObj.rows = historyArray
-        writeCSVObj.delimiter = DividerType.comma.rawValue
+        Utils.logMessage(object: historyArray)
+        writeCSVObj.delimiter = DividerType.semicolon.rawValue
         writeCSVObj.fields = header as NSArray
         writeCSVObj.name = "FILECSV_\(TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))"
         let output = CSVExport.export(writeCSVObj);
+
         if output.result.isSuccess {
             guard let filePath =  output.filePath else {
                 print("Export Error: \(String(describing: output.message))")

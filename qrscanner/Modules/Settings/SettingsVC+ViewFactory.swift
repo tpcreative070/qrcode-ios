@@ -643,7 +643,8 @@ extension SettingsVC {
         self.lbMultiLoadContent.numberOfLines = AppConstants.NUMBER_OF_LINE
         self.lbMultiScanContent.numberOfLines = AppConstants.NUMBER_OF_LINE
         self.lbDuplicateContent.numberOfLines = AppConstants.NUMBER_OF_LINE
-       
+       self.lbRateContent.numberOfLines = AppConstants.NUMBER_OF_LINE
+
         self.lbVibrate.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.lbDuplicate.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         

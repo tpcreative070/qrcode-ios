@@ -14,7 +14,7 @@ import Photos
 class CustomPhotoAlbum: NSObject {
     static let albumName = "QRScanner"
     static let sharedInstance = CustomPhotoAlbum()
-
+    var image : UIImage? = UIImage()
     var assetCollection: PHAssetCollection!
 
     override init() {
@@ -66,23 +66,31 @@ class CustomPhotoAlbum: NSObject {
         let collection = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: fetchOptions)
 
         if let _: AnyObject = collection.firstObject {
+            
+            if let img = image{
+                 addImagetoAlbum(image: img)
+            }
             return collection.firstObject
         }
         return nil
     }
 
     func save(image: UIImage) {
+        self.image = image
         if assetCollection == nil {
             return                          // if there was an error upstream, skip the save
         }
-
+        addImagetoAlbum(image: image)
+       
+    }
+    func addImagetoAlbum(image: UIImage){
         PHPhotoLibrary.shared().performChanges({
-            let assetChangeRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)
-            let assetPlaceHolder = assetChangeRequest.placeholderForCreatedAsset
-            let albumChangeRequest = PHAssetCollectionChangeRequest(for: self.assetCollection)
-            let enumeration: NSArray = [assetPlaceHolder!]
-            albumChangeRequest!.addAssets(enumeration)
+                   let assetChangeRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)
+                   let assetPlaceHolder = assetChangeRequest.placeholderForCreatedAsset
+                   let albumChangeRequest = PHAssetCollectionChangeRequest(for: self.assetCollection)
+                   let enumeration: NSArray = [assetPlaceHolder!]
+                   albumChangeRequest!.addAssets(enumeration)
 
-        }, completionHandler: nil)
+               }, completionHandler: nil)
     }
 }

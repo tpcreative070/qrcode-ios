@@ -88,7 +88,8 @@ extension MainVC  {
                               return
                           }
                           let flagRating =  defaults.bool(forKey: .flagRating)
-                          if !flagRating {
+                    print(defaults.bool(forKey: .pressSubmitFiveStar))
+                          if !flagRating && !defaults.bool(forKey: .pressSubmitFiveStar){
                           if actionCount <= 5 {
                           actionCount += 1
                               defaults.set(actionCount, forKey: .reviewWorthyActionCount)
