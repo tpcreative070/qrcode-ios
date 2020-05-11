@@ -47,7 +47,7 @@ extension RateVC {
             lbContent.topAnchor.constraint(equalTo: imgApp.bottomAnchor, constant: AppConstants.MARGIN_TOP)
             
         ])
-        lbContent.text = "Tap a star to rate it on the App Store"
+        lbContent.text = LanguageHelper.getTranslationByKey(LanguageKey.TapRating)
         lbContent.textAlignment = .center
         lbContent.numberOfLines = 0
         self.wrapperView.addSubview(self.viewUnderLine1)

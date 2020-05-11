@@ -1,5 +1,6 @@
 {
     "en": {
+        "TAP_RATING" : "Tap a star to rate it on the App Store",
         "CANNOTSENDMAIL" : "Unable to send mail. Please try again",
         "NO_THANKS" : "No Thanks",
         "IMPROVEAPP" : "Improve App",
@@ -228,6 +229,7 @@
         "THIS_FEATURE_COMING_SOON" : "This feature will be coming soon"
     },
     "vi" : {
+        "TAP_RATING" : "Nhấn vào ngôi sao để xếp hạng trên App Store",
         "CANNOTSENDMAIL" : "Không thể gửi mail. Vui lòng thử lại",
         "NO_THANKS" : "Không, cảm ơn",
         "IMPROVEAPP" : "Cải thiện ứng dụng",
@@ -491,6 +493,7 @@
         "THIS_FEATURE_COMING_SOON" : "Tính năng này sẽ có trong tương lai"
     },
    "es" : {
+       "TAP_RATING": "Toca una estrella para calificarla en la App Store",
        "CANNOTSENDMAIL": "No se puede enviar el correo. Vuelve a intentarlo",
        "NO_THANKS": "No, gracias",
        "IMPROVEAPP" : "Mejorar aplicación",
@@ -740,6 +743,7 @@
         "THIS_FEATURE_COMING_SOON" : "Esta característica estará disponible pronto",
     },
    "pt" : {
+       "TAP_RATING": "Toque em uma estrela para classificá-la na App Store",
        "CANNOTSENDMAIL": "Não foi possível enviar e-mail. Tente novamente",
        "NO_THANKS": "Não, obrigado",
        "IMPROVEAPP" : "Aprimore o aplicativo",

@@ -746,7 +746,7 @@ struct LanguageKey {
     static let NotNow = "NOT_NOW"
     static let NoThanks = "NO_THANKS"
     static let CanNotSendMail = "CANNOTSENDMAIL"
-
+    static let TapRating = "TAP_RATING"
     //SignIn
     static let TitleBrand = "ECASH"
     static let SignOut = "SIGNOUT"
