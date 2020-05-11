@@ -103,7 +103,7 @@ class RateVC: UIViewController, MFMailComposeViewControllerDelegate {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-
+    var flagNoThanks : Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
@@ -113,6 +113,7 @@ class RateVC: UIViewController, MFMailComposeViewControllerDelegate {
         let count = UserDefaults.standard.integer(forKey: .reviewWorthyActionCount)
         print(count)
         if count == 5 {
+            flagNoThanks = true
             lbNotNow.text = LanguageHelper.getTranslationByKey(LanguageKey.NoThanks)
         }
         else{
@@ -121,7 +122,12 @@ class RateVC: UIViewController, MFMailComposeViewControllerDelegate {
     }
 
     @objc func doCancel (sender : UITapGestureRecognizer){
-        
+        if flagNoThanks {
+             UserDefaults.standard.set(true, forKey: .pressNoThanks)
+        }
+        else{
+          UserDefaults.standard.set(true, forKey: .pressNotNow)
+        }
         navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
         UserDefaults.standard.set(true, forKey: .pressNotNow)
