@@ -153,8 +153,16 @@ class RateVC: UIViewController, MFMailComposeViewControllerDelegate {
             let mailComposer = configureMailController()
             if MFMailComposeViewController.canSendMail(){
                 self.present(mailComposer,animated: true, completion: nil)
-            }else{
-                showMailError()
+            }
+            else{
+                let email = LanguageKey.Email_Help
+                if let url = URL(string: "mailto:\(email)") {
+                  if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(url)
+                  } else {
+                    UIApplication.shared.openURL(url)
+                  }
+                }
             }
         }
         else {

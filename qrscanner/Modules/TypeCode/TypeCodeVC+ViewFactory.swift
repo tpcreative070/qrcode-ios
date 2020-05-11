@@ -119,7 +119,7 @@ extension TypeCodeVC : TableViewCellDelegate {
     
     func cellViewSelected(cell: Codable) {
         if let data = JSONHelper.get(value: TypeCodeModel.self,anyObject: cell){
-            navigationToAddGenerateVC(typeCode: data.name!)
+            navigationToAddGenerateVC(typeCode: data.nameView)
         }
     }
     

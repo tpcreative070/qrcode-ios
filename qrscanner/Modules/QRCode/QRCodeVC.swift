@@ -70,7 +70,10 @@ class QRCodeVC: BaseViewController {
         for index in viewModel.listItem {
             //Utils.logMessage(object: viewModel.listItem)
             if index.check == true {
-                viewModel.scannerResult(mValue: index.stringCode!, mType: CommonService.barcodeFormatToString(format: ZXBarcodeFormat(rawValue: UInt32(Int(index.typeCode!)))))
+                guard let value = index.stringCode , let typeCode = index.typeCode else {
+                    return
+                }
+                viewModel.scannerResult(mValue: value, mType: CommonService.barcodeFormatToString(format: ZXBarcodeFormat(rawValue: UInt32(Int(typeCode)))))
             }
         }
         viewModel.doGetListTransaction()

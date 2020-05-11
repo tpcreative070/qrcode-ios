@@ -116,18 +116,23 @@ extension BarcodeVC {
         generateViewModel?.responseToView = { [weak self] value in
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
                 let resVC = ResultGenerateVC()
-                resVC.contentViewModel = ContentViewModel(data: BarcodeModel(productID: (self?.textFieldProduct.text)!, type: (self?.generateViewModel?.typeBarcode)!))
-                resVC.resultViewModel.typeCode = EnumType.BARCODE.rawValue
-                resVC.imgCode = (self?.generateViewModel?.result)!
-                if (self?.barcodeViewModel.isSeen)! == AppConstants.ISSEEN {
-                    resVC.resultViewModel.isUpdate = AppConstants.ISUPDATE
-                    resVC.resultViewModel.createDateTime = (self?.barcodeViewModel.createDateTime)!
-                    
-                    
+                guard let product = (self?.textFieldProduct.text), let typeBarcode =  (self?.generateViewModel?.typeBarcode), let result = self?.generateViewModel?.result else {
+                    return
                 }
                 
-                Navigator.pushViewController(from: self!, to: resVC, isNavigation: true, isTransparent: false)
+                resVC.contentViewModel = ContentViewModel(data: BarcodeModel(productID: product, type: typeBarcode))
+                resVC.resultViewModel.typeCode = EnumType.BARCODE.rawValue
+                resVC.imgCode = result
                 
+                if let isSeen = (self?.barcodeViewModel.isSeen), isSeen == AppConstants.ISSEEN
+                {
+                    guard let time = self?.barcodeViewModel.createDateTime else {
+                        return
+                    }
+                    resVC.resultViewModel.isUpdate = AppConstants.ISUPDATE
+                    resVC.resultViewModel.createDateTime = time
+                }
+                Navigator.pushViewController(from: self!, to: resVC, isNavigation: true, isTransparent: false)
             }
         }
         generateViewModel?.onShowError = { [weak self] alert in
@@ -156,8 +161,12 @@ extension BarcodeVC {
     }
     func defineValue(){
         self.generateViewModel?.typeCode = EnumType.BARCODE.rawValue
-        self.generateViewModel?.typeBarcode = barcodeViewModel.barcodetype!
         self.generateViewModel?.productID = textFieldProduct.text
+
+        guard let barcodeType =  barcodeViewModel.barcodetype else {
+            return
+        }
+        self.generateViewModel?.typeBarcode = barcodeType
     }
     
 }

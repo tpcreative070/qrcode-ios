@@ -9,13 +9,13 @@
 import UIKit
 extension WifiGenerateVC {
     func initUI() {
-       self.view.addSubview(scrollView)
-             NSLayoutConstraint.activate([
-                 scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-                 scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-                 scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                 scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-             ])
+        self.view.addSubview(scrollView)
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+        ])
         scrollView.addSubview(viewBackground)
         NSLayoutConstraint.activate([
             viewBackground.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: AppConstants.MARGIN_TOP),
@@ -29,7 +29,7 @@ extension WifiGenerateVC {
             viewSsidBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewSsidBg.leftAnchor.constraint(equalTo: viewBackground.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewSsidBg.rightAnchor.constraint(equalTo: viewBackground.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-              viewSsidBg.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM)
+            viewSsidBg.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM)
         ])
         
         viewSsidBg.addSubview(lbSsid)
@@ -129,20 +129,20 @@ extension WifiGenerateVC {
             viewNoneContainer.leadingAnchor.constraint(equalTo: view.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT_CONTAINER)
             
         ])
-         self.lbSsid.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-         self.lbPass.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-          self.lbNetwork.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-          self.lbHidden.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-          self.lbWPA.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-         self.lbWEP.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-         self.lbNone.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbSsid.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbPass.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbNetwork.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbHidden.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbWPA.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbWEP.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbNone.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         
         self.textFieldSsid.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.textFieldPass.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         
         
         self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
-              self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
+        self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
         setupNavItems()
         addTarget(textFieldSsid)
         addTarget(textFieldPass)
@@ -169,16 +169,16 @@ extension WifiGenerateVC {
         self.view.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         navigationItem.title = EnumType.WIFI.rawValue
-                let textAttributes = [NSAttributedString.Key.font: AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE), NSAttributedString.Key.foregroundColor:UIColor.white]
-
+        let textAttributes = [NSAttributedString.Key.font: AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE), NSAttributedString.Key.foregroundColor:UIColor.white]
+        
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
         let menuButtonRight = UIButton(frame: CGRect(x: 0, y: 0, width: DeviceHelper.Shared.ICON_WIDTH_HEIGHT, height: DeviceHelper.Shared.ICON_WIDTH_HEIGHT))
-               menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
-               menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchDown)
-               self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonRight)
+        menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
+        menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchDown)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonRight)
     }
     
     func bindViewModel() {
@@ -202,14 +202,20 @@ extension WifiGenerateVC {
         generateViewModel?.responseToView = { [weak self] value in
             
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
+                guard let ssid = (self?.textFieldSsid.text), let pass = (self?.textFieldPass.text), let protect = (self?.generateViewModel?.protect), let result = self?.generateViewModel?.result else {
+                    return
+                }
                 let resVC = ResultGenerateVC()
-                resVC.contentViewModel = ContentViewModel(data: WifiModel(ssid: (self?.textFieldSsid.text)!, password: (self?.textFieldPass.text)!, protect: (self?.generateViewModel?.protect)!))
-                resVC.imgCode = (self?.generateViewModel?.result)!
+                resVC.contentViewModel = ContentViewModel(data: WifiModel(ssid: ssid, password: pass, protect: protect))
+                resVC.imgCode = result
                 resVC.resultViewModel.typeCode = EnumType.WIFI.rawValue
-                if (self?.wifiViewModel.isSeen)! == AppConstants.ISSEEN {
+                if let isSeen = (self?.wifiViewModel.isSeen), isSeen == AppConstants.ISSEEN {
+                    guard let time = (self?.wifiViewModel.createDateTime) else {
+                        return
+                    }
                     resVC.resultViewModel.isUpdate = AppConstants.ISUPDATE
-                    resVC.resultViewModel.createDateTime = (self?.wifiViewModel.createDateTime)!
-
+                    resVC.resultViewModel.createDateTime = time
+                    
                 }
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }

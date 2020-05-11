@@ -30,7 +30,7 @@ extension RateVC {
             wrapperView.heightAnchor.constraint(equalTo: viewBackground.heightAnchor, multiplier: 1/2.7), wrapperView.widthAnchor.constraint(equalToConstant: view.frame.width * 2/3)
             
         ])
-        wrapperView.backgroundColor = .white
+        wrapperView.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         wrapperView.addSubview(imgApp)
         NSLayoutConstraint.activate([
             imgApp.centerXAnchor.constraint(equalTo: wrapperView.centerXAnchor),

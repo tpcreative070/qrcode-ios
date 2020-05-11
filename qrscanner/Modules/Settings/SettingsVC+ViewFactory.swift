@@ -472,7 +472,7 @@ extension SettingsVC {
                    self.stackViewRate.leadingAnchor.constraint(equalTo: self.imgRate.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
                    self.stackViewRate.topAnchor.constraint(equalTo: self.viewRate.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
                    self.stackViewRate.centerYAnchor.constraint(equalTo: self.viewRate.centerYAnchor),
-                   self.stackViewRate.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.8),
+                   self.stackViewRate.widthAnchor.constraint(equalToConstant: self.view.frame.width),
                    
                ])
                self.stackViewRate.axis = .vertical
@@ -500,7 +500,7 @@ extension SettingsVC {
             self.stackViewShare.leadingAnchor.constraint(equalTo: self.imgShare.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
             self.stackViewShare.topAnchor.constraint(equalTo: self.viewShare.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
             self.stackViewShare.centerYAnchor.constraint(equalTo: self.viewShare.centerYAnchor),
-            self.stackViewShare.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.8),
+            self.stackViewShare.widthAnchor.constraint(equalToConstant: self.view.frame.width),
             
         ])
         self.stackViewShare.axis = .vertical
@@ -528,7 +528,7 @@ extension SettingsVC {
                    self.stackViewHelp.leadingAnchor.constraint(equalTo: self.imgHelp.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
                    self.stackViewHelp.topAnchor.constraint(equalTo: self.viewHelp.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
                    self.stackViewHelp.centerYAnchor.constraint(equalTo: self.viewHelp.centerYAnchor),
-                   self.stackViewHelp.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.8),
+                   self.stackViewHelp.widthAnchor.constraint(equalToConstant: self.view.frame.width),
                    
                ])
                self.stackViewHelp.axis = .vertical
@@ -559,7 +559,7 @@ extension SettingsVC {
             self.stackViewSupport.leadingAnchor.constraint(equalTo: self.imgSupport.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
             self.stackViewSupport.topAnchor.constraint(equalTo: self.viewSupport.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
             self.stackViewSupport.centerYAnchor.constraint(equalTo: self.viewSupport.centerYAnchor),
-            self.stackViewSupport.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.8),
+            self.stackViewSupport.widthAnchor.constraint(equalToConstant: self.view.frame.width),
             
         ])
         self.stackViewSupport.axis = .vertical
@@ -588,7 +588,7 @@ extension SettingsVC {
             self.stackViewVersion.leadingAnchor.constraint(equalTo: self.imgVersion.trailingAnchor,constant: AppConstants.MARGIN_LEFT),
             self.stackViewVersion.topAnchor.constraint(equalTo: self.viewVersion.topAnchor,constant: AppConstants.MARGIN_TOP_ITEM_SETTING),
             self.stackViewVersion.centerYAnchor.constraint(equalTo: self.viewVersion.centerYAnchor),
-            self.stackViewVersion.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.8),
+            self.stackViewVersion.widthAnchor.constraint(equalToConstant: self.view.frame.width),
             
         ])
         self.stackViewVersion.axis = .vertical
@@ -643,7 +643,6 @@ extension SettingsVC {
         self.lbMultiLoadContent.numberOfLines = AppConstants.NUMBER_OF_LINE
         self.lbMultiScanContent.numberOfLines = AppConstants.NUMBER_OF_LINE
         self.lbDuplicateContent.numberOfLines = AppConstants.NUMBER_OF_LINE
-       self.lbRateContent.numberOfLines = AppConstants.NUMBER_OF_LINE
 
         self.lbVibrate.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.lbDuplicate.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)

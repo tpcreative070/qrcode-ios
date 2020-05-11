@@ -170,97 +170,135 @@ extension DetailVC : TableViewCellDelegate {
         let value_data = valueContentView?.content ?? ""
         let stringContent = value_data.data(using: .utf8)!
         let typeCode = valueContentView?.typeCode?.uppercased()
+        
         if typeCode == EnumType.URL.rawValue{
-            let urlModel : UrlModel = try! JSONDecoder().decode(UrlModel.self, from: stringContent)
-            let vc = AlertVC()
-            var list : [AlertViewModel] = [AlertViewModel]()
-            list.append(AlertViewModel(name: urlModel.url ?? ""))
-            vc.viewModel.listItem = list
-            self.navigationController?.pushViewController(vc, animated: false)
+            do{
+                let urlModel : UrlModel = try JSONDecoder().decode(UrlModel.self, from: stringContent)
+                let vc = AlertVC()
+                var list : [AlertViewModel] = [AlertViewModel]()
+                list.append(AlertViewModel(name: urlModel.url ?? ""))
+                vc.viewModel.listItem = list
+                self.navigationController?.pushViewController(vc, animated: false)
+            }
+            catch(let err){
+                print(err)
+            }
         }
         else if typeCode == EnumType.TEXT.rawValue{
-            let textModel : TextModel = try! JSONDecoder().decode(TextModel.self, from: stringContent)
-            let vc = AlertVC()
-            vc.viewModel.listItem.append(AlertViewModel(name: textModel.text ?? ""))
-            self.navigationController?.pushViewController(vc, animated: false)
-         //self.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
-         //   vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-        //  vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-           // self.present(vc, animated: true, completion: nil)
+            do{
+                let textModel : TextModel = try JSONDecoder().decode(TextModel.self, from: stringContent)
+                let vc = AlertVC()
+                vc.viewModel.listItem.append(AlertViewModel(name: textModel.text ?? ""))
+                self.navigationController?.pushViewController(vc, animated: false)
+                //self.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
+                //   vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+                //  vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+                // self.present(vc, animated: true, completion: nil)
+            }
+            catch(let err){
+                print(err)
+            }
         }
         else if typeCode == EnumType.LOCATION.rawValue{
-            let locationModel : LocationModel = try! JSONDecoder().decode(LocationModel.self, from: stringContent)
-            let vc = AlertVC()
-            vc.viewModel.listItem.append(AlertViewModel(name: String(locationModel.latitude ?? 0) ))
-            vc.viewModel.listItem.append(AlertViewModel(name: String(locationModel.longtitude ?? 0) ))
-            vc.viewModel.listItem.append(AlertViewModel(name: String(locationModel.query ?? "") ))
-            self.navigationController?.pushViewController(vc, animated: false)
+            do{
+                let locationModel : LocationModel = try JSONDecoder().decode(LocationModel.self, from: stringContent)
+                let vc = AlertVC()
+                vc.viewModel.listItem.append(AlertViewModel(name: String(locationModel.latitude ?? 0) ))
+                vc.viewModel.listItem.append(AlertViewModel(name: String(locationModel.longtitude ?? 0) ))
+                vc.viewModel.listItem.append(AlertViewModel(name: String(locationModel.query ?? "") ))
+                self.navigationController?.pushViewController(vc, animated: false)}
+            catch(let err){
+                print(err)
+            }
         }
         else if typeCode == EnumType.EMAIL.rawValue{
-            let model : EmailModel = try! JSONDecoder().decode(EmailModel.self, from: stringContent)
-            let vc = AlertVC()
-            vc.viewModel.listItem.append(AlertViewModel(name: model.email ?? "" ))
-            vc.viewModel.listItem.append(AlertViewModel(name: model.messageEmail ?? "" ))
-            vc.viewModel.listItem.append(AlertViewModel(name: model.objectEmail ?? "" ))
-            self.navigationController?.pushViewController(vc, animated: false)
+            do{
+                let model : EmailModel = try JSONDecoder().decode(EmailModel.self, from: stringContent)
+                let vc = AlertVC()
+                vc.viewModel.listItem.append(AlertViewModel(name: model.email ?? "" ))
+                vc.viewModel.listItem.append(AlertViewModel(name: model.messageEmail ?? "" ))
+                vc.viewModel.listItem.append(AlertViewModel(name: model.objectEmail ?? "" ))
+                self.navigationController?.pushViewController(vc, animated: false)}
+            catch(let err){
+                print(err)
+            }
         }
         else if typeCode == EnumType.EVENT.rawValue{
-            
-            let model : EventModel = try! JSONDecoder().decode(EventModel.self, from: stringContent)
-            let vc = AlertVC()
-            vc.viewModel.listItem.append(AlertViewModel(name: model.title ?? "" ))
-            vc.viewModel.listItem.append(AlertViewModel(name: model.description ?? "" ))
-            vc.viewModel.listItem.append(AlertViewModel(name: model.location ?? "" ))
-            vc.viewModel.listItem.append(AlertViewModel(name: model.beginTime ?? "" ))
-            vc.viewModel.listItem.append(AlertViewModel(name: model.beginTime ?? "" ))
-            
-            self.navigationController?.pushViewController(vc, animated: false)
+            do{
+                let model : EventModel = try JSONDecoder().decode(EventModel.self, from: stringContent)
+                let vc = AlertVC()
+                vc.viewModel.listItem.append(AlertViewModel(name: model.title ?? "" ))
+                vc.viewModel.listItem.append(AlertViewModel(name: model.description ?? "" ))
+                vc.viewModel.listItem.append(AlertViewModel(name: model.location ?? "" ))
+                vc.viewModel.listItem.append(AlertViewModel(name: model.beginTime ?? "" ))
+                vc.viewModel.listItem.append(AlertViewModel(name: model.beginTime ?? "" ))
+                
+                self.navigationController?.pushViewController(vc, animated: false)}
+            catch(let err){
+                print(err)
+            }
             
         }
         else if typeCode == EnumType.MESSAGE.rawValue{
-            
-            let model : MessageModel = try! JSONDecoder().decode(MessageModel.self, from: stringContent)
-            let vc = AlertVC()
-            vc.viewModel.listItem.append(AlertViewModel(name: model.to ?? "" ))
-            vc.viewModel.listItem.append(AlertViewModel(name: model.message ?? "" ))
-            self.navigationController?.pushViewController(vc, animated: false)
+            do{
+                let model : MessageModel = try JSONDecoder().decode(MessageModel.self, from: stringContent)
+                let vc = AlertVC()
+                vc.viewModel.listItem.append(AlertViewModel(name: model.to ?? "" ))
+                vc.viewModel.listItem.append(AlertViewModel(name: model.message ?? "" ))
+                self.navigationController?.pushViewController(vc, animated: false)}
+            catch(let err){
+                print(err)
+            }
         }
         else if typeCode == EnumType.WIFI.rawValue{
-            
-            let model : WifiModel = try! JSONDecoder().decode(WifiModel.self, from: stringContent)
-            let vc = AlertVC()
-            vc.viewModel.listItem.append(AlertViewModel(name: model.ssid ?? "" ))
-            vc.viewModel.listItem.append(AlertViewModel(name: model.password ?? "" ))
-            vc.viewModel.listItem.append(AlertViewModel(name: model.protect ?? "" ))
-            self.navigationController?.pushViewController(vc, animated: false)
+            do{
+                let model : WifiModel = try JSONDecoder().decode(WifiModel.self, from: stringContent)
+                let vc = AlertVC()
+                vc.viewModel.listItem.append(AlertViewModel(name: model.ssid ?? "" ))
+                vc.viewModel.listItem.append(AlertViewModel(name: model.password ?? "" ))
+                vc.viewModel.listItem.append(AlertViewModel(name: model.protect ?? "" ))
+                self.navigationController?.pushViewController(vc, animated: false)
+            }
+            catch(let err){
+                print(err)
+            }
         }
         else if typeCode == EnumType.TELEPHONE.rawValue{
-            
-            let model : PhoneModel = try! JSONDecoder().decode(PhoneModel.self, from: stringContent)
-            let vc = AlertVC()
-            vc.viewModel.listItem.append(AlertViewModel(name: model.phone ?? "" ))
-            self.navigationController?.pushViewController(vc, animated: false)
+            do{
+                let model : PhoneModel = try JSONDecoder().decode(PhoneModel.self, from: stringContent)
+                let vc = AlertVC()
+                vc.viewModel.listItem.append(AlertViewModel(name: model.phone ?? "" ))
+                self.navigationController?.pushViewController(vc, animated: false)}
+            catch(let err){
+                print(err)
+            }
         }
         else if typeCode == EnumType.CONTACT.rawValue{
-            
-            let model : ContactModel = try! JSONDecoder().decode(ContactModel.self, from: stringContent)
-            let vc = AlertVC()
-            vc.viewModel.listItem.append(AlertViewModel(name: model.fullNameContact ?? "" ))
-            vc.viewModel.listItem.append(AlertViewModel(name: model.emailContact ?? "" ))
-            vc.viewModel.listItem.append(AlertViewModel(name: model.addressContact ?? "" ))
-            vc.viewModel.listItem.append(AlertViewModel(name: model.phoneContact ?? "" ))
-            self.navigationController?.pushViewController(vc, animated: false)
+            do{
+                let model : ContactModel = try JSONDecoder().decode(ContactModel.self, from: stringContent)
+                let vc = AlertVC()
+                vc.viewModel.listItem.append(AlertViewModel(name: model.fullNameContact ?? "" ))
+                vc.viewModel.listItem.append(AlertViewModel(name: model.emailContact ?? "" ))
+                vc.viewModel.listItem.append(AlertViewModel(name: model.addressContact ?? "" ))
+                vc.viewModel.listItem.append(AlertViewModel(name: model.phoneContact ?? "" ))
+                self.navigationController?.pushViewController(vc, animated: false)}
+            catch(let err){
+                print(err)
+            }
         }
         else if typeCode == EnumType.BARCODE.rawValue{
-            
-            let model : BarcodeModel = try! JSONDecoder().decode(BarcodeModel.self, from: stringContent)
-            let vc = AlertVC()
-            vc.viewModel.listItem.append(AlertViewModel(name: QRCodeHelper.shared.setTextLabel(mString: model.barcodetype ?? "No value") ))
-            vc.viewModel.listItem.append(AlertViewModel(name: model.productID ?? "" ))
-            self.navigationController?.pushViewController(vc, animated: false)
+            do{
+                let model : BarcodeModel = try JSONDecoder().decode(BarcodeModel.self, from: stringContent)
+                let vc = AlertVC()
+                vc.viewModel.listItem.append(AlertViewModel(name: QRCodeHelper.shared.setTextLabel(mString: model.barcodetype ?? "No value") ))
+                vc.viewModel.listItem.append(AlertViewModel(name: model.productID ?? "" ))
+                self.navigationController?.pushViewController(vc, animated: false)}
+            catch(let err){
+                print(err)
+            }
         }
     }
-   
+    
 }
 
 

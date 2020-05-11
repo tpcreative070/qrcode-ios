@@ -131,13 +131,19 @@ extension MessageGenerateVC {
         
         generateViewModel?.responseToView = { [weak self] value in
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
+                guard let to = (self?.textFieldTo.text), let message = (self?.textFieldMessage.text), let result = self?.generateViewModel?.result else {
+                    return
+                }
                 let resVC = ResultGenerateVC()
-                resVC.contentViewModel = ContentViewModel(data: MessageModel(to: (self?.textFieldTo.text)!, message: (self?.textFieldMessage.text)!))
-                resVC.imgCode = (self?.generateViewModel?.result)!
+                resVC.contentViewModel = ContentViewModel(data: MessageModel(to: to, message: message))
+                resVC.imgCode = result
                 resVC.resultViewModel.typeCode = EnumType.MESSAGE.rawValue
-                if (self?.messageViewModel.isSeen)! == AppConstants.ISSEEN {
+               if let isSeen = (self?.messageViewModel.isSeen), isSeen == AppConstants.ISSEEN {
+                guard let time = (self?.messageViewModel.createDateTime) else {
+                    return
+                }
                     resVC.resultViewModel.isUpdate = AppConstants.ISUPDATE
-                    resVC.resultViewModel.createDateTime = (self?.messageViewModel.createDateTime)!
+                    resVC.resultViewModel.createDateTime = time
                 }
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }

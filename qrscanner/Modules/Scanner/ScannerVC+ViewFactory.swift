@@ -295,8 +295,9 @@ extension ScannerVC {
             }
             else{
                 DispatchQueue.main.async {
-                    print(self?.scannerviewModel.isMultiLoad)
-                    if (self?.scannerviewModel.isMultiLoad)!{
+                   
+                    guard let result = self?.scannerviewModel.isMultiLoad else {return}
+                    if result{
                         let okAlert = SingleButtonAlert(
                             title: LanguageHelper.getTranslationByKey(LanguageKey.Alert) ?? "Error",
                             message: LanguageHelper.getTranslationByKey(LanguageKey.ChooseOneQRCode),
@@ -329,12 +330,12 @@ extension ScannerVC {
                        return UserDefaults.standard.object(forKey: key) != nil
                    }
     func fetchData(){
-        
+        scannerviewModel.listImage.removeAll()
         let arr = UserDefaults.standard.array(forKey: AppConstants.keyImageData) as? [Data]
         if arr != nil {
             if arr!.count > 0{
                 ProgressHUD.showInView(view: self.view)
-                
+
                 if arr!.count > 1{
                     if  !UserDefaults.standard.bool(forKey:KeyUserDefault.MultiLoad){
                         let rawImage = UIImage(data: arr![0])
@@ -343,14 +344,14 @@ extension ScannerVC {
                     }
                     else{
                         scannerviewModel.isMultiLoad = false
-                        
+
                         for item in arr! {
                             let rawImage = UIImage(data: item)
                             scannerviewModel.listImage.append(rawImage!)
                         }
-                        
+
                     }
-                    
+
                 }
                 if arr!.count == 1{
                     scannerviewModel.isMultiLoad = false
@@ -370,10 +371,9 @@ extension ScannerVC {
         else{
         if let prefs = UserDefaults(suiteName: AppConstants.sharedIndentifier) {
             if let imageData = prefs.object(forKey: AppConstants.shareKey) as? [Data] {
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                print(imageData)
                     ProgressHUD.showInView(view: self.view)
-                }
-                if imageData.count > 1{
+                    if imageData.count > 1{
                     if  !UserDefaults.standard.bool(forKey:KeyUserDefault.MultiLoad){
                         let rawImage = UIImage(data: imageData[0])
                         scannerviewModel.listImage.append(rawImage!)
@@ -381,6 +381,7 @@ extension ScannerVC {
                     }
                     else{
                         scannerviewModel.isMultiLoad = false
+                        Utils.logMessage(object: imageData)
                         for item in imageData {
                             if let rawImage = UIImage(data: item){
                                  scannerviewModel.listImage.append(rawImage)
@@ -407,7 +408,11 @@ extension ScannerVC {
                 }
             }
             }
+            else{
+            }
+        
         }
+        
     }
     
     
@@ -418,7 +423,7 @@ extension ScannerVC {
         if  !UserDefaults.standard.bool(forKey:KeyUserDefault.MultiLoad){
             imagePicker.maximumSelectionsAllowed = 1
             let configuration = OpalImagePickerConfiguration()
-            configuration.maximumSelectionsAllowedMessage = NSLocalizedString("You cannot select more than an image!", comment: "")
+            configuration.maximumSelectionsAllowedMessage = NSLocalizedString(LanguageHelper.getTranslationByKey(LanguageKey.ChooseOneQRCode)!, comment: "")
                 imagePicker.configuration = configuration
         }
         present(imagePicker, animated: true, completion: nil)
@@ -472,12 +477,10 @@ extension ScannerVC {
         session?.stopRunning()
     }
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        if AppConstants.isCam == 1{
-        }
-        else{
+        print(AppConstants.isCam)
+        if AppConstants.isCam == 0{
             if metadataObjects != nil && metadataObjects.count != 0 {
                 let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject
-                print(object?.type.rawValue)
                 
                 if object?.stringValue != nil
                 {
@@ -519,6 +522,9 @@ extension ScannerVC {
             else{
                 
             }
+        }
+        else{
+            
         }
     }
 }

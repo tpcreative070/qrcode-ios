@@ -22,9 +22,9 @@ extension EventGenerateVC {
             viewBackground.leftAnchor.constraint(equalTo: view.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewBackground.rightAnchor.constraint(equalTo: view.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewBackground.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-
+            
             viewBackground.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND * 4.17)
-
+            
         ])
         
         viewBackground.addSubview(viewTitleBg)
@@ -124,20 +124,20 @@ extension EventGenerateVC {
             textFieldEndTime.leadingAnchor.constraint(equalTo: viewEndBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             textFieldEndTime.trailingAnchor.constraint(equalTo: viewEndBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-          self.lbTitle.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-          self.lbLocation.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-          self.lbDescription.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-         self.lbBeginTime.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-         self.lbEndTime.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-          self.textFieldTitle.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbTitle.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbLocation.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbDescription.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbBeginTime.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbEndTime.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.textFieldTitle.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.textFieldLocation.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-
+        
         self.textFieldDescription.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-
+        
         self.textFieldBeginTime.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-
+        
         self.textFieldEndTime.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-
+        
         self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
         self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
         setupNavItems()
@@ -145,7 +145,7 @@ extension EventGenerateVC {
         addTarget(textFieldTitle)
         addTarget(textFieldDescription)
         addTarget(textFieldLocation)
-
+        
         
     }
     func setupEndedUpScrollView(){
@@ -170,10 +170,10 @@ extension EventGenerateVC {
         self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
-         let menuButtonRight = UIButton(frame: CGRect(x: 0, y: 0, width: DeviceHelper.Shared.ICON_WIDTH_HEIGHT, height: DeviceHelper.Shared.ICON_WIDTH_HEIGHT))
-               menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
-               menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchDown)
-               self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonRight)
+        let menuButtonRight = UIButton(frame: CGRect(x: 0, y: 0, width: DeviceHelper.Shared.ICON_WIDTH_HEIGHT, height: DeviceHelper.Shared.ICON_WIDTH_HEIGHT))
+        menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
+        menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchDown)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonRight)
     }
     
     func bindViewModel() {
@@ -205,17 +205,25 @@ extension EventGenerateVC {
         generateViewModel?.responseToView = { [weak self] value in
             
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
+                
+                guard let start = (self?.generateViewModel?.beginTime), let end = (self?.generateViewModel?.endTime), let title = (self?.textFieldTitle.text), let location = (self?.textFieldLocation.text), let des = (self?.textFieldDescription.text), let result = self?.generateViewModel?.result else {
+                    return
+                }
+                
                 let resVC = ResultGenerateVC()
-              
-                let startDate = TimeHelper.getString(time: (self?.generateViewModel?.beginTime)!, dateFormat: TimeHelper.FormatDateTime)
-                let endDate = TimeHelper.getString(time: (self?.generateViewModel?.endTime)!, dateFormat: TimeHelper.FormatDateTime)
-                resVC.contentViewModel = ContentViewModel(data: EventModel(title: (self?.textFieldTitle.text)!, location: (self?.textFieldLocation.text)!, description: (self?.textFieldDescription.text)!, beginTime: startDate, endTime: endDate))
-                resVC.imgCode = (self?.generateViewModel?.result)!
+                
+                let startDate = TimeHelper.getString(time: start, dateFormat: TimeHelper.FormatDateTime)
+                let endDate = TimeHelper.getString(time: end, dateFormat: TimeHelper.FormatDateTime)
+                resVC.contentViewModel = ContentViewModel(data: EventModel(title: title, location: location, description: des, beginTime: startDate, endTime: endDate))
+                resVC.imgCode = result
                 resVC.resultViewModel.typeCode = EnumType.EVENT.rawValue
-                if (self?.eventViewModel.isSeen)! == AppConstants.ISSEEN {
+                if let isSeen = (self?.eventViewModel.isSeen), isSeen == AppConstants.ISSEEN {
+                    guard let time = (self?.eventViewModel.createDateTime) else {
+                        return
+                    }
                     resVC.resultViewModel.isUpdate = AppConstants.ISUPDATE
-                    resVC.resultViewModel.createDateTime = (self?.eventViewModel.createDateTime)!
-
+                    resVC.resultViewModel.createDateTime = time
+                    
                 }
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }

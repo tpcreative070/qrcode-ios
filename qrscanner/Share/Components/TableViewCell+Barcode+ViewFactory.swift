@@ -15,7 +15,7 @@ extension TableViewCell  {
         NSLayoutConstraint.activate([
             self.viewBackgroundSecond.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             self.viewBackgroundSecond.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            self.viewBackgroundSecond.topAnchor.constraint(equalTo: self.topAnchor, constant: AppConstants.MARGIN_TOP),
+            self.viewBackgroundSecond.topAnchor.constraint(equalTo: self.topAnchor),
             self.viewBackgroundSecond.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
         
