@@ -24,8 +24,8 @@ class MessageViewModel : Codable , MessageViewModelDelegate{
     var isUpdate: Int?
     
     init(data: MessageModel) {
-        self.to = data.to!
-        self.message = data.message!
+        self.to = data.to ?? ""
+        self.message = data.message ?? ""
         
     }
     init(data: ValuePushModel) {

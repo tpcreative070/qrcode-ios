@@ -810,6 +810,7 @@ struct LanguageKey {
     static let ErrorProductRequiredUPCA = "ERROR_PRODUCT_REQUIREDUPCA"
     static let ErrorProductRequiredCode39 = "ERROR_PRODUCT_REQUIREDCODE39"
     static let ErrorProductRequiredCode93 = "ERROR_PRODUCT_REQUIREDCODE93"
+    static let ErrorProductRequiredCode128 = "ERROR_PRODUCT_REQUIREDCODE128"
     static let ErrorProductRequiredCodabar = "ERROR_PRODUCT_REQUIREDCODABAR"
     static let ErrorProductRequiredITF = "ERROR_PRODUCT_REQUIREDITF"
 

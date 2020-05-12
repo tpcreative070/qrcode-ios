@@ -30,7 +30,7 @@ class ResultViewModel : ResultViewModelDelegate {
         }
        }
     func insertValue(mValue: GenerateEntityModel){
-        let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: Date().millisecondsSince1970, typeCode: typeCode ?? "", content: mValue.content!, isHistory: false, isSave: true, updatedDateTime: Date().millisecondsSince1970, bookMark: false, transactionID: "", isCode: mValue.isCode!))
+        let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: Date().millisecondsSince1970, typeCode: typeCode ?? "", content: mValue.content ?? "", isHistory: false, isSave: true, updatedDateTime: Date().millisecondsSince1970, bookMark: false, transactionID: "", isCode: mValue.isCode ?? ""))
         if result {
             print("insert success")
         }
@@ -38,7 +38,7 @@ class ResultViewModel : ResultViewModelDelegate {
         
     }
     func doUpdate(mCreateDateTime: Int,mValue : GenerateEntityModel){
-        SQLHelper.updatedScanner(data: GenerateEntityModel(createdDateTime: mCreateDateTime, typeCode: typeCode ?? "", content: mValue.content!, isHistory: false, isSave: true, updatedDateTime: Date().millisecondsSince1970, bookMark: false, transactionID: "", isCode: ""))
+        SQLHelper.updatedScanner(data: GenerateEntityModel(createdDateTime: mCreateDateTime, typeCode: typeCode ?? "", content: mValue.content ?? "", isHistory: false, isSave: true, updatedDateTime: Date().millisecondsSince1970, bookMark: false, transactionID: "", isCode: ""))
         
     }
     func checkItemExist (mValue : GenerateEntityModel) -> Bool {

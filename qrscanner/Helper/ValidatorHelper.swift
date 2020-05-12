@@ -38,6 +38,15 @@ class ValidatorHelper {
         }
         return true
     }
+    static func isValidCode128(_ value: String?) -> Bool {
+           guard value != nil else { return false }
+        for item in value! {
+            if !item.isASCII{
+                return false
+            }
+        }
+           return true
+       }
     static func isValidCodabar(_ value: String?) -> Bool {
         guard value != nil else { return false }
         let characterset = CharacterSet(charactersIn: "0123456789-:$/+.")

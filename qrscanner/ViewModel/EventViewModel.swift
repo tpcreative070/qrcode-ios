@@ -39,11 +39,11 @@ class EventViewModel : Codable , EventViewModelDelegate{
     var isSeen : Int? = 0
     var isUpdate: Int?
     init(data: EventModel) {
-        self.title = data.title!
-        self.location = data.location!
-        self.description = data.description!
-        self.beginTime = data.beginTime!
-        self.endTime = data.endTime!
+        self.title = data.title ?? ""
+        self.location = data.location ?? ""
+        self.description = data.description ?? ""
+        self.beginTime = data.beginTime ?? ""
+        self.endTime = data.endTime ?? ""
     }
     init(data: ValuePushModel) {
         self.createDateTime = data.createDateTime

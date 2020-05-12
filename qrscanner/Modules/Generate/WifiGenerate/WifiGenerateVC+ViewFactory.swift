@@ -206,7 +206,7 @@ extension WifiGenerateVC {
                     return
                 }
                 let resVC = ResultGenerateVC()
-                resVC.contentViewModel = ContentViewModel(data: WifiModel(ssid: ssid, password: pass, protect: protect))
+                resVC.contentViewModel = ContentViewModel(data: WifiModel(ssid: ssid, password: pass, protect: protect, hidden: false))
                 resVC.imgCode = result
                 resVC.resultViewModel.typeCode = EnumType.WIFI.rawValue
                 if let isSeen = (self?.wifiViewModel.isSeen), isSeen == AppConstants.ISSEEN {
