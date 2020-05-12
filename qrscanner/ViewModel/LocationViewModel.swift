@@ -32,8 +32,8 @@ class LocationViewModel : Codable , LocationViewModelDelegate{
         self.isUpdate = data.isUpdate
     }
     init(data: LocationModel) {
-        self.latitude = String(data.latitude!)
-        self.longtitude = String(data.longtitude!)
+        self.latitude = String(data.latitude ?? 0.0)
+        self.longtitude = String(data.longtitude ?? 0.0)
         self.query = data.query!
     }
     init() {

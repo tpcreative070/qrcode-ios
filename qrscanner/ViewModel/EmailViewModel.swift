@@ -32,17 +32,17 @@ class EmailViewModel : Codable , EmailViewModelDelegate{
         self.objectEmail = subject
     }
     init(data: EmailModel){
-        self.email = data.email!
-        self.messageEmail = data.messageEmail!
-        self.objectEmail = data.objectEmail!
+        self.email = data.email ?? ""
+        self.messageEmail = data.messageEmail ?? ""
+        self.objectEmail = data.objectEmail ?? ""
     }
     init() {
         
     }
     init(dataEmail: EmailModel,dataValue: ValuePushModel) {
         self.email = dataEmail.email!
-        self.messageEmail = dataEmail.messageEmail!
-        self.objectEmail = dataEmail.objectEmail!
+        self.messageEmail = dataEmail.messageEmail ?? ""
+        self.objectEmail = dataEmail.objectEmail ?? ""
         self.createDateTime = dataValue.createDateTime
         self.typeCode = dataValue.typeCode
         self.isSeen = dataValue.isSeen

@@ -27,7 +27,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
     var isScanner : Bool = false
     var isMultiLoad : Bool = false
     var isQRCode : Int = 0
-    var dateTime : String?
+    var dateTime : String = TimeHelper.getString(time: Date(), dateFormat: TimeHelper.FormatDateTime)
     var isVibrate: Bool?
     var listScanner : [ScannerModel] = [ScannerModel]()
     var isChoosePhoto : Bool = false
@@ -63,7 +63,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
         UIApplication.shared.open(URL.init(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
     }
     func scannerResult(mValue : String, mType: String){
-   
+        print(mValue)
         var typeCode = ""
         var value_content : String = ""
         var isCode = "QRCode"
@@ -197,8 +197,8 @@ class ScannerViewModel : ScannerViewModelDelegate {
                 }
             }
             
-            let datestart = TimeHelper.getDate(timeString: dtstart)!
-            let dateend = TimeHelper.getDate(timeString: dtend)!
+            guard let datestart = TimeHelper.getDate(timeString: dtstart), let dateend = TimeHelper.getDate(timeString: dtend) else {return}
+            
             let content = EventModel(title: summary, location: location, description: description, beginTime: datestart, endTime: dateend)
             guard let jsonData = try? JSONEncoder().encode(content) else {return}
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
@@ -226,18 +226,18 @@ class ScannerViewModel : ScannerViewModelDelegate {
             var ssid : String = ""
             var protect : String = ""
             var pass : String = ""
-            
+            var hidden : Bool = false
             let start = mValue.index(mValue.startIndex, offsetBy: 5)
             let end = mValue.index(mValue.endIndex, offsetBy: 0)
             let new_mValue = String(mValue[start..<end])
             let arr_semi_colon = new_mValue.split(separator: ";")
             for item in arr_semi_colon {
+                print(item)
                 if (item.contains("S:"))
                 {
-                    if item.split(separator: ":").count > 1
-                    {
-                        ssid = String((item.split(separator: ":"))[1])
-                    }
+                    ssid = item.replacingOccurrences(of: "S:", with: "", options: NSString.CompareOptions.literal, range: nil)
+                       
+
                 }
                 if (item.contains("T:"))
                 {
@@ -253,8 +253,18 @@ class ScannerViewModel : ScannerViewModelDelegate {
                         pass = String((item.split(separator: ":"))[1])
                     }
                 }
+                if (item.contains("H:")){
+                    let value = item.replacingOccurrences(of: "H:", with: "", options: NSString.CompareOptions.literal, range: nil)
+                    if (value.caseInsensitiveCompare("True") == .orderedSame) {
+                        hidden = true
+                    }
+                    else {
+                        hidden = false
+                    }
+                }
             }
-            let content = WifiModel(ssid: ssid, password: pass, protect: protect)
+            print(ssid)
+            let content = WifiModel(ssid: ssid, password: pass, protect: protect, hidden: hidden)
             guard let jsonData = try? JSONEncoder().encode(content) else {return}
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
             
@@ -274,9 +284,13 @@ class ScannerViewModel : ScannerViewModelDelegate {
                 for item in arr_semi_colon {
                     if item.split(separator: ":").count > 1
                     {
-                        if (item.contains("N"))
+                        if (item.contains("N:"))
                         {
-                            fullName = String((item.split(separator: ":"))[1])
+                            fullName = item.replacingOccurrences(of: "N:", with: "", options: NSString.CompareOptions.literal, range: nil)
+                        }
+                        if (item.contains("FN:"))
+                        {
+                            fullName = item.replacingOccurrences(of: "FN:", with: "", options: NSString.CompareOptions.literal, range: nil)
                         }
                         if (item.contains("TEL"))
                         {
@@ -299,8 +313,13 @@ class ScannerViewModel : ScannerViewModelDelegate {
                     for item in arr_space {
                         if item.split(separator: ":").count > 1
                         {
-                            if(item == "N"){
-                                fullName = String((item.split(separator: ":"))[1])
+                            if (item.contains("N:"))
+                            {
+                                fullName = item.replacingOccurrences(of: "N:", with: "", options: NSString.CompareOptions.literal, range: nil)
+                            }
+                            if (item.contains("FN:"))
+                            {
+                                fullName = item.replacingOccurrences(of: "FN:", with: "", options: NSString.CompareOptions.literal, range: nil)
                             }
                             if(item.contains("EMAIL"))
                             {
@@ -450,10 +469,10 @@ class ScannerViewModel : ScannerViewModelDelegate {
                                 
                             }
                             if flagDuplicate {
-                                listResultScanner.append(GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode))
-                                let mValue = GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode)
+                                listResultScanner.append(GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime, isCode: isCode))
+                                let mValue = GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime, isCode: isCode)
                                 if !checkItemExist(mValue: mValue){
-                                    let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode))
+                                    let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime, isCode: isCode))
                                     if result {
                                         print("insert success")
                                     }
@@ -462,10 +481,10 @@ class ScannerViewModel : ScannerViewModelDelegate {
                             }
                         }
                         else{
-                            listResultScanner.append(GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode))
-                            let mValue = GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode)
+                            listResultScanner.append(GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime, isCode: isCode))
+                            let mValue = GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime, isCode: isCode)
                             if !checkItemExist(mValue: mValue){
-                                let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode))
+                                let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime, isCode: isCode))
                                 if result {
                                     print("insert success")
                                 }
@@ -474,7 +493,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
                     }
                     else
                     {
-                        let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode))
+                        let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime, isCode: isCode))
                         if result {
                             print("insert success")
                         }
@@ -486,34 +505,29 @@ class ScannerViewModel : ScannerViewModelDelegate {
                     if Bool(truncating: CommonService.getUserDefault(key: KeyUserDefault.Duplicate) ?? false){
                         let mValue = GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: "", isCode: isCode)
                         if !checkItemExist(mValue: mValue){
-                            let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode))
+                            let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime, isCode: isCode))
                             if result {
                                 if result {
-                                    itemScanner = SQLHelper.getItemScanner(createDateTime: createDateTime)!
-                                    let typeCode = itemScanner.typeCode?.lowercased()
-                                    let content = itemScanner.content
-                                    let value = ContentViewModel(data: ContentModel(typeCode : typeCode!, content: content!))
+                                    guard let itemScanner = SQLHelper.getItemScanner(createDateTime: createDateTime) else {return}
+                                    guard let typeCode = itemScanner.typeCode?.lowercased(), let content = itemScanner.content else {return}
+                                    let value = ContentViewModel(data: ContentModel(typeCode : typeCode, content: content))
                                     listTransaction.append(value)
                                     self.navigate?()
                                 }
                             }
                         }
                         else{
-                            
-                            
                             self.navigate?()
                         }
-                        
                     }
                     else
                     {
-                        let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode))
+                        let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime, isCode: isCode))
                         if result {
                             if result {
-                                itemScanner = SQLHelper.getItemScanner(createDateTime: createDateTime)!
-                                let typeCode = itemScanner.typeCode?.lowercased()
-                                let content = itemScanner.content
-                                let value = ContentViewModel(data: ContentModel(typeCode : typeCode!, content: content!))
+                                guard let itemScanner = SQLHelper.getItemScanner(createDateTime: createDateTime) else {return}
+                                guard let typeCode = itemScanner.typeCode?.lowercased(), let content = itemScanner.content else {return}
+                                let value = ContentViewModel(data: ContentModel(typeCode : typeCode, content: content))
                                 listTransaction.append(value)
                                 self.navigate?()
                             }
@@ -530,9 +544,9 @@ class ScannerViewModel : ScannerViewModelDelegate {
                 
                 
                 if Bool(truncating: CommonService.getUserDefault(key: KeyUserDefault.Duplicate) ?? false){
-                    let mValue = GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode)
+                    let mValue = GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime, isCode: isCode)
                     if !checkItemExist(mValue: mValue){
-                        let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode))
+                        let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime, isCode: isCode))
                         if result {
                             print("insert success")
                         }
@@ -545,9 +559,9 @@ class ScannerViewModel : ScannerViewModelDelegate {
                 }
                 else
                 {
-                    print(dateTime!)
+                    print(dateTime)
                     
-                    let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode))
+                    let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime, isCode: isCode))
                     if result {
                         print("insert success")
                     }
@@ -564,17 +578,18 @@ class ScannerViewModel : ScannerViewModelDelegate {
         if result > 0 {
             
             doUpdate(mCreateDateTime: Int(result), mValue: mValue)
-            itemScanner = SQLHelper.getItemScanner(createDateTime: Int(result))!
-            let typeCode = itemScanner.typeCode?.lowercased()
-            let content = itemScanner.content
-            let value = ContentViewModel(data: ContentModel(typeCode : typeCode!, content: content!))
+           
+            guard let itemScanner = SQLHelper.getItemScanner(createDateTime: Int(result)) else {return false}
+            guard let typeCode = itemScanner.typeCode?.lowercased(), let content = itemScanner.content else {return false}
+            let value = ContentViewModel(data: ContentModel(typeCode : typeCode, content: content))
+            
             listTransaction.append(value)
             return true
         }
         return false
     }
     func doUpdate(mCreateDateTime: Int,mValue : GenerateEntityModel){
-        SQLHelper.updatedScanner(data: GenerateEntityModel(createdDateTime: mCreateDateTime, typeCode: mValue.typeCode ?? "", content: mValue.content!, isHistory: true, isSave: false, updatedDateTime: Int(mValue.updatedDateTime ?? Int64(mCreateDateTime)), bookMark: false, transactionID: mValue.transactionID ?? "", isCode: mValue.isCode ?? ""))
+        SQLHelper.updatedScanner(data: GenerateEntityModel(createdDateTime: mCreateDateTime, typeCode: mValue.typeCode ?? "", content: mValue.content ?? "", isHistory: true, isSave: false, updatedDateTime: Int(mValue.updatedDateTime ?? Int64(mCreateDateTime)), bookMark: false, transactionID: mValue.transactionID ?? "", isCode: mValue.isCode ?? ""))
         
     }
     func defaultValue(){
@@ -595,17 +610,17 @@ class ScannerViewModel : ScannerViewModelDelegate {
         let myGroup = DispatchGroup()
         if list.count > 0{
             for index in list {
-//                print(index.pngData()!.base64EncodedString())
+                //                print(index.pngData()!.base64EncodedString())
                 myGroup.enter()
                 //Do something and leave
                 if let mData = index.toCGImage(){
-//                    print(mData)
+                    //                    print(mData)
                     CommonService.onReaderQRcode(tempImage: mData, countList : list.count) { (value) in
                         if value == nil {
                             flag = true
                         }
                         if let mValue = value {
-//                            print(mValue.count)
+                            //                            print(mValue.count)
                             if mValue.count > 1
                             {
                                 if list.count > 0{
@@ -659,7 +674,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
             //            }
         }
         else{
-//            print(listResult)
+            //            print(listResult)
             if flag {
                 let okAlert = SingleButtonAlert(
                     title: LanguageHelper.getTranslationByKey(LanguageKey.Alert) ?? "Error",
@@ -689,7 +704,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
     }
     func doGetListTransaction(){
         listTransaction.removeAll()
-        if let mList = SQLHelper.getListTransaction(transaction: dateTime!){
+        if let mList = SQLHelper.getListTransaction(transaction: dateTime){
             var index = 0
             self.listTransaction = mList.map({ (data) -> ContentViewModel in
                 index += 1

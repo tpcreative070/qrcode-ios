@@ -26,7 +26,7 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
     var countItemSelected: Int = 0
     var navigate: (() -> ())?
     var isQRCodelist : Int = 0
-    var dateTime: String?
+    var dateTime: String = TimeHelper.getString(time: Date(), dateFormat: TimeHelper.FormatDateTime)
     func doSelectItem(coable : Codable){
         if let value = coable.get(value: QRCodeViewModel.self){
             //    Utils.logMessage(object: listSave)
@@ -192,8 +192,8 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
                 }
             }
             
-            let datestart = TimeHelper.getDate(timeString: dtstart)!
-            let dateend = TimeHelper.getDate(timeString: dtend)!
+            let datestart = TimeHelper.getDate(timeString: dtstart) ?? TimeHelper.getString(time: Date(), dateFormat: TimeHelper.FormatDateTime)
+            let dateend = TimeHelper.getDate(timeString: dtend) ?? TimeHelper.getString(time: Date(), dateFormat: TimeHelper.FormatDateTime)
             let content = EventModel(title: summary, location: location, description: description, beginTime: datestart, endTime: dateend)
             guard let jsonData = try? JSONEncoder().encode(content) else {return}
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
@@ -221,36 +221,45 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
             var ssid : String = ""
             var protect : String = ""
             var pass : String = ""
-            
+            var hidden: Bool = false
             let start = mValue.index(mValue.startIndex, offsetBy: 5)
             let end = mValue.index(mValue.endIndex, offsetBy: 0)
             let new_mValue = String(mValue[start..<end])
             let arr_semi_colon = new_mValue.split(separator: ";")
             for item in arr_semi_colon {
                 print(item)
-                if (item.contains("S"))
+                if (item.contains("S:"))
                 {
                     if item.split(separator: ":").count > 1
                     {
                         ssid = String((item.split(separator: ":"))[1])
                     }
                 }
-                if (item.contains("T"))
+                if (item.contains("T:"))
                 {
                     if item.split(separator: ":").count > 1
                     {
                         protect = String((item.split(separator: ":"))[1])
                     }
                 }
-                if (item.contains("P"))
+                if (item.contains("P:"))
                 {
                     if item.split(separator: ":").count > 1
                     {
                         pass = String((item.split(separator: ":"))[1])
                     }
                 }
+                if (item.contains("H:")){
+                    let value = item.replacingOccurrences(of: "H:", with: "", options: NSString.CompareOptions.literal, range: nil)
+                    if (value.caseInsensitiveCompare("True") == .orderedSame){
+                        hidden = true
+                    }
+                    else {
+                        hidden = false
+                    }
+                }
             }
-            let content = WifiModel(ssid: ssid, password: pass, protect: protect)
+            let content = WifiModel(ssid: ssid, password: pass, protect: protect, hidden: hidden)
             guard let jsonData = try? JSONEncoder().encode(content) else {return}
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
             
@@ -270,9 +279,13 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
                 for item in arr_semi_colon {
                     if item.split(separator: ":").count > 1
                     {
-                        if (item.contains("N"))
+                        if (item.contains("N:"))
                         {
-                            fullName = String((item.split(separator: ":"))[1])
+                            fullName = item.replacingOccurrences(of: "N:", with: "", options: NSString.CompareOptions.literal, range: nil)
+                        }
+                        if (item.contains("FN:"))
+                        {
+                            fullName = item.replacingOccurrences(of: "FN:", with: "", options: NSString.CompareOptions.literal, range: nil)
                         }
                         if (item.contains("TEL"))
                         {
@@ -295,8 +308,13 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
                     for item in arr_space {
                         if item.split(separator: ":").count > 1
                         {
-                            if(item == "N"){
-                                fullName = String((item.split(separator: ":"))[1])
+                           if (item.contains("N:"))
+                            {
+                                fullName = item.replacingOccurrences(of: "N:", with: "", options: NSString.CompareOptions.literal, range: nil)
+                            }
+                            if (item.contains("FN:"))
+                            {
+                                fullName = item.replacingOccurrences(of: "FN:", with: "", options: NSString.CompareOptions.literal, range: nil)
                             }
                             if(item.contains("EMAIL"))
                             {
@@ -429,14 +447,12 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
         else
         {
             print("giatr :\(value_content)")
-            print(dateTime!)
             let createDateTime = Date().millisecondsSince1970
             
                 if Bool(truncating: CommonService.getUserDefault(key: KeyUserDefault.Duplicate) ?? false){
-                    print(dateTime!)
-                    let mValue = GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode)
+                    let mValue = GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime, isCode: isCode)
                     if !checkItemExist(mValue: mValue){
-                        let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode))
+                        let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime, isCode: isCode))
                         if result {
                             print("insert success")
                         }
@@ -449,9 +465,8 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
                 }
                 else
                 {
-                    print(dateTime!)
 
-                                      let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime!, isCode: isCode))
+                                      let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime, isCode: isCode))
                                                  if result {
                                                      print("insert success")
                                                  }
@@ -472,13 +487,12 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
         return false
     }
     func doUpdate(mCreateDateTime: Int,mValue : GenerateEntityModel){
-        SQLHelper.updatedScanner(data: GenerateEntityModel(createdDateTime: mCreateDateTime, typeCode: mValue.typeCode ?? "", content: mValue.content!, isHistory: true, isSave: false, updatedDateTime: Int(mValue.updatedDateTime ?? Int64(mCreateDateTime)), bookMark: false, transactionID: mValue.transactionID ?? "", isCode: mValue.isCode ?? ""))
+        SQLHelper.updatedScanner(data: GenerateEntityModel(createdDateTime: mCreateDateTime, typeCode: mValue.typeCode ?? "", content: mValue.content ?? "", isHistory: true, isSave: false, updatedDateTime: Int(mValue.updatedDateTime ?? Int64(mCreateDateTime)), bookMark: false, transactionID: mValue.transactionID ?? "", isCode: mValue.isCode ?? ""))
         
     }
 
     func doGetListTransaction(){
-        print(dateTime!)
-           if let mList = SQLHelper.getListTransaction(transaction: dateTime!){
+           if let mList = SQLHelper.getListTransaction(transaction: dateTime){
                var index = 0
                self.listTransaction = mList.map({ (data) -> ContentViewModel in
                    index += 1

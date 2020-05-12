@@ -112,6 +112,9 @@ class GenerateViewModel : GenerateViewModelDelegate {
             else if typeBarcode == BarcodeType.ITF.rawValue{
                 validateProductITF()
             }
+            else if typeBarcode == BarcodeType.CODE128.rawValue{
+                validateProductCode128()
+            }
             else{
                 validateProductID()
             }
@@ -401,6 +404,18 @@ class GenerateViewModel : GenerateViewModelDelegate {
             errorMessages.value.removeValue(forKey: GenerateViewModelKey.PRODUCTID)
         }
     }
+    func validateProductCode128(){
+        if productID == nil || productID == ""{
+            errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductInvalid) ?? ""
+        }
+        else if (!ValidatorHelper.isValidCode128(productID))
+        {
+            errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductRequiredCode128) ?? ""
+        }
+        else {
+            errorMessages.value.removeValue(forKey: GenerateViewModelKey.PRODUCTID)
+        }
+    }
     func validateProductITF(){
         if productID == nil || productID == ""{
             errorMessages.value[GenerateViewModelKey.PRODUCTID] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorProductInvalid) ?? ""
@@ -527,9 +542,9 @@ class GenerateViewModel : GenerateViewModelDelegate {
      */
     func validateLon(){
         if lon == nil || !ValidatorHelper.minLength("\(String(describing: lon))",minLength: 1) || lon == 0.0 {
-             errorMessages.value[GenerateViewModelKey.LON] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorLonRequired ) ?? ""
+            errorMessages.value[GenerateViewModelKey.LON] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorLonRequired ) ?? ""
         }
-       
+            
         else if !ValidatorHelper.isValidLon(lon ?? 0.0){
             errorMessages.value[GenerateViewModelKey.LON] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorLonInvalid ) ?? ""
         }
@@ -589,7 +604,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
         if beginTimeEvent == nil {
             errorMessages.value[GenerateViewModelKey.BEGINTIME_EVENT] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorBeginTimeRequired) ?? ""
         }
-        else if (endTimeEvent != nil && beginTimeEvent! > endTimeEvent!){
+        else if let begin = beginTimeEvent, let end = endTimeEvent, (endTimeEvent != nil && begin > end){
             errorMessages.value[GenerateViewModelKey.BEGINTIME_EVENT] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorBeginDateGreaterEndDate) ?? ""
         }
         else {
@@ -603,7 +618,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
         if beginTimeEvent?.date == nil {
             errorMessages.value[GenerateViewModelKey.ENDTIME_EVENT] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorEndTimeRequired) ?? ""
         }
-        else if (beginTimeEvent != nil && beginTimeEvent! > endTimeEvent!){
+        else if let begin = beginTimeEvent, let end = endTimeEvent, (beginTimeEvent != nil && begin > end){
             errorMessages.value[GenerateViewModelKey.BEGINTIME_EVENT] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorBeginDateGreaterEndDate) ?? ""
         }
         else {
@@ -670,8 +685,10 @@ class GenerateViewModel : GenerateViewModelDelegate {
             if ( errorMessages.value.count > 0 ) {
                 return
             }
-            
-            value = "\(url!)"
+            guard let url = url else {
+                return
+            }
+            value = "\(url)"
             
         }
         else if typeCode == EnumType.TEXT.rawValue{
@@ -680,7 +697,10 @@ class GenerateViewModel : GenerateViewModelDelegate {
                 return
             }
             else{
-                value = "\(text!)"
+                guard let text = text else {
+                    return
+                }
+                value = "\(text)"
             }
         }
         else if typeCode == EnumType.LOCATION.rawValue{
@@ -691,7 +711,10 @@ class GenerateViewModel : GenerateViewModelDelegate {
                 return
             }
             else{
-                value = "geo:\(lat!),\(lon!)?q=\(query!)"
+                guard let lat = lat, let long = lon, let query = query else {
+                    return
+                }
+                value = "geo:\(lat),\(long)?q=\(query)"
             }
         }
         else if typeCode == EnumType.EMAIL.rawValue{
@@ -702,7 +725,10 @@ class GenerateViewModel : GenerateViewModelDelegate {
                 return
             }
             else{
-                value = "mailto:\(email!)?subject=\(objectEmail!)&body=\(messageEmail!)"
+                guard let email = email, let object = objectEmail, let mess = messageEmail else {
+                    return
+                }
+                value = "mailto:\(email)?subject=\(object)&body=\(mess)"
             }
         }
         else if typeCode == EnumType.EVENT.rawValue{
@@ -719,9 +745,12 @@ class GenerateViewModel : GenerateViewModelDelegate {
                 df.locale = Locale(identifier: "en_US_POSIX")
                 df.timeZone = TimeZone.autoupdatingCurrent
                 df.dateFormat = "yyyyMMdd'T'HHmmss"
+                guard let title = titleEvent, let loca = locationEvent, let des = descriptionEvent  else {
+                    return
+                }
                 let startDate = df.string(from: beginTimeEvent!)
                 let endDate = df.string(from: endTimeEvent!)
-                value = "BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:\(titleEvent!)\nLOCATION: \(locationEvent!)\nDESCRIPTION:\(descriptionEvent!)\nDTSTART: \(startDate)\nDTEND:\(endDate)\nEND:VEVENT\nEND:VCALENDAR"
+                value = "BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:\(title)\nLOCATION: \(loca)\nDESCRIPTION:\(des)\nDTSTART: \(startDate)\nDTEND:\(endDate)\nEND:VEVENT\nEND:VCALENDAR"
                 //                       }
                 
             }
@@ -733,20 +762,22 @@ class GenerateViewModel : GenerateViewModelDelegate {
                 return
             }
             else{
-                value = "SMSTO:\(to!):\(message!)"
+                guard let toMess = to, let mess = message else {
+                    return
+                }
+                value = "SMSTO:\(toMess):\(mess)"
             }
         }
         else if typeCode == EnumType.WIFI.rawValue{
             validateSSID()
             validatePassword()
-            print(protect!)
-            print(ssid!)
-            print(password!)
+            
             if ( errorMessages.value.count > 0 ) {
                 return
             }
             else{
-                value = "WIFI:T:\(protect!);S:\(ssid!);P:\(password!);;"
+                guard let pro = protect, let ssid = ssid, let pass = password else {return}
+                value = "WIFI:T:\(pro);S:\(ssid);P:\(pass);;"
             }
             
         }
@@ -756,7 +787,10 @@ class GenerateViewModel : GenerateViewModelDelegate {
                 return
             }
             else{
-                value = "tel:\(phoneTelephone!)"
+                guard let phone = phoneTelephone else {
+                    return
+                }
+                value = "tel:\(phone)"
             }
         }
         else if typeCode == EnumType.CONTACT.rawValue{
@@ -768,7 +802,10 @@ class GenerateViewModel : GenerateViewModelDelegate {
                 return
             }
             else{
-                value = "MECARD:N:\(fullNameContact!);ADR:\(addressContact!);TEL:\(phoneContact!);EMAIL:\(emailContact!);;"
+                guard let fullName = fullNameContact, let address = addressContact, let phone = phoneContact, let email = emailContact else {
+                    return
+                }
+                value = "MECARD:N:\(fullName);ADR:\(address);TEL:\(phone);EMAIL:\(email);;"
             }
         }
         result = generateDataQRCode(from: value)!
@@ -807,6 +844,9 @@ class GenerateViewModel : GenerateViewModelDelegate {
             else if typeBarcode == BarcodeType.ITF.rawValue{
                 validateProductITF()
             }
+            else if typeBarcode == BarcodeType.CODE128.rawValue{
+                validateProductCode128()
+            }
             else {
                 validateProductID()
             }
@@ -814,10 +854,11 @@ class GenerateViewModel : GenerateViewModelDelegate {
                 return
             }
             else{
-                value = "\(productID!)"
-                guard let typeBarcode = typeBarcode else {
+                
+                guard let typeBarcode = typeBarcode, let product = productID else {
                     return
                 }
+                value = "\(product)"
                 result = (generateDataBarcode(from: value, format: typeBarcode))
                 if (result != nil) {
                     stringResult = value

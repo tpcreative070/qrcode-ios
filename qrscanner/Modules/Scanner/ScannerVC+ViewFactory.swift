@@ -282,7 +282,7 @@ extension ScannerVC {
                 
                 let vc = QRCodeVC()
                 vc.viewModel.listQRResult = (self?.scannerviewModel.listResult)!
-                vc.viewModel.dateTime = self?.scannerviewModel.dateTime
+                vc.viewModel.dateTime = (self?.scannerviewModel.dateTime)!
                 self?.navigationController?.pushViewController(vc,animated: true)
                 UserDefaults(suiteName: AppConstants.sharedIndentifier)!.removeObject(forKey: AppConstants.shareKey)
                 UserDefaults.standard.removeObject(forKey: AppConstants.keyImageData)

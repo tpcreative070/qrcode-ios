@@ -11,12 +11,12 @@ class WifiModel : Codable {
     var ssid: String?
     var password: String?
     var protect: String?
-    var hidden : Bool = false
-    init(ssid: String, password: String, protect: String) {
+    var hidden : Bool?
+    init(ssid: String, password: String, protect: String, hidden: Bool) {
         self.ssid = ssid
          self.protect = protect
          self.password = password
-      
+        self.hidden = hidden
     }
     init(){}
 }

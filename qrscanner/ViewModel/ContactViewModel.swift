@@ -35,10 +35,10 @@ class ContactViewModel : Codable , ContactViewModelDelegate{
     var isSeen : Int? = 0
     var isUpdate: Int?
     init(data: ContactModel) {
-        self.fullNameContact = data.fullNameContact!
-        self.addressContact = data.addressContact!
-        self.phoneContact = data.phoneContact!
-        self.emailContact = data.emailContact!
+        self.fullNameContact = data.fullNameContact ?? ""
+        self.addressContact = data.addressContact ?? ""
+        self.phoneContact = data.phoneContact ?? ""
+        self.emailContact = data.emailContact ?? ""
     }
     init(data: ValuePushModel) {
         self.createDateTime = data.createDateTime
