@@ -29,7 +29,7 @@ extension UrlGenerateVC {
             viewUrlBg.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: AppConstants.MARGIN_TOP),
             viewUrlBg.leftAnchor.constraint(equalTo: viewBackground.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewUrlBg.rightAnchor.constraint(equalTo: viewBackground.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-             viewUrlBg.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM)
+            viewUrlBg.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM)
         ])
         
         viewUrlBg.addSubview(lbUrl)
@@ -44,7 +44,7 @@ extension UrlGenerateVC {
             textFieldUrl.leadingAnchor.constraint(equalTo: viewUrlBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             textFieldUrl.trailingAnchor.constraint(equalTo: viewUrlBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-         self.lbUrl.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbUrl.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.textFieldUrl.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
         self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
@@ -59,15 +59,15 @@ extension UrlGenerateVC {
         self.view.backgroundColor = UIColor(named: AppColors.ColorAppearance)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         navigationItem.title = LanguageHelper.getTranslationByKey(LanguageKey.Url)
-          let urlAttributes = [NSAttributedString.Key.font: AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE), NSAttributedString.Key.foregroundColor:UIColor.white]
+        let urlAttributes = [NSAttributedString.Key.font: AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE), NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = urlAttributes
-            self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
-            navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
-            self.navigationController?.navigationBar.tintColor = .white
-            let menuButtonRight = UIButton(frame: CGRect(x: 0, y: 0, width: DeviceHelper.Shared.ICON_WIDTH_HEIGHT, height: DeviceHelper.Shared.ICON_WIDTH_HEIGHT))
-                   menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
-                   menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchDown)
-                   self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonRight)
+        self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
+        navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
+        self.navigationController?.navigationBar.tintColor = .white
+        let menuButtonRight = UIButton(frame: CGRect(x: 0, y: 0, width: DeviceHelper.Shared.ICON_WIDTH_HEIGHT, height: DeviceHelper.Shared.ICON_WIDTH_HEIGHT))
+        menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
+        menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchDown)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonRight)
         
     }
     
@@ -90,13 +90,19 @@ extension UrlGenerateVC {
         generateViewModel?.responseToView = { [weak self] value in
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
                 let resVC = ResultGenerateVC()
-                resVC.contentViewModel = ContentViewModel(data: UrlModel(url: (self?.textFieldUrl.text)!))
+                guard let urlModel = (self?.textFieldUrl.text), let result = (self?.generateViewModel?.result) else {
+                    return
+                }
+                resVC.contentViewModel = ContentViewModel(data: UrlModel(url: urlModel))
                 resVC.resultViewModel.typeCode = EnumType.URL.rawValue
-                resVC.imgCode = (self?.generateViewModel?.result)!
-                if (self?.urlViewModel.isSeen)! == AppConstants.ISSEEN {
+                resVC.imgCode = result
+                if let isSeen = (self?.urlViewModel.isSeen), isSeen == AppConstants.ISSEEN {
+                    guard let time = self?.urlViewModel.createDateTime else {
+                        return
+                    }
                     resVC.resultViewModel.isUpdate = AppConstants.ISUPDATE
-                    resVC.resultViewModel.createDateTime = (self?.urlViewModel.createDateTime)!
-
+                    resVC.resultViewModel.createDateTime = time
+                    
                 }
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }

@@ -12,17 +12,17 @@ import MapKit
 import CoreLocation
 extension LocationGenerateVC {
     func initUI() {
-//        let gety = view.frame.height * 5.8/7
-//        let value_item = view.frame.height/7
-         self.view.addSubview(scrollView)
-                  NSLayoutConstraint.activate([
-                      scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-                      scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-                      scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                      scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                  ])
-             scrollView.addSubview(viewBackground)
-       NSLayoutConstraint.activate([
+        //        let gety = view.frame.height * 5.8/7
+        //        let value_item = view.frame.height/7
+        self.view.addSubview(scrollView)
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+        ])
+        scrollView.addSubview(viewBackground)
+        NSLayoutConstraint.activate([
             viewBackground.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: AppConstants.MARGIN_TOP),
             viewBackground.leftAnchor.constraint(equalTo: view.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
             viewBackground.rightAnchor.constraint(equalTo: view.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
@@ -96,8 +96,8 @@ extension LocationGenerateVC {
             viewMap.rightAnchor.constraint(equalTo: viewBackground.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
             viewMap.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM * 2.25)
         ])
-         self.lbLatitude.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-         self.lbLongtitude.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbLatitude.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.lbLongtitude.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.lbQuery.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.textFieldLatitude.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.textFieldLatitude.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
@@ -126,9 +126,9 @@ extension LocationGenerateVC {
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
         let menuButtonRight = UIButton(frame: CGRect(x: 0, y: 0, width: DeviceHelper.Shared.ICON_WIDTH_HEIGHT, height: DeviceHelper.Shared.ICON_WIDTH_HEIGHT))
-               menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
-               menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchDown)
-               self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonRight)
+        menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
+        menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchDown)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonRight)
     }
     
     func bindViewModel() {
@@ -159,14 +159,20 @@ extension LocationGenerateVC {
         generateViewModel?.responseToView = { [weak self] value in
             
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
+                guard let lat = (self?.textFieldLatitude.text), let long = (self?.textFieldLongtitude.text), let query = (self?.textFieldQuery.text), let result = self?.generateViewModel?.result else {
+                    return
+                }
                 let resVC = ResultGenerateVC()
-                resVC.contentViewModel = ContentViewModel(data: LocationModel(latitude: Float((self?.textFieldLatitude.text)!) , longtitude: Float((self?.textFieldLongtitude.text)!), query: (self?.textFieldQuery.text)!))
-                resVC.imgCode = (self?.generateViewModel?.result)!
+                resVC.contentViewModel = ContentViewModel(data: LocationModel(latitude: Float(lat) , longtitude: Float(long), query: query))
+                resVC.imgCode = result
                 resVC.resultViewModel.typeCode = EnumType.LOCATION.rawValue
-                if (self?.locationViewModel.isSeen)! == AppConstants.ISSEEN {
+                if let isSeen = (self?.locationViewModel.isSeen), isSeen == AppConstants.ISSEEN {
+                    guard let time = (self?.locationViewModel.createDateTime) else {
+                        return
+                    }
                     resVC.resultViewModel.isUpdate = AppConstants.ISUPDATE
-                    resVC.resultViewModel.createDateTime = (self?.locationViewModel.createDateTime)!
-
+                    resVC.resultViewModel.createDateTime = time
+                    
                 }
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }
@@ -209,8 +215,8 @@ extension LocationGenerateVC {
     }
     func checkIsSeenDetail(){
         if locationViewModel.isSeen == AppConstants.ISSEEN {
-            textFieldLatitude.text = String(locationViewModel.latitude!)
-            textFieldLongtitude.text = String(locationViewModel.longtitude!)
+            textFieldLatitude.text = String(locationViewModel.latView)
+            textFieldLongtitude.text = String(locationViewModel.longView)
             textFieldQuery.text = locationViewModel.query ?? ""
         }
     }
@@ -222,8 +228,11 @@ extension LocationGenerateVC {
     }
     func defineValue(){
         self.generateViewModel?.typeCode = EnumType.LOCATION.rawValue
-        self.generateViewModel?.lat = Float(textFieldLatitude.text!)
-        self.generateViewModel?.lon = Float(textFieldLongtitude.text!)
+        guard let lat = textFieldLatitude.text, let long = textFieldLongtitude.text else {
+            return
+        }
+        self.generateViewModel?.lat = Float(lat)
+        self.generateViewModel?.lon = Float(long)
         self.generateViewModel?.query = textFieldQuery.text
     }
     

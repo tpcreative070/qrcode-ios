@@ -63,8 +63,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
         UIApplication.shared.open(URL.init(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
     }
     func scannerResult(mValue : String, mType: String){
-        print(mValue)
-        print(mType)
+   
         var typeCode = ""
         var value_content : String = ""
         var isCode = "QRCode"
@@ -233,21 +232,21 @@ class ScannerViewModel : ScannerViewModelDelegate {
             let new_mValue = String(mValue[start..<end])
             let arr_semi_colon = new_mValue.split(separator: ";")
             for item in arr_semi_colon {
-                if (item.contains("S"))
+                if (item.contains("S:"))
                 {
                     if item.split(separator: ":").count > 1
                     {
                         ssid = String((item.split(separator: ":"))[1])
                     }
                 }
-                if (item.contains("T"))
+                if (item.contains("T:"))
                 {
                     if item.split(separator: ":").count > 1
                     {
                         protect = String((item.split(separator: ":"))[1])
                     }
                 }
-                if (item.contains("P"))
+                if (item.contains("P:"))
                 {
                     if item.split(separator: ":").count > 1
                     {
@@ -433,7 +432,6 @@ class ScannerViewModel : ScannerViewModelDelegate {
         else
         {
             print("giatr :\(value_content)")
-            print(dateTime!)
             let createDateTime = Date().millisecondsSince1970
             if isScanner {
                 if UserDefaults.standard.bool(forKey:KeyUserDefault.MultiScan){
@@ -563,7 +561,6 @@ class ScannerViewModel : ScannerViewModelDelegate {
     }
     func checkItemExist (mValue : GenerateEntityModel) -> Bool {
         let result = SQLHelper.checkItemExist(data: mValue)
-        print(result)
         if result > 0 {
             
             doUpdate(mCreateDateTime: Int(result), mValue: mValue)
@@ -598,17 +595,17 @@ class ScannerViewModel : ScannerViewModelDelegate {
         let myGroup = DispatchGroup()
         if list.count > 0{
             for index in list {
-                print(index.pngData()!.base64EncodedString())
+//                print(index.pngData()!.base64EncodedString())
                 myGroup.enter()
                 //Do something and leave
                 if let mData = index.toCGImage(){
-                    print(mData)
+//                    print(mData)
                     CommonService.onReaderQRcode(tempImage: mData, countList : list.count) { (value) in
                         if value == nil {
                             flag = true
                         }
                         if let mValue = value {
-                            print(mValue.count)
+//                            print(mValue.count)
                             if mValue.count > 1
                             {
                                 if list.count > 0{
@@ -662,7 +659,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
             //            }
         }
         else{
-            print(listResult)
+//            print(listResult)
             if flag {
                 let okAlert = SingleButtonAlert(
                     title: LanguageHelper.getTranslationByKey(LanguageKey.Alert) ?? "Error",

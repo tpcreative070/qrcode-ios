@@ -45,7 +45,7 @@ extension TextGenerateVC {
             textFieldText.trailingAnchor.constraint(equalTo: viewTextBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         self.lbText.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-         self.textFieldText.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
+        self.textFieldText.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
         self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
         setupNavItems()
@@ -60,13 +60,13 @@ extension TextGenerateVC {
         navigationItem.title = LanguageHelper.getTranslationByKey(LanguageKey.Text)
         let textAttributes = [NSAttributedString.Key.font: AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE), NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
-       self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
+        self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
-         let menuButtonRight = UIButton(frame: CGRect(x: 0, y: 0, width: DeviceHelper.Shared.ICON_WIDTH_HEIGHT, height: DeviceHelper.Shared.ICON_WIDTH_HEIGHT))
-               menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
-               menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchDown)
-               self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonRight)
+        let menuButtonRight = UIButton(frame: CGRect(x: 0, y: 0, width: DeviceHelper.Shared.ICON_WIDTH_HEIGHT, height: DeviceHelper.Shared.ICON_WIDTH_HEIGHT))
+        menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
+        menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchDown)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonRight)
     }
     
     func bindViewModel() {
@@ -90,15 +90,19 @@ extension TextGenerateVC {
         generateViewModel?.responseToView = { [weak self] value in
             
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
+                guard let text = (self?.textFieldText.text), let result = self?.generateViewModel?.result else {
+                    return
+                }
                 let resVC = ResultGenerateVC()
-                resVC.contentViewModel = ContentViewModel(data: TextModel(text: (self?.textFieldText.text)!))
-                resVC.imgCode = (self?.generateViewModel?.result)!
-                resVC.dataImage = (self?.generateViewModel?.dataImage)!
-
+                resVC.contentViewModel = ContentViewModel(data: TextModel(text: text))
+                resVC.imgCode = result
                 resVC.resultViewModel.typeCode = EnumType.TEXT.rawValue
-                if (self?.textViewModel.isSeen)! == AppConstants.ISSEEN {
+                if let isSeen = (self?.textViewModel.isSeen), isSeen == AppConstants.ISSEEN {
+                    guard let time = (self?.textViewModel.createDateTime) else {
+                        return
+                    }
                     resVC.resultViewModel.isUpdate = AppConstants.ISUPDATE
-                    resVC.resultViewModel.createDateTime = (self?.textViewModel.createDateTime)!
+                    resVC.resultViewModel.createDateTime = time
                 }
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }

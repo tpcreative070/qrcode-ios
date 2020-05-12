@@ -58,9 +58,13 @@ extension QRCodeVC {
             }
         }
         self.viewModel.navigate = { [weak self] in
-            if (self?.viewModel.listTransaction.count)! > 0{
+            guard let count = self?.viewModel.listTransaction.count else {
+                return
+            }
+            if count > 0{
+            guard let listTran = (self?.viewModel.listTransaction) else {return}
             let  vc = DetailVC()
-            vc.listContentViewModel = ((self?.viewModel.listTransaction)!)
+            vc.listContentViewModel = listTran
             self?.navigationController?.pushViewController(vc, animated: true)
             self?.navigationController?.viewControllers.remove(at: 1)
         }

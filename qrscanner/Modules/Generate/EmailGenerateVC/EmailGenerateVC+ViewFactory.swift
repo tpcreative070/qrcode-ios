@@ -9,15 +9,15 @@
 import UIKit
 extension EmailGenerateVC {
     func initUI() {
-     
+        
         self.view.addSubview(scrollView)
-                  NSLayoutConstraint.activate([
-                      scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-                      scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-                      scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                      scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                  ])
-             scrollView.addSubview(viewBackground)
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+        ])
+        scrollView.addSubview(viewBackground)
         NSLayoutConstraint.activate([
             viewBackground.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: AppConstants.MARGIN_TOP),
             viewBackground.leftAnchor.constraint(equalTo: view.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
@@ -64,25 +64,25 @@ extension EmailGenerateVC {
             textFieldObjectEmail.trailingAnchor.constraint(equalTo: viewObjectEmailBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
         viewBackground.addSubview(viewMessageBg)
-               NSLayoutConstraint.activate([
-                   viewMessageBg.topAnchor.constraint(equalTo: viewObjectEmailBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-                   viewMessageBg.leftAnchor.constraint(equalTo: viewBackground.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
-                   viewMessageBg.rightAnchor.constraint(equalTo: viewBackground.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
-                   viewMessageBg.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM)
-               ])
-               viewMessageBg.addSubview(lbMessageEmail)
-               NSLayoutConstraint.activate([
-                   lbMessageEmail.topAnchor.constraint(equalTo: viewMessageBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
-                   lbMessageEmail.leadingAnchor.constraint(equalTo: viewMessageBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-                   lbMessageEmail.trailingAnchor.constraint(equalTo: viewMessageBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
-               ])
-               viewMessageBg.addSubview(textFieldMessageEmail)
-               NSLayoutConstraint.activate([
-                   textFieldMessageEmail.topAnchor.constraint(equalTo: lbMessageEmail.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
-                   textFieldMessageEmail.leadingAnchor.constraint(equalTo: viewMessageBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
-                   textFieldMessageEmail.trailingAnchor.constraint(equalTo: viewMessageBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
-               ])
-       
+        NSLayoutConstraint.activate([
+            viewMessageBg.topAnchor.constraint(equalTo: viewObjectEmailBg.bottomAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
+            viewMessageBg.leftAnchor.constraint(equalTo: viewBackground.readableContentGuide.leftAnchor, constant: AppConstants.MARGIN_LEFT),
+            viewMessageBg.rightAnchor.constraint(equalTo: viewBackground.readableContentGuide.rightAnchor, constant: AppConstants.MARGIN_RIGHT),
+            viewMessageBg.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.HEIGHT_BACKGROUND_ITEM)
+        ])
+        viewMessageBg.addSubview(lbMessageEmail)
+        NSLayoutConstraint.activate([
+            lbMessageEmail.topAnchor.constraint(equalTo: viewMessageBg.topAnchor, constant: AppConstants.MARGIN_TOP_ITEM),
+            lbMessageEmail.leadingAnchor.constraint(equalTo: viewMessageBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            lbMessageEmail.trailingAnchor.constraint(equalTo: viewMessageBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+        ])
+        viewMessageBg.addSubview(textFieldMessageEmail)
+        NSLayoutConstraint.activate([
+            textFieldMessageEmail.topAnchor.constraint(equalTo: lbMessageEmail.bottomAnchor, constant: AppConstants.MARGIN_TOP_SUBITEM),
+            textFieldMessageEmail.leadingAnchor.constraint(equalTo: viewMessageBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
+            textFieldMessageEmail.trailingAnchor.constraint(equalTo: viewMessageBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
+        ])
+        
         self.lbEmail.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.lbObjectEmail.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.lbMessageEmail.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
@@ -92,7 +92,7 @@ extension EmailGenerateVC {
         self.lbEmail.text = LanguageHelper.getTranslationByKey(LanguageKey.EmailAddress)
         self.lbObjectEmail.text = LanguageHelper.getTranslationByKey(LanguageKey.Object)
         self.lbMessageEmail.text = LanguageHelper.getTranslationByKey(LanguageKey.Message)
-
+        
         self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
         self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
         setupNavItems()
@@ -110,16 +110,16 @@ extension EmailGenerateVC {
         navigationItem.title = LanguageHelper.getTranslationByKey(LanguageKey.Email)
         let textAttributes = [NSAttributedString.Key.font: AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE), NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
-       self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
+        self.navigationController?.navigationBar.backItem?.title = LanguageHelper.getTranslationByKey(LanguageKey.Back)
         
-       
+        
         
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
         let menuButtonRight = UIButton(frame: CGRect(x: 0, y: 0, width: DeviceHelper.Shared.ICON_WIDTH_HEIGHT, height: DeviceHelper.Shared.ICON_WIDTH_HEIGHT))
-               menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
-               menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchDown)
-               self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonRight)
+        menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
+        menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchDown)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonRight)
     }
     
     func bindViewModel() {
@@ -149,14 +149,20 @@ extension EmailGenerateVC {
         
         generateViewModel?.responseToView = { [weak self] value in
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
+                guard let email = (self?.textFieldEmail.text), let object = (self?.textFieldObjectEmail.text), let mess = (self?.textFieldMessageEmail.text), let result = self?.generateViewModel?.result else {
+                    return
+                }
                 let resVC = ResultGenerateVC()
-                resVC.contentViewModel = ContentViewModel(data: EmailModel(email: (self?.textFieldEmail.text)!, objectEmail: (self?.textFieldObjectEmail.text)!, messageEmail: (self?.textFieldMessageEmail.text)!))
-                resVC.imgCode = (self?.generateViewModel?.result)!
+                resVC.contentViewModel = ContentViewModel(data: EmailModel(email: email, objectEmail: object, messageEmail: mess))
+                resVC.imgCode = result
                 resVC.resultViewModel.typeCode = EnumType.EMAIL.rawValue
-                if (self?.emailViewModel.isSeen)! == AppConstants.ISSEEN {
+                if let isSeen = (self?.emailViewModel.isSeen), isSeen == AppConstants.ISSEEN {
+                    guard let time = (self?.emailViewModel.createDateTime) else {
+                        return
+                    }
                     resVC.resultViewModel.isUpdate = AppConstants.ISUPDATE
-                    resVC.resultViewModel.createDateTime = (self?.emailViewModel.createDateTime)!
-
+                    resVC.resultViewModel.createDateTime = time
+                    
                 }
                 self?.navigationController?.pushViewController(resVC, animated: true)
             }

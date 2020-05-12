@@ -8,6 +8,9 @@
 
 import UIKit
 class TypeCodeModel  : Codable{
+    var nameView : String{
+        return name ?? ""
+    }
     var identify : Int?
     var name  : String?
     var iconImage : String?

@@ -91,13 +91,17 @@ extension PhoneGenerateVC {
         }
         generateViewModel?.responseToView = { [weak self] value in
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
+                guard let phone = (self?.textFieldPhone.text), let result = self?.generateViewModel?.result else {return}
                 let resVC = ResultGenerateVC()
-                resVC.contentViewModel = ContentViewModel(data: ContentModel(data: PhoneModel(phone: (self?.textFieldPhone.text!)!)))
-                resVC.imgCode = (self?.generateViewModel?.result)!
+                resVC.contentViewModel = ContentViewModel(data: ContentModel(data: PhoneModel(phone: phone)))
+                resVC.imgCode = result
                 resVC.resultViewModel.typeCode = EnumType.TELEPHONE.rawValue
-                if (self?.phoneViewModel.isSeen)! == AppConstants.ISSEEN {
+                if let isSeen = (self?.phoneViewModel.isSeen), isSeen == AppConstants.ISSEEN {
+                    guard let time = (self?.phoneViewModel.createDateTime) else {
+                        return
+                    }
                     resVC.resultViewModel.isUpdate = AppConstants.ISUPDATE
-                    resVC.resultViewModel.createDateTime = (self?.phoneViewModel.createDateTime)!
+                    resVC.resultViewModel.createDateTime = time
                     
                 }
                 self?.navigationController?.pushViewController(resVC, animated: true)

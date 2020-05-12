@@ -9,7 +9,7 @@
 import UIKit
 extension ContactGenerateVC{
     func initUI(){
-   
+        
         
         self.view.addSubview(scrollView)
         NSLayoutConstraint.activate([
@@ -116,7 +116,7 @@ extension ContactGenerateVC{
         self.textFieldEmailContact.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.textFieldPhoneContact.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.textFieldAddressContact.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-
+        
         self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
         self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()
         setupNavItems()
@@ -141,9 +141,9 @@ extension ContactGenerateVC{
         navigationController?.navigationBar.barTintColor = AppColors.PRIMARY_COLOR
         self.navigationController?.navigationBar.tintColor = .white
         let menuButtonRight = UIButton(frame: CGRect(x: 0, y: 0, width: DeviceHelper.Shared.ICON_WIDTH_HEIGHT, height: DeviceHelper.Shared.ICON_WIDTH_HEIGHT))
-               menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
-               menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchDown)
-               self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonRight)
+        menuButtonRight.setBackgroundImage(UIImage(named: AppImages.IC_CHECK), for: .normal)
+        menuButtonRight.addTarget(self, action: #selector(doGenerate), for: .touchDown)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonRight)
     }
     
     func bindViewModel() {
@@ -172,13 +172,19 @@ extension ContactGenerateVC{
         
         generateViewModel?.responseToView = { [weak self] value in
             if value == EnumResponseToView.CREATE_SUCCESS.rawValue {
+                guard let fullName = (self?.textFieldFullNameContact.text), let address = (self?.textFieldAddressContact.text), let phone = (self?.textFieldPhoneContact.text), let email = (self?.textFieldEmailContact.text), let result = self?.generateViewModel?.result else {
+                    return
+                }
                 let resVC = ResultGenerateVC()
-                resVC.contentViewModel = ContentViewModel(data: ContactModel(fullNameContact: (self?.textFieldFullNameContact.text)!, addressContact: (self?.textFieldAddressContact.text)!, phoneContact: (self?.textFieldPhoneContact.text)!, emailContact: (self?.textFieldEmailContact.text)!))
-                resVC.imgCode = (self?.generateViewModel?.result)!
+                resVC.contentViewModel = ContentViewModel(data: ContactModel(fullNameContact: fullName, addressContact: address, phoneContact: phone, emailContact: email))
+                resVC.imgCode = result
                 resVC.resultViewModel.typeCode = EnumType.CONTACT.rawValue
-                if (self?.contactViewModel.isSeen)! == AppConstants.ISSEEN {
+                if let isSeen = (self?.contactViewModel.isSeen), isSeen == AppConstants.ISSEEN {
+                    guard let time = (self?.contactViewModel.createDateTime) else {
+                        return
+                    }
                     resVC.resultViewModel.isUpdate = AppConstants.ISUPDATE
-                    resVC.resultViewModel.createDateTime = (self?.contactViewModel.createDateTime)!
+                    resVC.resultViewModel.createDateTime = time
                     
                 }
                 self?.navigationController?.pushViewController(resVC, animated: true)

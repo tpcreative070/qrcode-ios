@@ -111,7 +111,7 @@
         "LOCATION": "Location",
         "DESCRIPTION": "Description",
         "TIME_BEGIN": "Time Begin",
-        "TIME_END": "Time end",
+        "TIME_END": "Time End",
         "FULLNAME": "Fullname",
         "ADDRESS": "Address",
         "PHONE": "Phone",
@@ -278,7 +278,7 @@
         "APPPERMISSIONCONTENT5":"5. CALL_PHONE: Chia sẻ mã QR cho cuộc gọi của bạn",
         "APPPERMISSIONCONTENT6":"6. CONTACT: Thêm liên hệ mới trên điện thoại của bạn",
         
-        "CHOOSE_ONE_QRCODE": "Chỉ được chọn 1 ảnh, nếu muốn chọn nhiều ảnh vào Cài đặt -> Bật chọn nhiêù ảnh",
+        "CHOOSE_ONE_QRCODE": "Chỉ được chọn 1 ảnh, nếu muốn chọn nhiều ảnh vào Cài đặt -> Bật chọn nhiều ảnh",
         "MULTI_SCAN" : "Scanner nhiều ảnh",
         "MULTI_LOAD" : "Tải nhiều ảnh",
         "MULTI_SCAN_CONTENT" : "Chọn nhiều hình ảnh từ thư viện để quét cùng một lúc",

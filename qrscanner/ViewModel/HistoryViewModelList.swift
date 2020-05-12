@@ -130,7 +130,7 @@ class HistoryViewModelList : HistoryViewModelListDeletegate{
               return false
           }
           func doUpdate(mCreateDateTime: Int,mValue : GenerateEntityModel){
-            SQLHelper.updatedScanner(data: GenerateEntityModel(createdDateTime: mCreateDateTime, typeCode: mValue.typeCode ?? "", content: mValue.content!, isHistory: true, isSave: false, updatedDateTime: Date().millisecondsSince1970, bookMark: false, transactionID: mValue.transactionID ?? "", isCode: mValue.isCode ?? ""))
+            SQLHelper.updatedScanner(data: GenerateEntityModel(createdDateTime: mCreateDateTime, typeCode: mValue.typeCode ?? "", content: mValue.content ?? "", isHistory: true, isSave: false, updatedDateTime: Date().millisecondsSince1970, bookMark: false, transactionID: mValue.transactionID ?? "", isCode: mValue.isCode ?? ""))
               
           }
 }

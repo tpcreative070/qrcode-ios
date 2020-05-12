@@ -74,14 +74,14 @@ class ResultGenerateVC: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardHelper?.registerKeyboardNotification()
-//        self.navigationController?.viewControllers.remove(at: 1)
+        //        self.navigationController?.viewControllers.remove(at: 1)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         bindViewModel()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         keyboardHelper?.deregisterKeyboardNotification()
-       // self.navigationController?.isNavigationBarHidden = true
+        // self.navigationController?.isNavigationBarHidden = true
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         if resultViewModel.isSave {
             self.navigationController?.isNavigationBarHidden = true
@@ -94,142 +94,183 @@ class ResultGenerateVC: BaseViewController {
     @objc func shareView(sender : UITapGestureRecognizer){
         let imageShare = [ imgCode ]
         let activityViewController = UIActivityViewController(activityItems: imageShare , applicationActivities: nil)
-   if DeviceHelper.isIpad(){
-       if let popoverController = activityViewController.popoverPresentationController {
-           popoverController.sourceView = self.view //to set the source of your alert
-           popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0) // you can set this as per your requirement.
-           popoverController.permittedArrowDirections = [.up] //to hide the arrow of any particular direction
-       }
-       self.present(activityViewController, animated: true, completion: nil)
-   }
-   else{
-       self.present(activityViewController, animated: true, completion: nil)
-
-   }
-   
+        if DeviceHelper.isIpad(){
+            if let popoverController = activityViewController.popoverPresentationController {
+                popoverController.sourceView = self.view //to set the source of your alert
+                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0) // you can set this as per your requirement.
+                popoverController.permittedArrowDirections = [.up] //to hide the arrow of any particular direction
+            }
+            self.present(activityViewController, animated: true, completion: nil)
+        }
+        else{
+            self.present(activityViewController, animated: true, completion: nil)
+            
+        }
+        
     }
     @objc func saveView(sender : UITapGestureRecognizer){
         resultViewModel.isSave =  true
         self.navigationController?.viewControllers.remove(at: 1)
-       // UIImageWriteToSavedPhotosAlbum(imgQrcode.image!, nil, nil, nil)
-         guard let mData = imgQrcode.image else {
-                   return
-               }
+        // UIImageWriteToSavedPhotosAlbum(imgQrcode.image!, nil, nil, nil)
+        guard let mData = imgQrcode.image else {
+            return
+        }
         CustomPhotoAlbum.sharedInstance.save(image: mData)
         let jsonData = contentViewModel!.content!.data(using: .utf8)!
         var isCode = "QRCode"
         if resultViewModel.typeCode!.uppercased() == EnumType.URL.rawValue {
-            let valueData = try! JSONDecoder().decode(UrlModel.self, from: jsonData)
-            if resultViewModel.isUpdate != AppConstants.ISUPDATE
-            {
-                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+            do {
+                let valueData = try JSONDecoder().decode(UrlModel.self, from: jsonData)
+                if resultViewModel.isUpdate != AppConstants.ISUPDATE
+                {
+                    resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+                }
+                else
+                {
+                    guard let time = resultViewModel.createDateTime else {return}
+                    resultViewModel.doUpdate(mCreateDateTime: time, mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+                }
             }
-            else
-            {
-                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
-            }
+            catch(let err){print(err)}
         }
         else if resultViewModel.typeCode!.uppercased() == EnumType.TEXT.rawValue {
-            let valueData = try! JSONDecoder().decode(TextModel.self, from: jsonData)
-            if resultViewModel.isUpdate != AppConstants.ISUPDATE
-            {
-                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+            do{
+                let valueData = try JSONDecoder().decode(TextModel.self, from: jsonData)
+                if resultViewModel.isUpdate != AppConstants.ISUPDATE
+                {
+                    resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+                }
+                else
+                {
+                    guard let time = resultViewModel.createDateTime else {return}
+                    resultViewModel.doUpdate(mCreateDateTime: time, mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+                }
             }
-            else
-            {
-                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
-            }
+            catch(let err){print(err)}
         }
         else if resultViewModel.typeCode!.uppercased() == EnumType.WIFI.rawValue {
-            let valueData = try! JSONDecoder().decode(WifiModel.self, from: jsonData)
-            if resultViewModel.isUpdate != AppConstants.ISUPDATE
-            {
-                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+            do{
+                let valueData = try JSONDecoder().decode(WifiModel.self, from: jsonData)
+                if resultViewModel.isUpdate != AppConstants.ISUPDATE
+                {
+                    resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+                }
+                else
+                {
+                    guard let time = resultViewModel.createDateTime else {return}
+                    resultViewModel.doUpdate(mCreateDateTime: time, mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+                }
             }
-            else
-            {
-                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
-            }
+            catch(let err){print(err)}
         }
         else if resultViewModel.typeCode!.uppercased() == EnumType.TELEPHONE.rawValue {
-            let valueData = try! JSONDecoder().decode(PhoneModel.self, from: jsonData)
-            if resultViewModel.isUpdate != AppConstants.ISUPDATE
-            {
-                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+            do{
+                let valueData = try JSONDecoder().decode(PhoneModel.self, from: jsonData)
+                if resultViewModel.isUpdate != AppConstants.ISUPDATE
+                {
+                    resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+                }
+                else
+                {
+                    guard let time = resultViewModel.createDateTime else {return}
+                    resultViewModel.doUpdate(mCreateDateTime: time, mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+                }
             }
-            else
-            {
-                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
-            }
+            catch(let err){print(err)}
         }
         else if resultViewModel.typeCode!.uppercased() == EnumType.CONTACT.rawValue {
-            let valueData = try! JSONDecoder().decode(ContactModel.self, from: jsonData)
-            if resultViewModel.isUpdate != AppConstants.ISUPDATE
-            {
-                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+            do{
+                let valueData = try JSONDecoder().decode(ContactModel.self, from: jsonData)
+                if resultViewModel.isUpdate != AppConstants.ISUPDATE
+                {
+                    resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+                }
+                else
+                {
+                    guard let time = resultViewModel.createDateTime else {return}
+                    resultViewModel.doUpdate(mCreateDateTime: time, mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+                }
             }
-            else
-            {
-                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
-            }
+            catch(let err){print(err)}
         }
         else if resultViewModel.typeCode!.uppercased() == EnumType.EVENT.rawValue {
-            let valueData = try! JSONDecoder().decode(EventModel.self, from: jsonData)
-            if resultViewModel.isUpdate != AppConstants.ISUPDATE
-            {
-                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+            do{
+                let valueData = try JSONDecoder().decode(EventModel.self, from: jsonData)
+                if resultViewModel.isUpdate != AppConstants.ISUPDATE
+                {
+                    resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+                }
+                else
+                {
+                    guard let time = resultViewModel.createDateTime else {return}
+                    resultViewModel.doUpdate(mCreateDateTime: time, mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+                }
             }
-            else
-            {
-                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
-            }
+            catch(let err){print(err)}
         }
         else if resultViewModel.typeCode!.uppercased() == EnumType.LOCATION.rawValue {
-            let valueData = try! JSONDecoder().decode(LocationModel.self, from: jsonData)
-            if resultViewModel.isUpdate != AppConstants.ISUPDATE
-            {
-                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+            do{
+                let valueData = try JSONDecoder().decode(LocationModel.self, from: jsonData)
+                if resultViewModel.isUpdate != AppConstants.ISUPDATE
+                {
+                    resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+                }
+                else
+                {
+                    guard let time = resultViewModel.createDateTime else {return}
+                    resultViewModel.doUpdate(mCreateDateTime: time, mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+                }
             }
-            else
-            {
-                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
-            }
+            catch(let err){print(err)}
         }
         else if resultViewModel.typeCode!.uppercased() == EnumType.MESSAGE.rawValue {
-            let valueData = try! JSONDecoder().decode(MessageModel.self, from: jsonData)
-            if resultViewModel.isUpdate != AppConstants.ISUPDATE
-            {
-                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+            do{
+                let valueData = try JSONDecoder().decode(MessageModel.self, from: jsonData)
+                if resultViewModel.isUpdate != AppConstants.ISUPDATE
+                {
+                    resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+                }
+                else
+                {
+                    guard let time = resultViewModel.createDateTime else {return}
+                    resultViewModel.doUpdate(mCreateDateTime: time, mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+                }
             }
-            else
-            {
-                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
-            }
+            catch(let err){print(err)}
         }
         else if resultViewModel.typeCode!.uppercased() == EnumType.EMAIL.rawValue {
-            let valueData = try! JSONDecoder().decode(EmailModel.self, from: jsonData)
-            if resultViewModel.isUpdate != AppConstants.ISUPDATE
-            {
-                resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+            do{
+                let valueData = try JSONDecoder().decode(EmailModel.self, from: jsonData)
+                if resultViewModel.isUpdate != AppConstants.ISUPDATE
+                {
+                    resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+                }
+                else
+                {
+                    guard let time = resultViewModel.createDateTime else {return}
+                    resultViewModel.doUpdate(mCreateDateTime: time, mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+                }
             }
-            else
-            {
-                resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
-            }
+            catch(let err){print(err)}
         }
         else if resultViewModel.typeCode!.uppercased() == EnumType.BARCODE.rawValue {
-                   let valueData = try! JSONDecoder().decode(BarcodeModel.self, from: jsonData)
-                    isCode = valueData.barcodetype ?? "Barcode"
-                   if resultViewModel.isUpdate != AppConstants.ISUPDATE
-                   {
+            do{
+                let valueData = try JSONDecoder().decode(BarcodeModel.self, from: jsonData)
+                isCode = valueData.barcodetype ?? "Barcode"
+                if resultViewModel.isUpdate != AppConstants.ISUPDATE
+                {
                     
                     resultViewModel.doInsert(mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
-                   }
-                   else
-                   {
-                       resultViewModel.doUpdate(mCreateDateTime: resultViewModel.createDateTime!, mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
-                   }
-               }
+                }
+                else
+                {
+                    guard let time = resultViewModel.createDateTime else {return}
+                    resultViewModel.doUpdate(mCreateDateTime: time, mValue: GenerateEntityModel(data: valueData, isCode: isCode, isHistory : false, isSave: true))
+                }
+            }
+            catch(let err){print(err)}
+        }
+        
         showToast(message: LanguageHelper.getTranslationByKey(LanguageKey.SaveSuccess)!)
     }
     @objc func printAction(sender : UITapGestureRecognizer){

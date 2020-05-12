@@ -739,6 +739,9 @@ class GenerateViewModel : GenerateViewModelDelegate {
         else if typeCode == EnumType.WIFI.rawValue{
             validateSSID()
             validatePassword()
+            print(protect!)
+            print(ssid!)
+            print(password!)
             if ( errorMessages.value.count > 0 ) {
                 return
             }
