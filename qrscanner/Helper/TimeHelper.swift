@@ -148,16 +148,10 @@ class TimeHelper {
         }
         else{
             let year = timeString.prefix(4)
-            print(year)
             let month_start = timeString.index(timeString.startIndex,offsetBy: 4)
-            print(month_start)
             let month_end = timeString.index(timeString.endIndex,offsetBy: -2)
-            print(month_end)
             let month = timeString[month_start..<month_end]
-            print(month)
             let day = timeString.suffix(2)
-            
-            print(day)
             let hour = 0
             let mini = 0
             let date = "\(day)-\(month)-\(year) \(hour):\(mini)"

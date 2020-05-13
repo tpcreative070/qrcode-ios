@@ -41,7 +41,6 @@ class SQLHelper {
     class open func initCipher(isDelete : Bool? = nil){
       
         guard let mData = DocumentHelper.loadBundle(fileName: "qrscanner", mExtension: FolderName.db) else {
-            debugPrint("Not found...")
             return
         }
         writeFile(data: mData,isDelete: isDelete)
@@ -81,7 +80,6 @@ class SQLHelper {
             }
             return db
         }
-      //  debugPrint("Key to connect db : \(mKey)")
         guard let db = SQLHelper.connect(mKey: mKey,url: mUrl.path) else {
             return nil
         }

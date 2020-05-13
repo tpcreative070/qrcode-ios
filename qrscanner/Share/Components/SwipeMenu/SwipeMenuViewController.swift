@@ -7,7 +7,6 @@ open class SwipeMenuViewController: UIViewController, SwipeMenuViewDelegate, Swi
 
     open override func viewDidLoad() {
         super.viewDidLoad()
-        print(view.frame)
         swipeMenuView = SwipeMenuView(frame: view.frame)
         swipeMenuView.delegate = self
         swipeMenuView.dataSource = self

@@ -295,7 +295,7 @@ extension ScannerVC {
             }
             else{
                 DispatchQueue.main.async {
-                   
+                    
                     guard let result = self?.scannerviewModel.isMultiLoad else {return}
                     if result{
                         let okAlert = SingleButtonAlert(
@@ -327,15 +327,14 @@ extension ScannerVC {
         
     }
     func isKeyPresentInUserDefaults(key: String) -> Bool {
-                       return UserDefaults.standard.object(forKey: key) != nil
-                   }
+        return UserDefaults.standard.object(forKey: key) != nil
+    }
     func fetchData(){
-        scannerviewModel.listImage.removeAll()
+        //        scannerviewModel.listImage.removeAll()
         let arr = UserDefaults.standard.array(forKey: AppConstants.keyImageData) as? [Data]
         if arr != nil {
             if arr!.count > 0{
                 ProgressHUD.showInView(view: self.view)
-
                 if arr!.count > 1{
                     if  !UserDefaults.standard.bool(forKey:KeyUserDefault.MultiLoad){
                         let rawImage = UIImage(data: arr![0])
@@ -344,14 +343,11 @@ extension ScannerVC {
                     }
                     else{
                         scannerviewModel.isMultiLoad = false
-
                         for item in arr! {
                             let rawImage = UIImage(data: item)
                             scannerviewModel.listImage.append(rawImage!)
                         }
-
                     }
-
                 }
                 if arr!.count == 1{
                     scannerviewModel.isMultiLoad = false
@@ -363,56 +359,47 @@ extension ScannerVC {
                     self.scannerviewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
                     self.scannerviewModel.doAsync(list:self.scannerviewModel.listImage)
                     self.scannerviewModel.doGetListTransaction()
-                    //
-                    //                  })
                 }
             }
         }
         else{
-        if let prefs = UserDefaults(suiteName: AppConstants.sharedIndentifier) {
-            if let imageData = prefs.object(forKey: AppConstants.shareKey) as? [Data] {
-                print(imageData)
+            if let prefs = UserDefaults(suiteName: AppConstants.sharedIndentifier) {
+                if let imageData = prefs.object(forKey: AppConstants.shareKey) as? [Data] {
                     ProgressHUD.showInView(view: self.view)
                     if imageData.count > 1{
-                    if  !UserDefaults.standard.bool(forKey:KeyUserDefault.MultiLoad){
-                        let rawImage = UIImage(data: imageData[0])
-                        scannerviewModel.listImage.append(rawImage!)
-                        scannerviewModel.isMultiLoad = true
+                        if  !UserDefaults.standard.bool(forKey:KeyUserDefault.MultiLoad){
+                            let rawImage = UIImage(data: imageData[0])
+                            scannerviewModel.listImage.append(rawImage!)
+                            scannerviewModel.isMultiLoad = true
+                        }
+                        else{
+                            scannerviewModel.isMultiLoad = false
+                            Utils.logMessage(object: imageData)
+                            for item in imageData {
+                                if let rawImage = UIImage(data: item){
+                                    scannerviewModel.listImage.append(rawImage)
+                                }
+                                else{break}
+                            }
+                        }
                     }
                     else{
+                        let rawImage = UIImage(data: imageData[0])
+                        scannerviewModel.listImage.append(rawImage!)
                         scannerviewModel.isMultiLoad = false
-                        Utils.logMessage(object: imageData)
-                        for item in imageData {
-                            if let rawImage = UIImage(data: item){
-                                 scannerviewModel.listImage.append(rawImage)
-                            }
-                            else{break}
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
+                        self.scannerviewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
+                        if self.scannerviewModel.listImage.count > 0{
+                            self.scannerviewModel.doAsync(list:self.scannerviewModel.listImage)
+                            self.scannerviewModel.doGetListTransaction()
                         }
                     }
                 }
-                else{
-                    let rawImage = UIImage(data: imageData[0])
-                    scannerviewModel.listImage.append(rawImage!)
-                    scannerviewModel.isMultiLoad = false
-                    
-                }
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
-                    //                  DispatchQueue.main.async(execute: { () -> Void in
-                    self.scannerviewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
-                    if self.scannerviewModel.listImage.count > 0{
-                    self.scannerviewModel.doAsync(list:self.scannerviewModel.listImage)
-                    self.scannerviewModel.doGetListTransaction()
-                    }
-                    //
-                    //                  })
-                }
-            }
             }
             else{
             }
-        
         }
-        
     }
     
     
@@ -424,7 +411,7 @@ extension ScannerVC {
             imagePicker.maximumSelectionsAllowed = 1
             let configuration = OpalImagePickerConfiguration()
             configuration.maximumSelectionsAllowedMessage = NSLocalizedString(LanguageHelper.getTranslationByKey(LanguageKey.ChooseOneQRCode)!, comment: "")
-                imagePicker.configuration = configuration
+            imagePicker.configuration = configuration
         }
         present(imagePicker, animated: true, completion: nil)
     }

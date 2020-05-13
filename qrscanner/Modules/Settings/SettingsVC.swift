@@ -489,6 +489,41 @@ class SettingsVC : BaseViewController, MFMailComposeViewControllerDelegate {
         view.tintColor = AppColors.COLOR_ACCENT
         return view
     }()
+    lazy var imgCrownScan : UIImageView = {
+           let view = UIImageView()
+           view.translatesAutoresizingMaskIntoConstraints = false
+           view.image = UIImage(named: AppImages.IC_CROWN)
+           view.tintColor = AppColors.PRIMARY_COLOR
+           return view
+       }()
+    lazy var imgCrownLoad : UIImageView = {
+              let view = UIImageView()
+              view.translatesAutoresizingMaskIntoConstraints = false
+              view.image = UIImage(named: AppImages.IC_CROWN)
+              view.tintColor = AppColors.PRIMARY_COLOR
+              return view
+          }()
+    lazy var imgCrownChangeColor : UIImageView = {
+              let view = UIImageView()
+              view.translatesAutoresizingMaskIntoConstraints = false
+              view.image = UIImage(named: AppImages.IC_CROWN)
+              view.tintColor = AppColors.PRIMARY_COLOR
+              return view
+          }()
+    lazy var imgCrownSkip : UIImageView = {
+              let view = UIImageView()
+              view.translatesAutoresizingMaskIntoConstraints = false
+              view.image = UIImage(named: AppImages.IC_CROWN)
+              view.tintColor = AppColors.PRIMARY_COLOR
+              return view
+          }()
+    lazy var imgCrownTheme : UIImageView = {
+              let view = UIImageView()
+              view.translatesAutoresizingMaskIntoConstraints = false
+              view.image = UIImage(named: AppImages.IC_CROWN)
+              view.tintColor = AppColors.PRIMARY_COLOR
+              return view
+          }()
     lazy var imgChangeColor : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false

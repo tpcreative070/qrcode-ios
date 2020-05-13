@@ -116,7 +116,7 @@ class ResultGenerateVC: BaseViewController {
             return
         }
         CustomPhotoAlbum.sharedInstance.save(image: mData)
-        let jsonData = contentViewModel!.content!.data(using: .utf8)!
+        guard let jsonData = contentViewModel?.content?.data(using: .utf8) else {return}
         var isCode = "QRCode"
         if resultViewModel.typeCode!.uppercased() == EnumType.URL.rawValue {
             do {

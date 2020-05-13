@@ -56,7 +56,7 @@ struct AppConstants {
     static var isVibrate = 0
     static var isBeep = 0
     static var isCam = 0
-
+    static var comeBackground = 0
     static let soundID = 1057
     static let ISSEEN = 1
     static let NUMBER_OF_LINE = 3
@@ -339,6 +339,7 @@ struct AppImages {
     static let IC_PERMISSION = "ic_permission"
     static let IC_FLAG = "ic_flag"
     static let IC_DUPLICATE = "ic_duplicate"
+    static let IC_CROWN = "ic_crown"
     
     static let IC_HOME = "ic_home"
     static let IC_CONTACT = "ic_contact"

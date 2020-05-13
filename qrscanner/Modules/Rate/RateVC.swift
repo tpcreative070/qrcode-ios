@@ -111,7 +111,6 @@ class RateVC: UIViewController, MFMailComposeViewControllerDelegate {
         cosmosView.settings.disablePanGestures = true
         // Do any additional setup after loading the view.
         let count = UserDefaults.standard.integer(forKey: .reviewWorthyActionCount)
-        print(count)
         if count == 5 {
             flagNoThanks = true
             lbNotNow.text = LanguageHelper.getTranslationByKey(LanguageKey.NoThanks)
