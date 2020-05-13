@@ -115,7 +115,6 @@ class ValidatorHelper {
         print(str!.trimmingCharacters(in: .whitespacesAndNewlines).first!)
         
         if let firstStr = str?.trimmingCharacters(in: .whitespacesAndNewlines).first, firstStr != "0" && firstStr != "1"{
-            print(firstStr)
             return false
         }
         return true
@@ -140,7 +139,6 @@ class ValidatorHelper {
         var sum: Int = 0
         if countStr!.count == 8{
             for (index,item) in countStr!.enumerated() {
-                print(item)
                 let i :Int = Int(String(item)) ?? 0
                 
                 if (index+1) % 2 == 0{
@@ -151,7 +149,6 @@ class ValidatorHelper {
                     
                 }
             }
-            print(sum)
             if sum % 10 == 0{
                 return true
             }
@@ -172,8 +169,6 @@ class ValidatorHelper {
         var sumchan: Int = 0
         var sumle: Int = 0
         var sum : Int = 0
-        print(ength)
-        print(countStr!.count)
         
         if countStr!.count == 13{
             for (index,item) in countStr!.enumerated() {
@@ -218,9 +213,6 @@ class ValidatorHelper {
         var sumchan: Int = 0
         var sumle: Int = 0
         var sum : Int = 0
-        print(ength)
-        print(countStr!.count)
-        
         if countStr!.count == 12{
             for (index,item) in countStr!.enumerated() {
                 let i :Int = Int(String(item)) ?? 0
@@ -234,7 +226,6 @@ class ValidatorHelper {
                 }
             }
             sum = sumchan + sumle
-            print(sum)
             if sum % 10 == 0{
                 return true
             }
@@ -268,9 +259,7 @@ class ValidatorHelper {
            var sumchan: Int = 0
            var sumle: Int = 0
            var sum : Int = 0
-           print(ength)
-           print(countStr!.count)
-           
+
            if countStr!.count == 8{
                for (index,item) in countStr!.enumerated() {
                    let i :Int = Int(String(item)) ?? 0

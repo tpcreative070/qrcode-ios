@@ -707,7 +707,7 @@ open class Floaty: UIView {
     
     let myLayer = CALayer()
     let myImage = UIImage(named: AppImages.IC_MENU)?.cgImage
-    myLayer.frame = DeviceHelper.isIpad() ? CGRect(x: 19, y: 19, width: 1.5*size/3, height: 1.5*size/3) : CGRect(x: 14, y: 15, width: 1.5*size/3, height: 1.5*size/3)
+    myLayer.frame = CGRect(x: circleLayer.frame.width/2 - (size/4), y: circleLayer.frame.height/2 - (size/4), width: 1.5*size/3, height: 1.5*size/3)
 
 
     myLayer.contents = myImage

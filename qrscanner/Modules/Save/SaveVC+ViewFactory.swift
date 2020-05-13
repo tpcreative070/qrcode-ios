@@ -168,8 +168,7 @@ extension SaveVC : TableViewCellDelegate{
     func cellCodable(codable: Codable) {
         let value_data = JSONHelper.get(value: SaveViewModel.self,anyObject: codable)
         let typeCode = value_data?.typeCode.uppercased()
-        let content = value_data!.content
-        guard let stringContent = content.content?.data(using: .utf8 ) else {return}
+        guard let content = value_data?.content, let stringContent = content.content?.data(using: .utf8 ) else {return}
         if typeCode == EnumType.URL.rawValue{
             do{
                 let urlModel : UrlViewModel = try JSONDecoder().decode(UrlViewModel.self, from: stringContent)

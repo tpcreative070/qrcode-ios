@@ -195,61 +195,114 @@ class TableViewCell : UITableViewCell{
         }
     }
     func configView(view : ContentViewModelDeletegate){
+        guard let jsonData = view.contentView.data(using: .utf8)  else {
+            return
+        }
         if view.typeCodeView.uppercased() == EnumType.URL.rawValue{
-            let jsonData = view.contentView.data(using: .utf8)!
-            let urlData = try! JSONDecoder().decode(UrlModel.self, from: jsonData)
-            configView(viewModel: UrlViewModel(url: urlData.url!))
+            do {
+            let urlData = try JSONDecoder().decode(UrlModel.self, from: jsonData)
+            configView(viewModel: UrlViewModel(url: urlData.url ?? ""))
             if  Bool(truncating: CommonService.getUserDefault(key: KeyUserDefault.OpenWeb) ?? false)
             {
-                if let url = URL(string: urlData.url!) {
+                if let url = URL(string: urlData.url ?? "") {
                     UIApplication.shared.open(url)
                 }
             }
+            }
+            catch(let err){
+                print(err)
+                return
+            }
         }
         if view.typeCodeView.uppercased() == EnumType.EMAIL.rawValue{
-            let jsonData = view.contentView.data(using: .utf8)!
-            let data = try! JSONDecoder().decode(EmailModel.self, from: jsonData)
+            do {
+            let data = try JSONDecoder().decode(EmailModel.self, from: jsonData)
             configView(viewModel: EmailViewModel(data: data))
+            }
+            catch(let err){
+                print(err)
+                return
+            }
         }
         if view.typeCodeView.uppercased() == EnumType.TEXT.rawValue{
-            let jsonData = view.contentView.data(using: .utf8)!
-            let urlData = try! JSONDecoder().decode(TextModel.self, from: jsonData)
-            configView(viewModel: TextViewModel(text: urlData.text!))
+            do{
+            let urlData = try JSONDecoder().decode(TextModel.self, from: jsonData)
+            configView(viewModel: TextViewModel(text: urlData.text ?? ""))
+            }
+            catch(let err){
+                print(err)
+                return
+            }
         }
         if view.typeCodeView.uppercased() == EnumType.MESSAGE.rawValue{
-            let jsonData = view.contentView.data(using: .utf8)!
-            let data = try! JSONDecoder().decode(MessageModel.self, from: jsonData)
-            configView(viewModel: MessageViewModel(data: MessageModel(to: data.to!, message: data.message!)))
+            do{
+            let data = try JSONDecoder().decode(MessageModel.self, from: jsonData)
+            configView(viewModel: MessageViewModel(data: MessageModel(to: data.to ?? "", message: data.message ?? "")))
+            }
+            catch(let err){
+                print(err)
+                return
+            }
         }
         if view.typeCodeView.uppercased() == EnumType.LOCATION.rawValue{
-            let jsonData = view.contentView.data(using: .utf8)!
-            let data = try! JSONDecoder().decode(LocationModel.self, from: jsonData)
-            configView(viewModel: LocationViewModel(data: LocationModel(latitude: data.latitude!, longtitude: data.longtitude!, query: data.query!)))
+            do{
+            let data = try JSONDecoder().decode(LocationModel.self, from: jsonData)
+                configView(viewModel: LocationViewModel(data: LocationModel(latitude: data.latitude ?? 0.0, longtitude: data.longtitude ?? 0.0, query: data.query ?? "")))
+            }
+            catch(let err){
+                print(err)
+                return
+            }
         }
         if view.typeCodeView.uppercased() == EnumType.EVENT.rawValue{
-            let jsonData = view.contentView.data(using: .utf8)!
-            let data = try! JSONDecoder().decode(EventModel.self, from: jsonData)
+            do{
+            let data = try JSONDecoder().decode(EventModel.self, from: jsonData)
             configView(viewModel: EventViewModel(data: data))
+            }
+            catch(let err){
+                print(err)
+                return
+            }
         }
         if view.typeCodeView.uppercased() == EnumType.CONTACT.rawValue{
-            let jsonData = view.contentView.data(using: .utf8)!
-            let data = try! JSONDecoder().decode(ContactModel.self, from: jsonData)
+            do{
+            let data = try JSONDecoder().decode(ContactModel.self, from: jsonData)
             configView(viewModel: ContactViewModel(data: data))
+            }
+            catch(let err){
+                print(err)
+                return
+            }
         }
         if view.typeCodeView.uppercased() == EnumType.TELEPHONE.rawValue{
-            let jsonData = view.contentView.data(using: .utf8)!
-            let data = try! JSONDecoder().decode(PhoneModel.self, from: jsonData)
+            do{
+            let data = try JSONDecoder().decode(PhoneModel.self, from: jsonData)
             configView(viewModel: PhoneViewModel(phone: data))
+            }
+            catch(let err){
+                print(err)
+                return
+            }
         }
         if view.typeCodeView.uppercased() == EnumType.WIFI.rawValue{
-            let jsonData = view.contentView.data(using: .utf8)!
-            let data = try! JSONDecoder().decode(WifiModel.self, from: jsonData)
+            do{
+            let data = try JSONDecoder().decode(WifiModel.self, from: jsonData)
             configView(viewModel: WifiViewModel(data: data))
+            }
+            catch(let err){
+                print(err)
+                return
+            }
         }
         if view.typeCodeView.uppercased() == EnumType.BARCODE.rawValue{
-            let jsonData = view.contentView.data(using: .utf8)!
-            let data = try! JSONDecoder().decode(BarcodeModel.self, from: jsonData)
+            do{
+            let data = try JSONDecoder().decode(BarcodeModel.self, from: jsonData)
             configView(viewModel: BarcodeViewModel(data: data))
+            }
+            catch(let err){
+                print(err)
+                return
+            }
         }
 
     }
@@ -382,7 +435,10 @@ class TableViewCell : UITableViewCell{
             //  self.delegate?.cellViewSelected(cell: data)
             let value_data = JSONHelper.get(value: HistoryViewModel.self,anyObject: data)
             if value_data != nil{
-                let valueShare = Helper.getValueShareContent(typeCode: value_data!.typeCode, contentData: value_data!.content.content!)
+                guard let typeCode = value_data?.typeCode, let content = value_data?.content.content else {
+                    return
+                }
+                let valueShare = Helper.getValueShareContent(typeCode: typeCode, contentData: content)
                 let activiController = UIActivityViewController(activityItems: [valueShare], applicationActivities: nil)
                 UIApplication.shared.keyWindow?.rootViewController?.present(activiController,animated: true, completion: nil)
                 
@@ -732,24 +788,26 @@ view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: D
     @objc func urlAction(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
-            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
-            let value_data = valueContentView?.content
-            let jsonData = value_data!.data(using: .utf8)!
-            let urlValue = try! JSONDecoder().decode(UrlModel.self, from: jsonData)
-            if let url = NSURL(string: urlValue.url!) {
+            guard  let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data), let value_data = valueContentView.content, let jsonData = value_data.data(using: .utf8)   else {return}
+            do {
+            let urlValue = try JSONDecoder().decode(UrlModel.self, from: jsonData)
+            if let url = NSURL(string: urlValue.url ?? "") {
                 UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
                 
             }
+            }
+            catch(let err){print(err)}
         }
     }
     @objc func searchUrlAction(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
-            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
-            let value_data = valueContentView?.content
-            let jsonData = value_data!.data(using: .utf8)!
-            let urlValue = try! JSONDecoder().decode(UrlModel.self, from: jsonData)
-            if let url = URL(string: urlValue.url!) {
+           guard let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data),
+            let value_data = valueContentView.content,
+            let jsonData = value_data.data(using: .utf8) else {return}
+            
+            guard let urlValue = try? JSONDecoder().decode(UrlModel.self, from: jsonData) else {return}
+            if let url = URL(string: urlValue.url ?? "") {
                 UIApplication.shared.open(url)
             }
         }
@@ -759,10 +817,10 @@ view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: D
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
             //  Utils.logMessage(object: data)
-            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
-            let value_data = valueContentView?.content
-            let jsonData = value_data!.data(using: .utf8)!
-            let value = try! JSONDecoder().decode(TextModel.self, from: jsonData)
+          guard let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data),
+            let value_data = valueContentView.content,
+            let jsonData = value_data.data(using: .utf8),
+            let value = try? JSONDecoder().decode(TextModel.self, from: jsonData) else {return}
             let text = value.text ?? ""
             let  query = text.replacingOccurrences(of: " ", with: "+")
             let encoded =
@@ -782,10 +840,10 @@ view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: D
         
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
-            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
-            let value_data = valueContentView?.content
-            let jsonData = value_data!.data(using: .utf8)!
-            let value = try! JSONDecoder().decode(BarcodeModel.self, from: jsonData)
+          guard let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data),
+            let value_data = valueContentView.content,
+            let jsonData = value_data.data(using: .utf8),
+            let value = try? JSONDecoder().decode(BarcodeModel.self, from: jsonData) else {return}
             let text = value.productID ?? ""
             let  query = text.replacingOccurrences(of: " ", with: "+")
             let url = "https://www.google.co.in/search?q=" + query
@@ -795,10 +853,10 @@ view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: D
     @objc func textAction(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
-            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
-            let value_data = valueContentView?.content
-            let jsonData = value_data!.data(using: .utf8)!
-            let value = try! JSONDecoder().decode(TextModel.self, from: jsonData)
+           guard let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data),
+            let value_data = valueContentView.content,
+            let jsonData = value_data.data(using: .utf8),
+            let value = try? JSONDecoder().decode(TextModel.self, from: jsonData) else {return}
             let text = value.text ?? ""
             let activiController = UIActivityViewController(activityItems: [text as Any], applicationActivities: nil)
             if DeviceHelper.isIpad(){
@@ -815,10 +873,10 @@ view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: D
     @objc func phoneAction(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
-            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
-            let value_data = valueContentView?.content
-            let jsonData = value_data!.data(using: .utf8)!
-            let value = try! JSONDecoder().decode(PhoneModel.self, from: jsonData)
+           guard let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data),
+            let value_data = valueContentView.content,
+            let jsonData = value_data.data(using: .utf8),
+            let value = try? JSONDecoder().decode(PhoneModel.self, from: jsonData) else {return}
             let textValue = value.phone ?? ""
             if let url = URL(string: "tel://\(textValue)"), UIApplication.shared.canOpenURL(url) {
                 if #available(iOS 10, *) {
@@ -833,10 +891,10 @@ view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: D
     @objc func messageAction(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
-            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
-            let value_data = valueContentView?.content
-            let jsonData = value_data!.data(using: .utf8)!
-            let value = try! JSONDecoder().decode(MessageModel.self, from: jsonData)
+           guard let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data),
+            let value_data = valueContentView.content,
+            let jsonData = value_data.data(using: .utf8),
+            let value = try? JSONDecoder().decode(MessageModel.self, from: jsonData) else {return}
             let smsValue = "sms:+\((value.to ?? ""))&body=\(value.message ?? "")"
             let strURL: String = smsValue.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             UIApplication.shared.open(URL.init(string: strURL)!, options: [:], completionHandler: nil)
@@ -853,10 +911,10 @@ view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: D
     @objc func addContactAction(sender : UITapGestureRecognizer){
         self.delegate?.cellViewSelected(cell: self)
         if let data = codable {
-            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
-            let value = valueContentView?.content
-            let jsonData = value!.data(using: .utf8)!
-            let value_data = try! JSONDecoder().decode(ContactModel.self, from: jsonData)
+           guard let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data),
+            let value = valueContentView.content,
+            let jsonData = value.data(using: .utf8),
+            let value_data = try? JSONDecoder().decode(ContactModel.self, from: jsonData) else {return}
             let store = CNContactStore()
             store.requestAccess(for: .contacts) { (granted, err) in
                 if err != nil{
@@ -911,13 +969,13 @@ view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: D
     }
     @objc func emailAction(sender : UITapGestureRecognizer){
         if let data = codable {
-            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
-            let value = valueContentView?.content
-            let jsonData = value!.data(using: .utf8)!
-            let value_data = try? JSONDecoder().decode(EmailModel.self, from: jsonData)
-            let email = value_data?.email ?? ""
-            let objectEmail = value_data?.objectEmail ?? ""
-            let messageEmail = value_data?.messageEmail ?? ""
+           guard let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data),
+            let value = valueContentView.content,
+            let jsonData = value.data(using: .utf8),
+            let value_data = try? JSONDecoder().decode(EmailModel.self, from: jsonData) else {return}
+            let email = value_data.email ?? ""
+            let objectEmail = value_data.objectEmail ?? ""
+            let messageEmail = value_data.messageEmail ?? ""
             let value_email = "mailto:\(email)?subject=\(objectEmail)&body=\(messageEmail)"
             let strURL: String = value_email.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             
@@ -942,12 +1000,12 @@ view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: D
     }
     @objc func locationAction(sender : UITapGestureRecognizer){
         if let data = codable {
-            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
-            let value = valueContentView?.content
-            let jsonData = value!.data(using: .utf8)!
-            let value_data = try? JSONDecoder().decode(LocationModel.self, from: jsonData)
-            let lat = Float(value_data!.latitude ?? 0)
-            let lng = Float(value_data!.longtitude ?? 0)
+           guard let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data),
+            let value = valueContentView.content,
+            let jsonData = value.data(using: .utf8),
+            let value_data = try? JSONDecoder().decode(LocationModel.self, from: jsonData) else {return}
+            let lat = Float(value_data.latitude ?? 0)
+            let lng = Float(value_data.longtitude ?? 0)
             let regionDistance:CLLocationDistance = 10000
             let coordinates = CLLocationCoordinate2DMake(CLLocationDegrees(lat), CLLocationDegrees(lng))
             let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
@@ -963,10 +1021,10 @@ view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: D
     }
     @objc func eventAction(sender : UITapGestureRecognizer){
         if let data = codable {
-            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data)
-            let value = valueContentView?.content
-            let jsonData = value!.data(using: .utf8)!
-            let value_data = try? JSONDecoder().decode(EventModel.self, from: jsonData)
+           guard let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: data),
+            let value = valueContentView.content,
+            let jsonData = value.data(using: .utf8),
+            let value_data = try? JSONDecoder().decode(EventModel.self, from: jsonData) else {return}
             let eventStore : EKEventStore = EKEventStore()
             // 'EKEntityTypeReminder' or 'EKEntityTypeEvent'
             eventStore.requestAccess(to: .event) { (granted, error) in
@@ -975,11 +1033,11 @@ view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: D
                     
                     let event:EKEvent = EKEvent(eventStore: eventStore)
                     
-                    event.title = value_data!.title
-                    event.startDate = TimeHelper.getDateTime(timeString: value_data!.beginTime!) ?? Date()
-                    event.endDate = TimeHelper.getDateTime(timeString: value_data!.endTime!) ?? Date()
-                    event.notes = value_data?.description ?? ""
-                    event.location = value_data?.location ?? ""
+                    event.title = value_data.title
+                    event.startDate = TimeHelper.getDateTime(timeString: value_data.beginTime!) ?? Date()
+                    event.endDate = TimeHelper.getDateTime(timeString: value_data.endTime!) ?? Date()
+                    event.notes = value_data.description ?? ""
+                    event.location = value_data.location ?? ""
                     event.calendar = eventStore.defaultCalendarForNewEvents
                     do {
                         try eventStore.save(event, span: .thisEvent)

@@ -156,9 +156,6 @@ extension QRCodeVC : TableViewCellDelegate {
     }
     
     func cellViewSelected(cell: Codable) {
-        //        if let data = JSONHelper.get(value: QRCodeViewModel.self,anyObject: cell){
-        //            print(data.imgCodeView)
-        //               }
         self.viewModel.doSelectItem(coable: cell)
         
     }

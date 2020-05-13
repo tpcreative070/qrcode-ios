@@ -168,7 +168,7 @@ extension DetailVC : TableViewCellDelegate {
         
         let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: cell)
         let value_data = valueContentView?.content ?? ""
-        let stringContent = value_data.data(using: .utf8)!
+        guard let stringContent = value_data.data(using: .utf8) else {return}
         let typeCode = valueContentView?.typeCode?.uppercased()
         
         if typeCode == EnumType.URL.rawValue{

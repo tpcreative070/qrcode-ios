@@ -127,10 +127,10 @@ class LocationGenerateVC: BaseViewController {
            self.generateViewModel?.focusTextField = textField
            
            if textField == textFieldLatitude {
-            generateViewModel?.lat = Float(String(textField.text!)) ?? 0
+            generateViewModel?.lat = Float(String(textField.text ?? "0")) ?? 0
            }
            if textField == textFieldLongtitude {
-            generateViewModel?.lon = Float(String(textField.text!)) ?? 0
+            generateViewModel?.lon = Float(String(textField.text ?? "0")) ?? 0
            }
            if textField == textFieldQuery {
                generateViewModel?.query = textField.text ?? ""

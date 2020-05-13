@@ -45,7 +45,6 @@ extension UIViewController {
             }
             if typeCode == EnumType.TEXT.rawValue{
                 let data : TextModel = try! JSONDecoder().decode(TextModel.self, from: stringContent)
-                print("\"\(data.text ?? "") \"")
                 value.setObject("\"\(data.text ?? "") \"", forKey: "Text" as NSCopying )
                 
             }
@@ -118,10 +117,8 @@ extension UIViewController {
 
         if output.result.isSuccess {
             guard let filePath =  output.filePath else {
-                print("Export Error: \(String(describing: output.message))")
                 return
             }
-            print("File Path: \(filePath)")
             let _ = CSVExport.readCSVObject(filePath);
            // let request = NSURLRequest(url:  URL(fileURLWithPath: filePath) )
             //                      try csvString.write(to: fileURL, atomically: true, encoding: .utf8)
