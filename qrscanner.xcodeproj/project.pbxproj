@@ -2090,7 +2090,7 @@
 				CODE_SIGN_ENTITLEMENTS = ShareImage/ShareImage.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = AQHNXZHZ8T;
 				INFOPLIST_FILE = ShareImage/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2099,7 +2099,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.1.7;
+				MARKETING_VERSION = 0.1.9;
 				PRODUCT_BUNDLE_IDENTIFIER = co.tpcreative.qrscanner.share;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2115,7 +2115,7 @@
 				CODE_SIGN_ENTITLEMENTS = ShareImage/ShareImage.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = AQHNXZHZ8T;
 				INFOPLIST_FILE = ShareImage/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2124,7 +2124,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.1.7;
+				MARKETING_VERSION = 0.1.9;
 				PRODUCT_BUNDLE_IDENTIFIER = co.tpcreative.qrscanner.app.develop.share;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "QRScanner Provisioning Share Develop";
@@ -2140,7 +2140,7 @@
 				CODE_SIGN_ENTITLEMENTS = ShareImage/ShareImage.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = AQHNXZHZ8T;
 				INFOPLIST_FILE = ShareImage/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2149,7 +2149,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.1.7;
+				MARKETING_VERSION = 0.1.9;
 				PRODUCT_BUNDLE_IDENTIFIER = co.tpcreative.qrscanner.share;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "QRScanner Provisioning Share";
@@ -2284,7 +2284,7 @@
 				CODE_SIGN_ENTITLEMENTS = qrscanner/qrscanner.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 19;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"qrscanner/Preview Content\"";
 				DEVELOPMENT_TEAM = AQHNXZHZ8T;
@@ -2295,7 +2295,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.7;
+				MARKETING_VERSION = 0.1.9;
 				PRODUCT_BUNDLE_IDENTIFIER = co.tpcreative.qrscanner;
 				PRODUCT_NAME = QRScanner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2313,7 +2313,7 @@
 				CODE_SIGN_ENTITLEMENTS = qrscanner/qrscanner.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 19;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"qrscanner/Preview Content\"";
 				DEVELOPMENT_TEAM = AQHNXZHZ8T;
@@ -2324,7 +2324,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.7;
+				MARKETING_VERSION = 0.1.9;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = co.tpcreative.qrscanner;
 				PRODUCT_NAME = QRScanner;
@@ -2500,7 +2500,7 @@
 				CODE_SIGN_ENTITLEMENTS = qrscanner/qrscanner.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 19;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"qrscanner/Preview Content\"";
 				DEVELOPMENT_TEAM = AQHNXZHZ8T;
@@ -2511,7 +2511,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.7;
+				MARKETING_VERSION = 0.1.9;
 				PRODUCT_BUNDLE_IDENTIFIER = co.tpcreative.qrscanner.app.develop;
 				PRODUCT_NAME = QRScanner;
 				PROVISIONING_PROFILE_SPECIFIER = "QRScanner Provisioning Develop";
