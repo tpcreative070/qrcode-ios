@@ -377,6 +377,7 @@ extension ScannerVC {
                 let alert = UIAlertController(title: LanguageHelper.getTranslationByKey(LanguageKey.Alert), message:"\(LanguageHelper.getTranslationByKey(LanguageKey.CannotScan)!)", preferredStyle: UIAlertController.Style.alert)
                       alert.addAction(UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Ok), style: UIAlertAction.Style.default, handler: nil))
                       self.present(alert, animated: true, completion: nil)
+           
             }
         }
     }

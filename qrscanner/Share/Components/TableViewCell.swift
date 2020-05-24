@@ -317,14 +317,7 @@ class TableViewCell : UITableViewCell{
         self.lbTitle.text = "\(viewModel.nameView)"
         self.imgIcon.image = UIImage(named: viewModel.imgIconView)
     }
-    //    func configView(viewModel: ContentModel){
-    //        if viewModel.typeCode!.uppercased() == LanguageKey.Url{
-    //            configView(viewModel: UrlViewModel(url: "sdfsd"))
-    //        }
-    //        if viewModel.typeCode!.uppercased() == LanguageKey.Phone{
-    //            configView(viewModel: PhoneViewModel(phone: "983248593"))
-    //        }
-    //    }
+
     func configData(viewModel : Codable){
         self.codable = viewModel
     }
