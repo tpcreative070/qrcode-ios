@@ -178,10 +178,16 @@ class ScannerVC: UIViewController , AVCaptureMetadataOutputObjectsDelegate{
         isFront = !isFront
         if isFront {
             setupCameraFront()
+            self.viewFlashBg.isUserInteractionEnabled = false
+            isFlash = false
         }
         else{
             setupCameraBack()
+            self.viewFlashBg.isUserInteractionEnabled = true
+
         }
+        imgFlashOff.image = UIImage(named: AppImages.IC_FLASH_OFF)
+
        
     }
     @objc func actionGallery(sender : UITapGestureRecognizer){

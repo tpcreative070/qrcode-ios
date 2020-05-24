@@ -329,79 +329,58 @@ extension ScannerVC {
     func isKeyPresentInUserDefaults(key: String) -> Bool {
         return UserDefaults.standard.object(forKey: key) != nil
     }
-    func fetchData(){
-        //        scannerviewModel.listImage.removeAll()
-        let arr = UserDefaults.standard.array(forKey: AppConstants.keyImageData) as? [Data]
-        if arr != nil {
-            if arr!.count > 0{
-                ProgressHUD.showInView(view: self.view)
-                if arr!.count > 1{
-                    if  !UserDefaults.standard.bool(forKey:KeyUserDefault.MultiLoad){
-                        let rawImage = UIImage(data: arr![0])
-                        scannerviewModel.listImage.append(rawImage!)
-                        scannerviewModel.isMultiLoad = true
-                    }
-                    else{
-                        scannerviewModel.isMultiLoad = false
-                        for item in arr! {
-                            let rawImage = UIImage(data: item)
-                            scannerviewModel.listImage.append(rawImage!)
-                        }
-                    }
-                }
-                if arr!.count == 1{
-                    scannerviewModel.isMultiLoad = false
+    fileprivate func extractedFunc(_ arr: [Data]?) {
+        if arr!.count > 0{
+            ProgressHUD.showInView(view: self.view)
+            if arr!.count > 1{
+                if  !UserDefaults.standard.bool(forKey:KeyUserDefault.MultiLoad){
                     let rawImage = UIImage(data: arr![0])
                     scannerviewModel.listImage.append(rawImage!)
+                    scannerviewModel.isMultiLoad = true
                 }
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
-                    //                  DispatchQueue.main.async(execute: { () -> Void in
-                    self.scannerviewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
-                    self.scannerviewModel.doAsync(list:self.scannerviewModel.listImage)
-                    self.scannerviewModel.doGetListTransaction()
-                }
-            }
-        }
-        else{
-            if let prefs = UserDefaults(suiteName: AppConstants.sharedIndentifier) {
-                if let imageData = prefs.object(forKey: AppConstants.shareKey) as? [Data] {
-                    ProgressHUD.showInView(view: self.view)
-                    if imageData.count > 1{
-                        if  !UserDefaults.standard.bool(forKey:KeyUserDefault.MultiLoad){
-                            let rawImage = UIImage(data: imageData[0])
-                            scannerviewModel.listImage.append(rawImage!)
-                            scannerviewModel.isMultiLoad = true
-                        }
-                        else{
-                            scannerviewModel.isMultiLoad = false
-                            Utils.logMessage(object: imageData)
-                            for item in imageData {
-                                if let rawImage = UIImage(data: item){
-                                    scannerviewModel.listImage.append(rawImage)
-                                }
-                                else{break}
-                            }
-                        }
-                    }
-                    else{
-                        let rawImage = UIImage(data: imageData[0])
+                else{
+                    scannerviewModel.isMultiLoad = false
+                    for item in arr! {
+                        let rawImage = UIImage(data: item)
                         scannerviewModel.listImage.append(rawImage!)
-                        scannerviewModel.isMultiLoad = false
-                    }
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
-                        self.scannerviewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
-                        if self.scannerviewModel.listImage.count > 0{
-                            self.scannerviewModel.doAsync(list:self.scannerviewModel.listImage)
-                            self.scannerviewModel.doGetListTransaction()
-                        }
                     }
                 }
             }
-            else{
+            if arr!.count == 1{
+                scannerviewModel.isMultiLoad = false
+                let rawImage = UIImage(data: arr![0])
+                scannerviewModel.listImage.append(rawImage!)
+            }
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
+                //                  DispatchQueue.main.async(execute: { () -> Void in
+                self.scannerviewModel.dateTime = (TimeHelper.getString(time: Date(), dateFormat: TimeHelper.StandardSortedDateTime))
+                self.scannerviewModel.doAsync(list:self.scannerviewModel.listImage)
+                self.scannerviewModel.doGetListTransaction()
             }
         }
     }
     
+    
+    func fetchData(){
+        //        scannerviewModel.listImage.removeAll()
+        let arr = UserDefaults.standard.array(forKey: AppConstants.keyImageData) as? [Data]
+        if arr != nil {
+            extractedFunc(arr)
+        }
+        else{
+            if let prefs = UserDefaults(suiteName: AppConstants.sharedIndentifier) {
+                if let imageData = prefs.object(forKey: AppConstants.shareKey) as? [Data] {
+                    extractedFunc(imageData)
+            }
+            }
+            else{
+                let alert = UIAlertController(title: LanguageHelper.getTranslationByKey(LanguageKey.Alert), message:"\(LanguageHelper.getTranslationByKey(LanguageKey.CannotScan)!)", preferredStyle: UIAlertController.Style.alert)
+                      alert.addAction(UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Ok), style: UIAlertAction.Style.default, handler: nil))
+                      self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+   
     
     
     func onTakeGallery(){

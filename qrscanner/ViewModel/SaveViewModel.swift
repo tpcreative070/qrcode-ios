@@ -14,7 +14,7 @@ class SaveViewModel  : Codable ,GenerateViewModelDeletegate{
         return check
     }
     var contentView: String {
-        return getValueContent(typeCode: typeCode, content: content) ?? ""
+        return QRCodeHelper.shared.getValueContent(typeCode: typeCode, content: content) ?? ""
     }
 
     var isHistoryView: Bool
@@ -49,105 +49,74 @@ class SaveViewModel  : Codable ,GenerateViewModelDeletegate{
     
     init(data : GenerateEntityModel) {
         self.typeCode = data.typeCode?.uppercased() ?? ""
-        self.createdDateTime = Int(data.createdDateTime!)
-        self.updatedDateTime = Int(data.updatedDateTime!)
-        self.isHistory = data.isHistory!
-        self.isSave = data.isSave!
-        self.bookMark = data.bookMark!
+        self.createdDateTime = Int(data.createdDateTime ?? 0)
+        self.updatedDateTime = Int(data.updatedDateTime ?? 0)
+        self.isHistory = data.isHistory ?? false
+        self.isSave = data.isSave ?? false
+        self.bookMark = data.bookMark ?? false
         if typeCode == EnumType.URL.rawValue{
-            self.content = ContentViewModel(data :(data.content?.toObject(value: UrlModel.self))!)
+            guard let url = (data.content?.toObject(value: UrlModel.self)) else {
+                return
+            }
+            self.content = ContentViewModel(data: url)
         }
         else if typeCode == EnumType.TEXT.rawValue{
-            self.content = ContentViewModel(data: (data.content?.toObject(value: TextModel.self))!)
+            guard let text = (data.content?.toObject(value: TextModel.self)) else {
+                return
+            }
+            self.content = ContentViewModel(data: text)
+            
         }
         else if typeCode == EnumType.LOCATION.rawValue{
-            self.content = ContentViewModel(data: (data.content?.toObject(value: LocationModel.self))!)
+            guard let location = (data.content?.toObject(value: LocationModel.self)) else {
+                return
+            }
+            self.content = ContentViewModel(data: location)
         }
         else if typeCode == EnumType.EMAIL.rawValue{
-            self.content = ContentViewModel(data: (data.content?.toObject(value: EmailModel.self))!)
+            guard let email = (data.content?.toObject(value: EmailModel.self)) else {
+                return
+            }
+            self.content = ContentViewModel(data: email)
         }
         else if typeCode == EnumType.EVENT.rawValue{
-            self.content = ContentViewModel(data: (data.content?.toObject(value: EventModel.self))!)
+            guard let event = (data.content?.toObject(value: EventModel.self)) else {
+                return
+            }
+            self.content = ContentViewModel(data: event)
         }
         else if typeCode == EnumType.MESSAGE.rawValue{
-            self.content = ContentViewModel(data: (data.content?.toObject(value: MessageModel.self))!)
+            guard let mess = (data.content?.toObject(value: MessageModel.self)) else {
+                return
+            }
+            self.content = ContentViewModel(data: mess)
         }
         else if typeCode == EnumType.WIFI.rawValue{
-            self.content = ContentViewModel(data: (data.content?.toObject(value: WifiModel.self))!)
+            guard let wifi = (data.content?.toObject(value: WifiModel.self)) else {
+                return
+            }
+            self.content = ContentViewModel(data: wifi)
         }
         else if typeCode == EnumType.TELEPHONE.rawValue{
-            self.content = ContentViewModel(data: (data.content?.toObject(value: PhoneModel.self))!)
+            guard let phone = (data.content?.toObject(value: PhoneModel.self)) else {
+                return
+            }
+            self.content = ContentViewModel(data: phone)
         }
         else if typeCode == EnumType.CONTACT.rawValue{
-            self.content = ContentViewModel(data: (data.content?.toObject(value: ContactModel.self))!)
+            guard let contact = (data.content?.toObject(value: ContactModel.self)) else {
+                return
+            }
+            self.content = ContentViewModel(data: contact)
         }
         else if typeCode == EnumType.BARCODE.rawValue{
-            self.content = ContentViewModel(data: (data.content?.toObject(value: BarcodeModel.self))!)
+            guard let barcode = (data.content?.toObject(value: BarcodeModel.self)) else {
+                return
+            }
+            self.content = ContentViewModel(data: barcode)
         }
     }
-    func getValueContent(typeCode: String, content: ContentViewModel) -> String? {
-        if typeCode == EnumType.URL.rawValue{
-                   let stringContent = content.content?.data(using: .utf8 )
-                   let urlModel : UrlModel = try! JSONDecoder().decode(UrlModel.self, from: stringContent!)
-                    return urlModel.url ?? ""
-               }
-               else if typeCode == EnumType.TEXT.rawValue{
-                   let stringContent = content.content?.data(using: .utf8 )
-                   let textModel : TextModel = try! JSONDecoder().decode(TextModel.self, from: stringContent!)
-            return textModel.text ?? ""
-               }
-               else if typeCode == EnumType.LOCATION.rawValue{
-                   let stringContent = content.content?.data(using: .utf8 )
-                   let locationModel : LocationModel = try! JSONDecoder().decode(LocationModel.self, from: stringContent!)
-                    return "\(locationModel.latitude ?? 0),\(locationModel.longtitude ?? 0),(\(locationModel.query ?? ""))"
-               }
-               else if typeCode == EnumType.EMAIL.rawValue{
-                   let stringContent = content.content?.data(using: .utf8 )
-                   let emailModel : EmailModel = try! JSONDecoder().decode(EmailModel.self, from: stringContent!)
-                return emailModel.email ?? ""
-               }
-               else if typeCode == EnumType.EVENT.rawValue{
-                   
-
-                   let stringContent = content.content?.data(using: .utf8 )
-                   let eventModel : EventModel = try! JSONDecoder().decode(EventModel.self, from: stringContent!)
-               return eventModel.title ?? ""
-                   
-               }
-               else if typeCode == EnumType.MESSAGE.rawValue{
-                   
-
-                   let stringContent = content.content?.data(using: .utf8 )
-                   let messageModel : MessageModel = try! JSONDecoder().decode(MessageModel.self, from: stringContent!)
-             return messageModel.message ?? ""
-               }
-               else if typeCode == EnumType.WIFI.rawValue{
-                   
-                   let stringContent = content.content?.data(using: .utf8 )
-                   let wifiModel : WifiModel = try! JSONDecoder().decode(WifiModel.self, from: stringContent!)
-                return wifiModel.ssid ?? ""
-               }
-               else if typeCode == EnumType.TELEPHONE.rawValue{
-                   
-
-                   let stringContent = content.content?.data(using: .utf8 )
-                   let phoneModel : PhoneModel = try! JSONDecoder().decode(PhoneModel.self, from: stringContent!)
-                return phoneModel.phone ?? ""
-               }
-               else if typeCode == EnumType.CONTACT.rawValue{
-                   let stringContent = content.content?.data(using: .utf8 )
-                   let contactModel : ContactModel = try! JSONDecoder().decode(ContactModel.self, from: stringContent!)
-                return contactModel.fullNameContact ?? ""
-               }
-            else if typeCode == EnumType.BARCODE.rawValue{
-                             let stringContent = content.content?.data(using: .utf8 )
-                             let contactModel : BarcodeModel = try! JSONDecoder().decode(BarcodeModel.self, from: stringContent!)
-                          return contactModel.productID ?? ""
-                         }
-        else{
-            return "No value"
-        }
-    }
+   
     
 }
 

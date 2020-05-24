@@ -307,5 +307,6 @@ class BaseViewController: UIViewController {
         }, completion: {(isCompleted) in
             toastLabel.removeFromSuperview()
         })
-    } 
+    }
+   
 }

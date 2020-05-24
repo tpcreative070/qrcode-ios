@@ -710,6 +710,8 @@ struct LanguageKey {
     static let Content_copy = "CONTENT_COPY"
     static let ChooseQRCode = "CHOOSE_QRCODE"
       static let ChooseOneQRCode = "CHOOSE_ONE_QRCODE"
+    static let CannotScan = "CANNOTSCAN"
+
     static let AppPermissonContent1 = "APPPERMISSIONCONTENT1"
      static let AppPermissonContent2 = "APPPERMISSIONCONTENT2"
      static let AppPermissonContent3 = "APPPERMISSIONCONTENT3"
