@@ -69,9 +69,10 @@ extension QRCodeVC {
             self?.navigationController?.viewControllers.remove(at: 1)
         }
             else{
-                let alert = UIAlertController(title: LanguageHelper.getTranslationByKey(LanguageKey.Alert), message:LanguageHelper.getTranslationByKey(LanguageKey.ChooseQRCode) , preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Ok), style: UIAlertAction.Style.default, handler: nil))
-                self?.present(alert, animated: true, completion: nil)
+//                let alert = UIAlertController(title: LanguageHelper.getTranslationByKey(LanguageKey.Alert), message: , preferredStyle: UIAlertController.Style.alert)
+//                alert.addAction(UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Ok), style: UIAlertAction.Style.default, handler: nil))
+//                self?.present(alert, animated: true, completion: nil)
+                self?.onAlertMessage(value: LanguageHelper.getTranslationByKey(LanguageKey.ChooseQRCode)!)
             }
         }
         

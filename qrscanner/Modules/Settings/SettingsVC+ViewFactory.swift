@@ -851,10 +851,12 @@ extension SettingsVC {
            return mailComposerVC
        }
        func showMailError(){
-           let sendMailErrorAlert = UIAlertController(title: LanguageHelper.getTranslationByKey(LanguageKey.Alert), message: LanguageHelper.getTranslationByKey(LanguageKey.CanNotSendMail), preferredStyle: .alert)
-           let dismiss = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Ok), style: .default, handler: nil)
-           sendMailErrorAlert.addAction(dismiss)
-           self.present(sendMailErrorAlert, animated: true, completion: nil)
+//           let sendMailErrorAlert = UIAlertController(title: LanguageHelper.getTranslationByKey(LanguageKey.Alert), message: LanguageHelper.getTranslationByKey(LanguageKey.CanNotSendMail), preferredStyle: .alert)
+//           let dismiss = UIAlertAction(title: LanguageHelper.getTranslationByKey(LanguageKey.Ok), style: .default, handler: nil)
+//           sendMailErrorAlert.addAction(dismiss)
+//           self.present(sendMailErrorAlert, animated: true, completion: nil)
+        self?.onAlertMessage(value: LanguageHelper.getTranslationByKey(LanguageKey.CanNotSendMail)!)
+
        }
        func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
            controller.dismiss(animated: true, completion: nil)

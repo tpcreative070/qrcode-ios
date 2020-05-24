@@ -103,23 +103,15 @@ extension HelpVC {
         imgThirdText.image = UIImage(named: AppImages.BG3)
         self.lbFirstTitle.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_TITLE_FONT_SIZE_HELP)
         self.lbFirstTitle.textColor = AppColors.COLOR_ACCENT
-        self.lbFirstTitle.numberOfLines = DeviceHelper.isIpad() ? 4 : 3
-        
-        self.lbFirstText.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-        self.lbFirstText.numberOfLines = DeviceHelper.isIpad() ? 5 : 4
-        
-        self.lbSecondText.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-        self.lbSecondText.numberOfLines = DeviceHelper.isIpad() ? 5 : 4
+        self.lbFirstTitle.numberOfLines = 0
+        self.lbFirstText.numberOfLines = 0
+        self.lbSecondText.numberOfLines = 0
         
         self.lbSecondTitle.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_TITLE_FONT_SIZE_HELP)
         self.lbSecondTitle.textColor = AppColors.COLOR_ACCENT
-        self.lbSecondTitle.numberOfLines = DeviceHelper.isIpad() ? 4 : 3
-        
-        self.lbThirdText.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-        self.lbThirdText.numberOfLines = DeviceHelper.isIpad() ? 4 : 3
-        
-        self.lbFourText.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
-        self.lbFourText.numberOfLines = DeviceHelper.isIpad() ? 4 : 3
+        self.lbSecondTitle.numberOfLines = 0
+        self.lbThirdText.numberOfLines = 0
+        self.lbFourText.numberOfLines = 0
         
         setupEndedUpScrollView()
         setupNavItems()

@@ -44,7 +44,6 @@ extension UrlGenerateVC {
             textFieldUrl.leadingAnchor.constraint(equalTo: viewUrlBg.readableContentGuide.leadingAnchor, constant: AppConstants.MARGIN_LEFT),
             textFieldUrl.trailingAnchor.constraint(equalTo: viewUrlBg.readableContentGuide.trailingAnchor, constant:  AppConstants.MARGIN_RIGHT)
         ])
-        self.lbUrl.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.textFieldUrl.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_FONT_SIZE)
         self.keyboardHelper = KeyboardHelper(viewController: self, scrollView: scrollView)
         self.keyboardHelper?.setDismissKeyboardWhenTouchOutside()

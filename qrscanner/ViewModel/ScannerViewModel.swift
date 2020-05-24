@@ -460,7 +460,6 @@ class ScannerViewModel : ScannerViewModelDelegate {
                                 if !(item.content! == value_content && item.typeCode! == typeCode && item.isCode! == isCode){
                                     
                                     flagDuplicate = true
-                                    
                                 }
                                 else{
                                     flagDuplicate = false
@@ -559,8 +558,6 @@ class ScannerViewModel : ScannerViewModelDelegate {
                 }
                 else
                 {
-                    print(dateTime)
-                    
                     let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime, isCode: isCode))
                     if result {
                         print("insert success")

@@ -29,7 +29,7 @@ class QRCodeVC: BaseViewController {
         let view = ICLabel()
         view.text = LanguageHelper.getTranslationByKey(LanguageKey.ChooseQRCode)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.numberOfLines = 2
+        view.numberOfLines = 0
         return view
     }()
    let btnDone: UIButton = {
