@@ -9,8 +9,8 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 APP_NAME = QRScanner
-APP_VERSION = 11
-APP_VERSION_STRING = 0.1.1
+APP_VERSION = 20
+APP_VERSION_STRING = 0.2.0
 APP_BUNDLE_ID = co.tpcreative.qrscanner
 APP_ICON = AppIcon
 APP_ROOT_URL = http:\/\/10.10.32.102:8013
