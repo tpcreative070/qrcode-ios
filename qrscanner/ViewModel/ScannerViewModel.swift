@@ -438,12 +438,6 @@ class ScannerViewModel : ScannerViewModelDelegate {
             value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
             
         }
-        
-        //        if let json = try? JSONSerialization.data(withJSONObject: mValue) {
-        //        if let content = String(data: json, encoding: .utf8) {
-        //            print(content)
-        //        }
-        //        }
         if (typeCode.count == 0 || value_content.count == 0 || typeCode == "" || value_content == "")
         {
             print("Empty value")
@@ -521,6 +515,7 @@ class ScannerViewModel : ScannerViewModelDelegate {
                     }
                     else
                     {
+                        print("value content scanner :\(value_content)")
                         let result = SQLHelper.insertedScanner(data: GenerateEntityModel(createdDateTime: createDateTime, typeCode: typeCode, content: value_content, isHistory: true, isSave: false, updatedDateTime:createDateTime, bookMark: false, transactionID: dateTime, isCode: isCode))
                         if result {
                             if result {

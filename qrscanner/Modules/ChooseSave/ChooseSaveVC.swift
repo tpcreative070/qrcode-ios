@@ -79,7 +79,6 @@ class ChooseSaveVC : UIViewController,UIViewControllerTransitioningDelegate, UIN
         super.viewWillDisappear(animated)
         self.navigationController?.isNavigationBarHidden = true
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-
     }
     
 }

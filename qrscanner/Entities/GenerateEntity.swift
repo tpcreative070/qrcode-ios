@@ -52,10 +52,7 @@ class GenerateEntity{
                                    updatedDateTime <- Int(data.updatedDateTime!),
                                    bookMark <- data.bookMark!,
             transactionID <- data.transactionID!,
-            isCode <- data.isCode!
-
-
-            
+            isCode <- data.isCode!            
         )
         do{
             //let insert = try table.insert(data)

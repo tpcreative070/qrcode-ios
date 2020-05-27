@@ -573,6 +573,7 @@ struct LanguageKey {
     static let EmailAddress = "EMAIL_ADDRESS"
     static let Object = "OBJECT"
     static let SaveSuccess = "SAVE_SUCCESS"
+    static let ExistContact = "EXIST_CONTACT"
     static let Copy_Item_Success = "COPY_ITEM_SUCCESS"
     //Setting
     static let Scan = "SCAN"

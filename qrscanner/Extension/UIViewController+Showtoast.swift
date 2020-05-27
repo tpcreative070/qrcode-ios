@@ -37,31 +37,37 @@ extension UIViewController {
             value.setObject(i.createdDateTimeView, forKey: "CreateDateTime" as NSCopying)
             let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: i.content)
             let value_data = valueContentView?.content
-            let stringContent = value_data!.data(using: .utf8)!
+            let stringContent = value_data?.data(using: .utf8)
             let typeCode = valueContentView?.typeCode?.uppercased()
             if typeCode == EnumType.URL.rawValue{
-                let urlModel : UrlModel = try! JSONDecoder().decode(UrlModel.self, from: stringContent)
+                guard let urlModel : UrlModel = try? JSONDecoder().decode(UrlModel.self, from: stringContent!) else {return}
                 value.setObject("\"\(urlModel.url ?? "") \"", forKey: "Url" as NSCopying )
             }
             if typeCode == EnumType.TEXT.rawValue{
-                let data : TextModel = try! JSONDecoder().decode(TextModel.self, from: stringContent)
-                value.setObject("\"\(data.text ?? "") \"", forKey: "Text" as NSCopying )
-                
+                do {
+                    let data : TextModel = try JSONDecoder().decode(TextModel.self, from: stringContent!)
+                    value.setObject("\"\(data.text ?? "") \"", forKey: "Text" as NSCopying )
+                }
+                catch(let err){
+                    value.setObject("", forKey: "Text" as NSCopying )
+                    print(err)
+                }
+               
             }
             if typeCode == EnumType.MESSAGE.rawValue{
-                let messModel : MessageModel = try! JSONDecoder().decode(MessageModel.self, from: stringContent)
+                guard let messModel : MessageModel = try? JSONDecoder().decode(MessageModel.self, from: stringContent!) else {return}
                 value.setObject("\"\(messModel.to ?? "") \"", forKey: "Phone" as NSCopying )
                 value.setObject("\"\(messModel.message ?? "") \"", forKey: "Message" as NSCopying )
             }
             if typeCode == EnumType.LOCATION.rawValue{
-                let data : LocationModel = try! JSONDecoder().decode(LocationModel.self, from: stringContent)
+                guard let data : LocationModel = try? JSONDecoder().decode(LocationModel.self, from: stringContent!) else {return}
                 value.setObject("\"\(data.latitude ?? 0) \"", forKey: "Latitude" as NSCopying )
                 value.setObject("\"\(data.longtitude ?? 0) \"", forKey: "Longtitude" as NSCopying )
                 value.setObject("\"\(data.query ?? "") \"", forKey: "Query" as NSCopying )
                 
             }
             if typeCode == EnumType.EVENT.rawValue{
-                let data : EventModel = try! JSONDecoder().decode(EventModel.self, from: stringContent)
+                guard let data : EventModel = try? JSONDecoder().decode(EventModel.self, from: stringContent!) else {return}
                 value.setObject("\"\(data.title ?? "") \"", forKey: "Title" as NSCopying )
                 value.setObject("\"\(data.location ?? "") \"", forKey: "Location" as NSCopying )
                 value.setObject("\"\(data.description ?? "") \"", forKey: "Description" as NSCopying )
@@ -69,33 +75,33 @@ extension UIViewController {
                 value.setObject("\"\(data.endTime ?? "") \"", forKey: "EndEvent" as NSCopying )
             }
             if typeCode == EnumType.CONTACT.rawValue{
-                let data : ContactModel = try! JSONDecoder().decode(ContactModel.self, from: stringContent)
+                guard let data : ContactModel = try? JSONDecoder().decode(ContactModel.self, from: stringContent!) else {return}
                 value.setObject("\"\(data.fullNameContact ?? "") \"", forKey: "FullName" as NSCopying )
                 value.setObject("\"\(data.emailContact ?? "") \"", forKey: "Email" as NSCopying )
                 value.setObject("\"\(data.addressContact ?? "") \"", forKey: "Address" as NSCopying )
                 value.setObject("\"\(data.phoneContact ?? "") \"", forKey: "Phone" as NSCopying )
             }
             if typeCode == EnumType.TELEPHONE.rawValue{
-                let data : PhoneModel = try! JSONDecoder().decode(PhoneModel.self, from: stringContent)
+                guard let data : PhoneModel = try? JSONDecoder().decode(PhoneModel.self, from: stringContent!) else {return}
                 value.setObject("\"\(data.phone ?? "") \"", forKey: "Phone" as NSCopying )
             }
             
             if typeCode == EnumType.WIFI.rawValue{
-                let data : WifiModel = try! JSONDecoder().decode(WifiModel.self, from: stringContent)
+                guard let data : WifiModel = try? JSONDecoder().decode(WifiModel.self, from: stringContent!) else {return}
                 value.setObject("\"\(data.ssid ?? "") \"", forKey: "SSID" as NSCopying )
                 value.setObject("\"\(data.password ?? "") \"", forKey: "Password" as NSCopying )
                 value.setObject("\"\(data.protect ?? "") \"", forKey: "NetworkEncryption" as NSCopying )
                 
             }
             if typeCode == EnumType.EMAIL.rawValue{
-                           let data : EmailModel = try! JSONDecoder().decode(EmailModel.self, from: stringContent)
+                guard let data : EmailModel = try? JSONDecoder().decode(EmailModel.self, from: stringContent!) else {return}
                 value.setObject("\"\(data.email ?? "") \"", forKey: "Email" as NSCopying )
                 value.setObject("\"\(data.objectEmail ?? "") \"", forKey: "Subject" as NSCopying )
                 value.setObject("\"\(data.messageEmail ?? "") \"", forKey: "Message" as NSCopying )
                            
                        }
             if typeCode == EnumType.BARCODE.rawValue{
-                let data : BarcodeModel = try! JSONDecoder().decode(BarcodeModel.self, from: stringContent)
+                guard let data : BarcodeModel = try? JSONDecoder().decode(BarcodeModel.self, from: stringContent!) else {return}
                 value.setObject("\"\(data.productID ?? "") \"", forKey: "ProductID" as NSCopying )
                 value.setObject("\"\(data.barcodetype ?? "") \"", forKey: "ISBN" as NSCopying )
 
@@ -142,66 +148,68 @@ extension UIViewController {
                value.setObject(i.createdDateTimeView, forKey: "CreateDateTime" as NSCopying)
                let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: i.content)
                let value_data = valueContentView?.content
-               let stringContent = value_data!.data(using: .utf8)!
+             let stringContent = value_data?.data(using: .utf8)
                let typeCode = valueContentView?.typeCode?.uppercased()
                if typeCode == EnumType.URL.rawValue{
-                   let urlModel : UrlModel = try! JSONDecoder().decode(UrlModel.self, from: stringContent)
+                guard let urlModel : UrlModel = try? JSONDecoder().decode(UrlModel.self, from: stringContent!) else {return}
                    value.setObject("\"\(urlModel.url ?? "") \"", forKey: "Url" as NSCopying )
                }
                if typeCode == EnumType.TEXT.rawValue{
-                   let data : TextModel = try! JSONDecoder().decode(TextModel.self, from: stringContent)
+                if let data : TextModel = try? JSONDecoder().decode(TextModel.self, from: stringContent!)
+                   {
                    value.setObject("\"\(data.text ?? "") \"", forKey: "Text" as NSCopying )
-                   
+                }
                }
                if typeCode == EnumType.MESSAGE.rawValue{
-                   let messModel : MessageModel = try! JSONDecoder().decode(MessageModel.self, from: stringContent)
+                guard let messModel : MessageModel = try? JSONDecoder().decode(MessageModel.self, from: stringContent!) else {return}
                    value.setObject("\"\(messModel.to ?? "") \"", forKey: "Phone" as NSCopying )
                    value.setObject("\"\(messModel.message ?? "") \"", forKey: "Message" as NSCopying )
                }
                if typeCode == EnumType.LOCATION.rawValue{
-                   let data : LocationModel = try! JSONDecoder().decode(LocationModel.self, from: stringContent)
+                guard let data : LocationModel = try? JSONDecoder().decode(LocationModel.self, from: stringContent!) else {return}
                    value.setObject("\"\(data.latitude ?? 0) \"", forKey: "Latitude" as NSCopying )
                    value.setObject("\"\(data.longtitude ?? 0) \"", forKey: "Longtitude" as NSCopying )
                    value.setObject("\"\(data.query ?? "") \"", forKey: "Query" as NSCopying )
                    
                }
                if typeCode == EnumType.EVENT.rawValue{
-                   let data : EventModel = try! JSONDecoder().decode(EventModel.self, from: stringContent)
+                guard let data : EventModel = try? JSONDecoder().decode(EventModel.self, from: stringContent!) else {return}
                    value.setObject("\"\(data.title ?? "") \"", forKey: "Title" as NSCopying )
                    value.setObject("\"\(data.location ?? "") \"", forKey: "Location" as NSCopying )
                    value.setObject("\"\(data.description ?? "") \"", forKey: "Description" as NSCopying )
-                   value.setObject("\"\(data.beginTime ?? "") \"", forKey: "BeginTime" as NSCopying )
-                   value.setObject("\"\(data.endTime ?? "") \"", forKey: "EndTime" as NSCopying )
+                   value.setObject("\"\(data.beginTime ?? "") \"", forKey: "StartEvent" as NSCopying )
+                   value.setObject("\"\(data.endTime ?? "") \"", forKey: "EndEvent" as NSCopying )
                }
                if typeCode == EnumType.CONTACT.rawValue{
-                   let data : ContactModel = try! JSONDecoder().decode(ContactModel.self, from: stringContent)
+                guard let data : ContactModel = try? JSONDecoder().decode(ContactModel.self, from: stringContent!) else {return}
                    value.setObject("\"\(data.fullNameContact ?? "") \"", forKey: "FullName" as NSCopying )
                    value.setObject("\"\(data.emailContact ?? "") \"", forKey: "Email" as NSCopying )
                    value.setObject("\"\(data.addressContact ?? "") \"", forKey: "Address" as NSCopying )
                    value.setObject("\"\(data.phoneContact ?? "") \"", forKey: "Phone" as NSCopying )
                }
                if typeCode == EnumType.TELEPHONE.rawValue{
-                   let data : PhoneModel = try! JSONDecoder().decode(PhoneModel.self, from: stringContent)
+                guard let data : PhoneModel = try? JSONDecoder().decode(PhoneModel.self, from: stringContent!) else {return}
                    value.setObject("\"\(data.phone ?? "") \"", forKey: "Phone" as NSCopying )
                }
-               if typeCode == EnumType.EMAIL.rawValue{
-                          let data : EmailModel = try! JSONDecoder().decode(EmailModel.self, from: stringContent)
-               value.setObject("\"\(data.email ?? "") \"", forKey: "Email" as NSCopying )
-               value.setObject("\"\(data.objectEmail ?? "") \"", forKey: "Subject" as NSCopying )
-               value.setObject("\"\(data.messageEmail ?? "") \"", forKey: "Message" as NSCopying )
-                          
-                      }
+               
                if typeCode == EnumType.WIFI.rawValue{
-                   let data : WifiModel = try! JSONDecoder().decode(WifiModel.self, from: stringContent)
+                guard let data : WifiModel = try? JSONDecoder().decode(WifiModel.self, from: stringContent!) else {return}
                    value.setObject("\"\(data.ssid ?? "") \"", forKey: "SSID" as NSCopying )
                    value.setObject("\"\(data.password ?? "") \"", forKey: "Password" as NSCopying )
-                value.setObject("\"\(data.protect ?? "") \"", forKey: "NetworkEncryption" as NSCopying )
+                   value.setObject("\"\(data.protect ?? "") \"", forKey: "NetworkEncryption" as NSCopying )
                    
                }
+               if typeCode == EnumType.EMAIL.rawValue{
+                guard let data : EmailModel = try? JSONDecoder().decode(EmailModel.self, from: stringContent!) else {return}
+                   value.setObject("\"\(data.email ?? "") \"", forKey: "Email" as NSCopying )
+                   value.setObject("\"\(data.objectEmail ?? "") \"", forKey: "Subject" as NSCopying )
+                   value.setObject("\"\(data.messageEmail ?? "") \"", forKey: "Message" as NSCopying )
+                              
+                          }
                if typeCode == EnumType.BARCODE.rawValue{
-                   let data : BarcodeModel = try! JSONDecoder().decode(BarcodeModel.self, from: stringContent)
+                guard let data : BarcodeModel = try? JSONDecoder().decode(BarcodeModel.self, from: stringContent!) else {return}
                    value.setObject("\"\(data.productID ?? "") \"", forKey: "ProductID" as NSCopying )
-                value.setObject("\"\(data.barcodetype ?? "") \"", forKey: "ISBN" as NSCopying )
+                   value.setObject("\"\(data.barcodetype ?? "") \"", forKey: "ISBN" as NSCopying )
 
                }
                saveArray.add(value);

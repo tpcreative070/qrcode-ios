@@ -11,10 +11,10 @@ class HistoryViewModel  : Codable ,GenerateViewModelDeletegate{
     
     
     var checkShowView: Bool? {
-        return check 
+        return check
     }
     var contentView: String {
-        return QRCodeHelper.shared.getValueContent(typeCode: typeCode, content: content) ?? ""
+            return QRCodeHelper.shared.getValueContent(typeCode: typeCode, content: content) ?? ""
     }
     
     var isHistoryView: Bool
@@ -64,8 +64,8 @@ class HistoryViewModel  : Codable ,GenerateViewModelDeletegate{
             guard let text = (data.content?.toObject(value: TextModel.self)) else {
                 return
             }
-            self.content = ContentViewModel(data: text)
-            
+            Utils.logMessage(object: text)
+           self.content = ContentViewModel(data: text)
         }
         else if typeCode == EnumType.LOCATION.rawValue{
             guard let location = (data.content?.toObject(value: LocationModel.self)) else {

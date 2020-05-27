@@ -14,7 +14,6 @@ class ShareViewController: SLComposeServiceViewController {
     var sharedindentifier = "group.co.tpcreative.qrscanner.share"
     var shareKey = "Images"
     var seletedImage : UIImage!
-    var maxCharacterCount = 100
     var imagesData: [Data] = []
     let myGroup = DispatchGroup()
     var flag : Bool = false

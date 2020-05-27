@@ -74,9 +74,21 @@ class QRCodeHelper {
                 return urlModel.url ?? ""
             }
             else if typeCode == EnumType.TEXT.rawValue{
+               // let ct = "{\"text\": \"Hdj\\\'ik\"}"
                 let stringContent = content.content?.data(using: .utf8 )
-                guard let textModel : TextModel = try? JSONDecoder().decode(TextModel.self, from: stringContent!)else {return ""}
+                guard let textModel : TextModel = try? JSONDecoder().decode(TextModel.self, from: stringContent!) else {return ""}
                 return textModel.text ?? ""
+//                guard let jsonData = content.content?.data(using: .utf8)  else {
+//                    return ""
+//                }
+//                do{
+//                           let urlData = try JSONDecoder().decode(TextModel.self, from: jsonData)
+//                    Utils.logMessage(object: TextViewModel(text: urlData.text ?? ""))
+//                           }
+//                           catch(let err){
+//                               print(err)
+//                               return
+//                           }
             }
             else if typeCode == EnumType.LOCATION.rawValue{
                 let stringContent = content.content?.data(using: .utf8 )
@@ -134,4 +146,5 @@ class QRCodeHelper {
             return "No value"
         }
     }
+    
 }
