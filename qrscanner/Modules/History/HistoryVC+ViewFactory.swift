@@ -157,10 +157,18 @@ extension HistoryVC : TableViewCellDelegate{
         
     }
     
-    func cellViewSelected(cell: Codable) {       
+    func cellViewSelected(cell: Codable) {
         if let data = JSONHelper.get(value: HistoryViewModel.self,anyObject: cell){
             let  vc = DetailVC()
-            vc.listContentViewModel = [data.content]
+            print(data.content!)
+            guard let ct = data.content else {
+                return
+            }
+            let contentVM = QRCodeHelper.shared.convertStringtoContent(typeCode: data.typeCode, data: ct)
+            vc.listContentViewModel = [contentVM]
+            
+            
+           // vc.listContentValue = [data.content!]
             self.navigationController?.pushViewController(vc, animated: true)
             
         }

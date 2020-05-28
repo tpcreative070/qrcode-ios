@@ -433,10 +433,11 @@ class TableViewCell : UITableViewCell{
                 guard let typeCode = value_data?.typeCode, let content = value_data?.content else {
                     return
                 }
-                let valueShare = Helper.getValueShareContent(typeCode: typeCode, content: content)
+                let convertString = QRCodeHelper.shared.convertStringtoContent(typeCode: typeCode, data: content)
+                let valueShare = Helper.getValueShareContent(typeCode: typeCode, content: convertString)
                 let activiController = UIActivityViewController(activityItems: [valueShare], applicationActivities: nil)
                 UIApplication.shared.keyWindow?.rootViewController?.present(activiController,animated: true, completion: nil)
-                
+
             }
         }
     }

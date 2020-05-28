@@ -56,14 +56,12 @@ extension TableViewCell {
                    self.viewSub.bottomAnchor.constraint(equalTo: self.viewBackgroundSecond.bottomAnchor)
                    
                ])
-      
         self.viewSub.addSubview(imgIcon)
             self.imgIcon.centerYAnchor.constraint(equalTo: viewSub.centerYAnchor).isActive = true
         self.imgIcon.leadingAnchor.constraint(equalTo: viewRoot.trailingAnchor, constant: AppConstants.MARGIN_LEFT).isActive = true
         self.imgIcon.widthAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT).isActive = true
         self.imgIcon.heightAnchor.constraint(equalToConstant: DeviceHelper.Shared.ICON_WIDTH_HEIGHT).isActive = true
         self.imgIcon.image = UIImage(named: AppImages.IC_SHARE)
-        
         self.viewBackgroundSecond.addSubview(self.viewUnderLine)
         NSLayoutConstraint.activate([
             self.viewUnderLine.leadingAnchor.constraint(equalTo: self.viewBackgroundSecond.leadingAnchor),

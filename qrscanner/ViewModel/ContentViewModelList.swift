@@ -13,6 +13,7 @@ class ContentViewModelList : ContentViewModelListDeletegate{
     var showLoading: Bindable<Bool> = Bindable(false)
     var responseToView: ((String) -> ())?
     var listContent: [ContentViewModel] = [ContentViewModel]()
+    var listContentValue: [String] = [String]()
     var currentCell: ContentViewModel?
     var isVisible: Bindable<Bool> = Bindable(false)
     var countItemSelected: Int = 0

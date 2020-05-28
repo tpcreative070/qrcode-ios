@@ -232,7 +232,8 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
                 {
                     if item.split(separator: ":").count > 1
                     {
-                        ssid = String((item.split(separator: ":"))[1])
+                        ssid = item.replacingOccurrences(of: "S:", with: "", options: NSString.CompareOptions.literal, range: nil)
+                                              
                     }
                 }
                 if (item.contains("T:"))
@@ -391,26 +392,26 @@ class QRCodeViewModelList : QRCodeViewModelListDelegate{
                 value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
                 isCode = "UPCA"
             }
-            else if ((mType.range(of: "Code 128", options: .caseInsensitive)) != nil){
+            else if ((mType.range(of: "Code128", options: .caseInsensitive)) != nil){
                 typeCode = EnumType.BARCODE.rawValue
                 let content = BarcodeModel(productID: mValue, type: BarcodeType.CODE128.rawValue)
                 guard let jsonData = try? JSONEncoder().encode(content) else {return}
                 value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-                isCode = "Code 128"
+                isCode = "Code128"
             }
-            else if ((mType.range(of: "Code 93", options: .caseInsensitive)) != nil){
+            else if ((mType.range(of: "Code93", options: .caseInsensitive)) != nil){
                 typeCode = EnumType.BARCODE.rawValue
                 let content = BarcodeModel(productID: mValue, type: BarcodeType.CODE93.rawValue)
                 guard let jsonData = try? JSONEncoder().encode(content) else {return}
                 value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-                isCode = "Code 93"
+                isCode = "Code93"
             }
-            else if ((mType.range(of: "Code 39", options: .caseInsensitive)) != nil){
+            else if ((mType.range(of: "Code39", options: .caseInsensitive)) != nil){
                 typeCode = EnumType.BARCODE.rawValue
                 let content = BarcodeModel(productID: mValue, type: BarcodeType.CODE39.rawValue)
                 guard let jsonData = try? JSONEncoder().encode(content) else {return}
                 value_content = String(data: jsonData, encoding: String.Encoding.utf8)!
-                isCode = "Code 39"
+                isCode = "Code39"
             }
             else if ((mType.range(of: "Codabar", options: .caseInsensitive)) != nil){
                 typeCode = EnumType.BARCODE.rawValue

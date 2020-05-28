@@ -35,10 +35,10 @@ extension UIViewController {
             let value:NSMutableDictionary = NSMutableDictionary()
             value.setObject(i.typeCode, forKey: "FormatType" as NSCopying)
             value.setObject(i.createdDateTimeView, forKey: "CreateDateTime" as NSCopying)
-            let valueContentView = JSONHelper.get(value: ContentViewModel.self,anyObject: i.content)
-            let value_data = valueContentView?.content
+           
+            let value_data = i.content
             let stringContent = value_data?.data(using: .utf8)
-            let typeCode = valueContentView?.typeCode?.uppercased()
+            let typeCode = i.typeCode.uppercased()
             if typeCode == EnumType.URL.rawValue{
                 guard let urlModel : UrlModel = try? JSONDecoder().decode(UrlModel.self, from: stringContent!) else {return}
                 value.setObject("\"\(urlModel.url ?? "") \"", forKey: "Url" as NSCopying )
