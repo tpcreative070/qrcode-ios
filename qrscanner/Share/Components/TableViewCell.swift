@@ -139,6 +139,7 @@ class TableViewCell : UITableViewCell{
     func configView(view : GenerateViewModelDeletegate){
         self.lbTypeCode.text = "\(view.typeCodeView)"
         self.lbCreatedDate.text = String(view.updatedDateTimeView)
+        print(view.contentView)
         self.lbContent.text = view.contentView
         self.lbContent.textColor = AppColors.GRAY
         self.checkBox.borderStyle = .square
@@ -227,6 +228,7 @@ class TableViewCell : UITableViewCell{
         if view.typeCodeView.uppercased() == EnumType.TEXT.rawValue{
             do{
             let urlData = try JSONDecoder().decode(TextModel.self, from: jsonData)
+                Utils.logMessage(object: urlData)
             configView(viewModel: TextViewModel(text: urlData.text ?? ""))
             }
             catch(let err){
@@ -428,13 +430,14 @@ class TableViewCell : UITableViewCell{
             //  self.delegate?.cellViewSelected(cell: data)
             let value_data = JSONHelper.get(value: HistoryViewModel.self,anyObject: data)
             if value_data != nil{
-                guard let typeCode = value_data?.typeCode, let content = value_data?.content.content else {
+                guard let typeCode = value_data?.typeCode, let content = value_data?.content else {
                     return
                 }
-                let valueShare = Helper.getValueShareContent(typeCode: typeCode, contentData: content)
+                let convertString = QRCodeHelper.shared.convertStringtoContent(typeCode: typeCode, data: content)
+                let valueShare = Helper.getValueShareContent(typeCode: typeCode, content: convertString)
                 let activiController = UIActivityViewController(activityItems: [valueShare], applicationActivities: nil)
                 UIApplication.shared.keyWindow?.rootViewController?.present(activiController,animated: true, completion: nil)
-                
+
             }
         }
     }
@@ -615,6 +618,7 @@ view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: D
         self.lbTitleFirst.text = LanguageHelper.getTranslationByKey(LanguageKey.Text)
         self.lbTitleSecond.text = LanguageHelper.getTranslationByKey(LanguageKey.Text)
         self.lbTitleThird.text = LanguageHelper.getTranslationByKey(LanguageKey.Search)
+        print(viewModel.textTxtView)
         self.lbValueFirst.text = viewModel.textTxtView
         
     }
@@ -934,20 +938,13 @@ view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: D
                         saveRequest.add(newContact, toContainerWithIdentifier:nil)
                         do{
                             try store.execute(saveRequest)
-                            let alert = UIAlertController(title: "", message: "Saved", preferredStyle: .alert)
-                            let okAction = UIAlertAction(title: "OK", style: .default, handler: {(alert: UIAlertAction!) in })
-                            alert.addAction(okAction)
-                            self.window?.rootViewController?.present(alert, animated: true, completion: nil)
-                            
+                            self.alertMessage(title: LanguageHelper.getTranslationByKey(LanguageKey.Alert)!, value: LanguageHelper.getTranslationByKey(LanguageKey.SaveSuccess)!)
+
                             
                         }
                         catch{
-                            let alert = UIAlertController(title: "Message", message: "Contact already exists", preferredStyle: .alert)
-                            let okAction = UIAlertAction(title: "OK", style: .default, handler: {(alert: UIAlertAction!) in })
-                            alert.addAction(okAction)
-                            self.window?.rootViewController?.present(alert, animated: true, completion: nil)
                             
-                            print(error)
+                            self.alertMessage(title: LanguageHelper.getTranslationByKey(LanguageKey.Alert)!, value: LanguageHelper.getTranslationByKey(LanguageKey.ExistContact)!)
                         }
                     }
                     
@@ -959,6 +956,12 @@ view.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: D
                 
             }
         }
+    }
+    func alertMessage(title: String, value: String){
+        let alert = UIAlertController(title: title, message: value, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: {(alert: UIAlertAction!) in })
+        alert.addAction(okAction)
+        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
     }
     @objc func emailAction(sender : UITapGestureRecognizer){
         if let data = codable {

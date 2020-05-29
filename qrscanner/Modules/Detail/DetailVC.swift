@@ -27,6 +27,8 @@ class DetailVC : BaseViewController{
     var contentViewModel = ContentViewModelList()
     var dataSource :TableViewDataSourceContent<TableViewCell,ContentViewModel,HeaderView>!
     var listContentViewModel: [ContentViewModel] = [ContentViewModel]()
+    var listContentValue: [String] = [String]()
+
     var tableView : UITableView!
 
     override func viewDidLoad() {
@@ -34,6 +36,7 @@ class DetailVC : BaseViewController{
         initUI()
         bindViewModel()
         contentViewModel.listContent = listContentViewModel
+        contentViewModel.listContentValue = listContentValue
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

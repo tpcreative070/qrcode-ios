@@ -74,9 +74,21 @@ class QRCodeHelper {
                 return urlModel.url ?? ""
             }
             else if typeCode == EnumType.TEXT.rawValue{
+               // let ct = "{\"text\": \"Hdj\\\'ik\"}"
                 let stringContent = content.content?.data(using: .utf8 )
-                guard let textModel : TextModel = try? JSONDecoder().decode(TextModel.self, from: stringContent!)else {return ""}
+                guard let textModel : TextModel = try? JSONDecoder().decode(TextModel.self, from: stringContent!) else {return ""}
                 return textModel.text ?? ""
+//                guard let jsonData = content.content?.data(using: .utf8)  else {
+//                    return ""
+//                }
+//                do{
+//                           let urlData = try JSONDecoder().decode(TextModel.self, from: jsonData)
+//                    Utils.logMessage(object: TextViewModel(text: urlData.text ?? ""))
+//                           }
+//                           catch(let err){
+//                               print(err)
+//                               return
+//                           }
             }
             else if typeCode == EnumType.LOCATION.rawValue{
                 let stringContent = content.content?.data(using: .utf8 )
@@ -134,4 +146,140 @@ class QRCodeHelper {
             return "No value"
         }
     }
+    func getValueContent1(typeCode: String, data: String) -> String? {
+            if typeCode == EnumType.URL.rawValue{
+                       guard let urlModel = (data.toObject(value: UrlModel.self)) else {
+                           return ""
+                       }
+                return urlModel.url
+                   }
+                   else if typeCode == EnumType.TEXT.rawValue{
+                       guard let textModel = (data.toObject(value: TextModel.self)) else {
+                           return ""
+                       }
+                        return textModel.text
+                   }
+                   else if typeCode == EnumType.LOCATION.rawValue{
+                       guard let locationModel = (data.toObject(value: LocationModel.self)) else {
+                           return ""
+                       }
+                return "\(locationModel.latitude ?? 0),\(locationModel.longtitude ?? 0),(\(locationModel.query ?? ""))"
+                   }
+                   else if typeCode == EnumType.EMAIL.rawValue{
+                       guard let emailModel = (data.toObject(value: EmailModel.self)) else {
+                           return ""
+                       }
+                       return emailModel.email ?? ""
+                   }
+                   else if typeCode == EnumType.EVENT.rawValue{
+                       guard let eventModel = (data.toObject(value: EventModel.self)) else {
+                           return ""
+                       }
+                       return eventModel.title ?? ""
+                   }
+                   else if typeCode == EnumType.MESSAGE.rawValue{
+                       guard let messageModel = (data.toObject(value: MessageModel.self)) else {
+                           return ""
+                       }
+                       return messageModel.message ?? ""
+                   }
+                   else if typeCode == EnumType.WIFI.rawValue{
+                       guard let wifiModel = (data.toObject(value: WifiModel.self)) else {
+                           return ""
+                       }
+                        return wifiModel.ssid ?? ""
+                   }
+                   else if typeCode == EnumType.TELEPHONE.rawValue{
+                       guard let phoneModel = (data.toObject(value: PhoneModel.self)) else {
+                           return ""
+                       }
+                        return phoneModel.phone ?? ""
+                   }
+                   else if typeCode == EnumType.CONTACT.rawValue{
+                       guard let contactModel = (data.toObject(value: ContactModel.self)) else {
+                           return ""
+                       }
+                       return contactModel.fullNameContact ?? ""
+                   }
+                   else if typeCode == EnumType.BARCODE.rawValue{
+                       guard let barcode = (data.toObject(value: BarcodeModel.self)) else {
+                           return ""
+                       }
+                       return barcode.productID ?? ""
+                   }
+                   
+        else{
+                      return "No value"
+                  }
+        
+        }
+    func convertStringtoContent(typeCode: String, data: String) -> ContentViewModel {
+               if typeCode == EnumType.URL.rawValue{
+                          guard let urlModel = (data.toObject(value: UrlModel.self)) else {
+                              return ContentViewModel()
+                          }
+                   return ContentViewModel(data: urlModel)
+                      }
+                      else if typeCode == EnumType.TEXT.rawValue{
+                          guard let textModel = (data.toObject(value: TextModel.self)) else {
+                              return ContentViewModel()
+                          }
+                           return ContentViewModel(data: textModel)
+                      }
+                      else if typeCode == EnumType.LOCATION.rawValue{
+                          guard let locationModel = (data.toObject(value: LocationModel.self)) else {
+                              return ContentViewModel()
+                          }
+                  return ContentViewModel(data: locationModel)
+                      }
+                      else if typeCode == EnumType.EMAIL.rawValue{
+                          guard let emailModel = (data.toObject(value: EmailModel.self)) else {
+                              return ContentViewModel()
+                          }
+                        return ContentViewModel(data: emailModel)
+
+                      }
+                      else if typeCode == EnumType.EVENT.rawValue{
+                          guard let eventModel = (data.toObject(value: EventModel.self)) else {
+                              return ContentViewModel()
+                          }
+                       return ContentViewModel(data: eventModel)
+
+                      }
+                      else if typeCode == EnumType.MESSAGE.rawValue{
+                          guard let messageModel = (data.toObject(value: MessageModel.self)) else {
+                              return ContentViewModel()
+                          }
+                         return ContentViewModel(data: messageModel)
+                      }
+                      else if typeCode == EnumType.WIFI.rawValue{
+                          guard let wifiModel = (data.toObject(value: WifiModel.self)) else {
+                              return ContentViewModel()
+                          }
+                           return ContentViewModel(data: wifiModel)
+                      }
+                      else if typeCode == EnumType.TELEPHONE.rawValue{
+                          guard let phoneModel = (data.toObject(value: PhoneModel.self)) else {
+                              return ContentViewModel()
+                          }
+                           return ContentViewModel(data: phoneModel)
+                      }
+                      else if typeCode == EnumType.CONTACT.rawValue{
+                          guard let contactModel = (data.toObject(value: ContactModel.self)) else {
+                              return ContentViewModel()
+                          }
+                         return ContentViewModel(data: contactModel)
+                      }
+                      else if typeCode == EnumType.BARCODE.rawValue{
+                          guard let barcode = (data.toObject(value: BarcodeModel.self)) else {
+                              return ContentViewModel()
+                          }
+                         return ContentViewModel(data: barcode)
+                      }
+                      
+           else{
+                         return ContentViewModel()
+                     }
+           
+           }
 }

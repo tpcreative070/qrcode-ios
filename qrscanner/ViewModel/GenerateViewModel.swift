@@ -604,7 +604,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
         if beginTimeEvent == nil {
             errorMessages.value[GenerateViewModelKey.BEGINTIME_EVENT] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorBeginTimeRequired) ?? ""
         }
-        else if let begin = beginTimeEvent, let end = endTimeEvent, (endTimeEvent != nil && begin > end){
+        else if let begin = beginTimeEvent,  let end = endTimeEvent, (endTimeEvent != nil && begin > end){
             errorMessages.value[GenerateViewModelKey.BEGINTIME_EVENT] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorBeginDateGreaterEndDate) ?? ""
         }
         else {
@@ -615,7 +615,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
      ValidateEndTime
      */
     func validateEndTimeEvent(){
-        if beginTimeEvent?.date == nil {
+        if endTimeEvent?.date == nil {
             errorMessages.value[GenerateViewModelKey.ENDTIME_EVENT] =  LanguageHelper.getTranslationByKey(LanguageKey.ErrorEndTimeRequired) ?? ""
         }
         else if let begin = beginTimeEvent, let end = endTimeEvent, (beginTimeEvent != nil && begin > end){
@@ -950,6 +950,7 @@ class GenerateViewModel : GenerateViewModelDelegate {
         let writer = ZXMultiFormatWriter()
         let hints = ZXEncodeHints() as ZXEncodeHints
         hints.encoding = String.Encoding.utf8.rawValue
+        print(valueFormat)
         do {
             
             let result = try writer.encode(string, format: valueFormat, width: Int32(AppConstants.HEIGHT_IMAGE_QR), height: Int32(AppConstants.HEIGHT_IMAGE_QR), hints: hints)

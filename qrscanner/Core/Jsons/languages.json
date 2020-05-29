@@ -1,5 +1,6 @@
 {
     "en": {
+        "EXIST_CONTACT": "Contact already exists",
         "CANNOTSCAN": "Can not scanner. Please try again!",
         "TAP_RATING" : "Tap a star to rate it on the App Store",
         "CANNOTSENDMAIL" : "Unable to send mail. Please try again",
@@ -231,6 +232,7 @@
         "THIS_FEATURE_COMING_SOON" : "This feature will be coming soon"
     },
     "vi" : {
+        "EXIST_CONTACT": "Liên hệ đã tồn tại",
          "CANNOTSCAN": "Không thể quét mã. Vui lòng thử lại!",
         "TAP_RATING" : "Nhấn vào ngôi sao để xếp hạng trên App Store",
         "CANNOTSENDMAIL" : "Không thể gửi mail. Vui lòng thử lại",
@@ -497,6 +499,7 @@
         "THIS_FEATURE_COMING_SOON" : "Tính năng này sẽ có trong tương lai"
     },
    "es" : {
+       "EXIST_CONTACT": "El contacto ya existe",
        "CANNOTSCAN": "No se puede escanear. ¡Inténtalo de nuevo!",
        "TAP_RATING": "Toca una estrella para calificarla en la App Store",
        "CANNOTSENDMAIL": "No se puede enviar el correo. Vuelve a intentarlo",
@@ -749,6 +752,7 @@
         "THIS_FEATURE_COMING_SOON" : "Esta característica estará disponible pronto",
     },
    "pt" : {
+       "EXIST_CONTACT": "O contato já existe",
        "CANNOTSCAN": "Não é possível digitalizar. Por favor, tente novamente!",
        "TAP_RATING": "Toque em uma estrela para classificá-la na App Store",
        "CANNOTSENDMAIL": "Não foi possível enviar e-mail. Tente novamente",

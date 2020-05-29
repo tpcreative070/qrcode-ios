@@ -25,7 +25,7 @@ extension HistoryVC  {
             tableView.rightAnchor.constraint(equalTo: view.readableContentGuide.rightAnchor),
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
-
+        
         setupFloatButton()
         setupTableView()
         bindTableView()
@@ -34,12 +34,12 @@ extension HistoryVC  {
     func setupLbNoItem(){
         if historyViewModel.listHistories.count == 0{
             self.view.addSubview(lbNoItem)
-                  NSLayoutConstraint.activate([
-                   lbNoItem.topAnchor.constraint(equalTo: view.topAnchor),
-                    lbNoItem.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-                      lbNoItem.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                      lbNoItem.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-                  ])
+            NSLayoutConstraint.activate([
+                lbNoItem.topAnchor.constraint(equalTo: view.topAnchor),
+                lbNoItem.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                lbNoItem.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                lbNoItem.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            ])
             self.lbNoItem.font = AppFonts.moderateScale(fontName: AppFonts.SFranciscoRegular, size: DeviceHelper.Shared.LABEL_TITLE_FONT_SIZE_HELP)
             lbNoItem.isHidden = false
         }
@@ -54,9 +54,9 @@ extension HistoryVC  {
         tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: EnumIdentifier.History.rawValue)
     }
     func bindViewModel() {
-//        self.historyViewModel.showLoading.bind { visible in
-//            visible ? ProgressHUD.show(): ProgressHUD.dismiss()
-//        }
+        //        self.historyViewModel.showLoading.bind { visible in
+        //            visible ? ProgressHUD.show(): ProgressHUD.dismiss()
+        //        }
         self.historyViewModel.onShowError = { [weak self] alert in
             self?.presentSingleButtonDialog(alert: alert)
         }
@@ -81,7 +81,7 @@ extension HistoryVC  {
     }
     
     func bindTableView(){
-          
+        
         self.dataSource = TableViewDataSource(cellIdentifier: EnumIdentifier.History.rawValue, items: self.historyViewModel.listHistories,sections: self.sections, height: AppConstants.TABLE_ROW_HEIGHT,isSelectionStype: false){ cell, vm in
             cell.configView(view: vm)
             cell.configData(viewModel: vm)
@@ -98,8 +98,8 @@ extension HistoryVC  {
         self.tableView.dataSource = self.dataSource
         self.tableView.delegate = self.dataSource
     }
-
-   
+    
+    
     func setupFloatButton(){
         let item = FloatyItem()
         item.hasShadow = false
@@ -149,24 +149,30 @@ extension HistoryVC : TableViewCellDelegate{
     
     func cellViewSelected(cell: TableViewCell) {
         //guard let indexPath = tableView.indexPath(for: cell) else { return }
-    
     }
     func cellViewLongSelected(cell: Codable) {
         navigationController?.pushViewController(ChooseHistoryVC(), animated: false)
     }
     func cellViewSelected(cell: TableViewCell, countSelected: Int) {
-       
+        
     }
     
-    func cellViewSelected(cell: Codable) {       
-       
+    func cellViewSelected(cell: Codable) {
         if let data = JSONHelper.get(value: HistoryViewModel.self,anyObject: cell){
             let  vc = DetailVC()
-            vc.listContentViewModel = [data.content]
+            print(data.content!)
+            guard let ct = data.content else {
+                return
+            }
+            let contentVM = QRCodeHelper.shared.convertStringtoContent(typeCode: data.typeCode, data: ct)
+            vc.listContentViewModel = [contentVM]
+            
+            
+           // vc.listContentValue = [data.content!]
             self.navigationController?.pushViewController(vc, animated: true)
-
+            
         }
-
+        
     }
     
     func cellCodable(codable: Codable) {

@@ -13,11 +13,8 @@ class HistoryViewModelList : HistoryViewModelListDeletegate{
     var showLoading: Bindable<Bool> = Bindable(false)
     var responseToView: ((String) -> ())?
     var listHistories: [HistoryViewModel] = [HistoryViewModel]()
-    var listHistoriesBytype: [HistoryViewModel] = [HistoryViewModel]()
-    var currentCell: HistoryViewModel?
     var isVisible: Bindable<Bool> = Bindable(false)
     var countItemSelected: Int = 0
-    var historyArray:[Dictionary<String, AnyObject>] =  Array()
     var navigate: (() -> ())?
     func doGetListHistories(){
     //    self.showLoading.value = true
@@ -116,15 +113,6 @@ class HistoryViewModelList : HistoryViewModelListDeletegate{
               print(result)
               if result > 0 {
                   doUpdate(mCreateDateTime: Int(result), mValue: mValue)
-                  //self.responseToView!(EnumResponseToView.UPDATE_DATA_SOURCE.rawValue)
-    //              let okAlert = SingleButtonAlert(
-    //                  title: LanguageHelper.getTranslationByKey(LanguageKey.Alert) ?? "Error",
-    //                  message: LanguageHelper.getTranslationByKey(LanguageKey.InvalidQRCode),
-    //                  action: AlertAction(buttonTitle: "Ok", handler: {
-    //                      print("Ok pressed!")
-    //                  })
-    //              )
-    //              self.onShowError?(okAlert)
                   return true
               }
               return false
