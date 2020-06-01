@@ -139,7 +139,7 @@ class CommonService  {
     /**
      getMasterKey
      */
-    static func getDeviceIdKeyChain() -> String?{
+    static func getDeviceIdToKeyChain() -> String?{
         let keychain = KeychainSwiftHelper()
         if let saved = keychain.get(StorageKey.deviceId){
             return saved
@@ -147,12 +147,27 @@ class CommonService  {
         return nil
     }
     
+    /*Generate Unique Id*/
+       static func getUniqueId() -> String {
+           if let mDeviceId = getDeviceIdToKeyChain(){
+               return mDeviceId
+           }else{
+               guard let id = UIDevice.current.identifierForVendor?.uuidString else {
+                  let idDevice = DeviceHelper.getUniqueId()
+                  setDeviceIdToKeyChain(value: idDevice)
+                return idDevice
+               }
+            print(id)
+               setDeviceIdToKeyChain(value: id)
+               return id
+           }
+       }
     /**
      setMasterKey
      */
-    static func setDeviceIdKeyChain(data : String){
+    static func setDeviceIdToKeyChain(value : String){
         let keychain = KeychainSwiftHelper()
-        keychain.set(data, forKey: StorageKey.deviceId)
+        keychain.set(value, forKey: StorageKey.deviceId)
     }
     /**
      getMasterKey
@@ -175,9 +190,7 @@ class CommonService  {
 
     
 
-    /**
-       getMasterKey
-       */
+   
       static func getPublicKey() -> String{
           let keychain = KeychainSwiftHelper()
         keychain.set(AppConstants.public_key, forKey: StorageKey.publicKey)
@@ -185,15 +198,17 @@ class CommonService  {
               return saved!
         
       }
-      
-      /**
-       setMasterKey
-       */
-    static func getRefreshToken() -> String {
+    static func setRefreshToken(data : String){
+        let keychain = KeychainSwiftHelper()
+        keychain.set(data, forKey: StorageKey.refreshToken)
+    }
+    static func getRefreshToken() -> String? {
           let keychain = KeychainSwiftHelper()
-          keychain.set(AppConstants.refresh_token, forKey: StorageKey.refreshToken)
-          let saved = keychain.get(StorageKey.refreshToken)
-                return saved!
+          if let saved = keychain.get(StorageKey.refreshToken)
+                {
+                    return saved
+                }
+                return nil
       }
     /**
      setMasterKey
