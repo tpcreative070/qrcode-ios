@@ -134,6 +134,10 @@
 		289B4BA424140C8F005BC714 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289B4BA324140C8F005BC714 /* Label.swift */; };
 		289B4BA624141CD2005BC714 /* ViewRectangleArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289B4BA524141CD2005BC714 /* ViewRectangleArea.swift */; };
 		289B4BB12443425A004785CF /* ScannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289B4BB02443425A004785CF /* ScannerModel.swift */; };
+		289C70F724829B9D00B3D1B7 /* AuthorizationRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289C70F624829B9D00B3D1B7 /* AuthorizationRequestModel.swift */; };
+		289C70F924829BAD00B3D1B7 /* AuthorizationResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289C70F824829BAD00B3D1B7 /* AuthorizationResponseModel.swift */; };
+		289C70FB24829BBE00B3D1B7 /* AuthorizationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289C70FA24829BBE00B3D1B7 /* AuthorizationViewModel.swift */; };
+		289C70FD24829BD100B3D1B7 /* AuthorizationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289C70FC24829BD100B3D1B7 /* AuthorizationModel.swift */; };
 		289C7CAF24357B6A00DA79CF /* ColorOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289C7CAE24357B6A00DA79CF /* ColorOption.swift */; };
 		289C7CB12435A8AF00DA79CF /* ListColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289C7CB02435A8AF00DA79CF /* ListColor.swift */; };
 		289C7CD524361ACF00DA79CF /* qrscanner.db in Resources */ = {isa = PBXBuildFile; fileRef = 289C7CD424361ACF00DA79CF /* qrscanner.db */; };
@@ -163,6 +167,10 @@
 		28A05736240E499400AD5353 /* SFProText-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 28A05732240E499400AD5353 /* SFProText-Semibold.otf */; };
 		28A05739240E968B00AD5353 /* AppDelegate+Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A05738240E968B00AD5353 /* AppDelegate+Config.swift */; };
 		28A097442455BB07008A2EDD /* CustomPhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A097432455BB07008A2EDD /* CustomPhotoAlbum.swift */; };
+		28A2A2522481FFD900422388 /* TrackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A2A2512481FFD900422388 /* TrackModel.swift */; };
+		28A2A2542481FFF700422388 /* TrackRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A2A2532481FFF700422388 /* TrackRequestModel.swift */; };
+		28A2A2562482000E00422388 /* TrackResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A2A2552482000E00422388 /* TrackResponseModel.swift */; };
+		28A2A2582482002200422388 /* TrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A2A2572482002200422388 /* TrackViewModel.swift */; };
 		28A4E1B72431D44C00DDD4A1 /* QRCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4E1B62431D44C00DDD4A1 /* QRCodeVC.swift */; };
 		28A4E1B92431D47900DDD4A1 /* QRCodeVC+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4E1B82431D47900DDD4A1 /* QRCodeVC+ViewFactory.swift */; };
 		28A4E1BB2431D4F400DDD4A1 /* QRCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4E1BA2431D4F400DDD4A1 /* QRCodeViewModel.swift */; };
@@ -460,6 +468,10 @@
 		289B4BA324140C8F005BC714 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		289B4BA524141CD2005BC714 /* ViewRectangleArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRectangleArea.swift; sourceTree = "<group>"; };
 		289B4BB02443425A004785CF /* ScannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerModel.swift; sourceTree = "<group>"; };
+		289C70F624829B9D00B3D1B7 /* AuthorizationRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationRequestModel.swift; sourceTree = "<group>"; };
+		289C70F824829BAD00B3D1B7 /* AuthorizationResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationResponseModel.swift; sourceTree = "<group>"; };
+		289C70FA24829BBE00B3D1B7 /* AuthorizationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewModel.swift; sourceTree = "<group>"; };
+		289C70FC24829BD100B3D1B7 /* AuthorizationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationModel.swift; sourceTree = "<group>"; };
 		289C7CAE24357B6A00DA79CF /* ColorOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorOption.swift; sourceTree = "<group>"; };
 		289C7CB02435A8AF00DA79CF /* ListColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListColor.swift; sourceTree = "<group>"; };
 		289C7CD424361ACF00DA79CF /* qrscanner.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = qrscanner.db; sourceTree = "<group>"; };
@@ -489,6 +501,10 @@
 		28A05732240E499400AD5353 /* SFProText-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Semibold.otf"; sourceTree = "<group>"; };
 		28A05738240E968B00AD5353 /* AppDelegate+Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Config.swift"; sourceTree = "<group>"; };
 		28A097432455BB07008A2EDD /* CustomPhotoAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPhotoAlbum.swift; sourceTree = "<group>"; };
+		28A2A2512481FFD900422388 /* TrackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackModel.swift; sourceTree = "<group>"; };
+		28A2A2532481FFF700422388 /* TrackRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackRequestModel.swift; sourceTree = "<group>"; };
+		28A2A2552482000E00422388 /* TrackResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackResponseModel.swift; sourceTree = "<group>"; };
+		28A2A2572482002200422388 /* TrackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewModel.swift; sourceTree = "<group>"; };
 		28A4E1B62431D44C00DDD4A1 /* QRCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeVC.swift; sourceTree = "<group>"; };
 		28A4E1B82431D47900DDD4A1 /* QRCodeVC+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QRCodeVC+ViewFactory.swift"; sourceTree = "<group>"; };
 		28A4E1BA2431D4F400DDD4A1 /* QRCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewModel.swift; sourceTree = "<group>"; };
@@ -1142,6 +1158,8 @@
 				28A4E1C42432E89D00DDD4A1 /* TransactionViewModel.swift */,
 				289334FB24534BAB000317A8 /* ContentDuplicateViewModel.swift */,
 				289748CE2462AD3D0004A415 /* FeedbackViewModel.swift */,
+				28A2A2572482002200422388 /* TrackViewModel.swift */,
+				289C70FA24829BBE00B3D1B7 /* AuthorizationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1170,6 +1188,8 @@
 				28A4E1CA24332BC400DDD4A1 /* SettingModel.swift */,
 				28A0396A2438CDF000888582 /* BarcodeModel.swift */,
 				289B4BB02443425A004785CF /* ScannerModel.swift */,
+				28A2A2512481FFD900422388 /* TrackModel.swift */,
+				289C70FC24829BD100B3D1B7 /* AuthorizationModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1299,6 +1319,8 @@
 				D2BA0AB9240A61540074C7A1 /* BaseReponseModel.swift */,
 				D2BA0AB7240A61540074C7A1 /* ResponseErrorModel.swift */,
 				D2BA0AB8240A61540074C7A1 /* UserResponseModel.swift */,
+				28A2A2552482000E00422388 /* TrackResponseModel.swift */,
+				289C70F824829BAD00B3D1B7 /* AuthorizationResponseModel.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1309,6 +1331,8 @@
 				D2BA0AC5240A62270074C7A1 /* SignUpRequestModel.swift */,
 				D2BA0AC1240A61F70074C7A1 /* SignInRequestModel.swift */,
 				D2BA0ABE240A61D70074C7A1 /* UserRequestModel.swift */,
+				28A2A2532481FFF700422388 /* TrackRequestModel.swift */,
+				289C70F624829B9D00B3D1B7 /* AuthorizationRequestModel.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1786,6 +1810,7 @@
 				D2BA0A6E240969A90074C7A1 /* Helper.swift in Sources */,
 				D27F115C23FF9487001D175F /* SceneDelegate.swift in Sources */,
 				28D81D46241630D5007834F0 /* String+Data.swift in Sources */,
+				289C70FB24829BBE00B3D1B7 /* AuthorizationViewModel.swift in Sources */,
 				28DD5034241161350080A059 /* ICTextField.swift in Sources */,
 				2894D6B7241C8F1D009E1659 /* ImagePickerCollectionViewCell.swift in Sources */,
 				2894B5992423C9F500E958DC /* ChooseHistoryVC+ViewFactory.swift in Sources */,
@@ -1793,6 +1818,7 @@
 				28A0572C240E3B0300AD5353 /* IndefiniteAnimatedView.swift in Sources */,
 				2893EF232419CE13004D58C6 /* MessageGenerateVC.swift in Sources */,
 				289749152429A72200717701 /* SettingsVC+ViewFactory.swift in Sources */,
+				289C70FD24829BD100B3D1B7 /* AuthorizationModel.swift in Sources */,
 				D2E2E4AC2451927700FE84E1 /* UIImage+Base64.swift in Sources */,
 				D2BA0A8024096A5E0074C7A1 /* BaseViewController.swift in Sources */,
 				D2BA0A9424096ABC0074C7A1 /* StorageHelper.swift in Sources */,
@@ -1805,6 +1831,7 @@
 				2894B59B2423CA3600E958DC /* TableViewCell+ChooseHistory+ViewFactory.swift in Sources */,
 				28925607240DF6F400D05B17 /* GenerateEntity.swift in Sources */,
 				2865AA1F24122F1500C1F207 /* NavigationRightButton.swift in Sources */,
+				28A2A2562482000E00422388 /* TrackResponseModel.swift in Sources */,
 				2897F7A62421F80B00ED0A60 /* TableViewCell+Contact+ViewHistory.swift in Sources */,
 				D2BA0AF1240A9B940074C7A1 /* HistoryVC.swift in Sources */,
 				28A039642438B1DD00888582 /* DropDownCell.swift in Sources */,
@@ -1835,6 +1862,7 @@
 				28390CD1242DF82D00383427 /* TextView.swift in Sources */,
 				28BFA8E1240CF938002ECD93 /* TableSection.swift in Sources */,
 				28A0572A240E3AD800AD5353 /* ProgressHUD.swift in Sources */,
+				289C70F724829B9D00B3D1B7 /* AuthorizationRequestModel.swift in Sources */,
 				D2BA0A68240967620074C7A1 /* Protocols.swift in Sources */,
 				D2BA0A8D24096ABC0074C7A1 /* GlobalVariableHelper.swift in Sources */,
 				285BDBF124272B8A00AA0BBF /* ChooseSaveVC.swift in Sources */,
@@ -1867,6 +1895,7 @@
 				2894E1272421342600263637 /* TableViewCell+Phone+ViewFactory.swift in Sources */,
 				28A039542438AFB700888582 /* DPDConstants.swift in Sources */,
 				D2BA0A60240966710074C7A1 /* SwiftEventBusHelper.swift in Sources */,
+				28A2A2522481FFD900422388 /* TrackModel.swift in Sources */,
 				D2BA0A9124096ABC0074C7A1 /* KeychainSwiftHelper.swift in Sources */,
 				2893EF282419DBCD004D58C6 /* LocationGenerateVC.swift in Sources */,
 				28A4E1D024333D5200DDD4A1 /* PlaySoundManager.swift in Sources */,
@@ -1892,6 +1921,7 @@
 				2893713224288C1700E40471 /* TableViewDataSourceContent.swift in Sources */,
 				D2BA0ADE240A69830074C7A1 /* TabItemView.swift in Sources */,
 				D2BA0A662409671F0074C7A1 /* CollectionViewDataSource.swift in Sources */,
+				289C70F924829BAD00B3D1B7 /* AuthorizationResponseModel.swift in Sources */,
 				289C7CAF24357B6A00DA79CF /* ColorOption.swift in Sources */,
 				28124809243CA43E00D565B1 /* TableViewCell+Barcode+ViewFactory.swift in Sources */,
 				289CC96B2434F0970073CEBA /* ChangeColorVC.swift in Sources */,
@@ -1951,6 +1981,7 @@
 				289334D82452E022000317A8 /* RateVC+ViewFactory.swift in Sources */,
 				289767542414D4D500AD0D78 /* ScannerViewModel.swift in Sources */,
 				28A4E1C9243322E400DDD4A1 /* ICCustomThumbView.swift in Sources */,
+				28A2A2582482002200422388 /* TrackViewModel.swift in Sources */,
 				28A0395C2438B01E00888582 /* DropDown+Appearance.swift in Sources */,
 				28A0395A2438B00700888582 /* DropDown.swift in Sources */,
 				D2BA0AED240A74D70074C7A1 /* MainVC+ViewFactory.swift in Sources */,
@@ -2015,6 +2046,7 @@
 				289308D32437A20400680BF3 /* BarcodeVC+ViewFactory.swift in Sources */,
 				28A4E1BF2431DE0400DDD4A1 /* TableViewCell+QRCode+ViewFactory.swift in Sources */,
 				28124805243C827200D565B1 /* FloatyWindow.swift in Sources */,
+				28A2A2542481FFF700422388 /* TrackRequestModel.swift in Sources */,
 				283A22772410E573006308F4 /* TypeCodeOption.swift in Sources */,
 				28D81D4024162727007834F0 /* WifiModel.swift in Sources */,
 				288591E2241A4A0A0081DB79 /* UrlGenerateVC.swift in Sources */,

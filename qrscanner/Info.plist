@@ -111,5 +111,9 @@
 	<string>Light</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>RootUrl</key>
+	<string>$(APP_ROOT_URL)</string>
+	<key>WSUrl</key>
+	<string>$(APP_WS_URL)</string>
 </dict>
 </plist>

@@ -21,6 +21,10 @@ extension Endpoint {
   var sessionId: String {
     return CommonService.getCurrentSessionId()!
   }
+
+    var authorization: String {
+       return ""
+     }
   
   var defaultContentType: String {
     return "application/json"
@@ -51,6 +55,8 @@ extension Endpoint {
 enum UserEndPoint {
   case CheckingIdNumberAndPhoneNumber
   case CheckingUsername
+case SyncDevice
+    case GetToken
   case SignIn
   case SignUp
   case SignOut
@@ -80,6 +86,10 @@ extension UserEndPoint: Endpoint {
       return ApiEndPointUrl.CheckingIdNumberAndPhoneNumber
     case .CheckingUsername :
       return ApiEndPointUrl.CheckingUsername
+    case .SyncDevice:
+        return ApiEndPointUrl.SyncDevice
+        case .GetToken:
+               return ApiEndPointUrl.GetToken
     case .SignUp:
       return ApiEndPointUrl.SignUp
     case .ActiveAccount:

@@ -52,6 +52,11 @@ struct AppConstants {
     static let sharedIndentifier = "group.co.tpcreative.qrscanner.share"
     static let shareKey = "Images"
       static let keyImageData = "ImageDatas"
+    static let user_id = "qrscanner.tpcreative.co@gmail.com"
+    static let app_id = "co.tpcreative.qrscanner"
+    static let refresh_token = "MEQCIFh4e67d8/FIShGXGyX5JdUMK4gnv+7xk/j3MATrp6BbAiBsUVWFtzIQajTrQeu2VEmnxRdiDiseSqVHJurAQvw9nQ=="
+    static let public_key = "BO6JoUUOXIkjjXlHRoFtTXOGtYLzHVPu8xAVOoqpnPHgcdOczANieJ8KiHnKZAq9I411emwmvOMa+gCdniaGpkU="
+    static let channel_code = "C003"
     static var ischoose = 0
     static var isVibrate = 0
     static var isBeep = 0
@@ -1066,6 +1071,10 @@ struct LanguageCode {
 
 struct StorageKey {
     static let activeAccountData = "ActiveAccountData"
+    static let publicKey = "publicKey"
+    static let refreshToken = "refreshToken"
+    static let deviceId  = "deviceId"
+    static let authorSession  = "authorSession"
     static let signupData = "SignUpData"
     static let signInData = "SignInData"
     static let signInNoneWalletData = "SignInNoneWalletData"
@@ -1077,7 +1086,6 @@ struct StorageKey {
     static let keychainFirebase = "keychainFirebase"
     static let masterkey = "masterkey"
     static let firstCreatedKeyChain = "firstCreatedKeyChain"
-    static let deviceId  = "deviceId"
     static let multipleLanguages = "multipleLanguages"
     static let firebaseToken = "firebaseToken"
     static let channelPublicKey = "channelPublicKey"
@@ -1126,6 +1134,8 @@ struct ApiEndPointUrl {
     static let BaseUrl = ConfigKey.BaseUrl
     static let CheckingIdNumberAndPhoneNumber = "/ecgateway/execute/FU100"
     static let CheckingUsername = "/ecgateway/execute/FU00003"
+    static let SyncDevice = "/api/core/track/syncDevice"
+    static let GetToken = "/api/core/user/refresh_token"
     static let SignUp = "/ecgateway/execute/FU0001"
     static let ActiveAccount = "/ecgateway/execute/FU0003"
     static let SignIn = "/ecgateway/execute/FU00004"
@@ -1322,6 +1332,7 @@ enum EnumResponseCode : String {
     case OTP_INVALID = "0998"
     case USER_NOT_ACTIVE = "3077"
     case PASSWORD_INVALID = "3019"
+    case UNAUTHORIZED = "1005"
 }
 
 enum EnumResponseAction : String {

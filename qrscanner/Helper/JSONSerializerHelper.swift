@@ -262,7 +262,6 @@ open class JSONSerializerHelper {
             let prettyJsonData = try! JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted)
             json = NSString(data: prettyJsonData, encoding: String.Encoding.utf8.rawValue)! as String
         }
-        print("json string: \(json)")
         return json
     }
 }

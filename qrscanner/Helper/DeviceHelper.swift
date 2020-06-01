@@ -93,9 +93,30 @@ class DeviceHelper {
         return device.type.rawValue
     }
     
+    
+    static func getModelname() ->String{
+        let device = UIDevice.current
+        return device.model
+    }
+    static func getSystemVersion() ->String{
+           let device = UIDevice.current
+           return device.systemVersion
+       }
+    static func getSystemName() ->String{
+           let device = UIDevice.current
+           return device.systemName
+       }
+    static func getLocalizedModel() ->String{
+        let device = UIDevice.current
+        return device.localizedModel
+    }
+    static func getmajorVersion() -> Int{
+        let systemVersion = ProcessInfo.processInfo.operatingSystemVersion
+        return systemVersion.majorVersion
+    }
     /**
-     Fetch device's unique id
-     */
+    Fetch device's unique id
+    */
     static func getUniqueId() ->String{
         let device = UIDevice.current
         return device.currentUUID()
