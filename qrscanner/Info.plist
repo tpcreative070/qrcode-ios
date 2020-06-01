@@ -115,5 +115,11 @@
 	<string>$(APP_ROOT_URL)</string>
 	<key>WSUrl</key>
 	<string>$(APP_WS_URL)</string>
+	<key>AppVersion</key>
+	<string>$(APP_VERSION)</string>
+	<key>AppVersionString</key>
+	<string>$(APP_VERSION_STRING)</string>
+	<key>AppBundleId</key>
+	<string>$(APP_BUNDLE_ID)</string>
 </dict>
 </plist>

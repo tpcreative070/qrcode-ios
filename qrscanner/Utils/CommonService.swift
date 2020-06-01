@@ -49,6 +49,13 @@ class CommonService  {
             StorageHelper.setObject(key: StorageKey.configData, value: encoded)
         }
     }
+    static func getAppBundleId() -> String {
+        return ApiEndPointUrl.AppBundleId.infoForKey() ?? AppConstants.app_id
+    }
+    static func getAppVersionString() -> String {
+        let vs = Helper.getVersion() ?? ""
+        return ApiEndPointUrl.AppVersionString.infoForKey() ?? vs
+       }
     /**
      getBaseUrl
      */

@@ -1103,6 +1103,9 @@ struct FolderName {
 
 struct ConfigKey {
     static let BaseUrl = "RootUrl"
+    static let AppVersionString = "AppVersionString"
+    static let AppVersion = "AppVersion"
+    static let AppBundleId = "AppBundleId"
     static let WSUrl = "WSUrl"
     static let AppName = "CFBundleName"
     static let GoogleClientId = "GoogleClientId"
@@ -1132,6 +1135,9 @@ struct GoogleScopes {
 
 struct ApiEndPointUrl {
     static let BaseUrl = ConfigKey.BaseUrl
+    static let AppVersionString = ConfigKey.AppVersionString
+    static let AppVersion = ConfigKey.AppVersion
+    static let AppBundleId = ConfigKey.AppBundleId
     static let CheckingIdNumberAndPhoneNumber = "/ecgateway/execute/FU100"
     static let CheckingUsername = "/ecgateway/execute/FU00003"
     static let SyncDevice = "/api/core/track/syncDevice"
