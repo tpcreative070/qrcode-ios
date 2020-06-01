@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AppBundleId</key>
+	<string>$(APP_BUNDLE_ID)</string>
+	<key>AppVersion</key>
+	<string>$(APP_VERSION)</string>
+	<key>AppVersionString</key>
+	<string>$(APP_VERSION_STRING)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -60,6 +66,8 @@
 	<string>Our application needs permission to write photos..</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app needs to use Photo Library to save QR codes</string>
+	<key>RootUrl</key>
+	<string>$(APP_ROOT_URL)</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SFProText-Bold.otf</string>
@@ -111,15 +119,7 @@
 	<string>Light</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>RootUrl</key>
-	<string>$(APP_ROOT_URL)</string>
 	<key>WSUrl</key>
 	<string>$(APP_WS_URL)</string>
-	<key>AppVersion</key>
-	<string>$(APP_VERSION)</string>
-	<key>AppVersionString</key>
-	<string>$(APP_VERSION_STRING)</string>
-	<key>AppBundleId</key>
-	<string>$(APP_BUNDLE_ID)</string>
 </dict>
 </plist>
