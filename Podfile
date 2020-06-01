@@ -16,6 +16,7 @@ target 'qrscanner' do
   pod 'ZXingObjC', '~> 3.6.4'
   pod 'SwiftCSVExport' , '= 2.0.3'
   pod 'Cosmos', '~> 21.0'
+  pod 'KeychainSwift', '~> 19.0'
   target 'qrscannerTests' do
     inherit! :search_paths
     # Pods for testing

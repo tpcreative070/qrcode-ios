@@ -69,6 +69,7 @@ class TableViewDataSource<Cell: UITableViewCell,ViewModel, HeaderInSection : UIT
         }
         return self.items.count
     }
+   
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as! Cell
@@ -84,17 +85,19 @@ class TableViewDataSource<Cell: UITableViewCell,ViewModel, HeaderInSection : UIT
         }else{
          
             let item = self.items[indexPath.row]
+            Utils.logMessage(object: item)
             self.configureCell(cell,item)
             if indexPath.row == self.items.count - 1 && self.items.count > 0  {
                 self.loadMore?()
             }
+            
         }
         if !(isSelectionStype ?? false) {
             cell.selectionStyle = .none
         }
         return cell
     }
-    
+  
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let mConfigureSwipeCell = configureSwipeCell else {
             return UISwipeActionsConfiguration.init()

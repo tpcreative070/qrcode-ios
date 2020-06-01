@@ -12,7 +12,12 @@ extension MainVC  {
     func initUI(){
     
     }
-    
+    func syncDevice(){
+        DispatchQueue.global(qos: .background).async {
+            self.trackViewModel.getSyncDevice()
+
+        }
+    }
     func addedView(){
         
         mScanner = ScannerVC()

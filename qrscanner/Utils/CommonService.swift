@@ -135,6 +135,81 @@ class CommonService  {
         keychain.set(data, forKey: StorageKey.masterkey)
     }
     
+    
+    /**
+     getMasterKey
+     */
+    static func getDeviceIdToKeyChain() -> String?{
+        let keychain = KeychainSwiftHelper()
+        if let saved = keychain.get(StorageKey.deviceId){
+            return saved
+        }
+        return nil
+    }
+    
+    /*Generate Unique Id*/
+       static func getUniqueId() -> String {
+           if let mDeviceId = getDeviceIdToKeyChain(){
+               return mDeviceId
+           }else{
+               guard let id = UIDevice.current.identifierForVendor?.uuidString else {
+                  let idDevice = DeviceHelper.getUniqueId()
+                  setDeviceIdToKeyChain(value: idDevice)
+                return idDevice
+               }
+            print(id)
+               setDeviceIdToKeyChain(value: id)
+               return id
+           }
+       }
+    /**
+     setMasterKey
+     */
+    static func setDeviceIdToKeyChain(value : String){
+        let keychain = KeychainSwiftHelper()
+        keychain.set(value, forKey: StorageKey.deviceId)
+    }
+    /**
+     getMasterKey
+     */
+    static func getAuthorKeyChain() -> String?{
+        let keychain = KeychainSwiftHelper()
+        if let saved = keychain.get(StorageKey.authorSession){
+            return saved
+        }
+        return nil
+    }
+    
+    /**
+     setMasterKey
+     */
+    static func setAuthorKeyChain(data : String){
+        let keychain = KeychainSwiftHelper()
+        keychain.set(data, forKey: StorageKey.authorSession)
+    }
+
+    
+
+   
+      static func getPublicKey() -> String{
+          let keychain = KeychainSwiftHelper()
+        keychain.set(AppConstants.public_key, forKey: StorageKey.publicKey)
+        let saved = keychain.get(StorageKey.publicKey)
+              return saved!
+        
+      }
+    static func setRefreshToken(data : String){
+        let keychain = KeychainSwiftHelper()
+        keychain.set(data, forKey: StorageKey.refreshToken)
+    }
+    static func getRefreshToken() -> String? {
+          let keychain = KeychainSwiftHelper()
+          if let saved = keychain.get(StorageKey.refreshToken)
+                {
+                    return saved
+                }
+                return nil
+      }
     /**
      setMasterKey
      */
@@ -255,12 +330,12 @@ class CommonService  {
     static func setMultipleLanguages(value: String) {
         StorageHelper.setObject(key: StorageKey.multipleLanguages, value: value)
     }
-   
+    
     //  //reader QRCode
     static func onReaderQRcode(tempImage : CGImage, countList: Int, completion : @escaping (_ result : [ZXResult]?) -> ()) {
         var listMultiResult : [ZXResult] = []
         var listSingleResult : [ZXResult] = []
-      //  var flagqrcode : Bool = false
+        //  var flagqrcode : Bool = false
         // initializers are imported without "initWith"
         let source: ZXLuminanceSource = ZXCGImageLuminanceSource(cgImage: tempImage)
         let binazer = ZXHybridBinarizer(source: source)
@@ -275,15 +350,15 @@ class CommonService  {
             print("numbar of qrcode :\(array_resultqr.count)")
             if (array_resultqr.count > 1 )
             {
-                    for item in array_resultqr{
-                        if item.barcodeFormat.rawValue == 11 {
-                            let va =  item.barcodeFormat.rawValue
-                            print("\(item)  ---  \(va)")
-                            listMultiResult.append(item)
-                            
-                        }
+                for item in array_resultqr{
+                    if item.barcodeFormat.rawValue == 11 {
+                        let va =  item.barcodeFormat.rawValue
+                        print("\(item)  ---  \(va)")
+                        listMultiResult.append(item)
+                        
                     }
-                    completion(listMultiResult)
+                }
+                completion(listMultiResult)
                 
             }
             if array_resultqr.count == 1 {
@@ -297,7 +372,7 @@ class CommonService  {
         catch {
             print("not qrcode")
             //completion(nil)
-          //  flagqrcode = true
+            //  flagqrcode = true
         }
         
         do {
@@ -307,30 +382,30 @@ class CommonService  {
             listMultiResult.removeAll()
             if (array_resultbar.count > 1)
             {
-//                if countList == 1 {
-//                    for item in array_resultbar{
-//                        completion([item])
-//                    }
-//                }
-//                else{
-                    for item in array_resultbar{
-                      let va =  item.barcodeFormat.rawValue
-                        print("\(item)  ---  \(va)")
-                        if (item.barcodeFormat.rawValue != 11) && (item.barcodeFormat.rawValue != 15){
-                            listMultiResult.append(item)
-                        }
-                       
-                        else{
-                            
-                        }
+                //                if countList == 1 {
+                //                    for item in array_resultbar{
+                //                        completion([item])
+                //                    }
+                //                }
+                //                else{
+                for item in array_resultbar{
+                    let va =  item.barcodeFormat.rawValue
+                    print("\(item)  ---  \(va)")
+                    if (item.barcodeFormat.rawValue != 11) && (item.barcodeFormat.rawValue != 15){
+                        listMultiResult.append(item)
+                    }
+                        
+                    else{
                         
                     }
+                    
+                }
                 print(listMultiResult.count)
                 for item in listMultiResult {
                     print(item.barcodeFormat)
                 }
-                    completion(listMultiResult)
-//                }
+                completion(listMultiResult)
+                //                }
             }
             if array_resultbar.count == 1 {
                 // let text = array_resultbar[0].text ?? "Unknow"
@@ -342,7 +417,7 @@ class CommonService  {
         }catch {
             completion(nil)
         }
-       
+        
     }
     //reader QRCode
     static func onReaderMultiQRcode(tempImage : CGImage, completion : @escaping (_ result : String?) -> ()) {
@@ -364,69 +439,69 @@ class CommonService  {
     }
     
     static func barcodeFormatToString(format: ZXBarcodeFormat) -> String {
-         switch (format) {
-         case kBarcodeFormatAztec:
-             return LanguageKey.Aztec
-             
-         case kBarcodeFormatCodabar:
-             return LanguageKey.CODABAR
-             
-         case kBarcodeFormatCode39:
-             return LanguageKey.Code_39
-             
-         case kBarcodeFormatCode93:
-             return LanguageKey.Code_93
-             
-         case kBarcodeFormatCode128:
-             return LanguageKey.Code_128
-             
-         case kBarcodeFormatDataMatrix:
-             return LanguageKey.Data_Matrix
-             
-         case kBarcodeFormatEan8:
-             return LanguageKey.EAN_8
-             
-         case kBarcodeFormatEan13:
-             return LanguageKey.EAN_13
-             
-         case kBarcodeFormatITF:
-             return LanguageKey.ITF
-             
-         case kBarcodeFormatPDF417:
-             return LanguageKey.PDF417
-             
-         case kBarcodeFormatQRCode:
-             return LanguageKey.QR_Code
-             
-         case kBarcodeFormatRSS14:
-             return LanguageKey.RSS_14
-             
-         case kBarcodeFormatRSSExpanded:
-             return LanguageKey.RSS_Expanded
-             
-         case kBarcodeFormatUPCA:
-             return LanguageKey.UPCA
-             
-         case kBarcodeFormatUPCE:
-             return LanguageKey.UPCE
-             
-         case kBarcodeFormatUPCEANExtension:
-             return LanguageKey.UPC_EAN_extension
-             
-         default:
-             return LanguageKey.Unknown
-         }
-     }
+        switch (format) {
+        case kBarcodeFormatAztec:
+            return LanguageKey.Aztec
+            
+        case kBarcodeFormatCodabar:
+            return LanguageKey.CODABAR
+            
+        case kBarcodeFormatCode39:
+            return LanguageKey.Code_39
+            
+        case kBarcodeFormatCode93:
+            return LanguageKey.Code_93
+            
+        case kBarcodeFormatCode128:
+            return LanguageKey.Code_128
+            
+        case kBarcodeFormatDataMatrix:
+            return LanguageKey.Data_Matrix
+            
+        case kBarcodeFormatEan8:
+            return LanguageKey.EAN_8
+            
+        case kBarcodeFormatEan13:
+            return LanguageKey.EAN_13
+            
+        case kBarcodeFormatITF:
+            return LanguageKey.ITF
+            
+        case kBarcodeFormatPDF417:
+            return LanguageKey.PDF417
+            
+        case kBarcodeFormatQRCode:
+            return LanguageKey.QR_Code
+            
+        case kBarcodeFormatRSS14:
+            return LanguageKey.RSS_14
+            
+        case kBarcodeFormatRSSExpanded:
+            return LanguageKey.RSS_Expanded
+            
+        case kBarcodeFormatUPCA:
+            return LanguageKey.UPCA
+            
+        case kBarcodeFormatUPCE:
+            return LanguageKey.UPCE
+            
+        case kBarcodeFormatUPCEANExtension:
+            return LanguageKey.UPC_EAN_extension
+            
+        default:
+            return LanguageKey.Unknown
+        }
+    }
     static func ratingApp(){
         if let url = URL(string: LanguageKey.Link_Share), !url.absoluteString.isEmpty {
-                          UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                      }
-
-                      // or outside scope use this
-                      guard let url = URL(string: "\(LanguageKey.Link_Share)"), !url.absoluteString.isEmpty else {
-                         return
-                      }
-                       UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+        
+        // or outside scope use this
+        guard let url = URL(string: "\(LanguageKey.Link_Share)"), !url.absoluteString.isEmpty else {
+            return
+        }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }
 

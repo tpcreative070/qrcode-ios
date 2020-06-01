@@ -158,6 +158,30 @@ extension HistoryVC : TableViewCellDelegate{
     }
     
     func cellViewSelected(cell: Codable) {
+        
+//        let jsonData =  JSONSerializerHelper.toJson(cell as Any)
+//
+//        print("object:\(jsonData)")
+//        let  vc = DetailVC()
+//        var typeCode: String = ""
+//        let arr = jsonData.split(separator: ",")
+//        for item in arr {
+//            if item.contains("\"typeCode\":"){
+//                typeCode = String(item.split(separator: ":")[1]).replacingOccurrences(of: "\"", with: "")
+//            }
+//            if item.contains("\"content\":"){
+//                let valueCt = item.replacingOccurrences(of: "\"content\": ", with: "", options: NSString.CompareOptions.literal, range: nil)
+//              // let vl = valueCt.replacingOccurrences(of: "\"", with: "")
+//                let vl1 = valueCt.replacingOccurrences(of: "\\", with: "")
+//               // print(vl)
+//                print(vl1)
+//
+//                let contentVM = QRCodeHelper.shared.convertStringtoContent(typeCode: typeCode, data: vl1)
+//                           vc.listContentViewModel = [contentVM]
+//                 self.navigationController?.pushViewController(vc, animated: true)
+//            }
+//        }
+        
         if let data = JSONHelper.get(value: HistoryViewModel.self,anyObject: cell){
             let  vc = DetailVC()
             print(data.content!)
@@ -166,14 +190,18 @@ extension HistoryVC : TableViewCellDelegate{
             }
             let contentVM = QRCodeHelper.shared.convertStringtoContent(typeCode: data.typeCode, data: ct)
             vc.listContentViewModel = [contentVM]
-            
-            
+
+
            // vc.listContentValue = [data.content!]
             self.navigationController?.pushViewController(vc, animated: true)
-            
+
         }
         
     }
+ 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+           Utils.logMessage(object: self.self.historyViewModel.listHistories[indexPath.row])
+       }
     
     func cellCodable(codable: Codable) {
         

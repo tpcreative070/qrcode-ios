@@ -16,6 +16,8 @@ class MainVC : SwipeMenuViewController {
     var mScanner : ScannerVC?
     var mSettings : SettingsVC?
     var dataCount: Int = 5
+    var trackViewModel = TrackViewModel()
+    var authorizationViewModel = AuthorizationViewModel()
     override func viewDidLoad() {
         initUI()
         addedView()
@@ -27,7 +29,9 @@ class MainVC : SwipeMenuViewController {
                                    }
                                }
         showRating()
-     
+        
+//        authorizationViewModel.getToken()
+     syncDevice()
          
     }
     
