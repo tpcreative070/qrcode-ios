@@ -298,10 +298,8 @@ struct AppImages {
     static let IC_SCAN = "ic_scan"
     static let IC_SCAN_QR = "ic_scanqr"
     static let IC_THEME = "ic_theme"
-
     static let IC_SAVE = "ic_save"
     static let IC_SETTING = "ic_settings_white"
-    
     static let IC_CONTACT_CALENDAR = "ic_contact_calendar"
     static let IC_COPY = "ic_copy"
      static let IC_LAUNCH = "ic_launch"
@@ -345,76 +343,12 @@ struct AppImages {
     static let IC_FLAG = "ic_flag"
     static let IC_DUPLICATE = "ic_duplicate"
     static let IC_CROWN = "ic_crown"
-    
-    static let IC_HOME = "ic_home"
-    static let IC_CONTACT = "ic_contact"
     static let IC_TRANSACTION = "ic_history"
-    static let IC_WALLET = "ic_wallet"
     static let IC_SCANNER = "ic_scan"
-    static let IC_SCANNER_BLUE = "ic_scanner_blue"
     static let IC_QRCODE = "ic_qrcode"
-    static let IC_LOGO = "ic_logo"
-    static let IC_USER = "ic_user"
-    static let IC_PASSWORD = "ic_password"
     static let IC_DROPDOWN = "ic_dropdown"
-    static let IC_CIRCLE_CASH_IN = "ic_circle_cash_in"
-    static let IC_CIRCLE_CASH_OUT = "ic_circle_cash_out"
-    static let IC_CIRCLE_CASH_CHANGE = "ic_circle_cash_change"
-    static let IC_CIRCLE_TRANSFER = "ic_circle_transfer"
-    
-    static let IC_CIRCLE_CASH_IN_GRAY = "ic_circle_cash_in_gray"
-    static let IC_CIRCLE_CASH_OUT_GRAY = "ic_circle_cash_out_gray"
-    static let IC_CIRCLE_CASH_CHANGE_GRAY = "ic_circle_cash_change_gray"
-    static let IC_CIRCLE_TRANSFER_GRAY = "ic_circle_transfer_gray"
-    
-    static let IC_BELL = "ic_bell"
-    static let IC_LIXI = "ic_lixi"
-    static let IC_GIFT = "ic_gift"
-    static let IC_LIXI_CLOSE = "ic_lixi_close"
-    static let IC_LIXI_OPEN = "ic_lixi_open"
-    static let IC_LIXI_BACKGROUND = "ic_lixi_background"
-    static let IC_ELECTRONIC = "ic_electronic"
-    static let IC_WATER = "ic_water"
-    static let IC_SHOP = "ic_shop"
-    static let IC_CABLE = "ic_cable"
-    static let IC_BG_HEADER = "ic_bg_header"
-    static let IC_FULL_HEADER = "ic_full_header"
-    static let IC_ERROR = "ic_error"
-    static let IC_SUCCESS = "ic_success"
-    static let IC_SIGN_OUT = "ic_sign_out"
-    static let IC_DESTROY = "ic_block"
-    static let IC_CHANGE_PASSWORD = "ic_change_password"
-    static let IC_NEXT = "ic_next"
-    static let IC_NEXT_IOS = "ic_next_ios"
-    static let IC_EDIT_PICTURE = "ic_edit_picture"
-    static let IC_EXCLAMATION = "ic_exclamation"
-    static let IC_GALLERY = "ic_gallery"
-    static let IC_CONTACT_ACTIVE = "ic_contact_active"
-    static let IC_BACK = "ic_back"
-    static let IC_PLUS = "ic_plus"
-    static let IC_CHECK_LIST = "ic_check_list"
-    static let IC_CHECK_LIST_ACTIVE = "ic_check_list_active"
-    static let IC_CHECKBOX = "ic_checkbox"
     static let IC_CHECKBOX_ACTIVE = "ic_checkbox_active"
-    static let IC_CHECK_SUCCESS = "ic_check_success"
-    static let IC_CHECK_FAIL = "ic_check_fail"
-    static let IC_MORE = "ic_more"
-    static let IC_FILTER = "ic_filter"
-    static let IC_DOWNLOAD = "ic_download"
-    static let IC_SIGN_OUT_RED = "ic_sign_out_red"
     static let IC_CHECK = "ic_checkwhite"
-    static let IC_INTRO_BACKGROUND = "ic_intro_background"
-    static let IC_INTRO_1 = "ic_intro_1"
-    static let IC_INTRO_2 = "ic_intro_2"
-    static let IC_INTRO_3 = "ic_intro_3"
-    static let IC_INTRO_4 = "ic_intro_4"
-    static let IC_INTRO_LIXI_1 = "ic_intro_lixi_1"
-    static let IC_INTRO_LIXI_2 = "ic_intro_lixi_2"
-    static let IC_INTRO_LIXI_3 = "ic_intro_lixi_3"
-    static let IC_INTRO_LIXI_4 = "ic_intro_lixi_4"
-    static let IC_AVATAR = "ic_avatar"
-    static let IC_SEND = "ic_send"
-    static let IC_LIX_TRANSACTION = "ic_lixi_transaction"
 }
 
 struct AppColors {
@@ -665,34 +599,12 @@ struct LanguageKey {
     
     //Home
     static let FROM = "FROM"
-    static let Passengers = "PASSENGERS"
-    static let SeatClass = "SEATCLASS"
-    static let DepartureDate = "DEPARTURE_DATE"
-    static let ReturnDate = "RETURN_DATE"
-    static let Search = "SEARCH"
-    static let Price = "PRICE"
-    static let Direct = "DIRECT"
-    static let StopNumber = "STOPNUMBER"
-    static let Continue = "CONTINUE"
-    static let Departure = "DEPARTURE"
-    static let Return = "RETURN"
+   
     static let History = "HISTORY"
     static let Sync  = "SYNC"
-    static let AccountName = "ACCOUNTNAME"
-    static let eCashId = "ECASHID"
-    static let eCashBalance = "ECASHBALANCE"
-    static let eDongId = "EDONGID"
-    static let eDongBalance = "EDONGBALANCE"
-    static let AddeCash = "ADDECASH"
-    static let WithDraweCash = "WITHDRAWECASH"
-    static let ExchangeeCash = "EXCHANGEECASH"
-    static let Transfer = "TRANSFER"
-    static let PaymentServices = "PAYMENTSERVICES"
-    static let PayEVN = "PAYEVN"
-    static let PayWATER = "PAYWATER"
-    static let PaySupermarket = "PAYSUPERMARKET"
-    static let PayVTVCab = "PAYVTVCAB"
-    static let ActiveAccountNow = "ACTIVE_ACCOUNT_NOW"
+    
+    
+   
     //typeCode
     
     static let ProductID = "PRODUCTID"
@@ -707,6 +619,7 @@ struct LanguageKey {
     static let Contact = "CONTACT"
     static let Telephone = "TELEPHONE"
     static let Text = "TEXT"
+    static let Search = "SEARCH"
     static let Wifi = "WIFI"
     static let Url = "URL"
     static let NoItem = "NO_ITEM"
@@ -735,17 +648,9 @@ struct LanguageKey {
     static let ContactInfo = "CONTACTINFO"
     static let Booking = "BOOKING"
     static let FillUp = "FILL_UP"
-    //Checkout
-    static let TicketNumber = "TICKETNUMBER"
-    static let Status = "STATUS"
-    static let TotalMoney = "TOTALMONEY"
-    static let NoPayment = "NOPAYMENT"
-    static let Paymented = "PAYMENTED"
-    static let Checkout = "CHECKOUT"
-    static let FLIGHTNAME = "FLIGHTNAME"
+   
     //Destination
-    static let SearchPlaceholder = "SEARCHPLACEHOLDER"
-    static let NoResult = "NORESULT"
+
     static let Cancel = "CANCEL"
     static let Copy = "COPY"
 
@@ -757,17 +662,9 @@ struct LanguageKey {
     static let CanNotSendMail = "CANNOTSENDMAIL"
     static let TapRating = "TAP_RATING"
     //SignIn
-    static let TitleBrand = "ECASH"
     static let SignOut = "SIGNOUT"
-    static let SignInWithGoogle = "SIGNINWITHGOOGLE"
-    static let ErrorUserNameNotMathCurrentUserName = "ERROR_USERNAME_DOES_NOT_MATH_CURRENT_USERNAME"
-    static let USER_NOT_ACTIVE = "USER_NOT_ACTIVE"
-    //HistoryCheckout
-    static let OneWay = "ONEWAY"
-    static let Quantity = "QUANTITY"
-    static let CreatedDate = "CREATEDDATE"
-    static let Maximum7Passengers = "MAXIMUM7PASSENGERS"
-    static let InfantCouldNotMoreThanAdult = "INFANTCOUNTNOTMORETHANADULT"
+
+    
     //Gallery
     static let ChooseFromLibrary = "CHOOSEFROMLABRARY"
     static let ChooseFromPhotoRoll = "CHOOSEFROMPHOTOROLL"
@@ -780,15 +677,9 @@ struct LanguageKey {
     static let Scanner = "SCANNER"
     static let Save = "SAVE"
     static let Setting = "SETTING"
-    //SignIn
-    static let CouldNotSignIn = "COULD_NOT_SIGN_IN"
-    static let DoNotHaveAnAccount = "DO_NOT_HAVE_AN_ACCOUNT"
-    static let SignUpNow = "SIGN_UP_NOW"
-    static let ActiveSuccessful = "ACTIVE_SUCCESSFUL"
-    static let UsernameCouldNotContainSpecialCharacter = "USERNAME_COULD_NOT_CONTAIN_SPECIAL_CHARACTER"
+
     //SignUp
-    static let SignUp = "SIGNUP"
-    static let AccountNumber = "ACCOUNTNUMBER"
+    
     static let FullName = "FULLNAME"
     static let Password = "PASSWORD"
     static let EnterId = "ENTERID"
@@ -1070,17 +961,12 @@ struct LanguageCode {
 }
 
 struct StorageKey {
-    static let activeAccountData = "ActiveAccountData"
     static let publicKey = "publicKey"
     static let refreshToken = "refreshToken"
     static let deviceId  = "deviceId"
     static let authorSession  = "authorSession"
-    static let signupData = "SignUpData"
-    static let signInData = "SignInData"
-    static let signInNoneWalletData = "SignInNoneWalletData"
     static let configData = "configurationData"
     static let cipherKey = "cipherKey"
-    static let eDongInfoData = "eDongInfoData"
     static let isAlreadyStore = "isAlreadyStore"
     static let keychain = "keychain"
     static let keychainFirebase = "keychainFirebase"
@@ -1089,10 +975,6 @@ struct StorageKey {
     static let multipleLanguages = "multipleLanguages"
     static let firebaseToken = "firebaseToken"
     static let channelPublicKey = "channelPublicKey"
-    static let isIntro = "isIntro"
-    static let isSignOut = "isSignOut"
-    static let valueImageGenerate = "valueImageGenerate"
-    
 }
 
 struct FolderName {
@@ -1138,56 +1020,12 @@ struct ApiEndPointUrl {
     static let AppVersionString = ConfigKey.AppVersionString
     static let AppVersion = ConfigKey.AppVersion
     static let AppBundleId = ConfigKey.AppBundleId
-    static let CheckingIdNumberAndPhoneNumber = "/ecgateway/execute/FU100"
-    static let CheckingUsername = "/ecgateway/execute/FU00003"
     static let SyncDevice = "/api/core/track/syncDevice"
     static let GetToken = "/api/core/user/refresh_token"
-    static let SignUp = "/ecgateway/execute/FU0001"
-    static let ActiveAccount = "/ecgateway/execute/FU0003"
-    static let SignIn = "/ecgateway/execute/FU00004"
-    static let SignOut = "/ecgateway/execute/GW000001"
-    static let eDongToeCashOwner = "/ecgateway/execute/GWEC0004"
-    static let eDongToeCashOwnerAmount = "/ecgateway/execute/GWEC0001"
-    static let eDongToeCashToSomeone = "/ecgateway/execute/GWEC0002"
-    static let eDongToeCashToSomeoneAmount = "/ecgateway/execute/GWEC0003"
-    static let GeteDongInfo = "/ecgateway/execute/FU0002"
-    static let eCashToeDong = "/ecgateway/execute/GW000001"
-    static let SignInWithNoneWallet = "/ecgateway/execute/GWEC0029"
-    static let SignInWithNoneWalletValidatedOTP = "/ecgateway/execute/GWEC0030"
-    static let GetWalletInfo = "/ecgateway/execute/GWEC0007"
-    static let GetPublicKeyeCashRelease = "/ecgateway/execute/GWEC0005"
-    static let GetPublicKeyOrganizeRelease = "/ecgateway/execute/GWEC0006"
-    static let ReSendOTP = "/ecgateway/execute/GW000004"
-    static let ChangePassword = "/ecgateway/execute/GW000003"
-    static let DestroyWallet = "/ecgateway/execute/GWEC0020"
-    static let VerifyTransaction = "/ecgateway/execute/GWEC0008"
-    static let ExchangeCash = "/ecgateway/execute/GWEC0011"
-    static let SyncContact = "/ecgateway/execute/GWEC0017"
-    static let SearchByPhoneNumber = "/ecgateway/execute/GWEC0016"
-    static let SendOTP = "/ecgateway/execute/GWEC0024"
-    static let UpdatedForgotPassword = "/ecgateway/execute/GWEC0025"
-    static let EditProfile = "/ecgateway/execute/GWEC0021"
-    static let UploadAvatar = "/ecgateway/execute/GWEC0022"
-    static let GetDenomination = "/ecgateway/execute/GWEC0031"
-    static let AddContact = "/ecgateway/execute/GWEC0023"
-    static let DeleteContact = "/ecgateway/execute/GWEC0038"
     
-    static let UserSignIn = "/api/login"
-    static let UserList = "/api/users/"
-    static let SearchList = "/api/Airline/Search"
     static let Donwload = "/api/download"
     static let Upload = "/api/upload"
-    static let Booking = "/api/Airline/Book"
-    static let SaveInfo = "/api/Airline/SavePaymentInfo"
-    static let ExecutePayment = "/api/airline/excusePayments"
-    static let UpdatePaymentInfo = "/api/Airline/UpdatePaymentInfo"
-    static let UserPassword = "/api/v2/users/password"
-    static let UserDetail = "/api/v2/users/{userId}"
-    static let UserAction = "/api/v2/users/{userId}/action"
-    static let UserChangeUserData = "/api/v2/users/{userId}"
-    static let UserPhoto = "/api/v2/users/{userId}/photo"
-    static let ListUser = "/api/v2/users"
-    static let AllUserEvent = "/api/v2/events/users"
+  
 }
 
 struct Storyboard {
@@ -1198,49 +1036,8 @@ struct Storyboard {
 }
 
 struct Controller {
-    static let email = "Email"
-    static let signin = "SignIn"
-    static let signup = "SignUp"
-    static let settings = "Settings"
     static let contact = "Contact"
     static let scanner = "Scanner"
-    static let transaction = "TransactionsLogs"
-    static let myWallet = "MyWallet"
-    static let home = "Home"
-    static let tabWallet = "TabWallet"
-    static let tabProfile = "TabProfile"
-    static let addeCash = "AddeCash"
-    static let withdraweCash = "WithdraweCash"
-    static let withdraweCashMultiple = "WithdraweCashMultiple"
-    static let exchangeeCash = "ExchangeeCash"
-    static let transfereCash = "TransfereCash"
-    static let transfereCashMultiple = "TransfereCashMultiple"
-    static let alert = "Alert"
-    static let scannerResult = "ScannerResult"
-    static let qrCodeHistory = "QRCodeHistory"
-    static let exchangeeCashOptions = "ExchangeeCashOptions"
-    static let addGenerate  = "AddGenerate"
-    static let editContact = "EditContact"
-    static let transactionFilter = "TransactionFilter"
-    static let transactionLogsDetail = "TransactionLogsDetail"
-    static let signOutOptions = "SignOutOptions"
-    static let destroyWalletOptions = "DestroyWalletOptions"
-    static let destroyWalletSuccessfulOptions = "DestroyWalletSuccessfulOptions"
-    static let changePassword = "ChangePassword"
-    static let forgotPassword = "ForgotPassword"
-    static let forgotPasswordOTPOptions = "ForgotPasswordOTPOptions"
-    static let recoverPassword = "RecoverPassword"
-    static let multipleLanguages = "MultipleLanguages"
-    static let myQRCode = "MyQRCode"
-    static let intro = "Intro"
-    static let notificationHistory = "NotificationHistory"
-    static let exchangeeCashOverviewOptions = "ExchangeeCashOverviewOptions"
-    static let helpSupport = "HelpSupport"
-    static let editProfile = "EditProfile"
-    static let galleryOptions = "GalleryOptions"
-    static let lixi = "Lixi"
-    static let sendLixi = "SendLixi"
-    static let receiveLixiOptions = "ReceiveLixiOptions"
 }
 
 enum EnumIdentifier : String {
@@ -1249,13 +1046,7 @@ enum EnumIdentifier : String {
     case Advance_Feature = "Advance_Feature"
     case Information = "Information"
     case ChangeColor = "ChangeColor"
-
     case None = "None"
-    case Home  = "Home"
-    case HistoryCheckout = "HistoryCheckout"
-    case PaymentServices = "PaymentServices"
-    case TransfereCashToeCash = "transferecashtoecash"
-    case WithdrawMultipleeCash = "WithdrawMultipleeCash"
     case History = "history"
     case Dropdown = "dropdown"
     case HistoryChoose = "history_choose"
@@ -1282,19 +1073,7 @@ enum EnumIdentifier : String {
     case Transactions = "transactions"
     case QRCodeHistory = "qrcodeHistory"
     case ScannerResult = "ScannerResult"
-    case ExchangeeCash = "ExchangeeCash"
-    case ExchangeeCashAvailable = "ExchangeeCashAvailable"
-    case ExpectationCash = "ExpectationCash"
-    case AddContact = "AddContact"
-    case TransactionsLogsDetail = "TransactionsLogsDetail"
-    case Intro = "Intro"
-    case NotificationHistory = "NotificationHistory"
-    case ExchangeOverviewOptions = "ExchangeOverviewOptions"
-    case ExpectationOverviewOptions = "ExpectationOverviewOptions"
-    case Denomination = "Denomination"
-    case SendLixi = "SendLixi"
-    case Lixi = "Lixi"
-    case ReceiveLixiOptions = "ReceiveLixiOptions"
+    
 }
 enum EnumType : String {
     case BARCODE = "BARCODE"
@@ -1341,54 +1120,8 @@ enum EnumResponseCode : String {
     case UNAUTHORIZED = "1005"
 }
 
-enum EnumResponseAction : String {
-    case CREATED_SUCCESSFULLY = "CREATED_SUCCESSFULLY"
-    case EXISTING_USERNAME = "EXISTING_USERNAME"
-    case ERROR = "ERROR"
-    case ERROR_USERNAME = "ERROR_USERNAME"
-    case ERROR_IDNUMBER_PHONENUMBER = "ERROR_IDNUMBER_PHONENUMBER"
-    case ECASH_TO_EDONG = "ECASH_TO_EDONG"
-    case ECASH_TO_ECASH = "ECASH_TO_ECASH"
-    case EDONG_TO_ECASH = "EDONG_TO_ECASH"
-    case EXCHANGE_CASH = "EXCHANGE_CASH"
-    case TRANSACTION = "TRANSACTION"
-    case UPDATE = "UPDATE"
-    case REQUEST_SIGN_IN = "REQUEST_SIGN_IN"
-}
 
-enum EnumFunctionName : String {
-    case CHECKING_ID_NUMBER_PHONE_NUMBER = "FU100"
-    case CHECKING_USERNAME = "FU00003"
-    case ACTIVE_ACCOUNT = "FU0003"
-    case SIGN_UP_USER = "FU0001"
-    case SIGN_IN_USER  = "FU00004"
-    case WEB_SOCKET = "EC00027"
-    case GET_EDONG = "FU0002"
-    case SIGN_IN_WITH_NONE_WALLET = "GWEC0029"
-    case SIGN_IN_WITH_NONE_WALLET_VALIDATED_OTP = "GWEC0030"
-    case WALLET_INFO = "GWEC0007"
-    case ECASH_RELEASE = "GWEC0005"
-    case ORGANIZE_RELEASE = "GWEC0006"
-    case EDONG_TO_ECASH_OWNER = "GWEC0004"
-    case EDONG_TO_ECASH_OWNER_AMOUNT = "GWEC0001"
-    case EDONG_TO_ECASH_RECEIVER = "GWEC0002"
-    case ECASH_TO_EDONG = "GWEC0009"
-    case SIGN_OUT = "GW000001"
-    case RESEND_OTP = "GW000004"
-    case CHANGE_PASSWORD = "GW000003"
-    case DESTROY_WALLET = "GWEC0010"
-    case VERIFY_TRANSACTION = "GWEC0008"
-    case EXCHANGE_CASH = "GWEC0011"
-    case SYNC_CONTACT = "GWEC0017"
-    case SEARCH_BY_PHONE = "GWEC0016"
-    case SEND_OTP = "GWEC0024"
-    case UPDATED_FORGOT_PASSWORD = "GWEC0025"
-    case EDIT_PROFILE = "GWEC0021"
-    case UPLOAD_AVATAR = "GWEC0022"
-    case DENOMINATION = "GWEC0031"
-    case AddContact = "GWEC0023"
-    case DeleteContact = "GWEC0038"
-}
+
 
 enum EnumChannelName : String {
     case MB001 = "MB001"
@@ -1400,14 +1133,7 @@ enum EnumResponseToView : String {
     case SIGN_IN_SUCCESS = "SIGN_IN_SUCCESS"
     case SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS"
     case SIGN_OUT_SUCCESS = "SIGN_OUT_SUCCESS"
-    case OTP_INVALID = "OTP_INVALID"
-    case NO_LIST_AVAILABLE = "NO_LIST_AVAILABLE"
-    case LIST_AVAILABLE = "LIST_AVAILABLE"
-    case CLEAN_CONTROL = "CLEAN_CONTROL"
-    case EDONG_TO_ECASH = "EDONG_TO_ECASH"
-    case ECASH_TO_EDONG = "ECASH_TO_EDONG"
-    case ECASH_TO_ECASH = "ECASH_TO_ECASH"
-    case EXCHANGE_CASH = "EXCHANGE_CASH"
+    
     case UPDATE_DATA_SOURCE = "UPDATE_DATA_SOURCE"
     case GET_DATA_SOURCE = "GET_DATA_SOURCE"
 
@@ -1417,66 +1143,10 @@ enum EnumResponseToView : String {
     case UPDATED_CONTACT_SUCCESSFULLY = "UPDATED_CONTACT_SUCCESSFULLY"
     case RESEND_OTP_CODE = "RESEND_OTP_CODE"
     case DELETE_ACCOUNT_SUCCESSFULLY = "DELETE_ACCOUNT_SUCCESSFULLY"
-    case ECASH_AVAILABLE = "ECASH_AVAILABLE"
-    case NO_ECASH = "NO_ECASH"
-    case CHANGED_PASSWORD_SUCCESSFULLY = "CHANGED_PASSWORD_SUCCESSFULLY"
-    case SENT_OTP_SUCCESSFULLY = "SENT_OTP_SUCCESSFULLY"
-    case UPDATED_FORGOT_PASSWORD_SUCCESSFULLY = "UPDATED_FORGOT_PASSWORD_SUCCESSFULLY"
-    case USER_NOT_ACTIVE = "USER_NOT_ACTIVE"
-    case UPDATED_UI = "UPDATED_UI"
-    case SAVED_TO_DEVICE = "SAVED_TO_DEVICE"
     case INVALID_QRCODE = "INVALID_QRCODE"
-    case TRANSACTION_WAS_RECEIVED = "TRANSACTION_WAS_RECEIVED"
-    case TRANSACTION_WAS_SENT_TO_ANOTHER = "TRANSACTION_WAS_SENT_TO_ANOTHER"
-    case REQUEST_OTP = "REQUEST_OTP"
-    case SignIn = "SIGN_IN"
-    case Intro = "INTRO"
-    case START = "START"
-    case SKIP = "SKIP"
-    case EDITED_PROFILE_SUCCESSFULLY = "EDITED_PROFILE_SUCCESSFULLY"
     case MULTIPLE_SELECTED_DONE = "MULTIPLE_SELECTED_DONE"
-    case READY_TO_SUBMIT = "READY_TO_SUBMIT"
-    case ACTION_GIFT = "ACTION_GIFT"
-    case UPDATE_HOME_TO_LIXI = "UPDATE_HOME_TO_LIXI"
-    case UPDATE_LIXI_UI = "UPDATE_LIXI_UI"
-    case UPDATED_SUCCESSFULLY = "UPDATED_SUCCESSFULLY"
-    case INSERTED_SUCCESSFULLY = "INSERTED_SUCCESSFULLY"
+    
 }
-
-enum EnumPassdata : String {
-    case NONE = "NONE"
-    case ALERT = "ALERT"
-    case SIGNUP_RESPONSE = "SIGNUP_RESPONSE"
-    case ALREADY_EXISTING_USER = "ALREADY_EXISTING_USER"
-    case SIGNUP_RESPONSE_SUCCESSFULLY = "SIGNUP_RESPONSE_SUCCESSFULLY"
-    case NAVIGATION = "NAVIGATION"
-    case TRANSACTION_RESPONSE = "TRANSACTION_RESPONSE"
-    case ECASH_TO_EDONG = "ECASH_TO_EDONG"
-    case ECASH_TO_ECASH = "ECASH_TO_ECASH"
-    case EDONG_TO_ECASH = "EDONG_TO_ECASH"
-    case SCANNER_RESULT = "SCANNER_RESULT"
-    case EXCHANGE_CASH = "EXCHANGE_CASH"
-    case CONTACT_ENTITIES = "CONTACT_ENTITIES"
-    case TRANSACTION_LOGS_HISTORY = "TRANSACTION_LOGS_HISTORY"
-    case TRANSACTION_LOGS_DETAIL = "TRANSACTION_LOGS_DETAIL"
-    case DESTROY_WALLET_OPTIONS = "DESTROY_WALLET_OPTIONS"
-    case OTP = "OTP"
-    case UPDATED_FORGOT_PASSWORD_COMPLETED = "UPDATED_FORGOT_PASSWORD_COMPLETED"
-    case GALLERY_OPTIONS = "GALLERY_OPTIONS"
-    case ReceiveLixiOptions = "ReceiveLixiOptions"
-}
-
-enum EnumTransferType : String {
-    case ECASH_TO_ECASH  = "CT"
-    case ECASH_TO_EDONG = "ND"
-    case EDONG_TO_ECASH = "NC"
-    case EXCHANGE_MONEY = "DC"
-    case STOPPING_SOCKET = "CF"
-    case RECEIVE_SYNC_CONTACT = "DB"
-    case DESTROY_WALLET = "HV"
-    case LIXI = "LX"
-}
-
 
 enum EnumTransactionStatus : String {
     case STATUS_SUCCESS  = "1"
@@ -1488,56 +1158,6 @@ enum InputOutputType : Bool {
     case OUTPUT
 }
 
-enum EnumTransactionsAction  : String {
-    case INSERT_TRANSACTION_SUCCESS = "INSERT_TRANSACTION_SUCCESS"
-    case INSERT_TRANSACTION_FAILED  = "INSERT_TRANSACTION_FAILED"
-    case UPDATE_TRANSACTION_SUCCESS = "UPDATE_TRANSACTION_SUCCESS"
-    case UPDATE_TRANSACTION_FAILED = "UPDATE_TRANSACTION_FAILED"
-    
-    case INSERT_CASH_LOGS_TEMPORARY_SUCCESS = "INSERT_CASH_LOGS_TEMPORARY_SUCCESS"
-    case INSERT_CASH_LOGS_TEMPORARY_FAILED = "INSERT_CASH_LOGS_TEMPORARY_FAILED"
-    case UPDATE_CASH_LOGS_TEMPORARY_SUCCESS = "UPDATE_CASH_LOGS_TEMPORARY_SUCCESS"
-    case UPDATE_CASH_LOGS_TEMPORARY_FAILED = "UPDATE_CASH_LOGS_TEMPORARY_FAILED"
-    
-    case INSERT_CASH_LOGS_SUCCESS = "INSERT_CASH_LOGS_SUCCESS"
-    case INSERT_CASH_LOGS_COMPLETED = "INSERT_CASH_LOGS_COMPLETED"
-    case INSERT_CASH_LOGS_FAILED = "INSERT_CASH_LOGS_FAILED"
-    case UPDATE_CASH_LOGS_SUCCESS = "UPDATE_CASH_LOGS_SUCCESS"
-    case UPDATE_CASH_LOGS_FAILED = "UPDATE_CASH_LOGS_FAILED"
-    case CASH_LOGS_EXISTING = "CASH_LOGS_EXISTING"
-    
-    case INSERT_CASH_INVALID_LOGS_SUCCESS = "INSERT_CASH_INVALID_LOGS_SUCCESS"
-    case INSERT_CASH_INVALID_LOGS_FAILED = "INSERT_CASH_INVALID_LOGS_FAILED"
-    case UPDATE_CASH_INVALID_LOGS_SUCCESS = "UPDATE_CASH_INVALID_LOGS_SUCCESS"
-    case UPDATE_CASH_INVALID_LOGS_FAILED = "UPDATE_CASH_INVALID_LOGS_FAILED"
-    case CASH_INVALID_LOGS_EXISTING = "CASH_INVALID_LOGS_EXISTING"
-    
-    case INSERT_DECISIONS_DIARY_SUCCESS = "INSERT_DECISIONS_DIARY_SUCCESS"
-    case INSERT_DECISIONS_DIARY_FAILED = "INSERT_DECISIONS_DIARY_FAILED"
-    case UPDATE_DECISIONS_DIARY_SUCCESS = "UPDATE_DECISIONS_DIARY_SUCCESS"
-    case UPDATE_DECISIONS_DIARY_FAILED = "UPDATE_DECISIONS_DIARY_FAILED"
-    
-    case CASH_RELEASE_SUCCESS = "CASH_RELEASE_SUCCESS"
-    case CASH_RELEASE_COMPLETE = "CASH_RELEASE_COMPLETE"
-    case VERIFY_KEY_SUCCESS = "VERIFY_KEY_SUCCESS"
-    case VERIFY_KEY_FAILED = "VERIFY_KEY_FAILED"
-    case FINISH_TRANSACTION_SUCCESS = "FINISH_TRANSACTION_SUCCESS"
-    
-    case WALLET_PUBLIC_KEY_SUCCESS = "WALLET_PUBLIC_KEY_SUCCESS"
-    case WALLET_PUBLIC_KEY_FAILED = "WALLET_PUBLIC_KEY_FAILED"
-}
-
-enum EnumTransactionsName : String {
-    case CASH_LOGS = "CASH_LOGS"
-    case CASH_INVALID_LOGS = "CASH_INVALID_LOGS"
-    case CASH_LOGS_TEMPORARY = "CASH_LOGS_TEMPORARY"
-    case TRANSACTIONS_LOGS = "TRANSACTIONS_LOGS"
-    case DECISIONS_DIARY = "DECISIONS_DIARY"
-    case CASH_RELEASE = "CASH_RELEASE"
-    case VERIFY_KEY = "VERIFY_KEY"
-    case FINISH_TRANSACTION = "FINISH_TRANSACTION"
-    case WALLET_PUBLIC_KEY = "WALLET_PUBLIC_KEY"
-}
 
 public enum KeychainSwiftAccessOptions {
     
