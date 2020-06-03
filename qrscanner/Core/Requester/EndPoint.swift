@@ -53,83 +53,21 @@ extension Endpoint {
 //==================
 // start user endpoint
 enum UserEndPoint {
-  case CheckingIdNumberAndPhoneNumber
-  case CheckingUsername
+  
 case SyncDevice
     case GetToken
-  case SignIn
-  case SignUp
-  case SignOut
-  case ActiveAccount
-  case SignInWithNoneWallet
-  case SignInWithNoneWalletValidatedOTP
-  case WalletInfo
-  case PublicKeyeCashRelese
-  case PublicKeyOrganizeRelease
-  case ReSendOTP
-  case ChangePassword
-  case SyncContact
-  case SearchByPhoneNumber
-  case DestroyWallet
-  case SendOTP
-  case UpdatedForgotPassword
-  case EditProfile
-  case UploadAvatar
-  case AddContact
-  case DeleteContact
+  
 }
 
 extension UserEndPoint: Endpoint {
   var path: String {
     switch self {
-    case .CheckingIdNumberAndPhoneNumber:
-      return ApiEndPointUrl.CheckingIdNumberAndPhoneNumber
-    case .CheckingUsername :
-      return ApiEndPointUrl.CheckingUsername
+    
     case .SyncDevice:
         return ApiEndPointUrl.SyncDevice
         case .GetToken:
                return ApiEndPointUrl.GetToken
-    case .SignUp:
-      return ApiEndPointUrl.SignUp
-    case .ActiveAccount:
-      return ApiEndPointUrl.ActiveAccount
-    case .SignIn:
-      return ApiEndPointUrl.SignIn
-    case .SignOut:
-      return ApiEndPointUrl.SignOut
-    case .SignInWithNoneWallet:
-        return ApiEndPointUrl.SignInWithNoneWallet
-    case .SignInWithNoneWalletValidatedOTP:
-      return ApiEndPointUrl.SignInWithNoneWalletValidatedOTP
-    case .WalletInfo :
-      return ApiEndPointUrl.GetWalletInfo
-    case .PublicKeyeCashRelese :
-      return ApiEndPointUrl.GetPublicKeyeCashRelease
-    case .PublicKeyOrganizeRelease :
-      return ApiEndPointUrl.GetPublicKeyOrganizeRelease
-    case .ReSendOTP :
-      return ApiEndPointUrl.ReSendOTP
-    case .ChangePassword :
-      return ApiEndPointUrl.ChangePassword
-    case .SyncContact :
-      return ApiEndPointUrl.SyncContact
-    case .SearchByPhoneNumber :
-      return ApiEndPointUrl.SearchByPhoneNumber
-    case .DestroyWallet :
-      return ApiEndPointUrl.DestroyWallet
-    case .SendOTP :
-      return ApiEndPointUrl.SendOTP
-    case .UpdatedForgotPassword:
-       return ApiEndPointUrl.UpdatedForgotPassword
-    case .EditProfile:
-        return ApiEndPointUrl.EditProfile
-    case .AddContact:
-        return ApiEndPointUrl.AddContact
-    case .DeleteContact:
-        return ApiEndPointUrl.DeleteContact
-    case .UploadAvatar:
-        return ApiEndPointUrl.UploadAvatar
+  
    }
   }
 }
@@ -163,30 +101,4 @@ enum HomeEndPoint {
     case getDenomination
 }
 
-extension HomeEndPoint: Endpoint {
-    var path: String {
-        switch self {
-        case .productList:
-            return ApiEndPointUrl.UserList
-        case .eDongToeCashOwner:
-            return ApiEndPointUrl.eDongToeCashOwner
-        case .geteDongInfo:
-            return ApiEndPointUrl.GeteDongInfo
-        case .eCashToeDong:
-            return ApiEndPointUrl.eCashToeDong
-        case .VerifyTransaction:
-            return ApiEndPointUrl.VerifyTransaction
-        case .eDongToeCashOwnerAmount:
-            return ApiEndPointUrl.eDongToeCashOwnerAmount
-        case .eDongToeCashToSomeone :
-            return ApiEndPointUrl.eDongToeCashToSomeone
-        case .eDongToeCashToSomeoneAmount :
-            return ApiEndPointUrl.eDongToeCashToSomeoneAmount
-        case .ExchangeCash :
-            return ApiEndPointUrl.ExchangeCash
-        case .getDenomination :
-            return ApiEndPointUrl.GetDenomination
-        }
-        
-    }
-}
+

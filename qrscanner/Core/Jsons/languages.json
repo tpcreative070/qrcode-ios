@@ -197,7 +197,6 @@
         "ALERT" : "Alert",
         "USERNAME" : "Username",
         "ALREADYEXISTED" : "Already existed",
-        "ACTIVE_ACCOUNT_NOW" : "Active account now",
         "YES" : "Yes",
         "NO" : "No",
         "FLASH" : "Flash",
@@ -218,7 +217,6 @@
         "DELETE" : "Delete",
         "TOTAL_EXPECTATION_CASH" : "Total expectation cash",
         "ASK_PERMISSION" : "Ask permission",
-        "USERNAME_COULD_NOT_CONTAIN_SPECIAL_CHARACTER" : "Username could not contain special characters",
         "CHOOSE_YOUR_LANGUAGE" : "Choose your language below, you want to change",
         "VIETNAMESE" : "Vietnamese",
         "English" : "English",
@@ -360,7 +358,6 @@
         "WEP": "WEP",
         "NONE": "None",
         "URL": "Địa chỉ Web",
-        
         "REQUEST_FAILED": "Yêu cầu thất bại",
         "INVALID_DATA": "Dữ liệu không hợp lệ",
         "RESPONSE_UNSUCCESSFUL": "Phản hồi thất bại",
@@ -422,7 +419,6 @@
         "SECONDS": "Giây",
         
         
-        "TOTALMONEY" : "Tổng tiền",
         
         "CANCEL" : "Huỷ",
         
@@ -435,12 +431,10 @@
         "NOSOURCES" : "No file",
         "TAKEPHOTO" : "Chụp ảnh",
         "TAKEVIDEO" : "Quay video",
-        "SIGNINWITHGOOGLE" : "Đăng nhập với Google",
         "SYNC" : "Đồng bộ",
         "HOME" : "Trang chủ",
         "SCANNER" : "Quét",
         
-        "ACCOUNTNUMBER" : "Nhập username",
         "CONFIRMPASSWORD" : "Xác nhập mật khẩu",
         "ERROR_ID_INVALID" : "Id không hợp lệ",
         
@@ -456,7 +450,6 @@
         "ALERT" : "Thông báo",
         "USERNAME" : "Username",
         "ALREADYEXISTED" : "Đã tồn tại",
-        "ACTIVE_ACCOUNT_NOW" : "Kích hoạt tài khoản",
         "YES" : "Đồng ý",
         "NO" : "Không",
         
@@ -689,7 +682,6 @@
         "SECONDS": "Segundos",
         
         
-        "TOTALMONEY" : "Dinero total",
         
         "CANCEL" : "Abortar",
         
@@ -715,7 +707,6 @@
         "ALERT" : "Aviso",
         "USERNAME" : "Nombre de usuario",
         "ALREADYEXISTED" : "Ya existe",
-        "ACTIVE_ACCOUNT_NOW" : "Activar cuenta",
         "YES" : "De acuerdo",
         "NO" : "No",
         
@@ -942,7 +933,6 @@
          "SECONDS": "Segundos",
          
          
-         "TOTALMONEY" : "Dinheiro total",
          
          "CANCEL" : "Abortar",
          
@@ -968,7 +958,6 @@
          "ALERT" : "Notificação",
          "USERNAME" : "Nome de usuário",
          "ALREADYEXISTED" : "Já existe",
-         "ACTIVE_ACCOUNT_NOW" : "Ativar conta",
          "YES" : "De acordo",
          "NO" : "Não",
          

@@ -443,9 +443,7 @@ class TableViewCell : UITableViewCell{
     }
     
     @objc func actionCellViewAction(sender : UITapGestureRecognizer){
-        if identifier == EnumIdentifier.Lixi {
-            self.delegate?.cellViewSelected(cell: self, action: EnumResponseToView.ACTION_GIFT)
-        }
+        
     }
     
     @objc func controlValueChanged(sender : ICStepper){
