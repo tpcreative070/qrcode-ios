@@ -1,4 +1,4 @@
-https://gitlab.com/ios_developer/qrscanner.git
+[https://gitlab.com/ios_developer/qrscanner.git](https://github.com/tpcreative070/qrcode-ios.git)
 
 Architecture design pattern MVVM
 
